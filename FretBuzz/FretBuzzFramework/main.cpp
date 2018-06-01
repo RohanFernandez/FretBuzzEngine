@@ -1,16 +1,10 @@
-#include <glfw3.h>
+#pragma once
 #include <iostream>
+#include "framework\system\system.h"
 
 int main()
 {
-	if (glfwInit())
-	{
-		std::cout << "Success\n";
-	}
-	else
-	{
-		std::cout << "Failed\n";
-	}
+	ns_fretBuzz::ns_system::System::Run();
 
 	system("pause");
 	return 0;

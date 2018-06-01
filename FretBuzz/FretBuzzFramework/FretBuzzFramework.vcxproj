@@ -73,7 +73,7 @@
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\;$(SolutionDir)Libs\GLEW\lib\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib;$(SolutionDir)Libs\GLEW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
@@ -116,7 +116,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,11 +150,21 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="framework\system\input.cpp" />
+    <ClCompile Include="framework\system\system.cpp" />
+    <ClCompile Include="framework\system\timer.cpp" />
+    <ClCompile Include="framework\system\window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework\system\input.h" />
+    <ClInclude Include="framework\system\system.h" />
+    <ClInclude Include="framework\system\timer.h" />
+    <ClInclude Include="framework\system\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
