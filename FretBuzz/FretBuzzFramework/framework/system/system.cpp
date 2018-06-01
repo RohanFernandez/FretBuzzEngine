@@ -1,5 +1,6 @@
 #pragma once
 #include "system.h"
+#include <iostream>
 
 namespace ns_fretBuzz
 {
@@ -16,10 +17,8 @@ namespace ns_fretBuzz
 		{
 			s_pInstance = new System();
 			s_pInstance->m_pWindow = new Window(800, 600, "FretBuzz");
-			s_pInstance->m_pInput = new Input();
-
-			return (s_pInstance->m_pWindow->isInitialized() &&
-				s_pInstance->m_pInput->isInitialized());
+			
+			return s_pInstance->m_pWindow->isInitialized();
 		}
 
 		System::~System()
@@ -28,12 +27,6 @@ namespace ns_fretBuzz
 			{
 				delete m_pWindow;
 				m_pWindow = nullptr;
-			}
-
-			if (m_pInput != nullptr)
-			{
-				delete m_pInput;
-				m_pInput = nullptr;
 			}
 
 			s_pInstance = nullptr;
@@ -56,7 +49,6 @@ namespace ns_fretBuzz
 			while (!l_Window.isWindowClosed())
 			{
 				l_Window.clear();
-
 
 
 				l_Window.update();

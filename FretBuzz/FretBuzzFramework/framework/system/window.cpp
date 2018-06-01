@@ -29,8 +29,11 @@ namespace ns_fretBuzz
 				return false;
 			}
 
+			m_pInput = new Input(m_pGLFWwindow);
+
 			glfwMakeContextCurrent(m_pGLFWwindow);
 			glfwSetWindowUserPointer(m_pGLFWwindow, this);
+
 			glfwSetWindowCloseCallback(m_pGLFWwindow, OnWindowClose);
 			glfwSetWindowSizeCallback(m_pGLFWwindow, OnWindowResize);
 
@@ -51,6 +54,12 @@ namespace ns_fretBuzz
 		Window::~Window()
 		{
 			glfwTerminate();
+
+			if (m_pInput != nullptr)
+			{
+				delete m_pInput;
+				m_pInput = nullptr;
+			}
 		}
 
 		void Window::update()

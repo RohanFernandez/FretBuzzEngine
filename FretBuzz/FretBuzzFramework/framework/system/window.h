@@ -2,6 +2,7 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <string>
+#include "input.h"
 
 namespace ns_fretBuzz
 {
@@ -19,8 +20,12 @@ namespace ns_fretBuzz
 
 			bool initialize();
 
+			Input* m_pInput = nullptr;
+
 			//Callback called on window closed
 			static void OnWindowClose(GLFWwindow* a_pGLFWwindow);
+
+			//Callback called on window resized
 			static void OnWindowResize(GLFWwindow* a_pGLFWwindow, int a_iWidth, int a_iHeight);
 
 		public:

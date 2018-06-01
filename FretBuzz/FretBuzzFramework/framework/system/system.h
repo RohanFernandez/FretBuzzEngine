@@ -22,7 +22,6 @@ namespace ns_fretBuzz
 			static void destroy();
 
 			Window* m_pWindow = nullptr;
-			Input* m_pInput = nullptr;
 
 		public:
 			~System();
