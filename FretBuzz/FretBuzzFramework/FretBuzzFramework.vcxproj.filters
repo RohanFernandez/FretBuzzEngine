@@ -24,10 +24,13 @@
     <ClCompile Include="framework\system\system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\system\timer.cpp">
+    <ClCompile Include="framework\system\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\system\window.cpp">
+    <ClCompile Include="framework\system\timer\timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\timer\timerFPS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +41,13 @@
     <ClInclude Include="framework\system\system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\timer.h">
+    <ClInclude Include="framework\system\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\window.h">
+    <ClInclude Include="framework\system\timer\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\timer\timerFPS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

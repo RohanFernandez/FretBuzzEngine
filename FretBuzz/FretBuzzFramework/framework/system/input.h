@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 			static constexpr int MAX_KEYBOARD_BTNS = 1024;
 			static constexpr int MAX_MOUSE_BTNS = 32;
 
-			KEY_STATE m_arrKeyCode[1024] = { KEY_RELEASED };
+			KEY_STATE m_arrKeyCode[MAX_KEYBOARD_BTNS] = { KEY_RELEASED };
 			KEY_STATE m_arrMouseCode[MAX_MOUSE_BTNS] = { KEY_RELEASED };
 
 			double m_dMousePositionX = 0.0f;

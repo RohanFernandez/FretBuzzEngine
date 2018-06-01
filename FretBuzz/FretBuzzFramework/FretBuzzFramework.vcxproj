@@ -154,16 +154,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="framework\system\timer\timer.cpp" />
+    <ClCompile Include="framework\system\timer\timerFPS.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="framework\system\input.cpp" />
     <ClCompile Include="framework\system\system.cpp" />
-    <ClCompile Include="framework\system\timer.cpp" />
     <ClCompile Include="framework\system\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\input.h" />
     <ClInclude Include="framework\system\system.h" />
-    <ClInclude Include="framework\system\timer.h" />
+    <ClInclude Include="framework\system\timer\timer.h" />
+    <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

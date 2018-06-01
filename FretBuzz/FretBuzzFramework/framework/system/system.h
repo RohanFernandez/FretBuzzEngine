@@ -1,6 +1,6 @@
 #pragma once
 #include "window.h"
-#include "timer.h"
+#include "timer\timerFPS.h"
 #include "input.h"
 
 namespace ns_fretBuzz
@@ -22,6 +22,8 @@ namespace ns_fretBuzz
 			static void destroy();
 
 			Window* m_pWindow = nullptr;
+			
+			TimerFPS* m_pFPStimer = nullptr;
 
 		public:
 			~System();

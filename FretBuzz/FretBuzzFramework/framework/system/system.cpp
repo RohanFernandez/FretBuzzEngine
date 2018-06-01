@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
-
+			m_pFPStimer = new TimerFPS(true);
 		}
 
 		bool System::initialize()
@@ -27,6 +27,12 @@ namespace ns_fretBuzz
 			{
 				delete m_pWindow;
 				m_pWindow = nullptr;
+			}
+
+			if (m_pFPStimer != nullptr)
+			{
+				delete m_pFPStimer;
+				m_pFPStimer = nullptr;
 			}
 
 			s_pInstance = nullptr;
@@ -46,12 +52,15 @@ namespace ns_fretBuzz
 			}
 
 			Window& l_Window = *(s_pInstance->m_pWindow);
+			TimerFPS& l_FPSTimer = *(s_pInstance->m_pFPStimer);
+
 			while (!l_Window.isWindowClosed())
 			{
 				l_Window.clear();
 
 
 				l_Window.update();
+				l_FPSTimer.update();
 			}
 
 			destroy();
