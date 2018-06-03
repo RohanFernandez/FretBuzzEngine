@@ -1,7 +1,7 @@
 #pragma once
 #include "window.h"
 #include "timer\timerFPS.h"
-#include "input.h"
+#include "../game/game.h"
 
 namespace ns_fretBuzz
 {
@@ -15,6 +15,10 @@ namespace ns_fretBuzz
 
 			System();
 
+			static const int START_SCREEN_WIDTH;
+			static const int START_SCREEN_HEIGHT;
+			static const std::string WINDOW_NAME;
+
 			//Initializes the system, is called only once on startup
 			static bool initialize();
 
@@ -24,6 +28,8 @@ namespace ns_fretBuzz
 			Window* m_pWindow = nullptr;
 			
 			TimerFPS* m_pFPStimer = nullptr;
+
+			Game* m_pGame = nullptr;
 
 		public:
 			~System();

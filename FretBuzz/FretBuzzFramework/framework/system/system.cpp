@@ -8,15 +8,20 @@ namespace ns_fretBuzz
 	{
 		System* System::s_pInstance = nullptr;
 
+		const int System::START_SCREEN_WIDTH = 800;;
+		const int System::START_SCREEN_HEIGHT = 600;
+		const std::string System::WINDOW_NAME = "FretBuzz";
+
 		System::System()
 		{
 			m_pFPStimer = new TimerFPS(true);
+			m_pGame = new Game();
 		}
 
 		bool System::initialize()
 		{
 			s_pInstance = new System();
-			s_pInstance->m_pWindow = new Window(800, 600, "FretBuzz");
+			s_pInstance->m_pWindow = new Window(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
 			
 			return s_pInstance->m_pWindow->isInitialized();
 		}
@@ -33,6 +38,12 @@ namespace ns_fretBuzz
 			{
 				delete m_pFPStimer;
 				m_pFPStimer = nullptr;
+			}
+
+			if (m_pGame != nullptr)
+			{
+				delete m_pGame;
+				m_pGame = nullptr;
 			}
 
 			s_pInstance = nullptr;
@@ -53,11 +64,13 @@ namespace ns_fretBuzz
 
 			Window& l_Window = *(s_pInstance->m_pWindow);
 			TimerFPS& l_FPSTimer = *(s_pInstance->m_pFPStimer);
+			Game& l_Game = *(s_pInstance->m_pGame);
 
 			while (!l_Window.isWindowClosed())
 			{
 				l_Window.clear();
 
+				l_Game.update(l_FPSTimer.getDeltaTime());
 
 				l_Window.update();
 				l_FPSTimer.update();
