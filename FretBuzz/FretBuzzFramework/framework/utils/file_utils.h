@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 	{
 		struct FileUtils
 		{
-			static std::string readFile(std::string a_strFilePath);
+			static std::string readFile(const std::string a_strFilePath);
 		};
 	}
 }

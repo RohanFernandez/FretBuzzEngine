@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_utils
 	{
-		std::string FileUtils::readFile(std::string a_strFilePath)
+		std::string FileUtils::readFile(const std::string a_strFilePath)
 		{
 			std::ifstream l_File(a_strFilePath);
 			if (!l_File)

@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -156,11 +156,16 @@
   <ItemGroup>
     <ClCompile Include="framework\game\game.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
+    <ClCompile Include="framework\maths\mat4.cpp" />
+    <ClCompile Include="framework\maths\vec2.cpp" />
+    <ClCompile Include="framework\maths\vec3.cpp" />
+    <ClCompile Include="framework\maths\vec4.cpp" />
     <ClCompile Include="framework\system\managers\scene_manager.cpp" />
     <ClCompile Include="framework\system\managers\update_manager.cpp" />
     <ClCompile Include="framework\system\timer\timer.cpp" />
     <ClCompile Include="framework\system\timer\timerFPS.cpp" />
     <ClCompile Include="framework\utils\file_utils.cpp" />
+    <ClCompile Include="framework\maths\math_utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="framework\system\input.cpp" />
     <ClCompile Include="framework\system\system.cpp" />
@@ -173,6 +178,11 @@
     <ClInclude Include="framework\game\scenes\score_state.h" />
     <ClInclude Include="framework\components\FSM.h" />
     <ClInclude Include="framework\graphics\shader.h" />
+    <ClInclude Include="framework\maths\mat4.h" />
+    <ClInclude Include="framework\maths\math.h" />
+    <ClInclude Include="framework\maths\vec2.h" />
+    <ClInclude Include="framework\maths\vec3.h" />
+    <ClInclude Include="framework\maths\vec4.h" />
     <ClInclude Include="framework\system\managers\scene_manager.h" />
     <ClInclude Include="framework\system\managers\update_manager.h" />
     <ClInclude Include="framework\system\input.h" />
@@ -181,6 +191,7 @@
     <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\window.h" />
     <ClInclude Include="framework\utils\file_utils.h" />
+    <ClInclude Include="framework\maths\math_utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
