@@ -1,10 +1,10 @@
 #pragma once
-#include "FSM.h"
+#include "../../components/FSM.h"
 #include <type_traits>
 
 namespace ns_fretBuzz
 {
-	namespace ns_manager
+	namespace ns_system
 	{
 		//Each scene state should be inherited from IScene
 		class IScene : public IFSM

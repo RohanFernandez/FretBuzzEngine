@@ -3,7 +3,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_manager
+	namespace ns_system
 	{
 			//singleton instance
 			UpdateManager* UpdateManager::s_pInstance = nullptr;

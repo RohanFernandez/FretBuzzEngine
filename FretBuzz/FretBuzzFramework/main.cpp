@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "framework\system\system.h"
 
 int main()

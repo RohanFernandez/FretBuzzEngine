@@ -3,7 +3,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_manager
+	namespace ns_system
 	{
 		class IFrameUpdateTimer;
 		class ILateUpdateTimer;

@@ -9,8 +9,6 @@ namespace ns_fretBuzz
 		Game::Game()
 			: IUpdateTimer()
 		{
-			using namespace ns_manager;
-
 			m_vectScenes = 
 				{ 
 						new SceneData<InitState>("initstate"),
@@ -23,16 +21,16 @@ namespace ns_fretBuzz
 
 		Game::~Game()
 		{
-			for (auto l_CurrentState = m_vectScenes.cbegin(), l_EndStateIndex = m_vectScenes.cend();
-				l_CurrentState != l_EndStateIndex; l_CurrentState++)
-			{
-				delete *l_CurrentState;
-			}
-
 			if (m_pSceneManager != nullptr)
 			{
 				delete m_pSceneManager;
 				m_pSceneManager = nullptr;
+			}
+
+			for (auto l_CurrentState = m_vectScenes.cbegin(), l_EndStateIndex = m_vectScenes.cend();
+				l_CurrentState != l_EndStateIndex; l_CurrentState++)
+			{
+				delete *l_CurrentState;
 			}
 		}
 

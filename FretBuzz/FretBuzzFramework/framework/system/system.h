@@ -2,7 +2,7 @@
 #include "window.h"
 #include "timer/timerFPS.h"
 #include "../game/game.h"
-#include "../managers/update_manager.h"
+#include "../system/managers/update_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 
 			Game* m_pGame = nullptr;
 
-			ns_manager::UpdateManager* m_pUpdateManager = nullptr;
+			UpdateManager* m_pUpdateManager = nullptr;
 
 		public:
 			~System();

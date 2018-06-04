@@ -1,16 +1,16 @@
 #pragma once
-#include "../../managers/scene_manager.h"
+#include "../../system/managers/scene_manager.h"
 
 namespace ns_fretBuzz
 {
 	class MainMenuState 
-		: public ns_manager::IScene,
-		public ns_manager::IUpdateTimer
+		: public ns_system::IScene,
+		public ns_system::IUpdateTimer
 	{
 	public:
 		MainMenuState(std::string a_strSceneName) :
 			IScene(a_strSceneName),
-			ns_manager::IUpdateTimer()
+			ns_system::IUpdateTimer()
 		{
 		}
 

@@ -3,7 +3,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_manager
+	namespace ns_system
 	{
 		SceneManager::SceneManager(ISceneData* a_pStartScene, bool a_bIsTransitionToSelfAllowed)
 			: FSM<ISceneData>(a_pStartScene, a_bIsTransitionToSelfAllowed)
