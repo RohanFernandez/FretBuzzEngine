@@ -7,21 +7,23 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		Game::Game()
+			: IUpdateTimer()
 		{
 			using namespace ns_manager;
-			m_vectStates = 
+
+			m_vectScenes = 
 				{ 
 						new SceneData<InitState>("initstate"),
 						new SceneData<MainMenuState>("mainmenustate"),
 						new SceneData<ScoreState>("scorestatestate") 
 				};
 
-			m_pSceneManager = new ns_manager::SceneManager(m_vectStates);
+			m_pSceneManager = new SceneManager(m_vectScenes);
 		}
 
 		Game::~Game()
 		{
-			for (auto l_CurrentState = m_vectStates.cbegin(), l_EndStateIndex = m_vectStates.cend();
+			for (auto l_CurrentState = m_vectScenes.cbegin(), l_EndStateIndex = m_vectScenes.cend();
 				l_CurrentState != l_EndStateIndex; l_CurrentState++)
 			{
 				delete *l_CurrentState;
@@ -34,7 +36,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void Game::update(const float a_fDeltaTime)
+		void Game::onUpdate(const float a_fDeltaTime)
 		{
 			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
@@ -48,6 +50,11 @@ namespace ns_fretBuzz
 			{
 				m_pSceneManager->TransitionTo("mainmenustate");
 			}
+		}
+
+		void Game::onLateUpdate(const float a_fDeltaTime)
+		{
+		
 		}
 	}
 }

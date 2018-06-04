@@ -12,26 +12,30 @@ namespace ns_fretBuzz
 		public:
 			IScene() = delete;
 
+			virtual ~IScene() = 0
+			{}
+
 		protected:
-			IScene(std::string a_strSceneName) :
-				IFSM(a_strSceneName)
+			IScene(std::string a_strSceneName) 
+				: IFSM(a_strSceneName)
 			{
 			}
 		};
 
-		//This class is not used and can only be used internally
 		//The SceneData is inherited from this for the scene management,
-		//mainly to store it as the type of FSM states because scene data is of type and hence cannot be stored in a list
+		//mainly to store it as the type of FSM states because scene data is of type and
+		//hence cannot be stored in a list
 		class ISceneData : public IFSM
 		{
 		public:
 			ISceneData() = delete;
 
-			virtual ~ISceneData()
+			virtual ~ISceneData() = 0
 			{}
 
 		protected:
-			ISceneData(std::string a_strSceneID) : IFSM(a_strSceneID)
+			ISceneData(std::string a_strSceneID)
+				: IFSM(a_strSceneID)
 			{
 
 			}

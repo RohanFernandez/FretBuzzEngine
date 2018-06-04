@@ -155,7 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="framework\game\game.cpp" />
-    <ClCompile Include="framework\managers\SceneManager.cpp" />
+    <ClCompile Include="framework\managers\scene_manager.cpp" />
+    <ClCompile Include="framework\managers\update_manager.cpp" />
     <ClCompile Include="framework\system\timer\timer.cpp" />
     <ClCompile Include="framework\system\timer\timerFPS.cpp" />
     <ClCompile Include="main.cpp" />
@@ -169,7 +170,8 @@
     <ClInclude Include="framework\game\scenes\mainmenu_state.h" />
     <ClInclude Include="framework\game\scenes\score_state.h" />
     <ClInclude Include="framework\managers\FSM.h" />
-    <ClInclude Include="framework\managers\SceneManager.h" />
+    <ClInclude Include="framework\managers\scene_manager.h" />
+    <ClInclude Include="framework\managers\update_manager.h" />
     <ClInclude Include="framework\system\input.h" />
     <ClInclude Include="framework\system\system.h" />
     <ClInclude Include="framework\system\timer\timer.h" />

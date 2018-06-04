@@ -1,7 +1,8 @@
 #pragma once
 #include "window.h"
-#include "timer\timerFPS.h"
+#include "timer/timerFPS.h"
 #include "../game/game.h"
+#include "../managers/update_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -30,6 +31,8 @@ namespace ns_fretBuzz
 			TimerFPS* m_pFPStimer = nullptr;
 
 			Game* m_pGame = nullptr;
+
+			ns_manager::UpdateManager* m_pUpdateManager = nullptr;
 
 		public:
 			~System();

@@ -15,6 +15,7 @@ namespace ns_fretBuzz
 		System::System()
 		{
 			m_pFPStimer = new TimerFPS(true);
+			m_pUpdateManager = new ns_manager::UpdateManager();
 			m_pGame = new Game();
 		}
 
@@ -46,7 +47,16 @@ namespace ns_fretBuzz
 				m_pGame = nullptr;
 			}
 
-			s_pInstance = nullptr;
+			if (m_pUpdateManager != nullptr)
+			{
+				delete m_pUpdateManager;
+				m_pUpdateManager = nullptr;
+			}
+
+			if (s_pInstance == this)
+			{
+				s_pInstance = nullptr;
+			}
 		}
 
 		void System::Run()
@@ -65,12 +75,20 @@ namespace ns_fretBuzz
 			Window& l_Window = *(s_pInstance->m_pWindow);
 			TimerFPS& l_FPSTimer = *(s_pInstance->m_pFPStimer);
 			Game& l_Game = *(s_pInstance->m_pGame);
+			ns_manager::UpdateManager& l_UpdateManager = *(s_pInstance->m_pUpdateManager);
+
+			float l_fCurrentDeltaTime = 0.0f;
 
 			while (!l_Window.isWindowClosed())
 			{
 				l_Window.clear();
+				l_fCurrentDeltaTime = l_FPSTimer.getDeltaTime();
 
-				l_Game.update(l_FPSTimer.getDeltaTime());
+				l_UpdateManager.onUpdateFrame(l_fCurrentDeltaTime);
+				l_UpdateManager.onUpdateLateFrame(l_fCurrentDeltaTime);
+
+				std::cout<<"Frame count:: "<<l_UpdateManager.getFrameUpdateObjectCount()<<"... LateCount:: "<< l_UpdateManager.getLateUpdateObjectCount() <<"\n";
+
 
 				l_Window.update();
 				l_FPSTimer.update();
