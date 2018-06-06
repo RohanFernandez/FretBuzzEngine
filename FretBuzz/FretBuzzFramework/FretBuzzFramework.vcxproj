@@ -72,8 +72,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib;$(SolutionDir)Libs\GLEW\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib;$(SolutionDir)Libs\GLEW\lib;$(SolutionDir)Libs\FreeImage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="framework\game\game.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
+    <ClCompile Include="framework\graphics\texture.cpp" />
     <ClCompile Include="framework\maths\mat4.cpp" />
     <ClCompile Include="framework\maths\vec2.cpp" />
     <ClCompile Include="framework\maths\vec3.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="framework\game\scenes\score_state.h" />
     <ClInclude Include="framework\components\FSM.h" />
     <ClInclude Include="framework\graphics\shader.h" />
+    <ClInclude Include="framework\graphics\texture.h" />
     <ClInclude Include="framework\maths\mat4.h" />
     <ClInclude Include="framework\maths\math.h" />
     <ClInclude Include="framework\maths\vec2.h" />
