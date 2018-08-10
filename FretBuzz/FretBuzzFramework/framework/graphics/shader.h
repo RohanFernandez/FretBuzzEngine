@@ -1,7 +1,7 @@
 #pragma once
 #include <glew.h>
 #include <string>
-#include "../maths/math.h"
+#include "../components/math.h"
 
 namespace ns_fretBuzz
 {
@@ -43,16 +43,16 @@ namespace ns_fretBuzz
 			void setUniform1ui(const char* a_pUniformName, GLuint a_Value);
 			void setUniform1uiv(const char* a_pUniformName, unsigned int a_iArrayCount, GLuint* a_arrValue);
 
-			void setUniform2f(const char* a_pUniformName, const ns_maths::vec2& a_vec2);
+			void setUniform2f(const char* a_pUniformName, const glm::vec2& a_vec2);
 			void setUniform2f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2);
 
-			void setUniform3f(const char* a_pUniformName, const ns_maths::vec3& a_vec3);
+			void setUniform3f(const char* a_pUniformName, const glm::vec3& a_vec3);
 			void setUniform3f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3);
 
-			void setUniform4f(const char* a_pUniformName, const ns_maths::vec4& a_vec4);
+			void setUniform4f(const char* a_pUniformName, const glm::vec4& a_vec4);
 			void setUniform4f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3, GLfloat a_value4);
 
-			void setUniforMat4fv(const char* a_pUniformName, const ns_maths::mat4& a_mat4);
+			void setUniforMat4fv(const char* a_pUniformName, const glm::mat4& a_mat4);
 
 			GLint GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName);
 

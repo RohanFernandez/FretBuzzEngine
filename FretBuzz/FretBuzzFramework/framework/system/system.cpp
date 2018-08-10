@@ -14,6 +14,7 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
+			m_pWindow = new Window(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
 			m_pFPStimer = new TimerFPS(true);
 			m_pUpdateManager = new UpdateManager();
 			m_pGame = new Game();
@@ -22,8 +23,6 @@ namespace ns_fretBuzz
 		bool System::initialize()
 		{
 			s_pInstance = new System();
-			s_pInstance->m_pWindow = new Window(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
-			
 			return s_pInstance->m_pWindow->isInitialized();
 		}
 

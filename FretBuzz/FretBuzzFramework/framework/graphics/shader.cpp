@@ -135,7 +135,7 @@ namespace ns_fretBuzz
 			glUniform2f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2);
 		}
 
-		void Shader::setUniform2f(const char* a_pUniformName, const ns_maths::vec2& a_vec2)
+		void Shader::setUniform2f(const char* a_pUniformName, const glm::vec2& a_vec2)
 		{
 			setUniform2f(a_pUniformName, a_vec2.x, a_vec2.y);
 		}
@@ -145,7 +145,7 @@ namespace ns_fretBuzz
 			glUniform3f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2, a_value3);
 		}
 
-		void Shader::setUniform3f(const char* a_pUniformName, const ns_maths::vec3& a_vec3)
+		void Shader::setUniform3f(const char* a_pUniformName, const glm::vec3& a_vec3)
 		{
 			setUniform3f(a_pUniformName, a_vec3.x, a_vec3.y, a_vec3.z);
 		}
@@ -155,14 +155,14 @@ namespace ns_fretBuzz
 			glUniform4f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2, a_value3, a_value4);
 		}
 
-		void Shader::setUniform4f(const char* a_pUniformName, const ns_maths::vec4& a_vec4)
+		void Shader::setUniform4f(const char* a_pUniformName, const glm::vec4& a_vec4)
 		{
 			setUniform4f(a_pUniformName, a_vec4.x, a_vec4.y, a_vec4.z, a_vec4.w);
 		}
 
-		void Shader::setUniforMat4fv(const char* a_pUniformName, const ns_maths::mat4& a_mat4)
+		void Shader::setUniforMat4fv(const char* a_pUniformName, const glm::mat4& a_mat4)
 		{
-			glUniformMatrix4fv(glGetUniformLocation(m_ShaderID, a_pUniformName), 1, GL_FALSE, a_mat4.m_arrMat4);
+			glUniformMatrix4fv(glGetUniformLocation(m_ShaderID, a_pUniformName), 1, GL_FALSE, glm::value_ptr(a_mat4));
 		}
 
 		GLint Shader::GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName)

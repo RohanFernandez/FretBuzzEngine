@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 				{ 
 						new SceneData<InitState>("initstate"),
 						new SceneData<MainMenuState>("mainmenustate"),
-						new SceneData<ScoreState>("scorestatestate") 
+						new SceneData<ScoreState>("scorestate") 
 				};
 
 			m_pSceneManager = new SceneManager(m_vectScenes);
@@ -40,11 +40,11 @@ namespace ns_fretBuzz
 			{
 				m_pSceneManager->TransitionTo("initstate");
 			}
-			else if (Input::IsKeyDown(GLFW_KEY_S))
+			else if (Input::IsKeyDown(GLFW_KEY_O))
 			{
-				m_pSceneManager->TransitionTo("scorestatestate");
+				m_pSceneManager->TransitionTo("scorestate");
 			}
-			else if (Input::IsKeyDown(GLFW_KEY_M))
+			else if (Input::IsKeyDown(GLFW_KEY_P))
 			{
 				m_pSceneManager->TransitionTo("mainmenustate");
 			}
