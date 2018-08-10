@@ -141,17 +141,22 @@ namespace ns_fretBuzz
 
 			virtual ~SceneManager();
 
-			void registerState(ISceneData* a_pScene);
-
-			void loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
-			void unloadScene(std::string a_strSceneName);
-			
-			void logAllActiveSceneNames();
+			static void s_registerState(ISceneData* a_pScene);
+			static void s_loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
+			static void s_unloadScene(std::string a_strSceneName);
+			static void s_logAllActiveSceneNames();
 
 		protected:
 			virtual void transitionTo(std::string a_strTransitionTo) override;
 
+			void registerState(ISceneData* a_pScene);
+			void loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
+			void unloadScene(std::string a_strSceneName);
+			void logAllActiveSceneNames();
+
 		private:
+			static SceneManager* s_pInstance;
+
 			LoadSceneMode m_CurrentLoadSceneMode = Single;
 
 			///States added additively which includes the current state

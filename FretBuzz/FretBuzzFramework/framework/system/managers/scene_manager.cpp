@@ -5,15 +5,27 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		SceneManager* SceneManager:: s_pInstance = nullptr;
+
 		SceneManager::SceneManager(ISceneData* a_pStartScene)
 			: FSM<ISceneData>(a_pStartScene, false)
 		{
+			if (s_pInstance == nullptr)
+			{
+				s_pInstance = this;
+			}
+
 			m_vectActiveStates.push_back(a_pStartScene);
 		}
 
 		SceneManager::SceneManager(std::vector<ISceneData*>& a_pVectIScene)
 			: FSM<ISceneData>(a_pVectIScene, false)
 		{
+			if (s_pInstance == nullptr)
+			{
+				s_pInstance = this;
+			}
+
 			m_vectActiveStates.push_back(a_pVectIScene[0]);
 		}
 
@@ -23,19 +35,47 @@ namespace ns_fretBuzz
 			m_pCurrentState = nullptr;
 			unloadAllScenes();
 
+			if (s_pInstance == this)
+			{
+				s_pInstance = nullptr;
+			}
 		}
 
+		void SceneManager::s_registerState(ISceneData* a_pScene)
+		{
+			s_pInstance->registerState(a_pScene);
+		}
+
+		void SceneManager::s_loadScene(std::string a_strSceneName, SceneManager::LoadSceneMode a_LoadSceneMode)
+		{
+			s_pInstance->loadScene(a_strSceneName, a_LoadSceneMode);
+		}
+
+		void SceneManager::s_unloadScene(std::string a_strSceneName)
+		{
+			s_pInstance->unloadScene(a_strSceneName);
+		}
+
+		void SceneManager::s_logAllActiveSceneNames()
+		{
+			s_pInstance->logAllActiveSceneNames();
+		}
+
+		///Registers the state into the list of state that will able to transition to.
 		void SceneManager::registerState(ISceneData* a_pScene)
 		{
 			FSM<ISceneData>::RegisterState(a_pScene);
 		}
 
+		///Loads the scene if not already included in the active scene container.
+		///Sets it as the current scene.
 		void SceneManager::loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode)
 		{
 			m_CurrentLoadSceneMode = a_LoadSceneMode;
 			transitionTo(a_strSceneName);
 		}
 
+		///Unloads the scene and removes the scene from the active scene container.
 		void SceneManager::unloadScene(std::string a_strSceneName)
 		{
 			IFSM* l_pRegisteredState = getStateRegisteredWithID(a_strSceneName);
@@ -48,13 +88,13 @@ namespace ns_fretBuzz
 			for (std::vector<ISceneData*>::iterator l_pCurrentScene = m_vectActiveStates.begin(),
 				l_pEndState = m_vectActiveStates.end();
 				l_pCurrentScene != l_pEndState;
-				++l_pCurrentScene
+				l_pCurrentScene++
 				)
 			{
 				if (l_pRegisteredState == *l_pCurrentScene)
 				{
-					m_vectActiveStates.erase(l_pCurrentScene);
-					(*l_pCurrentScene)->unloadSceneData();
+					l_pCurrentScene = m_vectActiveStates.erase(l_pCurrentScene);
+					dynamic_cast<ISceneData*>(l_pRegisteredState)->unloadSceneData();
 					return;
 				}
 			}

@@ -38,34 +38,50 @@ namespace ns_fretBuzz
 		{
 			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
-				m_pSceneManager->loadScene("initstate");
+				SceneManager::s_loadScene("initstate");
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_O))
 			{
-				m_pSceneManager->loadScene("scorestate");
+				SceneManager::s_loadScene("scorestate");
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_P))
 			{
-				m_pSceneManager->loadScene("mainmenustate");
+				SceneManager::s_loadScene("mainmenustate");
 			}
 
 			if (Input::IsKeyDown(GLFW_KEY_B))
 			{
-				m_pSceneManager->loadScene("initstate", SceneManager::LoadSceneMode::Additive);
+				SceneManager::s_loadScene("initstate", SceneManager::LoadSceneMode::Additive);
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_N))
 			{
-				m_pSceneManager->loadScene("scorestate",SceneManager::LoadSceneMode::Additive);
+				SceneManager::s_loadScene("scorestate",SceneManager::LoadSceneMode::Additive);
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_M))
 			{
-				m_pSceneManager->loadScene("mainmenustate", SceneManager::LoadSceneMode::Additive);
+				SceneManager::s_loadScene("mainmenustate", SceneManager::LoadSceneMode::Additive);
 			}
+
+
+
+			if (Input::IsKeyDown(GLFW_KEY_T))
+			{
+				SceneManager::s_unloadScene("initstate");
+			}
+			else if (Input::IsKeyDown(GLFW_KEY_Y))
+			{
+				SceneManager::s_unloadScene("scorestate");
+			}
+			else if (Input::IsKeyDown(GLFW_KEY_U))
+			{
+				SceneManager::s_unloadScene("mainmenustate");
+			}
+
 
 
 			if (Input::IsKeyDown(GLFW_KEY_L))
 			{
-				m_pSceneManager->logAllActiveSceneNames();
+				SceneManager::s_logAllActiveSceneNames();
 			}
 		}
 
