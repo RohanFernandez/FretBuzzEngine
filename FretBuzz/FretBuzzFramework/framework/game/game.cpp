@@ -38,15 +38,34 @@ namespace ns_fretBuzz
 		{
 			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
-				m_pSceneManager->TransitionTo("initstate");
+				m_pSceneManager->loadScene("initstate");
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_O))
 			{
-				m_pSceneManager->TransitionTo("scorestate");
+				m_pSceneManager->loadScene("scorestate");
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_P))
 			{
-				m_pSceneManager->TransitionTo("mainmenustate");
+				m_pSceneManager->loadScene("mainmenustate");
+			}
+
+			if (Input::IsKeyDown(GLFW_KEY_B))
+			{
+				m_pSceneManager->loadScene("initstate", SceneManager::LoadSceneMode::Additive);
+			}
+			else if (Input::IsKeyDown(GLFW_KEY_N))
+			{
+				m_pSceneManager->loadScene("scorestate",SceneManager::LoadSceneMode::Additive);
+			}
+			else if (Input::IsKeyDown(GLFW_KEY_M))
+			{
+				m_pSceneManager->loadScene("mainmenustate", SceneManager::LoadSceneMode::Additive);
+			}
+
+
+			if (Input::IsKeyDown(GLFW_KEY_L))
+			{
+				m_pSceneManager->logAllActiveSceneNames();
 			}
 		}
 

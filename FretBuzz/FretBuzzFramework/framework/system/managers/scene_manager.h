@@ -33,12 +33,17 @@ namespace ns_fretBuzz
 			virtual ~ISceneData() = 0
 			{}
 
+			virtual void unloadSceneData() = 0;
+
+			virtual bool isSceneActive() = 0;
+
 		protected:
 			ISceneData(std::string a_strSceneID)
 				: IFSM(a_strSceneID)
 			{
 
 			}
+
 		};
 
 		//To create a scene state, this a scene state wtih this class should be created with SCENE_TYPE as the Scene State type.
@@ -66,8 +71,10 @@ namespace ns_fretBuzz
 			virtual void OnStateEnter() override
 			{
 				//IFSM::OnStateEnter();
-
-				m_pScene = new SCENE_TYPE("SCENE_STATE::" + getStateName());
+				if (m_pScene == nullptr)
+				{
+					m_pScene = new SCENE_TYPE("SCENE_STATE::" + getStateName());
+				}
 
 				IFSM* l_pIFSM = nullptr;
 				l_pIFSM = static_cast<IFSM*>(m_pScene);
@@ -98,9 +105,23 @@ namespace ns_fretBuzz
 				{
 					std::cout<<"SceneManager::OnStateExit::" << std::string(typeid(SCENE_TYPE).name()) << " cannot be casted to base class ' FretBuzzManager::IFSM* '\n";
 				}
+			}
 
-				delete m_pScene;
-				m_pScene = nullptr;
+			///Unloads the scene object, destroys and deletes all data initialize in that scene class.
+			virtual void unloadSceneData() override
+			{
+				if (m_pScene != nullptr)
+				{
+					delete m_pScene;
+					m_pScene = nullptr;
+				}
+			}
+
+			///Is scene currently in list of active scenes in the manager.
+			///Specifies if the scene is currently running.
+			virtual bool isSceneActive() override
+			{
+				return (m_pScene != nullptr);
 			}
 		};
 
@@ -109,13 +130,34 @@ namespace ns_fretBuzz
 		class SceneManager : public FSM<ISceneData>
 		{
 		public:
-			SceneManager(ISceneData* a_pStartScene, bool a_bIsTransitionToSelfAllowed = false);
-			SceneManager(std::vector<ISceneData*>& a_pVectIScene, bool a_bIsTransitionToSelfAllowed = false);
+			enum LoadSceneMode
+			{
+				Single,
+				Additive
+			};
+
+			SceneManager(ISceneData* a_pStartScene);
+			SceneManager(std::vector<ISceneData*>& a_pVectIScene);
 
 			virtual ~SceneManager();
 
-			void RegisterState(ISceneData* a_pScene);
-			void TransitionTo(std::string a_strSceneName);
+			void registerState(ISceneData* a_pScene);
+
+			void loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
+			void unloadScene(std::string a_strSceneName);
+			
+			void logAllActiveSceneNames();
+
+		protected:
+			virtual void transitionTo(std::string a_strTransitionTo) override;
+
+		private:
+			LoadSceneMode m_CurrentLoadSceneMode = Single;
+
+			///States added additively which includes the current state
+			std::vector<ISceneData*> m_vectActiveStates;
+
+			void unloadAllScenes();
 
 		};
 	}

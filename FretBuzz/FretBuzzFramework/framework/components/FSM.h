@@ -43,6 +43,7 @@ namespace ns_fretBuzz
 			m_bIsTransitionToSelfAllowed{ a_bIsTransitionToSelfAllowed }
 		{
 			m_pCurrentState->OnStateEnter();
+
 			std::cout << "InitialState :: '" << m_pCurrentState->getStateName() << "'\n";
 			RegisterState(a_pStartState);
 		};
@@ -61,13 +62,16 @@ namespace ns_fretBuzz
 			std::cout << "Total num of states: : '" << std::to_string(m_vectStates.size()) + "'\n";
 		};
 
-		virtual ~FSM() {};
+		virtual ~FSM() 
+		{
+			
+		};
 
 		std::vector<IFSM*> m_vectStates;
 
 		IFSM* m_pCurrentState = nullptr;
 
-		void TransitionTo(std::string a_strTransitionTo)
+		virtual void transitionTo(std::string a_strTransitionTo)
 		{
 			IFSM* l_pRegisteredState = getStateRegisteredWithID(a_strTransitionTo);
 			if (l_pRegisteredState == nullptr)
