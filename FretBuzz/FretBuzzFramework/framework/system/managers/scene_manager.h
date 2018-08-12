@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 
 			virtual void unloadSceneData() = 0;
 
-			virtual bool isSceneActive() = 0;
+			virtual bool isSceneLoaded() = 0;
 
 		protected:
 			ISceneData(std::string a_strSceneID)
@@ -119,7 +119,7 @@ namespace ns_fretBuzz
 
 			///Is scene currently in list of active scenes in the manager.
 			///Specifies if the scene is currently running.
-			virtual bool isSceneActive() override
+			virtual bool isSceneLoaded() override
 			{
 				return (m_pScene != nullptr);
 			}

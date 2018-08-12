@@ -3,12 +3,13 @@
 #include <glew.h>
 #include <string>
 #include "../utils/file_utils.h"
+#include "../system/managers/managed_resource.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Texture
+		class Texture : public ns_system::IManagedResource
 		{
 		private:
 			GLuint m_TextureID;
@@ -20,6 +21,8 @@ namespace ns_fretBuzz
 		public:
 			Texture(std::string a_strTexturePath);
 			~Texture();
+
+			virtual void unloadResource() override;
 
 			void bind();
 			void unbind();

@@ -11,7 +11,8 @@ namespace ns_fretBuzz
 		Shader::Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath)
 			: 
 			m_strVertexShaderPath{ l_strVertexShaderPath },
-			m_strFragmentShaderPath{ l_strFragmentShaderPath }
+			m_strFragmentShaderPath{ l_strFragmentShaderPath },
+			ns_system::IManagedResource()
 		{
 			if (!initialize())
 			{
@@ -25,7 +26,7 @@ namespace ns_fretBuzz
 			std::string l_strFragmentShaderSource = ns_utils::FileUtils::readFile(m_strFragmentShaderPath);
 
 			const char* l_pVertexShaderFile = l_strVertexShaderSource.c_str();
-			const char* l_pFragmentShaderFile = l_strVertexShaderSource.c_str();
+			const char* l_pFragmentShaderFile = l_strFragmentShaderSource.c_str();
 
 			m_ShaderID = glCreateProgram();
 			GLuint l_VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -77,7 +78,13 @@ namespace ns_fretBuzz
 
 		Shader::~Shader()
 		{
-		
+			
+		}
+
+		void Shader::unloadResource()
+		{
+			std::cout << "Unloading shader resource\n";
+			glDeleteProgram(m_ShaderID);
 		}
 
 		void Shader::bind()

@@ -51,6 +51,9 @@
     <ClCompile Include="framework\graphics\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\system\managers\resource_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\input.h">
@@ -101,5 +104,20 @@
     <ClInclude Include="framework\components\math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\system\managers\resource_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\managers\managed_resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="resources\shaders\fragShader.txt" />
+    <Text Include="resources\shaders\vertShader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\darksiders.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

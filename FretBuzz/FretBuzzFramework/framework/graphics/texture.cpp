@@ -9,10 +9,12 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		Texture::Texture(std::string a_strTexturePath)
+			: ns_system::IManagedResource()
 		{
 			if (!ns_utils::FileUtils::readImage(a_strTexturePath, m_pImageData, m_iWidth, m_iHeight))
 			{
 				std::cout << "Texture::Texture:: Failed to load image at path :: '" << a_strTexturePath << "' into texture.\n";
+				m_pImageData = nullptr;
 				return;
 			}
 			
@@ -26,6 +28,12 @@ namespace ns_fretBuzz
 
 		Texture::~Texture()
 		{
+			
+		}
+
+		void Texture::unloadResource()
+		{
+			std::cout << "Unloading texture resource\n";
 			if (m_pImageData != nullptr)
 			{
 				delete[] m_pImageData;

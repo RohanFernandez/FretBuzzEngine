@@ -157,6 +157,7 @@
     <ClCompile Include="framework\game\game.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
     <ClCompile Include="framework\graphics\texture.cpp" />
+    <ClCompile Include="framework\system\managers\resource_manager.cpp" />
     <ClCompile Include="framework\system\managers\scene_manager.cpp" />
     <ClCompile Include="framework\system\managers\update_manager.cpp" />
     <ClCompile Include="framework\system\timer\timer.cpp" />
@@ -176,6 +177,8 @@
     <ClInclude Include="framework\components\FSM.h" />
     <ClInclude Include="framework\graphics\shader.h" />
     <ClInclude Include="framework\graphics\texture.h" />
+    <ClInclude Include="framework\system\managers\managed_resource.h" />
+    <ClInclude Include="framework\system\managers\resource_manager.h" />
     <ClInclude Include="framework\system\managers\scene_manager.h" />
     <ClInclude Include="framework\system\managers\update_manager.h" />
     <ClInclude Include="framework\system\input.h" />
@@ -184,6 +187,13 @@
     <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\window.h" />
     <ClInclude Include="framework\utils\file_utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="resources\shaders\fragShader.txt" />
+    <Text Include="resources\shaders\vertShader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\darksiders.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

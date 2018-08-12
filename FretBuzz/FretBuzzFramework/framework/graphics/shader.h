@@ -2,12 +2,13 @@
 #include <glew.h>
 #include <string>
 #include "../components/math.h"
+#include "../system/managers/managed_resource.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Shader
+		class Shader : public ns_system::IManagedResource
 		{
 		private:
 			GLuint m_ShaderID = 0;
@@ -22,6 +23,8 @@ namespace ns_fretBuzz
 			Shader() = delete;
 			Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath);
 			~Shader();
+
+			virtual void unloadResource() override;
 
 			void bind();
 			void unbind();

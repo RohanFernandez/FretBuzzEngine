@@ -1,10 +1,14 @@
 #pragma once
 #include "../system/managers/scene_manager.h"
 #include "../system/managers/update_manager.h"
+#include "../system/managers/resource_manager.h"
 #include "scenes/init_state.h"
 #include "scenes/mainmenu_state.h"
 #include "scenes/score_state.h"
 #include <vector>
+
+#include "../graphics/shader.h"
+#include "../graphics/texture.h"
 
 namespace ns_fretBuzz
 {
@@ -18,6 +22,9 @@ namespace ns_fretBuzz
 
 			//The scene manage that manages the transitions between scenes.
 			SceneManager* m_pSceneManager = nullptr;
+
+			//Main resource manager
+			ResourceManager* m_pResourceManager = nullptr;
 
 		public:
 			// Add game scenes here for scene management

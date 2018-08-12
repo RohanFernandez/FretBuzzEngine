@@ -5,40 +5,43 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		///singleton instance
 		SceneManager* SceneManager:: s_pInstance = nullptr;
 
 		SceneManager::SceneManager(ISceneData* a_pStartScene)
 			: FSM<ISceneData>(a_pStartScene, false)
 		{
-			if (s_pInstance == nullptr)
+			if (s_pInstance != nullptr)
 			{
-				s_pInstance = this;
+				return;
 			}
-
+			s_pInstance = this;
 			m_vectActiveStates.push_back(a_pStartScene);
 		}
 
 		SceneManager::SceneManager(std::vector<ISceneData*>& a_pVectIScene)
 			: FSM<ISceneData>(a_pVectIScene, false)
 		{
-			if (s_pInstance == nullptr)
+			if (s_pInstance != nullptr)
 			{
-				s_pInstance = this;
+				return;
 			}
-
+			s_pInstance = this;
 			m_vectActiveStates.push_back(a_pVectIScene[0]);
 		}
 
 		SceneManager::~SceneManager()
 		{
+			if (s_pInstance != this)
+			{
+				return;
+			}
+
 			m_pCurrentState->OnStateExit();
 			m_pCurrentState = nullptr;
 			unloadAllScenes();
 
-			if (s_pInstance == this)
-			{
-				s_pInstance = nullptr;
-			}
+			s_pInstance = nullptr;	
 		}
 
 		void SceneManager::s_registerState(ISceneData* a_pScene)
@@ -123,7 +126,7 @@ namespace ns_fretBuzz
 
 			m_pCurrentState = l_pRegisteredState;
 			ISceneData* l_pCurrentScene = dynamic_cast<ISceneData*>(m_pCurrentState);
-			bool l_bCurrentSceneActive = l_pCurrentScene->isSceneActive();
+			bool l_bCurrentSceneActive = l_pCurrentScene->isSceneLoaded();
 
 			m_pCurrentState->OnStateEnter();
 
