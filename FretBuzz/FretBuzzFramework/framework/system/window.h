@@ -40,7 +40,7 @@ namespace ns_fretBuzz
 			void clear();
 
 			//Checks if any gl errors exists
-			void CheckForErrors();
+			static void CheckForErrors();
 
 			//Returns if window is closed
 			bool isWindowClosed();

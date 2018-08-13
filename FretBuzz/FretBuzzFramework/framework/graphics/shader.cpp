@@ -76,6 +76,20 @@ namespace ns_fretBuzz
 			glAttachShader(m_ShaderID, l_FragmentShaderID);
 
 			glLinkProgram(m_ShaderID);
+
+			glGetProgramiv(m_ShaderID, GL_LINK_STATUS, &l_result);
+			if (l_result == GL_FALSE)
+			{
+				GLint l_ErrorLogLegth;
+				glGetProgramiv(m_ShaderID, GL_INFO_LOG_LENGTH, &l_ErrorLogLegth);
+				std::vector<char> l_vectorErrorLength(l_ErrorLogLegth);
+				glGetProgramInfoLog(m_ShaderID, l_ErrorLogLegth, &l_ErrorLogLegth, &l_vectorErrorLength[0]);
+				std::cout << "Shader::initialize:: Failed to link program\n" << &l_vectorErrorLength[0] << "\n";
+				glDeleteShader(l_FragmentShaderID);
+				glDeleteShader(l_VertexShaderID);
+				return false;
+			}
+
 			glValidateProgram(m_ShaderID);
 
 			glDeleteShader(l_VertexShaderID);
@@ -105,82 +119,82 @@ namespace ns_fretBuzz
 			glUseProgram(0);
 		}
 
-		void Shader::setUniform1f(const char* a_pUniformName, GLfloat a_Float)
+		void Shader::setUniform1f(const char* a_pUniformName, GLfloat a_Float) const
 		{
 			glUniform1f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_Float);
 		}
 
-		void Shader::setUniform1fv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLfloat* a_arrValue)
+		void Shader::setUniform1fv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLfloat* a_arrValue) const
 		{
 			glUniform1fv(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iArrayCount, a_arrValue);
 		}
 
-		void Shader::setUniform1d(const char* a_pUniformName, int a_iValue)
+		void Shader::setUniform1d(const char* a_pUniformName, int a_iValue) const
 		{
 			glUniform1d(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iValue);
 		}
 
-		void Shader::setUniform1dv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLdouble* a_arrValue)
+		void Shader::setUniform1dv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLdouble* a_arrValue) const
 		{
 			glUniform1dv(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iArrayCount, a_arrValue);
 		}
 
-		void Shader::setUniform1i(const char* a_pUniformName, GLint a_Value)
+		void Shader::setUniform1i(const char* a_pUniformName, GLint a_Value) const
 		{
 			glUniform1i(glGetUniformLocation(m_ShaderID, a_pUniformName), a_Value);
 		}
 
-		void Shader::setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, GLint* a_arrValue)
+		void Shader::setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, GLint* a_arrValue) const
 		{
 			glUniform1iv(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iArrayCount, a_arrValue);
 		}
 
-		void Shader::setUniform1ui(const char* a_pUniformName, GLuint a_Value)
+		void Shader::setUniform1ui(const char* a_pUniformName, GLuint a_Value) const
 		{
 			glUniform1ui(glGetUniformLocation(m_ShaderID, a_pUniformName), a_Value);
 		}
 
-		void Shader::setUniform1uiv(const char* a_pUniformName, unsigned int a_iArrayCount, GLuint* a_arrValue)
+		void Shader::setUniform1uiv(const char* a_pUniformName, unsigned int a_iArrayCount, GLuint* a_arrValue) const
 		{
 			glUniform1uiv(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iArrayCount, a_arrValue);
 		}
 
-		void Shader::setUniform2f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2)
+		void Shader::setUniform2f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2) const
 		{
 			glUniform2f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2);
 		}
 
-		void Shader::setUniform2f(const char* a_pUniformName, const glm::vec2& a_vec2)
+		void Shader::setUniform2f(const char* a_pUniformName, const glm::vec2& a_vec2) const
 		{
 			setUniform2f(a_pUniformName, a_vec2.x, a_vec2.y);
 		}
 
-		void Shader::setUniform3f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3)
+		void Shader::setUniform3f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3) const
 		{
 			glUniform3f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2, a_value3);
 		}
 
-		void Shader::setUniform3f(const char* a_pUniformName, const glm::vec3& a_vec3)
+		void Shader::setUniform3f(const char* a_pUniformName, const glm::vec3& a_vec3) const
 		{
 			setUniform3f(a_pUniformName, a_vec3.x, a_vec3.y, a_vec3.z);
 		}
 
-		void Shader::setUniform4f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3, GLfloat a_value4)
+		void Shader::setUniform4f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3, GLfloat a_value4) const
 		{
 			glUniform4f(glGetUniformLocation(m_ShaderID, a_pUniformName), a_value1, a_value2, a_value3, a_value4);
 		}
 
-		void Shader::setUniform4f(const char* a_pUniformName, const glm::vec4& a_vec4)
+		void Shader::setUniform4f(const char* a_pUniformName, const glm::vec4& a_vec4) const
 		{
 			setUniform4f(a_pUniformName, a_vec4.x, a_vec4.y, a_vec4.z, a_vec4.w);
 		}
 
-		void Shader::setUniforMat4fv(const char* a_pUniformName, const glm::mat4& a_mat4)
+		void Shader::setUniforMat4fv(const char* a_pUniformName, const glm::mat4& a_mat4) const
 		{
 			glUniformMatrix4fv(glGetUniformLocation(m_ShaderID, a_pUniformName), 1, GL_FALSE, glm::value_ptr(a_mat4));
 		}
 
-		GLint Shader::GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName)
+		GLint Shader::GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const
 		{
 			return glGetUniformLocation(a_ProgramID, a_pUniformName);
 		}

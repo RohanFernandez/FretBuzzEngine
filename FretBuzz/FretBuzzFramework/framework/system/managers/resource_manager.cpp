@@ -32,8 +32,8 @@ namespace ns_fretBuzz
 					delete l_pCurrentResourceInterface;
 					l_pCurrentResourceInterface = nullptr;
 
-					l_mapResource.clear();
 				}
+				l_mapResource.clear();
 
 				s_pInstance = nullptr;
 			}

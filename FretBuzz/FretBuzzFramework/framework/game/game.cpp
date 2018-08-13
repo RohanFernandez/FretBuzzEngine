@@ -1,8 +1,6 @@
 #pragma once
 #include "game.h"
 #include "../system/input.h"
-#include "../system/managers/resource_manager.h"
-
 
 namespace ns_fretBuzz
 {
@@ -11,34 +9,22 @@ namespace ns_fretBuzz
 		Game::Game()
 			: IUpdateTimer()
 		{
-			m_vectScenes = 
-				{ 
-						new SceneData<InitState>("initstate"),
-						new SceneData<MainMenuState>("mainmenustate"),
-						new SceneData<ScoreState>("scorestate") 
-				};
-
-			m_pSceneManager = new SceneManager(m_vectScenes);
-			m_pResourceManager = new ResourceManager();
-
 			////Testing Start//////
 			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
-			ns_graphics::Shader testShader1("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
-
 			ns_graphics::Texture testTexture("resources//textures//darksiders.jpg");
 
-			m_pResourceManager->addResource<ns_graphics::Shader>("tShader", testShader);
-			m_pResourceManager->addResource<ns_graphics::Shader>("tShader1", testShader1);
+			ResourceManager::addResource<ns_graphics::Shader>("tShader", testShader);
+			ResourceManager::addResource<ns_graphics::Texture>("darksider", testTexture);
 
-			m_pResourceManager->addResource<ns_graphics::Texture>("testTexture", testTexture);
-
-			std::cout << "Shader id 111::" << testShader.getShaderId() <<"\n";
-
-			std::cout << "Shader resource count :: "<< m_pResourceManager->getResourceCount<ns_graphics::Shader>()<<"\n";
-			std::cout << "Texture resource count :: " << m_pResourceManager->getResourceCount<ns_graphics::Texture>() << "\n";
-			
-			m_pResourceManager->destroyResource<ns_graphics::Shader>("tShader");
 			////Testing End//////
+
+			m_vectScenes =
+			{
+				new SceneData<InitState>("initstate"),
+				new SceneData<MainMenuState>("mainmenustate"),
+				new SceneData<ScoreState>("scorestate")
+			};
+			m_pSceneManager = new SceneManager(m_vectScenes);
 		}
 
 		Game::~Game()
@@ -53,12 +39,6 @@ namespace ns_fretBuzz
 				l_CurrentState != l_EndStateIndex; l_CurrentState++)
 			{
 				delete *l_CurrentState;
-			}
-
-			if (m_pResourceManager != nullptr)
-			{
-				delete m_pResourceManager;
-				m_pResourceManager = nullptr;
 			}
 		}
 

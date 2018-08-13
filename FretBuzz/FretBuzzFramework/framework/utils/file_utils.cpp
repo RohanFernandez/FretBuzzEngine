@@ -34,7 +34,7 @@ namespace ns_fretBuzz
 			return l_strReturn;
 		}
 
-		bool FileUtils::readImage(std::string a_strImagePath, BYTE*& a_pImageData, unsigned int& a_iWidth, unsigned int& a_iHeight)
+		bool FileUtils::readImage(std::string a_strImagePath, BYTE*& a_pImageData, unsigned int& a_iWidth, unsigned int& a_iHeight, int& a_iChannels)
 		{
 			FREE_IMAGE_FORMAT l_FileImgFormat = FIF_UNKNOWN;
 			FIBITMAP *dib = nullptr;
@@ -83,8 +83,8 @@ namespace ns_fretBuzz
 			int l_iPitch = FreeImage_GetPitch(dib);
 			int l_iBitsPerPixel = FreeImage_GetBPP(dib);
 
-			int l_BytesPerPixel = (l_iBitsPerPixel / 8);
-			int l_iBitsPerRow = a_iWidth * l_BytesPerPixel;
+			a_iChannels = (l_iBitsPerPixel / 8);
+			int l_iBitsPerRow = a_iWidth * a_iChannels;
 
 			a_pImageData = new BYTE[l_iBitsPerRow * a_iHeight];
 

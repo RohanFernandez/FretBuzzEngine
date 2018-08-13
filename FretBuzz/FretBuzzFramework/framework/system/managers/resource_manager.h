@@ -104,9 +104,9 @@ namespace ns_fretBuzz
 						l_CurrResourceData != l_EndResourceData;
 						l_CurrResourceData++)
 					{
-						if (a_strResourceName.compare(l_CurrResourceData->m_strResourceName) == 0)
+						if (a_strResourceName.compare((*l_CurrResourceData)->m_strResourceName) == 0)
 						{
-							return l_CurrResourceData->m_pResource;
+							return (*l_CurrResourceData)->m_pResource;
 						}
 					}
 
@@ -124,7 +124,7 @@ namespace ns_fretBuzz
 
 			///Returns a const ptr to resource.
 			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
-			static const T const* getResource(std::string a_strResourceName)
+			static const T* getResource(std::string a_strResourceName)
 			{
 				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
 				const std::type_info& l_typeInfo = typeid(T);

@@ -46,7 +46,10 @@ namespace ns_fretBuzz
 			}
 			
 			std::cout<< "Window::initialize:: OpenGL version::"<< glGetString(GL_VERSION)<<"\n";
+
 			CheckForErrors();
+
+			glViewport(0, 0, m_uiWidth, m_uiHeight);
 
 			return true;
 		}
@@ -93,6 +96,7 @@ namespace ns_fretBuzz
 			Window* l_pWindow = static_cast<Window*>(glfwGetWindowUserPointer(a_pGLFWwindow));
 			l_pWindow->m_uiWidth = a_iWidth;
 			l_pWindow->m_uiHeight = a_iHeight;
+			glViewport(0, 0, a_iWidth, a_iHeight);
 		}
 
 		bool Window::isWindowClosed()

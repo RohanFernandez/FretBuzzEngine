@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 			BYTE* m_pImageData = nullptr;
 			unsigned int m_iWidth = 0;
 			unsigned int m_iHeight = 0;
-
+			int m_iChannels = 0;
 
 		public:
 			Texture(std::string a_strTexturePath);
