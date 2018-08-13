@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 			std::cout << "Shader resource count :: "<< m_pResourceManager->getResourceCount<ns_graphics::Shader>()<<"\n";
 			std::cout << "Texture resource count :: " << m_pResourceManager->getResourceCount<ns_graphics::Texture>() << "\n";
 			
-
+			m_pResourceManager->destroyResource<ns_graphics::Shader>("tShader");
 			////Testing End//////
 		}
 

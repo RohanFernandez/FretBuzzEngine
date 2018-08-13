@@ -20,6 +20,14 @@ namespace ns_fretBuzz
 			}
 		}
 
+		Shader::Shader(Shader& a_Shader)
+			: m_strVertexShaderPath{ a_Shader.m_strVertexShaderPath },
+			m_strFragmentShaderPath{ a_Shader.m_strFragmentShaderPath },
+			m_ShaderID{ a_Shader.m_ShaderID },
+			ns_system::IManagedResource()
+		{
+		}
+
 		bool Shader::initialize()
 		{
 			std::string l_strVertexShaderSource = ns_utils::FileUtils::readFile(m_strVertexShaderPath);
@@ -81,7 +89,7 @@ namespace ns_fretBuzz
 			
 		}
 
-		void Shader::unloadResource()
+		void Shader::destroyResource()
 		{
 			std::cout << "Unloading shader resource\n";
 			glDeleteProgram(m_ShaderID);

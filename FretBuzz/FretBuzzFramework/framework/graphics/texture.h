@@ -20,9 +20,13 @@ namespace ns_fretBuzz
 
 		public:
 			Texture(std::string a_strTexturePath);
+
+			//Copy constructor
+			Texture(Texture& a_Texture);
+
 			~Texture();
 
-			virtual void unloadResource() override;
+			virtual void destroyResource() override;
 
 			void bind() const;
 			void unbind() const;

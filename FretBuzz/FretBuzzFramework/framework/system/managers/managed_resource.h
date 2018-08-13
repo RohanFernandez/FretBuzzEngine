@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 			}
 
 			///unloads the resource in managed child
-			virtual void unloadResource() = 0;
+			virtual void destroyResource() = 0;
 		};
 	}
 }

@@ -28,10 +28,11 @@ namespace ns_fretBuzz
 					l_currentResource++)
 				{
 					IResource*& l_pCurrentResourceInterface = l_currentResource->second;
-					l_pCurrentResourceInterface->unloadResources();
 
 					delete l_pCurrentResourceInterface;
 					l_pCurrentResourceInterface = nullptr;
+
+					l_mapResource.clear();
 				}
 
 				s_pInstance = nullptr;

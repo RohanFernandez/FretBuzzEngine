@@ -22,9 +22,13 @@ namespace ns_fretBuzz
 		public:
 			Shader() = delete;
 			Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath);
+
+			//Copy constructor
+			Shader(Shader& a_Shader);
+
 			~Shader();
 
-			virtual void unloadResource() override;
+			virtual void destroyResource() override;
 
 			void bind()  const;
 			void unbind() const;

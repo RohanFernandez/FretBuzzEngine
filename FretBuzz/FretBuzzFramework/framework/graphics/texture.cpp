@@ -26,12 +26,22 @@ namespace ns_fretBuzz
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 
+		Texture::Texture(Texture& a_Texture)
+			: m_TextureID{a_Texture.m_TextureID},
+			m_pImageData{ a_Texture.m_pImageData },
+			m_iWidth{ a_Texture.m_iWidth},
+			m_iHeight{ a_Texture.m_iHeight},
+			ns_system::IManagedResource()
+		{
+			a_Texture.m_pImageData = nullptr;
+		}
+
 		Texture::~Texture()
 		{
 			
 		}
 
-		void Texture::unloadResource()
+		void Texture::destroyResource()
 		{
 			std::cout << "Unloading texture resource\n";
 			if (m_pImageData != nullptr)

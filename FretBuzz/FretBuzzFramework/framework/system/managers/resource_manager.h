@@ -25,8 +25,6 @@ namespace ns_fretBuzz
 				{
 
 				}
-
-				virtual void unloadResources() = 0;
 			};
 			
 			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
@@ -41,34 +39,37 @@ namespace ns_fretBuzz
 
 				virtual ~Resource()
 				{
-				
-				}
-
-				///Unloads all resources of type stored in the manager container.
-				virtual void unloadResources() override
-				{
 					for (auto l_CurrResourceData = m_vectResourceData.begin(),
 						l_EndResourceData = m_vectResourceData.end();
 						l_CurrResourceData != l_EndResourceData;
 						l_CurrResourceData++)
 					{
-						l_CurrResourceData->m_Resource.unloadResource();
+						delete (*l_CurrResourceData);
+						*l_CurrResourceData = nullptr;
 					}
+					m_vectResourceData.clear();
 				}
 
 				struct ResourceData
 				{
 					std::string m_strResourceName;
-					T m_Resource;
+					T* m_pResource = nullptr;
 
 					ResourceData(std::string a_strResourceName, T a_Resource)
-						: m_strResourceName{ a_strResourceName },
-						  m_Resource{ a_Resource }
+						: m_strResourceName{ a_strResourceName }
 					{
+						m_pResource = new T{ a_Resource };
+					}
+
+					~ResourceData()
+					{
+						m_pResource->destroyResource();
+						delete m_pResource;
+						m_pResource = nullptr;
 					}
 				};
 
-				std::vector<ResourceData> m_vectResourceData;
+				std::vector<ResourceData*> m_vectResourceData;
 
 				bool addResourceData(std::string a_strResourceName, T a_Resource)
 				{
@@ -78,7 +79,7 @@ namespace ns_fretBuzz
 						l_CurrResourceData != l_EndResourceData;
 						l_CurrResourceData++ )
 					{
-						if (a_strResourceName.compare(l_CurrResourceData->m_strResourceName) == 0)
+						if (a_strResourceName.compare((*l_CurrResourceData)->m_strResourceName) == 0)
 						{
 							l_bIsResourceFound = true;
 							break;
@@ -91,7 +92,7 @@ namespace ns_fretBuzz
 						return false;
 					}
 
-					m_vectResourceData.emplace_back(ResourceData(a_strResourceName, a_Resource));
+					m_vectResourceData.emplace_back(new ResourceData(a_strResourceName, a_Resource));
 					return true;
 				}
 
@@ -105,7 +106,7 @@ namespace ns_fretBuzz
 					{
 						if (a_strResourceName.compare(l_CurrResourceData->m_strResourceName) == 0)
 						{
-							return &l_CurrResourceData->m_Resource;
+							return l_CurrResourceData->m_pResource;
 						}
 					}
 
@@ -162,6 +163,43 @@ namespace ns_fretBuzz
 				}
 
 				return l_pResource->addResourceData(a_strResourceName, a_TResource);
+			}
+
+			///destroys resource and removes from the list
+			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
+			static void destroyResource(std::string a_strResourceName)
+			{
+				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
+				const std::type_info& l_typeInfo = typeid(T);
+
+				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
+				{
+					std::cout << "ResourceManager::destroyResource:: Could not find resource with typename '"<< l_typeInfo.name() << "' with name '"<< a_strResourceName <<"' \n";
+				}
+				else
+				{
+					Resource<T>* l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
+					auto& l_currentVectResourceData = l_pResource->m_vectResourceData;
+
+					bool l_bIsResourceDataFound = false;
+					for (auto l_CurrResourceData = l_currentVectResourceData.begin(),
+						l_EndResourceData = l_currentVectResourceData.end();
+						l_CurrResourceData != l_EndResourceData;
+						l_CurrResourceData++)
+					{
+						if ((*l_CurrResourceData)->m_strResourceName.compare(a_strResourceName) == 0)
+						{
+							l_currentVectResourceData.erase(l_CurrResourceData);
+							l_bIsResourceDataFound = true;
+							break;
+						}
+					}
+
+					if (!l_bIsResourceDataFound)
+					{
+						std::cout << "ResourceManager::destroyResource:: Could not find resource with name'" << a_strResourceName << "' with typename '" << l_typeInfo.name() << "' \n";
+					}
+				}
 			}
 
 			///Returns the number of resource of type T that is included in the vector.

@@ -128,8 +128,6 @@ namespace ns_fretBuzz
 			m_pCurrentState = l_pRegisteredState;
 			ISceneData* l_pCurrentScene = dynamic_cast<ISceneData*>(m_pCurrentState);
 
-
-
 			bool l_bCurrentSceneActive = l_pCurrentScene->isSceneLoaded();
 
 			m_pCurrentState->OnStateEnter();
@@ -143,11 +141,11 @@ namespace ns_fretBuzz
 				int l_iActiveSceneCount = m_vectActiveStates.size();
 				int l_iCurrentScenePosition = 0;
 
-				for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+				for (; l_iCurrentScenePosition < l_iActiveSceneCount; l_iCurrentScenePosition++)
 				{
-					if (m_vectActiveStates[l_iSceneIndex] == l_pCurrentScene)
+					if (m_vectActiveStates[l_iCurrentScenePosition] == l_pCurrentScene)
 					{
-						l_iCurrentScenePosition = l_iSceneIndex;
+						l_iCurrentScenePosition = l_iCurrentScenePosition;
 						break;
 					}
 				}
