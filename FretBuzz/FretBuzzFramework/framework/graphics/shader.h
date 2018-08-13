@@ -26,8 +26,8 @@ namespace ns_fretBuzz
 
 			virtual void unloadResource() override;
 
-			void bind();
-			void unbind();
+			void bind()  const;
+			void unbind() const;
 
 			inline GLuint getShaderId() const
 			{

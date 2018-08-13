@@ -33,5 +33,10 @@ namespace ns_fretBuzz
 		{
 			/*std::cout << "LateUpdate :: MainMenuState state\n";*/
 		}
+
+		virtual void render() override
+		{
+
+		}
 	};
 }

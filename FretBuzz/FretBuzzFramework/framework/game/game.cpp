@@ -105,8 +105,6 @@ namespace ns_fretBuzz
 				SceneManager::s_unloadScene("mainmenustate");
 			}
 
-
-
 			if (Input::IsKeyDown(GLFW_KEY_L))
 			{
 				SceneManager::s_logAllActiveSceneNames();
@@ -116,6 +114,11 @@ namespace ns_fretBuzz
 		void Game::onLateUpdate(const float a_fDeltaTime)
 		{
 		
+		}
+
+		void Game::renderFrame()
+		{
+			m_pSceneManager->renderActiveScenes();
 		}
 	}
 }

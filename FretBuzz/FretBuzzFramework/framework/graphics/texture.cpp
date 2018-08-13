@@ -41,12 +41,12 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void Texture::bind()
+		void Texture::bind() const
 		{
 			glBindTexture(GL_TEXTURE, m_TextureID);
 		}
 
-		void Texture::unbind()
+		void Texture::unbind() const
 		{
 			glBindTexture(GL_TEXTURE, 0);
 		}

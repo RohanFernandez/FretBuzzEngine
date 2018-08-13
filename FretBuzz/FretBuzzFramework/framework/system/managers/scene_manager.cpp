@@ -1,5 +1,6 @@
 #pragma once
 #include "scene_manager.h"
+#include <algorithm>
 
 namespace ns_fretBuzz
 {
@@ -126,6 +127,9 @@ namespace ns_fretBuzz
 
 			m_pCurrentState = l_pRegisteredState;
 			ISceneData* l_pCurrentScene = dynamic_cast<ISceneData*>(m_pCurrentState);
+
+
+
 			bool l_bCurrentSceneActive = l_pCurrentScene->isSceneLoaded();
 
 			m_pCurrentState->OnStateEnter();
@@ -133,6 +137,22 @@ namespace ns_fretBuzz
 			if (!l_bCurrentSceneActive)
 			{
 				m_vectActiveStates.push_back(dynamic_cast<ISceneData*>(m_pCurrentState));
+			}
+			else
+			{
+				int l_iActiveSceneCount = m_vectActiveStates.size();
+				int l_iCurrentScenePosition = 0;
+
+				for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+				{
+					if (m_vectActiveStates[l_iSceneIndex] == l_pCurrentScene)
+					{
+						l_iCurrentScenePosition = l_iSceneIndex;
+						break;
+					}
+				}
+
+				std::iter_swap(m_vectActiveStates.begin() + l_iCurrentScenePosition, m_vectActiveStates.end() - 1);
 			}
 		}
 
@@ -168,6 +188,16 @@ namespace ns_fretBuzz
 				{
 					std::cout << l_iStateIndex << " Active state :: " << (*l_pCurrentScene)->getStateName() << "\n";
 				}
+			}
+		}
+
+		///all scenes should have its object render calls via this function
+		void SceneManager::renderActiveScenes()
+		{
+			int l_iActiveSceneCount = m_vectActiveStates.size();
+			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			{
+				m_vectActiveStates[l_iSceneIndex]->render();
 			}
 		}
 	}

@@ -87,12 +87,12 @@ namespace ns_fretBuzz
 			glDeleteProgram(m_ShaderID);
 		}
 
-		void Shader::bind()
+		void Shader::bind() const
 		{
 			glUseProgram(m_ShaderID);
 		}
 
-		void Shader::unbind()
+		void Shader::unbind() const
 		{
 			glUseProgram(0);
 		}

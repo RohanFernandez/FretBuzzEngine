@@ -37,6 +37,9 @@ namespace ns_fretBuzz
 
 			//Updates the updatable objects and the common game functionality
 			virtual void onLateUpdate(const float a_fDeltaTime) override;
+
+			//Renders the current active scenes
+			void renderFrame();
 		};
 	}
 }

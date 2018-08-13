@@ -15,6 +15,8 @@ namespace ns_fretBuzz
 			virtual ~IScene() = 0
 			{}
 
+			virtual void render() = 0;
+
 		protected:
 			IScene(std::string a_strSceneName) 
 				: IFSM(a_strSceneName)
@@ -37,13 +39,14 @@ namespace ns_fretBuzz
 
 			virtual bool isSceneLoaded() = 0;
 
+			virtual void render() = 0;
+
 		protected:
 			ISceneData(std::string a_strSceneID)
 				: IFSM(a_strSceneID)
 			{
 
 			}
-
 		};
 
 		//To create a scene state, this a scene state wtih this class should be created with SCENE_TYPE as the Scene State type.
@@ -63,9 +66,7 @@ namespace ns_fretBuzz
 			}
 
 			virtual ~SceneData()
-			{
-
-			}
+			{}
 
 			//On entering the state it will instantiate the state of type SCENE_TYPE
 			virtual void OnStateEnter() override
@@ -123,6 +124,13 @@ namespace ns_fretBuzz
 			{
 				return (m_pScene != nullptr);
 			}
+
+		protected:
+			//Renders all game objects in the scene.
+			virtual void render() override
+			{
+				m_pScene->render();
+			}
 		};
 
 		//Specialized class for Scene Managment from FSM, could be template specialize but decided to write it separately
@@ -145,6 +153,8 @@ namespace ns_fretBuzz
 			static void s_loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
 			static void s_unloadScene(std::string a_strSceneName);
 			static void s_logAllActiveSceneNames();
+
+			void renderActiveScenes();
 
 		protected:
 			virtual void transitionTo(std::string a_strTransitionTo) override;

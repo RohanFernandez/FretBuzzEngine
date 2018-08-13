@@ -3,6 +3,7 @@
 #include <glfw3.h>
 #include <string>
 #include "input.h"
+#include "../components/math.h"
 
 namespace ns_fretBuzz
 {
@@ -61,6 +62,12 @@ namespace ns_fretBuzz
 			inline unsigned int getHeight() const
 			{
 				return m_uiHeight;
+			}
+
+			//Changes the background color via OPEN GL
+			inline void changeBackgroundColor(glm::vec4 a_vec4)
+			{
+				glClearColor(a_vec4.x, a_vec4.y, a_vec4.z, a_vec4.w);
 			}
 		};
 	}

@@ -86,6 +86,8 @@ namespace ns_fretBuzz
 				l_UpdateManager.onUpdateFrame(l_fCurrentDeltaTime);
 				l_UpdateManager.onUpdateLateFrame(l_fCurrentDeltaTime);
 
+				l_Game.renderFrame();
+
 				l_Window.update();
 				l_FPSTimer.update();
 			}
