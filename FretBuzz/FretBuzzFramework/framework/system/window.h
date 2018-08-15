@@ -12,6 +12,9 @@ namespace ns_fretBuzz
 		class Window
 		{
 		private:
+			//singleton instance
+			static Window* s_pInstance;
+
 			GLFWwindow* m_pGLFWwindow = nullptr;
 			unsigned int m_uiWidth = 0;
 			unsigned int m_uiHeight = 0;
@@ -53,15 +56,15 @@ namespace ns_fretBuzz
 			}
 
 			//Returns the width of the window
-			inline unsigned int getWidth() const
+			static inline unsigned int getWidth()
 			{
-				return m_uiWidth;
+				return s_pInstance->m_uiWidth;
 			}
 
 			//Returns the height of the window
-			inline unsigned int getHeight() const
+			static inline unsigned int getHeight()
 			{
-				return m_uiHeight;
+				return s_pInstance->m_uiHeight;
 			}
 
 			//Changes the background color via OPEN GL

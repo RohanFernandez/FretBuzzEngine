@@ -4,6 +4,7 @@
 #include "../graphics/shader.h"
 #include "../graphics/texture.h"
 #include "../../system/window.h"
+#include "../../components/camera/camera.h"
 
 namespace ns_fretBuzz
 {
@@ -18,12 +19,14 @@ namespace ns_fretBuzz
 		GLuint m_VBO;
 		GLuint m_IBO;
 
+		ns_system::OrthographicCamera m_Camera;
+
 		GLfloat m_vertices[20] = 
 		{
-			-0.5, -0.5, 1.0, 0.0, 0.0,
-			-0.5, 0.5, 1.0, 0.0, 1.0,
-			 0.5, 0.5, 1.0, 1.0, 1.0,
-			 0.5, -0.5, 1.0, 1.0, 0.0
+			-0.5, -0.5, 0.0, 0.0, 0.0,
+			-0.5,  0.5, 0.0, 0.0, 1.0,
+			 0.5,  0.5, 0.0, 1.0, 1.0,
+			 0.5, -0.5, 0.0, 1.0, 0.0
 		};
 
 		GLuint m_indices[6] =
@@ -34,7 +37,9 @@ namespace ns_fretBuzz
 
 		InitState(std::string a_strSceneName) :
 			IScene(a_strSceneName),
-			ns_system::IUpdateTimer()
+			ns_system::IUpdateTimer(),
+			m_Camera{ glm::vec3{0.0f,0.0f,3.0f}, glm::vec3{ 0.0f,0.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -1.0f, 1.0f }
+			//m_Camera{ glm::vec3{ 0.0f,0.0f,3.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, 45.0f, 0.01f, 100.0f }
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("tShader");
 			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
@@ -82,7 +87,13 @@ namespace ns_fretBuzz
 
 		virtual void render() override
 		{
+			//m_Camera.m_transform.rotate(m_Camera.m_transform.getRotation() + glm::vec3{ 0.0f,2.0f,0.0f });
 			m_pShader->bind();
+
+			m_pShader->setUniforMat4fv("unifProjection", m_Camera.getProjectionMatrix());
+			m_pShader->setUniforMat4fv("unifView", m_Camera.getViewMatrix());
+			m_pShader->setUniforMat4fv("unifModel", glm::mat4(1.0f));
+
 			ns_system::Window::CheckForErrors();
 
 			glActiveTexture(GL_TEXTURE0);

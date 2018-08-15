@@ -57,6 +57,12 @@
     <ClCompile Include="framework\graphics\renderer_2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\components\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\camera\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\input.h">
@@ -113,13 +119,16 @@
     <ClInclude Include="framework\system\managers\managed_resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\camera\camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\graphics\renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\graphics\renderer_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\camera\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

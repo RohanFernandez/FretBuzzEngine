@@ -6,12 +6,24 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		//singleton instance
+		Window* Window::s_pInstance = nullptr;
+
 		Window::Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName)
 			: m_uiWidth{a_uiWidth},
 			  m_uiHeight{ a_uiHeight },
 			  m_strName{ a_strName }
 		{
+			if (s_pInstance != nullptr)
+			{
+				return;
+			}
 			m_bIsInitialized = initialize();
+
+			if (m_bIsInitialized)
+			{
+				s_pInstance = this;
+			}
 		}
 
 		bool Window::initialize()
@@ -49,6 +61,7 @@ namespace ns_fretBuzz
 
 			CheckForErrors();
 
+			glEnable(GL_DEPTH_TEST);
 			glViewport(0, 0, m_uiWidth, m_uiHeight);
 
 			return true;
@@ -58,10 +71,15 @@ namespace ns_fretBuzz
 		{
 			glfwTerminate();
 
-			if (m_pInput != nullptr)
+			if (s_pInstance == this)
 			{
-				delete m_pInput;
-				m_pInput = nullptr;
+				if (m_pInput != nullptr)
+				{
+					delete m_pInput;
+					m_pInput = nullptr;
+				}
+
+				s_pInstance = nullptr;
 			}
 		}
 

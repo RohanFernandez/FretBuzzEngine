@@ -13,13 +13,18 @@ namespace ns_fretBuzz
 			if (s_pInput == nullptr)
 			{
 				s_pInput = this;
+				m_pGLFWWindowRef = a_pGLFWWindow;
 				SetInputCallbacks(a_pGLFWWindow);
 			}
 		}
 
 		Input::~Input()
 		{
-			s_pInput = nullptr;
+			if (s_pInput == this)
+			{
+				m_pGLFWWindowRef = nullptr;
+				s_pInput = nullptr;
+			}
 		}
 
 		void Input::SetInputCallbacks(GLFWwindow*& a_pGLFWwindow)
@@ -61,6 +66,11 @@ namespace ns_fretBuzz
 		{
 			assert(a_iMouseKeyCode < MAX_MOUSE_BTNS && "KeyCode is more than max mouse buttons");
 			return s_pInput->m_arrMouseCode[a_iMouseKeyCode] != KEY_RELEASED;
+		}
+
+		void Input::setCursorEnability(bool a_bIsEnabled, bool a_bIsCursorVisible)
+		{
+			glfwSetInputMode(s_pInput->m_pGLFWWindowRef, GLFW_CURSOR, a_bIsEnabled ? (a_bIsCursorVisible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN): GLFW_CURSOR_DISABLED);
 		}
 	}
 }

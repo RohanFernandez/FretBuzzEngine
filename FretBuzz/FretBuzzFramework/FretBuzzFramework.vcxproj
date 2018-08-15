@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="framework\components\camera\camera.cpp" />
+    <ClCompile Include="framework\components\transform.cpp" />
     <ClCompile Include="framework\game\game.cpp" />
     <ClCompile Include="framework\graphics\renderer_2d.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
@@ -170,8 +172,9 @@
     <ClCompile Include="framework\system\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework\camera\camera.h" />
+    <ClInclude Include="framework\components\camera\camera.h" />
     <ClInclude Include="framework\components\math.h" />
+    <ClInclude Include="framework\components\transform.h" />
     <ClInclude Include="framework\game\game.h" />
     <ClInclude Include="framework\game\scenes\init_state.h" />
     <ClInclude Include="framework\game\scenes\mainmenu_state.h" />

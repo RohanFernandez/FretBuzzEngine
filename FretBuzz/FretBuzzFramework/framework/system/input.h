@@ -19,6 +19,8 @@ namespace ns_fretBuzz
 			//singleton instance
 			static Input* s_pInput;
 
+			GLFWwindow* m_pGLFWWindowRef = nullptr;
+
 			static constexpr int MAX_KEYBOARD_BTNS = 1024;
 			static constexpr int MAX_MOUSE_BTNS = 32;
 
@@ -52,6 +54,10 @@ namespace ns_fretBuzz
 
 			//Checks if mouse key with given keycode is down
 			static bool IsMouseBtnDown(const int a_iMouseKeyCode);
+
+			//Sets the cursor to enabled or disabled. If disabled the cursor will have no window bounds and will not be visible on screen.
+			//If enabled the second parameter will set if the cursor is visible or not.
+			static void setCursorEnability(bool a_bIsEnabled, bool a_bIsCursorVisible = true);
 		};
 	}
 }

@@ -12,10 +12,8 @@ namespace ns_fretBuzz
 			////Testing Start//////
 			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
 			ns_graphics::Texture testTexture("resources//textures//darksiders.jpg");
-
 			ResourceManager::addResource<ns_graphics::Shader>("tShader", testShader);
 			ResourceManager::addResource<ns_graphics::Texture>("darksider", testTexture);
-
 			////Testing End//////
 
 			m_vectScenes =
