@@ -5,9 +5,9 @@ layout(location = 1) in vec2 texCoords;
 
 out vec2 TexCrd;
 
-uniform mat4 unifProjection;
-uniform mat4 unifView;
-uniform mat4 unifModel;
+uniform mat4 unifProjection = mat4(1.0);
+uniform mat4 unifView = mat4(1.0);
+uniform mat4 unifModel = mat4(1.0);
 
 void main()
 {
