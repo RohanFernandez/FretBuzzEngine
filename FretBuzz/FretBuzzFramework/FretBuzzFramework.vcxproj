@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +116,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,16 +150,19 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="framework\components\audio\audio_clip.cpp" />
+    <ClCompile Include="framework\components\audio\audio_source.cpp" />
     <ClCompile Include="framework\components\camera\camera.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
     <ClCompile Include="framework\game\game.cpp" />
     <ClCompile Include="framework\graphics\renderer_2d.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
     <ClCompile Include="framework\graphics\texture.cpp" />
+    <ClCompile Include="framework\system\managers\audio_engine.cpp" />
     <ClCompile Include="framework\system\managers\resource_manager.cpp" />
     <ClCompile Include="framework\system\managers\scene_manager.cpp" />
     <ClCompile Include="framework\system\managers\update_manager.cpp" />
@@ -172,6 +175,8 @@
     <ClCompile Include="framework\system\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="framework\components\audio\audio_clip.h" />
+    <ClInclude Include="framework\components\audio\audio_source.h" />
     <ClInclude Include="framework\components\camera\camera.h" />
     <ClInclude Include="framework\components\math.h" />
     <ClInclude Include="framework\components\transform.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="framework\graphics\renderer_2d.h" />
     <ClInclude Include="framework\graphics\shader.h" />
     <ClInclude Include="framework\graphics\texture.h" />
+    <ClInclude Include="framework\system\managers\audio_engine.h" />
     <ClInclude Include="framework\system\managers\managed_resource.h" />
     <ClInclude Include="framework\system\managers\resource_manager.h" />
     <ClInclude Include="framework\system\managers\scene_manager.h" />
@@ -201,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\darksiders.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

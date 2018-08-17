@@ -6,7 +6,6 @@
 #include "scenes/score_state.h"
 #include <vector>
 
-
 namespace ns_fretBuzz
 {
 	namespace ns_system

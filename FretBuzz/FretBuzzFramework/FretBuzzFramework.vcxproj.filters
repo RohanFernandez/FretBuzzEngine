@@ -63,6 +63,15 @@
     <ClCompile Include="framework\components\camera\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\system\managers\audio_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\audio\audio_source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\audio\audio_clip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\input.h">
@@ -131,6 +140,15 @@
     <ClInclude Include="framework\components\camera\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\system\managers\audio_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\audio\audio_source.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\audio\audio_clip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />
@@ -140,5 +158,8 @@
     <Image Include="resources\textures\darksiders.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
 </Project>

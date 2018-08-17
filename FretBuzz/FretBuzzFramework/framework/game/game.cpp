@@ -12,8 +12,12 @@ namespace ns_fretBuzz
 			////Testing Start//////
 			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
 			ns_graphics::Texture testTexture("resources//textures//darksiders.jpg");
+			ns_system::AudioClip testAudio("resources//audio//breakout.mp3");
+
 			ResourceManager::addResource<ns_graphics::Shader>("tShader", testShader);
 			ResourceManager::addResource<ns_graphics::Texture>("darksider", testTexture);
+			ResourceManager::addResource<ns_system::AudioClip>("breakout", testAudio);
+
 			////Testing End//////
 
 			m_vectScenes =
@@ -23,6 +27,7 @@ namespace ns_fretBuzz
 				new SceneData<ScoreState>("scorestate")
 			};
 			m_pSceneManager = new SceneManager(m_vectScenes);
+
 		}
 
 		Game::~Game()
@@ -38,6 +43,9 @@ namespace ns_fretBuzz
 			{
 				delete *l_CurrentState;
 			}
+
+			///testring start
+			///testing end 
 		}
 
 		void Game::onUpdate(const float a_fDeltaTime)

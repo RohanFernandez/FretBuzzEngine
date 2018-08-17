@@ -3,6 +3,7 @@
 #include "timer/timerFPS.h"
 #include "../game/game.h"
 #include "../system/managers/update_manager.h"
+#include "managers/audio_engine.h"
 
 namespace ns_fretBuzz
 {
@@ -33,6 +34,8 @@ namespace ns_fretBuzz
 			Game* m_pGame = nullptr;
 
 			UpdateManager* m_pUpdateManager = nullptr;
+
+			AudioEngine* m_pAudioEngine = nullptr;
 
 		public:
 			~System();

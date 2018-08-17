@@ -17,6 +17,7 @@ namespace ns_fretBuzz
 			m_pWindow = new Window(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
 			m_pFPStimer = new TimerFPS(true);
 			m_pUpdateManager = new UpdateManager();
+			m_pAudioEngine = new AudioEngine();
 			m_pGame = new Game();
 		}
 
@@ -50,6 +51,12 @@ namespace ns_fretBuzz
 			{
 				delete m_pUpdateManager;
 				m_pUpdateManager = nullptr;
+			}
+
+			if (m_pAudioEngine != nullptr)
+			{
+				delete m_pAudioEngine;
+				m_pAudioEngine = nullptr;
 			}
 
 			if (s_pInstance == this)

@@ -3,6 +3,7 @@
 #include "../../system/managers/resource_manager.h"
 #include "../graphics/shader.h"
 #include "../graphics/texture.h"
+#include "../../components/audio/audio_source.h"
 #include "../../system/window.h"
 #include "../../components/camera/camera.h"
 
@@ -13,11 +14,13 @@ namespace ns_fretBuzz
 		public ns_system::IUpdateTimer
 	{
 	public:
-		const ns_graphics::Shader* m_pShader = nullptr;
-		const ns_graphics::Texture* m_pTexture = nullptr;
+		ns_graphics::Shader* m_pShader = nullptr;
+		ns_graphics::Texture* m_pTexture = nullptr;
+		ns_system::AudioSource m_AudSrc;
 		GLuint m_VAO;
 		GLuint m_VBO;
 		GLuint m_IBO;
+		bool isAudioPlaying = false;
 
 		ns_system::OrthographicCamera m_Camera;
 
@@ -38,11 +41,13 @@ namespace ns_fretBuzz
 		InitState(std::string a_strSceneName) :
 			IScene(a_strSceneName),
 			ns_system::IUpdateTimer(),
+			m_AudSrc("breakout"),
 			m_Camera{ glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)ns_system::Window::getWidth() / 2.0f, (float)ns_system::Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f }
 			//m_Camera{ glm::vec3{ 0.0f,0.0f,3.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, 45.0f, 0.01f, 100.0f }
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("tShader");
 			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
+			
 
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
@@ -78,6 +83,29 @@ namespace ns_fretBuzz
 		virtual void onUpdate(const float a_fDeltaTime) override
 		{
 			/*std::cout << "Update :: InitState state\n";*/
+
+			m_Camera.m_transform.translate(m_Camera.m_transform.getPosition() + glm::vec3{a_fDeltaTime * 35.0f,0.0f,0.0f});
+
+
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_G))
+			{
+				m_AudSrc.play();
+			}
+			
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_H))
+			{
+				m_AudSrc.restart();
+			}
+
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_J))
+			{
+				m_AudSrc.stop();
+			}
+
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_K))
+			{
+				m_AudSrc.pause();
+			}
 		}
 
 		virtual void onLateUpdate(const float a_fDeltaTime) override
