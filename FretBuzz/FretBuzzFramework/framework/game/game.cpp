@@ -53,6 +53,12 @@ namespace ns_fretBuzz
 
 		/*void Game::onUpdate(const float a_fDeltaTime)
 		{
+			
+		}*/
+
+		void Game::updateScenes(float a_fDeltaTime)
+		{
+			///testing start
 			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
 				SceneManager::s_loadScene("initstate");
@@ -72,7 +78,7 @@ namespace ns_fretBuzz
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_N))
 			{
-				SceneManager::s_loadScene("scorestate",SceneManager::LoadSceneMode::Additive);
+				SceneManager::s_loadScene("scorestate", SceneManager::LoadSceneMode::Additive);
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_M))
 			{
@@ -98,16 +104,15 @@ namespace ns_fretBuzz
 			{
 				SceneManager::s_logAllActiveSceneNames();
 			}
-		}*/
+			///testing end
 
-		void Game::updateScenes(float a_fDeltaTime)
-		{
+
 			m_pSceneManager->updateActiveScenes(a_fDeltaTime);
 		}
 
-		void Game::renderFrame()
+		void Game::renderFrame(const Camera& a_Camera)
 		{
-			m_pSceneManager->renderActiveScenes();
+			m_pSceneManager->renderActiveScenes(a_Camera);
 		}
 	}
 }

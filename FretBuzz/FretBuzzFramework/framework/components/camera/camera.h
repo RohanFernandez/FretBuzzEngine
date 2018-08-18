@@ -18,6 +18,7 @@ namespace ns_fretBuzz
 		protected:
 			PROJECTION_TYPE m_ProjectionType;
 			glm::mat4 m_mat4Projection;
+			glm::mat4 m_mat4View;
 
 			Camera() = delete;
 			Camera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
@@ -32,12 +33,16 @@ namespace ns_fretBuzz
 			}
 
 			Transform m_transform;
+			const glm::mat4& updateViewMatrix();
 
-			glm::mat4 getViewMatrix();
-
-			inline glm::mat4 getProjectionMatrix()
+			inline const glm::mat4 getProjectionMatrix() const
 			{
 				return m_mat4Projection;
+			}
+
+			inline const glm::mat4& getViewMatrix() const
+			{
+				return m_mat4View;
 			}
 		};
 

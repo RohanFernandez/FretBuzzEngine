@@ -1,6 +1,5 @@
 #pragma once
 #include "../../system/scene_manager.h"
-#include "../../components/camera/camera.h"
 #include "../../graphics/shader.h"
 #include "../../graphics/texture.h"
 
@@ -12,8 +11,6 @@ namespace ns_fretBuzz
 		public ns_system::IScene
 	{
 	public:
-		ns_graphics::Shader* m_pShader = nullptr;
-		ns_graphics::Texture* m_pTexture = nullptr;
 		
 		CharacterTest m_CharacterTest;
 
@@ -21,8 +18,6 @@ namespace ns_fretBuzz
 		GLuint m_VBO;
 		GLuint m_IBO;
 		bool isAudioPlaying = false;
-
-		ns_system::OrthographicCamera m_Camera;
 
 		GLfloat m_vertices[20] = 
 		{

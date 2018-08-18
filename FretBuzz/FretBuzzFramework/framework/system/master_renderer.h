@@ -2,6 +2,7 @@
 
 #include "window.h"
 #include "timer/timerFPS.h"
+#include "../components/camera/camera.h"
 
 namespace ns_fretBuzz
 {
@@ -15,6 +16,8 @@ namespace ns_fretBuzz
 
 			Window* m_pWindow = nullptr;
 			TimerFPS* m_pTimer = nullptr;
+
+			Camera* m_pMainCamera;
 
 		public:
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName);

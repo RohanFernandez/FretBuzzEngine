@@ -1,4 +1,5 @@
 #pragma once
+#include "../components/camera/camera.h"
 
 namespace ns_fretBuzz
 {
@@ -28,7 +29,7 @@ namespace ns_fretBuzz
 			
 			}
 
-			virtual void render()
+			virtual void render(const Camera& a_Camera)
 			{
 			
 			}

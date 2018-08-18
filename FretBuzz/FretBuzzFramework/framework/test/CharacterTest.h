@@ -9,6 +9,8 @@
 #include "../components/camera/camera.h"
 #include "../system/input.h"
 
+#include "../components/camera/camera.h"
+
 namespace ns_fretBuzz
 {
 	class CharacterTest : public ns_system::GameObject
@@ -42,8 +44,9 @@ namespace ns_fretBuzz
 	public:
 
 		CharacterTest();
+		virtual ~CharacterTest() {};
 
 		virtual void update(float a_fDeltaTime) override;
-		virtual void render() override;
+		virtual void render(const ns_system::Camera& a_Camera) override;
 	};
 }

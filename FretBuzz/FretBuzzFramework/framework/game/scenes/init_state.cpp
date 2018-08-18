@@ -2,6 +2,7 @@
 
 #include "../../system/resource_manager.h"
 #include "../../system/window.h"
+#include "../../components/camera/camera.h"
 
 #include "init_state.h"
 
@@ -11,34 +12,9 @@ namespace ns_fretBuzz
 {
 	InitState::InitState(std::string a_strSceneName) :
 		IScene(a_strSceneName),
-		m_Camera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)ns_system::Window::getWidth() / 2.0f, (float)ns_system::Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f }
-		//m_Camera{ glm::vec3{ 0.0f,0.0f,3.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, 45.0f, 0.01f, 100.0f }
-		, m_CharacterTest()
+		m_CharacterTest()
 	{
-		m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("tShader");
-		m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
-
-		m_gameObjectRoot.addChild(&m_CharacterTest);
-
-		glGenVertexArrays(1, &m_VAO);
-		glGenBuffers(1, &m_VBO);
-		glGenBuffers(1, &m_IBO);
-
-		glBindVertexArray(m_VAO);
-
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)0);
-		glEnableVertexAttribArray(0);
-
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)((sizeof(GLfloat) * 3)));
-		glEnableVertexAttribArray(1);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_indices), m_indices, GL_STATIC_DRAW);
-
-		glBindVertexArray(0);
+		m_refRootGameObject.addChild(&m_CharacterTest);
 	}
 
 	void InitState::OnStateEnter()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../components/transform.h"
+#include "component.h"
 #include <vector>
 #include <string>
 
@@ -8,7 +9,6 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Transform;
 		class GameObject
 		{
 		private:
@@ -23,8 +23,8 @@ namespace ns_fretBuzz
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
-			void renderComponents();
-			void renderChildren();
+			void renderComponents(const Camera& a_Camera);
+			void renderChildren(const Camera& a_Camera);
 
 			bool m_bIsActive = true;
 
@@ -44,7 +44,7 @@ namespace ns_fretBuzz
 
 			void addChild(GameObject* a_pIComponent);
 
-			virtual void render();
+			virtual void render(const ns_system::Camera& a_Camera);
 			virtual void update(float a_fDeltaTime);
 
 			void setActive(bool a_bIsActive);

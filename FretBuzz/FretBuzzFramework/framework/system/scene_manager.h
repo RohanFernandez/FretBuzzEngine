@@ -1,6 +1,7 @@
 #pragma once
 #include "../utils/FSM.h"
 #include "../game/game_object.h"
+#include "../components/camera/camera.h"
 #include <type_traits>
 
 namespace ns_fretBuzz
@@ -10,28 +11,36 @@ namespace ns_fretBuzz
 		//Each scene state should be inherited from IScene
 		class IScene : public IFSM
 		{
+
+		private:
+			GameObject* m_pGameObjectRoot = nullptr;
+
 		public:
 			IScene() = delete;
 
 			virtual ~IScene() = 0
-			{}
-
-			GameObject m_gameObjectRoot;
-
-			void render()
 			{
-				m_gameObjectRoot.render();
+				delete m_pGameObjectRoot;
+				m_pGameObjectRoot = nullptr;
+			}
+
+			GameObject& m_refRootGameObject;
+
+			void render(const Camera& a_Camera)
+			{
+				m_refRootGameObject.render(a_Camera);
 			}
 
 			void update(float a_fDeltaTime)
 			{
-				m_gameObjectRoot.update(a_fDeltaTime);
+				m_refRootGameObject.update(a_fDeltaTime);
 			}
 
 		protected:
 			IScene(std::string a_strSceneName) 
 				: IFSM(a_strSceneName),
-				m_gameObjectRoot(a_strSceneName+"::ROOT")
+				m_pGameObjectRoot{ new GameObject(a_strSceneName + "::ROOT") },
+				m_refRootGameObject{ *m_pGameObjectRoot }
 			{
 			}
 		};
@@ -51,7 +60,7 @@ namespace ns_fretBuzz
 
 			virtual bool isSceneLoaded() = 0;
 
-			virtual void render() = 0;
+			virtual void render(const Camera& a_Camera) = 0;
 			virtual void update(float a_fDeltaTime) = 0;
 
 		protected:
@@ -121,9 +130,9 @@ namespace ns_fretBuzz
 				}
 			}
 
-			void render()
+			void render(const Camera& a_Camera)
 			{
-				m_pScene->render();
+				m_pScene->render(a_Camera);
 			}
 
 			void update(float a_fDeltaTime)
@@ -171,7 +180,7 @@ namespace ns_fretBuzz
 			static void s_logAllActiveSceneNames();
 
 			void updateActiveScenes(float a_fDeltaTime);
-			void renderActiveScenes();
+			void renderActiveScenes(const Camera& a_Camera);
 
 		protected:
 			virtual void transitionTo(std::string a_strTransitionTo) override;

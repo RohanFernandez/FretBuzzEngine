@@ -1,12 +1,11 @@
 #pragma once
 #include "../utils/math.h"
-#include "../game/component.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Transform : public IComponent
+		class Transform
 		{
 		private:
 			glm::vec3 m_v3Position;
@@ -16,6 +15,8 @@ namespace ns_fretBuzz
 			glm::vec3 m_v3Forward;
 			glm::vec3 m_v3Up;
 			glm::vec3 m_v3Right;
+
+			glm::mat4 m_mat4Model;
 
 		public:
 			Transform();
@@ -56,7 +57,12 @@ namespace ns_fretBuzz
 				return m_v3Right;
 			}
 
-			glm::mat4 getModelMatrix();
+			inline const glm::mat4& getModelMatrix() const
+			{
+				return m_mat4Model;
+			}
+
+			const glm::mat4& updateModelMatrix();
 		};
 	}
 }

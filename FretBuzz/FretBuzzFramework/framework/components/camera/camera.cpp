@@ -10,11 +10,13 @@ namespace ns_fretBuzz
 			m_ProjectionType{ a_ProjectionType },
 			m_transform(a_v3Pos, a_v3Rotation,a_v3Scale)
 		{
+			updateViewMatrix();
 		}
 
-		glm::mat4 Camera::getViewMatrix()
+		const glm::mat4& Camera::updateViewMatrix()
 		{
-			return glm::lookAt(m_transform.getPosition(), m_transform.getPosition() + m_transform.getForward(), m_transform.getUp());
+			m_mat4View = glm::lookAt(m_transform.getPosition(), m_transform.getPosition() + m_transform.getForward(), m_transform.getUp());
+			return m_mat4View;
 		}
 	}
 }

@@ -60,6 +60,7 @@ namespace ns_fretBuzz
 
 		AudioSource::~AudioSource()
 		{
+			stop();
 			m_pISoundEngine = nullptr;
 			m_pISoundSource = nullptr;
 			m_pISound = nullptr;

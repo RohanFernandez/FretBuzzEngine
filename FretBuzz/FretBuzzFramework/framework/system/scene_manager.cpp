@@ -122,7 +122,20 @@ namespace ns_fretBuzz
 
 			if (m_CurrentLoadSceneMode == LoadSceneMode::Single)
 			{
-				unloadAllScenes();
+				///Check to see if new state already exist in active states, then unload all other states except new state.
+				for (std::vector<ISceneData*>::const_iterator l_pCurrentScene = m_vectActiveStates.cbegin();
+					l_pCurrentScene != m_vectActiveStates.cend();
+					)
+				{
+					ISceneData* l_pCurrentISceneData = *l_pCurrentScene;
+					if (l_pCurrentISceneData->getStateName().compare(a_strTransitionTo) == 0)
+					{
+						l_pCurrentScene++;
+						continue;
+					}
+					l_pCurrentScene = m_vectActiveStates.erase(l_pCurrentScene);
+					l_pCurrentISceneData->unloadSceneData();
+				}
 			}
 
 			m_pCurrentState = l_pRegisteredState;
@@ -138,6 +151,8 @@ namespace ns_fretBuzz
 			}
 			else
 			{
+				/// if scene was created in this function i.e. was not in the active state list previously.
+				/// put the newly added state( current state ) as the last iterator in the active state list.
 				int l_iActiveSceneCount = m_vectActiveStates.size();
 				int l_iCurrentScenePosition = 0;
 
@@ -199,12 +214,12 @@ namespace ns_fretBuzz
 		}
 
 		///all scenes should have its object render calls via this function
-		void SceneManager::renderActiveScenes()
+		void SceneManager::renderActiveScenes(const Camera& a_Camera)
 		{
 			int l_iActiveSceneCount = m_vectActiveStates.size();
 			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
-				m_vectActiveStates[l_iSceneIndex]->render();
+				m_vectActiveStates[l_iSceneIndex]->render(a_Camera);
 			}
 		}
 	}

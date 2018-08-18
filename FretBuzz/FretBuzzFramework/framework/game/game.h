@@ -29,7 +29,7 @@ namespace ns_fretBuzz
 			void updateScenes(float a_fDeltaTime);
 
 			//Renders the current active scenes
-			void renderFrame();
+			void renderFrame(const Camera& a_Camera);
 		};
 	}
 }

@@ -18,6 +18,7 @@ namespace ns_fretBuzz
 			s_pInstance = this;
 
 			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
+			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(true);
 		}
 
@@ -33,6 +34,12 @@ namespace ns_fretBuzz
 				m_pTimer = nullptr;
 			}
 
+			if (m_pMainCamera != nullptr)
+			{
+				delete m_pMainCamera;
+				m_pMainCamera;
+			}
+
 			if (m_pWindow != nullptr)
 			{
 				delete m_pWindow;
@@ -45,7 +52,10 @@ namespace ns_fretBuzz
 		float MasterRenderer::render(Game& m_Game)
 		{
 			m_pWindow->clear();
-			m_Game.renderFrame();
+
+			m_pMainCamera->updateViewMatrix();
+			m_Game.renderFrame(*m_pMainCamera);
+
 			m_pTimer->update();
 			m_pWindow->update();
 			return m_pTimer->getDeltaTime();

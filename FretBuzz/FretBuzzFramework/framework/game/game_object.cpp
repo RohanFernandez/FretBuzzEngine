@@ -13,12 +13,12 @@ namespace ns_fretBuzz
 		     m_strName{a_strName},
 			 m_Transform()
 		{
-			m_Components.emplace_back(&m_Transform);
+			
 		}
 
 		GameObject::~GameObject()
 		{
-			for (std::vector<IComponent*>::iterator l_IComponentCurrent = m_Components.begin() + 1;
+			for (std::vector<IComponent*>::iterator l_IComponentCurrent = m_Components.begin();
 				l_IComponentCurrent != m_Components.end();)
 			{
 				delete *l_IComponentCurrent;
@@ -44,6 +44,8 @@ namespace ns_fretBuzz
 
 		void GameObject::updateComponents(float a_fDeltaTime)
 		{
+			m_Transform.updateModelMatrix();
+
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
@@ -60,32 +62,32 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::render()
+		void GameObject::render(const Camera& a_Camera)
 		{
 			if (!m_bIsActive)
 			{
 				return;
 			}
 
-			renderComponents();
-			renderChildren();
+			renderComponents(a_Camera);
+			renderChildren(a_Camera);
 		}
 
-		void GameObject::renderComponents()
+		void GameObject::renderComponents(const Camera& a_Camera)
 		{
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
-				m_Components[l_iComponentndex]->render();
+				m_Components[l_iComponentndex]->render(a_Camera);
 			}
 		}
 
-		void GameObject::renderChildren()
+		void GameObject::renderChildren(const Camera& a_Camera)
 		{
 			int l_iChildCount = m_Children.size();
 			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
-				m_Children[l_iChildIndex]->render();
+				m_Children[l_iChildIndex]->render(a_Camera);
 			}
 		}
 
