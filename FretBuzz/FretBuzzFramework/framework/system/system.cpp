@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 		System::System()
 		{
 			m_pAudioEngine = new AudioEngine();
-			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
+			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
 			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
 			m_pGame = new Game();
 		}

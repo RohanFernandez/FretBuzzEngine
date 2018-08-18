@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;
 
-		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName)
+		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 
 			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
 			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,180.0f,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
-			m_pTimer = new TimerFPS(true);
+			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
 
 		MasterRenderer:: ~MasterRenderer()

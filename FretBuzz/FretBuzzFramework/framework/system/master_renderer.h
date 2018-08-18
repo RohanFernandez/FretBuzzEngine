@@ -20,7 +20,7 @@ namespace ns_fretBuzz
 			Camera* m_pMainCamera;
 
 		public:
-			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName);
+			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
 			~MasterRenderer();
 
 			GLFWwindow* getGLFWWindow() const;

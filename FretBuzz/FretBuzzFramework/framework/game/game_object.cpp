@@ -44,13 +44,12 @@ namespace ns_fretBuzz
 
 		void GameObject::updateComponents(float a_fDeltaTime)
 		{
-			m_Transform.updateModelMatrix();
-
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
 				m_Components[l_iComponentndex]->update(a_fDeltaTime);
 			}
+			m_Transform.updateModelMatrix();
 		}
 
 		void GameObject::updateChildren(float a_fDeltaTime)
