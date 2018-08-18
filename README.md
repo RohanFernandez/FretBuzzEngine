@@ -1,10 +1,10 @@
 # FretBuzz_OpenGL
 
-This is a repo of an engine made to support x64 and Win32 currently in development.
+A game engine made to support 2D and 3D games. 
+All libraries are contained within the repository and should run out-of-the-box provided you use Visual Studio 2017, Platform toolset v141.
 
 Libs::
-	Graphics API :: Open GL, GLEW, GLFW
-    Image        :: FreeImage
-	Audio        :: irrKlang
-	Math         :: GLM
-		 
+	Graphics API :: Open GL, GLEW, GLFW \n
+    Image        :: FreeImage \n
+	Audio        :: irrKlang \n
+	Math         :: GLM \n
