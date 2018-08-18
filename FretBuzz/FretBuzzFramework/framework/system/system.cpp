@@ -14,49 +14,46 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
-			m_pWindow = new Window(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
-			m_pFPStimer = new TimerFPS(true);
-			m_pUpdateManager = new UpdateManager();
 			m_pAudioEngine = new AudioEngine();
+			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME);
+			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
 			m_pGame = new Game();
 		}
 
-		bool System::initialize()
+		bool System::isInitialized()
 		{
 			s_pInstance = new System();
-			return s_pInstance->m_pWindow->isInitialized();
+			return !(s_pInstance == nullptr ||
+				    s_pInstance->m_pAudioEngine == nullptr ||
+				    s_pInstance->m_pAudioEngine == nullptr ||
+				    s_pInstance->m_pMasterRenderer == nullptr ||
+				    s_pInstance->m_pInput == nullptr);
 		}
 
 		System::~System()
 		{
-			if (m_pWindow != nullptr)
-			{
-				delete m_pWindow;
-				m_pWindow = nullptr;
-			}
-
-			if (m_pFPStimer != nullptr)
-			{
-				delete m_pFPStimer;
-				m_pFPStimer = nullptr;
-			}
-
 			if (m_pGame != nullptr)
 			{
 				delete m_pGame;
 				m_pGame = nullptr;
 			}
 
-			if (m_pUpdateManager != nullptr)
-			{
-				delete m_pUpdateManager;
-				m_pUpdateManager = nullptr;
-			}
-
 			if (m_pAudioEngine != nullptr)
 			{
 				delete m_pAudioEngine;
 				m_pAudioEngine = nullptr;
+			}
+
+			if (m_pInput != nullptr)
+			{
+				delete m_pInput;
+				m_pInput = nullptr;
+			}
+
+			if (m_pMasterRenderer != nullptr)
+			{
+				delete m_pMasterRenderer;
+				m_pMasterRenderer = nullptr;
 			}
 
 			if (s_pInstance == this)
@@ -72,31 +69,21 @@ namespace ns_fretBuzz
 				return;
 			}
 
-			if (!initialize())
+			if (!isInitialized())
 			{
 				destroy();
 				return;
 			}
 
-			Window& l_Window = *(s_pInstance->m_pWindow);
-			TimerFPS& l_FPSTimer = *(s_pInstance->m_pFPStimer);
 			Game& l_Game = *(s_pInstance->m_pGame);
-			UpdateManager& l_UpdateManager = *(s_pInstance->m_pUpdateManager);
+			MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
 
 			float l_fCurrentDeltaTime = 0.0f;
 
-			while (!l_Window.isWindowClosed())
+			while (!l_MasterRenderer.isWindowClosed())
 			{
-				l_Window.clear();
-				l_fCurrentDeltaTime = l_FPSTimer.getDeltaTime();
-
-				l_UpdateManager.onUpdateFrame(l_fCurrentDeltaTime);
-				l_UpdateManager.onUpdateLateFrame(l_fCurrentDeltaTime);
-
-				l_Game.renderFrame();
-
-				l_Window.update();
-				l_FPSTimer.update();
+				l_Game.updateScenes(l_fCurrentDeltaTime);
+				l_fCurrentDeltaTime = l_MasterRenderer.render(l_Game);
 			}
 
 			destroy();

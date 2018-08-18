@@ -9,11 +9,11 @@ namespace ns_fretBuzz
 		Input* Input::s_pInput = nullptr;
 
 		Input::Input(GLFWwindow* a_pGLFWWindow)
+			: m_pGLFWWindowRef{ a_pGLFWWindow }
 		{
 			if (s_pInput == nullptr)
 			{
 				s_pInput = this;
-				m_pGLFWWindowRef = a_pGLFWWindow;
 				SetInputCallbacks(a_pGLFWWindow);
 			}
 		}

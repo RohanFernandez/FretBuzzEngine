@@ -1,9 +1,10 @@
 #pragma once
-#include "window.h"
+
 #include "timer/timerFPS.h"
 #include "../game/game.h"
-#include "../system/managers/update_manager.h"
-#include "managers/audio_engine.h"
+#include "audio_engine.h"
+#include "master_renderer.h"
+#include "input.h"
 
 namespace ns_fretBuzz
 {
@@ -22,20 +23,18 @@ namespace ns_fretBuzz
 			static const std::string WINDOW_NAME;
 
 			//Initializes the system, is called only once on startup
-			static bool initialize();
+			static bool isInitialized();
 
 			//Destroys components if failed to initialize and provides cleanup
 			static void destroy();
 
-			Window* m_pWindow = nullptr;
-			
-			TimerFPS* m_pFPStimer = nullptr;
-
 			Game* m_pGame = nullptr;
 
-			UpdateManager* m_pUpdateManager = nullptr;
-
 			AudioEngine* m_pAudioEngine = nullptr;
+
+			MasterRenderer* m_pMasterRenderer = nullptr;
+
+			Input* m_pInput = nullptr;
 
 		public:
 			~System();

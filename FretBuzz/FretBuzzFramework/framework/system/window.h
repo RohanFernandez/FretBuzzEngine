@@ -2,8 +2,7 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <string>
-#include "input.h"
-#include "../components/math.h"
+#include "../utils/math.h"
 
 namespace ns_fretBuzz
 {
@@ -23,8 +22,6 @@ namespace ns_fretBuzz
 			bool m_bIsInitialized = false;
 
 			bool initialize();
-
-			Input* m_pInput = nullptr;
 
 			//Callback called on window closed
 			static void OnWindowClose(GLFWwindow* a_pGLFWwindow);
@@ -71,6 +68,12 @@ namespace ns_fretBuzz
 			inline void changeBackgroundColor(glm::vec4 a_vec4)
 			{
 				glClearColor(a_vec4.x, a_vec4.y, a_vec4.z, a_vec4.w);
+			}
+
+			//Returns the pointer to the glfw window
+			inline GLFWwindow* getGLFWWindow()
+			{
+				return m_pGLFWwindow;
 			}
 		};
 	}

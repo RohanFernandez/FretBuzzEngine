@@ -3,7 +3,7 @@
 #include <glew.h>
 #include <string>
 #include "../utils/file_utils.h"
-#include "../system/managers/managed_resource.h"
+#include "../system/managed_resource.h"
 
 namespace ns_fretBuzz
 {

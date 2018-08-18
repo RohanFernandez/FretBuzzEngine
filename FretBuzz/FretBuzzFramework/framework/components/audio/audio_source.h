@@ -1,13 +1,14 @@
 #pragma once
 
+#include "../../game/component.h"
 #include "audio_clip.h"
-#include <string>; 
+#include <string>
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class AudioSource
+		class AudioSource : public IComponent
 		{
 		private:
 			irrklang::ISoundEngine* m_pISoundEngine = nullptr;
@@ -21,6 +22,7 @@ namespace ns_fretBuzz
 			AudioSource();
 			AudioSource(AudioClip* a_AudioClip);
 			AudioSource(AudioSource& a_AudSrc);
+			AudioSource(AudioSource&& a_AudSrc);
 			AudioSource(std::string a_strAudFilePath);
 
 			~AudioSource();

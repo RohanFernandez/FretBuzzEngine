@@ -1,6 +1,6 @@
 #pragma once
-#include "../../system/managers/managed_resource.h"
-#include "../../system/managers/audio_engine.h"
+#include "../../system/managed_resource.h"
+#include "../../system/audio_engine.h"
 #include <string>
 
 namespace ns_fretBuzz

@@ -40,9 +40,6 @@ namespace ns_fretBuzz
 				std::cout << "Window::initialize:: Failed to create GLFW window. \n";
 				return false;
 			}
-
-			m_pInput = new Input(m_pGLFWwindow);
-
 			glfwMakeContextCurrent(m_pGLFWwindow);
 			glfwSetWindowUserPointer(m_pGLFWwindow, this);
 
@@ -73,12 +70,6 @@ namespace ns_fretBuzz
 
 			if (s_pInstance == this)
 			{
-				if (m_pInput != nullptr)
-				{
-					delete m_pInput;
-					m_pInput = nullptr;
-				}
-
 				s_pInstance = nullptr;
 			}
 		}

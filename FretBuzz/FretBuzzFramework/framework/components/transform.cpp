@@ -6,7 +6,9 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		Transform::Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
-			: m_v3Position{ a_v3Position },
+			: 
+			IComponent{COMPONENT_TYPE::TRANSFORM}, 
+			m_v3Position{ a_v3Position },
 			m_v3Rotation{ a_v3Rotation },
 			m_v3Scale{ a_v3Scale },
 			m_v3Forward{ 0.0f, 0.0f, 1.0f },
@@ -16,6 +18,12 @@ namespace ns_fretBuzz
 			rotate(m_v3Rotation);
 			scale(m_v3Scale);
 			translate(m_v3Position);
+		}
+
+		Transform::Transform()
+			: Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, {1.0f, 1.0f, 1.0f})
+		{
+			
 		}
 
 		Transform::~Transform()

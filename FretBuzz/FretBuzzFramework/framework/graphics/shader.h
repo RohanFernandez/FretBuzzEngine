@@ -1,8 +1,8 @@
 #pragma once
 #include <glew.h>
 #include <string>
-#include "../components/math.h"
-#include "../system/managers/managed_resource.h"
+#include "../utils/math.h"
+#include "../system/managed_resource.h"
 
 namespace ns_fretBuzz
 {

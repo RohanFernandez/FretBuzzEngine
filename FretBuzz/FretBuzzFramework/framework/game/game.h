@@ -1,16 +1,13 @@
 #pragma once
-#include "../system/managers/scene_manager.h"
-#include "../system/managers/update_manager.h"
-#include "scenes/init_state.h"
-#include "scenes/mainmenu_state.h"
-#include "scenes/score_state.h"
+#include "../system/scene_manager.h"
+#include "../system/resource_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Game : public IUpdateTimer
+		class Game
 		{
 		private:
 			//List of all the scenes present in the game.
@@ -28,11 +25,8 @@ namespace ns_fretBuzz
 
 			~Game();
 
-			//Updates the updatable objects and the common game functionality
-			virtual void onUpdate(const float a_fDeltaTime) override;
-
-			//Updates the updatable objects and the common game functionality
-			virtual void onLateUpdate(const float a_fDeltaTime) override;
+			//Updates all the active scenes
+			void updateScenes(float a_fDeltaTime);
 
 			//Renders the current active scenes
 			void renderFrame();

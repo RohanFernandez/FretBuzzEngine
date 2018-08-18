@@ -36,12 +36,6 @@
     <ClCompile Include="framework\game\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\system\managers\scene_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\system\managers\update_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\graphics\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\graphics\texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\system\managers\resource_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\graphics\renderer_2d.cpp">
@@ -63,13 +54,31 @@
     <ClCompile Include="framework\components\camera\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\system\managers\audio_engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\audio\audio_source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\components\audio\audio_clip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\master_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\audio_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\resource_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\scene_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\game\game_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\game\scenes\init_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\test\CharacterTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,15 +110,6 @@
     <ClInclude Include="framework\game\scenes\score_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\managers\scene_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\system\managers\update_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\FSM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\graphics\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -117,15 +117,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\graphics\texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\system\managers\resource_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\system\managers\managed_resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\graphics\renderer.h">
@@ -140,13 +131,40 @@
     <ClInclude Include="framework\components\camera\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\managers\audio_engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\audio\audio_source.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\audio\audio_clip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\master_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\audio_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\managed_resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\resource_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\scene_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\game\game_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\utils\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\utils\FSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\game\component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\test\CharacterTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,13 +1,16 @@
 #pragma once
 #include "game.h"
-#include "../system/input.h"
+#include "scenes/init_state.h"
+#include "scenes/mainmenu_state.h"
+#include "scenes/score_state.h"
+
+#include "../components/audio/audio_clip.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
 		Game::Game()
-			: IUpdateTimer()
 		{
 			////Testing Start//////
 			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
@@ -48,7 +51,7 @@ namespace ns_fretBuzz
 			///testing end 
 		}
 
-		void Game::onUpdate(const float a_fDeltaTime)
+		/*void Game::onUpdate(const float a_fDeltaTime)
 		{
 			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
@@ -95,11 +98,11 @@ namespace ns_fretBuzz
 			{
 				SceneManager::s_logAllActiveSceneNames();
 			}
-		}
+		}*/
 
-		void Game::onLateUpdate(const float a_fDeltaTime)
+		void Game::updateScenes(float a_fDeltaTime)
 		{
-		
+			m_pSceneManager->updateActiveScenes(a_fDeltaTime);
 		}
 
 		void Game::renderFrame()

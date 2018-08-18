@@ -1,12 +1,13 @@
 #pragma once
 #include "audio_source.h"
-#include "../../system/managers/resource_manager.h"
+#include "../../system/resource_manager.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{	
 		AudioSource::AudioSource()
+			: IComponent(COMPONENT_TYPE::AUDIO_SOURCE)
 		{
 			m_pISoundEngine = AudioEngine::s_pInstance->m_pISoundEngine;
 		}
@@ -18,6 +19,12 @@ namespace ns_fretBuzz
 		}
 
 		AudioSource::AudioSource(AudioSource& a_AudSrc)
+			: AudioSource()
+		{
+			setAudioClip(a_AudSrc);
+		}
+
+		AudioSource::AudioSource(AudioSource&& a_AudSrc)
 			: AudioSource()
 		{
 			setAudioClip(a_AudSrc);

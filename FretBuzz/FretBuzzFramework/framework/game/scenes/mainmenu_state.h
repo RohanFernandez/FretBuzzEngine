@@ -1,16 +1,14 @@
 #pragma once
-#include "../../system/managers/scene_manager.h"
+#include "../../system/scene_manager.h"
 
 namespace ns_fretBuzz
 {
 	class MainMenuState 
-		: public ns_system::IScene,
-		public ns_system::IUpdateTimer
+		: public ns_system::IScene
 	{
 	public:
 		MainMenuState(std::string a_strSceneName) :
-			IScene(a_strSceneName),
-			ns_system::IUpdateTimer()
+			IScene(a_strSceneName)
 		{
 		}
 
@@ -24,19 +22,19 @@ namespace ns_fretBuzz
 			IScene::OnStateExit();
 		}
 
-		virtual void onUpdate(const float a_fDeltaTime) override
-		{
-			/*std::cout << "Update :: MainMenuState state\n";*/
-		}
+		//virtual void onUpdate(const float a_fDeltaTime) override
+		//{
+		//	/*std::cout << "Update :: MainMenuState state\n";*/
+		//}
 
-		virtual void onLateUpdate(const float a_fDeltaTime) override
-		{
-			/*std::cout << "LateUpdate :: MainMenuState state\n";*/
-		}
+		//virtual void onLateUpdate(const float a_fDeltaTime) override
+		//{
+		//	/*std::cout << "LateUpdate :: MainMenuState state\n";*/
+		//}
 
-		virtual void render() override
+		/*virtual void render() override
 		{
 
-		}
+		}*/
 	};
 }

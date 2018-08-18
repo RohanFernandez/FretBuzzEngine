@@ -1,5 +1,6 @@
 #pragma once
-#include "../../components/FSM.h"
+#include "../utils/FSM.h"
+#include "../game/game_object.h"
 #include <type_traits>
 
 namespace ns_fretBuzz
@@ -15,11 +16,22 @@ namespace ns_fretBuzz
 			virtual ~IScene() = 0
 			{}
 
-			virtual void render() = 0;
+			GameObject m_gameObjectRoot;
+
+			void render()
+			{
+				m_gameObjectRoot.render();
+			}
+
+			void update(float a_fDeltaTime)
+			{
+				m_gameObjectRoot.update(a_fDeltaTime);
+			}
 
 		protected:
 			IScene(std::string a_strSceneName) 
-				: IFSM(a_strSceneName)
+				: IFSM(a_strSceneName),
+				m_gameObjectRoot(a_strSceneName+"::ROOT")
 			{
 			}
 		};
@@ -40,6 +52,7 @@ namespace ns_fretBuzz
 			virtual bool isSceneLoaded() = 0;
 
 			virtual void render() = 0;
+			virtual void update(float a_fDeltaTime) = 0;
 
 		protected:
 			ISceneData(std::string a_strSceneID)
@@ -108,6 +121,16 @@ namespace ns_fretBuzz
 				}
 			}
 
+			void render()
+			{
+				m_pScene->render();
+			}
+
+			void update(float a_fDeltaTime)
+			{
+				m_pScene->update(a_fDeltaTime);
+			}
+
 			///Unloads the scene object, destroys and deletes all data initialize in that scene class.
 			virtual void unloadSceneData() override
 			{
@@ -123,13 +146,6 @@ namespace ns_fretBuzz
 			virtual bool isSceneLoaded() override
 			{
 				return (m_pScene != nullptr);
-			}
-
-		protected:
-			//Renders all game objects in the scene.
-			virtual void render() override
-			{
-				m_pScene->render();
 			}
 		};
 
@@ -154,6 +170,7 @@ namespace ns_fretBuzz
 			static void s_unloadScene(std::string a_strSceneName);
 			static void s_logAllActiveSceneNames();
 
+			void updateActiveScenes(float a_fDeltaTime);
 			void renderActiveScenes();
 
 		protected:
@@ -173,7 +190,6 @@ namespace ns_fretBuzz
 			std::vector<ISceneData*> m_vectActiveStates;
 
 			void unloadAllScenes();
-
 		};
 	}
 }
