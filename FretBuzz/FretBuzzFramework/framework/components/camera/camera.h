@@ -15,6 +15,12 @@ namespace ns_fretBuzz
 				PERSPECTIVE
 			};
 
+			enum CONTROLLER_TYPE
+			{
+				NONE,
+				FPS
+			};
+
 		protected:
 			PROJECTION_TYPE m_ProjectionType;
 			glm::mat4 m_mat4Projection;
