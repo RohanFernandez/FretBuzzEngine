@@ -16,6 +16,8 @@ namespace ns_fretBuzz
 			///singleton instance
 			static ResourceManager* s_pInstance;
 
+			static void destroyResource(IManagedResource* a_pManagedResource);
+
 			class IResource
 			{
 			public:
@@ -63,7 +65,7 @@ namespace ns_fretBuzz
 
 					~ResourceData()
 					{
-						m_pResource->destroyResource();
+						s_pInstance->destroyResource(m_pResource);
 						delete m_pResource;
 						m_pResource = nullptr;
 					}
@@ -189,6 +191,7 @@ namespace ns_fretBuzz
 					{
 						if ((*l_CurrResourceData)->m_strResourceName.compare(a_strResourceName) == 0)
 						{
+							destroyResource(*l_CurrResourceData);
 							l_currentVectResourceData.erase(l_CurrResourceData);
 							l_bIsResourceDataFound = true;
 							break;

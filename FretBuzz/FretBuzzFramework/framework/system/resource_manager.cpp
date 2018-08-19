@@ -38,5 +38,10 @@ namespace ns_fretBuzz
 				s_pInstance = nullptr;
 			}
 		}
+
+		void ResourceManager::destroyResource(IManagedResource* a_pManagedResource)
+		{
+			a_pManagedResource->destroyResource();
+		}
 	}
 }

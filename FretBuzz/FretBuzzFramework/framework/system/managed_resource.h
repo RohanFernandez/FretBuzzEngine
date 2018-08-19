@@ -7,6 +7,7 @@ namespace ns_fretBuzz
 		class IManagedResource
 		{
 		public:
+
 			IManagedResource() {};
 
 			virtual ~IManagedResource()
@@ -14,8 +15,12 @@ namespace ns_fretBuzz
 			
 			}
 
+		protected:
+			friend class ResourceManager;
+
 			///unloads the resource in managed child
 			virtual void destroyResource() = 0;
+
 		};
 	}
 }

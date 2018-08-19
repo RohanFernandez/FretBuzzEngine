@@ -18,9 +18,6 @@ namespace ns_fretBuzz
 		{
 			m_pISoundEngine = a_AudClip.m_pISoundEngine;
 			m_pISoundSource = a_AudClip.m_pISoundSource;
-
-			a_AudClip.m_pISoundEngine = nullptr;
-			a_AudClip.m_pISoundSource = nullptr;
 		}
 
 		AudioClip::~AudioClip()

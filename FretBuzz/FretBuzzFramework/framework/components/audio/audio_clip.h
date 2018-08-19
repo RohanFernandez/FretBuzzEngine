@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 		{
 		private:
 			friend class AudioSource;
+			//friend class ResourceManager::Resource<AudioClip>::ResourceData;
 
 			irrklang::ISoundEngine* m_pISoundEngine = nullptr;
 			irrklang::ISoundSource* m_pISoundSource = nullptr;
@@ -20,13 +21,14 @@ namespace ns_fretBuzz
 				return m_pISoundSource;
 			}
 
+		protected:
+			virtual void destroyResource() override;
+
 		public:
 			AudioClip(std::string a_strAudioFilePath);
 			AudioClip(AudioClip& a_AudClip);
 			AudioClip() = delete;
 			virtual ~AudioClip();
-
-			virtual void destroyResource() override;
 		};
 	}
 }

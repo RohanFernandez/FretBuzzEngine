@@ -40,12 +40,30 @@ namespace ns_fretBuzz
 			m_iHeight{ a_Texture.m_iHeight},
 			ns_system::IManagedResource()
 		{
+			
+		}
+
+		Texture::Texture(Texture&& a_Texture)
+			: m_TextureID{ a_Texture.m_TextureID },
+			m_pImageData{ a_Texture.m_pImageData },
+			m_iWidth{ a_Texture.m_iWidth },
+			m_iHeight{ a_Texture.m_iHeight },
+			ns_system::IManagedResource()
+		{
 			a_Texture.m_pImageData = nullptr;
 		}
 
 		Texture::~Texture()
 		{
 			
+		}
+
+		void Texture::operator=(Texture& a_Texture)
+		{
+			m_TextureID = a_Texture.m_TextureID;
+			m_pImageData = a_Texture.m_pImageData;
+			m_iWidth = a_Texture.m_iWidth;
+			m_iHeight = a_Texture.m_iHeight;
 		}
 
 		void Texture::destroyResource()

@@ -11,22 +11,27 @@ namespace ns_fretBuzz
 	{
 		class Texture : public ns_system::IManagedResource
 		{
-		private:
+		protected:
 			GLuint m_TextureID;
 			BYTE* m_pImageData = nullptr;
 			unsigned int m_iWidth = 0;
 			unsigned int m_iHeight = 0;
 			int m_iChannels = 0;
 
+			virtual void destroyResource() override;
+
 		public:
+			Texture() = delete;
 			Texture(std::string a_strTexturePath);
 
 			//Copy constructor
 			Texture(Texture& a_Texture);
-
+			Texture(Texture&& a_Texture);
 			~Texture();
 
-			virtual void destroyResource() override;
+
+			void operator=(Texture& a_Texture);
+
 
 			void bind() const;
 			void unbind() const;
