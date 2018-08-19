@@ -11,8 +11,6 @@
 
 #include "../components/camera/camera.h"
 
-#include <pugixml.hpp>
-
 namespace ns_fretBuzz
 {
 	class CharacterTest : public ns_system::GameObject

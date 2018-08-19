@@ -84,7 +84,13 @@
     <ClCompile Include="framework\game\component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\graphics\sprite.cpp">
+    <ClCompile Include="framework\components\sprite\sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\asset_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resources\libs\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,7 +179,16 @@
     <ClInclude Include="framework\test\CharacterTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\graphics\sprite.h">
+    <ClInclude Include="framework\components\sprite\sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\asset_loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\libs\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\libs\pugiconfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,5 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="resources\assets.xml" />
   </ItemGroup>
 </Project>

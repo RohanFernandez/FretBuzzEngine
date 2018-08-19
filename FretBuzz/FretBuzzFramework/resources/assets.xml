@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Assets>
+	<Audio>
+		<audio id="beats" file_name="breakout.mp3"/>
+	</Audio>
+
+	<Shader>
+		<shader id="simple" vert="vertShader.txt" frag="fragShader.txt"/>
+	</Shader>
+	
+</Assets>
+
+<!--TextureAtlas imagePath="sword_slash.png" width="243" height="32">
+    <sprite n="sprPWalkPipe_strip8.png" x="1" y="1" w="241" h="30" oX="7" oY="16" oW="256" oH="48"/>
+</TextureAtlas-->

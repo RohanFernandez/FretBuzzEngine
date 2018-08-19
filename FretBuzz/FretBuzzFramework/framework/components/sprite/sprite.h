@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "../graphics/texture.h"
-#include "../utils/math.h"
+#include "../../graphics/texture.h"
+#include "../../utils/math.h"
 
 namespace ns_fretBuzz
 {
@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 
 		public:
 			Sprite() = delete;
-			Sprite(int a_iTextureID, Texture a_Texture, std::vector<SpriteData> a_vectSpriteData);
+			Sprite(int a_iTextureID, Texture& a_Texture, std::vector<SpriteData> a_vectSpriteData);
 			Sprite(Sprite& a_Sprite);
 			Sprite(Sprite&& a_Sprite);
 

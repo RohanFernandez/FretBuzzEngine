@@ -27,6 +27,7 @@ namespace ns_fretBuzz
 		public:
 			AudioClip(std::string a_strAudioFilePath);
 			AudioClip(AudioClip& a_AudClip);
+			AudioClip(AudioClip&& a_AudClip);
 			AudioClip() = delete;
 			virtual ~AudioClip();
 		};

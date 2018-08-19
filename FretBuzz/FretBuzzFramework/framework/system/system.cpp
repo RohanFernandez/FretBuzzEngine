@@ -1,6 +1,7 @@
 #pragma once
 #include "system.h"
 #include <iostream>
+#include "asset_loader.h"
 
 namespace ns_fretBuzz
 {
@@ -17,6 +18,10 @@ namespace ns_fretBuzz
 			m_pAudioEngine = new AudioEngine();
 			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
 			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
+
+			m_pResourceManager = new ResourceManager();
+			AssetLoader::loadAssets(m_pResourceManager);
+
 			m_pGame = new Game();
 		}
 

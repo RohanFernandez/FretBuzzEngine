@@ -13,6 +13,8 @@ namespace ns_fretBuzz
 		class ResourceManager
 		{
 		private:
+			friend class AssetLoader;
+
 			///singleton instance
 			static ResourceManager* s_pInstance;
 
@@ -120,34 +122,9 @@ namespace ns_fretBuzz
 			using T_MAP_RESOURCE = std::map<std::type_index, IResource*>;
 			T_MAP_RESOURCE m_mapResource;
 
-		public:
-			ResourceManager();
-			~ResourceManager();
-
-			///Returns a const ptr to resource.
-			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
-			static T* getResource(std::string a_strResourceName)
-			{
-				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
-				const std::type_info& l_typeInfo = typeid(T);
-
-				Resource<T>* l_pResource = nullptr;
-
-				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
-				{
-					std::cout << "ResourceManager::getResource:: Resource with name '" << a_strResourceName << "' of type '"<< l_typeInfo.name()<<"' does not exist in storage.\n";
-					return nullptr;
-				}
-				else
-				{
-					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
-					return l_pResource->getResource(a_strResourceName);
-				}
-			}
-
 			///Adds resource of type T
 			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
-			static bool addResource(std::string a_strResourceName, T& a_TResource)
+			bool addResource(std::string a_strResourceName, T& a_TResource)
 			{
 				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
 				const std::type_info& l_typeInfo = typeid(a_TResource);
@@ -176,7 +153,7 @@ namespace ns_fretBuzz
 
 				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
 				{
-					std::cout << "ResourceManager::destroyResource:: Could not find resource with typename '"<< l_typeInfo.name() << "' with name '"<< a_strResourceName <<"' \n";
+					std::cout << "ResourceManager::destroyResource:: Could not find resource with typename '" << l_typeInfo.name() << "' with name '" << a_strResourceName << "' \n";
 				}
 				else
 				{
@@ -202,6 +179,31 @@ namespace ns_fretBuzz
 					{
 						std::cout << "ResourceManager::destroyResource:: Could not find resource with name'" << a_strResourceName << "' with typename '" << l_typeInfo.name() << "' \n";
 					}
+				}
+			}
+
+		public:
+			ResourceManager();
+			~ResourceManager();
+
+			///Returns a const ptr to resource.
+			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
+			static T* getResource(std::string a_strResourceName)
+			{
+				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
+				const std::type_info& l_typeInfo = typeid(T);
+
+				Resource<T>* l_pResource = nullptr;
+
+				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
+				{
+					std::cout << "ResourceManager::getResource:: Resource with name '" << a_strResourceName << "' of type '"<< l_typeInfo.name()<<"' does not exist in storage.\n";
+					return nullptr;
+				}
+				else
+				{
+					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
+					return l_pResource->getResource(a_strResourceName);
 				}
 			}
 

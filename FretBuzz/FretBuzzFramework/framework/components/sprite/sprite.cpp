@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		Sprite::Sprite(int a_iTextureID, Texture a_Texture, std::vector<SpriteData> a_vectSpriteData)
+		Sprite::Sprite(int a_iTextureID, Texture& a_Texture, std::vector<SpriteData> a_vectSpriteData)
 			: m_vectSpriteData{a_vectSpriteData},
 			  m_Texture{a_Texture}
 		{

@@ -5,6 +5,7 @@
 #include "audio_engine.h"
 #include "master_renderer.h"
 #include "input.h"
+#include "resource_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -35,6 +36,9 @@ namespace ns_fretBuzz
 			MasterRenderer* m_pMasterRenderer = nullptr;
 
 			Input* m_pInput = nullptr;
+
+			//Main resource manager
+			ResourceManager* m_pResourceManager = nullptr;
 
 		public:
 			~System();

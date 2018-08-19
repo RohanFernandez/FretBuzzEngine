@@ -4,25 +4,12 @@
 #include "scenes/mainmenu_state.h"
 #include "scenes/score_state.h"
 
-#include "../components/audio/audio_clip.h"
-
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
 		Game::Game()
 		{
-			////Testing Start//////
-			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
-			ns_graphics::Texture testTexture("resources//textures//darksiders.jpg");
-			ns_system::AudioClip testAudio("resources//audio//breakout.mp3");
-
-			ResourceManager::addResource<ns_graphics::Shader>("tShader", testShader);
-			ResourceManager::addResource<ns_graphics::Texture>("darksider", testTexture);
-			ResourceManager::addResource<ns_system::AudioClip>("breakout", testAudio);
-
-			////Testing End//////
-
 			m_vectScenes =
 			{
 				new SceneData<InitState>("initstate"),
@@ -30,7 +17,6 @@ namespace ns_fretBuzz
 				new SceneData<ScoreState>("scorestate")
 			};
 			m_pSceneManager = new SceneManager(m_vectScenes);
-
 		}
 
 		Game::~Game()

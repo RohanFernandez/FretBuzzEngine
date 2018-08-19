@@ -20,6 +20,13 @@ namespace ns_fretBuzz
 			m_pISoundSource = a_AudClip.m_pISoundSource;
 		}
 
+		AudioClip::AudioClip(AudioClip&& a_AudClip)
+			: IManagedResource()
+		{
+			m_pISoundEngine = a_AudClip.m_pISoundEngine;
+			m_pISoundSource = a_AudClip.m_pISoundSource;
+		}
+
 		AudioClip::~AudioClip()
 		{
 			
