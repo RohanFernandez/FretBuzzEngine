@@ -9,8 +9,8 @@ namespace ns_fretBuzz
 		CharacterTest::CharacterTest() 
 			: ns_system::GameObject("character_test")
 		{
-			m_pAudSrc = &addComponent<ns_system::AudioSource>(ns_system::AudioSource("breakout"));
-
+			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "breakout");
+			
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("tShader");
 			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
 

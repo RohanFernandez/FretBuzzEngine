@@ -157,6 +157,7 @@
     <ClCompile Include="framework\components\audio\audio_clip.cpp" />
     <ClCompile Include="framework\components\audio\audio_source.cpp" />
     <ClCompile Include="framework\components\camera\camera.cpp" />
+    <ClCompile Include="framework\game\component.cpp" />
     <ClCompile Include="framework\game\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
     <ClCompile Include="framework\game\game.cpp" />

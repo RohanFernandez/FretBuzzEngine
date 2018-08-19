@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 		int GameObject::s_iID = 0;
 
 		GameObject::GameObject(std::string a_strName)
-			: m_iID{s_iID},
+			: m_iID{++s_iID},
 		     m_strName{a_strName},
 			 m_Transform()
 		{
@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 			for (std::vector<IComponent*>::iterator l_IComponentCurrent = m_Components.begin();
 				l_IComponentCurrent != m_Components.end();)
 			{
-				delete *l_IComponentCurrent;
+				delete (*l_IComponentCurrent);
 				l_IComponentCurrent = m_Components.erase(l_IComponentCurrent);
 			}
 		}
@@ -29,6 +29,11 @@ namespace ns_fretBuzz
 		void GameObject::addChild(GameObject* a_pIChildGameObject)
 		{
 			m_Children.emplace_back(a_pIChildGameObject);
+		}
+
+		void GameObject::addComponent(IComponent* a_IComponent)
+		{
+			m_Components.emplace_back(a_IComponent);
 		}
 
 		void GameObject::update(float a_fDeltaTime)
@@ -96,6 +101,19 @@ namespace ns_fretBuzz
 		void GameObject::setActive(bool a_bIsActive)
 		{
 			m_bIsActive = a_bIsActive;
+		}
+
+		bool GameObject::isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const
+		{
+			int l_iComponentCount = m_Components.size();
+			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+			{
+				if (m_Components[l_iComponentIndex]->m_ComponentType == a_ComponentType)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

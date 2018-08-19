@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 	{
 		class GameObject
 		{
+			friend class IComponent;
 		private:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
@@ -27,6 +28,7 @@ namespace ns_fretBuzz
 			void renderChildren(const Camera& a_Camera);
 
 			bool m_bIsActive = true;
+			void addComponent(IComponent* a_IComponent);
 
 		public:
 			GameObject(std::string a_strName);
@@ -34,20 +36,14 @@ namespace ns_fretBuzz
 
 			Transform m_Transform;
 
-			template<typename T, typename = typename std::enable_if<std::is_base_of<IComponent, T>::value>::type>
-			T& addComponent(T a_IComponent)
-			{
-				T* l_ComponentAdded = new T(a_IComponent);
-				m_Components.emplace_back(l_ComponentAdded);
-				return *l_ComponentAdded;
-			}
-
 			void addChild(GameObject* a_pIComponent);
 
 			virtual void render(const ns_system::Camera& a_Camera);
 			virtual void update(float a_fDeltaTime);
 
 			void setActive(bool a_bIsActive);
+
+			bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;
 
 			inline bool isActive() const
 			{
@@ -57,6 +53,22 @@ namespace ns_fretBuzz
 			inline std::string getName() const
 			{
 				return m_strName;
+			}
+
+			///Returns a component from the components vector, if the COMPONENT_TYPE is equal to the input.
+			///If the component pointer is found it returns the component cast to the type specified else returns null.
+			template<typename T_COMPONENT_TYPE, typename = typename std::enable_if<std::is_base_of<IComponent, T_COMPONENT_TYPE>::value>::type>
+			T_COMPONENT_TYPE* getComponent(COMPONENT_TYPE a_COMPONENT_TYPE)
+			{
+				int l_iComponentCount = m_Components.size();
+				for(int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+				{
+					if (m_Components[l_iComponentIndex]->m_ComponentType == a_COMPONENT_TYPE)
+					{
+						return dynamic_cast<T_COMPONENT_TYPE*>(*m_Components[l_iComponentIndex]);
+					}
+				}
+				return nullptr;
 			}
 		};
 	}

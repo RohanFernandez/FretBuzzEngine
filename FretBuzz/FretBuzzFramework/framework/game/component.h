@@ -11,28 +11,22 @@ namespace ns_fretBuzz
 			AUDIO_SOURCE
 		};
 
+		class GameObject;
 		class IComponent
 		{
+		friend class GameObject;
+		protected:
+			virtual ~IComponent() = 0 {}
+			IComponent(COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj);
+
 		public:
+			IComponent() = delete;
+
 			const COMPONENT_TYPE m_ComponentType;
+			GameObject& m_GameObject;
 
-			IComponent(COMPONENT_TYPE a_ComponentType)
-				: m_ComponentType{ a_ComponentType }
-			{};
-
-			virtual ~IComponent() = 0
-			{
-			}
-
-			virtual void update(float a_fDeltaTime)
-			{
-			
-			}
-
-			virtual void render(const Camera& a_Camera)
-			{
-			
-			}
+			virtual void update(float a_fDeltaTime);
+			virtual void render(const Camera& a_Camera);
 		};
 	}
 }
