@@ -17,6 +17,7 @@ namespace ns_fretBuzz
 			if (!initialize())
 			{
 				std::cout << "Shader::Shader:: Failed to intialize shader.\n";
+				m_bIsErrorWhileLoading = true;
 			}
 		}
 
@@ -24,8 +25,32 @@ namespace ns_fretBuzz
 			: m_strVertexShaderPath{ a_Shader.m_strVertexShaderPath },
 			m_strFragmentShaderPath{ a_Shader.m_strFragmentShaderPath },
 			m_ShaderID{ a_Shader.m_ShaderID },
-			ns_system::IManagedResource()
+			ns_system::IManagedResource(a_Shader.m_bIsErrorWhileLoading)
 		{
+		}
+
+		Shader::Shader(Shader&& a_Shader)
+			: m_strVertexShaderPath{ a_Shader.m_strVertexShaderPath },
+			m_strFragmentShaderPath{ a_Shader.m_strFragmentShaderPath },
+			m_ShaderID{ a_Shader.m_ShaderID },
+			ns_system::IManagedResource(a_Shader.m_bIsErrorWhileLoading)
+		{
+		}
+
+		void Shader::operator=(Shader& a_Shader)
+		{
+			m_strVertexShaderPath = a_Shader.m_strVertexShaderPath;
+			m_strFragmentShaderPath = a_Shader.m_strFragmentShaderPath;
+			m_ShaderID = a_Shader.m_ShaderID;
+			m_bIsErrorWhileLoading = a_Shader.m_bIsErrorWhileLoading;
+		}
+
+		void Shader::operator=(Shader&& a_Shader)
+		{
+			m_strVertexShaderPath = a_Shader.m_strVertexShaderPath;
+			m_strFragmentShaderPath = a_Shader.m_strFragmentShaderPath;
+			m_ShaderID = a_Shader.m_ShaderID;
+			m_bIsErrorWhileLoading = a_Shader.m_bIsErrorWhileLoading;
 		}
 
 		bool Shader::initialize()

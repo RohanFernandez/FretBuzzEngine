@@ -33,14 +33,7 @@ namespace ns_fretBuzz
 				delete *l_CurrentState;
 			}
 
-			///testring start
-			///testing end 
 		}
-
-		/*void Game::onUpdate(const float a_fDeltaTime)
-		{
-			
-		}*/
 
 		void Game::updateScenes(float a_fDeltaTime)
 		{

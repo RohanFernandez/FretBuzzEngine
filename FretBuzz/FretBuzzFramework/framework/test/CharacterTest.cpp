@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			
-			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("tShader");
+			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("simple");
 			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
 
 			glGenVertexArrays(1, &m_VAO);

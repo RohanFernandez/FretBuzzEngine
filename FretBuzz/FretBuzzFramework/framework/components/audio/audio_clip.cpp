@@ -14,14 +14,14 @@ namespace ns_fretBuzz
 		}
 
 		AudioClip::AudioClip(AudioClip& a_AudClip)
-			: IManagedResource()
+			: IManagedResource(a_AudClip.m_bIsErrorWhileLoading)
 		{
 			m_pISoundEngine = a_AudClip.m_pISoundEngine;
 			m_pISoundSource = a_AudClip.m_pISoundSource;
 		}
 
 		AudioClip::AudioClip(AudioClip&& a_AudClip)
-			: IManagedResource()
+			: IManagedResource(a_AudClip.m_bIsErrorWhileLoading)
 		{
 			m_pISoundEngine = a_AudClip.m_pISoundEngine;
 			m_pISoundSource = a_AudClip.m_pISoundSource;

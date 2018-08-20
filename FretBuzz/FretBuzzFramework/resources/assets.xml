@@ -5,10 +5,14 @@
 		<audio id="beats" file_name="breakout.mp3"/>
 	</Audio>
 
-	<Shader>
+	<Shaders>
 		<shader id="simple" vert="vertShader.txt" frag="fragShader.txt"/>
-	</Shader>
+	</Shaders>
 	
+  <Textures>
+		<texture id="darksider" file_name="darksiders.jpg"/>
+	</Textures>
+
 </Assets>
 
 <!--TextureAtlas imagePath="sword_slash.png" width="243" height="32">

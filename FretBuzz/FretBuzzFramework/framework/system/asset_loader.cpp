@@ -28,11 +28,11 @@ namespace ns_fretBuzz
 
 				if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
 				{
-
+					loadShaders(a_pResourceManager, l_currentAsset);
 				}
 				else if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
 				{
-
+					loadTexture(a_pResourceManager, l_currentAsset);
 				}
 				else if (l_currentAssetTypeName.compare(AUDIO_NODE_NAME) == 0)
 				{
@@ -43,13 +43,6 @@ namespace ns_fretBuzz
 					std::cout << "Cannot read the asset type ::'"<< l_currentAssetTypeName <<"'\n";
 				}
 			}
-
-			/////
-			ns_graphics::Shader testShader("resources//shaders//vertShader.txt", "resources//shaders//fragShader.txt");
-			ns_graphics::Texture testTexture("resources//textures//darksiders.jpg");
-
-			a_pResourceManager->addResource<ns_graphics::Shader>("tShader", testShader);
-			a_pResourceManager->addResource<ns_graphics::Texture>("darksider", testTexture);
 		}
 
 		void AssetLoader::loadAudioClips(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator)
@@ -79,14 +72,97 @@ namespace ns_fretBuzz
 						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '"<< l_strAttributeName <<"'";
 					}
 				}
-				AudioClip l_AudClip = AudioClip(AUDIO_CLIP_FILE_PATH + l_strAudioFileName);
+				AudioClip l_AudClip(AUDIO_CLIP_FILE_PATH + l_strAudioFileName);
+				if (l_AudClip.getIsErrorWhileLoading())
+				{
+					std::cout << "AssetLoader::loadAudioClips:: Failed to load Shader with id '" << l_strAudioID << "\n";
+					return;
+				}
+
 				a_pResourceManager->addResource<AudioClip>(l_strAudioID, l_AudClip);
 			}
 		}
 
 		void AssetLoader::loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator)
 		{
+			for (pugi::xml_node_iterator l_currentShader = a_AudioNodeIterator->begin();
+				l_currentShader != a_AudioNodeIterator->end();
+				l_currentShader++)
+			{
+				std::string l_strShaderID;
+				std::string l_strFragShaderName;
+				std::string l_strVertShaderName;
 
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentShader->attributes_begin();
+					l_CurrentAttribute != l_currentShader->attributes_end();
+					l_CurrentAttribute++)
+				{
+					std::string l_strAttributeName = l_CurrentAttribute->name();
+					if (l_strAttributeName.compare(ATTRIBUTE_ASSET_ID) == 0)
+					{
+						l_strShaderID = l_CurrentAttribute->value();
+					}
+					else if (l_strAttributeName.compare(ATTRIBUTE_VERT_NAME) == 0)
+					{
+						l_strVertShaderName = l_CurrentAttribute->value();
+					}
+					else if (l_strAttributeName.compare(ATTRIBUTE_FRAG_NAME) == 0)
+					{
+						l_strFragShaderName = l_CurrentAttribute->value();
+					}
+					else
+					{
+						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '" << l_strAttributeName << "'";
+					}
+				}
+				ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strVertShaderName, SHADER_FILE_PATH + l_strFragShaderName);
+				if (l_Shader.getIsErrorWhileLoading())
+				{
+					std::cout << "AssetLoader::loadShader:: Failed to load Shader with id '"<< l_strShaderID << "\n";
+					return;
+				}
+
+				a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderID ,l_Shader);
+			}
+		}
+
+		void AssetLoader::loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator)
+		{
+			for (pugi::xml_node_iterator l_currentShader = a_AudioNodeIterator->begin();
+				l_currentShader != a_AudioNodeIterator->end();
+				l_currentShader++)
+			{
+				std::string l_strTextureID;
+				std::string l_strTextureFileName;
+
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentShader->attributes_begin();
+					l_CurrentAttribute != l_currentShader->attributes_end();
+					l_CurrentAttribute++)
+				{
+					std::string l_strAttributeName = l_CurrentAttribute->name();
+					if (l_strAttributeName.compare(ATTRIBUTE_ASSET_ID) == 0)
+					{
+						l_strTextureID = l_CurrentAttribute->value();
+					}
+					else if (l_strAttributeName.compare(ATRIBUTE_TEXTURE_FILE_NAME) == 0)
+					{
+						l_strTextureFileName = l_CurrentAttribute->value();
+					}
+					else
+					{
+						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '" << l_strAttributeName << "'";
+					}
+				}
+				ns_graphics::Texture l_texture(TEXTURE_FILE_PATH + l_strTextureFileName);
+
+				if (l_texture.getIsErrorWhileLoading())
+				{
+					std::cout << "AssetLoader::loadTexture:: Failed to load AudioClip '"<< l_strTextureID <<"'\n";
+					return;
+				}
+
+				a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureID, l_texture);
+			}
 		}
 	}
 }

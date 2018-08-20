@@ -25,6 +25,10 @@ namespace ns_fretBuzz
 
 			//Copy constructor
 			Shader(Shader& a_Shader);
+			Shader(Shader&& a_Shader);
+
+			void operator=(Shader& a_Shader);
+			void operator=(Shader&& a_Shader);
 
 			~Shader();
 

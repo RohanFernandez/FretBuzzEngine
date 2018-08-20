@@ -15,9 +15,10 @@ namespace ns_fretBuzz
 			{
 				std::cout << "Texture::Texture:: Failed to load image at path :: '" << a_strTexturePath << "' into texture.\n";
 				m_pImageData = nullptr;
+				m_bIsErrorWhileLoading = true;
 				return;
 			}
-			
+
 			glGenTextures(1, &m_TextureID);
 			glBindTexture(GL_TEXTURE_2D, m_TextureID);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -34,13 +35,12 @@ namespace ns_fretBuzz
 		}
 
 		Texture::Texture(Texture& a_Texture)
-			: m_TextureID{a_Texture.m_TextureID},
+			: m_TextureID{ a_Texture.m_TextureID },
 			m_pImageData{ a_Texture.m_pImageData },
-			m_iWidth{ a_Texture.m_iWidth},
-			m_iHeight{ a_Texture.m_iHeight},
-			ns_system::IManagedResource()
+			m_iWidth{ a_Texture.m_iWidth },
+			m_iHeight{ a_Texture.m_iHeight },
+			ns_system::IManagedResource(a_Texture.m_bIsErrorWhileLoading)
 		{
-			
 		}
 
 		Texture::Texture(Texture&& a_Texture)
@@ -48,7 +48,7 @@ namespace ns_fretBuzz
 			m_pImageData{ a_Texture.m_pImageData },
 			m_iWidth{ a_Texture.m_iWidth },
 			m_iHeight{ a_Texture.m_iHeight },
-			ns_system::IManagedResource()
+			ns_system::IManagedResource(a_Texture.m_bIsErrorWhileLoading)
 		{
 			a_Texture.m_pImageData = nullptr;
 		}
@@ -64,6 +64,7 @@ namespace ns_fretBuzz
 			m_pImageData = a_Texture.m_pImageData;
 			m_iWidth = a_Texture.m_iWidth;
 			m_iHeight = a_Texture.m_iHeight;
+			m_bIsErrorWhileLoading = a_Texture.m_bIsErrorWhileLoading;
 		}
 
 		void Texture::destroyResource()

@@ -37,6 +37,12 @@ namespace ns_fretBuzz
 
 		System::~System()
 		{
+			if (m_pResourceManager != nullptr)
+			{
+				delete m_pResourceManager;
+				m_pResourceManager = nullptr;
+			}
+
 			if (m_pGame != nullptr)
 			{
 				delete m_pGame;
