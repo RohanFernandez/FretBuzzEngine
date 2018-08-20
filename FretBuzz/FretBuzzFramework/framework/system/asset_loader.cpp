@@ -2,7 +2,9 @@
 #include "asset_loader.h"
 #include "../graphics/shader.h"
 #include "../graphics/texture.h"
+#include "../components/sprite/sprite.h"
 #include "../components/audio/audio_clip.h"
+
 
 #include <fstream>
 #include <iostream>
@@ -26,17 +28,25 @@ namespace ns_fretBuzz
 			{
 				std::string l_currentAssetTypeName = l_currentAsset->name();
 
+				//Load Shaders
 				if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
 				{
 					loadShaders(a_pResourceManager, l_currentAsset);
 				}
+				//Load Textures
 				else if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
 				{
 					loadTexture(a_pResourceManager, l_currentAsset);
 				}
+				//Load Audio Clips
 				else if (l_currentAssetTypeName.compare(AUDIO_NODE_NAME) == 0)
 				{
 					loadAudioClips(a_pResourceManager, l_currentAsset);
+				}
+				//Load Sprites
+				else if (l_currentAssetTypeName.compare(SPRITE_NODE_NAME) == 0)
+				{
+					loadSprites(a_pResourceManager, l_currentAsset);
 				}
 				else
 				{
@@ -83,10 +93,10 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void AssetLoader::loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator)
+		void AssetLoader::loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator)
 		{
-			for (pugi::xml_node_iterator l_currentShader = a_AudioNodeIterator->begin();
-				l_currentShader != a_AudioNodeIterator->end();
+			for (pugi::xml_node_iterator l_currentShader = a_ShaderNodeIterator->begin();
+				l_currentShader != a_ShaderNodeIterator->end();
 				l_currentShader++)
 			{
 				std::string l_strShaderID;
@@ -126,17 +136,17 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void AssetLoader::loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator)
+		void AssetLoader::loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_TextureNodeIterator)
 		{
-			for (pugi::xml_node_iterator l_currentShader = a_AudioNodeIterator->begin();
-				l_currentShader != a_AudioNodeIterator->end();
-				l_currentShader++)
+			for (pugi::xml_node_iterator l_currentTexture = a_TextureNodeIterator->begin();
+				l_currentTexture != a_TextureNodeIterator->end();
+				l_currentTexture++)
 			{
 				std::string l_strTextureID;
 				std::string l_strTextureFileName;
 
-				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentShader->attributes_begin();
-					l_CurrentAttribute != l_currentShader->attributes_end();
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentTexture->attributes_begin();
+					l_CurrentAttribute != l_currentTexture->attributes_end();
 					l_CurrentAttribute++)
 				{
 					std::string l_strAttributeName = l_CurrentAttribute->name();
@@ -162,6 +172,106 @@ namespace ns_fretBuzz
 				}
 
 				a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureID, l_texture);
+			}
+		}
+
+		void AssetLoader::loadSprites(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator)
+		{
+			for (pugi::xml_node_iterator l_currentSpriteSheet = a_SpriteNodeIterator->begin();
+				l_currentSpriteSheet != a_SpriteNodeIterator->end();
+				l_currentSpriteSheet++)
+			{
+				std::string l_strTextureId;
+				std::string l_strTextureFileName;
+
+				float l_fTextureW = 0.0;
+				float l_fTextureH = 0.0f;
+
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentSpriteSheet->attributes_begin();
+					l_CurrentAttribute != l_currentSpriteSheet->attributes_end();
+					l_CurrentAttribute++)
+				{
+					std::string l_strCurrentAttributeName = l_CurrentAttribute->name();
+					if (l_strCurrentAttributeName.compare(ATTRIBUTE_TEX_ID) == 0)
+					{
+						l_strTextureId = l_CurrentAttribute->value();
+					}
+					else if (l_strCurrentAttributeName.compare(ATRIBUTE_TEXTURE_FILE_NAME) == 0)
+					{
+						l_strTextureFileName = l_CurrentAttribute->value();
+					}
+					else
+					{
+						std::cout << "AssetLoader::loadSprites:: Could not parse attribute '" << l_strCurrentAttributeName << "'";
+					}
+				}
+				ns_graphics::Texture* l_pTexture = ResourceManager::getResource<ns_graphics::Texture>(l_strTextureId);
+				if (l_pTexture == nullptr)
+				{
+					ns_graphics::Texture l_Texture(SPRITE_FILE_PATH + l_strTextureFileName);
+					a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureId, l_Texture);
+					l_pTexture = a_pResourceManager->getResource<ns_graphics::Texture>(l_strTextureId);
+				}
+				l_fTextureW = l_pTexture->getWidth();
+				l_fTextureH = l_pTexture->getHeight();
+
+
+				for (pugi::xml_node_iterator l_currentSprite = l_currentSpriteSheet->begin();
+					l_currentSprite != l_currentSpriteSheet->end();
+					l_currentSprite++)
+				{
+					std::string l_strSpriteID = l_currentSprite->attributes_begin()->value();
+					std::vector<ns_graphics::SpriteData> l_vectSpriteData;
+
+					for (pugi::xml_node_iterator l_currentSpriteData = l_currentSprite->begin();
+						l_currentSpriteData != l_currentSprite->end();
+						l_currentSpriteData++)
+					{
+						std::string l_strX;
+						std::string l_strY;
+						std::string l_strW;
+						std::string l_strH;
+						std::string l_strID;
+
+						for (pugi::xml_attribute_iterator l_CurrSpriteDataAttrib = l_currentSpriteData->attributes_begin();
+							l_CurrSpriteDataAttrib != l_currentSpriteData->attributes_end();
+							l_CurrSpriteDataAttrib++)
+						{
+							std::string l_strCurrentAttrib = l_CurrSpriteDataAttrib->name();
+							if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_X) == 0)
+							{
+								l_strX = l_CurrSpriteDataAttrib->value();
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_Y) == 0)
+							{
+								l_strY = l_CurrSpriteDataAttrib->value();
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_W) == 0)
+							{
+								l_strW = l_CurrSpriteDataAttrib->value();
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_H) == 0)
+							{
+								l_strH = l_CurrSpriteDataAttrib->value();
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_ASSET_ID) == 0)
+							{
+								l_strID = l_CurrSpriteDataAttrib->value();
+							}
+							else
+							{
+								std::cout << "AssetLoader::loadSprites:: Could not parse attribute with name '" << l_strCurrentAttrib << "\n";
+							}
+						}
+						std::cout << "l_strX:: " << l_strX << "  ,l_strY:: " << l_strY << "  ,l_strW:: " << l_strW << "  ,l_strH:: " << l_strH << "\n";
+						ns_graphics::SpriteData l_SpriteData({ std::stof(l_strX.c_str()), std::stof(l_strY.c_str()) }, { std::stof(l_strW.c_str()), std::stof(l_strH.c_str(),0) }, { l_fTextureW,l_fTextureH });
+						l_vectSpriteData.emplace_back(l_SpriteData);
+					}
+					ns_graphics::Sprite l_Spite(*l_pTexture, l_vectSpriteData);
+					a_pResourceManager->addResource<ns_graphics::Sprite>(l_strSpriteID, l_Spite);
+
+				}
+
 			}
 		}
 	}

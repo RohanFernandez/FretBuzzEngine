@@ -10,8 +10,9 @@ namespace ns_fretBuzz
 		{
 		private:
 			static void loadAudioClips(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator);
-			static void loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator);
-			static void loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator);
+			static void loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator);
+			static void loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_TextureNodeIterator);
+			static void loadSprites(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
 
 		public:
 			//Asset
@@ -33,6 +34,15 @@ namespace ns_fretBuzz
 			//Audio
 			static constexpr char AUDIO_CLIP_FILE_PATH[] = "resources//audio//";
 			static constexpr char AUDIO_NODE_NAME[] = "Audio";
+
+			//Sprites
+			static constexpr char SPRITE_FILE_PATH[] = "resources//sprites//";
+			static constexpr char SPRITE_NODE_NAME[] = "Sprites";
+			static constexpr char ATTRIBUTE_TEX_ID[] = "tex_id";
+			static constexpr char ATTRIBUTE_SPRITE_X[] = "x";
+			static constexpr char ATTRIBUTE_SPRITE_Y[] = "y";
+			static constexpr char ATTRIBUTE_SPRITE_W[] = "w";
+			static constexpr char ATTRIBUTE_SPRITE_H[] = "h";
 
 			static void loadAssets(ResourceManager* a_pResourceManager);
 

@@ -220,13 +220,16 @@
     <Text Include="resources\shaders\vertShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\sprites\sword.png" />
     <Image Include="resources\textures\darksiders.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="resources\assets.xml" />
+    <Xml Include="resources\assets.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 			
 			}
 
-			inline bool getIsErrorWhileLoading() const
+			bool getIsErrorWhileLoading() const
 			{
 				return m_bIsErrorWhileLoading;
 			}

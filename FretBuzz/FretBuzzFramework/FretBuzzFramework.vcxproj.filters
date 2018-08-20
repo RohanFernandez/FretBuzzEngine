@@ -200,6 +200,9 @@
     <Image Include="resources\textures\darksiders.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\sprites\sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />

@@ -1,20 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Assets>
+  
+<!-- AUDIO CLIPS START-->
 	<Audio>
 		<audio id="beats" file_name="breakout.mp3"/>
 	</Audio>
+<!-- AUDIO CLIPS END-->
 
+<!-- SHADERS START-->
 	<Shaders>
 		<shader id="simple" vert="vertShader.txt" frag="fragShader.txt"/>
 	</Shaders>
-	
+<!-- SHADERS END-->
+
+<!-- TEXTURES START-->
   <Textures>
 		<texture id="darksider" file_name="darksiders.jpg"/>
 	</Textures>
+<!-- TEXTURES END-->
 
+<!-- SPRITES START-->
+  <Sprites>
+    <spritesheet tex_id="player_sword" file_name="sword.png">
+      
+      <sprite id="sword_walk">
+        <spritedata id="0" x="42" y="66" w="18" h="41"/>
+        <spritedata id="1" x="39" y="238" w="18" h="40"/>
+        <spritedata id="2" x="40" y="195" w="20" h="41"/>
+        <spritedata id="3" x="42" y="109" w="18" h="41"/>
+        <spritedata id="4" x="41" y="152" w="18" h="41"/>
+        <spritedata id="5" x="44" y="23" w="16" h="41"/>
+        <spritedata id="6" x="1" y="288" w="17" h="41"/>
+        <spritedata id="7" x="20" y="288" w="16" h="41"/>
+      </sprite>
+    
+      <sprite id="sword_slash">
+        <spritedata id="0" x="1" y="1" w="45" h="20"/>
+        <spritedata id="1" x="39" y="280" w="18" h="20"/>
+        <spritedata id="2" x="1" y="61" w="39" h="23"/>
+        <spritedata id="3" x="1" y="23" w="41" h="17"/>
+        <spritedata id="4" x="1" y="42" w="41" h="17"/>
+        <spritedata id="5" x="1" y="143" w="38" h="20"/>
+        <spritedata id="6" x="1" y="244" w="36" h="20"/>
+        <spritedata id="7" x="1" y="266" w="36" h="20"/>
+        <spritedata id="8" x="1" y="203" w="37" h="17"/>
+        <spritedata id="9" x="1" y="124" w="39" h="17"/>
+        <spritedata id="10" x="1" y="86" w="39" h="17"/>
+        <spritedata id="11" x="1" y="165" w="37" h="17"/>
+        <spritedata id="12" x="1" y="222" w="36" h="20"/>
+        <spritedata id="13" x="1" y="184" w="37" h="17"/>
+        <spritedata id="14" x="1" y="105" w="39" h="17"/>
+        <spritedata id="15" x="38" y="302" w="18" h="20"/>
+      </sprite>
+      
+    </spritesheet>
+  </Sprites>
+<!-- SPRITES END-->
 </Assets>
-
-<!--TextureAtlas imagePath="sword_slash.png" width="243" height="32">
-    <sprite n="sprPWalkPipe_strip8.png" x="1" y="1" w="241" h="30" oX="7" oY="16" oW="256" oH="48"/>
-</TextureAtlas-->
