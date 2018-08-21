@@ -163,15 +163,20 @@ namespace ns_fretBuzz
 						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '" << l_strAttributeName << "'";
 					}
 				}
-				ns_graphics::Texture l_texture(TEXTURE_FILE_PATH + l_strTextureFileName);
 
-				if (l_texture.getIsErrorWhileLoading())
+				ns_graphics::Texture* l_pTexture = ResourceManager::getResource<ns_graphics::Texture>(l_strTextureID);
+				if (l_pTexture == nullptr)
 				{
-					std::cout << "AssetLoader::loadTexture:: Failed to load AudioClip '"<< l_strTextureID <<"'\n";
-					return;
-				}
+					ns_graphics::Texture l_Texture(TEXTURE_FILE_PATH + l_strTextureFileName);
 
-				a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureID, l_texture);
+					if (l_Texture.getIsErrorWhileLoading())
+					{
+						std::cout << "AssetLoader::loadTexture:: Failed to load AudioClip '" << l_strTextureID << "'\n";
+						return;
+					}
+
+					a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureID, l_Texture);
+				}
 			}
 		}
 
@@ -183,6 +188,10 @@ namespace ns_fretBuzz
 			{
 				std::string l_strTextureId;
 				std::string l_strTextureFileName;
+
+				std::string l_strShaderId;
+				std::string l_strVertShaderFileName;
+				std::string l_strFragShaderFileName;
 
 				float l_fTextureW = 0.0;
 				float l_fTextureH = 0.0f;
@@ -200,6 +209,18 @@ namespace ns_fretBuzz
 					{
 						l_strTextureFileName = l_CurrentAttribute->value();
 					}
+					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_SHADER_ID) == 0)
+					{
+						l_strShaderId = l_CurrentAttribute->value();
+					}
+					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_VERT_NAME) == 0)
+					{
+						l_strVertShaderFileName = l_CurrentAttribute->value();
+					}
+					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_FRAG_NAME) == 0)
+					{
+						l_strFragShaderFileName = l_CurrentAttribute->value();
+					}
 					else
 					{
 						std::cout << "AssetLoader::loadSprites:: Could not parse attribute '" << l_strCurrentAttributeName << "'";
@@ -215,13 +236,20 @@ namespace ns_fretBuzz
 				l_fTextureW = l_pTexture->getWidth();
 				l_fTextureH = l_pTexture->getHeight();
 
+				ns_graphics::Shader* l_pShader = ResourceManager::getResource<ns_graphics::Shader>(l_strShaderId);
+				if (l_pShader == nullptr)
+				{
+					ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strVertShaderFileName, SHADER_FILE_PATH + l_strFragShaderFileName);
+					a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderId, l_Shader);
+					l_pShader = a_pResourceManager->getResource<ns_graphics::Shader>(l_strShaderId);
+				}
 
 				for (pugi::xml_node_iterator l_currentSprite = l_currentSpriteSheet->begin();
 					l_currentSprite != l_currentSpriteSheet->end();
 					l_currentSprite++)
 				{
 					std::string l_strSpriteID = l_currentSprite->attributes_begin()->value();
-					std::vector<ns_graphics::SpriteData> l_vectSpriteData;
+					std::vector<ns_graphics::Sprite> l_vectSpriteData;
 
 					for (pugi::xml_node_iterator l_currentSpriteData = l_currentSprite->begin();
 						l_currentSpriteData != l_currentSprite->end();
@@ -263,13 +291,12 @@ namespace ns_fretBuzz
 								std::cout << "AssetLoader::loadSprites:: Could not parse attribute with name '" << l_strCurrentAttrib << "\n";
 							}
 						}
-						std::cout << "l_strX:: " << l_strX << "  ,l_strY:: " << l_strY << "  ,l_strW:: " << l_strW << "  ,l_strH:: " << l_strH << "\n";
-						ns_graphics::SpriteData l_SpriteData({ std::stof(l_strX.c_str()), std::stof(l_strY.c_str()) }, { std::stof(l_strW.c_str()), std::stof(l_strH.c_str(),0) }, { l_fTextureW,l_fTextureH });
-						l_vectSpriteData.emplace_back(l_SpriteData);
+						//std::cout << "l_strX:: " << l_strX << "  ,l_strY:: " << l_strY << "  ,l_strW:: " << l_strW << "  ,l_strH:: " << l_strH << "\n";
+						ns_graphics::Sprite l_Sprite({ std::stof(l_strX.c_str()), std::stof(l_strY.c_str()) }, { std::stof(l_strW.c_str()), std::stof(l_strH.c_str(),0) }, { l_fTextureW,l_fTextureH }, l_pTexture, l_pShader);
+						l_vectSpriteData.emplace_back(l_Sprite);
 					}
-					ns_graphics::Sprite l_Spite(*l_pTexture, l_vectSpriteData);
-					a_pResourceManager->addResource<ns_graphics::Sprite>(l_strSpriteID, l_Spite);
-
+					ns_graphics::SpriteSheet l_Spite(l_pTexture, l_pShader, l_vectSpriteData);
+					a_pResourceManager->addResource<ns_graphics::SpriteSheet>(l_strSpriteID, l_Spite);
 				}
 
 			}

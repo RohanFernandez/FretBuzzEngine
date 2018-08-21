@@ -157,6 +157,7 @@
     <ClCompile Include="framework\components\audio\audio_clip.cpp" />
     <ClCompile Include="framework\components\audio\audio_source.cpp" />
     <ClCompile Include="framework\components\camera\camera.cpp" />
+    <ClCompile Include="framework\components\sprite\sprite_renderer.cpp" />
     <ClCompile Include="framework\game\component.cpp" />
     <ClCompile Include="framework\game\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="framework\components\audio\audio_clip.h" />
     <ClInclude Include="framework\components\audio\audio_source.h" />
     <ClInclude Include="framework\components\camera\camera.h" />
+    <ClInclude Include="framework\components\sprite\sprite_renderer.h" />
     <ClInclude Include="framework\game\component.h" />
     <ClInclude Include="framework\game\game_object.h" />
     <ClInclude Include="framework\components\sprite\sprite.h" />

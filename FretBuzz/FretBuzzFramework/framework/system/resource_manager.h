@@ -141,6 +141,7 @@ namespace ns_fretBuzz
 					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
 				}
 
+				std::cout << "ResourceManager::addResource:: Adding resource of type '" << l_typeInfo.name() << "' with resource id '"<< a_strResourceName <<"'\n";
 				return l_pResource->addResourceData(a_strResourceName, a_TResource);
 			}
 

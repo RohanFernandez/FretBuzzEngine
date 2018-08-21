@@ -7,8 +7,8 @@ namespace ns_fretBuzz
 	{
 		enum COMPONENT_TYPE
 		{
-			TRANSFORM,
-			AUDIO_SOURCE
+			AUDIO_SOURCE,
+			SPRITE_RENDERER
 		};
 
 		class GameObject;
@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 		friend class GameObject;
 		protected:
 			virtual ~IComponent() = 0 {}
-			IComponent(COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj);
+			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj);
 
 		public:
 			IComponent() = delete;

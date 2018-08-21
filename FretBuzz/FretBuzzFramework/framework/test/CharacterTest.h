@@ -26,21 +26,6 @@ namespace ns_fretBuzz
 		GLuint m_IBO;
 		bool isAudioPlaying = false;
 
-		GLfloat m_vertices[20] =
-		{
-			-0.5,-0.5, 0.0, 0.0, 0.0,
-			-0.5, 0.5, 0.0, 0.0, 1.0,
-			0.5,  0.5, 0.0, 1.0, 1.0,
-			0.5, -0.5, 0.0, 1.0, 0.0
-		};
-
-		GLuint m_indices[6] =
-		{
-			0, 1, 2,
-			2, 3, 0
-		};
-
-
 	public:
 
 		CharacterTest();

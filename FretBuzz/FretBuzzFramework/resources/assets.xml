@@ -22,7 +22,8 @@
 
 <!-- SPRITES START-->
   <Sprites>
-    <spritesheet tex_id="player_sword" file_name="sword.png">
+    <spritesheet tex_id="player_sword" file_name="sword.png"
+                 shader_id="simple" vert="vertShader.txt" frag="fragShader.txt">
       
       <sprite id="sword_walk">
         <spritedata id="0" x="42" y="66" w="18" h="41"/>

@@ -39,6 +39,7 @@ namespace ns_fretBuzz
 			static constexpr char SPRITE_FILE_PATH[] = "resources//sprites//";
 			static constexpr char SPRITE_NODE_NAME[] = "Sprites";
 			static constexpr char ATTRIBUTE_TEX_ID[] = "tex_id";
+			static constexpr char ATTRIBUTE_SHADER_ID[] = "shader_id";
 			static constexpr char ATTRIBUTE_SPRITE_X[] = "x";
 			static constexpr char ATTRIBUTE_SPRITE_Y[] = "y";
 			static constexpr char ATTRIBUTE_SPRITE_W[] = "w";

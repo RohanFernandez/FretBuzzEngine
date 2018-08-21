@@ -1,61 +1,130 @@
 #pragma once
 #include <vector>
 #include "../../graphics/texture.h"
+#include "../../graphics/shader.h"
 #include "../../utils/math.h"
+
+#include "../../game/game_object.h"
+#include "../camera/camera.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class SpriteData
+		class Sprite
 		{
 		public:
-			static constexpr int s_INDICES[6] = {0, 2, 1, 0, 3, 2};
+			static constexpr char UNIFORM_PROJECTION_MATRIX[] = "unifProjection";
+			static constexpr char UNIFORM_VIEW_MATRIX[] = "unifView";
+			static constexpr char UNIFORM_MODEL_MATRIX[] = "unifModel";
+			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";
+
+			static constexpr int s_INDICES[6] = { 0, 2, 1, 0, 3, 2 };
 			static constexpr int s_VERT_COUNT = 4;
-			glm::vec2 m_Vertices[s_VERT_COUNT] = {};
-
-			SpriteData(glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH)
-				: m_Vertices
-			{ { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2SpriteCoords.y + a_v2DimensionsWH.y) / a_v2TexDimensionsWH.y },					   //0
-			  { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, a_v2SpriteCoords.y / a_v2TexDimensionsWH.y },											   //1
-			  {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, a_v2SpriteCoords.y / a_v2TexDimensionsWH.y },						   //2
-			  { (a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2SpriteCoords.y + a_v2DimensionsWH.y) / a_v2TexDimensionsWH.y } //3
-			} {}
-
-			SpriteData(SpriteData& a_SpriteData)
+			static constexpr glm::vec3 s_VERTICES[s_VERT_COUNT] =
 			{
-				memcpy_s(m_Vertices, s_VERT_COUNT, a_SpriteData.m_Vertices, s_VERT_COUNT);
+				{ -0.5, -0.5, 0.0 },
+				{ -0.5, 0.5, 0.0 },
+				{ 0.5, 0.5, 0.0 },
+				{ 0.5, -0.5, 0.0 }
+			};
+
+
+		private:
+			Texture * m_pTexture = nullptr;
+			Shader* m_pShader = nullptr;
+			std::vector<glm::vec2> m_TexCoords;
+
+		public:
+			Sprite(glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, Texture* a_pTexture, Shader* a_pShader)
+				:
+				m_pShader{ a_pShader },
+				m_pTexture{ a_pTexture },
+				m_TexCoords{ { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2SpriteCoords.y + a_v2DimensionsWH.y) / a_v2TexDimensionsWH.y },					       //0
+							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, a_v2SpriteCoords.y / a_v2TexDimensionsWH.y },											   //1
+							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, a_v2SpriteCoords.y / a_v2TexDimensionsWH.y },						   //2
+							 { (a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2SpriteCoords.y + a_v2DimensionsWH.y) / a_v2TexDimensionsWH.y } }//3 
+							 {}
+
+
+			Sprite(Sprite& a_SpriteData)
+				: m_pShader{ a_SpriteData.m_pShader },
+				  m_pTexture{ a_SpriteData.m_pTexture },
+				m_TexCoords{ a_SpriteData .m_TexCoords[0],
+							 a_SpriteData.m_TexCoords[1],
+							 a_SpriteData.m_TexCoords[2],
+							 a_SpriteData.m_TexCoords[3] }
+			{
+				
 			}
 
-			SpriteData(SpriteData&& a_SpriteData)
+			Sprite(Sprite&& a_SpriteData)
+				: m_pShader{ a_SpriteData.m_pShader },
+				  m_pTexture{ a_SpriteData.m_pTexture },
+				m_TexCoords{ a_SpriteData.m_TexCoords[0],
+							a_SpriteData.m_TexCoords[1],
+							a_SpriteData.m_TexCoords[2],
+							a_SpriteData.m_TexCoords[3] }
 			{
-				memcpy_s(m_Vertices, s_VERT_COUNT, a_SpriteData.m_Vertices, s_VERT_COUNT);
+				
 			}
 
-			void operator=(SpriteData a_SpriteData)
+			~Sprite()
 			{
-				memcpy_s(m_Vertices, s_VERT_COUNT, a_SpriteData.m_Vertices, s_VERT_COUNT);
+				m_pShader = nullptr;
+				m_pTexture = nullptr;
+			}
+
+			void operator=(Sprite& a_SpriteData)
+			{
+				m_pShader = a_SpriteData.m_pShader;
+				m_pTexture = a_SpriteData.m_pTexture;
+				m_TexCoords = a_SpriteData.m_TexCoords;
+			}
+
+			const Texture* getTexture() const
+			{
+				return m_pTexture;
+			}
+
+			const Shader* getShader() const
+			{
+				return m_pShader;
+			}
+
+			const std::vector<glm::vec2>& getTexCoords() const
+			{
+				return m_TexCoords;
 			}
 		};
 
-		class Sprite : public ns_system::IManagedResource
+		class SpriteSheet : public ns_system::IManagedResource
 		{
-		private:
-			std::vector<SpriteData> m_vectSpriteData;
-			Texture m_Texture;
+
+		protected:
+			std::vector<Sprite> m_vectSpriteData;
+			Texture* m_pTexture = nullptr;
+			Shader* m_pShader = nullptr;
+
+			GLuint m_IBO;
+			GLuint m_VBO;
+			GLuint m_VAO;
+
 			virtual void destroyResource() override;
 
 		public:
-			Sprite() = delete;
-			Sprite(Texture& a_Texture, std::vector<SpriteData> a_vectSpriteData);
-			Sprite(Sprite& a_Sprite);
-			Sprite(Sprite&& a_Sprite);
+			SpriteSheet() = delete;
+			SpriteSheet(Texture* a_pTexture, Shader* a_pShader, std::vector<Sprite> a_vectSpriteData);
+			SpriteSheet(SpriteSheet& a_SpriteSheet);
+			SpriteSheet(SpriteSheet&& a_SpriteSheet);
 
-			~Sprite();
+			~SpriteSheet();
 
-			const std::vector<SpriteData> getSpriteData() const;
-			void operator=(Sprite& a_Sprite);
-			void operator=(Sprite&& a_Sprite);
+			std::vector<Sprite>* getSprites();
+			Sprite* getSprite(int l_iSpriteIndex);
+
+			void operator=(SpriteSheet& a_SpriteSheet);
+			void operator=(SpriteSheet&& a_SpriteSheet);
 		};
 	}
 }
