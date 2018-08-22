@@ -69,16 +69,13 @@ namespace ns_fretBuzz
 			glBindVertexArray(m_VAO);
 
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-			glBufferData(GL_ARRAY_BUFFER, Sprite::s_VERT_COUNT * sizeof(SpriteAttributes), m_SpriteAttributes, GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, Sprite::s_VERT_COUNT * sizeof(SpriteAttributes), m_SpriteAttributes, GL_DYNAMIC_DRAW);
 
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v3Position));
 			glEnableVertexAttribArray(0);
 
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v2TexCoords));
 			glEnableVertexAttribArray(1);
-
-			glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v3Position));
-			glEnableVertexAttribArray(2);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IBO);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Sprite::s_INDICES), Sprite::s_INDICES, GL_STATIC_DRAW);
@@ -89,24 +86,36 @@ namespace ns_fretBuzz
 		void SpriteRenderer::setSprite(Sprite* a_Sprite)
 		{
 			m_pSprite = a_Sprite;
+			if (m_pSprite == nullptr){return;}
+
+			const std::vector<glm::vec2>& l_vectTexCoords = m_pSprite->getTexCoords();
+
+			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+			SpriteAttributes* l_pVertexData = (SpriteAttributes*)(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
+
+			for (int l_iSpriteAttribIndex = 0; l_iSpriteAttribIndex < Sprite::s_VERT_COUNT; l_iSpriteAttribIndex++, l_pVertexData++)
+			{
+				l_pVertexData->m_v2TexCoords = l_vectTexCoords[l_iSpriteAttribIndex];
+			}
+			glUnmapBuffer(GL_ARRAY_BUFFER);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			l_pVertexData = nullptr;
 		}
 
 		void SpriteRenderer::setSprite(std::string a_strSpriteID)
 		{
 			m_pSprite = ns_system::ResourceManager::getResource<SpriteSheet>(a_strSpriteID)->getSprite(0);
+			if (m_pSprite == nullptr){return;}
+
+			setSprite(m_pSprite);
 		}
 
 		void SpriteRenderer::render(const ns_system::Camera& a_Camera)
 		{
-			if (!m_bIsAllowedToRender) { return; }
+			if (!m_bIsAllowedToRender || (m_pSprite == nullptr)) { return; }
+			Sprite& l_CurrentSprite = *m_pSprite;
 
-			const std::vector<glm::vec2>& l_vectTexCoords = m_pSprite->getTexCoords();
-			for (int l_iSpriteAttribIndex = 0; l_iSpriteAttribIndex < Sprite::s_VERT_COUNT; l_iSpriteAttribIndex++)
-			{
-				m_SpriteAttributes[l_iSpriteAttribIndex].m_v2TexCoords = l_vectTexCoords[l_iSpriteAttribIndex];
-			}
-
-			const Shader& l_CurrentShader = *(m_pSprite->getShader());
+			const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
 			l_CurrentShader.bind();
 
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_PROJECTION_MATRIX, a_Camera.getProjectionMatrix());
@@ -114,13 +123,13 @@ namespace ns_fretBuzz
 
 			ns_system::Transform& l_transform = m_GameObject.m_Transform;
 			glm::mat4 l_mat4SpriteModel = glm::mat4(1.0f);
-			l_mat4SpriteModel = glm::translate(l_mat4SpriteModel, { l_transform.getPosition() });
-			l_mat4SpriteModel = glm::scale(l_mat4SpriteModel, { l_transform.getScale() });
+			l_mat4SpriteModel = glm::translate(l_mat4SpriteModel, l_transform.getPosition());
 
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, (l_mat4SpriteModel));
+			l_mat4SpriteModel = glm::scale(l_mat4SpriteModel, l_CurrentSprite.getSpriteDimensions());
+			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, l_mat4SpriteModel);
 
 			glActiveTexture(GL_TEXTURE0);
-			m_pSprite->getTexture()->bind();
+			l_CurrentSprite.getTexture()->bind();
 
 			l_CurrentShader.setUniform1i(Sprite::UNIFORM_TEXTURE_SAMPLER, 0);
 

@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 				{
 					if (m_Components[l_iComponentIndex]->m_ComponentType == a_COMPONENT_TYPE)
 					{
-						return dynamic_cast<T_COMPONENT_TYPE*>(*m_Components[l_iComponentIndex]);
+						return dynamic_cast<T_COMPONENT_TYPE*>(m_Components[l_iComponentIndex]);
 					}
 				}
 				return nullptr;

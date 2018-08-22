@@ -24,9 +24,8 @@ namespace ns_fretBuzz
 			{
 				glm::vec3 m_v3Position;
 				glm::vec2 m_v2TexCoords;
-				int m_iTextureId = 0;
 			};
-			SpriteAttributes m_SpriteAttributes[Sprite::s_VERT_COUNT];
+			SpriteAttributes m_SpriteAttributes[Sprite::s_VERT_COUNT] = {};
 
 			bool m_bIsAllowedToRender = true;
 

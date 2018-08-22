@@ -8,7 +8,8 @@ namespace ns_fretBuzz
 		enum COMPONENT_TYPE
 		{
 			AUDIO_SOURCE,
-			SPRITE_RENDERER
+			SPRITE_RENDERER,
+			SPRITE_ANIMATOR
 		};
 
 		class GameObject;

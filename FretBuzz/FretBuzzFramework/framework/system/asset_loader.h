@@ -40,6 +40,7 @@ namespace ns_fretBuzz
 			static constexpr char SPRITE_NODE_NAME[] = "Sprites";
 			static constexpr char ATTRIBUTE_TEX_ID[] = "tex_id";
 			static constexpr char ATTRIBUTE_SHADER_ID[] = "shader_id";
+			static constexpr char ATTRIBUTE_TIME_PER_SPRITE_ID[] = "time_per_sprite";
 			static constexpr char ATTRIBUTE_SPRITE_X[] = "x";
 			static constexpr char ATTRIBUTE_SPRITE_Y[] = "y";
 			static constexpr char ATTRIBUTE_SPRITE_W[] = "w";

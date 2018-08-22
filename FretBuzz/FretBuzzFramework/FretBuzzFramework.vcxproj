@@ -157,6 +157,7 @@
     <ClCompile Include="framework\components\audio\audio_clip.cpp" />
     <ClCompile Include="framework\components\audio\audio_source.cpp" />
     <ClCompile Include="framework\components\camera\camera.cpp" />
+    <ClCompile Include="framework\components\sprite\sprite_animator.cpp" />
     <ClCompile Include="framework\components\sprite\sprite_renderer.cpp" />
     <ClCompile Include="framework\game\component.cpp" />
     <ClCompile Include="framework\game\game_object.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="framework\components\audio\audio_clip.h" />
     <ClInclude Include="framework\components\audio\audio_source.h" />
     <ClInclude Include="framework\components\camera\camera.h" />
+    <ClInclude Include="framework\components\sprite\sprite_animator.h" />
     <ClInclude Include="framework\components\sprite\sprite_renderer.h" />
     <ClInclude Include="framework\game\component.h" />
     <ClInclude Include="framework\game\game_object.h" />
@@ -222,6 +224,7 @@
     <Text Include="resources\shaders\vertShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\sprites\darksiders.jpg" />
     <Image Include="resources\sprites\sword.png" />
     <Image Include="resources\textures\darksiders.jpg" />
   </ItemGroup>

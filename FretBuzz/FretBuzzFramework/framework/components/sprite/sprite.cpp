@@ -6,10 +6,11 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		SpriteSheet::SpriteSheet(Texture* a_pTexture, Shader* a_pShader, std::vector<Sprite> a_vectSpriteData)
+		SpriteSheet::SpriteSheet(Texture* a_pTexture, Shader* a_pShader, std::vector<Sprite> a_vectSpriteData, float a_fTimePerSprite)
 			: m_vectSpriteData{a_vectSpriteData},
 			m_pTexture{a_pTexture },
 			m_pShader{ a_pShader },
+			m_fTimePerSprite{a_fTimePerSprite},
 			 ns_system::IManagedResource()
 		{
 		}
@@ -18,9 +19,7 @@ namespace ns_fretBuzz
 			: m_vectSpriteData{ a_Sprite.m_vectSpriteData },
 			m_pTexture{ a_Sprite.m_pTexture },
 			m_pShader{ a_Sprite.m_pShader},
-			m_IBO{ a_Sprite.m_IBO },
-			m_VBO{ a_Sprite.m_VBO },
-			m_VAO{ a_Sprite.m_VAO },
+			m_fTimePerSprite{ a_Sprite.m_fTimePerSprite },
 			ns_system::IManagedResource()
 		{
 		
@@ -30,9 +29,7 @@ namespace ns_fretBuzz
 			: m_vectSpriteData{ a_Sprite.m_vectSpriteData },
 			m_pTexture{ a_Sprite.m_pTexture },
 			m_pShader{ a_Sprite.m_pShader },
-			m_IBO{ a_Sprite .m_IBO}, 
-			m_VBO{ a_Sprite.m_VBO },
-			m_VAO{ a_Sprite.m_VAO },
+			m_fTimePerSprite{ a_Sprite.m_fTimePerSprite },
 			 ns_system::IManagedResource()
 		{
 		
@@ -43,6 +40,7 @@ namespace ns_fretBuzz
 			m_pTexture = a_Sprite.m_pTexture;
 			m_vectSpriteData = a_Sprite.m_vectSpriteData;
 			m_pShader = a_Sprite.m_pShader;
+			m_fTimePerSprite = a_Sprite.m_fTimePerSprite;
 		}
 
 		void SpriteSheet::operator=(SpriteSheet&& a_Sprite)
@@ -50,6 +48,7 @@ namespace ns_fretBuzz
 			m_pTexture = a_Sprite.m_pTexture;
 			m_vectSpriteData = a_Sprite.m_vectSpriteData;
 			m_pShader = a_Sprite.m_pShader;
+			m_fTimePerSprite = a_Sprite.m_fTimePerSprite;
 		}
 
 		SpriteSheet::~SpriteSheet()
@@ -63,7 +62,7 @@ namespace ns_fretBuzz
 			m_pShader = nullptr;
 		}
 
-		std::vector<Sprite>* SpriteSheet::getSprites()
+		std::vector<Sprite>* SpriteSheet::getSpriteSheet()
 		{
 			return &m_vectSpriteData;
 		}

@@ -2,7 +2,7 @@
 
 #include "../game/game_object.h" 
 #include "../components/audio/audio_source.h"
-
+#include "../components/sprite/sprite_animator.h"
 
 #include "../graphics/shader.h"
 #include "../graphics/texture.h"
@@ -17,13 +17,11 @@ namespace ns_fretBuzz
 	{
 	private:
 		ns_system::AudioSource* m_pAudSrc = nullptr;
+		ns_system::SpriteAnimator* m_pSpriteAnimator = nullptr;
 
 		ns_graphics::Shader* m_pShader = nullptr;
 		ns_graphics::Texture* m_pTexture = nullptr;
 
-		GLuint m_VAO;
-		GLuint m_VBO;
-		GLuint m_IBO;
 		bool isAudioPlaying = false;
 
 	public:

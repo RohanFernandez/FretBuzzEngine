@@ -2,6 +2,7 @@
 
 #include "CharacterTest.h"
 #include "../system/resource_manager.h"
+#include "../components/sprite/sprite_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -10,10 +11,8 @@ namespace ns_fretBuzz
 			: ns_system::GameObject("character_test")
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
-			
-			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("simple");
-			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("darksider");
-
+			ns_graphics::SpriteRenderer::addToGameObject(*this);
+			m_pSpriteAnimator =  ns_system::SpriteAnimator::addToGameObject(*this, std::vector<std::string>{"dark", "sword_walk","sword_slash"});
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -36,9 +35,19 @@ namespace ns_fretBuzz
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_K))
 			{
 				m_pAudSrc->pause();
-
-				ns_system::GameObject::update(a_fDeltaTime);
 			}
+
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_U))
+			{
+				m_pSpriteAnimator->play("sword_walk");
+			}
+
+			if (ns_system::Input::IsKeyDown(GLFW_KEY_Y))
+			{
+				m_pSpriteAnimator->play("sword_slash");
+			}
+
+			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
 		void CharacterTest::render(const ns_system::Camera& a_Camera)

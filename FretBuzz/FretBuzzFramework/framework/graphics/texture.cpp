@@ -26,9 +26,24 @@ namespace ns_fretBuzz
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-			GLenum l_ColorFormat = m_iChannels == 4 ? GL_BGRA : GL_BGR;
+			GLenum l_ColorFormat;
+			GLenum l_ColorTarget;
+			switch (m_iChannels)
+			{
+			case 3:
+				l_ColorFormat = GL_BGR;
+				l_ColorTarget = GL_RGB;
+				break;
+			case 4:
+				l_ColorFormat = GL_BGRA;
+				l_ColorTarget = GL_RGBA;
+				break;
+			default:
+				std::cout << "Texture::Texture:: Failed to detect texture channels ::" << m_iChannels << " in texture '"<< a_strTexturePath <<"'\n";
+				return;;
+			}
 
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, l_ColorFormat, GL_UNSIGNED_BYTE, m_pImageData);
+			glTexImage2D(GL_TEXTURE_2D, 0, l_ColorTarget, m_iWidth, m_iHeight, 0, l_ColorFormat, GL_UNSIGNED_BYTE, m_pImageData);
 			glGenerateMipmap(GL_TEXTURE_2D);
 
 			glBindTexture(GL_TEXTURE_2D, 0);

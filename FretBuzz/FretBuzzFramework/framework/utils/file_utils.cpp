@@ -81,7 +81,7 @@ namespace ns_fretBuzz
 			a_iHeight = l_iHeight;
 
 			int l_iPitch = FreeImage_GetPitch(dib);
-			int l_iBitsPerPixel = FreeImage_GetBPP(dib);
+			int l_iBitsPerPixel = FreeImage_GetBPP(dib); 
 
 			a_iChannels = (l_iBitsPerPixel / 8);
 			int l_iBitsPerRow = a_iWidth * a_iChannels;
