@@ -57,11 +57,6 @@ namespace ns_fretBuzz
 
 		void SpriteRenderer::initialize()
 		{
-			for (int l_iAttribIndex = 0; l_iAttribIndex < Sprite::s_VERT_COUNT; l_iAttribIndex++)
-			{
-				m_SpriteAttributes[l_iAttribIndex].m_v3Position = Sprite::s_VERTICES[l_iAttribIndex];
-			}
-
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
 			glGenBuffers(1, &m_IBO);
@@ -69,7 +64,7 @@ namespace ns_fretBuzz
 			glBindVertexArray(m_VAO);
 
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-			glBufferData(GL_ARRAY_BUFFER, Sprite::s_VERT_COUNT * sizeof(SpriteAttributes), m_SpriteAttributes, GL_DYNAMIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, Sprite::s_VERT_COUNT * sizeof(SpriteAttributes), nullptr, GL_DYNAMIC_DRAW);
 
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v3Position));
 			glEnableVertexAttribArray(0);
@@ -86,9 +81,10 @@ namespace ns_fretBuzz
 		void SpriteRenderer::setSprite(Sprite* a_Sprite)
 		{
 			m_pSprite = a_Sprite;
-			if (m_pSprite == nullptr){return;}
+			if (m_pSprite == nullptr) { return; }
 
 			const std::vector<glm::vec2>& l_vectTexCoords = m_pSprite->getTexCoords();
+			const std::vector<glm::vec3>& l_vectVertPosition = m_pSprite->getVertPosition();
 
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 			SpriteAttributes* l_pVertexData = (SpriteAttributes*)(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
@@ -96,6 +92,7 @@ namespace ns_fretBuzz
 			for (int l_iSpriteAttribIndex = 0; l_iSpriteAttribIndex < Sprite::s_VERT_COUNT; l_iSpriteAttribIndex++, l_pVertexData++)
 			{
 				l_pVertexData->m_v2TexCoords = l_vectTexCoords[l_iSpriteAttribIndex];
+				l_pVertexData->m_v3Position = l_vectVertPosition[l_iSpriteAttribIndex];
 			}
 			glUnmapBuffer(GL_ARRAY_BUFFER);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -120,13 +117,7 @@ namespace ns_fretBuzz
 
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_PROJECTION_MATRIX, a_Camera.getProjectionMatrix());
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_VIEW_MATRIX, a_Camera.getViewMatrix());
-
-			ns_system::Transform& l_transform = m_GameObject.m_Transform;
-			glm::mat4 l_mat4SpriteModel = glm::mat4(1.0f);
-			l_mat4SpriteModel = glm::translate(l_mat4SpriteModel, l_transform.getPosition());
-
-			l_mat4SpriteModel = glm::scale(l_mat4SpriteModel, l_CurrentSprite.getSpriteDimensions());
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, l_mat4SpriteModel);
+			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, m_GameObject.m_Transform.getModelMatrix());
 
 			glActiveTexture(GL_TEXTURE0);
 			l_CurrentSprite.getTexture()->bind();

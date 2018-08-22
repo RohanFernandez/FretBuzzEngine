@@ -21,19 +21,12 @@ namespace ns_fretBuzz
 
 			static constexpr int s_INDICES[6] = { 0, 2, 1, 0, 3, 2 };
 			static constexpr int s_VERT_COUNT = 4;
-			static constexpr glm::vec3 s_VERTICES[s_VERT_COUNT] =
-			{
-				{ -0.5, -0.5, 0.0 },
-				{ -0.5, 0.5, 0.0 },
-				{ 0.5, 0.5, 0.0 },
-				{ 0.5, -0.5, 0.0 }
-			};
-
 
 		private:
-			Texture * m_pTexture = nullptr;
+			Texture* m_pTexture = nullptr;
 			Shader* m_pShader = nullptr;
 			std::vector<glm::vec2> m_TexCoords;
+			std::vector<glm::vec3> m_VertPosition;
 			glm::vec3 m_SpriteDimensionWH;
 
 		public:
@@ -45,26 +38,35 @@ namespace ns_fretBuzz
 				m_TexCoords{
 							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y },					       //0
 							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },											   //1
-							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y- a_v2SpriteCoords.y)  / a_v2TexDimensionsWH.y },						   //2
-							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y))/ a_v2TexDimensionsWH.y }    //3
-						   } 
-			{
-				int i = 0;
-			}
-							 
+							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },						   //2
+							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y }    //3
+							},
 
+				m_VertPosition{
+									{ -0.5 * a_v2DimensionsWH.x, -0.5 * a_v2DimensionsWH.y, 0.0 },
+									{ -0.5 * a_v2DimensionsWH.x, 0.5 * a_v2DimensionsWH.y, 0.0 },
+									{ 0.5 * a_v2DimensionsWH.x, 0.5 * a_v2DimensionsWH.y, 0.0 },
+									{ 0.5 * a_v2DimensionsWH.x, -0.5 * a_v2DimensionsWH.y, 0.0 }
+							}
+								{
+								}
 
 			Sprite(Sprite& a_SpriteData)
 				: m_pShader{ a_SpriteData.m_pShader },
-				  m_pTexture{ a_SpriteData.m_pTexture },
-				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH},
-				m_TexCoords{ a_SpriteData .m_TexCoords[0],
+				m_pTexture{ a_SpriteData.m_pTexture },
+				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH },
+				m_TexCoords{ a_SpriteData.m_TexCoords[0],
 							 a_SpriteData.m_TexCoords[1],
 							 a_SpriteData.m_TexCoords[2],
-							 a_SpriteData.m_TexCoords[3] }
-			{
-				
-			}
+							 a_SpriteData.m_TexCoords[3] },
+
+				m_VertPosition{ a_SpriteData.m_VertPosition[0],
+								a_SpriteData.m_VertPosition[1],
+								a_SpriteData.m_VertPosition[2],
+								a_SpriteData.m_VertPosition[3]
+							}	
+								{
+								}
 
 			Sprite(Sprite&& a_SpriteData)
 				: m_pShader{ a_SpriteData.m_pShader },
@@ -73,10 +75,14 @@ namespace ns_fretBuzz
 				m_TexCoords{ a_SpriteData.m_TexCoords[0],
 							a_SpriteData.m_TexCoords[1],
 							a_SpriteData.m_TexCoords[2],
-							a_SpriteData.m_TexCoords[3] }
-			{
-				
-			}
+							a_SpriteData.m_TexCoords[3] },
+
+				m_VertPosition{ a_SpriteData.m_VertPosition[0],
+								a_SpriteData.m_VertPosition[1],
+								a_SpriteData.m_VertPosition[2],
+								a_SpriteData.m_VertPosition[3]}
+							{
+							}
 
 			~Sprite()
 			{
@@ -89,6 +95,7 @@ namespace ns_fretBuzz
 				m_pShader = a_SpriteData.m_pShader;
 				m_pTexture = a_SpriteData.m_pTexture;
 				m_TexCoords = a_SpriteData.m_TexCoords;
+				m_VertPosition = a_SpriteData.m_VertPosition;
 				m_SpriteDimensionWH = a_SpriteData.m_SpriteDimensionWH;
 			}
 
@@ -107,7 +114,12 @@ namespace ns_fretBuzz
 				return m_TexCoords;
 			}
 
-			inline glm::vec3 getSpriteDimensions() const
+			const std::vector<glm::vec3>& getVertPosition() const
+			{
+				return m_VertPosition;
+			}
+
+			inline const glm::vec3& getSpriteDimensions() const
 			{
 				return m_SpriteDimensionWH;
 			}

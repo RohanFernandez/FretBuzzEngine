@@ -25,8 +25,7 @@ namespace ns_fretBuzz
 				glm::vec3 m_v3Position;
 				glm::vec2 m_v2TexCoords;
 			};
-			SpriteAttributes m_SpriteAttributes[Sprite::s_VERT_COUNT] = {};
-
+			
 			bool m_bIsAllowedToRender = true;
 
 			GLuint m_IBO;

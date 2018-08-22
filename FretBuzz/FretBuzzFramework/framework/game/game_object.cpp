@@ -16,6 +16,14 @@ namespace ns_fretBuzz
 			
 		}
 
+		GameObject::GameObject(std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+			: m_iID{ ++s_iID },
+			m_strName{ a_strName },
+			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale)
+		{
+
+		}
+
 		GameObject::~GameObject()
 		{
 			for (std::vector<IComponent*>::iterator l_IComponentCurrent = m_Components.begin();
@@ -49,7 +57,6 @@ namespace ns_fretBuzz
 			{
 				m_Components[l_iComponentndex]->update(a_fDeltaTime);
 			}
-			m_Transform.updateModelMatrix();
 		}
 
 		void GameObject::updateChildren(float a_fDeltaTime)

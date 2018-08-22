@@ -32,6 +32,7 @@ namespace ns_fretBuzz
 
 		public:
 			GameObject(std::string a_strName);
+			GameObject(std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
 			~GameObject();
 
 			Transform m_Transform;

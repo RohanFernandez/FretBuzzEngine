@@ -16,8 +16,6 @@ namespace ns_fretBuzz
 			glm::vec3 m_v3Up;
 			glm::vec3 m_v3Right;
 
-			glm::mat4 m_mat4Model;
-
 		public:
 			Transform();
 			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
@@ -57,12 +55,7 @@ namespace ns_fretBuzz
 				return m_v3Right;
 			}
 
-			inline const glm::mat4& getModelMatrix() const
-			{
-				return m_mat4Model;
-			}
-
-			const glm::mat4& updateModelMatrix();
+			const glm::mat4 getModelMatrix();
 		};
 	}
 }

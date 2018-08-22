@@ -19,10 +19,15 @@ namespace ns_fretBuzz
 		ns_system::AudioSource* m_pAudSrc = nullptr;
 		ns_system::SpriteAnimator* m_pSpriteAnimator = nullptr;
 
-		ns_graphics::Shader* m_pShader = nullptr;
-		ns_graphics::Texture* m_pTexture = nullptr;
-
 		bool isAudioPlaying = false;
+
+		double m_dMouseX = 0.0;
+		double m_dMouseY = 0.0;
+
+		float m_fVelocity = 200.0f;
+
+		float m_fScale = 1.0f;
+		float m_fScaleVelocity = 2.0f;
 
 	public:
 
