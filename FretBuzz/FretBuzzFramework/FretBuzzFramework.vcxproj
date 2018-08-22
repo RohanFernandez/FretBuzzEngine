@@ -224,7 +224,6 @@
     <Text Include="resources\shaders\vertShader.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\sprites\darksiders.jpg" />
     <Image Include="resources\sprites\sword.png" />
     <Image Include="resources\textures\darksiders.jpg" />
   </ItemGroup>
