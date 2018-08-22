@@ -83,6 +83,8 @@ namespace ns_fretBuzz
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
 
 			float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })) );
+			if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
+
 			m_Transform.rotate({0.0f, 0.0f, l_fAngleToRotate });
 
 			std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
