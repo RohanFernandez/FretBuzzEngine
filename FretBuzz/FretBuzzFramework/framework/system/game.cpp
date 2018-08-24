@@ -1,8 +1,8 @@
 #pragma once
 #include "game.h"
-#include "scenes/init_state.h"
-#include "scenes/mainmenu_state.h"
-#include "scenes/score_state.h"
+#include "../scenes/init_state.h"
+#include "../scenes/mainmenu_state.h"
+#include "../scenes/score_state.h"
 
 namespace ns_fretBuzz
 {

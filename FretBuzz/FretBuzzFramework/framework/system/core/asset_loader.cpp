@@ -1,9 +1,9 @@
 #pragma once
 #include "asset_loader.h"
-#include "../graphics/shader.h"
-#include "../graphics/texture.h"
-#include "../components/sprite/sprite.h"
-#include "../components/audio/audio_clip.h"
+#include "../../graphics/shader.h"
+#include "../../graphics/texture.h"
+#include "../../components/sprite/sprite.h"
+#include "../../components/audio/audio_clip.h"
 
 
 #include <fstream>

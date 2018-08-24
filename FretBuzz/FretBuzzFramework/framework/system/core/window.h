@@ -2,7 +2,7 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <string>
-#include "../utils/math.h"
+#include "../../utils/math.h"
 
 namespace ns_fretBuzz
 {

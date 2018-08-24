@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 			void pause();
 
 			virtual void update(float a_fDeltaTime) override;
-			virtual void render(const Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) override;
 		};
 	}
 }

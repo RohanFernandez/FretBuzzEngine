@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../game/game_object.h" 
+#include "../system/game_object.h" 
 #include "../components/audio/audio_source.h"
 #include "../components/sprite/sprite_animator.h"
 
 #include "../graphics/shader.h"
 #include "../graphics/texture.h"
 #include "../components/camera/camera.h"
-#include "../system/input.h"
+#include "../system/core/input.h"
 
 #include "../components/camera/camera.h"
 
@@ -35,6 +35,6 @@ namespace ns_fretBuzz
 		virtual ~CharacterTest() {};
 
 		virtual void update(float a_fDeltaTime) override;
-		virtual void render(const ns_system::Camera& a_Camera) override;
+		virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
 	};
 }

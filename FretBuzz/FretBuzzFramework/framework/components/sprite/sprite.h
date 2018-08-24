@@ -4,7 +4,7 @@
 #include "../../graphics/shader.h"
 #include "../../utils/math.h"
 
-#include "../../game/game_object.h"
+#include "../../system/game_object.h"
 #include "../camera/camera.h"
 
 namespace ns_fretBuzz

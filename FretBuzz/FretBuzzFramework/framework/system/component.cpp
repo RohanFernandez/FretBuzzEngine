@@ -18,7 +18,7 @@ namespace ns_fretBuzz
 
 		}
 
-		void IComponent::render(const Camera& a_Camera)
+		void IComponent::render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
 		{
 
 		}

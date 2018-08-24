@@ -1,6 +1,6 @@
 #pragma once
 #include "master_renderer.h"
-#include "../game/game.h"
+#include "../game.h"
 
 namespace ns_fretBuzz
 {

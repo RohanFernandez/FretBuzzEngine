@@ -1,8 +1,8 @@
 #pragma once
 
 #include "window.h"
-#include "timer/timerFPS.h"
-#include "../components/camera/camera.h"
+#include "../timer/timerFPS.h"
+#include "../../components/camera/camera.h"
 
 namespace ns_fretBuzz
 {

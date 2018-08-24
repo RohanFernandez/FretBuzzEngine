@@ -1,13 +1,13 @@
 #pragma once
-#include "../../system/scene_manager.h"
+#include "../system/scene_manager.h"
 
 namespace ns_fretBuzz
 {
-	class ScoreState 
+	class MainMenuState 
 		: public ns_system::IScene
 	{
 	public:
-		ScoreState(std::string a_strSceneName) :
+		MainMenuState(std::string a_strSceneName) :
 			IScene(a_strSceneName)
 		{
 		}
@@ -24,12 +24,12 @@ namespace ns_fretBuzz
 
 		//virtual void onUpdate(const float a_fDeltaTime) override
 		//{
-		//	/*std::cout << "Update :: Running score state\n";*/
+		//	/*std::cout << "Update :: MainMenuState state\n";*/
 		//}
 
 		//virtual void onLateUpdate(const float a_fDeltaTime) override
 		//{
-		//	/*std::cout << "LateUpdate :: Running score state\n";*/
+		//	/*std::cout << "LateUpdate :: MainMenuState state\n";*/
 		//}
 
 		/*virtual void render() override

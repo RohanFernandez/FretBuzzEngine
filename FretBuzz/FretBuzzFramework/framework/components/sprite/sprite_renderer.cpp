@@ -2,8 +2,8 @@
 #include "sprite_renderer.h"
 #include "../camera/camera.h"
 #include <iostream>
-#include "../../game/game_object.h"
-#include "../../system/resource_manager.h"
+#include "../../system/game_object.h"
+#include "../../system/core/resource_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -107,7 +107,7 @@ namespace ns_fretBuzz
 			setSprite(m_pSprite);
 		}
 
-		void SpriteRenderer::render(const ns_system::Camera& a_Camera)
+		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
 			if (!m_bIsAllowedToRender || (m_pSprite == nullptr)) { return; }
 			Sprite& l_CurrentSprite = *m_pSprite;
@@ -117,7 +117,7 @@ namespace ns_fretBuzz
 
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_PROJECTION_MATRIX, a_Camera.getProjectionMatrix());
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_VIEW_MATRIX, a_Camera.getViewMatrix());
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, m_GameObject.m_Transform.getModelMatrix());
+			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, a_mat4Transformation);
 
 			glActiveTexture(GL_TEXTURE0);
 			l_CurrentSprite.getTexture()->bind();

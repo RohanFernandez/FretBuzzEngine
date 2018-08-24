@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../game/component.h"
+#include "../../system/component.h"
 #include "audio_clip.h"
 #include <string>
 

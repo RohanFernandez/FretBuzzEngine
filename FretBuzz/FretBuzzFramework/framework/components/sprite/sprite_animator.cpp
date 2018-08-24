@@ -1,7 +1,7 @@
 #pragma once
 #include "sprite_animator.h"
-#include "../../system/resource_manager.h"
-#include "../../game/game_object.h"
+#include "../../system/core/resource_manager.h"
+#include "../../system/game_object.h"
 
 namespace ns_fretBuzz
 {
@@ -64,7 +64,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void SpriteAnimator::render(const Camera& a_Camera)
+		void SpriteAnimator::render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
 		{
 
 		}

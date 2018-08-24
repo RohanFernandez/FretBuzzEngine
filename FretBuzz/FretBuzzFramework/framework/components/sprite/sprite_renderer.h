@@ -1,5 +1,5 @@
 #pragma once
-#include "../../game/component.h"
+#include "../../system/component.h"
 #include "sprite.h"
 
 namespace ns_fretBuzz
@@ -41,7 +41,7 @@ namespace ns_fretBuzz
 			void setSprite(Sprite* a_Sprite);
 			void setSprite(std::string a_strSpriteID);
 
-			virtual void render(const ns_system::Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
 
 			inline bool getIsRendering() const
 			{

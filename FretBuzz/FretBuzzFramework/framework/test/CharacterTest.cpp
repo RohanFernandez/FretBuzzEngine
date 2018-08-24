@@ -1,14 +1,14 @@
 #pragma once
 
 #include "CharacterTest.h"
-#include "../system/resource_manager.h"
+#include "../system/core/resource_manager.h"
 #include "../components/sprite/sprite_renderer.h"
 
 namespace ns_fretBuzz
 {
 
 	CharacterTest::CharacterTest()
-		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 2.0f })
+		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			ns_graphics::SpriteRenderer::addToGameObject(*this);
@@ -87,12 +87,12 @@ namespace ns_fretBuzz
 
 			m_Transform.rotate({0.0f, 0.0f, l_fAngleToRotate });
 
-			std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
+			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
-		void CharacterTest::render(const ns_system::Camera& a_Camera)
+		void CharacterTest::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
-			GameObject::render(a_Camera);
+			GameObject::render(a_mat4Transformation,a_Camera);
 		};
 	}

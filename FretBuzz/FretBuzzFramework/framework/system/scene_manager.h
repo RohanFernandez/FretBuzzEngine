@@ -1,6 +1,6 @@
 #pragma once
 #include "../utils/FSM.h"
-#include "../game/game_object.h"
+#include "game_object.h"
 #include "../components/camera/camera.h"
 #include <type_traits>
 
@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 
 			void render(const Camera& a_Camera)
 			{
-				m_refRootGameObject.render(a_Camera);
+				m_refRootGameObject.render(m_refRootGameObject.m_Transform.getModelMatrix(), a_Camera);
 			}
 
 			void update(float a_fDeltaTime)

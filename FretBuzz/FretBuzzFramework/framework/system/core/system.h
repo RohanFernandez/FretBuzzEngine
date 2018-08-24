@@ -1,7 +1,7 @@
 #pragma once
 
-#include "timer/timerFPS.h"
-#include "../game/game.h"
+#include "../timer/timerFPS.h"
+#include "../game.h"
 #include "audio_engine.h"
 #include "master_renderer.h"
 #include "input.h"
