@@ -1,6 +1,6 @@
 #pragma once
-#include "../../system/core/window.h"
-#include "../transform.h"
+#include "../system/core/window.h"
+#include "transform.h"
 
 namespace ns_fretBuzz
 {

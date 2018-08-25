@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/camera/camera.h"
+#include "../components/camera.h"
 
 namespace ns_fretBuzz
 {

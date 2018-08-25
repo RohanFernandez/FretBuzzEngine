@@ -2,7 +2,7 @@
 
 #include "window.h"
 #include "../timer/timerFPS.h"
-#include "../../components/camera/camera.h"
+#include "../../components/camera.h"
 
 namespace ns_fretBuzz
 {

@@ -2,7 +2,7 @@
 
 #include "CharacterTest.h"
 #include "../system/core/resource_manager.h"
-#include "../components/sprite/sprite_renderer.h"
+#include "../components/gameobject_components/sprite_renderer.h"
 #include <ft2build.h>
 //#include FT_FREETYPE_H
 
@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			ns_graphics::SpriteRenderer::addToGameObject(*this);
-			m_pSpriteAnimator =  ns_system::SpriteAnimator::addToGameObject(*this, std::vector<std::string>{"sword_walk","sword_slash"});
+			m_pSpriteAnimator = ns_system::SpriteAnimator::addToGameObject(*this, std::vector<std::string>{"sword_walk","sword_slash"});
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)

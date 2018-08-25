@@ -1,6 +1,6 @@
 #pragma once
 #include "../../system/component.h"
-#include "sprite.h"
+#include "../sprite.h"
 
 namespace ns_fretBuzz
 {

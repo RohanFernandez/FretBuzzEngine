@@ -1,6 +1,6 @@
 #pragma once
 #include "sprite_renderer.h"
-#include "../camera/camera.h"
+#include "../camera.h"
 #include <iostream>
 #include "../../system/game_object.h"
 #include "../../system/core/resource_manager.h"

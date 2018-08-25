@@ -39,28 +39,10 @@
     <ClCompile Include="framework\components\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\components\camera\camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\components\audio\audio_source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\components\audio\audio_clip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\system\scene_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\test\CharacterTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\components\sprite\sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\components\sprite\sprite_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\components\sprite\sprite_animator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\system\core\asset_loader.cpp">
@@ -96,10 +78,28 @@
     <ClCompile Include="framework\scenes\init_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\components\text_renderer.cpp">
+    <ClCompile Include="resources\libs_internal\pugixml\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resources\libs_internal\pugixml\pugixml.cpp">
+    <ClCompile Include="framework\components\audio_clip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\audio_source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\sprite_animator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\text_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,15 +128,6 @@
     <ClInclude Include="framework\components\transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\components\camera\camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\audio\audio_source.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\audio\audio_clip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\system\scene_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -147,15 +138,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\test\CharacterTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\sprite\sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\sprite\sprite_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\components\sprite\sprite_animator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\system\core\asset_loader.h">
@@ -200,13 +182,31 @@
     <ClInclude Include="framework\scenes\score_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\components\text_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resources\libs_internal\pugixml\pugiconfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resources\libs_internal\pugixml\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\audio_clip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\audio_source.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\sprite_animator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\sprite_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\text_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
