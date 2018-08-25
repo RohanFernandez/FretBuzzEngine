@@ -2,11 +2,10 @@
 #include "asset_loader.h"
 #include "../../graphics/shader.h"
 #include "../../graphics/texture.h"
-#include "../../components/sprite/sprite.h"
-#include "../../components/audio/audio_clip.h"
+#include "../../components/sprite.h"
+#include "../../components/audio_clip.h"
 
 #include <fstream>
-#include <iostream>
 
 namespace ns_fretBuzz
 {

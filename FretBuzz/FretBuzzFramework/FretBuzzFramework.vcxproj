@@ -186,7 +186,7 @@
     <ClCompile Include="framework\system\core\input.cpp" />
     <ClCompile Include="framework\system\core\system.cpp" />
     <ClCompile Include="framework\system\core\window.cpp" />
-    <ClCompile Include="resources\libs_internal\pugixml\pugixml.cpp" />
+    <ClCompile Include="libs_internal\pugixml\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\components\audio_clip.h" />
@@ -222,8 +222,8 @@
     <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\core\window.h" />
     <ClInclude Include="framework\utils\file_utils.h" />
-    <ClInclude Include="resources\libs_internal\pugixml\pugiconfig.hpp" />
-    <ClInclude Include="resources\libs_internal\pugixml\pugixml.hpp" />
+    <ClInclude Include="libs_internal\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="libs_internal\pugixml\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />

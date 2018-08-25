@@ -51,8 +51,14 @@ namespace ns_fretBuzz
 								 glm::vec3(0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, -0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0 )
 							}
 								{
-				int i = 0;
+				
 								}
+
+			Sprite(glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, Texture* a_pTexture, Shader* a_pShader)
+				: Sprite(a_v2SpriteCoords, a_v2DimensionsWH, a_v2TexDimensionsWH, {0.0f, 0.0f}, a_pTexture, a_pShader)
+			{
+			
+			}
 
 			Sprite(Sprite& a_SpriteData)
 				: m_pShader{ a_SpriteData.m_pShader },
