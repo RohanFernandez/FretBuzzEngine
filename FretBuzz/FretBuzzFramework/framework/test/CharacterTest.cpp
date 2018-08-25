@@ -3,6 +3,10 @@
 #include "CharacterTest.h"
 #include "../system/core/resource_manager.h"
 #include "../components/sprite/sprite_renderer.h"
+#include <ft2build.h>
+//#include FT_FREETYPE_H
+
+#include <tinyxml2.h>
 
 namespace ns_fretBuzz
 {

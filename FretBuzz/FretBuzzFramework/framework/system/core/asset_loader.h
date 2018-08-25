@@ -45,6 +45,12 @@ namespace ns_fretBuzz
 			static constexpr char ATTRIBUTE_SPRITE_Y[] = "y";
 			static constexpr char ATTRIBUTE_SPRITE_W[] = "w";
 			static constexpr char ATTRIBUTE_SPRITE_H[] = "h";
+			static constexpr char ATTRIBUTE_SPRITE_PX[] = "pX"; // Pivot X in the original sprite
+			static constexpr char ATTRIBUTE_SPRITE_PY[] = "pY"; // Pivot Y in the original sprite
+			static constexpr char ATTRIBUTE_SPRITE_OX[] = "oX"; //Offset width, which is the offset of actual sprite from the original sprite
+			static constexpr char ATTRIBUTE_SPRITE_OY[] = "oY"; //Offset height, which is the offset of actual sprite from the original sprite
+			static constexpr char ATTRIBUTE_SPRITE_OW[] = "oW"; //Original sprite width with the char in the center
+			static constexpr char ATTRIBUTE_SPRITE_OH[] = "oH"; //Original sprite height with the char in the center
 
 			static void loadAssets(ResourceManager* a_pResourceManager);
 

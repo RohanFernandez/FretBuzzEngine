@@ -260,10 +260,17 @@ namespace ns_fretBuzz
 						l_currentSpriteData != l_currentSprite->end();
 						l_currentSpriteData++)
 					{
-						std::string l_strX;
-						std::string l_strY;
-						std::string l_strW;
-						std::string l_strH;
+						float l_fX = 0.0f;
+						float l_fY = 0.0f;
+						float l_fW = 0.0f;
+						float l_fH = 0.0f;
+						float l_fOX = 0.0f;
+						float l_fOY = 0.0f;
+						float l_fPX = 0.0f;
+						float l_fPY = 0.0f;
+						float l_fOW = 0.0f;
+						float l_fOH = 0.0f;
+
 						std::string l_strID;
 
 						for (pugi::xml_attribute_iterator l_CurrSpriteDataAttrib = l_currentSpriteData->attributes_begin();
@@ -273,23 +280,47 @@ namespace ns_fretBuzz
 							std::string l_strCurrentAttrib = l_CurrSpriteDataAttrib->name();
 							if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_X) == 0)
 							{
-								l_strX = l_CurrSpriteDataAttrib->value();
+								l_fX = std::stof(l_CurrSpriteDataAttrib->value());
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_Y) == 0)
 							{
-								l_strY = l_CurrSpriteDataAttrib->value();
+								l_fY = std::stof(l_CurrSpriteDataAttrib->value());
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_W) == 0)
 							{
-								l_strW = l_CurrSpriteDataAttrib->value();
+								l_fW = std::stof(l_CurrSpriteDataAttrib->value());
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_H) == 0)
 							{
-								l_strH = l_CurrSpriteDataAttrib->value();
+								l_fH = std::stof(l_CurrSpriteDataAttrib->value());
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_ASSET_ID) == 0)
 							{
-								l_strID = l_CurrSpriteDataAttrib->value();
+								l_strID = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OX) == 0)
+							{
+								l_fOX = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OY) == 0)
+							{
+								l_fOY = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_PX) == 0)
+							{
+								l_fPX = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_PY) == 0)
+							{
+								l_fPY = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OW) == 0)
+							{
+								l_fOW = std::stof(l_CurrSpriteDataAttrib->value());
+							}
+							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OH) == 0)
+							{
+								l_fOH = std::stof(l_CurrSpriteDataAttrib->value());
 							}
 							else
 							{
@@ -297,7 +328,11 @@ namespace ns_fretBuzz
 							}
 						}
 						//std::cout << "l_strX:: " << l_strX << "  ,l_strY:: " << l_strY << "  ,l_strW:: " << l_strW << "  ,l_strH:: " << l_strH << "\n";
-						ns_graphics::Sprite l_Sprite({ std::stof(l_strX.c_str()), std::stof(l_strY.c_str()) }, { std::stof(l_strW.c_str()), std::stof(l_strH.c_str(),0) }, { l_fTextureW,l_fTextureH }, l_pTexture, l_pShader);
+
+						float l_fSpriteOffsetX = ((l_fW / 2.0f) - ((l_fOW * l_fPX) - l_fOX));
+						float l_fSpriteOffsetY = -((l_fH / 2.0f) - ((l_fOH * l_fPY) - l_fOY));
+
+						ns_graphics::Sprite l_Sprite({ l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture, l_pShader);
 						l_vectSpriteData.emplace_back(l_Sprite);
 					}
 					ns_graphics::SpriteSheet l_Spite(l_pTexture, l_pShader, l_vectSpriteData, std::stof(l_strTimePerSprite.c_str()));

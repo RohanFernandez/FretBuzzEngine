@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\tinyxml2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\tinyxml2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\tinyxml2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\tinyxml2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\tinyxml2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\tinyxml2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\tinyxml2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\tinyxml2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +116,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +150,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -159,6 +159,7 @@
     <ClCompile Include="framework\components\camera\camera.cpp" />
     <ClCompile Include="framework\components\sprite\sprite_animator.cpp" />
     <ClCompile Include="framework\components\sprite\sprite_renderer.cpp" />
+    <ClCompile Include="framework\components\text_renderer.cpp" />
     <ClCompile Include="framework\system\component.cpp" />
     <ClCompile Include="framework\system\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="framework\components\camera\camera.h" />
     <ClInclude Include="framework\components\sprite\sprite_animator.h" />
     <ClInclude Include="framework\components\sprite\sprite_renderer.h" />
+    <ClInclude Include="framework\components\text_renderer.h" />
     <ClInclude Include="framework\system\component.h" />
     <ClInclude Include="framework\system\game_object.h" />
     <ClInclude Include="framework\components\sprite\sprite.h" />

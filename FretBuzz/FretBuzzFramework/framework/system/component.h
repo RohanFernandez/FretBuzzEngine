@@ -9,7 +9,8 @@ namespace ns_fretBuzz
 		{
 			AUDIO_SOURCE,
 			SPRITE_RENDERER,
-			SPRITE_ANIMATOR
+			SPRITE_ANIMATOR,
+			TEXT_RENDERER
 		};
 
 		class GameObject;
