@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 			return new SpriteAnimator(a_GameObj, a_vectSpriteSheedIDs);
 		}
 
-		void SpriteAnimator::play(std::string a_strAnimationID)
+		void SpriteAnimator::play(std::string a_strAnimationID, bool a_bIsLooped )
 		{
 			std::map<std::string, ns_graphics::SpriteSheet*>::iterator l_SpriteSheetIterator = m_mapSpriteSheetIDs.find(a_strAnimationID);
 			if (l_SpriteSheetIterator == m_mapSpriteSheetIDs.end())

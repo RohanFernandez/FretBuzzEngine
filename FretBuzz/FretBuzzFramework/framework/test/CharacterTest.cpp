@@ -6,13 +6,11 @@
 #include <ft2build.h>
 //#include FT_FREETYPE_H
 
-#include <tinyxml2.h>
-
 namespace ns_fretBuzz
 {
 
 	CharacterTest::CharacterTest()
-		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
+		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			ns_graphics::SpriteRenderer::addToGameObject(*this);

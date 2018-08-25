@@ -5,7 +5,6 @@
 #include "../../components/sprite/sprite.h"
 #include "../../components/audio/audio_clip.h"
 
-
 #include <fstream>
 #include <iostream>
 

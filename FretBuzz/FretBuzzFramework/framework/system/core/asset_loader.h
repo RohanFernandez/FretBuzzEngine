@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../resources/libs/pugixml.hpp"
+#include "../../../resources/libs_internal/pugixml/pugixml.hpp"
 #include "resource_manager.h"
 
 namespace ns_fretBuzz

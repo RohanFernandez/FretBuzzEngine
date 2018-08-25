@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 		public:
 			static SpriteAnimator* addToGameObject(GameObject& a_GameObj, std::vector<std::string> a_vectSpriteSheedIDs);
 
-			void play(std::string a_strAnimationID);
+			void play(std::string a_strAnimationID, bool a_bIsLooped = false);
 			void pause();
 
 			virtual void update(float a_fDeltaTime) override;
