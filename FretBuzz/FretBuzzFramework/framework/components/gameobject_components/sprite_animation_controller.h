@@ -1,5 +1,5 @@
 #pragma once
-#include "../sprite_animation_controller.h"
+#include "../sprite_animator.h"
 #include "sprite_renderer.h"
 #include <map>
 
@@ -7,13 +7,13 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class SpriteAnimator : public IComponent
+		class SpriteAnimationController : public IComponent
 		{
 		private:
-			SpriteAnimator(GameObject& a_GameObj, std::string a_strAnimationControllerId);
-			~SpriteAnimator();
+			SpriteAnimationController(GameObject& a_GameObj, std::string a_strAnimatorId);
+			~SpriteAnimationController();
 
-			SpriteAnimationController* m_pSpriteAnimationController = nullptr;
+			SpriteAnimator* m_pSpriteAnimator = nullptr;
 
 			ns_graphics::Sprite* m_pCurrentSprite = nullptr;
 			ns_graphics::SpriteRenderer* m_pSpriteRenderer = nullptr;
@@ -31,10 +31,10 @@ namespace ns_fretBuzz
 
 			void playStateID(std::string a_strAnimationID);
 
-			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::SPRITE_ANIMATOR;
+			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER;
 
 		public:
-			static SpriteAnimator* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
+			static SpriteAnimationController* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
 
 			void play(std::string a_strAnimationID);
 			void pause();

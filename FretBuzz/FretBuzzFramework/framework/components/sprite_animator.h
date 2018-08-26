@@ -89,7 +89,7 @@ namespace ns_fretBuzz
 		};
 
 
-		class SpriteAnimationController : public ns_system::IManagedResource
+		class SpriteAnimator : public ns_system::IManagedResource
 		{
 		protected:
 			std::string m_strAnimControllerId;
@@ -98,14 +98,14 @@ namespace ns_fretBuzz
 			virtual void destroyResource() override;
 
 		public:
-			SpriteAnimationController() = delete;
-			SpriteAnimationController(std::string a_strAnimControllerId, std::vector<AnimationState> a_vectAnimStates);
-			SpriteAnimationController(SpriteAnimationController& a_SpriteAnimationController);
-			SpriteAnimationController(SpriteAnimationController&& a_SpriteAnimationController);
+			SpriteAnimator() = delete;
+			SpriteAnimator(std::string a_strAnimControllerId, std::vector<AnimationState> a_vectAnimStates);
+			SpriteAnimator(SpriteAnimator& a_SpriteAnimationController);
+			SpriteAnimator(SpriteAnimator&& a_SpriteAnimationController);
 
-			void operator=(SpriteAnimationController a_SpriteAnimationController);
+			void operator=(SpriteAnimator a_SpriteAnimationController);
 
-			virtual ~SpriteAnimationController();
+			virtual ~SpriteAnimator();
 
 			inline std::vector<AnimationState>& getAnimStates()
 			{

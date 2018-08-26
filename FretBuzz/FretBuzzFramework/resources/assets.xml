@@ -62,10 +62,10 @@
 
 <!--SPRITE ANIMATIONS START-->
   <SpriteAnimations>
-        <animaton_controller id ="Character">
-            <animstate id="idle" spritesheet_id="sword_walk" is_loop="true" time_per_sprite="0.1" trigger="slash|slash;" />
-            <animstate id="slash" spritesheet_id="sword_slash" is_loop="false" time_per_sprite="0.1" trigger="idle|idle;" />
-        </animaton_controller>  
+        <sprite_animator id ="Character">
+            <anim_state id="idle" spritesheet_id="sword_walk" is_loop="true" time_per_sprite="0.07" trigger="slash|slash;" />
+            <anim_state id="slash" spritesheet_id="sword_slash" is_loop="false" time_per_sprite="0.07" trigger="idle|idle;" />
+        </sprite_animator>  
   </SpriteAnimations>
 <!--SPRITE ANIMATIONS END-->
 

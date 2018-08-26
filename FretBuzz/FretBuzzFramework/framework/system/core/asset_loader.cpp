@@ -4,7 +4,7 @@
 #include "../../graphics/texture.h"
 #include "../../components/sprite.h"
 #include "../../components/audio_clip.h"
-#include "../../components/sprite_animation_controller.h"
+#include "../../components/sprite_animator.h"
 
 #include <fstream>
 #include <sstream>
@@ -355,7 +355,7 @@ namespace ns_fretBuzz
 				std::vector<AnimationState> l_CurrentVectAnimStates;
 				std::string l_strAnimatorID = l_currentAnimator->attribute(ATTRIBUTE_ASSET_ID).value();
 
-				if (ResourceManager::getResource<SpriteAnimationController>(l_strAnimatorID) != nullptr)
+				if (ResourceManager::getResource<SpriteAnimator>(l_strAnimatorID) != nullptr)
 				{
 					std::cout << "AssetLoader::loadSpriteAnimations:: Resource with name '" << l_strAnimatorID << "' already exists as a resource \n";
 					continue;
@@ -426,8 +426,8 @@ namespace ns_fretBuzz
 					}
 					l_CurrentVectAnimStates.emplace_back(AnimationState(l_strAnimId, l_strSpriteSheetId, is_loop, l_fTimePerSprite, l_mapTrigger));
 				}
-				SpriteAnimationController l_CurrentSpriteAnimController(l_strAnimatorID, l_CurrentVectAnimStates);
-				a_pResourceManager->addResource<SpriteAnimationController>(l_strAnimatorID, l_CurrentSpriteAnimController);
+				SpriteAnimator l_CurrentSpriteAnimController(l_strAnimatorID, l_CurrentVectAnimStates);
+				a_pResourceManager->addResource<SpriteAnimator>(l_strAnimatorID, l_CurrentSpriteAnimController);
 			}
 		}
 	}

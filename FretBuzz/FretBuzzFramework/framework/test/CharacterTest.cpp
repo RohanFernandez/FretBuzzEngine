@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
-			m_pSpriteAnimator = ns_system::SpriteAnimator::addToGameObject(*this, "Character" );
+			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
