@@ -25,7 +25,7 @@ namespace ns_fretBuzz
 
 			m_strDefaultStateID = m_pSpriteAnimator->getAnimStates()[0].getStateId();
 			m_pAnimState = m_pSpriteAnimator->getAnimStateWithID(m_strDefaultStateID);
-
+			playStateID(m_strDefaultStateID);
 		}
 
 		SpriteAnimationController::~SpriteAnimationController()
@@ -62,7 +62,6 @@ namespace ns_fretBuzz
 			m_fTimePerSprite = m_pAnimState->getTimePerSprite();
 			m_bIsCurrentAnimationLooped = m_pAnimState->isLooped();
 			m_iSpriteCount = m_pAnimState->getSpriteSheet()->getSpriteCount();
-
 		}
 
 		void SpriteAnimationController::update(float a_fDeltaTime)
@@ -74,20 +73,16 @@ namespace ns_fretBuzz
 			{
 				m_fTimePassedInCurrentSprite -= m_fTimePerSprite;
 
-				if (!m_bIsCurrentAnimationLooped && m_iCurrentSpriteIndex == (m_iSpriteCount - 1))
+				++m_iCurrentSpriteIndex;
+				if (!m_bIsCurrentAnimationLooped && m_iCurrentSpriteIndex >= m_iSpriteCount)
 				{
  					playStateID(m_strDefaultStateID);
 					return;
 				}
 
-				m_pCurrentSprite = &(*m_pCurrentSpriteSheet)[(++m_iCurrentSpriteIndex) % m_iSpriteCount];
+				m_pCurrentSprite = &(*m_pCurrentSpriteSheet)[m_iCurrentSpriteIndex % m_iSpriteCount];
 				m_pSpriteRenderer->setSprite(m_pCurrentSprite);
 			}
-		}
-
-		void SpriteAnimationController::render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
-		{
-
 		}
 	}
 }

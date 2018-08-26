@@ -37,10 +37,8 @@ namespace ns_fretBuzz
 			static SpriteAnimationController* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
 
 			void play(std::string a_strAnimationID);
-			void pause();
 
 			virtual void update(float a_fDeltaTime) override;
-			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) override;
 		};
 	}
 }
