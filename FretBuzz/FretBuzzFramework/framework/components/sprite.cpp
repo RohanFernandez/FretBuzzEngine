@@ -62,7 +62,7 @@ namespace ns_fretBuzz
 			m_pShader = nullptr;
 		}
 
-		std::vector<Sprite>* SpriteSheet::getSpriteSheet()
+		std::vector<Sprite>* SpriteSheet::getSprites()
 		{
 			return &m_vectSpriteData;
 		}

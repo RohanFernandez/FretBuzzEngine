@@ -13,6 +13,7 @@ namespace ns_fretBuzz
 			static void loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator);
 			static void loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_TextureNodeIterator);
 			static void loadSprites(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
+			static void loadSpriteAnimations(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
 
 		public:
 			//Asset
@@ -51,6 +52,15 @@ namespace ns_fretBuzz
 			static constexpr char ATTRIBUTE_SPRITE_OY[] = "oY"; //Offset height, which is the offset of actual sprite from the original sprite
 			static constexpr char ATTRIBUTE_SPRITE_OW[] = "oW"; //Original sprite width with the char in the center
 			static constexpr char ATTRIBUTE_SPRITE_OH[] = "oH"; //Original sprite height with the char in the center
+
+			//Animations
+			static constexpr char SPRITE_ANIMATION_NODE_NAME[] = "SpriteAnimations";
+			static constexpr char ANIMATION_CONROLLER[] = "animation_controller";
+			static constexpr char ANIMATOR_STATE_NAME[] = "animstate";
+			static constexpr char ATTRIBUTE_SPRITESHEET_ID[] = "spritesheet_id";
+			static constexpr char ATTRIBUTE_IS_LOOP[] = "is_loop";
+			static constexpr char ATTRIBUTE_TIME_PER_SPRITE[] = "time_per_sprite";
+			static constexpr char ATTRIBUTE_TIME_ANIM_TRIGGER[] = "trigger";
 
 			static void loadAssets(ResourceManager* a_pResourceManager);
 

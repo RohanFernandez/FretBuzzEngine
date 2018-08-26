@@ -4,8 +4,10 @@
 #include "../../graphics/texture.h"
 #include "../../components/sprite.h"
 #include "../../components/audio_clip.h"
+#include "../../components/sprite_animation_controller.h"
 
 #include <fstream>
+#include <sstream>
 
 namespace ns_fretBuzz
 {
@@ -45,6 +47,11 @@ namespace ns_fretBuzz
 				else if (l_currentAssetTypeName.compare(SPRITE_NODE_NAME) == 0)
 				{
 					loadSprites(a_pResourceManager, l_currentAsset);
+				}
+				//Load Animations
+				else if (l_currentAssetTypeName.compare(SPRITE_ANIMATION_NODE_NAME) == 0)
+				{
+					loadSpriteAnimations(a_pResourceManager, l_currentAsset);
 				}
 				else
 				{
@@ -278,47 +285,47 @@ namespace ns_fretBuzz
 							std::string l_strCurrentAttrib = l_CurrSpriteDataAttrib->name();
 							if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_X) == 0)
 							{
-								l_fX = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fX = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_Y) == 0)
 							{
-								l_fY = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fY = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_W) == 0)
 							{
-								l_fW = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fW = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_H) == 0)
 							{
-								l_fH = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fH = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_ASSET_ID) == 0)
 							{
-								l_strID = std::stof(l_CurrSpriteDataAttrib->value());
+								l_strID = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OX) == 0)
 							{
-								l_fOX = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fOX = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OY) == 0)
 							{
-								l_fOY = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fOY = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_PX) == 0)
 							{
-								l_fPX = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fPX = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_PY) == 0)
 							{
-								l_fPY = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fPY = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OW) == 0)
 							{
-								l_fOW = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fOW = l_CurrSpriteDataAttrib->as_float();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OH) == 0)
 							{
-								l_fOH = std::stof(l_CurrSpriteDataAttrib->value());
+								l_fOH = l_CurrSpriteDataAttrib->as_float();
 							}
 							else
 							{
@@ -336,7 +343,91 @@ namespace ns_fretBuzz
 					ns_graphics::SpriteSheet l_Spite(l_pTexture, l_pShader, l_vectSpriteData, std::stof(l_strTimePerSprite.c_str()));
 					a_pResourceManager->addResource<ns_graphics::SpriteSheet>(l_strSpriteID, l_Spite);
 				}
+			}
+		}
 
+		void AssetLoader::loadSpriteAnimations(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AnimatorNodeIterator)
+		{
+			for (pugi::xml_node_iterator l_currentAnimator = a_AnimatorNodeIterator->begin();
+				l_currentAnimator != a_AnimatorNodeIterator->end();
+				l_currentAnimator++)
+			{
+				std::vector<AnimationState> l_CurrentVectAnimStates;
+				std::string l_strAnimatorID = l_currentAnimator->attribute(ATTRIBUTE_ASSET_ID).value();
+
+				if (ResourceManager::getResource<SpriteAnimationController>(l_strAnimatorID) != nullptr)
+				{
+					std::cout << "AssetLoader::loadSpriteAnimations:: Resource with name '" << l_strAnimatorID << "' already exists as a resource \n";
+					continue;
+				}
+
+				for (pugi::xml_node_iterator l_currentAnimState = l_currentAnimator->begin();
+					l_currentAnimState != l_currentAnimator->end();
+					l_currentAnimState++)
+				{
+					std::string l_strAnimId;
+					std::string l_strSpriteSheetId;
+					float l_fTimePerSprite = 0.0f;
+					bool is_loop = false;
+					std::map<std::string, std::string> l_mapTrigger;
+
+					for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentAnimState->attributes_begin();
+						l_CurrentAttribute != l_currentAnimState->attributes_end();
+						l_CurrentAttribute++)
+					{
+						std::string l_strCurrentAttribute = l_CurrentAttribute->name();
+						if (l_strCurrentAttribute.compare(ATTRIBUTE_ASSET_ID) == 0)
+						{
+							l_strAnimId = l_CurrentAttribute->value();
+						}
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_SPRITESHEET_ID) == 0)
+						{
+							l_strSpriteSheetId = l_CurrentAttribute->value();
+						}
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_TIME_PER_SPRITE) == 0)
+						{
+							l_fTimePerSprite = l_CurrentAttribute->as_float();
+						}
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_IS_LOOP) == 0)
+						{
+							is_loop = l_CurrentAttribute->as_bool();
+						}
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_TIME_ANIM_TRIGGER) == 0)
+						{
+							std::stringstream l_strStream(l_CurrentAttribute->value());
+							std::string l_strCurrentTrigger;
+							while (getline(l_strStream, l_strCurrentTrigger, ';'))
+							{
+								std::string l_strTrigger;
+								std::string l_strAnimStateId;
+								std::string l_strCurrentExtract;
+								std::stringstream l_strStream(l_strCurrentTrigger);
+
+								int l_iExtractIndex = 0;
+								while (getline(l_strStream, l_strCurrentExtract, '|'))
+								{
+									if (l_iExtractIndex == 0)
+									{
+										l_strTrigger = l_strCurrentExtract;
+									}
+									else if (l_iExtractIndex == 1)
+									{
+										l_strAnimStateId = l_strCurrentExtract;
+									}
+									l_iExtractIndex++;
+								}
+								l_mapTrigger.insert(std::pair<std::string, std::string>(l_strTrigger, l_strAnimStateId));
+							}
+						}
+						else
+						{
+							std::cout << "AssetLoader::loadAnimations:: Failed to parse anim state attribute with name '" << l_strCurrentAttribute << "'/n";
+						}
+					}
+					l_CurrentVectAnimStates.emplace_back(AnimationState(l_strAnimId, l_strSpriteSheetId, is_loop, l_fTimePerSprite, l_mapTrigger));
+				}
+				SpriteAnimationController l_CurrentSpriteAnimController(l_strAnimatorID, l_CurrentVectAnimStates);
+				a_pResourceManager->addResource<SpriteAnimationController>(l_strAnimatorID, l_CurrentSpriteAnimController);
 			}
 		}
 	}

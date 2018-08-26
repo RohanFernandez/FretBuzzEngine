@@ -59,4 +59,14 @@
     </spritesheet>
   </Sprites>
 <!-- SPRITES END-->
+
+<!--SPRITE ANIMATIONS START-->
+  <SpriteAnimations>
+        <animaton_controller id ="Character">
+            <animstate id="idle" spritesheet_id="sword_walk" is_loop="true" time_per_sprite="0.1" trigger="slash|slash;" />
+            <animstate id="slash" spritesheet_id="sword_slash" is_loop="false" time_per_sprite="0.1" trigger="idle|idle;" />
+        </animaton_controller>  
+  </SpriteAnimations>
+<!--SPRITE ANIMATIONS END-->
+
 </Assets>

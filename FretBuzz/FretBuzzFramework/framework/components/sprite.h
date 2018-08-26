@@ -157,7 +157,7 @@ namespace ns_fretBuzz
 
 			float m_fTimePerSprite = 0.0f;
 
-			std::vector<Sprite>* getSpriteSheet();
+			std::vector<Sprite>* getSprites();
 			Sprite* getSprite(int l_iSpriteIndex);
 
 			void operator=(SpriteSheet& a_SpriteSheet);
@@ -166,6 +166,11 @@ namespace ns_fretBuzz
 			inline float getTimePerSprite() const
 			{
 				return m_fTimePerSprite;
+			}
+
+			inline int getSpriteCount() const
+			{
+				return m_vectSpriteData.size();
 			}
 		};
 	}

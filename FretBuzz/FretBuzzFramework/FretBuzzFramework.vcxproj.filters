@@ -84,9 +84,6 @@
     <ClCompile Include="framework\components\gameobject_components\audio_source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\components\gameobject_components\sprite_animator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +97,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="libs_internal\pugixml\pugixml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\sprite_animator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\sprite_animation_contoller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="libs_internal\pugixml\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\sprite_animation_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -164,6 +164,7 @@
     <ClCompile Include="framework\components\gameobject_components\sprite_animator.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp" />
     <ClCompile Include="framework\components\gameobject_components\text_renderer.cpp" />
+    <ClCompile Include="framework\components\sprite_animation_contoller.cpp" />
     <ClCompile Include="framework\system\component.cpp" />
     <ClCompile Include="framework\system\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="libs_internal\pugixml\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="framework\components\sprite_animation_controller.h" />
     <ClInclude Include="framework\components\audio_clip.h" />
     <ClInclude Include="framework\components\gameobject_components\audio_source.h" />
     <ClInclude Include="framework\components\camera.h" />

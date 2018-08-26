@@ -13,8 +13,7 @@ namespace ns_fretBuzz
 		: ns_system::GameObject("character_test", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
-			ns_graphics::SpriteRenderer::addToGameObject(*this);
-			m_pSpriteAnimator = ns_system::SpriteAnimator::addToGameObject(*this, std::vector<std::string>{"sword_walk","sword_slash"});
+			m_pSpriteAnimator = ns_system::SpriteAnimator::addToGameObject(*this, "Character" );
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -41,12 +40,12 @@ namespace ns_fretBuzz
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_U))
 			{
-				m_pSpriteAnimator->play("sword_walk");
+				m_pSpriteAnimator->play("idle");
 			}
 
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_Y))
+			if (ns_system::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_LEFT))
 			{
-				m_pSpriteAnimator->play("sword_slash");
+				m_pSpriteAnimator->play("slash");
 			}
 
 			float l_fCurrentSpeed = m_fVelocity * a_fDeltaTime;
