@@ -88,12 +88,15 @@ namespace ns_fretBuzz
 
 			Game& l_Game = *(s_pInstance->m_pGame);
 			MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
+			Input& l_Input = *(s_pInstance->m_pInput);
 
 			float l_fCurrentDeltaTime = 0.0f;
 
 			while (!l_MasterRenderer.isWindowClosed())
 			{
 				l_Game.updateScenes(l_fCurrentDeltaTime);
+
+				l_Input.Update(l_fCurrentDeltaTime);
 				l_fCurrentDeltaTime = l_MasterRenderer.render(l_Game);
 			}
 

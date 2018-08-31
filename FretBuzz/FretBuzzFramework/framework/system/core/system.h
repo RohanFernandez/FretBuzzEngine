@@ -7,6 +7,8 @@
 #include "input.h"
 #include "resource_manager.h"
 
+#include <Box2D/Box2D.h>
+
 namespace ns_fretBuzz
 {
 	namespace ns_system

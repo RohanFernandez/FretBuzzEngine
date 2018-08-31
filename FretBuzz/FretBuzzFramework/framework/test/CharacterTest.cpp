@@ -20,6 +20,7 @@ namespace ns_fretBuzz
 		{
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_G))
 			{
+				m_pAudSrc->setLooping(true);
 				m_pAudSrc->play();
 			}
 
@@ -38,12 +39,12 @@ namespace ns_fretBuzz
 				m_pAudSrc->pause();
 			}
 
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_U))
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_U))
 			{
 				m_pSpriteAnimator->play("idle");
 			}
 
-			if (ns_system::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_LEFT))
+			if (ns_system::Input::IsKeyPutUp(GLFW_KEY_Y))
 			{
 				m_pSpriteAnimator->play("slash");
 			}
@@ -81,12 +82,14 @@ namespace ns_fretBuzz
 
 			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - ns_system::Window::getWidth() / 2.0f, ns_system::Window::getHeight() / 2.0f - (float)m_dMouseY, 0.0f);
 			glm::vec3 l_v3PlayerPosition = m_Transform.getPosition();
+			
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
-
-			float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })) );
-			if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
-
-			m_Transform.rotate({0.0f, 0.0f, l_fAngleToRotate });
+			float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })));
+			if (!glm::isnan(l_fAngleToRotate))
+			{
+				if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
+				m_Transform.rotate({ 0.0f, 0.0f, l_fAngleToRotate });
+			}
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);

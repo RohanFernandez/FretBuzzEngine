@@ -1,5 +1,6 @@
 #pragma once
 #include <glfw3.h>
+#include <stack>
 
 namespace ns_fretBuzz
 {
@@ -11,9 +12,16 @@ namespace ns_fretBuzz
 
 			enum KEY_STATE
 			{
-				KEY_RELEASED,
-				KEY_PRESS,
-				KEY_REPEAT
+				KEY_RELEASED = 0,
+				KEY_PRESS = 1,
+				KEY_REPEAT = 2,
+				KEY_UNTOUCHED = 3
+			};
+
+			struct KEY_EVENT
+			{
+				KEY_STATE m_KeyState = KEY_UNTOUCHED;
+				int m_iKeyIndex = 0;
 			};
 
 			//singleton instance
@@ -24,8 +32,8 @@ namespace ns_fretBuzz
 			static constexpr int MAX_KEYBOARD_BTNS = 1024;
 			static constexpr int MAX_MOUSE_BTNS = 32;
 
-			KEY_STATE m_arrKeyCode[MAX_KEYBOARD_BTNS] = { KEY_RELEASED };
-			KEY_STATE m_arrMouseCode[MAX_MOUSE_BTNS] = { KEY_RELEASED };
+			KEY_STATE m_arrCurrentKeyCode[MAX_KEYBOARD_BTNS] = {};
+			KEY_STATE m_arrCurrentMouseCode[MAX_MOUSE_BTNS] = {};
 
 			double m_dMousePositionX = 0.0f;
 			double m_dMousePositionY = 0.0f;
@@ -42,9 +50,14 @@ namespace ns_fretBuzz
 			//GLFW gets the current mouse position
 			static void OnGetCursorPosition(GLFWwindow* a_pGLFWwindow, double a_dPositionX, double a_dPositionY);
 
+			std::stack<KEY_EVENT> m_StackKeyInput;
+			std::stack<KEY_EVENT> m_StackMouseInput;
+
 		public:
 			Input(GLFWwindow* a_pGLFWWindow);
 			~Input();
+
+			void Update(const float a_fDeltaTime);
 
 			//Returns mouse position
 			static void GetMousePosition(double& a_dMouseX, double& a_dMouseY);
@@ -52,8 +65,20 @@ namespace ns_fretBuzz
 			//Checks if keyboard key with given keycode is down
 			static bool IsKeyDown(const int a_iKeyCode);
 
+			//Checks if keyboard key with given keycode is put down
+			static bool IsKeyPutDown(const int a_iKeyCode);
+
+			//Checks if keyboard key with given keycode is put up
+			static bool IsKeyPutUp(const int a_iKeyCode);
+
 			//Checks if mouse key with given keycode is down
 			static bool IsMouseBtnDown(const int a_iMouseKeyCode);
+
+			//Checks if mouse key with given keycode is put down
+			static bool IsMouseBtnPutDown(const int a_iMouseKeyCode);
+
+			//Checks if mouse key with given keycode is put up
+			static bool IsMouseBtnPutUp(const int a_iKeyCode);
 
 			//Sets the cursor to enabled or disabled. If disabled the cursor will have no window bounds and will not be visible on screen.
 			//If enabled the second parameter will set if the cursor is visible or not.
