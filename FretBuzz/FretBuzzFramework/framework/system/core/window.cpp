@@ -10,9 +10,9 @@ namespace ns_fretBuzz
 		Window* Window::s_pInstance = nullptr;
 
 		Window::Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName)
-			: m_uiWidth{a_uiWidth},
-			  m_uiHeight{ a_uiHeight },
-			  m_strName{ a_strName }
+			: m_uiWidth{ a_uiWidth },
+			m_uiHeight{ a_uiHeight },
+			m_strName{ a_strName }
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -33,7 +33,7 @@ namespace ns_fretBuzz
 				std::cout << "Window::initialize:: Failed to initialize GLFW. \n";
 				return false;
 			}
-			
+
 			m_pGLFWwindow = glfwCreateWindow(m_uiWidth, m_uiHeight, m_strName.c_str(), nullptr, nullptr);
 			if (m_pGLFWwindow == nullptr)
 			{
@@ -50,11 +50,11 @@ namespace ns_fretBuzz
 
 			if (glewInit() != GLEW_OK)
 			{
-				std::cout<< "Window::initialize:: Failed to initialize GLEW. \n";
+				std::cout << "Window::initialize:: Failed to initialize GLEW. \n";
 				return false;
 			}
-			
-			std::cout<< "Window::initialize:: OpenGL version::"<< glGetString(GL_VERSION)<<"\n";
+
+			std::cout << "Window::initialize:: OpenGL version::" << glGetString(GL_VERSION) << "\n";
 
 			CheckForErrors();
 
@@ -91,7 +91,7 @@ namespace ns_fretBuzz
 			GLenum l_error = glGetError();
 			if (l_error != GLEW_NO_ERROR)
 			{
-				std::cout << "Window::CheckForErrors :: " <<l_error << "\n";
+				std::cout << "Window::CheckForErrors :: " << l_error << "\n";
 			}
 		}
 
@@ -108,9 +108,14 @@ namespace ns_fretBuzz
 			glViewport(0, 0, a_iWidth, a_iHeight);
 		}
 
-		bool Window::isWindowClosed()
+		bool Window::isWindowClosed() const
 		{
 			return glfwWindowShouldClose(m_pGLFWwindow);
+		}
+
+		void Window::closeWindow()
+		{
+			glfwSetWindowShouldClose(m_pGLFWwindow, GLFW_TRUE);
 		}
 	}
 }

@@ -3,7 +3,9 @@
 #include "CharacterTest.h"
 #include "../system/core/resource_manager.h"
 #include "../components/gameobject_components/sprite_renderer.h"
+
 #include <ft2build.h>
+#include "../system/core/system.h"
 //#include FT_FREETYPE_H
 
 namespace ns_fretBuzz
@@ -44,7 +46,7 @@ namespace ns_fretBuzz
 				m_pSpriteAnimator->play("idle");
 			}
 
-			if (ns_system::Input::IsKeyPutUp(GLFW_KEY_Y))
+			if (ns_system::Input::IsMouseBtnPutUp(GLFW_MOUSE_BUTTON_1))
 			{
 				m_pSpriteAnimator->play("slash");
 			}

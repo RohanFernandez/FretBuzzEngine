@@ -43,7 +43,10 @@ namespace ns_fretBuzz
 			static void CheckForErrors();
 
 			//Returns if window is closed
-			bool isWindowClosed();
+			bool isWindowClosed() const;
+
+			//Closes window by telling glfw to set the window open value.
+			void closeWindow();
 
 			//Returns true if the window succeeded
 			//in its initalizing the GLFW and GLEW components

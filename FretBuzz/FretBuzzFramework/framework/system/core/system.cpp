@@ -22,6 +22,8 @@ namespace ns_fretBuzz
 			m_pResourceManager = new ResourceManager();
 			AssetLoader::loadAssets(m_pResourceManager);
 
+			m_pPhysicsEngine = new PhysicsEngine();
+
 			m_pGame = new Game();
 		}
 
@@ -32,7 +34,8 @@ namespace ns_fretBuzz
 				    s_pInstance->m_pAudioEngine == nullptr ||
 				    s_pInstance->m_pAudioEngine == nullptr ||
 				    s_pInstance->m_pMasterRenderer == nullptr ||
-				    s_pInstance->m_pInput == nullptr);
+				    s_pInstance->m_pInput == nullptr ||
+					s_pInstance->m_pPhysicsEngine == nullptr);
 		}
 
 		System::~System()
@@ -67,13 +70,19 @@ namespace ns_fretBuzz
 				m_pMasterRenderer = nullptr;
 			}
 
+			if (m_pPhysicsEngine != nullptr)
+			{
+				delete m_pPhysicsEngine;
+				m_pPhysicsEngine = nullptr;
+			}
+
 			if (s_pInstance == this)
 			{
 				s_pInstance = nullptr;
 			}
 		}
 
-		void System::Run()
+		void System::run()
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -109,6 +118,14 @@ namespace ns_fretBuzz
 			{
 				delete s_pInstance;
 				s_pInstance = nullptr;
+			}
+		}
+
+		void System::close()
+		{
+			if (s_pInstance != nullptr)
+			{
+				s_pInstance->m_pMasterRenderer->closeWindow();
 			}
 		}
 	}

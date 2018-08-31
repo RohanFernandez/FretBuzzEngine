@@ -105,6 +105,9 @@
     <ClCompile Include="framework\components\sprite_animator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\system\core\physics_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -213,6 +216,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\sprite_animator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\core\physics_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

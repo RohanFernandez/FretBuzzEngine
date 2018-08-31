@@ -3,7 +3,7 @@
 
 int main()
 {
-	ns_fretBuzz::ns_system::System::Run();
+	ns_fretBuzz::ns_system::System::run();
 
 	system("pause");
 	return 0;

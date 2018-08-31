@@ -70,5 +70,10 @@ namespace ns_fretBuzz
 		{
 			return m_pWindow->getGLFWWindow();
 		}
+
+		void MasterRenderer::closeWindow() const
+		{
+			m_pWindow->closeWindow();
+		}
 	}
 }

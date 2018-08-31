@@ -6,8 +6,7 @@
 #include "master_renderer.h"
 #include "input.h"
 #include "resource_manager.h"
-
-#include <Box2D/Box2D.h>
+#include "physics_engine.h"
 
 namespace ns_fretBuzz
 {
@@ -42,11 +41,14 @@ namespace ns_fretBuzz
 			//Main resource manager
 			ResourceManager* m_pResourceManager = nullptr;
 
+			PhysicsEngine* m_pPhysicsEngine = nullptr;
+
 		public:
 			~System();
 
 			//Runs the main loop, initializes system publicly if not previusly initialized
-			static void Run();
+			static void run();
+			static void close();
 		};
 	}
 }

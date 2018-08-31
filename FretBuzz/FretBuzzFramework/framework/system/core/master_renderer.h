@@ -28,6 +28,7 @@ namespace ns_fretBuzz
 
 			float render(Game& m_Game);
 
+			void closeWindow() const;
 		};
 	}
 }
