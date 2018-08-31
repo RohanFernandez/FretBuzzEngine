@@ -16,22 +16,39 @@ namespace ns_fretBuzz
 			
 		}
 
-		GameObject::GameObject(std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
 			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale)
 		{
-
+			a_ParentGameObject.addChild(this);
 		}
 
 		GameObject::~GameObject()
 		{
+			for (std::vector<GameObject*>::iterator l_IGameObjCurrent = m_Children.begin();
+				l_IGameObjCurrent != m_Children.end();)
+			{
+				delete (*l_IGameObjCurrent);
+				l_IGameObjCurrent = m_Children.erase(l_IGameObjCurrent);
+			}
+
 			for (std::vector<IComponent*>::iterator l_IComponentCurrent = m_Components.begin();
 				l_IComponentCurrent != m_Components.end();)
 			{
 				delete (*l_IComponentCurrent);
 				l_IComponentCurrent = m_Components.erase(l_IComponentCurrent);
 			}
+		}
+
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+		{
+			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale);
+		}
+
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName)
+		{
+			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
 		}
 
 		void GameObject::addChild(GameObject* a_pIChildGameObject)

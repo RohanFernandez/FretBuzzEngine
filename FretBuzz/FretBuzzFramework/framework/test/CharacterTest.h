@@ -29,8 +29,7 @@ namespace ns_fretBuzz
 
 	public:
 
-		CharacterTest();
-		virtual ~CharacterTest() {};
+		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName);
 
 		virtual void update(float a_fDeltaTime) override;
 		virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;

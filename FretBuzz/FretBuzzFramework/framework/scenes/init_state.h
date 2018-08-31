@@ -11,8 +11,8 @@ namespace ns_fretBuzz
 		public ns_system::IScene
 	{
 	public:
-		ns_system::GameObject m_goParentGameObj;
-		CharacterTest m_CharacterTest;
+		ns_system::GameObject* m_goParentGameObj;
+		CharacterTest* m_CharacterTest;
 
 		GLuint m_VAO;
 		GLuint m_VBO;

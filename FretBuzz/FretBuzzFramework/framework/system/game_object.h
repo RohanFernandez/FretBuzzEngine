@@ -11,8 +11,9 @@ namespace ns_fretBuzz
 	{
 		class GameObject
 		{
+			friend class IScene;
 			friend class IComponent;
-		private:
+		protected:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
 
@@ -30,10 +31,15 @@ namespace ns_fretBuzz
 			bool m_bIsActive = true;
 			void addComponent(IComponent* a_IComponent);
 
-		public:
 			GameObject(std::string a_strName);
-			GameObject(std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
-			~GameObject();
+			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
+
+			virtual ~GameObject();
+
+		public:
+
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName);
 
 			glm::mat4 m_mat4Transformation{1.0f};
 			Transform m_Transform;
