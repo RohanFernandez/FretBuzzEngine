@@ -10,8 +10,10 @@ namespace ns_fretBuzz
 		private:
 			static PhysicsEngine* s_pInstance;
 
+			b2World* m_pB2World = nullptr;
+
 		public:
-			PhysicsEngine();
+			PhysicsEngine(b2Vec2 a_v2Gravity);
 			~PhysicsEngine();
 		};
 	}

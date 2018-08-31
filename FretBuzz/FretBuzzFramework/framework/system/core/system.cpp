@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 			m_pResourceManager = new ResourceManager();
 			AssetLoader::loadAssets(m_pResourceManager);
 
-			m_pPhysicsEngine = new PhysicsEngine();
+			m_pPhysicsEngine = new PhysicsEngine({0.0f, -9.8f});
 
 			m_pGame = new Game();
 		}

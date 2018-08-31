@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 	{	
 		PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 
-		PhysicsEngine::PhysicsEngine()
+		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity)
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -15,13 +15,16 @@ namespace ns_fretBuzz
 			}
 			s_pInstance = this;
 
-
+			m_pB2World = new b2World(a_v2Gravity);
 		}
 
 		PhysicsEngine::~PhysicsEngine()
 		{
 			if (s_pInstance == this)
 			{
+				delete m_pB2World;
+				m_pB2World = nullptr;
+
 				s_pInstance = nullptr;
 			}
 		}

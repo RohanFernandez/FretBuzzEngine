@@ -73,7 +73,7 @@
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
@@ -85,7 +85,7 @@
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
