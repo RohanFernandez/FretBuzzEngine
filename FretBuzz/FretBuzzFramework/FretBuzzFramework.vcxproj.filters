@@ -96,9 +96,6 @@
     <ClCompile Include="framework\components\gameobject_components\text_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="libs_internal\pugixml\pugixml.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\gameobject_components\sprite_animation_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,12 +201,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\gameobject_components\text_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="libs_internal\pugixml\pugiconfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="libs_internal\pugixml\pugixml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\gameobject_components\sprite_animation_controller.h">
