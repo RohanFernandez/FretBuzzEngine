@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CharacterTest.h"
-#include "../system/core/resource_manager.h"
-#include "../components/gameobject_components/sprite_renderer.h"
+#include "../framework/system/core/resource_manager.h"
+#include "../framework/components/gameobject_components/sprite_renderer.h"
 
 #include <ft2build.h>
-#include "../system/core/system.h"
+#include "../framework/system/core/system.h"
 //#include FT_FREETYPE_H
 
 namespace ns_fretBuzz

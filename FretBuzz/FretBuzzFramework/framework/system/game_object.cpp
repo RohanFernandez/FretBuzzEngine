@@ -1,5 +1,6 @@
 #pragma once
 #include "game_object.h"
+#include <iostream>
 
 namespace ns_fretBuzz
 {
@@ -140,6 +141,50 @@ namespace ns_fretBuzz
 				}
 			}
 			return false;
+		}
+
+		void GameObject::resetDontDestroyParent(GameObject& a_NewParent)
+		{
+			for (std::vector<GameObject*>::iterator l_IChildObjCurrent = m_Children.begin();
+				l_IChildObjCurrent != m_Children.end();)
+			{
+				GameObject& l_ChildGameObj = **l_IChildObjCurrent;
+
+				if (l_ChildGameObj.isDontDestroy())
+				{
+					a_NewParent.addChild(&l_ChildGameObj);
+					l_IChildObjCurrent = m_Children.erase(l_IChildObjCurrent);
+				}
+				else
+				{
+					l_ChildGameObj.resetDontDestroyParent(a_NewParent);
+					l_IChildObjCurrent++;
+				}
+			}
+		}
+
+		void GameObject::logHierarchy(int l_iNumOfTabs)
+		{
+			std::string l_strLog = "\n";
+
+			for (int l_iTabIndex = 0; l_iTabIndex < l_iNumOfTabs; l_iTabIndex++)
+			{
+				l_strLog += "\t";
+			}
+			l_strLog += "=> " + m_strName;
+			if (m_bIsDontDestroy)
+			{
+				l_strLog += " [DONT_DESTROY]";
+			}
+
+			std::cout << l_strLog;
+
+			++l_iNumOfTabs;
+			for (std::vector<GameObject*>::iterator l_IChildObjCurrent = m_Children.begin();
+				l_IChildObjCurrent != m_Children.end(); l_IChildObjCurrent++)
+			{
+				(*l_IChildObjCurrent)->logHierarchy(l_iNumOfTabs);
+			}
 		}
 	}
 }

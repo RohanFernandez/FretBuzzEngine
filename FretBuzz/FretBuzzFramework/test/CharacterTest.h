@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../system/game_object.h" 
-#include "../components/gameobject_components/audio_source.h"
-#include "../components/gameobject_components/sprite_animation_controller.h"
+#include "../framework/system/game_object.h" 
+#include "../framework/components/gameobject_components/audio_source.h"
+#include "../framework/components/gameobject_components/sprite_animation_controller.h"
 
-#include "../graphics/shader.h"
-#include "../graphics/texture.h"
-#include "../components/camera.h"
-#include "../system/core/input.h"
+#include "../framework/graphics/shader.h"
+#include "../framework/graphics/texture.h"
+#include "../framework/components/camera.h"
+#include "../framework/system/core/input.h"
 
 namespace ns_fretBuzz
 {

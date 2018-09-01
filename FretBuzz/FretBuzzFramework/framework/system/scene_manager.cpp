@@ -120,30 +120,31 @@ namespace ns_fretBuzz
 
 			m_pCurrentState->OnStateExit();
 
-			if (m_CurrentLoadSceneMode == LoadSceneMode::Single)
-			{
-				///Check to see if new state already exist in active states, then unload all other states except new state.
-				for (std::vector<ISceneData*>::const_iterator l_pCurrentScene = m_vectActiveStates.cbegin();
-					l_pCurrentScene != m_vectActiveStates.cend();
-					)
-				{
-					ISceneData* l_pCurrentISceneData = *l_pCurrentScene;
-					if (l_pCurrentISceneData->getStateName().compare(a_strTransitionTo) == 0)
-					{
-						l_pCurrentScene++;
-						continue;
-					}
-					l_pCurrentScene = m_vectActiveStates.erase(l_pCurrentScene);
-					l_pCurrentISceneData->unloadSceneData();
-				}
-			}
-
 			m_pCurrentState = l_pRegisteredState;
 			ISceneData* l_pCurrentScene = dynamic_cast<ISceneData*>(m_pCurrentState);
 
 			bool l_bCurrentSceneActive = l_pCurrentScene->isSceneLoaded();
-
 			m_pCurrentState->OnStateEnter();
+
+			///sets all dont destroy game objects of the previously active states as a child of the current game object
+			///unload all previous scenes
+			if (m_CurrentLoadSceneMode == LoadSceneMode::Single)
+			{
+				///Check to see if new state already exist in active states, then unload all other states except new state.
+				for (std::vector<ISceneData*>::const_iterator l_pCurrentSceneIterator = m_vectActiveStates.cbegin();
+					l_pCurrentSceneIterator != m_vectActiveStates.cend();)
+				{
+					ISceneData* l_pCurrentISceneData = *l_pCurrentSceneIterator;
+					if (l_pCurrentISceneData->getStateName().compare(a_strTransitionTo) == 0)
+					{
+						l_pCurrentSceneIterator++;
+						continue;
+					}
+					l_pCurrentSceneIterator = m_vectActiveStates.erase(l_pCurrentSceneIterator);
+					l_pCurrentISceneData->resetDontDestroyParent(*l_pCurrentScene);
+					l_pCurrentISceneData->unloadSceneData();
+				}
+			}
 
 			if (!l_bCurrentSceneActive)
 			{
@@ -220,6 +221,15 @@ namespace ns_fretBuzz
 			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				m_vectActiveStates[l_iSceneIndex]->render(a_Camera);
+			}
+		}
+
+		void SceneManager::printSceneHierarchy()
+		{
+			int l_iActiveSceneCount = s_pInstance->m_vectActiveStates.size();
+			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			{
+				s_pInstance->m_vectActiveStates[l_iSceneIndex]->logHierarchy();
 			}
 		}
 	}

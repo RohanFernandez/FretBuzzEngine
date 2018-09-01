@@ -1,7 +1,7 @@
 #pragma once
-#include "../system/scene_manager.h"
-#include "../graphics/shader.h"
-#include "../graphics/texture.h"
+#include "../framework/system/scene_manager.h"
+#include "../framework/graphics/shader.h"
+#include "../framework/graphics/texture.h"
 
 #include "../test/CharacterTest.h"
 
@@ -12,7 +12,6 @@ namespace ns_fretBuzz
 	{
 	public:
 		ns_system::GameObject* m_goParentGameObj;
-		CharacterTest* m_CharacterTest;
 
 		GLuint m_VAO;
 		GLuint m_VBO;

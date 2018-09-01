@@ -42,9 +42,6 @@
     <ClCompile Include="framework\system\scene_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\test\CharacterTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\system\core\asset_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,9 +72,6 @@
     <ClCompile Include="framework\system\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\scenes\init_state.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\audio_clip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -103,6 +97,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\system\core\physics_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\init_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test\CharacterTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,9 +140,6 @@
     <ClInclude Include="framework\utils\FSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\test\CharacterTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\system\core\asset_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -176,15 +173,6 @@
     <ClInclude Include="framework\system\game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\scenes\init_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\scenes\mainmenu_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\scenes\score_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\audio_clip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -210,6 +198,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\system\core\physics_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\init_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\mainmenu_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\score_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\CharacterTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

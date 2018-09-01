@@ -176,7 +176,7 @@
     <ClCompile Include="framework\system\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
     <ClCompile Include="framework\system\game.cpp" />
-    <ClCompile Include="framework\scenes\init_state.cpp" />
+    <ClCompile Include="scenes\init_state.cpp" />
     <ClCompile Include="framework\graphics\renderer_2d.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
     <ClCompile Include="framework\components\sprite.cpp" />
@@ -188,7 +188,7 @@
     <ClCompile Include="framework\system\core\master_renderer.cpp" />
     <ClCompile Include="framework\system\timer\timer.cpp" />
     <ClCompile Include="framework\system\timer\timerFPS.cpp" />
-    <ClCompile Include="framework\test\CharacterTest.cpp" />
+    <ClCompile Include="test\CharacterTest.cpp" />
     <ClCompile Include="framework\utils\file_utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="framework\system\core\input.cpp" />
@@ -208,13 +208,13 @@
     <ClInclude Include="framework\system\game_object.h" />
     <ClInclude Include="framework\components\sprite.h" />
     <ClInclude Include="framework\system\core\asset_loader.h" />
-    <ClInclude Include="framework\test\CharacterTest.h" />
+    <ClInclude Include="test\CharacterTest.h" />
     <ClInclude Include="framework\utils\math.h" />
     <ClInclude Include="framework\components\transform.h" />
     <ClInclude Include="framework\system\game.h" />
-    <ClInclude Include="framework\scenes\init_state.h" />
-    <ClInclude Include="framework\scenes\mainmenu_state.h" />
-    <ClInclude Include="framework\scenes\score_state.h" />
+    <ClInclude Include="scenes\init_state.h" />
+    <ClInclude Include="scenes\mainmenu_state.h" />
+    <ClInclude Include="scenes\score_state.h" />
     <ClInclude Include="framework\utils\FSM.h" />
     <ClInclude Include="framework\graphics\renderer.h" />
     <ClInclude Include="framework\graphics\renderer_2d.h" />

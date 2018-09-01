@@ -36,6 +36,18 @@ namespace ns_fretBuzz
 				m_refRootGameObject.update(a_fDeltaTime);
 			}
 
+			void resetDontDestroyParentTo(IScene* a_IScene)
+			{
+				m_pGameObjectRoot->resetDontDestroyParent(a_IScene->m_refRootGameObject);
+			}
+
+			void logHierarchy()
+			{
+				std::cout << "\n\nSCENE:: " << m_strStateName << "\n\t";
+				m_refRootGameObject.logHierarchy(1);
+				std::cout << "\n\n";
+			}
+
 		protected:
 			IScene(std::string a_strSceneName) 
 				: IFSM(a_strSceneName),
@@ -63,6 +75,13 @@ namespace ns_fretBuzz
 			virtual void render(const Camera& a_Camera) = 0;
 			virtual void update(float a_fDeltaTime) = 0;
 
+			virtual void resetDontDestroyParent(ISceneData& a_NewSceneParent)
+			{}
+
+			virtual IScene* getIScene() = 0;
+
+			virtual void logHierarchy() = 0;
+
 		protected:
 			ISceneData(std::string a_strSceneID)
 				: IFSM(a_strSceneID)
@@ -78,6 +97,11 @@ namespace ns_fretBuzz
 		private:
 			SCENE_TYPE* m_pScene = nullptr;
 
+			virtual IScene* getIScene() override
+			{
+				return m_pScene;
+			}
+
 		public:
 			SceneData() = delete;
 
@@ -89,6 +113,7 @@ namespace ns_fretBuzz
 
 			virtual ~SceneData()
 			{}
+
 
 			//On entering the state it will instantiate the state of type SCENE_TYPE
 			virtual void OnStateEnter() override
@@ -130,6 +155,11 @@ namespace ns_fretBuzz
 				}
 			}
 
+			virtual void resetDontDestroyParent(ISceneData& a_NewSceneParent) override
+			{
+				m_pScene->resetDontDestroyParentTo(a_NewSceneParent.getIScene());
+			}
+
 			void render(const Camera& a_Camera)
 			{
 				m_pScene->render(a_Camera);
@@ -156,6 +186,11 @@ namespace ns_fretBuzz
 			{
 				return (m_pScene != nullptr);
 			}
+
+			virtual void logHierarchy() override
+			{
+				m_pScene->logHierarchy();
+			}
 		};
 
 		//Specialized class for Scene Managment from FSM, could be template specialize but decided to write it separately
@@ -181,6 +216,8 @@ namespace ns_fretBuzz
 
 			void updateActiveScenes(float a_fDeltaTime);
 			void renderActiveScenes(const Camera& a_Camera);
+
+			static void printSceneHierarchy();
 
 		protected:
 			virtual void transitionTo(std::string a_strTransitionTo) override;

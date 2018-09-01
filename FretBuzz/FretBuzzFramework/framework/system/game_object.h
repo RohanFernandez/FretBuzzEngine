@@ -22,6 +22,8 @@ namespace ns_fretBuzz
 
 			static int s_iID;
 
+			bool m_bIsDontDestroy = false;
+
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
@@ -35,6 +37,8 @@ namespace ns_fretBuzz
 			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
 
 			virtual ~GameObject();
+
+			void resetDontDestroyParent(GameObject& a_NewParent);
 
 		public:
 
@@ -62,6 +66,19 @@ namespace ns_fretBuzz
 			{
 				return m_strName;
 			}
+
+			inline GameObject* setAsDontDestroy(bool a_bIsDontDestroy = true)
+			{
+				m_bIsDontDestroy = a_bIsDontDestroy;
+				return this;
+			}
+
+			inline bool isDontDestroy() const
+			{
+				return m_bIsDontDestroy;
+			}
+
+			void logHierarchy(int l_iNumOfTabs);
 
 			///Returns a component from the components vector, if the COMPONENT_TYPE is equal to the input.
 			///If the component pointer is found it returns the component cast to the type specified else returns null.

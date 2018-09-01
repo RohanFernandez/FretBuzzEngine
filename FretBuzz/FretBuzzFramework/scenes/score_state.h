@@ -1,18 +1,16 @@
 #pragma once
 #include "../system/scene_manager.h"
-#include "../system/game_object.h"
-#include "../test/CharacterTest.h"
 
 namespace ns_fretBuzz
 {
-	class MainMenuState 
+	class ScoreState 
 		: public ns_system::IScene
 	{
 	public:
-
-		MainMenuState(std::string a_strSceneName) :
+		ScoreState(std::string a_strSceneName) :
 			IScene(a_strSceneName)
 		{
+			ns_system::GameObject::instantiate(m_refRootGameObject, "score_!!!!!!", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f })->setAsDontDestroy();
 		}
 
 		virtual void OnStateEnter() override
@@ -24,5 +22,8 @@ namespace ns_fretBuzz
 		{
 			IScene::OnStateExit();
 		}
+
+		virtual ~ScoreState()
+		{}
 	};
 }
