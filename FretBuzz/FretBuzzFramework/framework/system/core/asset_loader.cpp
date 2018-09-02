@@ -197,7 +197,6 @@ namespace ns_fretBuzz
 				std::string l_strShaderId;
 				std::string l_strVertShaderFileName;
 				std::string l_strFragShaderFileName;
-				std::string l_strTimePerSprite;
 
 				float l_fTextureW = 0.0;
 				float l_fTextureH = 0.0f;
@@ -226,10 +225,6 @@ namespace ns_fretBuzz
 					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_FRAG_NAME) == 0)
 					{
 						l_strFragShaderFileName = l_CurrentAttribute->value();
-					}
-					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_TIME_PER_SPRITE_ID) == 0)
-					{
-						l_strTimePerSprite = l_CurrentAttribute->value();
 					}
 					else
 					{
@@ -301,7 +296,7 @@ namespace ns_fretBuzz
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_ASSET_ID) == 0)
 							{
-								l_strID = l_CurrSpriteDataAttrib->as_float();
+								l_strID = l_CurrSpriteDataAttrib->as_string();
 							}
 							else if (l_strCurrentAttrib.compare(ATTRIBUTE_SPRITE_OX) == 0)
 							{
@@ -337,11 +332,11 @@ namespace ns_fretBuzz
 						float l_fSpriteOffsetX = ((l_fW / 2.0f) - ((l_fOW * l_fPX) - l_fOX));
 						float l_fSpriteOffsetY = -((l_fH / 2.0f) - ((l_fOH * l_fPY) - l_fOY));
 
-						ns_graphics::Sprite l_Sprite({ l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture, l_pShader);
+						ns_graphics::Sprite l_Sprite(l_strID, { l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture, l_pShader);
 						l_vectSpriteData.emplace_back(l_Sprite);
 					}
-					ns_graphics::SpriteSheet l_Spite(l_pTexture, l_pShader, l_vectSpriteData, std::stof(l_strTimePerSprite.c_str()));
-					a_pResourceManager->addResource<ns_graphics::SpriteSheet>(l_strSpriteID, l_Spite);
+					ns_graphics::SpriteGroup l_SpriteSheet(l_pTexture, l_pShader, l_vectSpriteData);
+					a_pResourceManager->addResource<ns_graphics::SpriteGroup>(l_strSpriteID, l_SpriteSheet);
 				}
 			}
 		}

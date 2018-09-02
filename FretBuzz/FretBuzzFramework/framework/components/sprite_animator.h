@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 		{
 		private:
 			std::string m_strStateId;
-			ns_graphics::SpriteSheet* m_pSpriteSheet = nullptr;
+			ns_graphics::SpriteGroup* m_pSpriteSheet = nullptr;
 			bool m_bIsLoop = false;
 			float m_fTimePerSprite = 0.0f;
 			std::map<std::string, std::string> m_mapTrigger;
@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 			AnimationState(std::string a_strStateId, std::string a_strSpriteSheetId, bool a_bIsLoop,
 				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger)
 				: m_strStateId(a_strStateId),
-				m_pSpriteSheet(ResourceManager::getResource<ns_graphics::SpriteSheet>(a_strSpriteSheetId)),
+				m_pSpriteSheet(ResourceManager::getResource<ns_graphics::SpriteGroup>(a_strSpriteSheetId)),
 				m_bIsLoop(a_bIsLoop),
 				m_fTimePerSprite(a_fTimePerSprite),
 				m_mapTrigger(a_mapTrigger)
@@ -67,7 +67,7 @@ namespace ns_fretBuzz
 				return m_strStateId;
 			}
 
-			inline ns_graphics::SpriteSheet* getSpriteSheet() const
+			inline ns_graphics::SpriteGroup* getSpriteSheet() const
 			{
 				return m_pSpriteSheet;
 			}

@@ -24,37 +24,37 @@
   <Sprites>
    
     <spritesheet tex_id="player_sword" file_name="sword.png"
-                 shader_id="simple" vert="vertShader.txt" frag="fragShader.txt" time_per_sprite="0.1">
+                 shader_id="simple" vert="vertShader.txt" frag="fragShader.txt">
       
-      <sprite id="sword_walk">
-        <spritedata id="0" x="42" y="66" w="18" h="41" pX="0.5625" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
-        <spritedata id="1" x="39" y="238" w="18" h="40" pX="0.59375" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
-        <spritedata id="2" x="40" y="195" w="20" h="41" pX="0.5625" pY="0.453125" oX="6" oY="22" oW="32" oH="64"/>
-        <spritedata id="3" x="42" y="109" w="18" h="41" pX="0.5625" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
-        <spritedata id="4" x="41" y="152" w="18" h="41" pX="0.59375" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
-        <spritedata id="5" x="44" y="23" w="16" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
-        <spritedata id="6" x="1" y="288" w="17" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
-        <spritedata id="7" x="20" y="288" w="16" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
-      </sprite>
-    
-      <sprite id="sword_slash">
-        <spritedata id="0" x="1" y="1" w="45" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-        <spritedata id="1" x="39" y="280" w="18" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-        <spritedata id="2" x="1" y="61" w="39" h="23" pX="0.48" pY="0.55" oX="2" oY="11" oW="75" oH="40"/>
-        <spritedata id="3" x="1" y="23" w="41" h="17" pX="0.48" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
-        <spritedata id="4" x="1" y="42" w="41" h="17" pX="0.48" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
-        <spritedata id="5" x="1" y="143" w="38" h="20" pX="0.493333" pY="0.525" oX="26" oY="11" oW="75" oH="40"/>
-        <spritedata id="6" x="1" y="244" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-        <spritedata id="7" x="1" y="266" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-        <spritedata id="8" x="1" y="203" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
-        <spritedata id="9" x="1" y="124" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
-        <spritedata id="10" x="1" y="86" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
-        <spritedata id="11" x="1" y="165" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
-        <spritedata id="12" x="1" y="222" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-        <spritedata id="13" x="1" y="184" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
-        <spritedata id="14" x="1" y="105" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
-        <spritedata id="15" x="38" y="302" w="18" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
-      </sprite>
+      <spritegroup id="sword_walk">
+        <sprite id="0" x="42" y="66" w="18" h="41" pX="0.5625" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="1" x="39" y="238" w="18" h="40" pX="0.59375" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="2" x="40" y="195" w="20" h="41" pX="0.5625" pY="0.453125" oX="6" oY="22" oW="32" oH="64"/>
+        <sprite id="3" x="42" y="109" w="18" h="41" pX="0.5625" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="4" x="41" y="152" w="18" h="41" pX="0.59375" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="5" x="44" y="23" w="16" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+        <sprite id="6" x="1" y="288" w="17" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+        <sprite id="7" x="20" y="288" w="16" h="41" pX="0.59375" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+      </spritegroup>
+
+      <spritegroup id="sword_slash">
+        <sprite id="0" x="1" y="1" w="45" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="1" x="39" y="280" w="18" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="2" x="1" y="61" w="39" h="23" pX="0.48" pY="0.55" oX="2" oY="11" oW="75" oH="40"/>
+        <sprite id="3" x="1" y="23" w="41" h="17" pX="0.48" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
+        <sprite id="4" x="1" y="42" w="41" h="17" pX="0.48" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
+        <sprite id="5" x="1" y="143" w="38" h="20" pX="0.493333" pY="0.525" oX="26" oY="11" oW="75" oH="40"/>
+        <sprite id="6" x="1" y="244" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="7" x="1" y="266" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="8" x="1" y="203" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="9" x="1" y="124" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="10" x="1" y="86" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="11" x="1" y="165" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="12" x="1" y="222" w="36" h="20" pX="0.493333" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="13" x="1" y="184" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="14" x="1" y="105" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="15" x="38" y="302" w="18" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+      </spritegroup>
       
     </spritesheet>
   </Sprites>

@@ -25,7 +25,7 @@ namespace ns_fretBuzz
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite {ns_system::ResourceManager::getResource<SpriteSheet>(a_strSpriteID)->getSprite(0)}
+			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)}
 		{
 			initialize();
 		}
@@ -101,7 +101,7 @@ namespace ns_fretBuzz
 
 		void SpriteRenderer::setSprite(std::string a_strSpriteID)
 		{
-			m_pSprite = ns_system::ResourceManager::getResource<SpriteSheet>(a_strSpriteID)->getSprite(0);
+			m_pSprite = ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0);
 			if (m_pSprite == nullptr){return;}
 
 			setSprite(m_pSprite);
