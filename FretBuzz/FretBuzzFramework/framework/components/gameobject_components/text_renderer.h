@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::TEXT_RENDERER;
 
 		public:
-			static void addComponent(GameObject& a_GameObj, std::string a_strText);
+			static TextRenderer* addComponent(GameObject& a_GameObj, std::string a_strText);
 
 			void setText(std::string a_strText);
 			void setFont(std::string a_strFont);

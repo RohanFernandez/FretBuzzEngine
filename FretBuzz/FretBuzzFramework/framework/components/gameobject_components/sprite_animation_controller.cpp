@@ -35,7 +35,8 @@ namespace ns_fretBuzz
 
 		SpriteAnimationController* SpriteAnimationController::addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId)
 		{
-			return new SpriteAnimationController(a_GameObj, a_strAnimationControllerId);
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new SpriteAnimationController(a_GameObj, a_strAnimationControllerId);
 		}
 
 		void SpriteAnimationController::play(std::string a_strTrigger)

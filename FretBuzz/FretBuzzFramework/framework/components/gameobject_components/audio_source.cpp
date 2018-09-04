@@ -27,32 +27,20 @@ namespace ns_fretBuzz
 
 		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj)
 		{
-			if (!a_GameObj.isComponentTypeExist(s_COMPONENT_TYPE))
-			{
-				return new AudioSource(a_GameObj);
-			}
-			std::cout << "AudioSource::addToGameObject:: Component of type Audio Source already included in the GameObject ::'"<< a_GameObj.getName() <<"' \n";
-			return nullptr;
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new AudioSource(a_GameObj);
 		}
 
 		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj, AudioClip* a_AudioClip)
 		{
-			if (!a_GameObj.isComponentTypeExist(s_COMPONENT_TYPE))
-			{
-				return new AudioSource(a_GameObj, a_AudioClip);
-			}
-			std::cout << "AudioSource::addToGameObject:: Component of type Audio Source already included in the GameObject ::'" << a_GameObj.getName() << "' \n";
-			return nullptr;
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new AudioSource(a_GameObj, a_AudioClip);
 		}
 
 		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj, std::string a_strAudFilePath)
 		{
-			if (!a_GameObj.isComponentTypeExist(s_COMPONENT_TYPE))
-			{
-				return new AudioSource(a_GameObj, a_strAudFilePath);
-			}
-			std::cout << "AudioSource::addToGameObject:: Component of type Audio Source already included in the GameObject ::'" << a_GameObj.getName() << "' \n";
-			return nullptr;
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new AudioSource(a_GameObj, a_strAudFilePath);
 		}
 
 		void AudioSource::setAudioClip(AudioClip* a_AudioClip)

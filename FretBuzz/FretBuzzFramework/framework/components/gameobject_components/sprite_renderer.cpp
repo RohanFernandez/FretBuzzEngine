@@ -37,22 +37,14 @@ namespace ns_fretBuzz
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj)
 		{
-			if (!a_GameObj.isComponentTypeExist(s_COMPONENT_TYPE))
-			{
-				return new SpriteRenderer(a_GameObj);
-			}
-			std::cout << "SpriteRenderer::addToGameObject:: Component of Sprite Renderer already included in the GameObject ::'" << a_GameObj.getName() << "' \n";
-			return nullptr;
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new SpriteRenderer(a_GameObj);
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
 		{
-			if (!a_GameObj.isComponentTypeExist(s_COMPONENT_TYPE))
-			{
-				return new SpriteRenderer(a_GameObj, a_Sprite);
-			}
-			std::cout << "SpriteRenderer::addToGameObject:: Component of Sprite Renderer already included in the GameObject ::'" << a_GameObj.getName() << "' \n";
-			return nullptr;
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new SpriteRenderer(a_GameObj, a_Sprite);
 		}
 
 		void SpriteRenderer::initialize()

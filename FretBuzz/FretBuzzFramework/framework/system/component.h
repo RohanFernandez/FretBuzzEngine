@@ -21,6 +21,8 @@ namespace ns_fretBuzz
 			virtual ~IComponent() = 0 {}
 			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj);
 
+			static bool isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject);
+
 		public:
 			IComponent() = delete;
 
