@@ -15,12 +15,12 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
-			m_pAudioEngine = new AudioEngine();
 			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
-			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
-
+			m_pAudioEngine = new AudioEngine();
 			m_pResourceManager = new ResourceManager();
 			AssetLoader::loadAssets(m_pResourceManager);
+
+			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
 
 			m_pPhysicsEngine = new PhysicsEngine({0.0f, -9.8f});
 
@@ -103,6 +103,7 @@ namespace ns_fretBuzz
 
 			while (!l_MasterRenderer.isWindowClosed())
 			{
+				l_MasterRenderer.beginFrame();
 				l_Game.updateScenes(l_fCurrentDeltaTime);
 
 				l_Input.Update(l_fCurrentDeltaTime);

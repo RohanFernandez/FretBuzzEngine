@@ -2,14 +2,25 @@
 
 layout(location = 0) out vec4 color;
 
-in vec2 TexCrd;
-uniform sampler2D textureSampler;
+in vertData
+{
+	vec4 position;
+	vec4 vertColour;
+	vec2 texCoords;
+	float texID;
+} inVertexData;
+
+uniform sampler2D textures[32];
 
 void main()
 {
-	vec4 pixelColor = texture(textureSampler,TexCrd);
-	if(pixelColor.a < 0.1)
+	vec4 pixelColor = inVertexData.vertColour;
+	if(inVertexData.texID > 0.0)
+	{
+		pixelColor = texture(textures[int(inVertexData.texID - 0.5f)], inVertexData.texCoords);
+		if(pixelColor.a < 0.1)
         discard;
+	}
 
 	color = pixelColor;
 }

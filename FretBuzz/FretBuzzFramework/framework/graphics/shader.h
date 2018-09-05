@@ -20,6 +20,8 @@ namespace ns_fretBuzz
 			std::string m_strFragmentShaderPath;
 
 		public:
+			static constexpr char DEFAULT_SHADER_ID[] = "default";
+
 			Shader() = delete;
 			Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath);
 
@@ -49,7 +51,7 @@ namespace ns_fretBuzz
 			void setUniform1dv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLdouble* a_arrValue) const;
 
 			void setUniform1i(const char* a_pUniformName, GLint a_Value) const;
-			void setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, GLint* a_arrValue) const;
+			void setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLint* a_arrValue) const;
 
 			void setUniform1ui(const char* a_pUniformName, GLuint a_Value) const;
 			void setUniform1uiv(const char* a_pUniformName, unsigned int a_iArrayCount, GLuint* a_arrValue) const;

@@ -194,10 +194,6 @@ namespace ns_fretBuzz
 				std::string l_strTextureId;
 				std::string l_strTextureFileName;
 
-				std::string l_strShaderId;
-				std::string l_strVertShaderFileName;
-				std::string l_strFragShaderFileName;
-
 				float l_fTextureW = 0.0;
 				float l_fTextureH = 0.0f;
 
@@ -214,18 +210,6 @@ namespace ns_fretBuzz
 					{
 						l_strTextureFileName = l_CurrentAttribute->value();
 					}
-					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_SHADER_ID) == 0)
-					{
-						l_strShaderId = l_CurrentAttribute->value();
-					}
-					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_VERT_NAME) == 0)
-					{
-						l_strVertShaderFileName = l_CurrentAttribute->value();
-					}
-					else if (l_strCurrentAttributeName.compare(ATTRIBUTE_FRAG_NAME) == 0)
-					{
-						l_strFragShaderFileName = l_CurrentAttribute->value();
-					}
 					else
 					{
 						std::cout << "AssetLoader::loadSprites:: Could not parse attribute '" << l_strCurrentAttributeName << "'";
@@ -240,14 +224,6 @@ namespace ns_fretBuzz
 				}
 				l_fTextureW = l_pTexture->getWidth();
 				l_fTextureH = l_pTexture->getHeight();
-
-				ns_graphics::Shader* l_pShader = ResourceManager::getResource<ns_graphics::Shader>(l_strShaderId);
-				if (l_pShader == nullptr)
-				{
-					ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strVertShaderFileName, SHADER_FILE_PATH + l_strFragShaderFileName);
-					a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderId, l_Shader);
-					l_pShader = a_pResourceManager->getResource<ns_graphics::Shader>(l_strShaderId);
-				}
 
 				for (pugi::xml_node_iterator l_currentSprite = l_currentSpriteSheet->begin();
 					l_currentSprite != l_currentSpriteSheet->end();
@@ -332,10 +308,10 @@ namespace ns_fretBuzz
 						float l_fSpriteOffsetX = ((l_fW / 2.0f) - ((l_fOW * l_fPX) - l_fOX));
 						float l_fSpriteOffsetY = -((l_fH / 2.0f) - ((l_fOH * l_fPY) - l_fOY));
 
-						ns_graphics::Sprite l_Sprite(l_strID, { l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture, l_pShader);
+						ns_graphics::Sprite l_Sprite(l_strID, { l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture);
 						l_vectSpriteData.emplace_back(l_Sprite);
 					}
-					ns_graphics::SpriteGroup l_SpriteSheet(l_pTexture, l_pShader, l_vectSpriteData);
+					ns_graphics::SpriteGroup l_SpriteSheet(l_pTexture, l_vectSpriteData);
 					a_pResourceManager->addResource<ns_graphics::SpriteGroup>(l_strSpriteID, l_SpriteSheet);
 				}
 			}

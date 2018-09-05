@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../../system/game_object.h"
 #include "../../system/core/resource_manager.h"
+#include "../../graphics/sprite_batch_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -11,21 +12,24 @@ namespace ns_fretBuzz
 	{
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite{ nullptr}
+			m_pSprite{ nullptr},
+			m_pShader{ nullptr}
 		{
 			initialize();
 		}
 
-		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
+		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite{ a_Sprite }
+			m_pSprite{ a_Sprite },
+			m_pShader{ a_pShader }
 		{
 			initialize();
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)}
+			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)},
+			m_pShader{nullptr}
 		{
 			initialize();
 		}
@@ -33,6 +37,7 @@ namespace ns_fretBuzz
 		SpriteRenderer::~SpriteRenderer()
 		{
 			m_pSprite = nullptr;
+			m_pShader = nullptr;
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj)
@@ -41,70 +46,53 @@ namespace ns_fretBuzz
 				nullptr : new SpriteRenderer(a_GameObj);
 		}
 
-		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
+		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
-				nullptr : new SpriteRenderer(a_GameObj, a_Sprite);
+				nullptr : new SpriteRenderer(a_GameObj, a_Sprite, a_pShader);
+		}
+
+		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
+		{
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new SpriteRenderer(a_GameObj, a_strSpriteID);
+		}
+
+		void SpriteRenderer::setShader(std::string a_strShaderId)
+		{
+			Shader* l_pShader = ns_system::ResourceManager::getResource<Shader>(a_strShaderId);
+			m_pShader = (l_pShader == nullptr) ? ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID) : l_pShader;
+		}
+
+		void SpriteRenderer::setShader(Shader* a_pShader)
+		{
+			m_pShader = (a_pShader == nullptr) ? ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID) : a_pShader;
 		}
 
 		void SpriteRenderer::initialize()
 		{
-			glGenVertexArrays(1, &m_VAO);
-			glGenBuffers(1, &m_VBO);
-			glGenBuffers(1, &m_IBO);
-
-			glBindVertexArray(m_VAO);
-
-			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-			glBufferData(GL_ARRAY_BUFFER, Sprite::s_VERT_COUNT * sizeof(SpriteAttributes), nullptr, GL_DYNAMIC_DRAW);
-
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v3Position));
-			glEnableVertexAttribArray(0);
-
-			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SpriteAttributes), (const void*)offsetof(SpriteAttributes, SpriteAttributes::m_v2TexCoords));
-			glEnableVertexAttribArray(1);
-
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IBO);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Sprite::s_INDICES), Sprite::s_INDICES, GL_STATIC_DRAW);
-
-			glBindVertexArray(0);
+			setShader(m_pShader);
 		}
 
 		void SpriteRenderer::setSprite(Sprite* a_Sprite)
 		{
 			m_pSprite = a_Sprite;
-			if (m_pSprite == nullptr) { return; }
-
-			const std::vector<glm::vec2>& l_vectTexCoords = m_pSprite->getTexCoords();
-			const std::vector<glm::vec3>& l_vectVertPosition = m_pSprite->getVertPosition();
-
-			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-			SpriteAttributes* l_pVertexData = (SpriteAttributes*)(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
-
-			for (int l_iSpriteAttribIndex = 0; l_iSpriteAttribIndex < Sprite::s_VERT_COUNT; l_iSpriteAttribIndex++, l_pVertexData++)
-			{
-				l_pVertexData->m_v2TexCoords = l_vectTexCoords[l_iSpriteAttribIndex];
-				l_pVertexData->m_v3Position = l_vectVertPosition[l_iSpriteAttribIndex];
-			}
-			glUnmapBuffer(GL_ARRAY_BUFFER);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-			l_pVertexData = nullptr;
 		}
 
 		void SpriteRenderer::setSprite(std::string a_strSpriteID)
 		{
 			m_pSprite = ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0);
-			if (m_pSprite == nullptr){return;}
-
 			setSprite(m_pSprite);
 		}
 
 		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
-			if (!m_bIsAllowedToRender || (m_pSprite == nullptr)) { return; }
-			Sprite& l_CurrentSprite = *m_pSprite;
+			if (!m_bIsAllowedToRender || m_pSprite == nullptr) { return; }
+			 
+			glm::mat4 l_mat4Transformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * a_mat4Transformation;
+			SpriteBatchRenderer::submit(*m_pSprite, l_mat4Transformation, m_pShader);
 
-			const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
+			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
 			l_CurrentShader.bind();
 
 			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_PROJECTION_MATRIX, a_Camera.getProjectionMatrix());
@@ -118,7 +106,7 @@ namespace ns_fretBuzz
 
 			glBindVertexArray(m_VAO);
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-			glBindVertexArray(0);
+			glBindVertexArray(0);*/
 		}
 	}
 }

@@ -18,6 +18,7 @@ namespace ns_fretBuzz
 			s_pInstance = this;
 
 			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
+			m_pSpriteBatchRenderer = new ns_graphics::SpriteBatchRenderer(10);
 			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
@@ -28,6 +29,13 @@ namespace ns_fretBuzz
 			{
 				return;
 			}
+
+			if (m_pSpriteBatchRenderer != nullptr)
+			{
+				delete m_pSpriteBatchRenderer;
+				m_pSpriteBatchRenderer = nullptr;
+			}
+
 			if (m_pTimer != nullptr)
 			{
 				delete m_pTimer;
@@ -49,12 +57,19 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
+		void MasterRenderer::beginFrame()
+		{
+			m_pSpriteBatchRenderer->begin();
+		}
+
 		float MasterRenderer::render(Game& m_Game)
 		{
 			m_pWindow->clear();
 
 			m_pMainCamera->updateViewMatrix();
 			m_Game.renderFrame(*m_pMainCamera);
+			m_pSpriteBatchRenderer->end();
+			m_pSpriteBatchRenderer->flush();
 
 			m_pTimer->update();
 			m_pWindow->update();

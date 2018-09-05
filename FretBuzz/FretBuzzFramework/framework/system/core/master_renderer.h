@@ -3,6 +3,7 @@
 #include "window.h"
 #include "../timer/timerFPS.h"
 #include "../../components/camera.h"
+#include "../../graphics/sprite_batch_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -19,6 +20,8 @@ namespace ns_fretBuzz
 
 			Camera* m_pMainCamera;
 
+			ns_graphics::SpriteBatchRenderer* m_pSpriteBatchRenderer = nullptr;
+
 		public:
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
 			~MasterRenderer();
@@ -26,6 +29,7 @@ namespace ns_fretBuzz
 			GLFWwindow* getGLFWWindow() const;
 			bool isWindowClosed() const;
 
+			void beginFrame();
 			float render(Game& m_Game);
 
 			void closeWindow() const;

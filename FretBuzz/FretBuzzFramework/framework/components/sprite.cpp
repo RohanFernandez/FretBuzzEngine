@@ -6,10 +6,9 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		SpriteGroup::SpriteGroup(Texture* a_pTexture, Shader* a_pShader, std::vector<Sprite> a_vectSpriteData)
+		SpriteGroup::SpriteGroup(Texture* a_pTexture, std::vector<Sprite> a_vectSpriteData)
 			: m_vectSpriteData{a_vectSpriteData},
 			m_pTexture{a_pTexture },
-			m_pShader{ a_pShader },
 			 ns_system::IManagedResource()
 		{
 		}
@@ -17,7 +16,6 @@ namespace ns_fretBuzz
 		SpriteGroup::SpriteGroup(SpriteGroup& a_Sprite)
 			: m_vectSpriteData{ a_Sprite.m_vectSpriteData },
 			m_pTexture{ a_Sprite.m_pTexture },
-			m_pShader{ a_Sprite.m_pShader},
 			ns_system::IManagedResource()
 		{
 		
@@ -26,7 +24,6 @@ namespace ns_fretBuzz
 		SpriteGroup::SpriteGroup(SpriteGroup&& a_Sprite)
 			: m_vectSpriteData{ a_Sprite.m_vectSpriteData },
 			m_pTexture{ a_Sprite.m_pTexture },
-			m_pShader{ a_Sprite.m_pShader },
 			 ns_system::IManagedResource()
 		{
 		
@@ -36,14 +33,12 @@ namespace ns_fretBuzz
 		{
 			m_pTexture = a_Sprite.m_pTexture;
 			m_vectSpriteData = a_Sprite.m_vectSpriteData;
-			m_pShader = a_Sprite.m_pShader;
 		}
 
 		void SpriteGroup::operator=(SpriteGroup&& a_Sprite)
 		{
 			m_pTexture = a_Sprite.m_pTexture;
 			m_vectSpriteData = a_Sprite.m_vectSpriteData;
-			m_pShader = a_Sprite.m_pShader;
 		}
 
 		SpriteGroup::~SpriteGroup()
@@ -54,7 +49,6 @@ namespace ns_fretBuzz
 		void SpriteGroup::destroyResource()
 		{
 			m_pTexture = nullptr;
-			m_pShader = nullptr;
 		}
 
 		std::vector<Sprite>* SpriteGroup::getSprites()

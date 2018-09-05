@@ -10,7 +10,7 @@
 
 <!-- SHADERS START-->
 	<Shaders>
-		<shader id="simple" vert="vertShader.txt" frag="fragShader.txt"/>
+		<shader id="default" vert="vertShader.txt" frag="fragShader.txt"/>
 	</Shaders>
 <!-- SHADERS END-->
 
@@ -23,8 +23,7 @@
 <!-- SPRITES START-->
   <Sprites>
    
-    <spritesheet tex_id="player_sword" file_name="sword.png"
-                 shader_id="simple" vert="vertShader.txt" frag="fragShader.txt">
+    <spritesheet tex_id="player_sword" file_name="sword.png">
       
       <spritegroup id="sword_walk">
         <sprite id="0" x="42" y="66" w="18" h="41" pX="0.5625" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>

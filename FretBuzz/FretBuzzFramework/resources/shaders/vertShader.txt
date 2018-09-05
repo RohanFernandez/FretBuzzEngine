@@ -1,16 +1,23 @@
 #version 330 core
 
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec2 texCoords;
+layout(location = 0) in vec4 a_position;
+layout(location = 1) in vec4 a_vertColour;
+layout(location = 2) in vec2 a_texCoords;
+layout(location = 3) in float a_texID;
 
-out vec2 TexCrd;
-
-uniform mat4 unifProjection;
-uniform mat4 unifView;
-uniform mat4 unifModel;
+out vertData
+{
+	vec4 position;
+	vec4 vertColour;
+	vec2 texCoords;
+	float texID;
+} outVertexData;
 
 void main()
 {
-	gl_Position = unifProjection * unifView * unifModel * vec4(position, 1.0);
-	TexCrd = texCoords;
+	gl_Position = a_position;
+	outVertexData.position = a_position;
+	outVertexData.texCoords = a_texCoords;
+	outVertexData.vertColour = a_vertColour;
+	outVertexData.texID = a_texID;
 }

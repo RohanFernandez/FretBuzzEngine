@@ -123,6 +123,9 @@
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -162,12 +165,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="framework\components\audio_clip.cpp" />
     <ClCompile Include="framework\components\gameobject_components\audio_source.cpp" />
     <ClCompile Include="framework\components\camera.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_animation_controller.cpp" />
+    <ClCompile Include="framework\graphics\renderer.cpp" />
     <ClCompile Include="framework\graphics\sprite_batch_renderer.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp" />
     <ClCompile Include="framework\components\gameobject_components\text_renderer.cpp" />
@@ -178,7 +185,6 @@
     <ClCompile Include="framework\components\transform.cpp" />
     <ClCompile Include="framework\system\game.cpp" />
     <ClCompile Include="scenes\init_state.cpp" />
-    <ClCompile Include="framework\graphics\renderer_2d.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
     <ClCompile Include="framework\components\sprite.cpp" />
     <ClCompile Include="framework\graphics\texture.cpp" />
@@ -219,7 +225,6 @@
     <ClInclude Include="scenes\score_state.h" />
     <ClInclude Include="framework\utils\FSM.h" />
     <ClInclude Include="framework\graphics\renderer.h" />
-    <ClInclude Include="framework\graphics\renderer_2d.h" />
     <ClInclude Include="framework\graphics\shader.h" />
     <ClInclude Include="framework\graphics\texture.h" />
     <ClInclude Include="framework\system\core\audio_engine.h" />

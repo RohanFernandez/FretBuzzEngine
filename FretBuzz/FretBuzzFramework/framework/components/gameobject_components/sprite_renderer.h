@@ -1,6 +1,7 @@
 #pragma once
 #include "../../system/component.h"
 #include "../sprite.h"
+#include "../../graphics/shader.h"
 
 namespace ns_fretBuzz
 {
@@ -13,33 +14,32 @@ namespace ns_fretBuzz
 			static constexpr ns_system::COMPONENT_TYPE s_COMPONENT_TYPE = ns_system::COMPONENT_TYPE::SPRITE_RENDERER;
 
 			SpriteRenderer(ns_system::GameObject& a_GameObj);
-			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
+			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
 
 			~SpriteRenderer();
 
 			Sprite* m_pSprite = nullptr;
+			Shader* m_pShader = nullptr;
 
-			struct SpriteAttributes
-			{
-				glm::vec3 m_v3Position;
-				glm::vec2 m_v2TexCoords;
-			};
-			
 			bool m_bIsAllowedToRender = true;
 
-			GLuint m_IBO;
+			/*GLuint m_IBO;
 			GLuint m_VBO;
-			GLuint m_VAO;
+			GLuint m_VAO;*/
 
 			void initialize();
 
 		public:
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj);
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
+			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader = nullptr);
+			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
 
 			void setSprite(Sprite* a_Sprite);
 			void setSprite(std::string a_strSpriteID);
+
+			void setShader(std::string a_strShaderId);
+			void setShader(Shader* a_pShader);
 
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
 

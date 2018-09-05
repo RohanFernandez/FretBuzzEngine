@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "../graphics/texture.h"
-#include "../graphics/shader.h"
 #include "../utils/math.h"
 
 #include "../system/game_object.h"
@@ -14,32 +13,32 @@ namespace ns_fretBuzz
 		class Sprite
 		{
 		public:
-			static constexpr char UNIFORM_PROJECTION_MATRIX[] = "unifProjection";
+			/*static constexpr char UNIFORM_PROJECTION_MATRIX[] = "unifProjection";
 			static constexpr char UNIFORM_VIEW_MATRIX[] = "unifView";
 			static constexpr char UNIFORM_MODEL_MATRIX[] = "unifModel";
-			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";
+			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";*/
 
-			static constexpr int s_INDICES[6] = { 0, 2, 1, 0, 3, 2 };
 			static constexpr int s_VERT_COUNT = 4;
 
 		private:
 			Texture* m_pTexture = nullptr;
-			Shader* m_pShader = nullptr;
 			std::vector<glm::vec2> m_TexCoords;
-			std::vector<glm::vec3> m_VertPosition;
+			std::vector<glm::vec4> m_VertPosition;
 			glm::vec3 m_SpriteDimensionWH;
 			glm::vec2 m_OriginOffset;
+
+			glm::vec4 m_v4Color;
 
 			std::string m_strID;
 
 		public:
-			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec2 a_v2OriginOffset ,Texture* a_pTexture, Shader* a_pShader)
+			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec2 a_v2OriginOffset, Texture* a_pTexture, glm::vec4 a_v4Color = { 1.0f, 1.0f, 1.0f,1.0f })
 				:
 				m_strID{a_strID},
-				m_pShader{ a_pShader },
 				m_pTexture{ a_pTexture },
 				m_SpriteDimensionWH{ a_v2DimensionsWH, 0.0f },
 				m_OriginOffset{a_v2OriginOffset},
+				m_v4Color{a_v4Color},
 				m_TexCoords{
 							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y },					       //0
 							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },											   //1
@@ -48,28 +47,34 @@ namespace ns_fretBuzz
 							},
 
 				m_VertPosition{
-								 glm::vec3(-0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, -0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0 ),
-								 glm::vec3(-0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, 0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0),
-								 glm::vec3(0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, 0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0),
-								 glm::vec3(0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, -0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0 )
+								 glm::vec4(-0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, -0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0, 1.0f ),
+								 glm::vec4(-0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, 0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0, 1.0f),
+								 glm::vec4(0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, 0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0, 1.0f),
+								 glm::vec4(0.5 * a_v2DimensionsWH.x + a_v2OriginOffset.x, -0.5 * a_v2DimensionsWH.y + a_v2OriginOffset.y, 0.0, 1.0f)
 							}
 								{
 				
 								}
 
-			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, Texture* a_pTexture, Shader* a_pShader)
-				: Sprite(a_strID, a_v2SpriteCoords, a_v2DimensionsWH, a_v2TexDimensionsWH, {0.0f, 0.0f}, a_pTexture, a_pShader)
+			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, Texture* a_pTexture)
+				: Sprite(a_strID, a_v2SpriteCoords, a_v2DimensionsWH, a_v2TexDimensionsWH, {0.0f, 0.0f}, a_pTexture)
 			{
 			
+			}
+
+			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec4 a_Color)
+				: 
+				Sprite(a_strID, a_v2SpriteCoords, a_v2DimensionsWH, a_v2TexDimensionsWH, { 0.0f, 0.0f }, 0, a_Color)
+			{
 			}
 
 			Sprite(Sprite& a_SpriteData)
 				:
 				m_strID{ a_SpriteData.m_strID },
-				m_pShader{ a_SpriteData.m_pShader },
 				m_pTexture{ a_SpriteData.m_pTexture },
 				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH },
 				m_OriginOffset{ a_SpriteData.m_OriginOffset},
+				m_v4Color{ a_SpriteData.m_v4Color},
 				m_TexCoords{ a_SpriteData.m_TexCoords[0],
 							 a_SpriteData.m_TexCoords[1],
 							 a_SpriteData.m_TexCoords[2],
@@ -86,10 +91,10 @@ namespace ns_fretBuzz
 			Sprite(Sprite&& a_SpriteData)
 				: 
 				m_strID{ a_SpriteData.m_strID },
-				m_pShader{ a_SpriteData.m_pShader },
 				m_pTexture{ a_SpriteData.m_pTexture },
 				m_OriginOffset{ a_SpriteData.m_OriginOffset },
 				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH},
+				m_v4Color{ a_SpriteData.m_v4Color },
 				m_TexCoords{ a_SpriteData.m_TexCoords[0],
 							a_SpriteData.m_TexCoords[1],
 							a_SpriteData.m_TexCoords[2],
@@ -104,19 +109,18 @@ namespace ns_fretBuzz
 
 			~Sprite()
 			{
-				m_pShader = nullptr;
 				m_pTexture = nullptr;
 			}
 
 			void operator=(Sprite& a_SpriteData)
 			{
 				m_strID = a_SpriteData.m_strID ;
-				m_pShader = a_SpriteData.m_pShader;
 				m_pTexture = a_SpriteData.m_pTexture;
 				m_TexCoords = a_SpriteData.m_TexCoords;
 				m_VertPosition = a_SpriteData.m_VertPosition;
 				m_SpriteDimensionWH = a_SpriteData.m_SpriteDimensionWH;
 				m_OriginOffset = a_SpriteData.m_OriginOffset;
+				m_v4Color = a_SpriteData.m_v4Color;
 			}
 
 			const Texture* getTexture() const
@@ -124,17 +128,12 @@ namespace ns_fretBuzz
 				return m_pTexture;
 			}
 
-			const Shader* getShader() const
-			{
-				return m_pShader;
-			}
-
 			const std::vector<glm::vec2>& getTexCoords() const
 			{
 				return m_TexCoords;
 			}
 
-			const std::vector<glm::vec3>& getVertPosition() const
+			const std::vector<glm::vec4>& getVertPosition() const
 			{
 				return m_VertPosition;
 			}
@@ -148,6 +147,11 @@ namespace ns_fretBuzz
 			{
 				return m_strID;
 			}
+
+			inline const glm::vec4& getColor() const
+			{
+				return m_v4Color;
+			}
 		};
 
 		class SpriteGroup : public ns_system::IManagedResource
@@ -156,13 +160,12 @@ namespace ns_fretBuzz
 		protected:
 			std::vector<Sprite> m_vectSpriteData;
 			Texture* m_pTexture = nullptr;
-			Shader* m_pShader = nullptr;
 
 			virtual void destroyResource() override;
 
 		public:
 			SpriteGroup() = delete;
-			SpriteGroup(Texture* a_pTexture, Shader* a_pShader, std::vector<Sprite> a_vectSpriteData);
+			SpriteGroup(Texture* a_pTexture, std::vector<Sprite> a_vectSpriteData);
 			SpriteGroup(SpriteGroup& a_SpriteSheet);
 			SpriteGroup(SpriteGroup&& a_SpriteSheet);
 
