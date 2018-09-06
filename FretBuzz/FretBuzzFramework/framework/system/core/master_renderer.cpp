@@ -57,17 +57,14 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void MasterRenderer::beginFrame()
-		{
-			m_pSpriteBatchRenderer->begin();
-		}
-
 		float MasterRenderer::render(Game& m_Game)
 		{
 			m_pWindow->clear();
+			m_pSpriteBatchRenderer->begin();
 
 			m_pMainCamera->updateViewMatrix();
 			m_Game.renderFrame(*m_pMainCamera);
+
 			m_pSpriteBatchRenderer->end();
 			m_pSpriteBatchRenderer->flush();
 

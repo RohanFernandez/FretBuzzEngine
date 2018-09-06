@@ -103,7 +103,6 @@ namespace ns_fretBuzz
 
 			while (!l_MasterRenderer.isWindowClosed())
 			{
-				l_MasterRenderer.beginFrame();
 				l_Game.updateScenes(l_fCurrentDeltaTime);
 
 				l_Input.Update(l_fCurrentDeltaTime);

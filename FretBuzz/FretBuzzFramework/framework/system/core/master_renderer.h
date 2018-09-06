@@ -29,7 +29,6 @@ namespace ns_fretBuzz
 			GLFWwindow* getGLFWWindow() const;
 			bool isWindowClosed() const;
 
-			void beginFrame();
 			float render(Game& m_Game);
 
 			void closeWindow() const;
