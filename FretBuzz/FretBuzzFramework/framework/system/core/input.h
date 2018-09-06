@@ -57,7 +57,7 @@ namespace ns_fretBuzz
 			Input(GLFWwindow* a_pGLFWWindow);
 			~Input();
 
-			void Update(const float a_fDeltaTime);
+			void Update();
 
 			//Returns mouse position
 			static void GetMousePosition(double& a_dMouseX, double& a_dMouseY);

@@ -20,15 +20,6 @@ namespace ns_fretBuzz
 
 			memset(m_arrCurrentKeyCode, KEY_UNTOUCHED, sizeof(m_arrCurrentKeyCode));
 			memset(m_arrCurrentMouseCode, KEY_UNTOUCHED, sizeof(m_arrCurrentMouseCode));
-
-			/*for (int l_iKeyIndex = 0; l_iKeyIndex < MAX_KEYBOARD_BTNS; l_iKeyIndex++)
-			{
-				 m_arrCurrentKeyCode[l_iKeyIndex] = KEY_UNTOUCHED;
-			}
-			for (int l_iMouseKeyIndex = 0; l_iMouseKeyIndex < MAX_MOUSE_BTNS; l_iMouseKeyIndex++)
-			{
-				m_arrCurrentMouseCode[l_iMouseKeyIndex] = KEY_UNTOUCHED;
-			}*/
 		}
 
 		Input::~Input()
@@ -132,7 +123,7 @@ namespace ns_fretBuzz
 			glfwSetInputMode(s_pInput->m_pGLFWWindowRef, GLFW_CURSOR, a_bIsEnabled ? (a_bIsCursorVisible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN): GLFW_CURSOR_DISABLED);
 		}
 
-		void Input::Update(const float a_fDeltaTime)
+		void Input::Update()
 		{
 			KEY_EVENT l_StackKeyEvent;
 			while (!m_StackKeyInput.empty())

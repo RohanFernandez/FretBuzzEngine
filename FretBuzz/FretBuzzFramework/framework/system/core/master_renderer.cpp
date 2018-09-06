@@ -68,8 +68,8 @@ namespace ns_fretBuzz
 			m_pSpriteBatchRenderer->end();
 			m_pSpriteBatchRenderer->flush();
 
-			m_pTimer->update();
 			m_pWindow->update();
+			m_pTimer->update();
 			return m_pTimer->getDeltaTime();
 		}
 

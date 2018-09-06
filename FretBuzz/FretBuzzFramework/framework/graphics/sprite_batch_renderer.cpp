@@ -10,7 +10,8 @@ namespace ns_fretBuzz
 
 		SpriteBatchRenderer::SpriteBatchRenderer(int a_iMaxSprites)
 			: 
-			IRenderer()
+			IRenderer(),
+			MAX_SPRITES{a_iMaxSprites}
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -18,10 +19,10 @@ namespace ns_fretBuzz
 			}
 			s_pInstance = this;
 
-			m_iTotalIndices = a_iMaxSprites * INDICES_PER_SPRITE;
+			m_iTotalIndices = MAX_SPRITES * INDICES_PER_SPRITE;
 
 			m_iIndexBufferSize = m_iTotalIndices * SIZE_OF_SINGLE_INDEX;
-			m_iVertBufferSize = a_iMaxSprites * sizeof(VertexData) * VERTICES_PER_SPRITE;
+			m_iVertBufferSize = MAX_SPRITES * sizeof(VertexData) * VERTICES_PER_SPRITE;
 
 			glGenBuffers(1, &m_VBO);
 			glGenVertexArrays(1, &m_VAO);
@@ -85,19 +86,20 @@ namespace ns_fretBuzz
 		void SpriteBatchRenderer:: submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
 		{
 			SpriteBatchRenderer& l_Instance = *s_pInstance;
-
-			if ((l_Instance.m_iIndicesToDraw != 0) &&
+			
+			if (((l_Instance.m_iIndicesToDraw != 0) &&
 				(l_Instance.m_pCurrentShader != nullptr) &&
 				(l_Instance.m_pCurrentShader->getShaderId() != a_pShader->getShaderId()))
+				 || (l_Instance.m_iSpritesInBatch == l_Instance.MAX_SPRITES))
 			{
 				end();
 				flush();
-				begin();	
+				begin();
 			}
 
 			if (l_Instance.m_pCurrentShader != a_pShader)
 			{
-				a_pShader->setUniform1iv("textures", 32, s_arrTextureIDArray);
+				a_pShader->setUniform1iv(UNIFORM_TEXTURE_SAMPLER, 32, s_arrTextureIDArray);
 			}
 
 			l_Instance.m_pCurrentShader = a_pShader;
@@ -108,7 +110,6 @@ namespace ns_fretBuzz
 			const std::vector<glm::vec2>& l_vectv2TexCoords = a_Sprite.getTexCoords();
 
 			float l_fTextureSlot = 0.0f;
-
 
 			if (l_iTexID > 0)
 			{
@@ -131,12 +132,14 @@ namespace ns_fretBuzz
 						end();
 						flush();
 						begin();
+						l_Instance.m_vectActiveTexIDs.clear();
 					}
 					l_Instance.m_vectActiveTexIDs.push_back(l_iTexID);
 					l_fTextureSlot = (float)l_Instance.m_vectActiveTexIDs.size();
 				}
 			}
 
+			l_Instance.m_iSpritesInBatch++;
 			VertexData*& l_pVertexData = l_Instance.m_pCurrentVertexData;
 
 			l_pVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[0];
@@ -195,6 +198,7 @@ namespace ns_fretBuzz
 			glBindVertexArray(l_Instance.m_VAO);
 			glDrawElements(GL_TRIANGLES, l_Instance.m_iIndicesToDraw, GL_UNSIGNED_INT, NULL);
 			l_Instance.m_iIndicesToDraw = 0;
+			l_Instance.m_iSpritesInBatch = 0;
 		}
 	}
 }

@@ -105,7 +105,7 @@ namespace ns_fretBuzz
 			{
 				l_Game.updateScenes(l_fCurrentDeltaTime);
 
-				l_Input.Update(l_fCurrentDeltaTime);
+				l_Input.Update();
 				l_fCurrentDeltaTime = l_MasterRenderer.render(l_Game);
 			}
 

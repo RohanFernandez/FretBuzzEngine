@@ -10,15 +10,16 @@ in vertData
 	float texID;
 } inVertexData;
 
-uniform sampler2D textures[32];
+uniform sampler2D textureSampler[32];
 
 void main()
 {
-	vec4 pixelColor = inVertexData.vertColour;
-	if(inVertexData.texID > 0.0)
+	vec4 pixelColor = (inVertexData.texID > 0.0) ? 
+		texture(textureSampler[int(inVertexData.texID - 0.5f)], inVertexData.texCoords) : 
+		inVertexData.vertColour;
+
+	if(pixelColor.a < 0.05)
 	{
-		pixelColor = texture(textures[int(inVertexData.texID - 0.5f)], inVertexData.texCoords);
-		if(pixelColor.a < 0.1)
         discard;
 	}
 

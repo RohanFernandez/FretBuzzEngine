@@ -28,11 +28,16 @@ namespace ns_fretBuzz
 				17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
 			};
 
+			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";
+
 			std::vector<unsigned int> m_vectActiveTexIDs;
 
 			GLuint* m_pIndexBufferArray = nullptr;
 
 			VertexData* m_pCurrentVertexData = nullptr;
+
+			const unsigned int MAX_SPRITES = 0;
+			unsigned int m_iSpritesInBatch = 0;
 
 			int m_iIndicesToDraw = 0;
 			Shader* m_pCurrentShader = nullptr;
