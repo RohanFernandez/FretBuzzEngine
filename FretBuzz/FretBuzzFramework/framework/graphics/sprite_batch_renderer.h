@@ -44,7 +44,6 @@ namespace ns_fretBuzz
 
 		public:
 
-
 			static constexpr int SIZE_OF_VERTEX_DATA = sizeof(VertexData);
 
 			static constexpr int VERTICES_PER_SPRITE = 4;
@@ -56,7 +55,7 @@ namespace ns_fretBuzz
 			static constexpr int INDEX_TEX_ID = 3;
 
 
-			SpriteBatchRenderer(int a_iMaxSprites);
+			SpriteBatchRenderer(unsigned int a_iMaxSprites);
 			~SpriteBatchRenderer();
 			
 			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader);

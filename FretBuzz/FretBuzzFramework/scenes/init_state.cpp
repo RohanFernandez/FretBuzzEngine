@@ -11,17 +11,9 @@ namespace ns_fretBuzz
 	InitState::InitState(std::string a_strSceneName) :
 		IScene(a_strSceneName)
 	{
-		m_goParentGameObj = ns_system::GameObject::instantiate(m_refRootGameObject, "parent", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
-
-		ns_system::GameObject* m_pParent2 = ns_system::GameObject::instantiate(m_refRootGameObject, "parent2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
-		m_pParent2->setAsDontDestroy(true);
-
-		ns_system::GameObject::instantiate(*m_pParent2, "child1", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f })->setAsDontDestroy(true);
-		ns_system::GameObject* l_gameObj =  ns_system::GameObject::instantiate(*m_goParentGameObj, "child2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
-		CharacterTest* l_gameObjChar = new CharacterTest(*l_gameObj, "character_test");
-		l_gameObjChar->setAsDontDestroy(true);
-
-		ns_system::GameObject::instantiate(*m_goParentGameObj, "child3", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f })->setAsDontDestroy(true);
+		ns_system :: GameObject* l_pLabelGameObj = ns_system::GameObject::instantiate(m_refRootGameObject, "LABEL", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
+		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj, { 0.0f, 1.0f, 0.0f,1.0f }, { 100.0f, 100.0f });
+		CharacterTest* l_gameObjChar = new CharacterTest(m_refRootGameObject, "character_test");
 	}
 
 	void InitState::OnStateEnter()

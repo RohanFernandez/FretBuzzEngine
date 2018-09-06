@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
 			m_pSprite{ nullptr},
-			m_pShader{ nullptr}
+			m_DefaltSprite()
 		{
 			initialize();
 		}
@@ -21,15 +21,23 @@ namespace ns_fretBuzz
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
 			m_pSprite{ a_Sprite },
-			m_pShader{ a_pShader }
+			m_pShader{ a_pShader },
+			m_DefaltSprite()
 		{
 			initialize();
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
 			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)},
-			m_pShader{nullptr}
+			m_DefaltSprite(),
+			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)}
+		{
+			initialize();
+		}
+
+		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
+			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
+			m_DefaltSprite(a_v2Dimensions, a_v4Color)
 		{
 			initialize();
 		}
@@ -56,6 +64,12 @@ namespace ns_fretBuzz
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj, a_strSpriteID);
+		}
+
+		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
+		{
+			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+				nullptr : new SpriteRenderer(a_GameObj, a_v4Color, a_v2Dimensions);
 		}
 
 		void SpriteRenderer::setShader(std::string a_strShaderId)
@@ -87,10 +101,12 @@ namespace ns_fretBuzz
 
 		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
-			if (!m_bIsAllowedToRender || m_pSprite == nullptr) { return; }
-			 
+			if (!m_bIsAllowedToRender) { return; }
+
 			glm::mat4 l_mat4Transformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * a_mat4Transformation;
-			SpriteBatchRenderer::submit(*m_pSprite, l_mat4Transformation, m_pShader);
+ 
+			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaltSprite : m_pSprite);
+			SpriteBatchRenderer::submit(*l_pSpriteToRender,l_mat4Transformation, m_pShader);
 
 			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
 			l_CurrentShader.bind();

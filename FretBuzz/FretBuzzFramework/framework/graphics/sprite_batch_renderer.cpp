@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	{
 		SpriteBatchRenderer* SpriteBatchRenderer::s_pInstance = nullptr;
 
-		SpriteBatchRenderer::SpriteBatchRenderer(int a_iMaxSprites)
+		SpriteBatchRenderer::SpriteBatchRenderer(unsigned int a_iMaxSprites)
 			: 
 			IRenderer(),
 			MAX_SPRITES{a_iMaxSprites}
@@ -105,8 +105,8 @@ namespace ns_fretBuzz
 			l_Instance.m_pCurrentShader = a_pShader;
 
 			const std::vector<glm::vec4>& l_vectv4Position = a_Sprite.getVertPosition();
-			const glm::vec4 l_v4Color = a_Sprite.getColor();
-			const unsigned int l_iTexID = a_Sprite.getTexture()->getID();
+			const glm::vec4& l_v4Color = a_Sprite.getColor();
+			const unsigned int l_iTexID = (a_Sprite.getTexture() == nullptr) ? 0 : a_Sprite.getTexture()->getID();
 			const std::vector<glm::vec2>& l_vectv2TexCoords = a_Sprite.getTexCoords();
 
 			float l_fTextureSlot = 0.0f;

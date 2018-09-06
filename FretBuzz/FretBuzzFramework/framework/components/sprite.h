@@ -12,27 +12,19 @@ namespace ns_fretBuzz
 	{
 		class Sprite
 		{
-		public:
-			/*static constexpr char UNIFORM_PROJECTION_MATRIX[] = "unifProjection";
-			static constexpr char UNIFORM_VIEW_MATRIX[] = "unifView";
-			static constexpr char UNIFORM_MODEL_MATRIX[] = "unifModel";
-			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";*/
-
-			static constexpr int s_VERT_COUNT = 4;
-
 		private:
 			Texture* m_pTexture = nullptr;
 			std::vector<glm::vec2> m_TexCoords;
 			std::vector<glm::vec4> m_VertPosition;
 			glm::vec3 m_SpriteDimensionWH;
-			glm::vec2 m_OriginOffset;
+			glm::vec2 m_OriginOffset = {0.0f, 0.0f};
 
 			glm::vec4 m_v4Color;
 
 			std::string m_strID;
 
 		public:
-			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec2 a_v2OriginOffset, Texture* a_pTexture, glm::vec4 a_v4Color = { 1.0f, 1.0f, 1.0f,1.0f })
+			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec2 a_v2OriginOffset, Texture* a_pTexture, glm::vec4 a_v4Color = { 0.996, 0.180, 1.0,1.0 })
 				:
 				m_strID{a_strID},
 				m_pTexture{ a_pTexture },
@@ -55,6 +47,27 @@ namespace ns_fretBuzz
 								{
 				
 								}
+
+			Sprite(glm::vec2 a_v2Dimensions = {1.0f, 1.0f}, glm::vec4 a_v4Color = {0.996, 0.180, 1.0,1.0})
+				: m_SpriteDimensionWH{ a_v2Dimensions,0.0f },
+				m_v4Color{ a_v4Color },
+
+				m_TexCoords{
+								{ 0.0f, 0.0f },  //0
+								{ 0.0f, 1.0f },  //1
+								{ 1.0f, 1.0f },  //2
+								{ 1.0f, 0.0f }   //3
+							},
+
+				m_VertPosition{
+								glm::vec4(-0.5 * a_v2Dimensions.x, -0.5 * a_v2Dimensions.y, 0.0, 1.0f),
+								glm::vec4(-0.5 * a_v2Dimensions.x, 0.5 * a_v2Dimensions.y, 0.0, 1.0f),
+								glm::vec4(0.5 * a_v2Dimensions.x, 0.5 * a_v2Dimensions.y, 0.0, 1.0f),
+								glm::vec4(0.5 * a_v2Dimensions.x, -0.5 * a_v2Dimensions.y, 0.0, 1.0f)
+							}
+			{
+			
+			}
 
 			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, Texture* a_pTexture)
 				: Sprite(a_strID, a_v2SpriteCoords, a_v2DimensionsWH, a_v2TexDimensionsWH, {0.0f, 0.0f}, a_pTexture)
@@ -151,6 +164,22 @@ namespace ns_fretBuzz
 			inline const glm::vec4& getColor() const
 			{
 				return m_v4Color;
+			}
+
+			inline void setColor(glm::vec4 a_v4Color)
+			{
+				m_v4Color = a_v4Color;
+			}
+
+			inline void setDimensions(glm::vec3 a_v3Dimensions)
+			{
+				m_SpriteDimensionWH = a_v3Dimensions;
+				m_VertPosition = {
+					glm::vec4(-0.5 * m_SpriteDimensionWH.x, -0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f),
+					glm::vec4(-0.5 * m_SpriteDimensionWH.x, 0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f),
+					glm::vec4(0.5 * m_SpriteDimensionWH.x, 0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f),
+					glm::vec4(0.5 * m_SpriteDimensionWH.x, -0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f)
+				};
 			}
 		};
 

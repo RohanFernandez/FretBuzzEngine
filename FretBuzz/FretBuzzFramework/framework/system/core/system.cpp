@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 
 			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
 
-			m_pPhysicsEngine = new PhysicsEngine({0.0f, -9.8f});
+			m_pPhysicsEngine = new PhysicsEngine({0.0f, -9.8f}, 6, 2);
 
 			m_pGame = new Game();
 		}

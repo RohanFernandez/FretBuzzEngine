@@ -7,7 +7,9 @@ namespace ns_fretBuzz
 	{	
 		PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 
-		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity)
+		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
+			: m_iVelocityIteration{ a_iVelocityIteration },
+			  m_iStepIteration{ a_iStepIteration }
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -27,6 +29,16 @@ namespace ns_fretBuzz
 
 				s_pInstance = nullptr;
 			}
+		}
+
+		void PhysicsEngine::update(float a_fDeltaTime)
+		{
+			m_pB2World->Step(a_fDeltaTime, m_iVelocityIteration, m_iStepIteration);
+		}
+
+		b2World* PhysicsEngine::getB2World()
+		{
+			return s_pInstance->m_pB2World;
 		}
 	}
 }

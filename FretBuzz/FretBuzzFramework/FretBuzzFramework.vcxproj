@@ -173,6 +173,7 @@
     <ClCompile Include="framework\components\audio_clip.cpp" />
     <ClCompile Include="framework\components\gameobject_components\audio_source.cpp" />
     <ClCompile Include="framework\components\camera.cpp" />
+    <ClCompile Include="framework\components\gameobject_components\rect_collider.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_animation_controller.cpp" />
     <ClCompile Include="framework\graphics\renderer.cpp" />
     <ClCompile Include="framework\graphics\sprite_batch_renderer.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="framework\system\core\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="framework\components\gameobject_components\rect_collider.h" />
     <ClInclude Include="framework\graphics\sprite_batch_renderer.h" />
     <ClInclude Include="framework\components\sprite_animator.h" />
     <ClInclude Include="framework\components\audio_clip.h" />
