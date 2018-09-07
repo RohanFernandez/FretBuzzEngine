@@ -15,7 +15,7 @@ out vertData
 
 void main()
 {
-	gl_Position = a_position;
+	gl_Position = vec4(a_position.xy, int(a_position.z),a_position.w) ;
 	outVertexData.position = a_position;
 	outVertexData.texCoords = a_texCoords;
 	outVertexData.vertColour = a_vertColour;

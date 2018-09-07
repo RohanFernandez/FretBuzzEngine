@@ -23,6 +23,8 @@ namespace ns_fretBuzz
 
 			std::string m_strID;
 
+			static constexpr char COLORED_SPRITE_ID[] = "ColoredSprite";
+
 		public:
 			Sprite(std::string a_strID, glm::vec2 a_v2SpriteCoords, glm::vec2 a_v2DimensionsWH, glm::vec2 a_v2TexDimensionsWH, glm::vec2 a_v2OriginOffset, Texture* a_pTexture, glm::vec4 a_v4Color = { 0.996, 0.180, 1.0,1.0 })
 				:
@@ -33,9 +35,9 @@ namespace ns_fretBuzz
 				m_v4Color{a_v4Color},
 				m_TexCoords{
 							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y },					       //0
-							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },											   //1
+							 { a_v2SpriteCoords.x / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },												   //1
 							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - a_v2SpriteCoords.y) / a_v2TexDimensionsWH.y },						   //2
-							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y }    //3
+							 {(a_v2SpriteCoords.x + a_v2DimensionsWH.x) / a_v2TexDimensionsWH.x, (a_v2TexDimensionsWH.y - (a_v2SpriteCoords.y + a_v2DimensionsWH.y)) / a_v2TexDimensionsWH.y }     //3
 							},
 
 				m_VertPosition{
@@ -51,6 +53,7 @@ namespace ns_fretBuzz
 			Sprite(glm::vec2 a_v2Dimensions = {1.0f, 1.0f}, glm::vec4 a_v4Color = {0.996, 0.180, 1.0,1.0})
 				: m_SpriteDimensionWH{ a_v2Dimensions,0.0f },
 				m_v4Color{ a_v4Color },
+				m_strID{ COLORED_SPRITE_ID },
 
 				m_TexCoords{
 								{ 0.0f, 0.0f },  //0
@@ -62,8 +65,8 @@ namespace ns_fretBuzz
 				m_VertPosition{
 								glm::vec4(-0.5 * a_v2Dimensions.x, -0.5 * a_v2Dimensions.y, 0.0, 1.0f),
 								glm::vec4(-0.5 * a_v2Dimensions.x, 0.5 * a_v2Dimensions.y, 0.0, 1.0f),
-								glm::vec4(0.5 * a_v2Dimensions.x, 0.5 * a_v2Dimensions.y, 0.0, 1.0f),
-								glm::vec4(0.5 * a_v2Dimensions.x, -0.5 * a_v2Dimensions.y, 0.0, 1.0f)
+								glm::vec4( 0.5 * a_v2Dimensions.x, 0.5 * a_v2Dimensions.y, 0.0, 1.0f),
+								glm::vec4( 0.5 * a_v2Dimensions.x, -0.5 * a_v2Dimensions.y, 0.0, 1.0f)
 							}
 			{
 			
@@ -88,37 +91,15 @@ namespace ns_fretBuzz
 				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH },
 				m_OriginOffset{ a_SpriteData.m_OriginOffset},
 				m_v4Color{ a_SpriteData.m_v4Color},
-				m_TexCoords{ a_SpriteData.m_TexCoords[0],
-							 a_SpriteData.m_TexCoords[1],
-							 a_SpriteData.m_TexCoords[2],
-							 a_SpriteData.m_TexCoords[3] },
-
-				m_VertPosition{ a_SpriteData.m_VertPosition[0],
-								a_SpriteData.m_VertPosition[1],
-								a_SpriteData.m_VertPosition[2],
-								a_SpriteData.m_VertPosition[3]
-							  }	
-								{
-								}
+				m_TexCoords{ a_SpriteData.m_TexCoords },
+				m_VertPosition{ a_SpriteData.m_VertPosition }	
+						{
+						}
 
 			Sprite(Sprite&& a_SpriteData)
-				: 
-				m_strID{ a_SpriteData.m_strID },
-				m_pTexture{ a_SpriteData.m_pTexture },
-				m_OriginOffset{ a_SpriteData.m_OriginOffset },
-				m_SpriteDimensionWH{ a_SpriteData.m_SpriteDimensionWH},
-				m_v4Color{ a_SpriteData.m_v4Color },
-				m_TexCoords{ a_SpriteData.m_TexCoords[0],
-							a_SpriteData.m_TexCoords[1],
-							a_SpriteData.m_TexCoords[2],
-							a_SpriteData.m_TexCoords[3] },
-
-				m_VertPosition{ a_SpriteData.m_VertPosition[0],
-								a_SpriteData.m_VertPosition[1],
-								a_SpriteData.m_VertPosition[2],
-								a_SpriteData.m_VertPosition[3]}
-							{
-							}
+				:Sprite(a_SpriteData)
+						{
+						}
 
 			~Sprite()
 			{

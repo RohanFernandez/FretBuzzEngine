@@ -58,6 +58,7 @@ namespace ns_fretBuzz
 			m_pCurrentSpriteSheet = m_pAnimState->getSpriteSheet()->getSprites();
 			m_iCurrentSpriteIndex = 0;
 			m_pCurrentSprite = &(*m_pCurrentSpriteSheet)[m_iCurrentSpriteIndex];
+			m_pSpriteRenderer->setSprite(m_pCurrentSprite);
 
 			m_fTimePassedInCurrentSprite = 0.0f;
 			m_fTimePerSprite = m_pAnimState->getTimePerSprite();
