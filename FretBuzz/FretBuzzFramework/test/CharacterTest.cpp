@@ -17,6 +17,8 @@ namespace ns_fretBuzz
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
 			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {50.0f, 50.0f }, false, true);
+
+			m_pAudSrc->play();
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
