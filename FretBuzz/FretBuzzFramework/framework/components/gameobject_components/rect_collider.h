@@ -1,6 +1,7 @@
 #pragma once
 #include "../../system/component.h"
 #include "../../system/core/physics_engine.h"
+#include "../../graphics/line_batch_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -12,6 +13,9 @@ namespace ns_fretBuzz
 		private:
 			RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic = true, bool a_bIsFixedRotation = true);
 			virtual ~RectCollider();
+
+			ns_graphics::LineData m_arrRectLineBorders[4];
+			ns_graphics::Shader* m_pDefaultLineShader = nullptr;
 
 		protected:
 			bool m_bIsStatic = true;
@@ -29,6 +33,7 @@ namespace ns_fretBuzz
 			void setLinearVelocity(b2Vec2 a_v2VelocityDirection);
 
 			virtual void update(float a_fDeltaTime) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
 		};
 	}
 }

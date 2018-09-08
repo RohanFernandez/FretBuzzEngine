@@ -1,5 +1,5 @@
 #pragma once
-#include "renderer.h"
+#include "batch_renderer.h"
 #include "../utils/math.h"
 #include "../components/sprite.h"
 #include <vector>
@@ -8,9 +8,9 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class SpriteBatchRenderer : public IRenderer
+		class SpriteBatchRenderer : public BatchRenderer
 		{
-		private:
+		protected:
 			static SpriteBatchRenderer* s_pInstance;
 
 			struct VertexData
@@ -59,9 +59,10 @@ namespace ns_fretBuzz
 			~SpriteBatchRenderer();
 			
 			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
-			static void begin();
-			static void end();
-			static void flush();
+
+			virtual void begin() override;
+			virtual void end() override;
+			virtual void flush() override;
 		};
 	}
 }

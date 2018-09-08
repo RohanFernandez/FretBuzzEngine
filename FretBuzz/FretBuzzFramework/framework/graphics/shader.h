@@ -21,6 +21,7 @@ namespace ns_fretBuzz
 
 		public:
 			static constexpr char DEFAULT_SHADER_ID[] = "default";
+			static constexpr char DEFAULT_LINE_SHADER_ID[] = "defaultLineShader";
 
 			Shader() = delete;
 			Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath);

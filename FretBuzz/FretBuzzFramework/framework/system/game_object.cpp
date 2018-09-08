@@ -96,8 +96,9 @@ namespace ns_fretBuzz
 		void GameObject::render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
 		{
 			m_mat4Transformation = a_mat4Transformation * m_Transform.getModelMatrix();
+			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_mat4Transformation;
 
-			renderComponents(m_mat4Transformation, a_Camera);
+			renderComponents(l_mat4RenderTransformation, a_Camera);
 			renderChildren(m_mat4Transformation, a_Camera);
 		}
 

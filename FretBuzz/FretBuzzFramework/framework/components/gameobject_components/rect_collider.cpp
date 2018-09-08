@@ -3,6 +3,7 @@
 #include "../../system/game_object.h"
 #include <iostream>
 #include "../../system/core/input.h"
+#include "../../system/core/resource_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -12,7 +13,8 @@ namespace ns_fretBuzz
 			: IComponent(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
 			m_bIsStatic{ a_bIsStatic },
 			m_bIsFixedRotation{ a_bIsFixedRotation },
-			m_v2Dimensions{ a_v2Dimensions }
+			m_v2Dimensions{ a_v2Dimensions },
+			m_pDefaultLineShader{ ResourceManager::getResource<ns_graphics::Shader>(ns_graphics::Shader::DEFAULT_LINE_SHADER_ID) }
 		{
 			b2BodyDef l_bodyDef;
 			l_bodyDef.type = m_bIsStatic ? b2_staticBody : b2_dynamicBody;
@@ -31,11 +33,57 @@ namespace ns_fretBuzz
 			l_fixtureDef.density = m_bIsStatic ? 0.0f : 1.0f;
 			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
+
+
+			//Setup rect collider borders using LineData for debugging
+
+			float l_fLeftX = m_v2Dimensions.x * -0.5f;
+			float l_fRightX = m_v2Dimensions.x * 0.5f;
+			float l_fTopY = m_v2Dimensions.y * 0.5f;
+			float l_fBottomY = m_v2Dimensions.y * -0.5f;
+
+
+			m_arrRectLineBorders[0] = 
+				ns_graphics::LineData
+					{ 
+						{ l_fLeftX, l_fBottomY ,0.0f, 1.0f},
+						{0.0f, 0.0f ,1.0f, 1.0f },
+						{ l_fRightX, l_fBottomY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f }
+					};
+
+			m_arrRectLineBorders[1] =
+				ns_graphics::LineData
+					{
+						{ l_fRightX, l_fBottomY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{ l_fRightX, l_fTopY, 0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f }
+					};
+
+			m_arrRectLineBorders[2] =
+				ns_graphics::LineData
+					{
+						{ l_fRightX, l_fTopY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{ l_fLeftX, l_fTopY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f }
+					};
+
+			m_arrRectLineBorders[3] =
+				ns_graphics::LineData
+					{
+						{ l_fLeftX, l_fTopY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{ l_fLeftX, l_fBottomY ,0.0f, 1.0f },
+						{ 0.0f, 0.0f ,1.0f, 1.0f }
+					};
 		}
 
 		RectCollider::~RectCollider()
 		{
 			PhysicsEngine::getB2World()->DestroyBody(m_pBody);
+			m_pDefaultLineShader = nullptr;
 		}
 
 		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
@@ -78,6 +126,11 @@ namespace ns_fretBuzz
 		void RectCollider::applyImpulse(b2Vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyLinearImpulseToCenter(a_v2ForceDirection, true);
+		}
+
+		void RectCollider::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		{
+			ns_graphics::LineBatchRenderer::submit(m_arrRectLineBorders, 4, a_mat4Transformation, m_pDefaultLineShader);
 		}
 	}
 }

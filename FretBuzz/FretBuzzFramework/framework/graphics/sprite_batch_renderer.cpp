@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 
 		SpriteBatchRenderer::SpriteBatchRenderer(unsigned int a_iMaxSprites)
 			: 
-			IRenderer(),
+			BatchRenderer(),
 			MAX_SPRITES{a_iMaxSprites}
 		{
 			if (s_pInstance != nullptr)
@@ -81,6 +81,10 @@ namespace ns_fretBuzz
 				m_pIndexBufferArray = nullptr;
 			}
 
+			if (m_VBO) { glDeleteBuffers(1, &m_VBO); }
+			if (m_IBO) { glDeleteBuffers(1, &m_IBO); }
+			if (m_VAO) { glDeleteVertexArrays(1, &m_VAO); }
+
 			s_pInstance = nullptr;
 		}
 
@@ -93,9 +97,9 @@ namespace ns_fretBuzz
 				(l_Instance.m_pCurrentShader->getShaderId() != a_pShader->getShaderId()))
 				 || (l_Instance.m_iSpritesInBatch == l_Instance.MAX_SPRITES))
 			{
-				end();
-				flush();
-				begin();
+				l_Instance.end();
+				l_Instance.flush();
+				l_Instance.begin();
 			}
 
 			if (l_Instance.m_pCurrentShader != a_pShader)
@@ -130,9 +134,9 @@ namespace ns_fretBuzz
 				{
 					if (l_iTexIDCount == 32)
 					{
-						end();
-						flush();
-						begin();
+						l_Instance.end();
+						l_Instance.flush();
+						l_Instance.begin();
 						l_Instance.m_vectActiveTexIDs.clear();
 					}
 					l_Instance.m_vectActiveTexIDs.push_back(l_iTexID);
@@ -141,7 +145,6 @@ namespace ns_fretBuzz
 			}
 
 			l_Instance.m_iSpritesInBatch++;
-
 			VertexData*& l_pCurrentVertexData = l_Instance.m_pCurrentVertexData;
 
 			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[0];

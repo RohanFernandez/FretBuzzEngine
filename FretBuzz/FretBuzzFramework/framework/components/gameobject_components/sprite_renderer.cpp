@@ -99,10 +99,8 @@ namespace ns_fretBuzz
 		{
 			if (!m_bIsAllowedToRender) { return; }
 
-			glm::mat4 l_mat4Transformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * a_mat4Transformation;
- 
 			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaltSprite : m_pSprite);
-			SpriteBatchRenderer::submit(*l_pSpriteToRender,l_mat4Transformation, m_pShader);
+			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_pShader);
 
 			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
 			l_CurrentShader.bind();

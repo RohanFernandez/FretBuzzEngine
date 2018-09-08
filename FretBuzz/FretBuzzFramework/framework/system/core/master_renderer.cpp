@@ -1,6 +1,8 @@
 #pragma once
 #include "master_renderer.h"
 #include "../game.h"
+#include "../../graphics/line_batch_renderer.h"
+#include "../../graphics/sprite_batch_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -20,7 +22,9 @@ namespace ns_fretBuzz
 			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
-			m_pSpriteBatchRenderer = new ns_graphics::SpriteBatchRenderer(10);
+			m_VectBatchRenderers.emplace_back(new ns_graphics::SpriteBatchRenderer(10));
+			m_VectBatchRenderers.emplace_back(new ns_graphics::LineBatchRenderer(100, 10.0f));
+
 			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
@@ -32,12 +36,13 @@ namespace ns_fretBuzz
 				return;
 			}
 
-			if (m_pSpriteBatchRenderer != nullptr)
+			for (std::vector<ns_graphics::BatchRenderer*>::iterator l_Iterator = m_VectBatchRenderers.begin();
+				l_Iterator != m_VectBatchRenderers.end();)
 			{
-				delete m_pSpriteBatchRenderer;
-				m_pSpriteBatchRenderer = nullptr;
+				delete (*l_Iterator);
+				l_Iterator = m_VectBatchRenderers.erase(l_Iterator);
 			}
-
+			
 			if (m_pTimer != nullptr)
 			{
 				delete m_pTimer;
@@ -63,13 +68,21 @@ namespace ns_fretBuzz
 		float MasterRenderer::render(Game& m_Game)
 		{
 			m_pWindow->clear();
-			m_pSpriteBatchRenderer->begin();
+
+			int l_iBatchRendererCount = m_VectBatchRenderers.size();
+			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			{
+				m_VectBatchRenderers[l_iBatchRendererIndex]->begin();
+			}
 
 			m_pMainCamera->updateViewMatrix();
 			m_Game.renderFrame(*m_pMainCamera);
 
-			m_pSpriteBatchRenderer->end();
-			m_pSpriteBatchRenderer->flush();
+			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			{
+				m_VectBatchRenderers[l_iBatchRendererIndex]->end();
+				m_VectBatchRenderers[l_iBatchRendererIndex]->flush();
+			}
 
 			m_pWindow->update();
 			m_pTimer->update();

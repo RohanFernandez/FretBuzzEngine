@@ -11,6 +11,7 @@
 <!-- SHADERS START-->
 	<Shaders>
 		<shader id="default" vert="vertShader.txt" frag="fragShader.txt"/>
+  <shader id="defaultLineShader" vert="defaultLineVertShader.txt" frag="defaultLineFragShader.txt"/>
 	</Shaders>
 <!-- SHADERS END-->
 

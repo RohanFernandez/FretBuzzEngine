@@ -114,6 +114,9 @@
     <ClCompile Include="framework\components\gameobject_components\character_controller_2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\line_batch_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -227,10 +230,18 @@
     <ClInclude Include="framework\components\gameobject_components\character_controller_2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\graphics\line_batch_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\batch_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />
     <Text Include="resources\shaders\vertShader.txt" />
+    <Text Include="resources\shaders\defaultLineVertShader.txt" />
+    <Text Include="resources\shaders\defaultLineFragShader.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\darksiders.jpg">

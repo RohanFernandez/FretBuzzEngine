@@ -45,7 +45,7 @@ namespace ns_fretBuzz
 			std::map<std::string, std::string>::iterator l_SpriteSheetIterator = l_MapTriggers.find(a_strTrigger);
 			if (l_SpriteSheetIterator == l_MapTriggers.end())
 			{
-				std::cout << "SpriteAnimationController::play::: Could not find sprite sheet id '"<< a_strTrigger <<"'\n";
+				std::cout << "SpriteAnimationController::play::: Could not find trigger id '"<< a_strTrigger <<"'\n";
 				return;
 			}
 
