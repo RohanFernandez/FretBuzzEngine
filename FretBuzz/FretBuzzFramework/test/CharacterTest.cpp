@@ -12,11 +12,11 @@ namespace ns_fretBuzz
 {
 
 	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
-		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f,300.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
+		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f,000.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
-			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {16.0f, 16.0f}, false, false);
+			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {50.0f, 50.0f }, false, true);
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -52,27 +52,52 @@ namespace ns_fretBuzz
 				m_pSpriteAnimator->play("slash");
 			}
 
-			float l_fCurrentSpeed = m_fVelocity * a_fDeltaTime;
+			float l_fCurrentSpeed = m_fVelocity;
+
+			float l_fHorizontalVelocity = 0.0f;
+			float l_fVerticalVelocity = 0.0f;
+
+
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_W))
 			{
-				glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x, l_v3Position.y + l_fCurrentSpeed, l_v3Position.z });
+				/*glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x, l_v3Position.y + l_fCurrentSpeed, l_v3Position.z });*/
+
+				//m_pRectCollider->setLinearVelocity({ 0.0f, l_fCurrentSpeed });
+
+				l_fVerticalVelocity += l_fCurrentSpeed;
 			}
+
+
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_S))
 			{
-				glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x, l_v3Position.y - l_fCurrentSpeed, l_v3Position.z });
+				/*glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x, l_v3Position.y - l_fCurrentSpeed, l_v3Position.z });*/
+
+				//m_pRectCollider->setLinearVelocity({ 0.0f, -l_fCurrentSpeed });
+
+				l_fVerticalVelocity -= l_fCurrentSpeed;
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_A))
 			{
-				glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x - l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });
+				/*glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x - l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });*/
+
+				//m_pRectCollider->setLinearVelocity({ -l_fCurrentSpeed, 0.0f });
+
+				l_fHorizontalVelocity -= l_fCurrentSpeed;
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_D))
 			{
-				glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x + l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });
+				/*glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x + l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });*/
+
+				//m_pRectCollider->setLinearVelocity({ l_fCurrentSpeed, 0.0f} );
+
+				l_fHorizontalVelocity += l_fCurrentSpeed;
 			}
+
+			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
 			{

@@ -11,14 +11,11 @@ namespace ns_fretBuzz
 	InitState::InitState(std::string a_strSceneName) :
 		IScene(a_strSceneName)
 	{
-		ns_system ::GameObject* l_pLabelGameObj = ns_system::GameObject::instantiate(m_refRootGameObject, "LABEL", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
+		CharacterTest* l_gameObjChar = new CharacterTest(m_refRootGameObject, "character_test");
+
+		ns_system ::GameObject* l_pLabelGameObj = ns_system::GameObject::instantiate(m_refRootGameObject, "LABEL", { 200.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
 		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj, { 0.0f, 1.0f, 0.0f,1.0f }, { 100.0f, 100.0f });
 		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj, { 100.0f, 100.0f });
-
-
-		CharacterTest* l_gameObjChar = new CharacterTest(m_refRootGameObject, "character_test");
-		l_pLabelGameObj->setAsParent(l_pLabelGameObj);
-
 	}
 
 	void InitState::OnStateEnter()

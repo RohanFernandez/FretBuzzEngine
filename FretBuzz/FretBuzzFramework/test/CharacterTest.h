@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		float m_fVelocity = 200.0f;
+		float m_fVelocity = 250.0f;
 
 		float m_fScale = 1.0f;
 		float m_fScaleVelocity = 2.0f;

@@ -1,6 +1,8 @@
 #pragma once
 #include "rect_collider.h"
 #include "../../system/game_object.h"
+#include <iostream>
+#include "../../system/core/input.h"
 
 namespace ns_fretBuzz
 {
@@ -16,6 +18,8 @@ namespace ns_fretBuzz
 			l_bodyDef.type = m_bIsStatic ? b2_staticBody : b2_dynamicBody;
 			glm::vec2 l_Position = m_GameObject.m_Transform.getPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
+			l_bodyDef.angle = m_GameObject.m_Transform.getRotation().z;
+			l_bodyDef.fixedRotation = m_bIsFixedRotation;
 
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
 			
@@ -24,8 +28,8 @@ namespace ns_fretBuzz
 
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.shape = &l_boxShape;
-			l_fixtureDef.density = 1.0f;
-			l_fixtureDef.friction = 0.3f;
+			l_fixtureDef.density = m_bIsStatic ? 0.0f : 1.0f;
+			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 		}
 
@@ -42,12 +46,38 @@ namespace ns_fretBuzz
 
 		void RectCollider::update(float a_fDeltaTime)
 		{
-			//m_pBody->GetTransform().
+			//Set transform position from collider position.
+			const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
+			const glm::vec3& l_v3TransformPosition = m_GameObject.m_Transform.getPosition();		
+			m_GameObject.m_Transform.translate({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, l_v3TransformPosition.z });
+
+			if (Input::IsKeyPutDown(GLFW_KEY_V))
+			{
+				std::cout << "ColliderPosition:: {" << l_v2ColliderPosition.x << "," << l_v2ColliderPosition.y << "}\n";
+			}
+
+			//Set transform rotation from collider rotation if the collider's rotation is not fixed.
+			if (!m_bIsFixedRotation)
+			{
+				const float l_fColliderRotatedZAngle = m_pBody->GetAngle();
+				const glm::vec3& l_v3TransformRotation = m_GameObject.m_Transform.getRotation();
+				m_GameObject.m_Transform.rotate({ l_v3TransformRotation.x, l_v3TransformRotation.y , l_fColliderRotatedZAngle });
+			}
 		}
 
 		void RectCollider::applyForce(b2Vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyForceToCenter(a_v2ForceDirection, true);
+		}
+
+		void RectCollider::setLinearVelocity(b2Vec2 a_v2VelocityDirection)
+		{
+			m_pBody->SetLinearVelocity(a_v2VelocityDirection);
+		}
+
+		void RectCollider::applyImpulse(b2Vec2 a_v2ForceDirection)
+		{
+			m_pBody->ApplyLinearImpulseToCenter(a_v2ForceDirection, true);
 		}
 	}
 }

@@ -24,6 +24,9 @@ namespace ns_fretBuzz
 			static RectCollider* addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic = true, bool a_bIsFixedRotation = true);
 
 			void applyForce(b2Vec2 a_v2ForceDirection);
+			void applyImpulse(b2Vec2 a_v2ImpulseDirection);
+
+			void setLinearVelocity(b2Vec2 a_v2VelocityDirection);
 
 			virtual void update(float a_fDeltaTime) override;
 		};

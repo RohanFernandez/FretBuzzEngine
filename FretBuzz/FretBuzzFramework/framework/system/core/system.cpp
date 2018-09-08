@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 
 			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
 
-			m_pPhysicsEngine = new PhysicsEngine({0.0f, -9.8f}, 6, 2);
+			m_pPhysicsEngine = new PhysicsEngine({0.0f, 0.0f}, 6, 2);
 
 			m_pGame = new Game();
 		}
@@ -106,7 +106,6 @@ namespace ns_fretBuzz
 			{
 				l_Game.updateScenes(l_fCurrentDeltaTime);
 				l_PhysicsEngine.update(l_fCurrentDeltaTime);
-
 				l_Input.Update();
 				l_fCurrentDeltaTime = l_MasterRenderer.render(l_Game);
 			}

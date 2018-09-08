@@ -25,17 +25,17 @@ namespace ns_fretBuzz
 			void scale(glm::vec3 a_v3Scale);
 			void translate(glm::vec3 a_v3Translate);
 
-			inline glm::vec3 getPosition() const
+			inline const glm::vec3& getPosition() const
 			{
 				return m_v3Position;
 			}
 
-			inline glm::vec3 getRotation() const
+			inline const glm::vec3& getRotation() const
 			{
 				return m_v3Rotation;
 			}
 
-			inline glm::vec3 getScale() const
+			inline const glm::vec3& getScale() const
 			{
 				return m_v3Scale;
 			}
