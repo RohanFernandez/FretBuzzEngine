@@ -93,8 +93,19 @@ namespace ns_fretBuzz
 
 		void MasterRenderer::windowResizeCallback()
 		{
-			delete s_pInstance->m_pMainCamera;
-			s_pInstance->m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
+			OrthographicCamera* l_pOrthoCamera = dynamic_cast<OrthographicCamera*>(s_pInstance->m_pMainCamera);
+			if (l_pOrthoCamera != nullptr)
+			{
+				glm::vec2 l_v2NearFar = l_pOrthoCamera->getNearFar();
+				l_pOrthoCamera->setProjectionMatrix(-(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, l_v2NearFar.x, l_v2NearFar.y);
+			}
+
+			PerspectiveCamera* l_pPerspectiveCamera = dynamic_cast<PerspectiveCamera*>(s_pInstance->m_pMainCamera);
+			if (l_pPerspectiveCamera != nullptr)
+			{
+				glm::vec2 l_v2NearFar = l_pPerspectiveCamera->getNearFar();
+				l_pPerspectiveCamera->setProjectionMatrix(l_pPerspectiveCamera->getFOV(), l_pPerspectiveCamera->getAspectRatio(), l_v2NearFar.x, l_v2NearFar.y);
+			}
 		}
 	}
 }

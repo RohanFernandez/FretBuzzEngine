@@ -138,15 +138,16 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = s_pInstance->m_vectWindowResizeCallbacks.begin();
-					l_Iterator != s_pInstance->m_vectWindowResizeCallbacks.end();)
+				for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = s_pInstance->m_vectWindowResizeCallbacks.begin(),
+					l_IteratorEnd = s_pInstance->m_vectWindowResizeCallbacks.end();
+					l_Iterator != l_IteratorEnd; 
+					l_Iterator++)
 				{
 					if (*l_Iterator == a_WindowResizeCallback)
 					{
 						l_Iterator = s_pInstance->m_vectWindowResizeCallbacks.erase(l_Iterator);
 						return;
 					}
-					l_Iterator++;
 				}
 			}
 		}
