@@ -31,8 +31,6 @@ namespace ns_fretBuzz
 
 			void playStateID(std::string a_strAnimationID);
 
-			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER;
-
 		public:
 			static SpriteAnimationController* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
 

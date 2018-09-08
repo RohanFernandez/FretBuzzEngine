@@ -3,6 +3,7 @@
 #include "../framework/system/game_object.h" 
 #include "../framework/components/gameobject_components/audio_source.h"
 #include "../framework/components/gameobject_components/sprite_animation_controller.h"
+#include "../framework/components/gameobject_components/rect_collider.h"
 
 #include "../framework/graphics/shader.h"
 #include "../framework/graphics/texture.h"
@@ -16,6 +17,7 @@ namespace ns_fretBuzz
 	private:
 		ns_system::AudioSource* m_pAudSrc = nullptr;
 		ns_system::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		ns_system::RectCollider* m_pRectCollider = nullptr;
 
 		bool isAudioPlaying = false;
 

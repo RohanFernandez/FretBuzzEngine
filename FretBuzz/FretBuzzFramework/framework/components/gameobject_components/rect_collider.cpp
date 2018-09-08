@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		RectCollider::RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
-			: IComponent(s_COMPONENT_TYPE, a_GameObject),
+			: IComponent(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
 			m_bIsStatic{ a_bIsStatic },
 			m_bIsFixedRotation{ a_bIsFixedRotation },
 			m_v2Dimensions{ a_v2Dimensions }
@@ -36,13 +36,18 @@ namespace ns_fretBuzz
 
 		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObject) ?
+			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
 				nullptr : new RectCollider(a_GameObject, a_v2Dimensions, a_bIsStatic, a_bIsFixedRotation);
 		}
 
 		void RectCollider::update(float a_fDeltaTime)
 		{
-		
+			//m_pBody->GetTransform().
+		}
+
+		void RectCollider::applyForce(b2Vec2 a_v2ForceDirection)
+		{
+			m_pBody->ApplyForceToCenter(a_v2ForceDirection, true);
 		}
 	}
 }

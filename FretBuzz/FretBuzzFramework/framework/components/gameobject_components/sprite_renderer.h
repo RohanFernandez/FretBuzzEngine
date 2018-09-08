@@ -11,8 +11,6 @@ namespace ns_fretBuzz
 		class SpriteRenderer : public ns_system::IComponent
 		{
 		private:
-			static constexpr ns_system::COMPONENT_TYPE s_COMPONENT_TYPE = ns_system::COMPONENT_TYPE::SPRITE_RENDERER;
-
 			SpriteRenderer(ns_system::GameObject& a_GameObj);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);

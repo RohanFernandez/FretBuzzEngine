@@ -111,6 +111,9 @@
     <ClCompile Include="framework\components\gameobject_components\rect_collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\character_controller_2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\gameobject_components\rect_collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\character_controller_2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

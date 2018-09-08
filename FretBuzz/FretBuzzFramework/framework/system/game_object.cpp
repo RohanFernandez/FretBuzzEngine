@@ -9,10 +9,11 @@ namespace ns_fretBuzz
 		//static counter that specifies the id.
 		int GameObject::s_iID = 0;
 
-		GameObject::GameObject(std::string a_strName)
+		GameObject::GameObject(std::string a_strName, bool a_bIsRoot)
 			: m_iID{++s_iID},
 		     m_strName{a_strName},
-			 m_Transform()
+			 m_Transform(),
+			m_bIsRoot{a_bIsRoot}
 		{
 			
 		}
@@ -52,9 +53,9 @@ namespace ns_fretBuzz
 			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
 		}
 
-		void GameObject::addChild(GameObject* a_pIChildGameObject)
+		void GameObject::addChild(GameObject* a_pChildGameObject)
 		{
-			m_Children.emplace_back(a_pIChildGameObject);
+			a_pChildGameObject->setAsParent(this);
 		}
 
 		void GameObject::addComponent(IComponent* a_IComponent)
@@ -161,6 +162,40 @@ namespace ns_fretBuzz
 					l_IChildObjCurrent++;
 				}
 			}
+		}
+
+		void GameObject::setAsParent(GameObject* a_pNewParentGameObject)
+		{
+			if (m_bIsRoot)
+			{
+				std::cout << "GameObject::setAsParent:: A gameobject  name::[" << a_pNewParentGameObject->getName()<< "]  cannot be set as the parent of a ROOT GameObject name::["<< getName()<<"]\n";
+				return;
+			}
+
+			if (a_pNewParentGameObject == this)
+			{
+				std::cout << "GameObject::setAsParent:: The new parent to set of the child GameObject are the same GameObject\n";
+				return;
+			}
+
+			if (m_pParentGameObject != nullptr)
+			{
+				std::vector<GameObject*> m_CurrentParentsChildren = m_pParentGameObject->m_Children;
+
+				for (std::vector<GameObject*>::iterator l_Iterator = m_CurrentParentsChildren.begin();
+					l_Iterator != m_CurrentParentsChildren.end();
+					l_Iterator++)
+				{
+					if (*l_Iterator == this)
+					{
+						m_CurrentParentsChildren.erase(l_Iterator);
+						break;
+					}
+				}
+			}
+
+			m_pParentGameObject = a_pNewParentGameObject;
+			m_pParentGameObject->m_Children.emplace_back(this);
 		}
 
 		void GameObject::logHierarchy(int l_iNumOfTabs)

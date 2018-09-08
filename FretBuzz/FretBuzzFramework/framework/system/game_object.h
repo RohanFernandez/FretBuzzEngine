@@ -16,6 +16,9 @@ namespace ns_fretBuzz
 		protected:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
+			bool m_bIsRoot = false;
+
+			GameObject* m_pParentGameObject = nullptr;
 
 			const std::string m_strName;
 			const int m_iID;
@@ -33,7 +36,7 @@ namespace ns_fretBuzz
 			bool m_bIsActive = true;
 			void addComponent(IComponent* a_IComponent);
 
-			GameObject(std::string a_strName);
+			GameObject(std::string a_strName, bool a_bIsRoot = true);
 			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
 
 			virtual ~GameObject();
@@ -56,6 +59,8 @@ namespace ns_fretBuzz
 			void setActive(bool a_bIsActive);
 
 			bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;
+
+			void setAsParent(GameObject* a_pParentGameObject);
 
 			inline bool isActive() const
 			{

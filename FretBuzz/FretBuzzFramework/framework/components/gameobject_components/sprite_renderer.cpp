@@ -10,16 +10,8 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj)
-			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_pSprite{ nullptr},
-			m_DefaltSprite()
-		{
-			initialize();
-		}
-
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
-			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
+			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
 			m_pSprite{ a_Sprite },
 			m_pShader{ a_pShader },
 			m_DefaltSprite()
@@ -27,16 +19,20 @@ namespace ns_fretBuzz
 			initialize();
 		}
 
+		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj)
+			: SpriteRenderer(a_GameObj, nullptr, nullptr)
+		{
+			initialize();
+		}
+
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
-			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
-			m_DefaltSprite(),
-			m_pSprite {ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0)}
+			: SpriteRenderer(a_GameObj,ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0), nullptr)
 		{
 			initialize();
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
-			: ns_system::IComponent(s_COMPONENT_TYPE, a_GameObj),
+			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
 			m_DefaltSprite(a_v2Dimensions, a_v4Color)
 		{
 			initialize();
@@ -50,25 +46,25 @@ namespace ns_fretBuzz
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj);
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj, a_Sprite, a_pShader);
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj, a_strSpriteID);
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj, a_v4Color, a_v2Dimensions);
 		}
 

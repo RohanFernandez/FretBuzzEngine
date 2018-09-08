@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 				return;
 			}
 			s_pInstance = this;
-			m_vectActiveStates.push_back(a_pStartScene);
+			m_vectActiveStates.emplace_back(a_pStartScene);
 		}
 
 		SceneManager::SceneManager(std::vector<ISceneData*>& a_pVectIScene)
@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 				return;
 			}
 			s_pInstance = this;
-			m_vectActiveStates.push_back(a_pVectIScene[0]);
+			m_vectActiveStates.emplace_back(a_pVectIScene[0]);
 		}
 
 		SceneManager::~SceneManager()
@@ -148,7 +148,7 @@ namespace ns_fretBuzz
 
 			if (!l_bCurrentSceneActive)
 			{
-				m_vectActiveStates.push_back(dynamic_cast<ISceneData*>(m_pCurrentState));
+				m_vectActiveStates.emplace_back(dynamic_cast<ISceneData*>(m_pCurrentState));
 			}
 			else
 			{

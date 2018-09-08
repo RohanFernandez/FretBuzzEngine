@@ -10,8 +10,6 @@ namespace ns_fretBuzz
 		class RectCollider : public IComponent
 		{
 		private:
-			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::RECT_COLLIDER;
-
 			RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic = true, bool a_bIsFixedRotation = true);
 			virtual ~RectCollider();
 
@@ -24,6 +22,8 @@ namespace ns_fretBuzz
 
 		public:
 			static RectCollider* addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic = true, bool a_bIsFixedRotation = true);
+
+			void applyForce(b2Vec2 a_v2ForceDirection);
 
 			virtual void update(float a_fDeltaTime) override;
 		};

@@ -142,23 +142,25 @@ namespace ns_fretBuzz
 
 			l_Instance.m_iSpritesInBatch++;
 
-			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[0];
-			l_Instance.m_pCurrentVertexData->m_v4Color = l_v4Color;
-			l_Instance.m_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_Instance.m_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[0];
-			l_Instance.m_pCurrentVertexData++;
+			VertexData*& l_pCurrentVertexData = l_Instance.m_pCurrentVertexData;
 
-			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[1];
-			l_Instance.m_pCurrentVertexData->m_v4Color = l_v4Color;
-			l_Instance.m_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_Instance.m_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[1];
-			l_Instance.m_pCurrentVertexData++;
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[0];
+			l_pCurrentVertexData->m_v4Color = l_v4Color;
+			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
+			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[0];
+			l_pCurrentVertexData++;
 
-			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[2];
-			l_Instance.m_pCurrentVertexData->m_v4Color = l_v4Color;
-			l_Instance.m_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_Instance.m_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[2];
-			l_Instance.m_pCurrentVertexData++;
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[1];
+			l_pCurrentVertexData->m_v4Color = l_v4Color;
+			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
+			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[1];
+			l_pCurrentVertexData++;
+
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[2];
+			l_pCurrentVertexData->m_v4Color = l_v4Color;
+			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
+			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[2];
+			l_pCurrentVertexData++;
 
 			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[3];
 			l_Instance.m_pCurrentVertexData->m_v4Color = l_v4Color;

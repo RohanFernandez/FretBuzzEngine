@@ -51,7 +51,7 @@ namespace ns_fretBuzz
 		protected:
 			IScene(std::string a_strSceneName) 
 				: IFSM(a_strSceneName),
-				m_pGameObjectRoot{ new GameObject(a_strSceneName + "::ROOT") },
+				m_pGameObjectRoot{ new GameObject(a_strSceneName + "::ROOT")},
 				m_refRootGameObject{ *m_pGameObjectRoot }
 			{
 			}

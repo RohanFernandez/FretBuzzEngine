@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		SpriteAnimationController::SpriteAnimationController(GameObject& a_GameObj, std::string a_strAnimatorId)
-			: IComponent(s_COMPONENT_TYPE, a_GameObj)
+			: IComponent(COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER, a_GameObj)
 		{
 			m_pSpriteRenderer = m_GameObject.getComponent<ns_graphics::SpriteRenderer>(COMPONENT_TYPE::SPRITE_RENDERER);
 			if (m_pSpriteRenderer == nullptr)
@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 
 		SpriteAnimationController* SpriteAnimationController::addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER, &a_GameObj) ?
 				nullptr : new SpriteAnimationController(a_GameObj, a_strAnimationControllerId);
 		}
 

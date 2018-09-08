@@ -50,7 +50,7 @@ namespace ns_fretBuzz
 
 		void Transform::translate(glm::vec3 a_v3Translate)
 		{
-			m_v3Position += a_v3Translate;
+			m_v3Position = a_v3Translate;
 		}
 
 		const glm::mat4 Transform::getModelMatrix()

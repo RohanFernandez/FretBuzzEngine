@@ -12,8 +12,6 @@ namespace ns_fretBuzz
 		class AudioSource : public IComponent
 		{
 		private:
-			static constexpr COMPONENT_TYPE s_COMPONENT_TYPE = COMPONENT_TYPE::AUDIO_SOURCE;
-
 			irrklang::ISoundEngine* m_pISoundEngine = nullptr;
 			irrklang::ISoundSource* m_pISoundSource = nullptr;
 			irrklang::ISound* m_pISound = nullptr;

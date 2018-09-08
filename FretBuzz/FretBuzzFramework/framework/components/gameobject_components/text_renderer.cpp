@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		TextRenderer::TextRenderer(GameObject& a_GameObj, std::string a_strText)
-			: IComponent(s_COMPONENT_TYPE, a_GameObj)
+			: IComponent(COMPONENT_TYPE::TEXT_RENDERER, a_GameObj)
 		{
 		
 		}
@@ -18,7 +18,7 @@ namespace ns_fretBuzz
 
 		TextRenderer* TextRenderer::addComponent(GameObject& a_GameObj, std::string a_strText)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(s_COMPONENT_TYPE, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::TEXT_RENDERER, &a_GameObj) ?
 				nullptr : new TextRenderer(a_GameObj, a_strText);
 		}
 

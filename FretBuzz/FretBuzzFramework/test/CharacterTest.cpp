@@ -12,10 +12,11 @@ namespace ns_fretBuzz
 {
 
 	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
-		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 300.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
+		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f,300.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
+			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {16.0f, 16.0f}, false, false);
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -54,19 +55,23 @@ namespace ns_fretBuzz
 			float l_fCurrentSpeed = m_fVelocity * a_fDeltaTime;
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_W))
 			{
-				m_Transform.translate({ 0.0f, l_fCurrentSpeed , 0.0f });
+				glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x, l_v3Position.y + l_fCurrentSpeed, l_v3Position.z });
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_S))
 			{
-				m_Transform.translate({ 0.0f, -l_fCurrentSpeed , 0.0f });
+				glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x, l_v3Position.y - l_fCurrentSpeed, l_v3Position.z });
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_A))
 			{
-				m_Transform.translate({ -l_fCurrentSpeed , 0.0f, 0.0f });
+				glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x - l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_D))
 			{
-				m_Transform.translate({ l_fCurrentSpeed, 0.0f, 0.0f });
+				glm::vec3 l_v3Position = m_Transform.getPosition();
+				m_Transform.translate({ l_v3Position.x + l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });
 			}
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
