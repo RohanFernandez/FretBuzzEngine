@@ -18,8 +18,10 @@ namespace ns_fretBuzz
 			s_pInstance = this;
 
 			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
+			Window::registerWindowResizeCallback(windowResizeCallback);
+
 			m_pSpriteBatchRenderer = new ns_graphics::SpriteBatchRenderer(10);
-			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
+			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
 
@@ -50,6 +52,7 @@ namespace ns_fretBuzz
 
 			if (m_pWindow != nullptr)
 			{
+				Window::unregisterWindowResizeCallback(windowResizeCallback);
 				delete m_pWindow;
 				m_pWindow = nullptr;
 			}
@@ -86,6 +89,12 @@ namespace ns_fretBuzz
 		void MasterRenderer::closeWindow() const
 		{
 			m_pWindow->closeWindow();
+		}
+
+		void MasterRenderer::windowResizeCallback()
+		{
+			delete s_pInstance->m_pMainCamera;
+			s_pInstance->m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, -1.0f, 1.0f };
 		}
 	}
 }

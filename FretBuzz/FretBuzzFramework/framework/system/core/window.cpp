@@ -70,6 +70,7 @@ namespace ns_fretBuzz
 
 			if (s_pInstance == this)
 			{
+				s_pInstance->m_vectWindowResizeCallbacks.clear();
 				s_pInstance = nullptr;
 			}
 		}
@@ -106,6 +107,13 @@ namespace ns_fretBuzz
 			l_pWindow->m_uiWidth = a_iWidth;
 			l_pWindow->m_uiHeight = a_iHeight;
 			glViewport(0, 0, a_iWidth, a_iHeight);
+
+			for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = l_pWindow->m_vectWindowResizeCallbacks.begin(),
+				l_IteratorEnd = l_pWindow->m_vectWindowResizeCallbacks.end();
+				l_Iterator != l_IteratorEnd; l_Iterator++)
+			{
+				(*l_Iterator)();
+			}
 		}
 
 		bool Window::isWindowClosed() const
@@ -116,6 +124,31 @@ namespace ns_fretBuzz
 		void Window::closeWindow()
 		{
 			glfwSetWindowShouldClose(m_pGLFWwindow, GLFW_TRUE);
+		}
+
+		void Window::registerWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback)
+		{
+			if (s_pInstance != nullptr)
+			{
+				s_pInstance->m_vectWindowResizeCallbacks.emplace_back(a_WindowResizeCallback);
+			}
+		}
+
+		void Window::unregisterWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback)
+		{
+			if (s_pInstance != nullptr)
+			{
+				for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = s_pInstance->m_vectWindowResizeCallbacks.begin();
+					l_Iterator != s_pInstance->m_vectWindowResizeCallbacks.end();)
+				{
+					if (*l_Iterator == a_WindowResizeCallback)
+					{
+						l_Iterator = s_pInstance->m_vectWindowResizeCallbacks.erase(l_Iterator);
+						return;
+					}
+					l_Iterator++;
+				}
+			}
 		}
 	}
 }

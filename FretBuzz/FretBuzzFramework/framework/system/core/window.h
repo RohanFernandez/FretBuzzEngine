@@ -3,6 +3,8 @@
 #include <glfw3.h>
 #include <string>
 #include "../../utils/math.h"
+#include <vector>
+#include <functional>
 
 namespace ns_fretBuzz
 {
@@ -28,6 +30,9 @@ namespace ns_fretBuzz
 
 			//Callback called on window resized
 			static void OnWindowResize(GLFWwindow* a_pGLFWwindow, int a_iWidth, int a_iHeight);
+
+			using WINDOW_RESIZE_TYPE = void(*)();
+			std::vector<WINDOW_RESIZE_TYPE> m_vectWindowResizeCallbacks;
 
 		public:
 			Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName);
@@ -78,6 +83,9 @@ namespace ns_fretBuzz
 			{
 				return m_pGLFWwindow;
 			}
+
+			static void registerWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
+			static void unregisterWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
 		};
 	}
 }
