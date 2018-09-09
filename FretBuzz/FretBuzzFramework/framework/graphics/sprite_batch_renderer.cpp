@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 
 		SpriteBatchRenderer::SpriteBatchRenderer(unsigned int a_iMaxSprites)
 			: 
-			BatchRenderer(),
+			IBatchRenderer(),
 			MAX_SPRITES{a_iMaxSprites}
 		{
 			if (s_pInstance != nullptr)

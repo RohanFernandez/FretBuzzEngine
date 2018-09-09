@@ -33,6 +33,7 @@ namespace ns_fretBuzz
 
 			virtual void update(float a_fDeltaTime);
 			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
+			virtual void debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
 		};
 	}
 }

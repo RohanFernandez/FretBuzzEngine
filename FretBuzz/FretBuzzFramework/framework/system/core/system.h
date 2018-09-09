@@ -8,6 +8,7 @@
 #include "resource_manager.h"
 #include "physics_engine.h"
 
+
 namespace ns_fretBuzz
 {
 	namespace ns_system

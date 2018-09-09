@@ -1,5 +1,5 @@
 #pragma once
-#include "batch_renderer.h"
+#include "batch_renderer_manager.h"
 #include "../utils/math.h"
 #include "../components/sprite.h"
 #include <vector>
@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class SpriteBatchRenderer : public BatchRenderer
+		class SpriteBatchRenderer : public IBatchRenderer
 		{
 		protected:
 			static SpriteBatchRenderer* s_pInstance;

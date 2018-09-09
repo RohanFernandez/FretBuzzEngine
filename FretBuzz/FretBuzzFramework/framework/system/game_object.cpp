@@ -1,4 +1,5 @@
 #pragma once
+#include "../system/core/system_defines.h"
 #include "game_object.h"
 #include <iostream>
 
@@ -108,6 +109,10 @@ namespace ns_fretBuzz
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
 				m_Components[l_iComponentndex]->render(a_mat4Transformation, a_Camera);
+
+#ifdef _IS_DEBUG_RENDERING
+				m_Components[l_iComponentndex]->debugRender(a_mat4Transformation, a_Camera);
+#endif
 			}
 		}
 

@@ -3,7 +3,7 @@
 #include "window.h"
 #include "../timer/timerFPS.h"
 #include "../../components/camera.h"
-#include "../../graphics/batch_renderer.h"
+#include "../../graphics/batch_renderer_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz
@@ -19,9 +19,9 @@ namespace ns_fretBuzz
 			Window* m_pWindow = nullptr;
 			TimerFPS* m_pTimer = nullptr;
 
-			Camera* m_pMainCamera;
+			Camera* m_pMainCamera = nullptr;
 
-			std::vector<ns_graphics::BatchRenderer*> m_VectBatchRenderers;
+			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
 
 		public:
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);

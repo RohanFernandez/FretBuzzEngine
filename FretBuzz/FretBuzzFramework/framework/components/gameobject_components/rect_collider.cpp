@@ -1,4 +1,5 @@
 #pragma once
+#include "../../system/core/system_defines.h"
 #include "rect_collider.h"
 #include "../../system/game_object.h"
 #include <iostream>
@@ -34,14 +35,13 @@ namespace ns_fretBuzz
 			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
+#ifdef _IS_DEBUG_RENDERING
 
 			//Setup rect collider borders using LineData for debugging
-
 			float l_fLeftX = m_v2Dimensions.x * -0.5f;
 			float l_fRightX = m_v2Dimensions.x * 0.5f;
 			float l_fTopY = m_v2Dimensions.y * 0.5f;
 			float l_fBottomY = m_v2Dimensions.y * -0.5f;
-
 
 			m_arrRectLineBorders[0] = 
 				ns_graphics::LineData
@@ -78,6 +78,8 @@ namespace ns_fretBuzz
 						{ l_fLeftX, l_fBottomY ,0.0f, 1.0f },
 						{ 0.0f, 0.0f ,1.0f, 1.0f }
 					};
+
+#endif
 		}
 
 		RectCollider::~RectCollider()
@@ -128,7 +130,7 @@ namespace ns_fretBuzz
 			m_pBody->ApplyLinearImpulseToCenter(a_v2ForceDirection, true);
 		}
 
-		void RectCollider::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void RectCollider::debugRender(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
 			ns_graphics::LineBatchRenderer::submit(m_arrRectLineBorders, 4, a_mat4Transformation, m_pDefaultLineShader);
 		}

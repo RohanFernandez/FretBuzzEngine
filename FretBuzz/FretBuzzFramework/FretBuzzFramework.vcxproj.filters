@@ -117,6 +117,9 @@
     <ClCompile Include="framework\graphics\line_batch_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\batch_renderer_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -233,7 +236,10 @@
     <ClInclude Include="framework\graphics\line_batch_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\graphics\batch_renderer.h">
+    <ClInclude Include="framework\graphics\batch_renderer_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\core\system_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,6 +24,11 @@ namespace ns_fretBuzz
 
 		}
 
+		void IComponent::debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
+		{
+			
+		}
+
 		bool IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject)
 		{
 			if (a_pGameObject->isComponentTypeExist(a_ComponentType))

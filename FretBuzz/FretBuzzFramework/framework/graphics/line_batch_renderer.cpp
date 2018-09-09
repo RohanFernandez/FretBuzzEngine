@@ -1,4 +1,5 @@
 #pragma once
+
 #include "line_batch_renderer.h"
 #include <cstddef>
 #include <iostream>
@@ -11,7 +12,7 @@ namespace ns_fretBuzz
 
 		LineBatchRenderer::LineBatchRenderer(unsigned int a_iMaxLines, float a_fLineWidth)
 			:
-			BatchRenderer(),
+			IBatchRenderer(),
 			MAX_LINES{ a_iMaxLines},
 			m_fLineWidth{a_fLineWidth}
 		{

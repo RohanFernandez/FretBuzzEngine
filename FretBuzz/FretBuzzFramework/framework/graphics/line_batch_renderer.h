@@ -1,6 +1,6 @@
 #pragma once
-#include "batch_renderer.h"
 #include <vector>
+#include "batch_renderer_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 			glm::vec4 m_v4EndColor{};
 		};
 
-		class LineBatchRenderer : public BatchRenderer
+		class LineBatchRenderer : public IBatchRenderer
 		{
 		protected:
 			static LineBatchRenderer* s_pInstance;
