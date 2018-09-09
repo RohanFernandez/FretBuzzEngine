@@ -95,7 +95,7 @@ namespace ns_fretBuzz
 			m_pSceneManager->updateActiveScenes(a_fDeltaTime);
 		}
 
-		void Game::renderFrame(const Camera& a_Camera)
+		void Game::renderFrame(const Viewport& a_Camera)
 		{
 			m_pSceneManager->renderActiveScenes(a_Camera);
 		}

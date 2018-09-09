@@ -94,7 +94,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
+		void GameObject::render(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
 		{
 			m_mat4Transformation = a_mat4Transformation * m_Transform.getModelMatrix();
 			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_mat4Transformation;
@@ -103,7 +103,7 @@ namespace ns_fretBuzz
 			renderChildren(m_mat4Transformation, a_Camera);
 		}
 
-		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
+		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
 		{
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
@@ -116,7 +116,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::renderChildren(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
+		void GameObject::renderChildren(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 

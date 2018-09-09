@@ -1,6 +1,6 @@
 #pragma once
 #include "sprite_renderer.h"
-#include "../camera.h"
+#include "../viewport.h"
 #include <iostream>
 #include "../../system/game_object.h"
 #include "../../system/core/resource_manager.h"
@@ -95,7 +95,7 @@ namespace ns_fretBuzz
 			setSprite(m_pSprite);
 		}
 
-		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
 		{
 			if (!m_bIsAllowedToRender) { return; }
 

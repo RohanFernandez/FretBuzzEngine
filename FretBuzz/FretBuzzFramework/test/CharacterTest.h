@@ -7,7 +7,7 @@
 
 #include "../framework/graphics/shader.h"
 #include "../framework/graphics/texture.h"
-#include "../framework/components/camera.h"
+#include "../framework/components/viewport.h"
 #include "../framework/system/core/input.h"
 
 namespace ns_fretBuzz
@@ -34,6 +34,6 @@ namespace ns_fretBuzz
 		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName);
 
 		virtual void update(float a_fDeltaTime) override;
-		virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+		virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera) override;
 	};
 }

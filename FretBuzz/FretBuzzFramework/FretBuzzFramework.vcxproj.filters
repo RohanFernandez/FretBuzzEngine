@@ -78,9 +78,6 @@
     <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\components\camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework\graphics\batch_renderer_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\viewport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,9 +191,6 @@
     <ClInclude Include="framework\components\gameobject_components\sprite_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\components\camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -240,6 +237,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\system\core\system_defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\viewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

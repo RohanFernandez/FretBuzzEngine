@@ -53,7 +53,7 @@ namespace ns_fretBuzz
 				m_DefaltSprite.setDimensions({a_v2Dimensions,0.0f});
 			}
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera) override;
 
 			inline bool getIsRendering() const
 			{

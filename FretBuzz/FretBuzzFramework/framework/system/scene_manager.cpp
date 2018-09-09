@@ -215,7 +215,7 @@ namespace ns_fretBuzz
 		}
 
 		///all scenes should have its object render calls via this function
-		void SceneManager::renderActiveScenes(const Camera& a_Camera)
+		void SceneManager::renderActiveScenes(const Viewport& a_Camera)
 		{
 			int l_iActiveSceneCount = m_vectActiveStates.size();
 			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)

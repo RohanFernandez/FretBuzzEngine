@@ -130,7 +130,7 @@ namespace ns_fretBuzz
 			m_pBody->ApplyLinearImpulseToCenter(a_v2ForceDirection, true);
 		}
 
-		void RectCollider::debugRender(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void RectCollider::debugRender(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
 		{
 			ns_graphics::LineBatchRenderer::submit(m_arrRectLineBorders, 4, a_mat4Transformation, m_pDefaultLineShader);
 		}

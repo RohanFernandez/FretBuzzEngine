@@ -19,13 +19,13 @@ namespace ns_fretBuzz
 			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {50.0f, 50.0f }, false, true);
 
 			m_pAudSrc->play();
+			m_pAudSrc->setLooping(true);
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
 		{
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_G))
 			{
-				m_pAudSrc->setLooping(true);
 				m_pAudSrc->play();
 			}
 
@@ -129,7 +129,7 @@ namespace ns_fretBuzz
 			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
-		void CharacterTest::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void CharacterTest::render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
 		{
 			GameObject::render(a_mat4Transformation,a_Camera);
 		};

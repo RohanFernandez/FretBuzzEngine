@@ -30,8 +30,8 @@ namespace ns_fretBuzz
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
-			void renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
-			void renderChildren(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
+			void renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
+			void renderChildren(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
 
 			bool m_bIsActive = true;
 			void addComponent(IComponent* a_IComponent);
@@ -53,7 +53,7 @@ namespace ns_fretBuzz
 
 			void addChild(GameObject* a_pChildGameObject);
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera);
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera);
 			virtual void update(float a_fDeltaTime);
 
 			void setActive(bool a_bIsActive);

@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/camera.h"
+#include "../components/viewport.h"
 
 namespace ns_fretBuzz
 {
@@ -32,8 +32,8 @@ namespace ns_fretBuzz
 			GameObject& m_GameObject;
 
 			virtual void update(float a_fDeltaTime);
-			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
-			virtual void debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
+			virtual void render(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
+			virtual void debugRender(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
 		};
 	}
 }

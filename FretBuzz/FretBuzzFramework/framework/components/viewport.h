@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Camera
+		class Viewport
 		{
 		public:
 			enum PROJECTION_TYPE
@@ -26,13 +26,13 @@ namespace ns_fretBuzz
 			glm::mat4 m_mat4Projection;
 			glm::mat4 m_mat4View;
 
-			Camera() = delete;
-			Camera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
+			Viewport() = delete;
+			Viewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
 			glm::vec2 m_v2NearFar = {};
 
 
 		public:
-			virtual ~Camera() = 0 {};
+			virtual ~Viewport() = 0 {};
 
 			//Returns projection type i.e orthographic / perspective.
 			inline PROJECTION_TYPE getProjectionType() const
@@ -59,15 +59,15 @@ namespace ns_fretBuzz
 			}
 		};
 
-		class OrthographicCamera : public Camera
+		class OrthographicViewport : public Viewport
 		{
 		protected:
 			glm::vec2 m_v2LeftRight;
 			glm::vec2 m_v2BottomTop;
 
 		public:
-			OrthographicCamera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
-				: Camera(a_v3Pos, a_v3Rotation, a_v3Scale, ORTHOGRAPHIC,
+			OrthographicViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
+				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, ORTHOGRAPHIC,
 					glm::ortho(a_fleft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
@@ -75,12 +75,12 @@ namespace ns_fretBuzz
 				m_v2BottomTop = { a_fBottom , a_fTop };
 			}
 
-			OrthographicCamera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fNear, float a_fFar)
-				: OrthographicCamera(a_v3Pos, a_v3Rotation, a_v3Scale, -(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)Window::getHeight() / 2.0f, (float)Window::getHeight() / 2.0f, a_fNear, a_fFar)
+			OrthographicViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fNear, float a_fFar)
+				: OrthographicViewport(a_v3Pos, a_v3Rotation, a_v3Scale, -(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)Window::getHeight() / 2.0f, (float)Window::getHeight() / 2.0f, a_fNear, a_fFar)
 			{	
 			}
 
-			virtual ~OrthographicCamera()
+			virtual ~OrthographicViewport()
 			{
 			}
 
@@ -105,15 +105,15 @@ namespace ns_fretBuzz
 			}
 		};
 
-		class PerspectiveCamera : public Camera
+		class PerspectiveViewport : public Viewport
 		{
 		protected:
 			float m_fFOV = 0.0f;
 			float m_fAspectRatio = 0.0f;
 
 		public:
-			PerspectiveCamera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale,float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
-				: Camera(a_v3Pos, a_v3Rotation, a_v3Scale, PERSPECTIVE,
+			PerspectiveViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale,float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
+				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PERSPECTIVE,
 					glm::perspective(glm::radians(a_fDegreesFOV), a_fAspectRatio, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
@@ -121,12 +121,12 @@ namespace ns_fretBuzz
 				m_fAspectRatio = a_fAspectRatio;
 			}
 
-			PerspectiveCamera(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fDegreesFOV, float a_fNear, float a_fFar)
-				: PerspectiveCamera(a_v3Pos, a_v3Rotation, a_v3Scale, a_fDegreesFOV, (float)Window::getWidth() / (float)Window::getHeight(), a_fNear, a_fFar)
+			PerspectiveViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fDegreesFOV, float a_fNear, float a_fFar)
+				: PerspectiveViewport(a_v3Pos, a_v3Rotation, a_v3Scale, a_fDegreesFOV, (float)Window::getWidth() / (float)Window::getHeight(), a_fNear, a_fFar)
 			{
 			}
 
-			virtual ~PerspectiveCamera()
+			virtual ~PerspectiveViewport()
 			{
 			}
 

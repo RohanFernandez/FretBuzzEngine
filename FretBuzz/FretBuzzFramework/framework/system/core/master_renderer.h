@@ -2,7 +2,7 @@
 
 #include "window.h"
 #include "../timer/timerFPS.h"
-#include "../../components/camera.h"
+#include "../../components/viewport.h"
 #include "../../graphics/batch_renderer_manager.h"
 #include <vector>
 
@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 			Window* m_pWindow = nullptr;
 			TimerFPS* m_pTimer = nullptr;
 
-			Camera* m_pMainCamera = nullptr;
+			Viewport* m_pMainCamera = nullptr;
 
 			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
 

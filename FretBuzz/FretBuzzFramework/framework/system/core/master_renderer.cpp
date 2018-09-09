@@ -24,17 +24,12 @@ namespace ns_fretBuzz
 
 			m_pBatchRendererManager = new ns_graphics::BatchRendererManager();
 
-			m_pMainCamera = new OrthographicCamera{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
+			m_pMainCamera = new OrthographicViewport{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
 
 		MasterRenderer:: ~MasterRenderer()
 		{
-			if (s_pInstance != this)
-			{
-				return;
-			}
-
 			if (m_pBatchRendererManager != nullptr)
 			{
 				delete m_pBatchRendererManager;
@@ -60,7 +55,10 @@ namespace ns_fretBuzz
 				m_pWindow = nullptr;
 			}
 
-			s_pInstance = nullptr;
+			if (s_pInstance == this)
+			{
+				s_pInstance = nullptr;	
+			}
 		}
 
 		float MasterRenderer::render(Game& m_Game)
@@ -96,18 +94,20 @@ namespace ns_fretBuzz
 
 		void MasterRenderer::windowResizeCallback()
 		{
-			OrthographicCamera* l_pOrthoCamera = dynamic_cast<OrthographicCamera*>(s_pInstance->m_pMainCamera);
+			OrthographicViewport* l_pOrthoCamera = dynamic_cast<OrthographicViewport*>(s_pInstance->m_pMainCamera);
 			if (l_pOrthoCamera != nullptr)
 			{
 				glm::vec2 l_v2NearFar = l_pOrthoCamera->getNearFar();
 				l_pOrthoCamera->setProjectionMatrix(-(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, l_v2NearFar.x, l_v2NearFar.y);
+				return;
 			}
 
-			PerspectiveCamera* l_pPerspectiveCamera = dynamic_cast<PerspectiveCamera*>(s_pInstance->m_pMainCamera);
+			PerspectiveViewport* l_pPerspectiveCamera = dynamic_cast<PerspectiveViewport*>(s_pInstance->m_pMainCamera);
 			if (l_pPerspectiveCamera != nullptr)
 			{
 				glm::vec2 l_v2NearFar = l_pPerspectiveCamera->getNearFar();
 				l_pPerspectiveCamera->setProjectionMatrix(l_pPerspectiveCamera->getFOV(), l_pPerspectiveCamera->getAspectRatio(), l_v2NearFar.x, l_v2NearFar.y);
+				return;
 			}
 		}
 	}

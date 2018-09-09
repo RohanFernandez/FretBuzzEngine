@@ -4,7 +4,7 @@
 #include "../utils/math.h"
 
 #include "../system/game_object.h"
-#include "camera.h"
+#include "viewport.h"
 
 namespace ns_fretBuzz
 {

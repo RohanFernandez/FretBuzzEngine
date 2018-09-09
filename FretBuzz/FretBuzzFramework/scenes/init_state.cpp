@@ -2,7 +2,7 @@
 
 #include "../framework/system/core/resource_manager.h"
 #include "../framework/system/core/window.h"
-#include "../framework/components/camera.h"
+#include "../framework/components/viewport.h"
 
 #include "init_state.h"
 
