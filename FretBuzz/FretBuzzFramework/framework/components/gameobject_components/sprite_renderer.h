@@ -23,8 +23,6 @@ namespace ns_fretBuzz
 
 			Sprite m_DefaltSprite;
 
-			bool m_bIsAllowedToRender = true;
-
 			/*GLuint m_IBO;
 			GLuint m_VBO;
 			GLuint m_VAO;*/
@@ -54,16 +52,6 @@ namespace ns_fretBuzz
 			}
 
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera) override;
-
-			inline bool getIsRendering() const
-			{
-				return m_bIsAllowedToRender;
-			}
-
-			inline void setIsRendering(bool a_bIsAllowedToRender)
-			{
-				m_bIsAllowedToRender = a_bIsAllowedToRender;
-			}
 		};
 	}
 }

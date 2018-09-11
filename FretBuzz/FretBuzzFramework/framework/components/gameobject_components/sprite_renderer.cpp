@@ -97,8 +97,6 @@ namespace ns_fretBuzz
 
 		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
 		{
-			if (!m_bIsAllowedToRender) { return; }
-
 			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaltSprite : m_pSprite);
 			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_pShader);
 

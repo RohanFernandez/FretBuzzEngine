@@ -19,12 +19,13 @@ namespace ns_fretBuzz
 			
 		}
 
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
 			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale)
 		{
 			a_ParentGameObject.addChild(this);
+			setActive(a_bIsActiveSelf);
 		}
 
 		GameObject::~GameObject()
@@ -44,14 +45,14 @@ namespace ns_fretBuzz
 			}
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 		{
-			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale);
+			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_bIsActiveSelf);
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf)
 		{
-			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
+			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f }, a_bIsActiveSelf);
 		}
 
 		void GameObject::addChild(GameObject* a_pChildGameObject)
@@ -87,7 +88,7 @@ namespace ns_fretBuzz
 			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				l_pCurrentGameObject = m_Children[l_iChildIndex];
-				if (l_pCurrentGameObject->m_bIsActive)
+				if (l_pCurrentGameObject->getIsActiveInHierarchy())
 				{
 					l_pCurrentGameObject->update(a_fDeltaTime);
 				}
@@ -125,16 +126,11 @@ namespace ns_fretBuzz
 			{
 				l_pCurrentGameObject = m_Children[l_iChildIndex];
 
-				if (l_pCurrentGameObject->isActive())
+				if (l_pCurrentGameObject->getIsActiveInHierarchy())
 				{
 					l_pCurrentGameObject->render(a_mat4Transformation, a_Camera);
 				}
 			}
-		}
-
-		void GameObject::setActive(bool a_bIsActive)
-		{
-			m_bIsActive = a_bIsActive;
 		}
 
 		bool GameObject::isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const
@@ -213,6 +209,11 @@ namespace ns_fretBuzz
 				l_strLog += "\t";
 			}
 			l_strLog += "=> " + m_strName;
+
+			if (!getIsActiveInHierarchy())
+			{
+				l_strLog += " [DISABLED]";
+			}
 			if (m_bIsDontDestroy)
 			{
 				l_strLog += " [DONT_DESTROY]";
@@ -225,6 +226,49 @@ namespace ns_fretBuzz
 				l_IChildObjCurrent != m_Children.end(); l_IChildObjCurrent++)
 			{
 				(*l_IChildObjCurrent)->logHierarchy(l_iNumOfTabs);
+			}
+		}
+
+		bool GameObject::getIsActiveSelf() const
+		{
+			return m_bIsActiveSelf;
+		}
+
+		bool GameObject::getIsActiveInHierarchy() const
+		{
+			return m_bIsActiveInHierarchy;
+		}
+
+		void GameObject::setActive(bool a_bIsActiveSelf)
+		{
+			if (m_bIsActiveInHierarchy == a_bIsActiveSelf)
+			{
+				return;
+			}
+
+			m_bIsActiveSelf = a_bIsActiveSelf;
+			m_bIsActiveInHierarchy = m_pParentGameObject->getIsActiveInHierarchy() && m_bIsActiveSelf;
+			setActiveInHierarchyRecursively(a_bIsActiveSelf);
+		}
+
+		void GameObject::setActiveInHierarchyRecursively(bool a_bIsActiveInHierarchy)
+		{
+			int l_iComponentCount = m_Components.size();
+			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+			{
+				m_Components[l_iComponentIndex]->onGameObjectActivated(a_bIsActiveInHierarchy);
+			}
+
+			int l_iChildCount = m_Children.size();
+			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
+			{
+				GameObject& l_Child = *m_Children[l_iChildIndex];
+
+				if (l_Child.getIsActiveSelf())
+				{
+					l_Child.m_bIsActiveInHierarchy = a_bIsActiveInHierarchy;
+					l_Child.setActiveInHierarchyRecursively(a_bIsActiveInHierarchy);
+				}
 			}
 		}
 	}

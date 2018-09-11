@@ -11,7 +11,7 @@
 namespace ns_fretBuzz
 {
 
-	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
+	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_TestGameObject)
 		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
@@ -20,6 +20,8 @@ namespace ns_fretBuzz
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
+
+			m_pTestGameObject = a_TestGameObject;
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -62,40 +64,20 @@ namespace ns_fretBuzz
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_W))
 			{
-				/*glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x, l_v3Position.y + l_fCurrentSpeed, l_v3Position.z });*/
-
-				//m_pRectCollider->setLinearVelocity({ 0.0f, l_fCurrentSpeed });
-
 				l_fVerticalVelocity += l_fCurrentSpeed;
 			}
 
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_S))
 			{
-				/*glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x, l_v3Position.y - l_fCurrentSpeed, l_v3Position.z });*/
-
-				//m_pRectCollider->setLinearVelocity({ 0.0f, -l_fCurrentSpeed });
-
 				l_fVerticalVelocity -= l_fCurrentSpeed;
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_A))
 			{
-				/*glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x - l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });*/
-
-				//m_pRectCollider->setLinearVelocity({ -l_fCurrentSpeed, 0.0f });
-
 				l_fHorizontalVelocity -= l_fCurrentSpeed;
 			}
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_D))
 			{
-				/*glm::vec3 l_v3Position = m_Transform.getPosition();
-				m_Transform.translate({ l_v3Position.x + l_fCurrentSpeed, l_v3Position.y, l_v3Position.z });*/
-
-				//m_pRectCollider->setLinearVelocity({ l_fCurrentSpeed, 0.0f} );
-
 				l_fHorizontalVelocity += l_fCurrentSpeed;
 			}
 
@@ -110,6 +92,11 @@ namespace ns_fretBuzz
 			{
 				m_fScale -= a_fDeltaTime * m_fScaleVelocity;
 				m_Transform.scale({ m_fScale, m_fScale,0.0f });
+			}
+
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
+			{
+				m_pTestGameObject->setActive(!m_pTestGameObject->getIsActiveInHierarchy());
 			}
 
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);

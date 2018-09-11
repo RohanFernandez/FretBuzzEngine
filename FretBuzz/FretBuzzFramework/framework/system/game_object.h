@@ -27,17 +27,21 @@ namespace ns_fretBuzz
 
 			bool m_bIsDontDestroy = false;
 
+			bool m_bIsActiveSelf = true;
+			bool m_bIsActiveInHierarchy = true;
+
+			void setActiveInHierarchyRecursively(bool a_bIsActive);
+
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
 			void renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
 			void renderChildren(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
 
-			bool m_bIsActive = true;
 			void addComponent(IComponent* a_IComponent);
 
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
-			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
+			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSel = true);
 
 			virtual ~GameObject();
 
@@ -45,8 +49,8 @@ namespace ns_fretBuzz
 
 		public:
 
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf = true);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf = true);
 
 			glm::mat4 m_mat4Transformation{1.0f};
 			Transform m_Transform;
@@ -56,16 +60,13 @@ namespace ns_fretBuzz
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera);
 			virtual void update(float a_fDeltaTime);
 
-			void setActive(bool a_bIsActive);
-
 			bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;
 
 			void setAsParent(GameObject* a_pParentGameObject);
 
-			inline bool isActive() const
-			{
-				return m_bIsActive;
-			}
+			bool getIsActiveSelf() const;
+			bool getIsActiveInHierarchy() const;
+			void setActive(bool a_bIsActive);
 
 			inline std::string getName() const
 			{
