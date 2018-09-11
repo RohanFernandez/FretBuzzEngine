@@ -22,10 +22,11 @@ namespace ns_fretBuzz
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
-			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale)
+			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale),
+			m_bIsActiveSelf{ a_bIsActiveSelf },
+			m_bIsActiveInHierarchy{ !a_bIsActiveSelf }
 		{
 			a_ParentGameObject.addChild(this);
-			setActive(a_bIsActiveSelf);
 		}
 
 		GameObject::~GameObject()
@@ -170,11 +171,11 @@ namespace ns_fretBuzz
 		{
 			if (m_bIsRoot)
 			{
-				std::cout << "GameObject::setAsParent:: A gameobject  name::[" << a_pNewParentGameObject->getName()<< "]  cannot be set as the parent of a ROOT GameObject name::["<< getName()<<"]\n";
+				std::cout << "GameObject::setAsParent:: A gameobject  name::[" << a_pNewParentGameObject->getName() << "]  cannot be set as the parent of a ROOT GameObject name::[" << getName() << "]\n";
 				return;
 			}
 
-			if (a_pNewParentGameObject == this)
+			if (a_pNewParentGameObject == this || a_pNewParentGameObject == m_pParentGameObject)
 			{
 				std::cout << "GameObject::setAsParent:: The new parent to set of the child GameObject are the same GameObject\n";
 				return;
@@ -182,7 +183,7 @@ namespace ns_fretBuzz
 
 			if (m_pParentGameObject != nullptr)
 			{
-				std::vector<GameObject*> m_CurrentParentsChildren = m_pParentGameObject->m_Children;
+				std::vector<GameObject*>& m_CurrentParentsChildren = m_pParentGameObject->m_Children;
 
 				for (std::vector<GameObject*>::iterator l_Iterator = m_CurrentParentsChildren.begin();
 					l_Iterator != m_CurrentParentsChildren.end();
@@ -195,9 +196,12 @@ namespace ns_fretBuzz
 					}
 				}
 			}
-
 			m_pParentGameObject = a_pNewParentGameObject;
 			m_pParentGameObject->m_Children.emplace_back(this);
+
+			setActive(m_bIsActiveSelf);
+
+			//TODO :: Add on parent change callback to change transformations
 		}
 
 		void GameObject::logHierarchy(int l_iNumOfTabs)
@@ -241,14 +245,19 @@ namespace ns_fretBuzz
 
 		void GameObject::setActive(bool a_bIsActiveSelf)
 		{
-			if (m_bIsActiveInHierarchy == a_bIsActiveSelf)
+			if (m_pParentGameObject == nullptr)
 			{
 				return;
 			}
 
+			bool l_bIsActiveInHierarchyOld = m_bIsActiveInHierarchy;
 			m_bIsActiveSelf = a_bIsActiveSelf;
 			m_bIsActiveInHierarchy = m_pParentGameObject->getIsActiveInHierarchy() && m_bIsActiveSelf;
-			setActiveInHierarchyRecursively(a_bIsActiveSelf);
+
+			if (l_bIsActiveInHierarchyOld != m_bIsActiveInHierarchy)
+			{
+				setActiveInHierarchyRecursively(m_bIsActiveInHierarchy);
+			}
 		}
 
 		void GameObject::setActiveInHierarchyRecursively(bool a_bIsActiveInHierarchy)

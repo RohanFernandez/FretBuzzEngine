@@ -11,7 +11,7 @@
 namespace ns_fretBuzz
 {
 
-	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_TestGameObject)
+	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_TestGameObject1, ns_system::GameObject* a_TestGameObject2)
 		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
@@ -21,7 +21,8 @@ namespace ns_fretBuzz
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
 
-			m_pTestGameObject = a_TestGameObject;
+			m_pTestGameObject1 = a_TestGameObject1;
+			m_pTestGameObject2 = a_TestGameObject2;
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -96,7 +97,7 @@ namespace ns_fretBuzz
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
 			{
-				m_pTestGameObject->setActive(!m_pTestGameObject->getIsActiveInHierarchy());
+				m_pTestGameObject2->setAsParent(m_pTestGameObject1);
 			}
 
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);

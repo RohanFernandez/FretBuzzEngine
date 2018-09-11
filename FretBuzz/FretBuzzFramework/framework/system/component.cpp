@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 		{
 			m_GameObject.addComponent(this);
 
-			if (m_bIsEnabled) { onEnable(); };
+			if (isActiveAndEnabled()) { onEnable(); };
 		};
 
 		IComponent::~IComponent()
