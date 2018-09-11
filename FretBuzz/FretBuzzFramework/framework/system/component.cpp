@@ -60,11 +60,11 @@ namespace ns_fretBuzz
 			{
 				m_bIsEnabled = a_bIsEnabled;
 
-				if (m_bIsEnabled) 
+				if (m_bIsEnabled && m_GameObject.m_bIsActiveInHierarchy) 
 				{
 					onEnable();
 				}
-				else 
+				else if(!m_bIsEnabled && m_GameObject.m_bIsActiveInHierarchy)
 				{
 					onDisable(); 
 				}
