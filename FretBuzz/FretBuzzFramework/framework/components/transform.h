@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 		{
 		private:
 			glm::vec3 m_v3Position;
-			glm::vec3 m_v3Rotation;
+			glm::quat m_quatRotation;
 			glm::vec3 m_v3Scale;
 
 			glm::vec3 m_v3Forward;
@@ -21,21 +21,21 @@ namespace ns_fretBuzz
 			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
 			virtual ~Transform();
 
-			void rotate(glm::vec3 a_v3Angle);
-			void scale(glm::vec3 a_v3Scale);
-			void translate(glm::vec3 a_v3Translate);
+			void setLocalRotation(glm::vec3 a_v3Angle);
+			void setLocalScale(glm::vec3 a_v3Scale);
+			void setLocalPosition(glm::vec3 a_v3Position);
 
-			inline const glm::vec3& getPosition() const
+			inline const glm::vec3& getLocalPosition() const
 			{
 				return m_v3Position;
 			}
 
-			inline const glm::vec3& getRotation() const
+			inline const glm::quat& getLocalRotation() const
 			{
-				return m_v3Rotation;
+				return m_quatRotation;
 			}
 
-			inline const glm::vec3& getScale() const
+			inline const glm::vec3& getLocalScale() const
 			{
 				return m_v3Scale;
 			}

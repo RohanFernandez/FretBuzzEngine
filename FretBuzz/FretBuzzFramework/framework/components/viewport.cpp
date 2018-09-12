@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 
 		const glm::mat4& Viewport::updateViewMatrix()
 		{
-			m_mat4View = glm::lookAt(m_transform.getPosition(), m_transform.getPosition() + m_transform.getForward(), m_transform.getUp());
+			m_mat4View = glm::lookAt(m_transform.getLocalPosition(), m_transform.getLocalPosition() + m_transform.getForward(), m_transform.getUp());
 			return m_mat4View;
 		}
 	}

@@ -19,9 +19,9 @@ namespace ns_fretBuzz
 		{
 			b2BodyDef l_bodyDef;
 			l_bodyDef.type = m_bIsStatic ? b2_staticBody : b2_dynamicBody;
-			glm::vec2 l_Position = m_GameObject.m_Transform.getPosition();
+			glm::vec2 l_Position = m_GameObject.m_Transform.getLocalPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
-			l_bodyDef.angle = m_GameObject.m_Transform.getRotation().z;
+			l_bodyDef.angle = m_GameObject.m_Transform.getLocalRotation().z;
 			l_bodyDef.fixedRotation = m_bIsFixedRotation;
 
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
@@ -98,8 +98,8 @@ namespace ns_fretBuzz
 		{
 			//Set transform position from collider position.
 			const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
-			const glm::vec3& l_v3TransformPosition = m_GameObject.m_Transform.getPosition();		
-			m_GameObject.m_Transform.translate({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, l_v3TransformPosition.z });
+			const glm::vec3& l_v3TransformPosition = m_GameObject.m_Transform.getLocalPosition();		
+			m_GameObject.m_Transform.setLocalPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, l_v3TransformPosition.z });
 
 			if (Input::IsKeyPutDown(GLFW_KEY_V))
 			{
@@ -109,9 +109,8 @@ namespace ns_fretBuzz
 			//Set transform rotation from collider rotation if the collider's rotation is not fixed.
 			if (!m_bIsFixedRotation)
 			{
-				const float l_fColliderRotatedZAngle = m_pBody->GetAngle();
-				const glm::vec3& l_v3TransformRotation = m_GameObject.m_Transform.getRotation();
-				m_GameObject.m_Transform.rotate({ l_v3TransformRotation.x, l_v3TransformRotation.y , l_fColliderRotatedZAngle });
+				glm::quat l_quatTransformRotation = m_GameObject.m_Transform.getLocalRotation();
+				m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
 			}
 		}
 
