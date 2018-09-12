@@ -47,44 +47,61 @@ namespace ns_fretBuzz
 
 			void resetDontDestroyParent(GameObject& a_NewParent);
 
+			glm::mat4 m_mat4Transformation{1.0f};
+
 		public:
 
+			// Creates a GameObject, adds this GameObject to the m_Children of its a_ParentGameObject.
+			// Sets its active state in hierarchy to the a_bIsActiveSelf, depends on its ParentGameObject.
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf = true);
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf = true);
 
-			glm::mat4 m_mat4Transformation{1.0f};
 			Transform m_Transform;
 
+			// Adds the GameObject a_pChildGameObject into this GameObject's m_Children.
 			void addChild(GameObject* a_pChildGameObject);
 
+			// Renders all the components and renders its child GameObjects.
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera);
+
+			// Updates all the components and renders its child GameObjects.
 			virtual void update(float a_fDeltaTime);
 
+			// Does the component of type a_ComponentType exist in the m_Components list.
 			bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;
 
+			// Removes this GameObject from the current parent's m_Children list.
+			// Sets this GameObject as the child of the a_pParentGameObject.
 			void setAsParent(GameObject* a_pParentGameObject);
 
+			// Is the GameObject active locally, even though its not active in the scene.
 			bool getIsActiveSelf() const;
+
+			// Is the GameObject active in the scene.
 			bool getIsActiveInHierarchy() const;
+
+			// Sets the GameObject active self state,
+			// If a_bIsActive = true, sets the active state to true in hierarchy if the parent is also active
+			// Sets its child active in hierarchy state to true if previously false.
+			// If a_bIsActive = false, sets the active state to false in hierarchy if the parent is true/false
+			// Sets its child active in hierarchy state to false if previously true.
 			void setActive(bool a_bIsActive);
 
-			inline std::string getName() const
-			{
-				return m_strName;
-			}
+			// Gets the name of the GameObject.
+			std::string getName() const;
 
-			inline GameObject* setAsDontDestroy(bool a_bIsDontDestroy = true)
-			{
-				m_bIsDontDestroy = a_bIsDontDestroy;
-				return this;
-			}
+			// GameObject won't be destroyed on Scene change.
+			GameObject* setAsDontDestroy(bool a_bIsDontDestroy = true);
 
-			inline bool isDontDestroy() const
-			{
-				return m_bIsDontDestroy;
-			}
+			// Is the gameobject a DontDestroy type of Object.
+			bool isDontDestroy() const;
 
+			// Logs GameObject hierarchy.
 			void logHierarchy(int l_iNumOfTabs);
+
+			// Removes the GameObject from its parent m_Children container.
+			// Destroys the GameObject
+			static void destroy(GameObject*& a_GameObject);
 
 			///Returns a component from the components vector, if the COMPONENT_TYPE is equal to the input.
 			///If the component pointer is found it returns the component cast to the type specified else returns null.

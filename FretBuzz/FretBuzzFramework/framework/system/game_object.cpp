@@ -280,5 +280,48 @@ namespace ns_fretBuzz
 				}
 			}
 		}
+
+		std::string GameObject::getName() const
+		{
+			return m_strName;
+		}
+
+		GameObject* GameObject::setAsDontDestroy(bool a_bIsDontDestroy)
+		{
+			m_bIsDontDestroy = a_bIsDontDestroy;
+			return this;
+		}
+
+		bool GameObject::isDontDestroy() const
+		{
+			return m_bIsDontDestroy;
+		}
+
+		void GameObject::destroy(GameObject*& a_pGameObject)
+		{
+			if (a_pGameObject == nullptr)
+			{
+				std::cout << "GameObject::destroy:: GameObject to destroy is null\n";
+				return;
+			}
+
+			std::vector<GameObject*>& l_vectChildren = a_pGameObject->m_pParentGameObject->m_Children;
+			for (std::vector<GameObject*>::iterator l_Iterator = l_vectChildren.begin(),
+				l_IteratorEnd = l_vectChildren.end();
+				l_Iterator != l_IteratorEnd;
+				l_Iterator++)
+			{
+				if (*l_Iterator == a_pGameObject)
+				{
+					l_Iterator = l_vectChildren.erase(l_Iterator);
+					delete a_pGameObject;
+					a_pGameObject = nullptr;
+					return;
+				}
+			}
+
+			std::cout << "GameObject::destroy:: GameObject to destroy with name :: " << a_pGameObject->getName() << 
+				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
+		}
 	}
 }
