@@ -71,7 +71,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		bool IComponent::isEnabled() const
+		bool IComponent::getIsEnabled() const
 		{
 			return m_bIsEnabled;
 		}

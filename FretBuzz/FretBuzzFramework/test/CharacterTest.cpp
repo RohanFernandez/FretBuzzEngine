@@ -97,7 +97,7 @@ namespace ns_fretBuzz
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
 			{
-				m_pTestGameObject2->setAsParent(m_pTestGameObject1);
+				m_pTestGameObject2->setActive(!m_pTestGameObject2->getIsActiveInHierarchy());
 			}
 
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);

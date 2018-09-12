@@ -24,6 +24,9 @@ namespace ns_fretBuzz
 			b2Body* m_pBody = nullptr;
 			b2Fixture* m_pFixture = nullptr;
 
+			virtual void onEnable() override;
+			virtual void onDisable() override;
+
 		public:
 			static RectCollider* addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic = true, bool a_bIsFixedRotation = true);
 

@@ -16,6 +16,8 @@ namespace ns_fretBuzz
 			glm::vec3 m_v3Up;
 			glm::vec3 m_v3Right;
 
+			bool m_bIsDirty = false;
+
 		public:
 			Transform();
 			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);

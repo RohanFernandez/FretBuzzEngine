@@ -88,6 +88,16 @@ namespace ns_fretBuzz
 			m_pDefaultLineShader = nullptr;
 		}
 
+		void RectCollider::onEnable()
+		{
+			m_pBody->SetActive(true);
+		}
+
+		void RectCollider::onDisable()
+		{
+			m_pBody->SetActive(false);
+		}	
+
 		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?

@@ -45,8 +45,7 @@ namespace ns_fretBuzz
 
 		const glm::mat4 Transform::getModelMatrix()
 		{
-			glm::mat4 l_mat4Model{ 1.0f };
-
+			glm::mat4 l_mat4Model = glm::mat4{ 1.0f };
 			l_mat4Model = glm::translate(l_mat4Model, glm::vec3(m_v3Position));
 			l_mat4Model = glm::scale(l_mat4Model, glm::vec3(m_v3Scale));
 			l_mat4Model *= glm::mat4(m_quatRotation);

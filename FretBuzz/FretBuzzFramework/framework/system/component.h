@@ -19,14 +19,16 @@ namespace ns_fretBuzz
 		class IComponent
 		{
 		friend class GameObject;
+
+		private:
+			bool m_bIsEnabled = true;
+
 		protected:
 			virtual ~IComponent() = 0;
 			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj, bool a_bIsEnabled = true);
 
 			// Does the component of type m_ComponentType exists in the GameObject m_Components list.
 			static bool isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject);
-
-			bool m_bIsEnabled = true;
 
 			// Event called when the GameObject is activated.
 			virtual void onEnable();
@@ -59,7 +61,7 @@ namespace ns_fretBuzz
 			void setIsEnabled(bool a_bIsEnabled);
 
 			//Is the component enabled, does not depend if the GameObject is activated/deactivated.
-			bool isEnabled() const;
+			bool getIsEnabled() const;
 
 			//Is the component enabled and the GameObject activated.
 			bool isActiveAndEnabled() const;
