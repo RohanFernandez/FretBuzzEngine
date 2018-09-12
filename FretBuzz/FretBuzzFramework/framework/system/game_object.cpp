@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 			m_strName{ a_strName },
 			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale),
 			m_bIsActiveSelf{ a_bIsActiveSelf },
-			m_bIsActiveInHierarchy{ !a_bIsActiveSelf }
+			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy }
 		{
 			a_ParentGameObject.addChild(this);
 		}
