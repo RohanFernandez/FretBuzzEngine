@@ -107,7 +107,9 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"
+xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
+      <Message># POST_BUILD \ - Adding 'Resources' folder into 'Output' build folder. \ - Adding DLL's into 'Output' build folder for x86 Debug Configuration.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,7 +126,9 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"
+xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
+      <Message># POST_BUILD \ - Adding 'Resources' folder into 'Output' build folder. \ - Adding DLL's into 'Output' build folder for x64 Debug Configuration.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,7 +149,9 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"
+xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
+      <Message># POST_BUILD \ - Adding 'Resources' folder into 'Output' build folder. \ - Adding DLL's into 'Output' build folder for x86 Release Configuration.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,7 +172,9 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"</Command>
+      <Command>xcopy /E /Y "$(ProjectDir)Resources" "$(TargetDir)Resources\"
+xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
+      <Message># POST_BUILD \ - Adding 'Resources' folder into 'Output' build folder. \ - Adding DLL's into 'Output' build folder for x64 Release Configuration.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
