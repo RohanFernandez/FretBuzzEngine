@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 		{
 			friend class IScene;
 			friend class IComponent;
-		protected:
+		private:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
 			bool m_bIsRoot = false;
@@ -39,15 +39,14 @@ namespace ns_fretBuzz
 			void renderChildren(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
 
 			void addComponent(IComponent* a_IComponent);
+			void resetDontDestroyParent(GameObject& a_NewParent);
+			glm::mat4 m_mat4Transformation{1.0f};
 
+		protected:
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
 			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSel = true);
 
 			virtual ~GameObject();
-
-			void resetDontDestroyParent(GameObject& a_NewParent);
-
-			glm::mat4 m_mat4Transformation{1.0f};
 
 		public:
 

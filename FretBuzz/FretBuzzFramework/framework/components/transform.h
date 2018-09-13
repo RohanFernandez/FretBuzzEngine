@@ -7,6 +7,7 @@ namespace ns_fretBuzz
 	{
 		class Transform
 		{
+		friend class GameObject;
 		private:
 			glm::vec3 m_v3Position;
 			glm::quat m_quatRotation;
@@ -18,9 +19,11 @@ namespace ns_fretBuzz
 
 			bool m_bIsDirty = false;
 
+			Transform* m_pParentTransform = nullptr;;
+
 		public:
 			Transform();
-			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale);
+			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pParentTransform);
 			virtual ~Transform();
 
 			void setLocalRotation(glm::vec3 a_v3Angle);

@@ -5,7 +5,8 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		Transform::Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale)
+		Transform::Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pParentTransform)
+			: m_pParentTransform{ a_pParentTransform }
 		{
 			setLocalRotation(a_v3Rotation);
 			setLocalScale(a_v3Scale);
@@ -13,7 +14,7 @@ namespace ns_fretBuzz
 		}
 
 		Transform::Transform()
-			: Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, {1.0f, 1.0f, 1.0f})
+			: Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, nullptr)
 		{
 			
 		}

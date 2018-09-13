@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
-			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale),
+			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale, &a_ParentGameObject.m_Transform),
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy }
 		{
@@ -197,6 +197,7 @@ namespace ns_fretBuzz
 				}
 			}
 			m_pParentGameObject = a_pNewParentGameObject;
+			m_Transform.m_pParentTransform = &m_pParentGameObject->m_Transform;
 			m_pParentGameObject->m_Children.emplace_back(this);
 
 			setActive(m_bIsActiveSelf);

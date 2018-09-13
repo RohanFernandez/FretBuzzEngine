@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		Viewport::Viewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection)
 			: m_mat4Projection{ a_mat4Projection },
 			m_ProjectionType{ a_ProjectionType },
-			m_transform(a_v3Pos, a_v3Rotation,a_v3Scale)
+			m_transform(a_v3Pos, a_v3Rotation,a_v3Scale, nullptr)
 		{
 			updateViewMatrix();
 		}
