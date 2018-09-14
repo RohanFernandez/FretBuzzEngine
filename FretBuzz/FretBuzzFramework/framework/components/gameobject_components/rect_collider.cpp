@@ -10,15 +10,17 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		RectCollider::RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
+		RectCollider::RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
 			: IComponent(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
-			m_bIsStatic{ a_bIsStatic },
+			m_PhysicsBodyType{ a_PhysicsBodyType},
 			m_bIsFixedRotation{ a_bIsFixedRotation },
 			m_v2Dimensions{ a_v2Dimensions },
 			m_pDefaultLineShader{ ResourceManager::getResource<ns_graphics::Shader>(ns_graphics::Shader::DEFAULT_LINE_SHADER_ID) }
 		{
 			b2BodyDef l_bodyDef;
-			l_bodyDef.type = m_bIsStatic ? b2_staticBody : b2_dynamicBody;
+			l_bodyDef.type = (m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ?
+				b2_staticBody : (m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC) ?
+				b2_dynamicBody : b2_kinematicBody;
 			glm::vec2 l_Position = m_GameObject.m_Transform.getWorldPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
 			l_bodyDef.angle = m_GameObject.m_Transform.getLocalRotation().z;
@@ -31,7 +33,7 @@ namespace ns_fretBuzz
 
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.shape = &l_boxShape;
-			l_fixtureDef.density = m_bIsStatic ? 0.0f : 1.0f;
+			l_fixtureDef.density = (m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ? 0.0f : 1.0f;
 			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
@@ -100,10 +102,10 @@ namespace ns_fretBuzz
 			m_pBody->SetActive(false);
 		}	
 
-		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, bool a_bIsStatic, bool a_bIsFixedRotation)
+		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
-				nullptr : new RectCollider(a_GameObject, a_v2Dimensions, a_bIsStatic, a_bIsFixedRotation);
+				nullptr : new RectCollider(a_GameObject, a_v2Dimensions, a_PhysicsBodyType, a_bIsFixedRotation);
 		}
 
 		void RectCollider::update(float a_fDeltaTime)

@@ -16,6 +16,13 @@ namespace ns_fretBuzz
 			int m_iStepIteration = 0;
 
 		public:
+			enum class PHYSICS_BODY_TYPE
+			{
+				STATIC,
+				DYNAMIC,
+				KINEMATIC
+			};
+
 			PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration);
 			~PhysicsEngine();
 

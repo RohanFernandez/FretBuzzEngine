@@ -12,11 +12,11 @@ namespace ns_fretBuzz
 {
 
 	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
-		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
+		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, -100.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
-			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {50.0f, 50.0f }, false, true);
+			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, {50.0f, 50.0f }, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
