@@ -36,7 +36,7 @@ namespace ns_fretBuzz
 		{
 			if (a_pGameObject->isComponentTypeExist(a_ComponentType))
 			{
-				std::cout << "IComponent::isComponentOfTypeExistInGameObj:: Component of type "<< a_ComponentType << " already exist in game object with name "<< a_pGameObject->m_strName <<"\n" ;
+				std::cout << "IComponent::isComponentOfTypeExistInGameObj:: Component of type "<< (int)a_ComponentType << " already exist in game object with name "<< a_pGameObject->m_strName <<"\n" ;
 				return true;
 			}
 			return false;

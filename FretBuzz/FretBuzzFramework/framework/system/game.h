@@ -9,17 +9,22 @@ namespace ns_fretBuzz
 		class Game
 		{
 		private:
+			static Game* s_pInstance;
+
 			//List of all the scenes present in the game.
 			std::vector<ISceneData*> m_vectScenes;
 
 			//The scene manage that manages the transitions between scenes.
 			SceneManager* m_pSceneManager = nullptr;
 
-		public:
 			// Add game scenes here for scene management
 			Game();
-
 			~Game();
+
+		public:
+			static Game* intialize();
+			void destroy();
+			static const Game* get();
 
 			//Updates all the active scenes
 			void updateScenes(float a_fDeltaTime);

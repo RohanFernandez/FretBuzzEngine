@@ -23,9 +23,14 @@ namespace ns_fretBuzz
 
 			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
 
-		public:
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
 			~MasterRenderer();
+
+		public:
+
+			static MasterRenderer* initialize(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
+			void destroy();
+			static const MasterRenderer* get();
 
 			GLFWwindow* getGLFWWindow() const;
 			bool isWindowClosed() const;

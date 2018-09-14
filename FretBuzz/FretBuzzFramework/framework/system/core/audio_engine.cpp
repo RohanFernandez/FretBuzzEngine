@@ -1,5 +1,6 @@
 #pragma once
 #include "audio_engine.h"
+#include <iostream>
 
 namespace ns_fretBuzz
 {
@@ -8,27 +9,39 @@ namespace ns_fretBuzz
 		//singleton Instance
 		AudioEngine* AudioEngine::s_pInstance = nullptr;
 
-		AudioEngine::AudioEngine()
+		AudioEngine* AudioEngine::initialize()
 		{
 			if (s_pInstance != nullptr)
 			{
-				return;
+				std::cout << "AudioEngine::initialize:: Audio Engine already exists.\n";
+				return nullptr;
 			}
-			s_pInstance = this;
+
+			s_pInstance = new AudioEngine();
+			return s_pInstance;
+		}
+
+		void AudioEngine::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
+		AudioEngine::AudioEngine()
+		{
 			m_pISoundEngine = irrklang::createIrrKlangDevice();
 		}
 
 		AudioEngine::~AudioEngine()
 		{
-			if (s_pInstance != this)
-			{
-				return;
-			}
-
 			m_pISoundEngine->drop();
 			m_pISoundEngine = nullptr;
 			s_pInstance = nullptr;
 		}
-	
+
+		const AudioEngine* AudioEngine::get()
+		{
+			return s_pInstance;
+		}
 	}
 }

@@ -14,16 +14,35 @@ namespace ns_fretBuzz
 			m_uiHeight{ a_uiHeight },
 			m_strName{ a_strName }
 		{
+			m_bIsInitialized = initialize();
+		}
+
+		Window* Window::initialize(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName)
+		{
 			if (s_pInstance != nullptr)
 			{
-				return;
+				std::cout << "Window::initialize:: Window already exists.\n";
+				return nullptr;
 			}
-			m_bIsInitialized = initialize();
 
-			if (m_bIsInitialized)
+			s_pInstance = new Window(a_uiWidth, a_uiHeight, a_strName);
+			if (!s_pInstance->m_bIsInitialized)
 			{
-				s_pInstance = this;
+				s_pInstance->destroy();
 			}
+
+			return s_pInstance;
+		}
+
+		void Window::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
+		const Window* Window::get()
+		{
+			return s_pInstance;
 		}
 
 		bool Window::initialize()

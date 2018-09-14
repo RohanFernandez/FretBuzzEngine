@@ -10,34 +10,48 @@ namespace ns_fretBuzz
 
 		ResourceManager::ResourceManager()
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
-			s_pInstance = this;
+			
 		}
 
 		ResourceManager::~ResourceManager()
 		{
-			if (s_pInstance == this)
+			T_MAP_RESOURCE& l_mapResource = s_pInstance->m_mapResource;
+			for (auto l_currentResource = l_mapResource.begin(),
+				l_endResource = l_mapResource.end();
+				l_currentResource != l_endResource;
+				l_currentResource++)
 			{
-				T_MAP_RESOURCE& l_mapResource = s_pInstance->m_mapResource;
-				for (auto l_currentResource = l_mapResource.begin(),
-					l_endResource = l_mapResource.end();
-					l_currentResource != l_endResource;
-					l_currentResource++)
-				{
-					IResource*& l_pCurrentResourceInterface = l_currentResource->second;
+				IResource*& l_pCurrentResourceInterface = l_currentResource->second;
 
-					delete l_pCurrentResourceInterface;
-					l_pCurrentResourceInterface = nullptr;
+				delete l_pCurrentResourceInterface;
+				l_pCurrentResourceInterface = nullptr;
 
-				}
-				l_mapResource.clear();
-
-				s_pInstance = nullptr;
 			}
+			l_mapResource.clear();
 		}
+
+		ResourceManager* ResourceManager::initialize()
+		{
+			if (s_pInstance != nullptr)
+			{
+				std::cout << "ResourceManager::initialize:: ResourceManager already exists.\n";
+				return nullptr;
+			}
+			s_pInstance = new ResourceManager();
+			return s_pInstance;
+		}
+
+		void ResourceManager::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
+		const ResourceManager* ResourceManager::get()
+		{
+			return s_pInstance;
+		}
+
 
 		void ResourceManager::destroyResource(IManagedResource* a_pManagedResource)
 		{

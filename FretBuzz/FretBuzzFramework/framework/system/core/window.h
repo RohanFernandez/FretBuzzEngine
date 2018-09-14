@@ -34,9 +34,14 @@ namespace ns_fretBuzz
 			using WINDOW_RESIZE_TYPE = void(*)();
 			std::vector<WINDOW_RESIZE_TYPE> m_vectWindowResizeCallbacks;
 
-		public:
 			Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName);
 			~Window();
+
+		public:
+
+			static Window* initialize(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName);
+			void destroy();
+			static const Window* get();
 
 			//Swaps the buffers, polls window events
 			void update();

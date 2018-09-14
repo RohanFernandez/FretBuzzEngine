@@ -25,11 +25,14 @@ namespace ns_fretBuzz
 			static BatchRendererManager* s_pInstance;
 
 			std::vector<IBatchRenderer*> m_vectBatchRenderers;
-			void intialize();
 
-		public:
 			BatchRendererManager();
 			virtual ~BatchRendererManager();
+
+		public:
+			static BatchRendererManager* intialize();
+			void destroy();
+			static const BatchRendererManager* get();
 
 			void beginBatches();
 			void endBatches();

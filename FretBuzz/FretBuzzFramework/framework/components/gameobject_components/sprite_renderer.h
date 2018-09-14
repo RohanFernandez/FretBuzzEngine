@@ -16,8 +16,6 @@ namespace ns_fretBuzz
 			SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
 
-			~SpriteRenderer();
-
 			Sprite* m_pSprite = nullptr;
 			Shader* m_pShader = nullptr;
 
@@ -28,6 +26,9 @@ namespace ns_fretBuzz
 			GLuint m_VAO;*/
 
 			void initialize();
+
+		protected:
+			~SpriteRenderer();
 
 		public:
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj);

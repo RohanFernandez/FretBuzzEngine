@@ -23,6 +23,7 @@ namespace ns_fretBuzz
 			AudioSource(GameObject& a_GameObj, AudioClip* a_AudioClip);
 			AudioSource(GameObject& a_GameObj, std::string a_strAudFilePath);
 
+		protected:
 			virtual ~AudioSource();
 
 		public:

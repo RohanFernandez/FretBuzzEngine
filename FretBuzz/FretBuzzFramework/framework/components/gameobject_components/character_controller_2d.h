@@ -10,6 +10,8 @@ namespace ns_fretBuzz
 		{
 		private:
 			CharacterController2D(GameObject& a_GameObject);
+
+		protected:
 			virtual ~CharacterController2D();
 
 		public:

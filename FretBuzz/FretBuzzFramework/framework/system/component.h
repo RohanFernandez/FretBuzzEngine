@@ -5,14 +5,15 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		enum COMPONENT_TYPE
+		enum class COMPONENT_TYPE
 		{
 			AUDIO_SOURCE,
 			SPRITE_RENDERER,
 			SPRITE_ANIMATION_CONTROLLER,
 			TEXT_RENDERER,
 			RECT_COLLIDER,
-			CHARACTER_CONTROLLER_2D
+			CHARACTER_CONTROLLER_2D,
+			CAMERA
 		};
 
 		class GameObject;

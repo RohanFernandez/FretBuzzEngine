@@ -10,9 +10,11 @@ namespace ns_fretBuzz
 		{
 		private:
 			TextRenderer(GameObject& a_GameObj, std::string a_strText);
-			virtual ~TextRenderer();
 
 			std::string m_strText;
+
+		protected:
+			virtual ~TextRenderer();
 
 		public:
 			static TextRenderer* addComponent(GameObject& a_GameObj, std::string a_strText);

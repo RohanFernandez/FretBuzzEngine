@@ -11,18 +11,34 @@ namespace ns_fretBuzz
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;
 
-		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
+		MasterRenderer* MasterRenderer::initialize(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
 		{
 			if (s_pInstance != nullptr)
 			{
-				return;
+				std::cout << "MasterRenderer::initialize:: Master Renderer already exists.\n";
+				return nullptr;
 			}
-			s_pInstance = this;
+			s_pInstance = new MasterRenderer(a_iWidth, a_iHeight, a_strWindowName, a_bLogFPS);
+			return s_pInstance;
+		}
 
-			m_pWindow = new Window(a_iWidth, a_iHeight, a_strWindowName);
+		void MasterRenderer::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;	
+		}
+
+		const MasterRenderer* MasterRenderer::get()
+		{
+			return s_pInstance;
+		}
+
+		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
+		{
+			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
-			m_pBatchRendererManager = new ns_graphics::BatchRendererManager();
+			m_pBatchRendererManager = ns_graphics::BatchRendererManager::intialize();
 
 			m_pMainCamera = new OrthographicViewport{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
@@ -30,11 +46,7 @@ namespace ns_fretBuzz
 
 		MasterRenderer:: ~MasterRenderer()
 		{
-			if (m_pBatchRendererManager != nullptr)
-			{
-				delete m_pBatchRendererManager;
-				m_pBatchRendererManager = nullptr;
-			}
+			m_pBatchRendererManager->destroy();
 
 			if (m_pTimer != nullptr)
 			{
@@ -48,17 +60,8 @@ namespace ns_fretBuzz
 				m_pMainCamera;
 			}
 
-			if (m_pWindow != nullptr)
-			{
-				Window::unregisterWindowResizeCallback(windowResizeCallback);
-				delete m_pWindow;
-				m_pWindow = nullptr;
-			}
-
-			if (s_pInstance == this)
-			{
-				s_pInstance = nullptr;	
-			}
+			Window::unregisterWindowResizeCallback(windowResizeCallback);
+			m_pWindow->destroy();
 		}
 
 		float MasterRenderer::render(Game& m_Game)

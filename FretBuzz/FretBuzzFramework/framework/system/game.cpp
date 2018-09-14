@@ -8,6 +8,9 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		//singleton instance
+		Game* Game::s_pInstance = nullptr;
+
 		Game::Game()
 		{
 			m_vectScenes =
@@ -32,7 +35,28 @@ namespace ns_fretBuzz
 			{
 				delete *l_CurrentState;
 			}
+		}
 
+		Game* Game::intialize()
+		{
+			if (s_pInstance != nullptr)
+			{
+				std::cout << "Game::intialize:: Game already exists.\n";
+				return nullptr;
+			}
+			s_pInstance = new Game();
+			return s_pInstance;
+		}
+
+		void Game::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
+		const Game* Game::get()
+		{
+			return s_pInstance;
 		}
 
 		void Game::updateScenes(float a_fDeltaTime)

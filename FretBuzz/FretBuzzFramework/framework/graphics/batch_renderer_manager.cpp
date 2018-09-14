@@ -1,4 +1,6 @@
 #pragma once
+
+#include <iostream>
 #include "batch_renderer_manager.h"
 
 #include "sprite_batch_renderer.h"
@@ -13,12 +15,8 @@ namespace ns_fretBuzz
 
 		BatchRendererManager::BatchRendererManager()
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
-			s_pInstance = this;
-			intialize();
+			m_vectBatchRenderers.emplace_back(new ns_graphics::SpriteBatchRenderer(10));
+			m_vectBatchRenderers.emplace_back(new ns_graphics::LineBatchRenderer(100, 10.0f));
 		}
 
 		BatchRendererManager::~BatchRendererManager()
@@ -30,17 +28,29 @@ namespace ns_fretBuzz
 				l_Iterator = m_vectBatchRenderers.erase(l_Iterator);
 			}
 			m_vectBatchRenderers.clear();
-
-			if (s_pInstance == this)
-			{
-				s_pInstance = nullptr;;
-			}
 		}
 
-		void BatchRendererManager::intialize()
+		BatchRendererManager* BatchRendererManager::intialize()
 		{
-			m_vectBatchRenderers.emplace_back(new ns_graphics::SpriteBatchRenderer(10));
-			m_vectBatchRenderers.emplace_back(new ns_graphics::LineBatchRenderer(100, 10.0f));
+			if (s_pInstance != nullptr)
+			{
+				std::cout<<"BatchRendererManager::intialize:: Window already exists.\n";
+				return nullptr;
+			}
+
+			s_pInstance = new BatchRendererManager();
+			return s_pInstance;
+		}
+
+		void BatchRendererManager::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
+		const BatchRendererManager* BatchRendererManager::get()
+		{
+			return s_pInstance;
 		}
 
 		void BatchRendererManager::beginBatches()

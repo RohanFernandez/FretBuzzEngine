@@ -13,12 +13,12 @@ namespace ns_fretBuzz
 		private:
 			RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC
 				, bool a_bIsFixedRotation = true);
-			virtual ~RectCollider();
 
 			ns_graphics::LineData m_arrRectLineBorders[4];
 			ns_graphics::Shader* m_pDefaultLineShader = nullptr;
 
 		protected:
+			virtual ~RectCollider();
 			PhysicsEngine::PHYSICS_BODY_TYPE m_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
 			
 			bool m_bIsFixedRotation = true;

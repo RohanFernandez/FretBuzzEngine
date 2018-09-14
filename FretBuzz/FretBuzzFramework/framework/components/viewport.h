@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 		class Viewport
 		{
 		public:
-			enum PROJECTION_TYPE
+			enum class PROJECTION_TYPE
 			{
 				ORTHOGRAPHIC,
 				PERSPECTIVE
@@ -67,7 +67,7 @@ namespace ns_fretBuzz
 
 		public:
 			OrthographicViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
-				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, ORTHOGRAPHIC,
+				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PROJECTION_TYPE::ORTHOGRAPHIC,
 					glm::ortho(a_fleft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
@@ -113,7 +113,7 @@ namespace ns_fretBuzz
 
 		public:
 			PerspectiveViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale,float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
-				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PERSPECTIVE,
+				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PROJECTION_TYPE::PERSPECTIVE,
 					glm::perspective(glm::radians(a_fDegreesFOV), a_fAspectRatio, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };

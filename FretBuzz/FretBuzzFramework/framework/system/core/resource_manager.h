@@ -183,9 +183,14 @@ namespace ns_fretBuzz
 				}
 			}
 
-		public:
 			ResourceManager();
 			~ResourceManager();
+
+		public:
+
+			static ResourceManager* initialize();
+			void destroy();
+			static const ResourceManager* get();
 
 			///Returns a const ptr to resource.
 			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>

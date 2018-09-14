@@ -15,9 +15,14 @@ namespace ns_fretBuzz
 
 			irrklang::ISoundEngine* m_pISoundEngine = nullptr;
 
-		public:
 			AudioEngine();
 			~AudioEngine();
+
+		public:
+			static AudioEngine* initialize();
+			void destroy();
+
+			static const AudioEngine* get();
 		};
 	}
 }

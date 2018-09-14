@@ -31,6 +31,28 @@ namespace ns_fretBuzz
 			}
 		}
 
+		Input* Input::initialize(GLFWwindow* a_pGLFWWindow)
+		{
+			if (s_pInput != nullptr)
+			{
+				std::cout << "Input::initialize:: Input already exists.\n";
+				return nullptr;
+			}
+			s_pInput = new Input(a_pGLFWWindow);
+			return s_pInput;
+		}
+
+		void Input::destroy()
+		{
+			delete s_pInput;
+			s_pInput = nullptr;
+		}
+
+		const Input* Input::get()
+		{
+			return s_pInput;
+		}
+
 		void Input::SetInputCallbacks(GLFWwindow*& a_pGLFWwindow)
 		{
 			glfwSetCursorPosCallback(a_pGLFWwindow, OnGetCursorPosition);

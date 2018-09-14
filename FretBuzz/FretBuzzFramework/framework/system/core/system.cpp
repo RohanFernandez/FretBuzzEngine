@@ -15,16 +15,15 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
-			m_pMasterRenderer = new MasterRenderer(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
-			m_pAudioEngine = new AudioEngine();
-			m_pResourceManager = new ResourceManager();
+			m_pMasterRenderer = MasterRenderer::initialize(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
+			m_pAudioEngine = AudioEngine::initialize();
+			m_pResourceManager = ResourceManager::initialize();
 			AssetLoader::loadAssets(m_pResourceManager);
 
-			m_pInput = new Input(m_pMasterRenderer->getGLFWWindow());
+			m_pInput = Input::initialize(m_pMasterRenderer->getGLFWWindow());
+			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 6, 2);
 
-			m_pPhysicsEngine = new PhysicsEngine({0.0f, 0.0f}, 6, 2);
-
-			m_pGame = new Game();
+			m_pGame = Game::intialize();
 		}
 
 		bool System::isInitialized()
@@ -40,46 +39,15 @@ namespace ns_fretBuzz
 
 		System::~System()
 		{
-			if (m_pResourceManager != nullptr)
-			{
-				delete m_pResourceManager;
-				m_pResourceManager = nullptr;
-			}
+			m_pResourceManager->destroy();
 
-			if (m_pGame != nullptr)
-			{
-				delete m_pGame;
-				m_pGame = nullptr;
-			}
+			m_pGame->destroy();
+			m_pAudioEngine->destroy();
+			m_pInput->destroy();
+			m_pMasterRenderer->destroy();
+			m_pPhysicsEngine->destroy();
 
-			if (m_pAudioEngine != nullptr)
-			{
-				delete m_pAudioEngine;
-				m_pAudioEngine = nullptr;
-			}
-
-			if (m_pInput != nullptr)
-			{
-				delete m_pInput;
-				m_pInput = nullptr;
-			}
-
-			if (m_pMasterRenderer != nullptr)
-			{
-				delete m_pMasterRenderer;
-				m_pMasterRenderer = nullptr;
-			}
-
-			if (m_pPhysicsEngine != nullptr)
-			{
-				delete m_pPhysicsEngine;
-				m_pPhysicsEngine = nullptr;
-			}
-
-			if (s_pInstance == this)
-			{
-				s_pInstance = nullptr;
-			}
+			s_pInstance = nullptr;
 		}
 
 		void System::run()

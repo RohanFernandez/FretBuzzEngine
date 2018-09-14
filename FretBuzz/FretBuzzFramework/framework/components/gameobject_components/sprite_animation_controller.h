@@ -11,7 +11,6 @@ namespace ns_fretBuzz
 		{
 		private:
 			SpriteAnimationController(GameObject& a_GameObj, std::string a_strAnimatorId);
-			~SpriteAnimationController();
 
 			SpriteAnimator* m_pSpriteAnimator = nullptr;
 
@@ -30,6 +29,9 @@ namespace ns_fretBuzz
 			std::string m_strDefaultStateID;
 
 			void playStateID(std::string a_strAnimationID);
+
+		protected:
+			~SpriteAnimationController();
 
 		public:
 			static SpriteAnimationController* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
