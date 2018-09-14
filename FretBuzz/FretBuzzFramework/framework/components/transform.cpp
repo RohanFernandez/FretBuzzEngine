@@ -30,13 +30,20 @@ namespace ns_fretBuzz
 			glm::quat l_quatOld = m_quatRotation;
 			m_quatRotation = glm::quat(a_v3AngleInRadians);
 
-			m_bIsDirty = (l_quatOld != m_quatRotation);
+			m_bIsDirty = 
+				(l_quatOld.x != m_quatRotation.x ||
+				l_quatOld.y != m_quatRotation.y ||
+				l_quatOld.z != m_quatRotation.z ||
+				l_quatOld.w != m_quatRotation.w ||
+					m_bIsDirty);
 
-			glm::mat4 l_mat4Model{ m_quatRotation };
-
-			m_v3Forward = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f });
-			m_v3Up = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f });
-			m_v3Right = glm::normalize(l_mat4Model * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f });
+			if (m_bIsDirty)
+			{
+				glm::mat4 l_mat4Model{ m_quatRotation };
+				m_v3Forward = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f });
+				m_v3Up = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f });
+				m_v3Right = glm::normalize(l_mat4Model * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f });
+			}
 		}
 
 		void Transform::setLocalScale(glm::vec3 a_v3Scale)
@@ -44,7 +51,7 @@ namespace ns_fretBuzz
 			glm::vec3 l_v3OldScale = m_v3Scale;
 			m_v3Scale = a_v3Scale;
 
-			m_bIsDirty = (l_v3OldScale != m_v3Scale);
+			m_bIsDirty = (l_v3OldScale != m_v3Scale) || m_bIsDirty;
 		}
 
 		void Transform::setLocalPosition(glm::vec3 a_v3Position)
@@ -52,13 +59,13 @@ namespace ns_fretBuzz
 			glm::vec3 l_v3OldPosition = m_v3Scale;
 			m_v3Position = a_v3Position;
 			
-			m_bIsDirty = (l_v3OldPosition != m_v3Position);
+			m_bIsDirty = (l_v3OldPosition != m_v3Position) || m_bIsDirty;
 		}
 
 		void Transform::setWorldPosition(glm::vec3 a_v3Position)
 		{
 			glm::vec3 l_v3OldPosition = getWorldPosition();
-			m_bIsDirty = l_v3OldPosition != a_v3Position;
+			m_bIsDirty = (l_v3OldPosition != a_v3Position) || m_bIsDirty;
 
 			if (m_bIsDirty)
 			{
@@ -93,7 +100,7 @@ namespace ns_fretBuzz
 			if (m_pParentTransform->m_bIsDirty)
 			{
 				m_pParentTransform->m_bIsDirty = false;
-				m_pParentTransform->m_mat4Transformation = m_pParentTransform->m_mat4Transformation;
+				m_pParentTransform->m_mat4Transformation = m_pParentTransform->getTransformationMatrix();
 			}
 
 			return m_pParentTransform->m_mat4Transformation * getModelMatrix();

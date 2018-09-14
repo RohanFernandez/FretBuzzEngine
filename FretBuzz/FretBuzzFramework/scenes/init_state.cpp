@@ -32,11 +32,15 @@ namespace ns_fretBuzz
 		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj5, { 1.0f, 0.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
 		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj5, { 150.0f, 100.0f });
 
-		ns_system::GameObject* l_pLabelGameObj6 = ns_system::GameObject::instantiate(*l_pLabelGameObj5, "LABEL6", { 150.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
-		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj6, { 1.0f, 1.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
-		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj6, { 150.0f, 100.0f });
+		//ns_system::GameObject* l_pLabelGameObj6 = ns_system::GameObject::instantiate(*l_pLabelGameObj5, "LABEL6", { 150.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
+		//ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj6, { 1.0f, 1.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
+		//ns_system::RectCollider::addToGameObject(*l_pLabelGameObj6, { 150.0f, 100.0f });
 
 		CharacterTest* l_gameObjChar = new CharacterTest(m_refRootGameObject, "character_test");
+
+		ns_system::GameObject* l_pLabelGameObj6 = ns_system::GameObject::instantiate(*l_gameObjChar, "LABEL6", { 150.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
+		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj6, { 1.0f, 1.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
+		//ns_system::RectCollider::addToGameObject(*l_pLabelGameObj6, { 150.0f, 100.0f });
 	}
 
 	void InitState::OnStateEnter()

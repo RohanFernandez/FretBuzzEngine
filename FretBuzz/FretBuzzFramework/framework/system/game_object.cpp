@@ -98,10 +98,7 @@ namespace ns_fretBuzz
 
 		void GameObject::render(const Viewport& a_Camera)
 		{
-			//m_mat4Transformation = a_mat4Transformation * m_Transform.getModelMatrix();
-			glm::mat4 l_mat4Transformation = m_Transform.getTransformationMatrix();
-
-			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * l_mat4Transformation;
+			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_Transform.getTransformationMatrix();
 
 			renderComponents(l_mat4RenderTransformation, a_Camera);
 			renderChildren(a_Camera);
@@ -199,8 +196,8 @@ namespace ns_fretBuzz
 				}
 			}
 			m_pParentGameObject = a_pNewParentGameObject;
-			m_Transform.m_pParentTransform = &m_pParentGameObject->m_Transform;
 			m_pParentGameObject->m_Children.emplace_back(this);
+			m_Transform.m_pParentTransform = &m_pParentGameObject->m_Transform;
 
 			setActive(m_bIsActiveSelf);
 
