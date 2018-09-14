@@ -96,13 +96,15 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::render(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
+		void GameObject::render(const Viewport& a_Camera)
 		{
-			m_mat4Transformation = a_mat4Transformation * m_Transform.getModelMatrix();
-			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_mat4Transformation;
+			//m_mat4Transformation = a_mat4Transformation * m_Transform.getModelMatrix();
+			glm::mat4 l_mat4Transformation = m_Transform.getTransformationMatrix();
+
+			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * l_mat4Transformation;
 
 			renderComponents(l_mat4RenderTransformation, a_Camera);
-			renderChildren(m_mat4Transformation, a_Camera);
+			renderChildren(a_Camera);
 		}
 
 		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
@@ -118,7 +120,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::renderChildren(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
+		void GameObject::renderChildren(const Viewport& a_Camera)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 
@@ -129,7 +131,7 @@ namespace ns_fretBuzz
 
 				if (l_pCurrentGameObject->getIsActiveInHierarchy())
 				{
-					l_pCurrentGameObject->render(a_mat4Transformation, a_Camera);
+					l_pCurrentGameObject->render(a_Camera);
 				}
 			}
 		}

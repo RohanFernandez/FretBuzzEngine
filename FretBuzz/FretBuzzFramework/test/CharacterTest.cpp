@@ -11,7 +11,7 @@
 namespace ns_fretBuzz
 {
 
-	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_TestGameObject1, ns_system::GameObject* a_TestGameObject2)
+	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
 		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
@@ -20,9 +20,6 @@ namespace ns_fretBuzz
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
-
-			m_pTestGameObject1 = a_TestGameObject1;
-			m_pTestGameObject2 = a_TestGameObject2;
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -62,12 +59,10 @@ namespace ns_fretBuzz
 			float l_fHorizontalVelocity = 0.0f;
 			float l_fVerticalVelocity = 0.0f;
 
-
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_W))
 			{
 				l_fVerticalVelocity += l_fCurrentSpeed;
 			}
-
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_S))
 			{
@@ -80,6 +75,13 @@ namespace ns_fretBuzz
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_D))
 			{
 				l_fHorizontalVelocity += l_fCurrentSpeed;
+			}
+
+			if (l_fHorizontalVelocity != 0.0f &&
+				l_fVerticalVelocity != 0.0f)
+			{
+				l_fHorizontalVelocity *= 0.7f;
+				l_fVerticalVelocity *= 0.7f;
 			}
 
 			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
@@ -97,12 +99,12 @@ namespace ns_fretBuzz
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
 			{
-				m_pTestGameObject2->setActive(!m_pTestGameObject2->getIsActiveInHierarchy());
+				
 			}
 
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
 
-			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - ns_system::Window::getWidth() / 2.0f, ns_system::Window::getHeight() / 2.0f - (float)m_dMouseY, 0.0f);
+			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
 			glm::vec3 l_v3PlayerPosition = m_Transform.getLocalPosition();
 			
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
@@ -117,8 +119,8 @@ namespace ns_fretBuzz
 			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
-		void CharacterTest::render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
+		void CharacterTest::render(const ns_system::Viewport& a_Camera)
 		{
-			GameObject::render(a_mat4Transformation,a_Camera);
+			GameObject::render(a_Camera);
 		};
 	}

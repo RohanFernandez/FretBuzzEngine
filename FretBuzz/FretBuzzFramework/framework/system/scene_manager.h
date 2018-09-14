@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 
 			void render(const Viewport& a_Camera)
 			{
-				m_refRootGameObject.render(m_refRootGameObject.m_Transform.getModelMatrix(), a_Camera);
+				m_refRootGameObject.render(a_Camera);
 			}
 
 			void update(float a_fDeltaTime)

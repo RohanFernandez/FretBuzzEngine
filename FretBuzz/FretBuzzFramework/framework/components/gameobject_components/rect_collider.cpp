@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 		{
 			b2BodyDef l_bodyDef;
 			l_bodyDef.type = m_bIsStatic ? b2_staticBody : b2_dynamicBody;
-			glm::vec2 l_Position = m_GameObject.m_Transform.getLocalPosition();
+			glm::vec2 l_Position = m_GameObject.m_Transform.getWorldPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
 			l_bodyDef.angle = m_GameObject.m_Transform.getLocalRotation().z;
 			l_bodyDef.fixedRotation = m_bIsFixedRotation;
@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
 			
 			b2PolygonShape l_boxShape;
-			l_boxShape.SetAsBox(m_v2Dimensions.x / 2.0f, m_v2Dimensions.y / 2.0f);
+			l_boxShape.SetAsBox(m_v2Dimensions.x * 0.5f, m_v2Dimensions.y * 0.5f);
 
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.shape = &l_boxShape;
@@ -90,6 +90,8 @@ namespace ns_fretBuzz
 
 		void RectCollider::onEnable()
 		{
+			glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
+			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, m_GameObject.m_Transform.getLocalRotation().z);
 			m_pBody->SetActive(true);
 		}
 
@@ -108,8 +110,7 @@ namespace ns_fretBuzz
 		{
 			//Set transform position from collider position.
 			const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
-			const glm::vec3& l_v3TransformPosition = m_GameObject.m_Transform.getLocalPosition();		
-			m_GameObject.m_Transform.setLocalPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, l_v3TransformPosition.z });
+			m_GameObject.m_Transform.setWorldPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, m_GameObject.m_Transform.getWorldPosition().z });
 
 			if (Input::IsKeyPutDown(GLFW_KEY_V))
 			{

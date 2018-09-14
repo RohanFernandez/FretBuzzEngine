@@ -19,7 +19,8 @@ namespace ns_fretBuzz
 
 			bool m_bIsDirty = false;
 
-			Transform* m_pParentTransform = nullptr;;
+			Transform* m_pParentTransform = nullptr;
+			glm::mat4 m_mat4Transformation = glm::mat4{1.0f};
 
 		public:
 			Transform();
@@ -29,6 +30,11 @@ namespace ns_fretBuzz
 			void setLocalRotation(glm::vec3 a_v3Angle);
 			void setLocalScale(glm::vec3 a_v3Scale);
 			void setLocalPosition(glm::vec3 a_v3Position);
+
+			void setWorldPosition(glm::vec3 a_v3Position);
+			glm::vec3 getWorldPosition() const;
+
+			glm::mat4 getTransformationMatrix();
 
 			inline const glm::vec3& getLocalPosition() const
 			{
@@ -60,7 +66,7 @@ namespace ns_fretBuzz
 				return m_v3Right;
 			}
 
-			const glm::mat4 getModelMatrix();
+			glm::mat4 getModelMatrix();
 		};
 	}
 }

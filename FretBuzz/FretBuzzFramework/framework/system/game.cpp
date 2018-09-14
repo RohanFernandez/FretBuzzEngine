@@ -91,7 +91,6 @@ namespace ns_fretBuzz
 
 			///testing end
 
-
 			m_pSceneManager->updateActiveScenes(a_fDeltaTime);
 		}
 
