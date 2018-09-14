@@ -19,11 +19,7 @@ namespace ns_fretBuzz
 			Sprite* m_pSprite = nullptr;
 			Shader* m_pShader = nullptr;
 
-			Sprite m_DefaltSprite;
-
-			/*GLuint m_IBO;
-			GLuint m_VBO;
-			GLuint m_VAO;*/
+			Sprite m_DefaultSprite;
 
 			void initialize();
 
@@ -44,15 +40,15 @@ namespace ns_fretBuzz
 
 			void setDefaultColor(glm::vec4 a_v4Color)
 			{
-				m_DefaltSprite.setColor(a_v4Color);
+				m_DefaultSprite.setColor(a_v4Color);
 			}
 
 			void setDefaultDimensions(glm::vec2 a_v2Dimensions)
 			{
-				m_DefaltSprite.setDimensions({a_v2Dimensions,0.0f});
+				m_DefaultSprite.setDimensions({a_v2Dimensions,0.0f});
 			}
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
 		};
 	}
 }

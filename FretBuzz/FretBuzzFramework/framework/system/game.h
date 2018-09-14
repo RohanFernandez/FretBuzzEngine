@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 			void updateScenes(float a_fDeltaTime);
 
 			//Renders the current active scenes
-			void renderFrame(const Viewport& a_Camera);
+			void renderFrame(const Camera& a_Camera);
 		};
 	}
 }

@@ -19,6 +19,8 @@ namespace ns_fretBuzz
 		ns_system::SpriteAnimationController* m_pSpriteAnimator = nullptr;
 		ns_system::RectCollider* m_pRectCollider = nullptr;
 
+		ns_system::GameObject* m_pcamGameObj = nullptr;
+
 		bool isAudioPlaying = false;
 
 		double m_dMouseX = 0.0;
@@ -34,9 +36,9 @@ namespace ns_fretBuzz
 		ns_system::GameObject* m_pTestGameObject1 = nullptr;
 		ns_system::GameObject* m_pTestGameObject2 = nullptr;
 
-		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName);
+		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_system::GameObject* a_CamGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
-		virtual void render(const ns_system::Viewport& a_Camera) override;
+		virtual void render(const ns_system::Camera& a_Camera) override;
 	};
 }

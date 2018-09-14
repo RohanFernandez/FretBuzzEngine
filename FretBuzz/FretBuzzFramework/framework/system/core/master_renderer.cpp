@@ -3,6 +3,7 @@
 #include "../game.h"
 #include "../../graphics/line_batch_renderer.h"
 #include "../../graphics/sprite_batch_renderer.h"
+#include "../../system/camera_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -39,8 +40,8 @@ namespace ns_fretBuzz
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
 			m_pBatchRendererManager = ns_graphics::BatchRendererManager::intialize();
+			m_pCameraManager = CameraManager::initialize();
 
-			m_pMainCamera = new OrthographicViewport{ glm::vec3{ 0.0f, 0.0f, 0.0f }, glm::vec3{ 0.0f,M_PI,0.0f }, glm::vec3{ 1.0f,1.0f,1.0f }, -(float)m_pWindow->getWidth() / 2.0f, (float)m_pWindow->getWidth() / 2.0f, -(float)m_pWindow->getHeight() / 2.0f, (float)m_pWindow->getHeight() / 2.0f, -1.0f, 1.0f };
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
 
@@ -53,12 +54,8 @@ namespace ns_fretBuzz
 				delete m_pTimer;
 				m_pTimer = nullptr;
 			}
-
-			if (m_pMainCamera != nullptr)
-			{
-				delete m_pMainCamera;
-				m_pMainCamera;
-			}
+			
+			m_pCameraManager->destroy();
 
 			Window::unregisterWindowResizeCallback(windowResizeCallback);
 			m_pWindow->destroy();
@@ -70,8 +67,8 @@ namespace ns_fretBuzz
 
 			m_pBatchRendererManager->beginBatches();
 
-			m_pMainCamera->updateViewMatrix();
-			m_Game.renderFrame(*m_pMainCamera);
+			m_pCameraManager->updateViewMatrix();
+			m_pCameraManager->renderFrame(m_Game);
 
 			m_pBatchRendererManager->endAndflushBatches();
 
@@ -97,7 +94,9 @@ namespace ns_fretBuzz
 
 		void MasterRenderer::windowResizeCallback()
 		{
-			OrthographicViewport* l_pOrthoCamera = dynamic_cast<OrthographicViewport*>(s_pInstance->m_pMainCamera);
+			s_pInstance->m_pCameraManager->windowResize();
+
+			/*OrthographicViewport* l_pOrthoCamera = dynamic_cast<OrthographicViewport*>(s_pInstance->m_pMainCamera);
 			if (l_pOrthoCamera != nullptr)
 			{
 				glm::vec2 l_v2NearFar = l_pOrthoCamera->getNearFar();
@@ -111,7 +110,7 @@ namespace ns_fretBuzz
 				glm::vec2 l_v2NearFar = l_pPerspectiveCamera->getNearFar();
 				l_pPerspectiveCamera->setProjectionMatrix(l_pPerspectiveCamera->getFOV(), l_pPerspectiveCamera->getAspectRatio(), l_v2NearFar.x, l_v2NearFar.y);
 				return;
-			}
+			}*/
 		}
 	}
 }

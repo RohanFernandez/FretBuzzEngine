@@ -10,6 +10,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		class CameraManager;
 		class Game;
 		class MasterRenderer
 		{
@@ -19,7 +20,7 @@ namespace ns_fretBuzz
 			Window* m_pWindow = nullptr;
 			TimerFPS* m_pTimer = nullptr;
 
-			Viewport* m_pMainCamera = nullptr;
+			CameraManager* m_pCameraManager = nullptr;
 
 			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
 

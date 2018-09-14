@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
 			m_pSprite{ a_Sprite },
 			m_pShader{ a_pShader },
-			m_DefaltSprite()
+			m_DefaultSprite()
 		{
 			initialize();
 		}
@@ -33,7 +33,7 @@ namespace ns_fretBuzz
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
-			m_DefaltSprite(a_v2Dimensions, a_v4Color)
+			m_DefaultSprite(a_v2Dimensions, a_v4Color)
 		{
 			initialize();
 		}
@@ -95,9 +95,9 @@ namespace ns_fretBuzz
 			setSprite(m_pSprite);
 		}
 
-		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Viewport& a_Camera)
+		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
-			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaltSprite : m_pSprite);
+			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaultSprite : m_pSprite);
 			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_pShader);
 
 			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());

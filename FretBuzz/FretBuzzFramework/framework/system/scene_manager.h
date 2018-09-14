@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 
 			GameObject& m_refRootGameObject;
 
-			void render(const Viewport& a_Camera)
+			void render(const Camera& a_Camera)
 			{
 				m_refRootGameObject.render(a_Camera);
 			}
@@ -72,7 +72,7 @@ namespace ns_fretBuzz
 
 			virtual bool isSceneLoaded() = 0;
 
-			virtual void render(const Viewport& a_Camera) = 0;
+			virtual void render(const Camera& a_Camera) = 0;
 			virtual void update(float a_fDeltaTime) = 0;
 
 			virtual void resetDontDestroyParent(ISceneData& a_NewSceneParent)
@@ -160,7 +160,7 @@ namespace ns_fretBuzz
 				m_pScene->resetDontDestroyParentTo(a_NewSceneParent.getIScene());
 			}
 
-			void render(const Viewport& a_Camera)
+			void render(const Camera& a_Camera)
 			{
 				m_pScene->render(a_Camera);
 			}
@@ -215,7 +215,7 @@ namespace ns_fretBuzz
 			static void s_logAllActiveSceneNames();
 
 			void updateActiveScenes(float a_fDeltaTime);
-			void renderActiveScenes(const Viewport& a_Camera);
+			void renderActiveScenes(const Camera& a_Camera);
 
 			static void printSceneHierarchy();
 

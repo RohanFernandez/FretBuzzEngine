@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 			glm::mat4 m_mat4View;
 
 			Viewport() = delete;
-			Viewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
+			Viewport(PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
 			glm::vec2 m_v2NearFar = {};
 
 
@@ -40,17 +40,9 @@ namespace ns_fretBuzz
 				return m_ProjectionType;
 			}
 
-			Transform m_transform;
-			const glm::mat4& updateViewMatrix();
-
 			inline const glm::mat4 getProjectionMatrix() const
 			{
 				return m_mat4Projection;
-			}
-
-			inline const glm::mat4& getViewMatrix() const
-			{
-				return m_mat4View;
 			}
 
 			const glm::vec2& getNearFar() const
@@ -66,8 +58,8 @@ namespace ns_fretBuzz
 			glm::vec2 m_v2BottomTop;
 
 		public:
-			OrthographicViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
-				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PROJECTION_TYPE::ORTHOGRAPHIC,
+			OrthographicViewport(float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
+				: Viewport(PROJECTION_TYPE::ORTHOGRAPHIC,
 					glm::ortho(a_fleft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
@@ -75,8 +67,8 @@ namespace ns_fretBuzz
 				m_v2BottomTop = { a_fBottom , a_fTop };
 			}
 
-			OrthographicViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fNear, float a_fFar)
-				: OrthographicViewport(a_v3Pos, a_v3Rotation, a_v3Scale, -(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)Window::getHeight() / 2.0f, (float)Window::getHeight() / 2.0f, a_fNear, a_fFar)
+			OrthographicViewport(float a_fNear, float a_fFar)
+				: OrthographicViewport(-(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)Window::getHeight() / 2.0f, (float)Window::getHeight() / 2.0f, a_fNear, a_fFar)
 			{	
 			}
 
@@ -112,8 +104,8 @@ namespace ns_fretBuzz
 			float m_fAspectRatio = 0.0f;
 
 		public:
-			PerspectiveViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale,float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
-				: Viewport(a_v3Pos, a_v3Rotation, a_v3Scale, PROJECTION_TYPE::PERSPECTIVE,
+			PerspectiveViewport(float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
+				: Viewport(PROJECTION_TYPE::PERSPECTIVE,
 					glm::perspective(glm::radians(a_fDegreesFOV), a_fAspectRatio, a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
@@ -121,8 +113,8 @@ namespace ns_fretBuzz
 				m_fAspectRatio = a_fAspectRatio;
 			}
 
-			PerspectiveViewport(glm::vec3 a_v3Pos, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, float a_fDegreesFOV, float a_fNear, float a_fFar)
-				: PerspectiveViewport(a_v3Pos, a_v3Rotation, a_v3Scale, a_fDegreesFOV, (float)Window::getWidth() / (float)Window::getHeight(), a_fNear, a_fFar)
+			PerspectiveViewport(float a_fDegreesFOV, float a_fNear, float a_fFar)
+				: PerspectiveViewport(a_fDegreesFOV, (float)Window::getWidth() / (float)Window::getHeight(), a_fNear, a_fFar)
 			{
 			}
 

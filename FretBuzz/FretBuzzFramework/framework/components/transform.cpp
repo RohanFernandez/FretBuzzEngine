@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 			setLocalRotation(a_v3Rotation);
 			setLocalScale(a_v3Scale);
 			setLocalPosition(a_v3Position);
-			m_mat4Transformation = getTransformationMatrix();
+			m_mat4ParentTransformation = getTransformationMatrix();
 		}
 
 		Transform::Transform()
@@ -36,14 +36,6 @@ namespace ns_fretBuzz
 				l_quatOld.z != m_quatRotation.z ||
 				l_quatOld.w != m_quatRotation.w ||
 					m_bIsDirty);
-
-			if (m_bIsDirty)
-			{
-				glm::mat4 l_mat4Model{ m_quatRotation };
-				m_v3Forward = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f });
-				m_v3Up = glm::normalize(l_mat4Model * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f });
-				m_v3Right = glm::normalize(l_mat4Model * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f });
-			}
 		}
 
 		void Transform::setLocalScale(glm::vec3 a_v3Scale)
@@ -100,10 +92,16 @@ namespace ns_fretBuzz
 			if (m_pParentTransform->m_bIsDirty)
 			{
 				m_pParentTransform->m_bIsDirty = false;
-				m_pParentTransform->m_mat4Transformation = m_pParentTransform->getTransformationMatrix();
+				m_pParentTransform->m_mat4ParentTransformation = m_pParentTransform->getTransformationMatrix();
 			}
 
-			return m_pParentTransform->m_mat4Transformation * getModelMatrix();
+			return m_pParentTransform->m_mat4ParentTransformation * getModelMatrix();
+		}
+
+		glm::mat4 Transform::getRotationTransformation()
+		{
+			return (m_pParentTransform == nullptr) ? 
+				glm::mat4{ m_quatRotation } : m_pParentTransform->getRotationTransformation() * glm::mat4(m_quatRotation);
 		}
 	}
 }

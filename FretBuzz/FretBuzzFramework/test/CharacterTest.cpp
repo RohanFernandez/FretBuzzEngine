@@ -11,8 +11,8 @@
 namespace ns_fretBuzz
 {
 
-	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name)
-		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, -100.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
+	CharacterTest::CharacterTest(GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject)
+		: ns_system::GameObject(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f })
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
@@ -20,6 +20,8 @@ namespace ns_fretBuzz
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
+
+			m_pcamGameObj = a_CamGameObject;
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -85,6 +87,7 @@ namespace ns_fretBuzz
 			}
 
 			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
+			m_pcamGameObj->m_Transform.setWorldPosition(m_Transform.getWorldPosition());
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
 			{
@@ -119,7 +122,7 @@ namespace ns_fretBuzz
 			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
-		void CharacterTest::render(const ns_system::Viewport& a_Camera)
+		void CharacterTest::render(const ns_system::Camera& a_Camera)
 		{
 			GameObject::render(a_Camera);
 		};

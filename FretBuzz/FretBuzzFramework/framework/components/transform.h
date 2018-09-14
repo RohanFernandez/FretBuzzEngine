@@ -13,14 +13,10 @@ namespace ns_fretBuzz
 			glm::quat m_quatRotation;
 			glm::vec3 m_v3Scale;
 
-			glm::vec3 m_v3Forward;
-			glm::vec3 m_v3Up;
-			glm::vec3 m_v3Right;
-
 			bool m_bIsDirty = false;
 
 			Transform* m_pParentTransform = nullptr;
-			glm::mat4 m_mat4Transformation = glm::mat4{1.0f};
+			glm::mat4 m_mat4ParentTransformation = glm::mat4{1.0f};
 
 		public:
 			Transform();
@@ -35,6 +31,8 @@ namespace ns_fretBuzz
 			glm::vec3 getWorldPosition() const;
 
 			glm::mat4 getTransformationMatrix();
+			glm::mat4 getRotationTransformation();
+			glm::mat4 getModelMatrix();
 
 			inline const glm::vec3& getLocalPosition() const
 			{
@@ -51,22 +49,20 @@ namespace ns_fretBuzz
 				return m_v3Scale;
 			}
 
-			inline glm::vec3 getForward() const
+			inline glm::vec3 getForward()
 			{
-				return m_v3Forward;
+				return getRotationTransformation() * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f };
 			}
 
-			inline glm::vec3 getUp() const
+			inline glm::vec3 getUp()
 			{
-				return m_v3Up;
+				return getRotationTransformation() * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f };
 			}
 
-			inline glm::vec3 getRight() const
+			inline glm::vec3 getRight()
 			{
-				return m_v3Right;
+				return getRotationTransformation() * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f };
 			}
-
-			glm::mat4 getModelMatrix();
 		};
 	}
 }

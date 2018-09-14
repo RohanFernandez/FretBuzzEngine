@@ -2,6 +2,7 @@
 #include "../system/core/system_defines.h"
 #include "game_object.h"
 #include <iostream>
+#include "../components/gameobject_components/camera.h"
 
 namespace ns_fretBuzz
 {
@@ -96,15 +97,15 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::render(const Viewport& a_Camera)
+		void GameObject::render(const Camera& a_Camera)
 		{
-			glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_Transform.getTransformationMatrix();
+			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_Transform.getTransformationMatrix();
 
 			renderComponents(l_mat4RenderTransformation, a_Camera);
 			renderChildren(a_Camera);
 		}
 
-		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera)
+		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera)
 		{
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
@@ -117,7 +118,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::renderChildren(const Viewport& a_Camera)
+		void GameObject::renderChildren(const Camera& a_Camera)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 

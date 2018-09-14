@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../components/transform.h"
-#include "component.h"
+#include "../components/gameobject_components/camera.h"
 #include <vector>
 #include <string>
 
@@ -35,8 +35,8 @@ namespace ns_fretBuzz
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
-			void renderComponents(const glm::mat4& a_mat4Transformation, const Viewport& a_Camera);
-			void renderChildren(const Viewport& a_Camera);
+			void renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
+			void renderChildren(const Camera& a_Camera);
 
 			void addComponent(IComponent* a_IComponent);
 			void resetDontDestroyParent(GameObject& a_NewParent);
@@ -61,7 +61,7 @@ namespace ns_fretBuzz
 			void addChild(GameObject* a_pChildGameObject);
 
 			// Renders all the components and renders its child GameObjects.
-			virtual void render(const ns_system::Viewport& a_Camera);
+			virtual void render(const Camera& a_Camera);
 
 			// Updates all the components and renders its child GameObjects.
 			virtual void update(float a_fDeltaTime);
