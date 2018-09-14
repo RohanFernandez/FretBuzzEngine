@@ -101,7 +101,24 @@ namespace ns_fretBuzz
 
 		void CameraManager::windowResize()
 		{
-		
+			int l_iCameraCount = m_vectCameras.size();
+			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			{
+				OrthographicViewport* l_pOrthoCamera = dynamic_cast<OrthographicViewport*>(&m_vectCameras[l_iCameraIndex]->getViewport());
+				if (l_pOrthoCamera != nullptr)
+				{
+					l_pOrthoCamera->resetProjectionMatrix();
+					continue;
+				}
+
+				PerspectiveViewport* l_pPerspectiveCamera = dynamic_cast<PerspectiveViewport*>(&m_vectCameras[l_iCameraIndex]->getViewport());
+				if (l_pPerspectiveCamera != nullptr)
+				{
+					glm::vec2 l_v2NearFar = l_pPerspectiveCamera->getNearFar();
+					l_pPerspectiveCamera->setProjectionMatrix(l_pPerspectiveCamera->getFOV(), l_pPerspectiveCamera->getAspectRatio(), l_v2NearFar.x, l_v2NearFar.y);
+					continue;
+				}
+			}
 		}
 	}
 }

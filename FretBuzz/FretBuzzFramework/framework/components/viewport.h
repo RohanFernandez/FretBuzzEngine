@@ -60,7 +60,7 @@ namespace ns_fretBuzz
 		public:
 			OrthographicViewport(float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
 				: Viewport(PROJECTION_TYPE::ORTHOGRAPHIC,
-					glm::ortho(a_fleft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar))
+					glm::ortho(a_fleft * Window::getWidth(), a_fRight * Window::getWidth(), a_fBottom * Window::getHeight(), a_fTop * Window::getHeight(), a_fNear, a_fFar))
 			{
 				m_v2NearFar = { a_fNear, a_fFar };
 				m_v2LeftRight = { a_fleft, a_fRight };
@@ -68,7 +68,7 @@ namespace ns_fretBuzz
 			}
 
 			OrthographicViewport(float a_fNear, float a_fFar)
-				: OrthographicViewport(-(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)Window::getHeight() / 2.0f, (float)Window::getHeight() / 2.0f, a_fNear, a_fFar)
+				: OrthographicViewport(-0.5f, 0.5f, -0.5f, 0.5f, a_fNear, a_fFar)
 			{	
 			}
 
@@ -79,14 +79,23 @@ namespace ns_fretBuzz
 			//resets the projection matrix
 			void setProjectionMatrix(float a_fLeft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
 			{
-				m_mat4Projection = glm::ortho(a_fLeft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar);
+				float l_fWindowWidth = Window::getWidth();
+				float l_fWindowHeight = Window::getHeight();
 
 				m_v2BottomTop = {a_fBottom, a_fTop};
 				m_v2LeftRight = { a_fLeft, a_fRight};
 				m_v2NearFar = { a_fNear, a_fFar };
+				m_mat4Projection = glm::ortho(a_fLeft * l_fWindowWidth, a_fRight * l_fWindowWidth, a_fBottom * l_fWindowHeight, a_fTop * l_fWindowHeight, a_fNear, a_fFar);
 			}
 
-			const glm::vec2& getTopBottom() const
+			void resetProjectionMatrix()
+			{
+				float l_fWindowWidth = Window::getWidth();
+				float l_fWindowHeight = Window::getHeight();
+				m_mat4Projection = glm::ortho(m_v2LeftRight.x * l_fWindowWidth, m_v2LeftRight.y * l_fWindowWidth, m_v2BottomTop.x * l_fWindowHeight, m_v2BottomTop.y * l_fWindowHeight, m_v2NearFar.x, m_v2NearFar.y);
+			}
+
+			const glm::vec2& getBottomTop() const
 			{
 				return m_v2BottomTop;
 			}

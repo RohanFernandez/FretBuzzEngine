@@ -40,8 +40,12 @@ namespace ns_fretBuzz
 		CharacterTest* l_gameObjChar = new CharacterTest(*MainParent, "character_test", MainParent);
 
 		ns_system::GameObject* m_pCam = ns_system::GameObject::instantiate(*MainParent, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
-		ns_system::OrthographicViewport l_MainCam(-(float)ns_system::Window::getWidth() * 0.5f, (float)ns_system::Window::getWidth() * 0.5f, -(float)ns_system::Window::getHeight() * 0.5f, (float)ns_system::Window::getHeight() * 0.5f, -1.0f, 1.0f);
+		ns_system::OrthographicViewport l_MainCam(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
 		ns_system::Camera::addToGameObject(*m_pCam, ns_system::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam);
+
+		/*ns_system::GameObject* m_pCam1 = ns_system::GameObject::instantiate(*MainParent, "Main_Cam1", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
+		ns_system::OrthographicViewport l_MainCam1(0.25f, 0.5f, 0.25f, 0.5f, -1.0f, 1.0f);
+		ns_system::Camera::addToGameObject(*m_pCam1, ns_system::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam1);*/
 	}
 
 	void InitState::OnStateEnter()

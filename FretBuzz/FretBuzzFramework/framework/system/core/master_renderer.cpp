@@ -95,22 +95,6 @@ namespace ns_fretBuzz
 		void MasterRenderer::windowResizeCallback()
 		{
 			s_pInstance->m_pCameraManager->windowResize();
-
-			/*OrthographicViewport* l_pOrthoCamera = dynamic_cast<OrthographicViewport*>(s_pInstance->m_pMainCamera);
-			if (l_pOrthoCamera != nullptr)
-			{
-				glm::vec2 l_v2NearFar = l_pOrthoCamera->getNearFar();
-				l_pOrthoCamera->setProjectionMatrix(-(float)Window::getWidth() / 2.0f, (float)Window::getWidth() / 2.0f, -(float)ns_system::Window::getHeight() / 2.0f, (float)ns_system::Window::getHeight() / 2.0f, l_v2NearFar.x, l_v2NearFar.y);
-				return;
-			}
-
-			PerspectiveViewport* l_pPerspectiveCamera = dynamic_cast<PerspectiveViewport*>(s_pInstance->m_pMainCamera);
-			if (l_pPerspectiveCamera != nullptr)
-			{
-				glm::vec2 l_v2NearFar = l_pPerspectiveCamera->getNearFar();
-				l_pPerspectiveCamera->setProjectionMatrix(l_pPerspectiveCamera->getFOV(), l_pPerspectiveCamera->getAspectRatio(), l_v2NearFar.x, l_v2NearFar.y);
-				return;
-			}*/
 		}
 	}
 }
