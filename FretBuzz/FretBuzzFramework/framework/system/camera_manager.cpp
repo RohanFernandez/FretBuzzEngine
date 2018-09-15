@@ -86,7 +86,10 @@ namespace ns_fretBuzz
 
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
-				m_vectCameras[l_iCameraIndex]->updateViewMatrix();
+				if (m_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
+				{
+					m_vectCameras[l_iCameraIndex]->updateViewMatrix();
+				}
 			}
 		}
 
@@ -95,7 +98,10 @@ namespace ns_fretBuzz
 			int l_iCameraCount = m_vectCameras.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
-				a_Game.renderFrame(*m_vectCameras[l_iCameraIndex]);
+				if (m_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
+				{
+					a_Game.renderFrame(*m_vectCameras[l_iCameraIndex]);
+				}
 			}
 		}
 
