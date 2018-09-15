@@ -9,7 +9,6 @@ namespace ns_fretBuzz
 		{
 		friend class GameObject2D;
 		protected:
-			glm::vec2 m_v2DimensionWH;
 
 		public:
 
@@ -21,13 +20,14 @@ namespace ns_fretBuzz
 			}
 
 			virtual ~RectTransform() {};
+			glm::vec2 m_v2DimensionWH;
 
 			void setDimensionWH(glm::vec2 a_v2DimensionWH)
 			{
 				m_v2DimensionWH = a_v2DimensionWH;
 			}
 
-			const glm::vec2& getDimensionWH() const
+			const glm::vec2 getDimensionWH() const
 			{
 				return m_v2DimensionWH;
 			}

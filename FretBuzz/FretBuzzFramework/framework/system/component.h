@@ -11,9 +11,12 @@ namespace ns_fretBuzz
 			SPRITE_RENDERER,
 			SPRITE_ANIMATION_CONTROLLER,
 			TEXT_RENDERER,
-			RECT_COLLIDER,
 			CHARACTER_CONTROLLER_2D,
-			CAMERA
+			CAMERA,
+
+			//2D GameObject specific
+			IMAGE,
+			RECT_COLLIDER
 		};
 
 		class GameObject;

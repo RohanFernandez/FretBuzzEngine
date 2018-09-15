@@ -88,6 +88,11 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
+		/*void SpriteBatchRenderer::submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
+		{
+			
+		}*/
+
 		void SpriteBatchRenderer:: submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
 		{
 			SpriteBatchRenderer& l_Instance = *s_pInstance;

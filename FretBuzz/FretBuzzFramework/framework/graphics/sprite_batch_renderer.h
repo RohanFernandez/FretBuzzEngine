@@ -54,7 +54,6 @@ namespace ns_fretBuzz
 			static constexpr int INDEX_TEX_UV = 2;
 			static constexpr int INDEX_TEX_ID = 3;
 
-
 			SpriteBatchRenderer(unsigned int a_iMaxSprites);
 			~SpriteBatchRenderer();
 			
