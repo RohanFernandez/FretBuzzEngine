@@ -18,7 +18,8 @@ namespace ns_fretBuzz
 
 		Image::Image(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled)
 			: ns_system::IComponent2D(ns_system::COMPONENT_TYPE::IMAGE, a_GameObject2D, a_bIsEnabled),
-			m_pSprite{ a_pSprite }
+			m_pSprite{ a_pSprite },
+			m_Color{a_v4Color}
 		{
 			m_pShader = ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID);
 		}
