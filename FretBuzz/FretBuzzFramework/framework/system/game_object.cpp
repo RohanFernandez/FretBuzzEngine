@@ -98,7 +98,10 @@ namespace ns_fretBuzz
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
-				m_Components[l_iComponentndex]->update(a_fDeltaTime);
+				if (m_Components[l_iComponentndex]->getIsEnabled())
+				{
+					m_Components[l_iComponentndex]->update(a_fDeltaTime);
+				}
 			}
 		}
 
@@ -130,11 +133,16 @@ namespace ns_fretBuzz
 			int l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
-				m_Components[l_iComponentndex]->render(a_mat4Transformation, a_Camera);
+				IComponent& l_Component =  *m_Components[l_iComponentndex];
+
+				if (l_Component.getIsEnabled())
+				{
+					l_Component.render(a_mat4Transformation, a_Camera);
 
 #ifdef _IS_DEBUG_RENDERING
-				m_Components[l_iComponentndex]->debugRender(a_mat4Transformation, a_Camera);
+					l_Component.debugRender(a_mat4Transformation, a_Camera);
 #endif
+				}
 			}
 		}
 
