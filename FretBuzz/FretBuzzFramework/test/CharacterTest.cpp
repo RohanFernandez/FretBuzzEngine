@@ -4,7 +4,6 @@
 #include "../framework/system/core/resource_manager.h"
 #include "../framework/components/gameobject_components/sprite_renderer.h"
 
-#include <ft2build.h>
 #include "../framework/system/core/system.h"
 //#include FT_FREETYPE_H
 
@@ -87,7 +86,7 @@ namespace ns_fretBuzz
 			}
 
 			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
-			m_pcamGameObj->m_pTransform->setWorldPosition(m_pTransform->getWorldPosition());
+			m_pcamGameObj->m_Transform.setWorldPosition(m_pTransform->getWorldPosition());
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
 			{

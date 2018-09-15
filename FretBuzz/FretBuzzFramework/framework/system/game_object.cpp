@@ -14,18 +14,20 @@ namespace ns_fretBuzz
 		GameObject::GameObject(std::string a_strName, bool a_bIsRoot)
 			: m_iID{++s_iID},
 		     m_strName{a_strName},
-			m_bIsRoot{a_bIsRoot}
+			m_bIsRoot{a_bIsRoot},
+			m_pTransform{ new Transform() },
+			m_Transform(*m_pTransform)
 		{
-			m_pTransform = new Transform();
 		}
 
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
 			m_bIsActiveSelf{ a_bIsActiveSelf },
-			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy }
+			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
+			m_pTransform{ new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform) },
+			m_Transform(*m_pTransform)
 		{
-			m_pTransform = new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform);
 			a_ParentGameObject.addChild(this);
 		}
 

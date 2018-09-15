@@ -42,11 +42,12 @@ namespace ns_fretBuzz
 			void resetDontDestroyParent(GameObject& a_NewParent);
 			glm::mat4 m_mat4Transformation{1.0f};
 
-		protected:
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
 			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSel = true);
 
 			virtual ~GameObject();
+
+			Transform* m_pTransform;
 
 		public:
 
@@ -55,7 +56,7 @@ namespace ns_fretBuzz
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf = true);
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf = true);
 
-			Transform* m_pTransform;
+			Transform& m_Transform;
 
 			// Adds the GameObject a_pChildGameObject into this GameObject's m_Children.
 			void addChild(GameObject* a_pChildGameObject);
