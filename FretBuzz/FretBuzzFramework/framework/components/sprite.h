@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "../graphics/texture.h"
-#include "../utils/math.h"
+#include "../graphics/rect.h"
 
 #include "../system/game_object.h"
 #include "viewport.h"
@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 			Texture* m_pTexture = nullptr;
 			std::vector<glm::vec2> m_TexCoords;
 			std::vector<glm::vec4> m_VertPosition;
-			glm::vec3 m_SpriteDimensionWH;
+			glm::vec2 m_SpriteDimensionWH;
 			glm::vec2 m_OriginOffset = {0.0f, 0.0f};
 
 			glm::vec4 m_v4Color;
@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 				:
 				m_strID{a_strID},
 				m_pTexture{ a_pTexture },
-				m_SpriteDimensionWH{ a_v2DimensionsWH, 0.0f },
+				m_SpriteDimensionWH{ a_v2DimensionsWH},
 				m_OriginOffset{a_v2OriginOffset},
 				m_v4Color{a_v4Color},
 				m_TexCoords{
@@ -50,8 +50,9 @@ namespace ns_fretBuzz
 				
 								}
 
+			// Default sprite should inherit from Rect arguement
 			Sprite(glm::vec2 a_v2Dimensions = {1.0f, 1.0f}, glm::vec4 a_v4Color = {0.996, 0.180, 1.0,1.0})
-				: m_SpriteDimensionWH{ a_v2Dimensions,0.0f },
+				: m_SpriteDimensionWH{ a_v2Dimensions },
 				m_v4Color{ a_v4Color },
 				m_strID{ COLORED_SPRITE_ID },
 
@@ -132,7 +133,7 @@ namespace ns_fretBuzz
 				return m_VertPosition;
 			}
 
-			inline const glm::vec3& getSpriteDimensions() const
+			inline const glm::vec2& getSpriteDimensions() const
 			{
 				return m_SpriteDimensionWH;
 			}
@@ -152,9 +153,9 @@ namespace ns_fretBuzz
 				m_v4Color = a_v4Color;
 			}
 
-			inline void setDimensions(glm::vec3 a_v3Dimensions)
+			inline void setDimensions(glm::vec2 a_v2Dimensions)
 			{
-				m_SpriteDimensionWH = a_v3Dimensions;
+				m_SpriteDimensionWH = a_v2Dimensions;
 				m_VertPosition = {
 					glm::vec4(-0.5 * m_SpriteDimensionWH.x, -0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f),
 					glm::vec4(-0.5 * m_SpriteDimensionWH.x, 0.5 * m_SpriteDimensionWH.y, 0.0, 1.0f),
