@@ -1,5 +1,5 @@
 #pragma once
-#include "../../system/component.h"
+#include "../../system/component_2d.h"
 #include "../../system/core/physics_engine.h"
 #include "../../graphics/line_batch_renderer.h"
 
@@ -7,11 +7,11 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class GameObject;
-		class RectCollider : public IComponent
+		class GameObject2D;
+		class RectCollider : public IComponent2D
 		{
 		private:
-			RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC
+			RectCollider(GameObject2D& a_GameObject, glm::vec2 v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC
 				, bool a_bIsFixedRotation = true);
 
 			ns_graphics::LineData m_arrRectLineBorders[4];
@@ -22,16 +22,20 @@ namespace ns_fretBuzz
 			PhysicsEngine::PHYSICS_BODY_TYPE m_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
 			
 			bool m_bIsFixedRotation = true;
-			glm::vec2 m_v2Dimensions;
 			b2Body* m_pBody = nullptr;
 			b2Fixture* m_pFixture = nullptr;
 
 			virtual void onEnable() override;
 			virtual void onDisable() override;
 
+			glm::vec2 m_v2DimensionWH;
+
 		public:
-			static RectCollider* addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions,
+			static RectCollider* addToGameObject(GameObject2D& a_GameObject,
 				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true);
+			static RectCollider* addToGameObject(GameObject2D& a_GameObject, glm::vec2 a_v2DimensionWH,
+				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true);
+
 
 			void applyForce(b2Vec2 a_v2ForceDirection);
 			void applyImpulse(b2Vec2 a_v2ImpulseDirection);

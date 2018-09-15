@@ -1,7 +1,7 @@
 #pragma once
 #include "../../system/core/system_defines.h"
 #include "rect_collider.h"
-#include "../../system/game_object.h"
+#include "../../system/game_object_2d.h"
 #include <iostream>
 #include "../../system/core/input.h"
 #include "../../system/core/resource_manager.h"
@@ -10,11 +10,11 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		RectCollider::RectCollider(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
-			: IComponent(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
+		RectCollider::RectCollider(GameObject2D& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
+			: IComponent2D(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
 			m_PhysicsBodyType{ a_PhysicsBodyType},
 			m_bIsFixedRotation{ a_bIsFixedRotation },
-			m_v2Dimensions{ a_v2Dimensions },
+			m_v2DimensionWH{ a_v2Dimensions },
 			m_pDefaultLineShader{ ResourceManager::getResource<ns_graphics::Shader>(ns_graphics::Shader::DEFAULT_LINE_SHADER_ID) }
 		{
 			b2BodyDef l_bodyDef;
@@ -29,7 +29,7 @@ namespace ns_fretBuzz
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
 			
 			b2PolygonShape l_boxShape;
-			l_boxShape.SetAsBox(m_v2Dimensions.x * 0.5f, m_v2Dimensions.y * 0.5f);
+			l_boxShape.SetAsBox(m_v2DimensionWH.x * 0.5f, m_v2DimensionWH.y * 0.5f);
 
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.shape = &l_boxShape;
@@ -40,10 +40,10 @@ namespace ns_fretBuzz
 #ifdef _IS_DEBUG_RENDERING
 
 			//Setup rect collider borders using LineData for debugging
-			float l_fLeftX = m_v2Dimensions.x * -0.5f;
-			float l_fRightX = m_v2Dimensions.x * 0.5f;
-			float l_fTopY = m_v2Dimensions.y * 0.5f;
-			float l_fBottomY = m_v2Dimensions.y * -0.5f;
+			float l_fLeftX = m_v2DimensionWH.x * -0.5f;
+			float l_fRightX = m_v2DimensionWH.x * 0.5f;
+			float l_fTopY = m_v2DimensionWH.y * 0.5f;
+			float l_fBottomY = m_v2DimensionWH.y * -0.5f;
 
 			m_arrRectLineBorders[0] = 
 				ns_graphics::LineData
@@ -102,10 +102,17 @@ namespace ns_fretBuzz
 			m_pBody->SetActive(false);
 		}	
 
-		RectCollider* RectCollider::addToGameObject(GameObject& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
+		RectCollider* RectCollider::addToGameObject(GameObject2D& a_GameObject, glm::vec2 a_v2DimensionWH,
+			PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
-				nullptr : new RectCollider(a_GameObject, a_v2Dimensions, a_PhysicsBodyType, a_bIsFixedRotation);
+				nullptr : new RectCollider(a_GameObject, a_v2DimensionWH, a_PhysicsBodyType, a_bIsFixedRotation);
+		}
+
+		RectCollider* RectCollider::addToGameObject(GameObject2D& a_GameObject, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
+		{
+			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
+				nullptr : new RectCollider(a_GameObject, a_GameObject.m_RectTransform.getDimensionWH() , a_PhysicsBodyType, a_bIsFixedRotation);
 		}
 
 		void RectCollider::update(float a_fDeltaTime)

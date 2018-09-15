@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../framework/system/game_object.h" 
+#include "../framework/system/game_object_2d.h" 
 #include "../framework/components/gameobject_components/audio_source.h"
 #include "../framework/components/gameobject_components/sprite_animation_controller.h"
 #include "../framework/components/gameobject_components/rect_collider.h"
@@ -12,7 +12,7 @@
 
 namespace ns_fretBuzz
 {
-	class CharacterTest : public ns_system::GameObject
+	class CharacterTest : public ns_system::GameObject2D
 	{
 	private:
 		ns_system::AudioSource* m_pAudSrc = nullptr;

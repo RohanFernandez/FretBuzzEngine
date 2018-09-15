@@ -11,6 +11,8 @@ namespace ns_fretBuzz
 		//static counter that specifies the id.
 		int GameObject::s_iID = 0;
 
+
+		//GameObject 2D constructor
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },

@@ -22,10 +22,8 @@ namespace ns_fretBuzz
 		{
 		friend class GameObject;
 
-		private:
-			bool m_bIsEnabled = true;
-
 		protected:
+			bool m_bIsEnabled = true;
 			virtual ~IComponent() = 0;
 			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj, bool a_bIsEnabled = true);
 

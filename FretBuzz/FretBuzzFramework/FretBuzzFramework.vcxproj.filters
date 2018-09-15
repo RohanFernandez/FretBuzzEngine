@@ -266,6 +266,9 @@
     <ClInclude Include="framework\components\rect_transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\system\component_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />
