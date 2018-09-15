@@ -58,6 +58,9 @@ namespace ns_fretBuzz
 			~SpriteBatchRenderer();
 			
 			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
+			static void submit(const std::vector<glm::vec4>& a_vectPosition, const glm::vec4& l_v4Color,
+				const Texture* a_pTexture, const std::vector<glm::vec2>& l_vectv2TexCoords,
+				const glm::mat4& a_mat4Transformation, Shader* a_pShader);
 
 			virtual void begin() override;
 			virtual void end() override;

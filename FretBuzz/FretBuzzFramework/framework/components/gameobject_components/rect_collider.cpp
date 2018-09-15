@@ -112,7 +112,7 @@ namespace ns_fretBuzz
 		RectCollider* RectCollider::addToGameObject(GameObject2D& a_GameObject, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
-				nullptr : new RectCollider(a_GameObject, a_GameObject.m_RectTransform.getDimensionWH() , a_PhysicsBodyType, a_bIsFixedRotation);
+				nullptr : new RectCollider(a_GameObject, a_GameObject.m_RectTransform.getRect().m_v2DimensionsWH , a_PhysicsBodyType, a_bIsFixedRotation);
 		}
 
 		void RectCollider::update(float a_fDeltaTime)

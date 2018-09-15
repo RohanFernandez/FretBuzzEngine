@@ -4,6 +4,8 @@
 #include "../framework/system/core/window.h"
 #include "../framework/components/gameobject_components/camera.h"
 
+#include "../framework/components//gameobject_components/image.h"
+
 #include "init_state.h"
 
 namespace ns_fretBuzz
@@ -17,8 +19,10 @@ namespace ns_fretBuzz
 		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj1);
 
 		ns_system::GameObject2D* l_pLabelGameObj2 = ns_system::GameObject2D::instantiate(*l_pLabelGameObj1, "LABEL2", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj2, { 1.0f, 1.0f, 0.0f,1.0f }, { 150.0f, 100.0f });
-		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj2);
+		ns_graphics::Image::addToGameObject(*l_pLabelGameObj2, nullptr, { 1.0f, 1.0f, 0.0f,1.0f },true);
+
+		//ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj2, { 1.0f, 1.0f, 0.0f,1.0f }, { 150.0f, 100.0f });
+		//ns_system::RectCollider::addToGameObject(*l_pLabelGameObj2);
 
 		ns_system::GameObject2D* l_pLabelGameObj3 = ns_system::GameObject2D::instantiate(*l_pLabelGameObj2, "LABEL3", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 		ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj3, { 0.8f, 0.3f, 0.5f,1.0f }, { 150.0f, 100.0f });

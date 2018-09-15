@@ -88,12 +88,15 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		/*void SpriteBatchRenderer::submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
+		void SpriteBatchRenderer::submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
 		{
-			
-		}*/
+			submit(a_Sprite.getVertPosition() , a_Sprite.getColor(), a_Sprite.getTexture(), a_Sprite.getTexCoords(),
+				a_mat4Transformation, a_pShader);
+		}
 
-		void SpriteBatchRenderer:: submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
+		void SpriteBatchRenderer:: submit(const std::vector<glm::vec4>& a_vectPosition, const glm::vec4& l_v4Color, 
+			const Texture* a_pTexture, const std::vector<glm::vec2>& a_vectv2TexCoords,
+			const glm::mat4& a_mat4Transformation, Shader* a_pShader)
 		{
 			SpriteBatchRenderer& l_Instance = *s_pInstance;
 			
@@ -114,12 +117,9 @@ namespace ns_fretBuzz
 
 			l_Instance.m_pCurrentShader = a_pShader;
 
-			const std::vector<glm::vec4>& l_vectv4Position = a_Sprite.getVertPosition();
-			const glm::vec4& l_v4Color = a_Sprite.getColor();
-			const unsigned int l_iTexID = (a_Sprite.getTexture() == nullptr) ? 0 : a_Sprite.getTexture()->getID();
-			const std::vector<glm::vec2>& l_vectv2TexCoords = a_Sprite.getTexCoords();
-
 			float l_fTextureSlot = 0.0f;
+
+			const unsigned int l_iTexID = (a_pTexture == nullptr) ? 0 : a_pTexture->getID();
 
 			if (l_iTexID > 0)
 			{
@@ -152,28 +152,28 @@ namespace ns_fretBuzz
 			l_Instance.m_iSpritesInBatch++;
 			VertexData*& l_pCurrentVertexData = l_Instance.m_pCurrentVertexData;
 
-			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[0];
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * a_vectPosition[0];
 			l_pCurrentVertexData->m_v4Color = l_v4Color;
 			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[0];
+			l_pCurrentVertexData->m_v2UV = a_vectv2TexCoords[0];
 			l_pCurrentVertexData++;
 
-			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[1];
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * a_vectPosition[1];
 			l_pCurrentVertexData->m_v4Color = l_v4Color;
 			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[1];
+			l_pCurrentVertexData->m_v2UV = a_vectv2TexCoords[1];
 			l_pCurrentVertexData++;
 
-			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[2];
+			l_pCurrentVertexData->m_v4Position = a_mat4Transformation * a_vectPosition[2];
 			l_pCurrentVertexData->m_v4Color = l_v4Color;
 			l_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[2];
+			l_pCurrentVertexData->m_v2UV = a_vectv2TexCoords[2];
 			l_pCurrentVertexData++;
 
-			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * l_vectv4Position[3];
+			l_Instance.m_pCurrentVertexData->m_v4Position = a_mat4Transformation * a_vectPosition[3];
 			l_Instance.m_pCurrentVertexData->m_v4Color = l_v4Color;
 			l_Instance.m_pCurrentVertexData->m_fTextureID = l_fTextureSlot;
-			l_Instance.m_pCurrentVertexData->m_v2UV = l_vectv2TexCoords[3];
+			l_Instance.m_pCurrentVertexData->m_v2UV = a_vectv2TexCoords[3];
 			l_Instance.m_pCurrentVertexData++;
 
 			l_Instance.m_iIndicesToDraw += 6;

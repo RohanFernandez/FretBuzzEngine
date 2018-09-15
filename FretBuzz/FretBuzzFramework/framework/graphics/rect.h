@@ -1,32 +1,37 @@
 #pragma once
 #include "../utils/math.h"
+#include <vector>
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		struct Rect
-		{
+	struct Rect
+	{
 
 		glm::vec2 m_v2DimensionsWH = {0.0f, 0.0f};
-		glm::vec4 m_arrRect[4] = { glm::vec4{0.0f} };
-
-		static constexpr int SIZE_OF_RECT_COORDINATES = sizeof(glm::vec4) * 4;
-			
+		std::vector<glm::vec4> m_VertPosition;
+		
 		Rect()
-		{
-			
-		}
-
-		Rect(glm::vec2 a_v2DimensionsWH, glm::vec4* a_pArrRect)
-			: m_v2DimensionsWH{a_v2DimensionsWH}
-		{
-			memcpy(m_arrRect, a_pArrRect, SIZE_OF_RECT_COORDINATES);
-		}
-
-		~Rect() 
 		{}
 
-		};
+		Rect(glm::vec2 a_v2DimensionsWH)
+			: m_v2DimensionsWH{a_v2DimensionsWH}
+		{
+			m_VertPosition.resize(4);
+			reset(a_v2DimensionsWH);
+		}
+
+		~Rect()
+		{}
+
+		void reset(glm::vec2 a_v2DimensionWH)
+		{
+			m_VertPosition[0] = { a_v2DimensionWH.x * -0.5, a_v2DimensionWH.y * -0.5, 0.0f, 1.0f };
+			m_VertPosition[1] = { a_v2DimensionWH.x * -0.5, a_v2DimensionWH.y *  0.5, 0.0f, 1.0f };
+			m_VertPosition[2] = { a_v2DimensionWH.x *  0.5, a_v2DimensionWH.y *  0.5, 0.0f, 1.0f };
+			m_VertPosition[3] = { a_v2DimensionWH.x *  0.5, a_v2DimensionWH.y * -0.5, 0.0f, 1.0f };
+		}
+	};
 	}
 }
