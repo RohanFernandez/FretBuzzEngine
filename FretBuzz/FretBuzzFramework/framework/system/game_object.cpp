@@ -11,6 +11,17 @@ namespace ns_fretBuzz
 		//static counter that specifies the id.
 		int GameObject::s_iID = 0;
 
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, bool a_bIsActiveSelf)
+			: m_iID{ ++s_iID },
+			m_strName{ a_strName },
+			m_bIsActiveSelf{ a_bIsActiveSelf },
+			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
+			m_pTransform{ a_pTransform },
+			m_Transform(*a_pTransform)
+		{
+			a_ParentGameObject.addChild(this);
+		}
+
 		GameObject::GameObject(std::string a_strName, bool a_bIsRoot)
 			: m_iID{++s_iID},
 		     m_strName{a_strName},

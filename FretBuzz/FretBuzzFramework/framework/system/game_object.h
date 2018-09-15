@@ -45,6 +45,9 @@ namespace ns_fretBuzz
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
 			GameObject(GameObject& a_GameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSel = true);
 
+			// GameObject 2D constructor
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, bool a_bIsActiveSelf);
+
 			virtual ~GameObject();
 
 			Transform* m_pTransform;
