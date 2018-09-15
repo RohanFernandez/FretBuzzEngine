@@ -18,6 +18,8 @@ namespace ns_fretBuzz
 			Transform* m_pParentTransform = nullptr;
 			glm::mat4 m_mat4ParentTransformation = glm::mat4{1.0f};
 
+			bool getIsDirtyRecusively() const;
+
 		public:
 			Transform();
 			Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pParentTransform);

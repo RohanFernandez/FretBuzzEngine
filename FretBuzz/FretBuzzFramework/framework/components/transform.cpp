@@ -82,6 +82,20 @@ namespace ns_fretBuzz
 			return l_mat4Model;
 		}
 
+		bool Transform::getIsDirtyRecusively() const
+		{
+			if (m_bIsDirty)
+			{
+				return true;
+			}
+
+			if (m_pParentTransform != nullptr && m_pParentTransform->getIsDirtyRecusively())
+			{
+				return true;
+			}
+			return false;
+		}
+
 		glm::mat4 Transform::getTransformationMatrix()
 		{
 			if (m_pParentTransform == nullptr)
@@ -89,7 +103,7 @@ namespace ns_fretBuzz
 				return getModelMatrix();
 			}
 
-			if (m_pParentTransform->m_bIsDirty)
+			if (m_pParentTransform->getIsDirtyRecusively())
 			{
 				m_pParentTransform->m_bIsDirty = false;
 				m_pParentTransform->m_mat4ParentTransformation = m_pParentTransform->getTransformationMatrix();
