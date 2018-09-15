@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 		{
 			friend class IScene;
 			friend class IComponent;
-		private:
+		protected:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
 			bool m_bIsRoot = false;
@@ -55,7 +55,7 @@ namespace ns_fretBuzz
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf = true);
 			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf = true);
 
-			Transform m_Transform;
+			Transform* m_pTransform;
 
 			// Adds the GameObject a_pChildGameObject into this GameObject's m_Children.
 			void addChild(GameObject* a_pChildGameObject);

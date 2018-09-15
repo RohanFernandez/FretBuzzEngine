@@ -60,8 +60,8 @@ namespace ns_fretBuzz
 
 		const glm::mat4 Camera::updateViewMatrix()
 		{
-			glm::vec3 l_v3WorldPosition = m_GameObject.m_Transform.getWorldPosition();
-			m_mat4View = glm::lookAt(l_v3WorldPosition, l_v3WorldPosition + m_GameObject.m_Transform.getForward(), m_GameObject.m_Transform.getUp());
+			glm::vec3 l_v3WorldPosition = m_GameObject.m_pTransform->getWorldPosition();
+			m_mat4View = glm::lookAt(l_v3WorldPosition, l_v3WorldPosition + m_GameObject.m_pTransform->getForward(), m_GameObject.m_pTransform->getUp());
 			return m_mat4View;
 		}
 

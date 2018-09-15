@@ -14,19 +14,18 @@ namespace ns_fretBuzz
 		GameObject::GameObject(std::string a_strName, bool a_bIsRoot)
 			: m_iID{++s_iID},
 		     m_strName{a_strName},
-			 m_Transform(),
 			m_bIsRoot{a_bIsRoot}
 		{
-			
+			m_pTransform = new Transform();
 		}
 
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
-			m_Transform(a_v3Position, a_v3Rotation, a_v3Scale, &a_ParentGameObject.m_Transform),
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy }
 		{
+			m_pTransform = new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform);
 			a_ParentGameObject.addChild(this);
 		}
 
@@ -44,6 +43,12 @@ namespace ns_fretBuzz
 			{
 				delete (*l_IComponentCurrent);
 				l_IComponentCurrent = m_Components.erase(l_IComponentCurrent);
+			}
+
+			if (m_pTransform != nullptr)
+			{
+				delete m_pTransform;
+				m_pTransform = nullptr;
 			}
 		}
 
@@ -99,7 +104,7 @@ namespace ns_fretBuzz
 
 		void GameObject::render(const Camera& a_Camera)
 		{
-			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_Transform.getTransformationMatrix();
+			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 
 			renderComponents(l_mat4RenderTransformation, a_Camera);
 			renderChildren(a_Camera);
@@ -198,7 +203,7 @@ namespace ns_fretBuzz
 			}
 			m_pParentGameObject = a_pNewParentGameObject;
 			m_pParentGameObject->m_Children.emplace_back(this);
-			m_Transform.m_pParentTransform = &m_pParentGameObject->m_Transform;
+			m_pTransform->m_pParentTransform = m_pParentGameObject->m_pTransform;
 
 			setActive(m_bIsActiveSelf);
 

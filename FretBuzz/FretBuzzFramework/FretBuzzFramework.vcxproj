@@ -187,7 +187,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\gameobject_components\sprite_animation_controller.cpp" />
     <ClCompile Include="framework\graphics\batch_renderer_manager.cpp" />
     <ClCompile Include="framework\graphics\line_batch_renderer.cpp" />
-    <ClCompile Include="framework\graphics\rect.cpp" />
     <ClCompile Include="framework\graphics\renderer.cpp" />
     <ClCompile Include="framework\graphics\sprite_batch_renderer.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_renderer.cpp" />

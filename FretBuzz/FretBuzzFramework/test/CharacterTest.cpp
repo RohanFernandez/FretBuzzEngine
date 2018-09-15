@@ -87,17 +87,17 @@ namespace ns_fretBuzz
 			}
 
 			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
-			m_pcamGameObj->m_Transform.setWorldPosition(m_Transform.getWorldPosition());
+			m_pcamGameObj->m_pTransform->setWorldPosition(m_pTransform->getWorldPosition());
 
 			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
 			{
 				m_fScale += a_fDeltaTime * m_fScaleVelocity;
-				m_Transform.setLocalScale({ m_fScale, m_fScale,0.0f });
+				m_pTransform->setLocalScale({ m_fScale, m_fScale,0.0f });
 			}
 			else if (ns_system::Input::IsKeyDown(GLFW_KEY_E))
 			{
 				m_fScale -= a_fDeltaTime * m_fScaleVelocity;
-				m_Transform.setLocalScale({ m_fScale, m_fScale,0.0f });
+				m_pTransform->setLocalScale({ m_fScale, m_fScale,0.0f });
 			}
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
@@ -108,14 +108,14 @@ namespace ns_fretBuzz
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
 
 			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
-			glm::vec3 l_v3PlayerPosition = m_Transform.getLocalPosition();
+			glm::vec3 l_v3PlayerPosition = m_pTransform->getLocalPosition();
 			
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
 			float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })));
 			if (!glm::isnan(l_fAngleToRotate))
 			{
 				if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
-				m_Transform.setLocalRotation({ 0.0f, 0.0f, l_fAngleToRotate });
+				m_pTransform->setLocalRotation({ 0.0f, 0.0f, l_fAngleToRotate });
 			}
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";

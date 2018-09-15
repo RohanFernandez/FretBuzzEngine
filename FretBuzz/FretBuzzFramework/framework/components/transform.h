@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		class Transform
 		{
 		friend class GameObject;
-		private:
+		protected:
 			glm::vec3 m_v3Position;
 			glm::quat m_quatRotation;
 			glm::vec3 m_v3Scale;

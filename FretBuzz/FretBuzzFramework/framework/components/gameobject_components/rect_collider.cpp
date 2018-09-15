@@ -21,9 +21,9 @@ namespace ns_fretBuzz
 			l_bodyDef.type = (m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ?
 				b2_staticBody : (m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC) ?
 				b2_dynamicBody : b2_kinematicBody;
-			glm::vec2 l_Position = m_GameObject.m_Transform.getWorldPosition();
+			glm::vec2 l_Position = m_GameObject.m_pTransform->getWorldPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
-			l_bodyDef.angle = m_GameObject.m_Transform.getLocalRotation().z;
+			l_bodyDef.angle = m_GameObject.m_pTransform->getLocalRotation().z;
 			l_bodyDef.fixedRotation = m_bIsFixedRotation;
 
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
@@ -92,8 +92,8 @@ namespace ns_fretBuzz
 
 		void RectCollider::onEnable()
 		{
-			glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
-			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, m_GameObject.m_Transform.getLocalRotation().z);
+			glm::vec2 l_v2WorldPosition = m_GameObject.m_pTransform->getWorldPosition();
+			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, m_GameObject.m_pTransform->getLocalRotation().z);
 			m_pBody->SetActive(true);
 		}
 
@@ -112,7 +112,7 @@ namespace ns_fretBuzz
 		{
 			//Set transform position from collider position.
 			const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
-			m_GameObject.m_Transform.setWorldPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, m_GameObject.m_Transform.getWorldPosition().z });
+			m_GameObject.m_pTransform->setWorldPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, m_GameObject.m_pTransform->getWorldPosition().z });
 
 			if (Input::IsKeyPutDown(GLFW_KEY_V))
 			{
@@ -122,8 +122,8 @@ namespace ns_fretBuzz
 			//Set transform rotation from collider rotation if the collider's rotation is not fixed.
 			if (!m_bIsFixedRotation)
 			{
-				glm::quat l_quatTransformRotation = m_GameObject.m_Transform.getLocalRotation();
-				m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
+				glm::quat l_quatTransformRotation = m_GameObject.m_pTransform->getLocalRotation();
+				m_GameObject.m_pTransform->setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
 			}
 		}
 
