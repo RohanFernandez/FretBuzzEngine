@@ -13,6 +13,7 @@ namespace ns_fretBuzz
 			TEXT_RENDERER,
 			CHARACTER_CONTROLLER_2D,
 			CAMERA,
+			MESH_RENDERER,
 
 			//2D GameObject specific
 			IMAGE,

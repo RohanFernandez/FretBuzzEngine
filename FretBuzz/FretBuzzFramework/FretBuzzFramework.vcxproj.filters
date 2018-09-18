@@ -132,6 +132,15 @@
     <ClCompile Include="framework\components\gameobject_components\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\mesh_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -273,6 +282,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\gameobject_components\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\mesh_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

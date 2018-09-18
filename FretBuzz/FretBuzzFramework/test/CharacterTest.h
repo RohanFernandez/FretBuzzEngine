@@ -10,6 +10,10 @@
 #include "../framework/components/viewport.h"
 #include "../framework/system/core/input.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 namespace ns_fretBuzz
 {
 	class CharacterTest : public ns_system::GameObject2D
@@ -30,6 +34,8 @@ namespace ns_fretBuzz
 
 		float m_fScale = 1.0f;
 		float m_fScaleVelocity = 2.0f;
+
+		Assimp::Importer importer;
 
 	public:
 
