@@ -48,7 +48,7 @@ namespace ns_fretBuzz
 
 		void Transform::setLocalPosition(glm::vec3 a_v3Position)
 		{
-			glm::vec3 l_v3OldPosition = m_v3Scale;
+			glm::vec3 l_v3OldPosition = m_v3Position;
 			m_v3Position = a_v3Position;
 			
 			m_bIsDirty = (l_v3OldPosition != m_v3Position) || m_bIsDirty;
@@ -115,7 +115,8 @@ namespace ns_fretBuzz
 		glm::mat4 Transform::getRotationTransformation()
 		{
 			return (m_pParentTransform == nullptr) ? 
-				glm::mat4{ m_quatRotation } : m_pParentTransform->getRotationTransformation() * glm::mat4(m_quatRotation);
+				glm::mat4{ m_quatRotation } :
+				m_pParentTransform->getRotationTransformation() * glm::mat4(m_quatRotation);
 		}
 	}
 }

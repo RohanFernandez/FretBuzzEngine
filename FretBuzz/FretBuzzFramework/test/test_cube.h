@@ -1,12 +1,15 @@
 #pragma once
 #include "../framework/system/game_object.h"
 #include "../framework/graphics/shader.h"
+#include "../framework/utils/math.h"
 
 namespace ns_fretBuzz
 {
 	class test_cube: public ns_system::GameObject
 	{
 	public:
+
+		float rot = 0.0f;
 
 		unsigned int m_VAO = 0;
 		unsigned int m_VBO = 0;
@@ -67,43 +70,54 @@ namespace ns_fretBuzz
 
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
-			//glGenBuffers(1, &m_IBO);
 
 			glBindVertexArray(m_VAO);
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
 			glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_STATIC_DRAW);
 
-			//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int), m_Indices, GL_STATIC_DRAW);
-
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
-			//glEnableVertexAttribArray(2);
 
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (const void*)0);
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (const void*)(3 * sizeof(float)));
-			//glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3TexCoords));
 
 			glBindVertexArray(0);
 		}
 
 		virtual void update(float a_fDeltaTime) override
 		{
+			rot = rot + M_PI * a_fDeltaTime * 0.5f;
+			m_Transform.setLocalRotation({ rot, rot , rot });
+
 			GameObject::update(a_fDeltaTime);
 		}
 
 		virtual void render(const ns_system::Camera& a_Camera) override
 		{
-			m_pTexture->bind();
-			glActiveTexture(GL_TEXTURE0);
+			m_pShader->bind();
 			m_pShader->setUniform1i("texSampler", 0);
 
-			m_pShader->bind();
+			m_pTexture->bind();
+			glActiveTexture(GL_TEXTURE0);
+
 
 			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 
+			glm::mat4 l_mat4{ 1.0f };
+			l_mat4 = glm::translate(l_mat4, {2.0f, 0.0f, 0.0f});
+			l_mat4 = glm::rotate(l_mat4, rot, { 1.0f, 0.0f, 0.0f });
+			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 1.0f, 0.0f });
+			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 0.0f, 1.0f });
+
+			const glm::mat4 l_mat4RenderTransformation1 = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * l_mat4;
+
 			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
 
+			glBindVertexArray(m_VAO);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+
+			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation1);
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 

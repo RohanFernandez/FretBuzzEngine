@@ -110,12 +110,16 @@ namespace ns_fretBuzz
 			glm::vec3 l_v3PlayerPosition = m_pTransform->getLocalPosition();
 			
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
-			float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })));
+
+			/*float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })));
 			if (!glm::isnan(l_fAngleToRotate))
 			{
 				if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
 				m_pTransform->setLocalRotation({ 0.0f, 0.0f, l_fAngleToRotate });
-			}
+			}*/
+
+			float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
+			m_pTransform->setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);

@@ -53,17 +53,17 @@ namespace ns_fretBuzz
 
 			inline glm::vec3 getForward()
 			{
-				return getRotationTransformation() * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f };
+				return glm::normalize(getRotationTransformation() * glm::vec4{ 0.0f, 0.0f, 1.0f, 0.0f });
 			}
 
 			inline glm::vec3 getUp()
 			{
-				return getRotationTransformation() * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f };
+				return glm::normalize(getRotationTransformation() * glm::vec4{ 0.0f, 1.0f, 0.0f, 0.0f });
 			}
 
 			inline glm::vec3 getRight()
 			{
-				return getRotationTransformation() * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f };
+				return glm::normalize(getRotationTransformation() * glm::vec4{ 1.0f, 0.0f, 0.0f, 0.0f });
 			}
 		};
 	}
