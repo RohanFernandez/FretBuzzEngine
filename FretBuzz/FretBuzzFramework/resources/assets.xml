@@ -11,13 +11,16 @@
 <!-- SHADERS START-->
 	<Shaders>
 		<shader id="default" vert="vertShader.txt" frag="fragShader.txt"/>
-  <shader id="defaultLineShader" vert="defaultLineVertShader.txt" frag="defaultLineFragShader.txt"/>
+    <shader id="defaultLineShader" vert="defaultLineVertShader.txt" frag="defaultLineFragShader.txt"/>
+    <shader id="cube" vert="cube.vs" frag="cube.fs"/>
+    
 	</Shaders>
 <!-- SHADERS END-->
 
 <!-- TEXTURES START-->
   <Textures>
 		<texture id="darksider" file_name="darksiders.jpg"/>
+    <texture id="container" file_name="container.jpg"/>
 	</Textures>
 <!-- TEXTURES END-->
 

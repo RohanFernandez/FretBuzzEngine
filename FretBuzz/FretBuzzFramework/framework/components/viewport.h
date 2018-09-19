@@ -49,6 +49,8 @@ namespace ns_fretBuzz
 			{
 				return m_v2NearFar;
 			}
+
+			virtual void resetProjectionMatrix() = 0;
 		};
 
 		class OrthographicViewport : public Viewport
@@ -88,7 +90,7 @@ namespace ns_fretBuzz
 				m_mat4Projection = glm::ortho(a_fLeft * l_fWindowWidth, a_fRight * l_fWindowWidth, a_fBottom * l_fWindowHeight, a_fTop * l_fWindowHeight, a_fNear, a_fFar);
 			}
 
-			void resetProjectionMatrix()
+			virtual void resetProjectionMatrix() override
 			{
 				float l_fWindowWidth = Window::getWidth();
 				float l_fWindowHeight = Window::getHeight();
@@ -138,6 +140,12 @@ namespace ns_fretBuzz
 				m_fAspectRatio = a_fAspectRatio;
 				m_fFOV = a_fDegreesFOV;
 				m_v2NearFar = { a_fNear, a_fFar };
+			}
+
+			virtual  void resetProjectionMatrix() override
+			{
+				m_fAspectRatio = Window::getAspectRatio();
+				m_mat4Projection = glm::perspective(glm::radians(m_fFOV), m_fAspectRatio, m_v2NearFar.x, m_v2NearFar.y);
 			}
 
 			float getFOV() const

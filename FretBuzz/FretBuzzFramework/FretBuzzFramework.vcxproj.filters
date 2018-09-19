@@ -141,6 +141,9 @@
     <ClCompile Include="framework\components\gameobject_components\mesh_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -293,6 +296,18 @@
     <ClInclude Include="framework\components\gameobject_components\mesh_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\graphics\model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\threed_test_setup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\three_d_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\test_cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />
@@ -307,11 +322,18 @@
     <Image Include="resources\sprites\sword.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="resources\assets.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\cube.fs" />
+    <None Include="resources\shaders\cube.vs" />
   </ItemGroup>
 </Project>

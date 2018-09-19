@@ -69,5 +69,10 @@ namespace ns_fretBuzz
 		{
 			return m_pViewPort->getProjectionMatrix();
 		}
+
+		void Camera::reset()
+		{
+			m_pViewPort->resetProjectionMatrix();
+		}
 	}
 }

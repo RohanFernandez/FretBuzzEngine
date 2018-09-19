@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 			glfwSetWindowCloseCallback(m_pGLFWwindow, OnWindowClose);
 			glfwSetWindowSizeCallback(m_pGLFWwindow, OnWindowResize);
 
-			glClearColor(1.0, 0.0, 0.0, 1.0);
+			glClearColor(0.0, 0.0, 0.0, 1.0);
 
 			if (glewInit() != GLEW_OK)
 			{
@@ -126,6 +126,8 @@ namespace ns_fretBuzz
 			l_pWindow->m_uiWidth = a_iWidth;
 			l_pWindow->m_uiHeight = a_iHeight;
 			glViewport(0, 0, a_iWidth, a_iHeight);
+
+			l_pWindow->m_fAspectRatio = (float)a_iWidth / (float)a_iHeight;
 
 			for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = l_pWindow->m_vectWindowResizeCallbacks.begin(),
 				l_IteratorEnd = l_pWindow->m_vectWindowResizeCallbacks.end();

@@ -3,6 +3,7 @@
 #include "../../scenes/init_state.h"
 #include "../../scenes/mainmenu_state.h"
 #include "../../scenes/score_state.h"
+#include "../../scenes/threed_test_setup.h"
 
 namespace ns_fretBuzz
 {
@@ -15,9 +16,11 @@ namespace ns_fretBuzz
 		{
 			m_vectScenes =
 			{
-				new SceneData<InitState>("initstate"),
+				/*new SceneData<InitState>("initstate"),
 				new SceneData<MainMenuState>("mainmenustate"),
-				new SceneData<ScoreState>("scorestate")
+				new SceneData<ScoreState>("scorestate")*/
+
+				new SceneData<threed_test_scene>("3d_Test")
 			};
 			m_pSceneManager = new SceneManager(m_vectScenes);
 		}
@@ -62,7 +65,7 @@ namespace ns_fretBuzz
 		void Game::updateScenes(float a_fDeltaTime)
 		{
 			///testing start
-			if (Input::IsKeyDown(GLFW_KEY_I))
+			/*if (Input::IsKeyDown(GLFW_KEY_I))
 			{
 				SceneManager::s_loadScene("initstate");
 			}
@@ -101,7 +104,7 @@ namespace ns_fretBuzz
 			else if (Input::IsKeyDown(GLFW_KEY_U))
 			{
 				SceneManager::s_unloadScene("mainmenustate");
-			}
+			}*/
 
 			if (Input::IsKeyDown(GLFW_KEY_L))
 			{

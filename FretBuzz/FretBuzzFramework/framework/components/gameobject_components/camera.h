@@ -24,6 +24,7 @@ namespace ns_fretBuzz
 
 			Viewport& getViewport();
 			Viewport::PROJECTION_TYPE getProjectionType() const;
+			void reset();
 
 			const glm::mat4 updateViewMatrix();
 			const glm::mat4 getViewMatrix() const;

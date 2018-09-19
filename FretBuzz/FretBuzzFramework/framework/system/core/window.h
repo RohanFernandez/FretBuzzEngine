@@ -21,6 +21,8 @@ namespace ns_fretBuzz
 			unsigned int m_uiHeight = 0;
 			std::string m_strName;
 
+			float m_fAspectRatio = 0.0f;
+
 			bool m_bIsInitialized = false;
 
 			bool initialize();
@@ -87,6 +89,11 @@ namespace ns_fretBuzz
 			inline GLFWwindow* getGLFWWindow()
 			{
 				return m_pGLFWwindow;
+			}
+
+			static float getAspectRatio()
+			{
+				return s_pInstance->m_fAspectRatio;
 			}
 
 			static void registerWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
