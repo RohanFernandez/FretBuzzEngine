@@ -29,6 +29,8 @@ namespace ns_fretBuzz
 			const glm::mat4 updateViewMatrix();
 			const glm::mat4 getViewMatrix() const;
 			const glm::mat4 getProjectionMatrix() const;
+
+			void zoom(float a_fFOV);
 		};
 	}
 }

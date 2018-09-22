@@ -74,5 +74,27 @@ namespace ns_fretBuzz
 		{
 			m_pViewPort->resetProjectionMatrix();
 		}
+
+		void Camera::zoom(float a_fFactor)
+		{
+			if (m_PROJECTION_TYPE == Viewport::PROJECTION_TYPE::ORTHOGRAPHIC)
+			{
+				OrthographicViewport* l_pOrthoViewport = dynamic_cast<OrthographicViewport*>(m_pViewPort);
+				glm::vec2 l_v2LeftRight = l_pOrthoViewport->getLeftRight();
+				glm::vec2 l_v2BottomTop = l_pOrthoViewport->getBottomTop();
+				glm::vec2 l_v2NearFar = l_pOrthoViewport->getNearFar();
+
+				l_pOrthoViewport->setProjectionMatrix(l_v2LeftRight.x + a_fFactor, l_v2LeftRight.y - a_fFactor, l_v2BottomTop.x + a_fFactor, l_v2BottomTop.y - a_fFactor, l_v2NearFar.x, l_v2NearFar.y);
+			}
+			else
+			{
+				PerspectiveViewport* l_pPerspectiveViewport = dynamic_cast<PerspectiveViewport*>(m_pViewPort);
+				float a_fAspectRatio = l_pPerspectiveViewport->getAspectRatio();
+				glm::vec2 l_v2NearFar = l_pPerspectiveViewport->getNearFar();
+				float l_fFOV = l_pPerspectiveViewport->getFOV();
+
+				l_pPerspectiveViewport->setProjectionMatrix(l_fFOV - a_fFactor, a_fAspectRatio, l_v2NearFar.x, l_v2NearFar.y);
+			}
+		}
 	}
 }

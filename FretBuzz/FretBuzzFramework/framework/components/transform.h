@@ -26,6 +26,7 @@ namespace ns_fretBuzz
 			virtual ~Transform();
 
 			void setLocalRotation(glm::vec3 a_v3Angle);
+			void setLocalRotation(glm::quat a_quatAngle);
 			void setLocalScale(glm::vec3 a_v3Scale);
 			void setLocalPosition(glm::vec3 a_v3Position);
 

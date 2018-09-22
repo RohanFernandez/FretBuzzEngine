@@ -38,6 +38,8 @@ namespace ns_fretBuzz
 			double m_dMousePositionX = 0.0f;
 			double m_dMousePositionY = 0.0f;
 
+			int m_iScrollValue = 0;
+
 			//Sets the GLFW callbacks for key, mouse and pinter inputs.
 			void SetInputCallbacks(GLFWwindow*& a_pGLFWwindow);
 
@@ -49,6 +51,9 @@ namespace ns_fretBuzz
 
 			//GLFW gets the current mouse position
 			static void OnGetCursorPosition(GLFWwindow* a_pGLFWwindow, double a_dPositionX, double a_dPositionY);
+
+			//GLFW event called on mouse scroll.
+			static void OnMouseScroll(GLFWwindow* a_pWindow, double a_dXoffset, double a_dYoffset);
 
 			std::stack<KEY_EVENT> m_StackKeyInput;
 			std::stack<KEY_EVENT> m_StackMouseInput;
@@ -65,6 +70,10 @@ namespace ns_fretBuzz
 
 			//Returns mouse position
 			static void GetMousePosition(double& a_dMouseX, double& a_dMouseY);
+
+			//Returns the current frame mouse scroll value.
+			// If value is -1 mouse is scrolled backwards else if +1 its scrolled forward.
+			static int GetMouseScroll();
 
 			//Checks if keyboard key with given keycode is down
 			static bool IsKeyDown(const int a_iKeyCode);

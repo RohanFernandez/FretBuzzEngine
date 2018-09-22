@@ -58,6 +58,7 @@ namespace ns_fretBuzz
 			glfwSetCursorPosCallback(a_pGLFWwindow, OnGetCursorPosition);
 			glfwSetKeyCallback(a_pGLFWwindow, OnKeyboardBtnPressed);
 			glfwSetMouseButtonCallback(a_pGLFWwindow, OnMouseBtnPressed);
+			glfwSetScrollCallback(a_pGLFWwindow, OnMouseScroll);
 		}
 
 		void Input::OnKeyboardBtnPressed(GLFWwindow* a_pGLFWwindow, int a_iKey, int a_iScancode, int a_iAction, int a_iMods)
@@ -88,6 +89,11 @@ namespace ns_fretBuzz
 
 				s_pInput->m_StackMouseInput.push(l_KeyEvent);
 			}
+		}
+
+		void Input::OnMouseScroll(GLFWwindow* a_pWindow, double a_dXoffset, double a_dYoffset)
+		{
+			s_pInput->m_iScrollValue = a_dYoffset;
 		}
 
 		void Input::OnGetCursorPosition(GLFWwindow* a_pGLFWwindow, double a_dPositionX, double a_dPositionY)
@@ -145,6 +151,11 @@ namespace ns_fretBuzz
 			glfwSetInputMode(s_pInput->m_pGLFWWindowRef, GLFW_CURSOR, a_bIsEnabled ? (a_bIsCursorVisible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN): GLFW_CURSOR_DISABLED);
 		}
 
+		int Input::GetMouseScroll()
+		{
+			return s_pInput->m_iScrollValue;
+		}
+
 		void Input::Update()
 		{
 			KEY_EVENT l_StackKeyEvent;
@@ -161,6 +172,8 @@ namespace ns_fretBuzz
 				m_arrCurrentMouseCode[l_StackKeyEvent.m_iKeyIndex] = (m_arrCurrentMouseCode[l_StackKeyEvent.m_iKeyIndex] == KEY_PRESS) ? KEY_REPEAT : KEY_UNTOUCHED;
 				m_StackMouseInput.pop();
 			}
+
+			m_iScrollValue = 0;
 		}
 	}
 }

@@ -27,8 +27,13 @@ namespace ns_fretBuzz
 
 		void Transform::setLocalRotation(glm::vec3 a_v3AngleInRadians)
 		{
+			setLocalRotation(glm::quat(a_v3AngleInRadians));
+		}
+
+		void Transform::setLocalRotation(glm::quat a_quatAngle)
+		{
 			glm::quat l_quatOld = m_quatRotation;
-			m_quatRotation = glm::quat(a_v3AngleInRadians);
+			m_quatRotation = a_quatAngle;
 
 			m_bIsDirty = 
 				(l_quatOld.x != m_quatRotation.x ||
