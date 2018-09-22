@@ -2,7 +2,7 @@
 #include "../framework/system/scene_manager.h"
 
 #include "../framework/components/gameobject_components/camera.h"
-#include "../test/three_d_manager.h"
+#include "../test/PlayerController.h"
 #include "../test/test_cube.h"
 
 namespace ns_fretBuzz
@@ -18,7 +18,13 @@ namespace ns_fretBuzz
 		threed_test_scene(std::string a_strSceneName) 
 			: IScene(a_strSceneName) 
 		{
-			m_pThreeDManager = new three_d_manager(m_refRootGameObject, "3D_Manager");
+			ns_system::GameObject* m_pManager = ns_system::GameObject::instantiate(m_refRootGameObject, "3D_Manager", { 0.0f, 0.0f, 5.0f },
+				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f });
+
+			ns_system::PerspectiveViewport l_PerspectiveViewport(60.0f, 0.01, 1000.0f);
+			ns_system::Camera::addToGameObject(*m_pManager, ns_system::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport);
+			ns_system::Behaviour::addToGameObject<PlayerController>(*m_pManager);
+
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");
 		}
 

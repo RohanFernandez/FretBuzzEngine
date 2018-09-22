@@ -17,7 +17,10 @@ namespace ns_fretBuzz
 
 			//2D GameObject specific
 			IMAGE,
-			RECT_COLLIDER
+			RECT_COLLIDER,
+
+			//Custom user created
+			BEHAVIOUR
 		};
 
 		class GameObject;

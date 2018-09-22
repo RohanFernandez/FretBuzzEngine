@@ -302,10 +302,13 @@
     <ClInclude Include="scenes\threed_test_setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test\three_d_manager.h">
+    <ClInclude Include="test\test_cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test\test_cube.h">
+    <ClInclude Include="framework\components\gameobject_components\behaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
