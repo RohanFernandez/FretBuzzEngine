@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 		IScene(a_strSceneName)
 	{
 
-		ns_system ::GameObject2D* l_pLabelGameObj1 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "LABEL1", { 200.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f}, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
+		ns_system ::GameObject2D* l_pLabelGameObj1 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "LABEL1", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f}, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 		ns_graphics::Image::addToGameObject(*l_pLabelGameObj1, nullptr, { 1.0f, 0.0f, 0.0f,1.0f }, true);
 		//ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj1, { 0.0f, 1.0f, 0.0f,1.0f }, { 150.0f, 100.0f });
 		ns_system::RectCollider::addToGameObject(*l_pLabelGameObj1);

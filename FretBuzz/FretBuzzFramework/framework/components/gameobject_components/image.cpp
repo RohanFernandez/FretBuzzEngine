@@ -42,7 +42,8 @@ namespace ns_fretBuzz
 
 		void Image::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
 		{
-			if (((m_pSprite == nullptr) && (m_Color.w == 0.0f)))
+			if (((m_pSprite == nullptr) &&
+				(m_Color.w == 0.0f)))
 			{
 				return;
 			}

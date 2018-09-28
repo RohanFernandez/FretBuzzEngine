@@ -55,6 +55,11 @@ namespace ns_fretBuzz
 				m_pSpriteAnimator->play("slash");
 			}
 
+			if (ns_system::Input::IsMouseBtnPutUp(GLFW_MOUSE_BUTTON_2))
+			{
+				m_pSpriteAnimator->play("shoot");
+			}
+
 			float l_fCurrentSpeed = m_fVelocity;
 
 			float l_fHorizontalVelocity = 0.0f;
