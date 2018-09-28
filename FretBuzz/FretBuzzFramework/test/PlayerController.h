@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 	private:
 		double m_MouseX, m_MouseY;
 		bool m_bIsFirstRun = true;
-		float m_fMouseSensitivity = 0.5f;
+		float m_fMouseSensitivity = 0.3f;
 
 		glm::vec2 m_v2LastMouseXY;
 		glm::vec2 m_v2PitchYaw;

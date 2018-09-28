@@ -87,8 +87,8 @@ namespace ns_fretBuzz
 
 		virtual void update(float a_fDeltaTime) override
 		{
-			/*rot = rot + M_PI * a_fDeltaTime * 0.5f;
-			m_Transform.setLocalRotation({ rot, rot , rot });*/
+			rot = rot + M_PI * a_fDeltaTime * 0.5f;
+			m_Transform.setLocalRotation({ rot, rot , rot });
 
 			GameObject::update(a_fDeltaTime);
 		}
@@ -106,9 +106,9 @@ namespace ns_fretBuzz
 
 			glm::mat4 l_mat4{ 1.0f };
 			l_mat4 = glm::translate(l_mat4, {2.0f, 0.0f, 0.0f});
-			/*l_mat4 = glm::rotate(l_mat4, rot, { 1.0f, 0.0f, 0.0f });
+			l_mat4 = glm::rotate(l_mat4, rot, { 1.0f, 0.0f, 0.0f });
 			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 1.0f, 0.0f });
-			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 0.0f, 1.0f });*/
+			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 0.0f, 1.0f });
 
 			const glm::mat4 l_mat4RenderTransformation1 = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * l_mat4;
 
