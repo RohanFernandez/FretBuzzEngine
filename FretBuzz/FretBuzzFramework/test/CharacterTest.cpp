@@ -50,14 +50,30 @@ namespace ns_fretBuzz
 				m_pSpriteAnimator->play("idle");
 			}
 
-			if (ns_system::Input::IsMouseBtnPutUp(GLFW_MOUSE_BUTTON_1))
+			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 			{
-				m_pSpriteAnimator->play("slash");
+				if (m_iCurrentWeaponID == 0)
+				{
+					m_pSpriteAnimator->play("slash");
+				}
+				else
+				{
+					m_pSpriteAnimator->play("mp5ShootTrigger");
+				}
 			}
 
-			if (ns_system::Input::IsMouseBtnPutUp(GLFW_MOUSE_BUTTON_2))
+			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
 			{
-				m_pSpriteAnimator->play("shoot");
+				m_iCurrentWeaponID = m_iCurrentWeaponID == 0 ? 1 : 0;
+
+				if (m_iCurrentWeaponID == 0)
+				{
+					m_pSpriteAnimator->play("idle");
+				}
+				else
+				{
+					m_pSpriteAnimator->play("mp5WalkTrigger");
+				}
 			}
 
 			float l_fCurrentSpeed = m_fVelocity;

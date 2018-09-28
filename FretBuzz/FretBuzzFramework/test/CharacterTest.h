@@ -31,6 +31,8 @@ namespace ns_fretBuzz
 		float m_fScale = 1.0f;
 		float m_fScaleVelocity = 2.0f;
 
+		int m_iCurrentWeaponID = 0;
+
 	public:
 
 		ns_system::GameObject* m_pTestGameObject1 = nullptr;

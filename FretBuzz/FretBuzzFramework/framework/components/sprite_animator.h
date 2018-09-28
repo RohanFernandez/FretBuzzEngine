@@ -17,15 +17,17 @@ namespace ns_fretBuzz
 			bool m_bIsLoop = false;
 			float m_fTimePerSprite = 0.0f;
 			std::map<std::string, std::string> m_mapTrigger;
+			std::string m_strOnCompleteTrigger;
 
 		public:
 			AnimationState(std::string a_strStateId, std::string a_strSpriteSheetId, bool a_bIsLoop,
-				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger)
+				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger, std::string a_strOnCompleteTrigger = "")
 				: m_strStateId(a_strStateId),
 				m_pSpriteSheet(ResourceManager::getResource<ns_graphics::SpriteGroup>(a_strSpriteSheetId)),
 				m_bIsLoop(a_bIsLoop),
 				m_fTimePerSprite(a_fTimePerSprite),
-				m_mapTrigger(a_mapTrigger)
+				m_mapTrigger(a_mapTrigger),
+				m_strOnCompleteTrigger{ a_strOnCompleteTrigger }
 			{
 				
 			}
@@ -35,7 +37,8 @@ namespace ns_fretBuzz
 				m_pSpriteSheet(a_AnimationState.m_pSpriteSheet),
 				m_bIsLoop(a_AnimationState.m_bIsLoop),
 				m_fTimePerSprite(a_AnimationState.m_fTimePerSprite),
-				m_mapTrigger(a_AnimationState.m_mapTrigger)
+				m_mapTrigger(a_AnimationState.m_mapTrigger),
+				m_strOnCompleteTrigger(a_AnimationState.m_strOnCompleteTrigger)
 			{
 				
 			}
@@ -45,7 +48,8 @@ namespace ns_fretBuzz
 				m_pSpriteSheet(a_AnimationState.m_pSpriteSheet),
 				m_bIsLoop(a_AnimationState.m_bIsLoop),
 				m_fTimePerSprite(a_AnimationState.m_fTimePerSprite),
-				m_mapTrigger(a_AnimationState.m_mapTrigger)
+				m_mapTrigger(a_AnimationState.m_mapTrigger),
+				m_strOnCompleteTrigger(a_AnimationState.m_strOnCompleteTrigger)
 			{
 
 			}
@@ -57,6 +61,7 @@ namespace ns_fretBuzz
 				m_bIsLoop = a_AnimationState.m_bIsLoop;
 				m_fTimePerSprite = a_AnimationState.m_fTimePerSprite;
 				m_mapTrigger = a_AnimationState.m_mapTrigger;
+				m_strOnCompleteTrigger = a_AnimationState.m_strOnCompleteTrigger;
 			}
 
 			~AnimationState()
@@ -85,6 +90,11 @@ namespace ns_fretBuzz
 			inline std::map<std::string, std::string> getMapTriggers() const
 			{
 				return m_mapTrigger;
+			}
+
+			inline std::string getOnCompleteTrigger() const
+			{
+				return m_strOnCompleteTrigger;
 			}
 		};
 

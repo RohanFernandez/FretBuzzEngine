@@ -64,6 +64,9 @@ namespace ns_fretBuzz
 			m_fTimePerSprite = m_pAnimState->getTimePerSprite();
 			m_bIsCurrentAnimationLooped = m_pAnimState->isLooped();
 			m_iSpriteCount = m_pAnimState->getSpriteSheet()->getSpriteCount();
+
+			std::string l_strOnCompleteTrigger = m_pAnimState->getOnCompleteTrigger();
+			m_strCurrentonCompleteTrigger = ((l_strOnCompleteTrigger.compare("") == 0) ? m_strDefaultStateID : l_strOnCompleteTrigger);
 		}
 
 		void SpriteAnimationController::update(float a_fDeltaTime)
@@ -78,7 +81,7 @@ namespace ns_fretBuzz
 				++m_iCurrentSpriteIndex;
 				if (!m_bIsCurrentAnimationLooped && m_iCurrentSpriteIndex >= m_iSpriteCount)
 				{
- 					playStateID(m_strDefaultStateID);
+ 					play(m_strCurrentonCompleteTrigger);
 					return;
 				}
 

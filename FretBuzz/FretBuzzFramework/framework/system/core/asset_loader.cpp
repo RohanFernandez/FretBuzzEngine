@@ -340,6 +340,7 @@ namespace ns_fretBuzz
 					std::string l_strSpriteSheetId;
 					float l_fTimePerSprite = 0.0f;
 					bool is_loop = false;
+					std::string l_strOnCompleteTrigger;
 					std::map<std::string, std::string> l_mapTrigger;
 
 					for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentAnimState->attributes_begin();
@@ -363,7 +364,7 @@ namespace ns_fretBuzz
 						{
 							is_loop = l_CurrentAttribute->as_bool();
 						}
-						else if (l_strCurrentAttribute.compare(ATTRIBUTE_TIME_ANIM_TRIGGER) == 0)
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_ANIM_TRIGGER) == 0)
 						{
 							std::stringstream l_strStream(l_CurrentAttribute->value());
 							std::string l_strCurrentTrigger;
@@ -390,12 +391,16 @@ namespace ns_fretBuzz
 								l_mapTrigger.insert(std::pair<std::string, std::string>(l_strTrigger, l_strAnimStateId));
 							}
 						}
+						else if (l_strCurrentAttribute.compare(ATTRIBUTE_ON_COMPLETE_TRIGGER) == 0)
+						{
+							l_strOnCompleteTrigger = l_CurrentAttribute->value();
+						}
 						else
 						{
 							std::cout << "AssetLoader::loadAnimations:: Failed to parse anim state attribute with name '" << l_strCurrentAttribute << "'/n";
 						}
 					}
-					l_CurrentVectAnimStates.emplace_back(AnimationState(l_strAnimId, l_strSpriteSheetId, is_loop, l_fTimePerSprite, l_mapTrigger));
+					l_CurrentVectAnimStates.emplace_back(AnimationState(l_strAnimId, l_strSpriteSheetId, is_loop, l_fTimePerSprite, l_mapTrigger, l_strOnCompleteTrigger));
 				}
 				SpriteAnimator l_CurrentSpriteAnimController(l_strAnimatorID, l_CurrentVectAnimStates);
 				a_pResourceManager->addResource<SpriteAnimator>(l_strAnimatorID, l_CurrentSpriteAnimController);

@@ -26,6 +26,8 @@ namespace ns_fretBuzz
 			float m_fTimePerSprite = 0.0f;
 			int m_iCurrentSpriteIndex = 0;
 
+			std::string m_strCurrentonCompleteTrigger;
+
 			std::string m_strDefaultStateID;
 
 			void playStateID(std::string a_strAnimationID);

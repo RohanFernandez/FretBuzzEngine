@@ -58,7 +58,8 @@ namespace ns_fretBuzz
 			static constexpr char ATTRIBUTE_SPRITESHEET_ID[] = "spritesheet_id";
 			static constexpr char ATTRIBUTE_IS_LOOP[] = "is_loop";
 			static constexpr char ATTRIBUTE_TIME_PER_SPRITE[] = "time_per_sprite";
-			static constexpr char ATTRIBUTE_TIME_ANIM_TRIGGER[] = "trigger";
+			static constexpr char ATTRIBUTE_ANIM_TRIGGER[] = "trigger";
+			static constexpr char ATTRIBUTE_ON_COMPLETE_TRIGGER[] = "onCompleteTrigger";
 
 			static void loadAssets(ResourceManager* a_pResourceManager);
 
