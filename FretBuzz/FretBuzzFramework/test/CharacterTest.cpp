@@ -3,6 +3,7 @@
 #include "CharacterTest.h"
 #include "../framework/system/core/resource_manager.h"
 #include "../framework/components/gameobject_components/sprite_renderer.h"
+#include "../framework/components/gameobject_components/image.h"
 
 #include "../framework/system/core/system.h"
 //#include FT_FREETYPE_H
@@ -10,7 +11,7 @@
 namespace ns_fretBuzz
 {
 
-	CharacterTest::CharacterTest(ns_system::GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject)
+	CharacterTest::CharacterTest(ns_system::GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject)
 		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f }, true)
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
@@ -21,6 +22,8 @@ namespace ns_fretBuzz
 			m_pAudSrc->setLooping(true);
 
 			m_pcamGameObj = a_CamGameObject;
+
+			m_pRefOriginGameObject = &a_refOriginGameObject;
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)
@@ -59,6 +62,23 @@ namespace ns_fretBuzz
 				else
 				{
 					m_pSpriteAnimator->play("mp5ShootTrigger");
+
+					double l_dMouseX, l_dMouseY;
+					ns_system::Input::GetMousePosition(l_dMouseX, l_dMouseY);
+					glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY);
+
+					glm::vec2 l_WorldPosition = m_Transform.getWorldPosition();
+					glm::vec2 l_v2GLMDirection = glm::normalize(l_MousePosition);
+
+					b2Vec2 l_v2Direction = b2Vec2{ l_v2GLMDirection.x, l_v2GLMDirection.y };
+					l_v2Direction *= 130.0f;
+
+					GameObject2D* l_pBulletGameObject = ns_system::GameObject2D::instantiate(*m_pRefOriginGameObject, "bullet", glm::vec3(l_WorldPosition.x, l_WorldPosition.y, 0.0f) + glm::vec3(l_v2Direction.x, l_v2Direction.y, 0.0f), {0.0f, 0.0f ,0.0f}, { 1.0f, 1.0f, 1.0f }, glm::vec2(6.0f, 2.0f));
+					ns_graphics::Image::addToGameObject(*l_pBulletGameObject, ns_system::ResourceManager::getResource<ns_graphics::SpriteGroup>("bullet")->getSprite(0), {1.0f, 1.0f, 0.0f, 1.0f});
+					ns_system::RectCollider* l_pRectCollider = ns_system::RectCollider::addToGameObject(*l_pBulletGameObject, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, false,true);
+
+					l_v2Direction *= 2000.0f;
+					l_pRectCollider->applyImpulse(l_v2Direction);
 				}
 			}
 
@@ -120,24 +140,12 @@ namespace ns_fretBuzz
 				m_pTransform->setLocalScale({ m_fScale, m_fScale,0.0f });
 			}
 
-			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
-			{
-				
-			}
-
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
 
 			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
 			glm::vec3 l_v3PlayerPosition = m_pTransform->getLocalPosition();
 			
-			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition - l_v3PlayerPosition);
-
-			/*float l_fAngleToRotate = (glm::acos(glm::dot(l_v3PlayerToMouseDirection, { 1.0f,0.0f,0.0f })));
-			if (!glm::isnan(l_fAngleToRotate))
-			{
-				if (l_MousePosition.y < l_v3PlayerPosition.y) { l_fAngleToRotate = -l_fAngleToRotate; }
-				m_pTransform->setLocalRotation({ 0.0f, 0.0f, l_fAngleToRotate });
-			}*/
+			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition);
 
 			float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
 			m_pTransform->setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });

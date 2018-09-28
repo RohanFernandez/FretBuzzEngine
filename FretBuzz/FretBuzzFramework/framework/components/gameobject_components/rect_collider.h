@@ -12,7 +12,7 @@ namespace ns_fretBuzz
 		{
 		private:
 			RectCollider(GameObject2D& a_GameObject, glm::vec2 v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC
-				, bool a_bIsFixedRotation = true);
+				, bool a_bIsFixedRotation = true, bool a_bIsBullet = false);
 
 			ns_graphics::LineData m_arrRectLineBorders[4];
 			ns_graphics::Shader* m_pDefaultLineShader = nullptr;
@@ -32,9 +32,9 @@ namespace ns_fretBuzz
 
 		public:
 			static RectCollider* addToGameObject(GameObject2D& a_GameObject,
-				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true);
+				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true, bool a_bIsBullet = false);
 			static RectCollider* addToGameObject(GameObject2D& a_GameObject, glm::vec2 a_v2DimensionWH,
-				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true);
+				PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC, bool a_bIsFixedRotation = true, bool a_bIsBullet = false);
 
 
 			void applyForce(b2Vec2 a_v2ForceDirection);

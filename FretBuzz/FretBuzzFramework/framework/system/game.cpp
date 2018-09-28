@@ -17,10 +17,10 @@ namespace ns_fretBuzz
 			m_vectScenes =
 			{
 				new SceneData<InitState>("initstate"),
-				new SceneData<MainMenuState>("mainmenustate"),
-				new SceneData<ScoreState>("scorestate")
+				/*new SceneData<MainMenuState>("mainmenustate"),
+				new SceneData<ScoreState>("scorestate")*/
 
-				//new SceneData<threed_test_scene>("3d_Test")
+				new SceneData<threed_test_scene>("3d_Test")
 			};
 			m_pSceneManager = new SceneManager(m_vectScenes);
 		}
@@ -65,14 +65,16 @@ namespace ns_fretBuzz
 		void Game::updateScenes(float a_fDeltaTime)
 		{
 			///testing start
-			/*if (Input::IsKeyDown(GLFW_KEY_I))
+			if (Input::IsKeyDown(GLFW_KEY_I))
 			{
 				SceneManager::s_loadScene("initstate");
 			}
 			else if (Input::IsKeyDown(GLFW_KEY_O))
 			{
-				SceneManager::s_loadScene("scorestate");
+				SceneManager::s_loadScene("3d_Test");
 			}
+
+			/*
 			else if (Input::IsKeyDown(GLFW_KEY_P))
 			{
 				SceneManager::s_loadScene("mainmenustate");

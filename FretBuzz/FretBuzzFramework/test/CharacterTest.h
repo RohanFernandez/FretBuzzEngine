@@ -32,13 +32,14 @@ namespace ns_fretBuzz
 		float m_fScaleVelocity = 2.0f;
 
 		int m_iCurrentWeaponID = 0;
+		GameObject* m_pRefOriginGameObject = nullptr;
 
 	public:
 
 		ns_system::GameObject* m_pTestGameObject1 = nullptr;
 		ns_system::GameObject* m_pTestGameObject2 = nullptr;
 
-		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_system::GameObject* a_CamGameObject);
+		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
 		virtual void render(const ns_system::Camera& a_Camera) override;
