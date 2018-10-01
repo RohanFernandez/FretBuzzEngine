@@ -68,17 +68,19 @@ namespace ns_fretBuzz
 					glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY);
 
 					glm::vec2 l_WorldPosition = m_Transform.getWorldPosition();
-					glm::vec2 l_v2GLMDirection = glm::normalize(l_MousePosition);
+					glm::vec3 l_v3GLMDirection = glm::normalize(glm::vec3(l_MousePosition.x, l_MousePosition.y, 0.0f));
 
-					b2Vec2 l_v2Direction = b2Vec2{ l_v2GLMDirection.x, l_v2GLMDirection.y };
-					l_v2Direction *= 130.0f;
+					b2Vec2 l_v2Direction = b2Vec2{ l_v3GLMDirection.x, l_v3GLMDirection.y };
+					b2Vec2 l_v2DirectionImpulse = l_v2Direction;
 
-					GameObject2D* l_pBulletGameObject = ns_system::GameObject2D::instantiate(*m_pRefOriginGameObject, "bullet", glm::vec3(l_WorldPosition.x, l_WorldPosition.y, 0.0f) + glm::vec3(l_v2Direction.x, l_v2Direction.y, 0.0f), {0.0f, 0.0f ,0.0f}, { 1.0f, 1.0f, 1.0f }, glm::vec2(6.0f, 2.0f));
+					l_v2Direction *= 180.0f;
+
+					GameObject2D* l_pBulletGameObject = ns_system::GameObject2D::instantiate(*m_pRefOriginGameObject, "bullet", glm::vec3(l_WorldPosition.x, l_WorldPosition.y, 0.0f) + glm::vec3(l_v2Direction.x, l_v2Direction.y, 0.0f), {0.0f, 0.0f ,0.0f}, { 1.0f, 1.0f, 1.0f }, glm::vec2(12.0f, 4.0f));
 					ns_graphics::Image::addToGameObject(*l_pBulletGameObject, ns_system::ResourceManager::getResource<ns_graphics::SpriteGroup>("bullet")->getSprite(0), {1.0f, 1.0f, 0.0f, 1.0f});
 					ns_system::RectCollider* l_pRectCollider = ns_system::RectCollider::addToGameObject(*l_pBulletGameObject, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, false,true);
 
-					l_v2Direction *= 2000.0f;
-					l_pRectCollider->applyImpulse(l_v2Direction);
+					l_v2DirectionImpulse *= 2000.0f;
+					l_pRectCollider->setLinearVelocity(l_v2DirectionImpulse);
 				}
 			}
 
