@@ -123,11 +123,17 @@ namespace ns_fretBuzz
 			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
 			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
 
-			m_pShader->setUniform4f("u_v4LightColor", m_pLightCube->getLightColor());
-			m_pShader->setUniform3f("u_v3LightPosition", m_pLightCube->getLightPosition());
-			m_pShader->setUniform1f("u_fAmbientStrength", 0.2f);
-
 			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
+
+			m_pShader->setUniform3f("u_Light.m_v3LightPosition", m_pLightCube->getLightPosition());
+			m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {1.0f, 0.0f, 0.0f});
+			m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.0f, 1.0f, 0.0f });
+			m_pShader->setUniform3f("u_Light.m_v3Specular", { 0.0f, 0.0f, 1.0f });
+
+			m_pShader->setUniform1f("u_Material.m_fShininess", 32.0f);
+			m_pShader->setUniform3f("u_Material.m_v3Ambient", {0.1f, 0.1f, 0.1f});
+			m_pShader->setUniform3f("u_Material.m_v3Diffuse", {0.6f, 0.6f, 0.6f});
+			m_pShader->setUniform3f("u_Material.m_v3Specular", {1.0f, 1.0f, 1.0f});
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
