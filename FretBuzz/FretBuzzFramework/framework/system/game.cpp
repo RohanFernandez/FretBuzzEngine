@@ -16,11 +16,11 @@ namespace ns_fretBuzz
 		{
 			m_vectScenes =
 			{
-				new SceneData<InitState>("initstate"),
+				new SceneData<threed_test_scene>("3d_Test"),
+				new SceneData<InitState>("initstate")
 				/*new SceneData<MainMenuState>("mainmenustate"),
 				new SceneData<ScoreState>("scorestate")*/
 
-				new SceneData<threed_test_scene>("3d_Test")
 			};
 			m_pSceneManager = new SceneManager(m_vectScenes);
 		}

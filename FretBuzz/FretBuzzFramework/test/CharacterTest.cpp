@@ -6,6 +6,7 @@
 #include "../framework/components/gameobject_components/image.h"
 
 #include "../framework/system/core/system.h"
+#include <iostream>
 //#include FT_FREETYPE_H
 
 namespace ns_fretBuzz
@@ -73,13 +74,13 @@ namespace ns_fretBuzz
 					b2Vec2 l_v2Direction = b2Vec2{ l_v3GLMDirection.x, l_v3GLMDirection.y };
 					b2Vec2 l_v2DirectionImpulse = l_v2Direction;
 
-					l_v2Direction *= 180.0f;
+					l_v2Direction *= 140.0f;
 
-					GameObject2D* l_pBulletGameObject = ns_system::GameObject2D::instantiate(*m_pRefOriginGameObject, "bullet", glm::vec3(l_WorldPosition.x, l_WorldPosition.y, 0.0f) + glm::vec3(l_v2Direction.x, l_v2Direction.y, 0.0f), {0.0f, 0.0f ,0.0f}, { 1.0f, 1.0f, 1.0f }, glm::vec2(12.0f, 4.0f));
+					GameObject2D* l_pBulletGameObject = ns_system::GameObject2D::instantiate(*m_pRefOriginGameObject, "bullet", glm::vec3(l_WorldPosition.x, l_WorldPosition.y, 0.0f) + glm::vec3(l_v2Direction.x, l_v2Direction.y, 0.0f), glm::eulerAngles(m_Transform.getLocalRotation()), { 1.0f, 1.0f, 1.0f }, glm::vec2(12.0f, 4.0f));
 					ns_graphics::Image::addToGameObject(*l_pBulletGameObject, ns_system::ResourceManager::getResource<ns_graphics::SpriteGroup>("bullet")->getSprite(0), {1.0f, 1.0f, 0.0f, 1.0f});
 					ns_system::RectCollider* l_pRectCollider = ns_system::RectCollider::addToGameObject(*l_pBulletGameObject, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, false,true);
 
-					l_v2DirectionImpulse *= 2000.0f;
+					l_v2DirectionImpulse *= 3000.0f;
 					l_pRectCollider->setLinearVelocity(l_v2DirectionImpulse);
 				}
 			}

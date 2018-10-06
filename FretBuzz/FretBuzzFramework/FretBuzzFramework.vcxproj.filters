@@ -311,6 +311,9 @@
     <ClInclude Include="test\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test\light_cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\fragShader.txt" />
@@ -338,5 +341,7 @@
   <ItemGroup>
     <None Include="resources\shaders\cube.fs" />
     <None Include="resources\shaders\cube.vs" />
+    <None Include="resources\shaders\lightCube.fs" />
+    <None Include="resources\shaders\lightCube.vs" />
   </ItemGroup>
 </Project>

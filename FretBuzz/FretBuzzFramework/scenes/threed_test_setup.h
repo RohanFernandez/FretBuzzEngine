@@ -12,7 +12,8 @@ namespace ns_fretBuzz
 	{
 	private:
 		ns_system::GameObject* m_pThreeDManager = nullptr;
-		ns_system::GameObject* m_pCube = nullptr;
+		test_cube* m_pCube = nullptr;
+		light_cube* m_pLightCube = nullptr;
 
 	public:
 		threed_test_scene(std::string a_strSceneName) 
@@ -26,6 +27,9 @@ namespace ns_fretBuzz
 			ns_system::Behaviour::addToGameObject<PlayerController>(*m_pManager);
 
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");
+			m_pLightCube = new light_cube(m_refRootGameObject, "Light");
+			m_pCube->setLight(m_pLightCube);
+			m_pCube->setCamGameObject(m_pManager);
 		}
 
 		virtual void OnStateEnter() override {};

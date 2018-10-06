@@ -219,6 +219,11 @@ namespace ns_fretBuzz
 			glUniformMatrix4fv(glGetUniformLocation(m_ShaderID, a_pUniformName), 1, GL_FALSE, glm::value_ptr(a_mat4));
 		}
 
+		void Shader::setUniforMat3fv(const char* a_pUniformName, const glm::mat3& a_mat3) const
+		{
+			glUniformMatrix3fv(glGetUniformLocation(m_ShaderID, a_pUniformName), 1, GL_FALSE, glm::value_ptr(a_mat3));
+		}
+
 		GLint Shader::GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const
 		{
 			return glGetUniformLocation(a_ProgramID, a_pUniformName);

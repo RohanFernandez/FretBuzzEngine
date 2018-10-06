@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 		float m_fMouseSensitivity = 0.3f;
 
 		glm::vec2 m_v2LastMouseXY;
-		glm::vec2 m_v2PitchYaw;
+		glm::vec3 m_v3PitchYawRoll;
 		ns_system::Camera* m_pPerspectiveCamera = nullptr;
 
 	public:
@@ -67,8 +67,9 @@ namespace ns_fretBuzz
 
 				glm::vec3 l_v3InitRotation = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
 
-				m_v2PitchYaw.x += (l_v3InitRotation.x / M_PI) * 180.0f;
-				m_v2PitchYaw.y += (l_v3InitRotation.y / M_PI) * 180.0f;
+				m_v3PitchYawRoll.x += (l_v3InitRotation.x / M_PI) * 180.0f;
+				m_v3PitchYawRoll.y += (l_v3InitRotation.y / M_PI) * 180.0f;
+				m_v3PitchYawRoll.z = (l_v3InitRotation.z / M_PI) * 180.0f;
 			}
 
 			float l_DeltaX = (m_MouseX - m_v2LastMouseXY.x);
@@ -80,16 +81,20 @@ namespace ns_fretBuzz
 			m_v2LastMouseXY.x = m_MouseX;
 			m_v2LastMouseXY.y = m_MouseY;
 
-			m_v2PitchYaw.y += l_DeltaX;
-			m_v2PitchYaw.x += l_DeltaY;
+			m_v3PitchYawRoll.y += l_DeltaX;
+			m_v3PitchYawRoll.x += l_DeltaY;
 
-			m_GameObject.m_Transform.setLocalRotation(glm::quat({glm::radians(m_v2PitchYaw.x), glm::radians(m_v2PitchYaw.y), 0.0f}));
+			m_GameObject.m_Transform.setLocalRotation(glm::quat({glm::radians(m_v3PitchYawRoll.x), glm::radians(m_v3PitchYawRoll.y), glm::radians(m_v3PitchYawRoll.z)}));
 
 			int l_iScrollValue = ns_system::Input::GetMouseScroll();
 			if (l_iScrollValue == 1 || l_iScrollValue == -1)
 			{
 				m_pPerspectiveCamera->zoom(5.0f * l_iScrollValue);
 			}
+
+			glm::vec3 l_v3RotEuler = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
+
+			//std::cout << "Rot :: {"<< l_v3RotEuler.x<<"," << l_v3RotEuler.y <<","<< l_v3RotEuler.z<< "}\n";
 
 			Behaviour::update(a_fDeltaTime);
 		}

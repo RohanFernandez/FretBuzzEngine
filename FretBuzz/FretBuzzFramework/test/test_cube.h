@@ -2,6 +2,7 @@
 #include "../framework/system/game_object.h"
 #include "../framework/graphics/shader.h"
 #include "../framework/utils/math.h"
+#include "light_cube.h"
 
 namespace ns_fretBuzz
 {
@@ -18,48 +19,51 @@ namespace ns_fretBuzz
 		ns_graphics::Shader* m_pShader = nullptr;
 		ns_graphics::Texture* m_pTexture = nullptr;
 
-		float m_vertices[180] = {
-	  -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	   0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	   0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	   0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	  -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	  -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		light_cube* m_pLightCube = nullptr;
+		GameObject* m_pCamGameObject = nullptr;
 
-	  -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	   0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	   0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	   0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	  -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	  -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		float m_vertices[288] = {
+			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 0.0f, 0.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 1.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 1.0f, 1.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,	 0.0f, 0.0f,
 
-	  -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	  -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	  -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	  -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	  -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	  -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	0.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	1.0f, 1.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,	0.0f, 0.0f,
 
-	   0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	   0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	   0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	   0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	   0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	   0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,	 1.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,	 1.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,	 0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,	 0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,	 0.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,	 1.0f, 0.0f,
 
-	  -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	   0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	   0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	   0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	  -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	  -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,	 1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,	 1.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,	 0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,	 0.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,	 0.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,	 1.0f, 0.0f,
 
-	  -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	   0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	   0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	   0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	  -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	  -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+			-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,	 0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,	 1.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,	 1.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,	 1.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,	 0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,	 0.0f, 1.0f,
+
+			-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,	 0.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,	 1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,	 1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,	 1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,	 0.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,	 0.0f, 1.0f
 		};
 
 		test_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName)
@@ -78,50 +82,55 @@ namespace ns_fretBuzz
 
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
+			glEnableVertexAttribArray(2);
 
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (const void*)0);
-			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (const void*)(3 * sizeof(float)));
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (const void*)0);
+			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (const void*)(3 * sizeof(float)));
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (const void*)(6 * sizeof(float)));
 
 			glBindVertexArray(0);
 		}
 
 		virtual void update(float a_fDeltaTime) override
 		{
-			rot = rot + M_PI * a_fDeltaTime * 0.5f;
-			m_Transform.setLocalRotation({ rot, rot , rot });
+			//rot = rot + M_PI * a_fDeltaTime * 0.5f;
+			//m_Transform.setLocalRotation({ rot, rot , rot });
 
 			GameObject::update(a_fDeltaTime);
 		}
 
+		void setLight(light_cube* a_pLightCube)
+		{
+			m_pLightCube = a_pLightCube;
+		}
+
+		void setCamGameObject(GameObject* a_pCamGameObject)
+		{
+			m_pCamGameObject = a_pCamGameObject;
+		}
+
 		virtual void render(const ns_system::Camera& a_Camera) override
 		{
+			m_pTexture->bind();
+			glActiveTexture(GL_TEXTURE0);
 			m_pShader->bind();
 			m_pShader->setUniform1i("texSampler", 0);
 
-			m_pTexture->bind();
-			glActiveTexture(GL_TEXTURE0);
-
-
 			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 
-			glm::mat4 l_mat4{ 1.0f };
-			l_mat4 = glm::translate(l_mat4, {2.0f, 0.0f, 0.0f});
-			l_mat4 = glm::rotate(l_mat4, rot, { 1.0f, 0.0f, 0.0f });
-			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 1.0f, 0.0f });
-			l_mat4 = glm::rotate(l_mat4, rot, { 0.0f, 0.0f, 1.0f });
-
-			const glm::mat4 l_mat4RenderTransformation1 = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * l_mat4;
-
+			glm::mat4 l_m4Model = m_pTransform->getModelMatrix();
+			m_pShader->setUniforMat4fv("u_m4Model", l_m4Model);
 			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
+			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
+
+			m_pShader->setUniform4f("u_v4LightColor", m_pLightCube->getLightColor());
+			m_pShader->setUniform3f("u_v3LightPosition", m_pLightCube->getLightPosition());
+			m_pShader->setUniform1f("u_fAmbientStrength", 0.2f);
+
+			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
-
-			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation1);
-			glBindVertexArray(m_VAO);
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-
-			ns_system::Window::CheckForErrors();
 
 			GameObject::render(a_Camera);
 		}

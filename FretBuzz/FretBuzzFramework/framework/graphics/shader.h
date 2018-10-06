@@ -67,6 +67,7 @@ namespace ns_fretBuzz
 			void setUniform4f(const char* a_pUniformName, GLfloat a_value1, GLfloat a_value2, GLfloat a_value3, GLfloat a_value4) const;
 
 			void setUniforMat4fv(const char* a_pUniformName, const glm::mat4& a_mat4) const;
+			void setUniforMat3fv(const char* a_pUniformName, const glm::mat3& a_mat3) const;
 
 			GLint GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const;
 

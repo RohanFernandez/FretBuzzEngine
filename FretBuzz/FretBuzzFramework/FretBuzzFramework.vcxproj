@@ -276,6 +276,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\core\window.h" />
     <ClInclude Include="framework\utils\file_utils.h" />
+    <ClInclude Include="test\light_cube.h" />
     <ClInclude Include="test\test_cube.h" />
     <ClInclude Include="test\PlayerController.h" />
   </ItemGroup>
@@ -301,6 +302,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
   <ItemGroup>
     <None Include="resources\shaders\cube.fs" />
     <None Include="resources\shaders\cube.vs" />
+    <None Include="resources\shaders\lightCube.fs" />
+    <None Include="resources\shaders\lightCube.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
