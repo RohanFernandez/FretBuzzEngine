@@ -17,7 +17,8 @@ namespace ns_fretBuzz
 		unsigned int m_IBO = 0;
 
 		ns_graphics::Shader* m_pShader = nullptr;
-		ns_graphics::Texture* m_pTexture = nullptr;
+		ns_graphics::Texture* m_pDiffuseTexture = nullptr;
+		ns_graphics::Texture* m_pSpecularTexture = nullptr;
 
 		light_cube* m_pLightCube = nullptr;
 		GameObject* m_pCamGameObject = nullptr;
@@ -70,7 +71,8 @@ namespace ns_fretBuzz
 			: ns_system::GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f, 0.0f}, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("cube");
-			m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
+			m_pDiffuseTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_diffuse");
+			m_pSpecularTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_specular");
 
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
@@ -111,10 +113,7 @@ namespace ns_fretBuzz
 
 		virtual void render(const ns_system::Camera& a_Camera) override
 		{
-			m_pTexture->bind();
-			glActiveTexture(GL_TEXTURE0);
 			m_pShader->bind();
-			m_pShader->setUniform1i("texSampler", 0);
 
 			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 
@@ -125,15 +124,21 @@ namespace ns_fretBuzz
 
 			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
 
-			m_pShader->setUniform3f("u_Light.m_v3LightPosition", m_pLightCube->getLightPosition());
-			m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {1.0f, 0.0f, 0.0f});
-			m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.0f, 1.0f, 0.0f });
-			m_pShader->setUniform3f("u_Light.m_v3Specular", { 0.0f, 0.0f, 1.0f });
+			glm::vec4 l_v4LightVector = { /*glm::vec3{1.0f, 0.0f, 0.0f}*/m_pLightCube->getLightPosition(), 1.0f };
+			m_pShader->setUniform4f("u_Light.m_v4LightVector", l_v4LightVector);
+			m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {0.2f, 0.2f, 0.2f});
+			m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.7f, 0.7f, 0.7f });
+			m_pShader->setUniform3f("u_Light.m_v3Specular", { 1.0f, 1.0f, 1.0f });
 
 			m_pShader->setUniform1f("u_Material.m_fShininess", 32.0f);
-			m_pShader->setUniform3f("u_Material.m_v3Ambient", {0.1f, 0.1f, 0.1f});
-			m_pShader->setUniform3f("u_Material.m_v3Diffuse", {0.6f, 0.6f, 0.6f});
-			m_pShader->setUniform3f("u_Material.m_v3Specular", {1.0f, 1.0f, 1.0f});
+
+			glActiveTexture(GL_TEXTURE0);
+			m_pDiffuseTexture->bind();
+			m_pShader->setUniform1i("u_Material.m_texDiffuse", 0);
+
+			glActiveTexture(GL_TEXTURE1);
+			m_pSpecularTexture->bind();
+			m_pShader->setUniform1i("u_Material.m_texSpecular", 1);
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);

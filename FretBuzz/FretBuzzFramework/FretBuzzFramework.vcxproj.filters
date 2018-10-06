@@ -328,7 +328,10 @@
     <Image Include="resources\sprites\sword.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="resources\textures\container.jpg">
+    <Image Include="resources\textures\container_diffuse.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\textures\container_specular.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

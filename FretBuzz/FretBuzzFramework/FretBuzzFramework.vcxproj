@@ -288,7 +288,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\sprites\sword.png" />
-    <Image Include="resources\textures\container.jpg" />
+    <Image Include="resources\textures\container_diffuse.png" />
+    <Image Include="resources\textures\container_specular.png" />
     <Image Include="resources\textures\darksiders.jpg" />
   </ItemGroup>
   <ItemGroup>
