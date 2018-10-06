@@ -5,6 +5,7 @@ layout(location = 0) out vec4 color;
 struct Light
 {
 	vec4 m_v4LightVector; // If light.w == 0.0f then its directional else its positional
+	vec3 m_v3ConstLinQuad;
 	
 	vec3 m_v3AmbientColor;
 	vec3 m_v3Diffuse;
@@ -37,9 +38,12 @@ void main()
 	vec3 l_v3DiffuseSampledColor = vec3(texture(u_Material.m_texDiffuse, inVertexData.texCoords));
 	vec3 l_v3SpecularSampledColor = vec3(texture(u_Material.m_texSpecular, inVertexData.texCoords));
 	
+	float l_fDistance = length(vec3(u_Light.m_v4LightVector) - inVertexData.position);
+	float l_fAttenuation = 1.0f / (u_Light.m_v3ConstLinQuad.x + u_Light.m_v3ConstLinQuad.y * l_fDistance + u_Light.m_v3ConstLinQuad.z * l_fDistance * l_fDistance);
+
 	vec3 l_v3AmbientColor = u_Light.m_v3AmbientColor * l_v3DiffuseSampledColor;
 	vec3 l_v3DiffuseColor = u_Light.m_v3Diffuse * l_v3DiffuseSampledColor * max(0.0, dot(inVertexData.normal, -l_v3LightDirection));
 	vec3 l_v3SpecularColor = u_Light.m_v3Specular * l_v3SpecularSampledColor * pow(max(dot(-l_v3ViewDirection, normalize(reflect(l_v3LightDirection, inVertexData.normal))),0.0), u_Material.m_fShininess);
 	
-	color = vec4(l_v3AmbientColor + l_v3DiffuseColor + l_v3SpecularColor, 1.0);
+	color = vec4((l_v3AmbientColor + l_v3DiffuseColor + l_v3SpecularColor) * l_fAttenuation, 1.0);
 }
