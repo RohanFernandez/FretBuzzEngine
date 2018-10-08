@@ -14,6 +14,7 @@ namespace ns_fretBuzz
 			CHARACTER_CONTROLLER_2D,
 			CAMERA,
 			MESH_RENDERER,
+			LIGHT,
 
 			//2D GameObject specific
 			IMAGE,

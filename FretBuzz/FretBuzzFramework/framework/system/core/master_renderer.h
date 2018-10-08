@@ -4,6 +4,7 @@
 #include "../timer/timerFPS.h"
 #include "../../components/viewport.h"
 #include "../../graphics/batch_renderer_manager.h"
+#include "../../graphics/light_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz
@@ -12,6 +13,7 @@ namespace ns_fretBuzz
 	{
 		class CameraManager;
 		class Game;
+		class ns_graphics::LightManager;
 		class MasterRenderer
 		{
 		private:
@@ -21,6 +23,8 @@ namespace ns_fretBuzz
 			TimerFPS* m_pTimer = nullptr;
 
 			CameraManager* m_pCameraManager = nullptr;
+			ns_graphics::LightManager* m_pLightManager = nullptr;
+
 
 			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
 

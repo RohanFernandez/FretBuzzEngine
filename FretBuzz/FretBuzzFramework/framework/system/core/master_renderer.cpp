@@ -41,6 +41,7 @@ namespace ns_fretBuzz
 
 			m_pBatchRendererManager = ns_graphics::BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
+			m_pLightManager = ns_graphics::LightManager::initialize();
 
 			m_pTimer = new TimerFPS(a_bLogFPS);
 		}
@@ -56,6 +57,7 @@ namespace ns_fretBuzz
 			}
 			
 			m_pCameraManager->destroy();
+			m_pLightManager->destroy();
 
 			Window::unregisterWindowResizeCallback(windowResizeCallback);
 			m_pWindow->destroy();
