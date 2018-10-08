@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");
 			m_pLightCube = new light_cube(m_refRootGameObject, "Light");
-			m_pCube->setLight(m_pLightCube);
+			
 			m_pCube->setCamGameObject(m_pManager);
 		}
 

@@ -147,7 +147,7 @@
     <ClCompile Include="framework\graphics\light_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\components\light.cpp">
+    <ClCompile Include="framework\components\gameobject_components\light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -323,10 +323,10 @@
     <ClInclude Include="framework\graphics\light_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\components\light.h">
+    <ClInclude Include="framework\system\resource_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\resource_container.h">
+    <ClInclude Include="framework\components\gameobject_components\light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

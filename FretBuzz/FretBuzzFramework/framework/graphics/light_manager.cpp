@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/light.h"
+#include "../components/gameobject_components/light.h"
 #include "light_manager.h"
 #include <iostream>
 
@@ -62,6 +62,23 @@ namespace ns_fretBuzz
 		void LightManager::s_unregisterLight(Light* a_pLight)
 		{
 			s_pInstance->unregisterLight(a_pLight);
+		}
+
+		void LightManager::setAllLightUniforms(Shader& a_shader)
+		{
+			int l_iLightCount = m_vectResourceContainer.size();
+			for (auto l_Iterator = m_vectResourceContainer.begin(),
+				l_IteratorEnd = m_vectResourceContainer.end();
+				l_Iterator != l_IteratorEnd;
+				l_Iterator++)
+			{
+				(*l_Iterator)->updateUniforms(a_shader);
+			}
+		}
+
+		void LightManager::s_setAllLightUniforms(Shader& a_shader)
+		{
+			s_pInstance->setAllLightUniforms(a_shader);
 		}
 	}
 }

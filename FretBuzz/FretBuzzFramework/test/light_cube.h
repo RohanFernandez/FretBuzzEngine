@@ -3,6 +3,7 @@
 #include "../framework/graphics/shader.h"
 #include "../framework/graphics/texture.h"
 #include "../framework/utils/math.h"
+#include "../framework/components/gameobject_components/light.h"
 
 namespace ns_fretBuzz
 {
@@ -19,6 +20,7 @@ namespace ns_fretBuzz
 		glm::vec4 m_v4LightColor = {1.0f, 1.0f, 1.0f, 1.0f};
 
 		ns_graphics::Shader* m_pShader = nullptr;
+		ns_graphics::Light* m_pLight = nullptr;
 
 		float m_vertices[108] = {
 	  -0.5f, -0.5f, -0.5f,
@@ -70,6 +72,17 @@ namespace ns_fretBuzz
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("lightShader");
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
 
+			m_pLight = ns_graphics::Light::addToGameObject(*this, ns_graphics::Light::LIGHT_TYPE::POINT);
+			ns_graphics::Light::LightSource& l_LightSource = m_pLight->m_LightSource;
+
+			l_LightSource.m_v4LightPosition = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+			l_LightSource.m_v3LightDirection = glm::vec3{ 1.0f, 0.0f, 0.0f };
+			l_LightSource.m_v3ConstLinQuad = { 1.0f, 0.09, 0.032 };
+			l_LightSource.m_v3AmbientColor = {0.2f, 0.2f, 0.2f};
+			l_LightSource.m_v3Diffuse = { 0.7f, 0.7f, 0.7f };
+			l_LightSource.m_v3Specular = { 1.0f, 1.0f, 1.0f };
+
+			
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
 

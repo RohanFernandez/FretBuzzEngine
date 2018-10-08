@@ -2,6 +2,7 @@
 #include "../framework/system/game_object.h"
 #include "../framework/graphics/shader.h"
 #include "../framework/utils/math.h"
+#include "../framework/graphics/light_manager.h"
 #include "light_cube.h"
 
 namespace ns_fretBuzz
@@ -101,11 +102,6 @@ namespace ns_fretBuzz
 			GameObject::update(a_fDeltaTime);
 		}
 
-		void setLight(light_cube* a_pLightCube)
-		{
-			m_pLightCube = a_pLightCube;
-		}
-
 		void setCamGameObject(GameObject* a_pCamGameObject)
 		{
 			m_pCamGameObject = a_pCamGameObject;
@@ -124,12 +120,14 @@ namespace ns_fretBuzz
 
 			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
 
-			glm::vec4 l_v4LightVector = { /*glm::vec3{1.0f, 0.0f, 0.0f}*/m_pLightCube->getLightPosition(), 1.0f };
-			m_pShader->setUniform4f("u_Light.m_v4LightVector", l_v4LightVector);
-			m_pShader->setUniform3f("u_Light.m_v3ConstLinQuad", { 1.0f, 0.09f, 0.032f });
-			m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {0.2f, 0.2f, 0.2f});
-			m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.7f, 0.7f, 0.7f });
-			m_pShader->setUniform3f("u_Light.m_v3Specular", { 1.0f, 1.0f, 1.0f });
+			//glm::vec4 l_v4LightVector = { /*glm::vec3{1.0f, 0.0f, 0.0f}*/m_pLightCube->getLightPosition(), 1.0f };
+			//m_pShader->setUniform4f("u_Light.m_v4LightVector", l_v4LightVector);
+			//m_pShader->setUniform3f("u_Light.m_v3ConstLinQuad", { 1.0f, 0.09f, 0.032f });
+			//m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {0.2f, 0.2f, 0.2f});
+			//m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.7f, 0.7f, 0.7f });
+			//m_pShader->setUniform3f("u_Light.m_v3Specular", { 1.0f, 1.0f, 1.0f });
+			
+			ns_graphics::LightManager::s_setAllLightUniforms(*m_pShader);
 
 			m_pShader->setUniform1f("u_Material.m_fShininess", 32.0f);
 
