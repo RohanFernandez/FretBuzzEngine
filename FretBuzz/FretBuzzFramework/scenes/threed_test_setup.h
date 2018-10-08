@@ -13,7 +13,8 @@ namespace ns_fretBuzz
 	private:
 		ns_system::GameObject* m_pThreeDManager = nullptr;
 		test_cube* m_pCube = nullptr;
-		light_cube* m_pLightCube = nullptr;
+		light_cube* m_pLightCube1 = nullptr;
+		light_cube* m_pLightCube2 = nullptr;
 
 	public:
 		threed_test_scene(std::string a_strSceneName) 
@@ -27,8 +28,9 @@ namespace ns_fretBuzz
 			ns_system::Behaviour::addToGameObject<PlayerController>(*m_pManager);
 
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");
-			m_pLightCube = new light_cube(m_refRootGameObject, "Light");
-			
+			m_pLightCube1 = new light_cube(m_refRootGameObject, "Light1", {-1.0f, 3.0f, 1.0f});
+			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light2", { 1.0f, -3.0f, 1.0f });
+
 			m_pCube->setCamGameObject(m_pManager);
 		}
 

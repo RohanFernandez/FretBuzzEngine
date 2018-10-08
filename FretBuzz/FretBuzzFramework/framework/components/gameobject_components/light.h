@@ -21,30 +21,32 @@ namespace ns_fretBuzz
 
 			struct LightSource
 			{
-				static constexpr char UNIF_LIGHT_POSITION[] = "u_Light.u_v4LightPosition";
+				static constexpr char UNIF_LIGHT[] = "u_Light["; 
+
+				static constexpr char UNIF_LIGHT_POSITION[] = "].u_v4LightPosition";
 				glm::vec4 m_v4LightPosition; // If m_v4LightVector.w == 0.0f then its directional else its positional
 
-				static constexpr char UNIF_LIGHT_DIRECTION[] = "u_Light.u_v3LightDirection";
+				static constexpr char UNIF_LIGHT_DIRECTION[] = "].u_v3LightDirection";
 				glm::vec3 m_v3LightDirection;
 
-				static constexpr char UNIF_CONST_LIN_QUAD[] = "u_Light.u_v3ConstLinQuad";
+				static constexpr char UNIF_CONST_LIN_QUAD[] = "].u_v3ConstLinQuad";
 				glm::vec3 m_v3ConstLinQuad;
 
 				// Light color
-				static constexpr char UNIF_AMBIENT_COLOR[] = "u_Light.u_v3AmbientColor";
+				static constexpr char UNIF_AMBIENT_COLOR[] = "].u_v3AmbientColor";
 				glm::vec3 m_v3AmbientColor;
 
-				static constexpr char UNIF_DIFFUSE_COLOR[] = "u_Light.u_v3DiffuseColor";
+				static constexpr char UNIF_DIFFUSE_COLOR[] = "].u_v3DiffuseColor";
 				glm::vec3 m_v3Diffuse;
 
-				static constexpr char UNIF_SPECULAR_COLOR[] = "u_Light.u_v3SpecularColor";
+				static constexpr char UNIF_SPECULAR_COLOR[] = "].u_v3SpecularColor";
 				glm::vec3 m_v3Specular;
 
 				//SpotLight specific
-				static constexpr char UNIF_INNER_CUT_OFF[] = "u_Light.u_fInnerCutOff";
+				static constexpr char UNIF_INNER_CUT_OFF[] = "].u_fInnerCutOff";
 				float m_fInnerCutOff;
 
-				static constexpr char UNIF_OUTER_CUT_OFF[] = "u_Light.u_fOuterCutOff";
+				static constexpr char UNIF_OUTER_CUT_OFF[] = "].u_fOuterCutOff";
 				float m_fOuterCutOff;
 			};
 
@@ -57,7 +59,7 @@ namespace ns_fretBuzz
 		public:
 			static Light* addToGameObject(ns_system::GameObject& a_GameObj, LIGHT_TYPE a_LightType);
 
-			void updateUniforms(Shader& a_Shader);
+			void updateUniforms(Shader& a_Shader, int a_iLightIndex);
 
 			LightSource m_LightSource;
 

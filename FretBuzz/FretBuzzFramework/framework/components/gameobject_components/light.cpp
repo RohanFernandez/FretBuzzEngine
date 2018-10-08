@@ -34,20 +34,22 @@ namespace ns_fretBuzz
 			m_LightType = a_LIGHT_TYPE;
 		}
 
-		void Light::updateUniforms(Shader& a_Shader)
+		void Light::updateUniforms(Shader& a_Shader, int a_iLightIndex)
 		{
-			a_Shader.setUniform4f(LightSource::UNIF_LIGHT_POSITION, m_LightSource.m_v4LightPosition);
-			a_Shader.setUniform3f(LightSource::UNIF_LIGHT_DIRECTION, m_LightSource.m_v3LightDirection);
-			a_Shader.setUniform3f(LightSource::UNIF_CONST_LIN_QUAD, m_LightSource.m_v3ConstLinQuad);
+			std::string l_strLightIndex = LightSource::UNIF_LIGHT + std::to_string(a_iLightIndex);
 
-			a_Shader.setUniform3f(LightSource::UNIF_AMBIENT_COLOR, m_LightSource.m_v3AmbientColor);
-			a_Shader.setUniform3f(LightSource::UNIF_DIFFUSE_COLOR, m_LightSource.m_v3Diffuse);
-			a_Shader.setUniform3f(LightSource::UNIF_SPECULAR_COLOR, m_LightSource.m_v3Specular);
+			a_Shader.setUniform4f((l_strLightIndex + LightSource::UNIF_LIGHT_POSITION).c_str(), m_LightSource.m_v4LightPosition);
+			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_LIGHT_DIRECTION).c_str(), m_LightSource.m_v3LightDirection);
+			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_CONST_LIN_QUAD).c_str(), m_LightSource.m_v3ConstLinQuad);
+
+			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_AMBIENT_COLOR).c_str(), m_LightSource.m_v3AmbientColor);
+			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_DIFFUSE_COLOR).c_str(), m_LightSource.m_v3Diffuse);
+			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_SPECULAR_COLOR).c_str(), m_LightSource.m_v3Specular);
 
 			if (m_LightType == LIGHT_TYPE::SPOT)
 			{
-				a_Shader.setUniform1f(LightSource::UNIF_INNER_CUT_OFF, m_LightSource.m_fInnerCutOff);
-				a_Shader.setUniform1f(LightSource::UNIF_OUTER_CUT_OFF, m_LightSource.m_fOuterCutOff);
+				a_Shader.setUniform1f((l_strLightIndex + LightSource::UNIF_INNER_CUT_OFF).c_str(), m_LightSource.m_fInnerCutOff);
+				a_Shader.setUniform1f((l_strLightIndex + LightSource::UNIF_OUTER_CUT_OFF).c_str(), m_LightSource.m_fOuterCutOff);
 			}
 		}
 

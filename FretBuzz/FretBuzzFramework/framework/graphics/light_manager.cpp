@@ -67,12 +67,12 @@ namespace ns_fretBuzz
 		void LightManager::setAllLightUniforms(Shader& a_shader)
 		{
 			int l_iLightCount = m_vectResourceContainer.size();
-			for (auto l_Iterator = m_vectResourceContainer.begin(),
-				l_IteratorEnd = m_vectResourceContainer.end();
-				l_Iterator != l_IteratorEnd;
-				l_Iterator++)
+			for (int l_iLightindex = 0; l_iLightindex < l_iLightCount; l_iLightindex++)
 			{
-				(*l_Iterator)->updateUniforms(a_shader);
+				if (m_vectResourceContainer[l_iLightindex]->getIsEnabled())
+				{
+					m_vectResourceContainer[l_iLightindex]->updateUniforms(a_shader, l_iLightindex);
+				}
 			}
 		}
 

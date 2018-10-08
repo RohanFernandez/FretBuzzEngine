@@ -22,6 +22,8 @@ namespace ns_fretBuzz
 		ns_graphics::Shader* m_pShader = nullptr;
 		ns_graphics::Light* m_pLight = nullptr;
 
+		glm::vec3 m_v3LightPosition;
+
 		float m_vertices[108] = {
 	  -0.5f, -0.5f, -0.5f,
 	   0.5f, -0.5f, -0.5f,
@@ -66,7 +68,7 @@ namespace ns_fretBuzz
 	  -0.5f,  0.5f, -0.5f
 		};
 
-		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName)
+		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position)
 			: ns_system::GameObject(a_ParentGameObject, a_strName, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("lightShader");
@@ -82,6 +84,7 @@ namespace ns_fretBuzz
 			l_LightSource.m_v3Diffuse = { 0.7f, 0.7f, 0.7f };
 			l_LightSource.m_v3Specular = { 1.0f, 1.0f, 1.0f };
 
+			m_v3LightPosition = a_v3Position;
 			
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
@@ -105,9 +108,9 @@ namespace ns_fretBuzz
 			rot = rot + M_PI * a_fDeltaTime * 0.5f;
 			m_Transform.setLocalRotation({ rot, rot , rot });
 
-			glm::vec3 l_newPosition{0.0f, 2.0f, 0.0f};
-			l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f;
-			l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f;
+			glm::vec3 l_newPosition{ m_v3LightPosition };
+			l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f * m_v3LightPosition.x;
+			l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f * m_v3LightPosition.z;
 			m_Transform.setWorldPosition(l_newPosition);
 
 			GameObject::update(a_fDeltaTime);
