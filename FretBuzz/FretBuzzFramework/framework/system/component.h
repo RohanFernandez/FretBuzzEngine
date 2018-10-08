@@ -3,6 +3,11 @@
 
 namespace ns_fretBuzz
 {
+	namespace ns_graphics
+	{
+		class Camera;
+	}
+
 	namespace ns_system
 	{
 		enum class COMPONENT_TYPE
@@ -25,7 +30,6 @@ namespace ns_fretBuzz
 		};
 
 		class GameObject;
-		class Camera;
 		class IComponent
 		{
 		friend class GameObject;
@@ -58,11 +62,11 @@ namespace ns_fretBuzz
 			virtual void update(float a_fDeltaTime) {};
 
 			// Called once per frame to render the component if any renderables exist.
-			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) {};
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) {};
 
 			// Called if the _IS_DEBUG or _IS_DEBUG_RENDERING is defined.
 			// Called once per frame to render the component if any debug renderables exist.
-			virtual void debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) {};
+			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) {};
 
 			// Enables/Disables the component.
 			// Calls the onEnable/ onDisable event if the GameObject is active.

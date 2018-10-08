@@ -7,10 +7,10 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
-		Camera::Camera(GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport)
-			: IComponent(COMPONENT_TYPE::CAMERA, a_GameObj),
+		Camera::Camera(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport)
+			: IComponent(ns_system::COMPONENT_TYPE::CAMERA, a_GameObj),
 			m_PROJECTION_TYPE(a_ProjectionType)
 		{
 			if (a_ProjectionType == Viewport::PROJECTION_TYPE::ORTHOGRAPHIC)
@@ -47,9 +47,9 @@ namespace ns_fretBuzz
 			return m_PROJECTION_TYPE;
 		}
 
-		Camera* Camera::addToGameObject(GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport)
+		Camera* Camera::addToGameObject(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport)
 		{
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::CAMERA, &a_GameObj) ?
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::CAMERA, &a_GameObj) ?
 				nullptr : new Camera(a_GameObj, a_ProjectionType, a_pViewport);
 		}
 

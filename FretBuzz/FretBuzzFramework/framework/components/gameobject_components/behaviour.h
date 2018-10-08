@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 			virtual ~Behaviour(){};
 
 			virtual void update(float a_fDeltaTime) override {};
-			virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) override {};
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override {};
 
 		public:
 			template<typename T_BEHAVIOUR, typename = typename std::enable_if<std::is_base_of<Behaviour, T_BEHAVIOUR>::value>::type>

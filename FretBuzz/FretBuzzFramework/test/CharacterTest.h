@@ -42,6 +42,6 @@ namespace ns_fretBuzz
 		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
-		virtual void render(const ns_system::Camera& a_Camera) override;
+		virtual void render(const ns_graphics::Camera& a_Camera) override;
 	};
 }

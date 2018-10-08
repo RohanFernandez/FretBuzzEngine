@@ -4,7 +4,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		//singleton instance
 		Window* Window::s_pInstance = nullptr;

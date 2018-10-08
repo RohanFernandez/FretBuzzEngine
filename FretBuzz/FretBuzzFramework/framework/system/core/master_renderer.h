@@ -9,18 +9,22 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_system 
+	{
+		class Game;
+	}
+
+	namespace ns_graphics
 	{
 		class CameraManager;
-		class Game;
-		class ns_graphics::LightManager;
+		class LightManager;
 		class MasterRenderer
 		{
 		private:
 			static MasterRenderer* s_pInstance;
 
 			Window* m_pWindow = nullptr;
-			TimerFPS* m_pTimer = nullptr;
+			ns_system::TimerFPS* m_pTimer = nullptr;
 
 			CameraManager* m_pCameraManager = nullptr;
 			ns_graphics::LightManager* m_pLightManager = nullptr;
@@ -40,7 +44,7 @@ namespace ns_fretBuzz
 			GLFWwindow* getGLFWWindow() const;
 			bool isWindowClosed() const;
 
-			float render(Game& m_Game);
+			float render(ns_system::Game& m_Game);
 
 			void closeWindow() const;
 

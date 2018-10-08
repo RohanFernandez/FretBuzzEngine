@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 			static Image* addToGameObject(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled = true);
 			void setSprite(Sprite* a_pSpite);
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 
 			void setShader(Shader* a_pShader);
 

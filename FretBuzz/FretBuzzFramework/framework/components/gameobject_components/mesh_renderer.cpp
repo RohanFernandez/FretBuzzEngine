@@ -43,7 +43,7 @@ namespace ns_fretBuzz
 			return m_pShader;
 		}
 
-		void MeshRenderer::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void MeshRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
 			unsigned int l_iDiffuseTexIndex = 1;
 			unsigned int l_iSpecularTexIndex = 1;

@@ -4,13 +4,13 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		class GameObject;
-		class Camera : public IComponent
+		class Camera : public ns_system::IComponent
 		{
 		private:
-			Camera(GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport);
+			Camera(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport);
 			Viewport* m_pViewPort = nullptr;
 			Viewport::PROJECTION_TYPE m_PROJECTION_TYPE = Viewport::PROJECTION_TYPE::ORTHOGRAPHIC;
 
@@ -20,7 +20,7 @@ namespace ns_fretBuzz
 			virtual ~Camera();
 
 		public:
-			static Camera* addToGameObject(GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport);
+			static Camera* addToGameObject(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport);
 
 			Viewport& getViewport();
 			Viewport::PROJECTION_TYPE getProjectionType() const;

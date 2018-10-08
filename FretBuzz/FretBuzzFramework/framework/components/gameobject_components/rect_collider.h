@@ -43,7 +43,7 @@ namespace ns_fretBuzz
 			void setLinearVelocity(b2Vec2 a_v2VelocityDirection);
 
 			virtual void update(float a_fDeltaTime) override;
-			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 		};
 	}
 }

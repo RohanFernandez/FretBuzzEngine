@@ -40,7 +40,7 @@ namespace ns_fretBuzz
 			m_pSprite = a_pSpite;
 		}
 
-		void Image::render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera)
+		void Image::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
 			if (((m_pSprite == nullptr) &&
 				(m_Color.w == 0.0f)))

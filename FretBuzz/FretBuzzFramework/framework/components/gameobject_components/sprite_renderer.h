@@ -48,7 +48,7 @@ namespace ns_fretBuzz
 				m_DefaultSprite.setDimensions({a_v2Dimensions,0.0f});
 			}
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 		};
 	}
 }

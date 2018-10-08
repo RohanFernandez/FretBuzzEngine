@@ -110,7 +110,7 @@ namespace ns_fretBuzz
 			return m_Transform.getWorldPosition();
 		}
 
-		virtual void render(const ns_system::Camera& a_Camera) override
+		virtual void render(const ns_graphics::Camera& a_Camera) override
 		{
 			m_pShader->bind();
 

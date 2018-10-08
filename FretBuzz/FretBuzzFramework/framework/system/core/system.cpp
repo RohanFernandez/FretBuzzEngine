@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 
 		System::System()
 		{
-			m_pMasterRenderer = MasterRenderer::initialize(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
+			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
 			AssetLoader::loadAssets(m_pResourceManager);
@@ -64,7 +64,7 @@ namespace ns_fretBuzz
 			}
 
 			Game& l_Game = *(s_pInstance->m_pGame);
-			MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
+			ns_graphics::MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
 			Input& l_Input = *(s_pInstance->m_pInput);
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
 

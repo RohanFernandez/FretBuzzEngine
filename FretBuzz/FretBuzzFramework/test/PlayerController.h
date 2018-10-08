@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 
 		glm::vec2 m_v2LastMouseXY;
 		glm::vec3 m_v3PitchYawRoll;
-		ns_system::Camera* m_pPerspectiveCamera = nullptr;
+		ns_graphics::Camera* m_pPerspectiveCamera = nullptr;
 
 	public:
 
@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 			: ns_system::Behaviour(a_GameObject)
 		{
 			ns_system::Input::setCursorEnability(false, false);
-			m_pPerspectiveCamera = m_GameObject.getComponent<ns_system::Camera>(ns_system::COMPONENT_TYPE::CAMERA);
+			m_pPerspectiveCamera = m_GameObject.getComponent<ns_graphics::Camera>(ns_system::COMPONENT_TYPE::CAMERA);
 		}
 
 	protected:

@@ -1,13 +1,13 @@
 #pragma once
 #include "master_renderer.h"
-#include "../game.h"
 #include "../../graphics/line_batch_renderer.h"
 #include "../../graphics/sprite_batch_renderer.h"
 #include "../../system/camera_manager.h"
+#include "../game.h"
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;
@@ -43,7 +43,7 @@ namespace ns_fretBuzz
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = ns_graphics::LightManager::initialize();
 
-			m_pTimer = new TimerFPS(a_bLogFPS);
+			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
 		}
 
 		MasterRenderer:: ~MasterRenderer()
@@ -63,7 +63,7 @@ namespace ns_fretBuzz
 			m_pWindow->destroy();
 		}
 
-		float MasterRenderer::render(Game& m_Game)
+		float MasterRenderer::render(ns_system::Game& m_Game)
 		{
 			m_pWindow->clear();
 

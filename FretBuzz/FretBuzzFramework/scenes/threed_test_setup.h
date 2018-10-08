@@ -22,8 +22,8 @@ namespace ns_fretBuzz
 			ns_system::GameObject* m_pManager = ns_system::GameObject::instantiate(m_refRootGameObject, "3D_Manager", { 0.0f, 0.0f, 5.0f },
 				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f });
 
-			ns_system::PerspectiveViewport l_PerspectiveViewport(60.0f, 0.01, 1000.0f);
-			ns_system::Camera::addToGameObject(*m_pManager, ns_system::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport);
+			ns_graphics::PerspectiveViewport l_PerspectiveViewport(60.0f, 0.01, 1000.0f);
+			ns_graphics::Camera::addToGameObject(*m_pManager, ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport);
 			ns_system::Behaviour::addToGameObject<PlayerController>(*m_pManager);
 
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");

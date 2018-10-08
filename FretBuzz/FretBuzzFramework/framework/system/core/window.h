@@ -8,7 +8,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		class Window
 		{

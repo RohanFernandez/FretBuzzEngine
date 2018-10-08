@@ -5,7 +5,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		class CameraManager
 		{
@@ -29,7 +29,7 @@ namespace ns_fretBuzz
 			static void s_unregisterCamera(Camera* a_pCamera);
 
 			void updateViewMatrix();
-			void renderFrame(Game& a_Game);
+			void renderFrame(ns_system::Game& a_Game);
 			void windowResize();
 		};
 	}

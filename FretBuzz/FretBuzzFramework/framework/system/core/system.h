@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 
 			AudioEngine* m_pAudioEngine = nullptr;
 
-			MasterRenderer* m_pMasterRenderer = nullptr;
+			ns_graphics::MasterRenderer* m_pMasterRenderer = nullptr;
 
 			Input* m_pInput = nullptr;
 

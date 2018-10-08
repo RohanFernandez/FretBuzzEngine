@@ -66,7 +66,7 @@ namespace ns_fretBuzz
 
 					double l_dMouseX, l_dMouseY;
 					ns_system::Input::GetMousePosition(l_dMouseX, l_dMouseY);
-					glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY);
+					glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_graphics::Window::getWidth() * 0.5f), (ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY);
 
 					glm::vec2 l_WorldPosition = m_Transform.getWorldPosition();
 					glm::vec3 l_v3GLMDirection = glm::normalize(glm::vec3(l_MousePosition.x, l_MousePosition.y, 0.0f));
@@ -145,7 +145,7 @@ namespace ns_fretBuzz
 
 			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
 
-			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_system::Window::getWidth() * 0.5f), (ns_system::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
+			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_graphics::Window::getWidth() * 0.5f), (ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
 			glm::vec3 l_v3PlayerPosition = m_pTransform->getLocalPosition();
 			
 			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition);
@@ -157,7 +157,7 @@ namespace ns_fretBuzz
 			ns_system::GameObject::update(a_fDeltaTime);
 		};
 
-		void CharacterTest::render(const ns_system::Camera& a_Camera)
+		void CharacterTest::render(const ns_graphics::Camera& a_Camera)
 		{
 			GameObject::render(a_Camera);
 		};

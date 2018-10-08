@@ -4,7 +4,7 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	namespace ns_graphics
 	{
 		//singleton instance
 		CameraManager* CameraManager::s_pInstance = nullptr;
@@ -93,7 +93,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void CameraManager::renderFrame(Game& a_Game)
+		void CameraManager::renderFrame(ns_system::Game& a_Game)
 		{
 			int l_iCameraCount = m_vectCameras.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)

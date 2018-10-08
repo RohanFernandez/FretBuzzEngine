@@ -35,8 +35,8 @@ namespace ns_fretBuzz
 			void updateComponents(float a_fDeltaTime);
 			void updateChildren(float a_fDeltaTime);
 
-			void renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
-			void renderChildren(const Camera& a_Camera);
+			void renderComponents(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera);
+			void renderChildren(const ns_graphics::Camera& a_Camera);
 
 			void addComponent(IComponent* a_IComponent);
 			void resetDontDestroyParent(GameObject& a_NewParent);
@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 			void addChild(GameObject* a_pChildGameObject);
 
 			// Renders all the components and renders its child GameObjects.
-			virtual void render(const Camera& a_Camera);
+			virtual void render(const ns_graphics::Camera& a_Camera);
 
 			// Updates all the components and renders its child GameObjects.
 			virtual void update(float a_fDeltaTime);

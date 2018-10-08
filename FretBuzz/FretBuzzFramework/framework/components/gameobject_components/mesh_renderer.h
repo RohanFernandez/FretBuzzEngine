@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 			void setShader(Shader* a_pShader);
 			Shader* getShader();
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_system::Camera& a_Camera) override;
+			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 		};
 	}
 }
