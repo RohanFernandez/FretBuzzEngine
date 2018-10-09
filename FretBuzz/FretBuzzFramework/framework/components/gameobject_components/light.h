@@ -46,10 +46,10 @@ namespace ns_fretBuzz
 
 				//SpotLight specific
 				static constexpr char UNIF_INNER_CUT_OFF[] = "].u_fInnerCutOff";
-				float m_fInnerCutOff = glm::cos(15.0f);
+				float m_fInnerCutOff = glm::cos(glm::radians(12.0f));
 
 				static constexpr char UNIF_OUTER_CUT_OFF[] = "].u_fOuterCutOff";
-				float m_fOuterCutOff = glm::cos(18.0f);
+				float m_fOuterCutOff = glm::cos(glm::radians(25.0f));
 
 				static constexpr char UNIF_INTENSITY[] = "].u_fIntensity";
 				float m_fIntensity = 1.0f;
@@ -57,6 +57,16 @@ namespace ns_fretBuzz
 				static constexpr char UNIF_DIR_LIGHT_COUNT[] = "u_iDirectionalLightCount";
 				static constexpr char UNIF_POINT_LIGHT_COUNT[] = "u_iPointLightCount";
 				static constexpr char UNIF_SPOT_LIGHT_COUNT[] = "u_iSpotLightCount";
+
+				inline void setOuterCutOff(float a_fAngleInDegrees)
+				{
+					m_fInnerCutOff = glm::cos(glm::radians(a_fAngleInDegrees));
+				}
+
+				inline void setInnerCutOff(float a_fAngleInDegrees)
+				{
+					m_fOuterCutOff = glm::cos(glm::radians(a_fAngleInDegrees));
+				}
 			};
 
 		protected:

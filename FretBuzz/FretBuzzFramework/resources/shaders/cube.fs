@@ -64,11 +64,11 @@ vec3 getSpotLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3DiffuseSa
 	float l_fAttenuation = 1.0f / (a_Light.u_v3ConstLinQuad.x + a_Light.u_v3ConstLinQuad.y * l_fDistance + a_Light.u_v3ConstLinQuad.z * l_fDistance * l_fDistance);
 	
 	float l_fLightRayAngle = dot(a_Light.u_v3LightDirection, l_v3LightToFragDirection);
-	float l_fSmoothEdge = smoothstep(a_Light.u_fInnerCutOff, a_Light.u_fOuterCutOff, l_fLightRayAngle);
+	float l_fSmoothEdge = smoothstep(a_Light.u_fOuterCutOff, a_Light.u_fInnerCutOff, l_fLightRayAngle);
 	
 	vec3 l_v3AmbientColor = a_Light.u_v3AmbientColor * a_v3DiffuseSampledColor;
-	vec3 l_v3DiffuseColor = a_Light.u_v3DiffuseColor * a_v3DiffuseSampledColor * max(0.0, dot(inVertexData.normal, -l_v3LightToFragDirection));
-	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(l_v3LightToFragDirection, inVertexData.normal))),0.0), u_Material.m_fShininess);
+	vec3 l_v3DiffuseColor = a_Light.u_v3DiffuseColor * a_v3DiffuseSampledColor * max(0.0, dot(inVertexData.normal, -a_Light.u_v3LightDirection));
+	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(a_Light.u_v3LightDirection, inVertexData.normal))),0.0), u_Material.m_fShininess);
 	
 	return vec3((l_v3AmbientColor + l_v3DiffuseColor + l_v3SpecularColor) * l_fAttenuation * l_fSmoothEdge * a_Light.u_fIntensity);
 }
