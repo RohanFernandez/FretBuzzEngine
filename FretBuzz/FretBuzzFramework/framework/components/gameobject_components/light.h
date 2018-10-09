@@ -53,6 +53,10 @@ namespace ns_fretBuzz
 
 				static constexpr char UNIF_INTENSITY[] = "].u_fIntensity";
 				float m_fIntensity = 1.0f;
+
+				static constexpr char UNIF_DIR_LIGHT_COUNT[] = "u_iDirectionalLightCount";
+				static constexpr char UNIF_POINT_LIGHT_COUNT[] = "u_iPointLightCount";
+				static constexpr char UNIF_SPOT_LIGHT_COUNT[] = "u_iSpotLightCount";
 			};
 
 		protected:

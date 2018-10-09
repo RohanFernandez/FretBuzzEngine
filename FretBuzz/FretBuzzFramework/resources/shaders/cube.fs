@@ -34,9 +34,13 @@ in vertData
 
 uniform Material u_Material;
 
-uniform Light u_DirectionalLight[1];
-uniform Light u_SpotLight[1];
-uniform Light u_PointLight[1];
+uniform Light u_DirectionalLight[4];
+uniform Light u_PointLight[4];
+uniform Light u_SpotLight[4];
+
+uniform int u_iDirectionalLightCount;
+uniform int u_iPointLightCount;
+uniform int u_iSpotLightCount;
 
 uniform vec3 u_v3CamPosition;
 
@@ -59,7 +63,7 @@ vec3 getSpotLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3DiffuseSa
 	float l_fDistance = length(vec3(a_Light.u_v4LightPosition) - inVertexData.position);
 	float l_fAttenuation = 1.0f / (a_Light.u_v3ConstLinQuad.x + a_Light.u_v3ConstLinQuad.y * l_fDistance + a_Light.u_v3ConstLinQuad.z * l_fDistance * l_fDistance);
 	
-	float l_fLightRayAngle = dot(l_v3LightToFragDirection, a_Light.u_v3LightDirection);
+	float l_fLightRayAngle = dot(a_Light.u_v3LightDirection, l_v3LightToFragDirection);
 	float l_fSmoothEdge = smoothstep(a_Light.u_fInnerCutOff, a_Light.u_fOuterCutOff, l_fLightRayAngle);
 	
 	vec3 l_v3AmbientColor = a_Light.u_v3AmbientColor * a_v3DiffuseSampledColor;
@@ -76,15 +80,15 @@ void main()
 	vec3 l_v3SpecularSampledColor = vec3(texture(u_Material.m_texSpecular, inVertexData.texCoords));
 	
 	vec3 l_v3FinalLight = vec3(0.0,0.0,0.0);
-	//for(int l_iCurrentDirectionalLight = 0; l_iCurrentDirectionalLight < 2; l_iCurrentDirectionalLight++)
-	//{
-	//	l_v3FinalLight += getDirectionalLightColor(u_DirectionalLight[l_iCurrentDirectionalLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
-	//}
-	//for(int l_iCurrentPointLight = 0; l_iCurrentPointLight < 1; l_iCurrentPointLight++)
-	//{
-	//	l_v3FinalLight += getDirectionalLightColor(u_PointLight[l_iCurrentPointLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
-	//}
-	for(int l_iCurrentSpotLight = 0; l_iCurrentSpotLight < 1; l_iCurrentSpotLight++)
+	for(int l_iCurrentDirectionalLight = 0; l_iCurrentDirectionalLight < u_iDirectionalLightCount; l_iCurrentDirectionalLight++)
+	{
+		l_v3FinalLight += getDirectionalLightColor(u_DirectionalLight[l_iCurrentDirectionalLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
+	}
+	for(int l_iCurrentPointLight = 0; l_iCurrentPointLight < u_iPointLightCount; l_iCurrentPointLight++)
+	{
+		l_v3FinalLight += getDirectionalLightColor(u_PointLight[l_iCurrentPointLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
+	}
+	for(int l_iCurrentSpotLight = 0; l_iCurrentSpotLight < u_iSpotLightCount; l_iCurrentSpotLight++)
 	{
 		l_v3FinalLight += getSpotLightColor(u_SpotLight[l_iCurrentSpotLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
 	}

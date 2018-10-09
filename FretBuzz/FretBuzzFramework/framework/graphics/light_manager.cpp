@@ -108,6 +108,10 @@ namespace ns_fretBuzz
 					a_Shader.setUniform1f((l_strLightIndex + Light::LightSource::UNIF_INTENSITY).c_str(), l_Light.m_LightSource.m_fIntensity);
 				}
 			}
+			
+			a_Shader.setUniform1i(Light::LightSource::UNIF_DIR_LIGHT_COUNT, l_iDirectionalLightIndex);
+			a_Shader.setUniform1i(Light::LightSource::UNIF_POINT_LIGHT_COUNT, l_iPointLightIndex);
+			a_Shader.setUniform1i(Light::LightSource::UNIF_SPOT_LIGHT_COUNT, l_iSpotLightIndex);
 		}
 
 		void LightManager::s_setAllLightUniforms(Shader& a_shader)
