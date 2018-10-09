@@ -106,13 +106,16 @@ namespace ns_fretBuzz
 
 		virtual void update(float a_fDeltaTime) override
 		{
-			/*rot = rot + M_PI * a_fDeltaTime * 0.5f;
-			m_Transform.setLocalRotation({ rot, rot , rot });
+			if (m_pLight->getType() == ns_graphics::Light::LIGHT_TYPE::POINT)
+			{
+				rot = rot + M_PI * a_fDeltaTime * 0.5f;
+				m_Transform.setLocalRotation({ rot, rot , rot });
 
-			glm::vec3 l_newPosition{ m_v3LightPosition };
-			l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f * m_v3LightPosition.x;
-			l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f * m_v3LightPosition.z;
-			m_Transform.setWorldPosition(l_newPosition);*/
+				glm::vec3 l_newPosition{ m_v3LightPosition };
+				l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f * m_v3LightPosition.x;
+				l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f * m_v3LightPosition.z;
+				m_Transform.setWorldPosition(l_newPosition);
+			}
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
 			{

@@ -71,8 +71,8 @@ namespace ns_fretBuzz
 			-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,	 0.0f, 1.0f
 		};
 
-		test_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName)
-			: ns_system::GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f, 0.0f}, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
+		test_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_Position)
+			: ns_system::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("cube");
 			m_pDiffuseTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_diffuse");
