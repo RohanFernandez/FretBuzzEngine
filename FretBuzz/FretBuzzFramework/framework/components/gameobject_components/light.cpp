@@ -2,13 +2,15 @@
 #include "light.h"
 #include "../../system/game_object.h"
 #include "../../graphics/light_manager.h"
+#include <iostream>
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
 		Light::Light(ns_system::GameObject& a_GameObj, LIGHT_TYPE a_LightType)
-			: ns_system::IComponent(ns_system::COMPONENT_TYPE::LIGHT , a_GameObj )
+			: ns_system::IComponent(ns_system::COMPONENT_TYPE::LIGHT , a_GameObj ),
+			m_LightType(a_LightType)
 		{
 			LightManager::s_registerLight(this);
 		}
@@ -34,28 +36,9 @@ namespace ns_fretBuzz
 			m_LightType = a_LIGHT_TYPE;
 		}
 
-		void Light::updateUniforms(Shader& a_Shader, int a_iLightIndex)
-		{
-			std::string l_strLightIndex = LightSource::UNIF_LIGHT + std::to_string(a_iLightIndex);
-
-			a_Shader.setUniform4f((l_strLightIndex + LightSource::UNIF_LIGHT_POSITION).c_str(), m_LightSource.m_v4LightPosition);
-			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_LIGHT_DIRECTION).c_str(), m_LightSource.m_v3LightDirection);
-			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_CONST_LIN_QUAD).c_str(), m_LightSource.m_v3ConstLinQuad);
-
-			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_AMBIENT_COLOR).c_str(), m_LightSource.m_v3AmbientColor);
-			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_DIFFUSE_COLOR).c_str(), m_LightSource.m_v3Diffuse);
-			a_Shader.setUniform3f((l_strLightIndex + LightSource::UNIF_SPECULAR_COLOR).c_str(), m_LightSource.m_v3Specular);
-
-			if (m_LightType == LIGHT_TYPE::SPOT)
-			{
-				a_Shader.setUniform1f((l_strLightIndex + LightSource::UNIF_INNER_CUT_OFF).c_str(), m_LightSource.m_fInnerCutOff);
-				a_Shader.setUniform1f((l_strLightIndex + LightSource::UNIF_OUTER_CUT_OFF).c_str(), m_LightSource.m_fOuterCutOff);
-			}
-		}
-
 		void Light::update(float a_fDeltaTime)
 		{
-			m_LightSource.m_v4LightPosition = m_LightType == LIGHT_TYPE::DIRECTIONAL ? 
+			m_LightSource.m_v4LightPosition =  (m_LightType == LIGHT_TYPE::DIRECTIONAL) && (m_LightSource.m_v4LightPosition.w == 0.0f) ?
 					glm::vec4(m_GameObject.m_Transform.getWorldPosition(), 0.0f):
 					glm::vec4(m_GameObject.m_Transform.getWorldPosition(), 1.0f);
 

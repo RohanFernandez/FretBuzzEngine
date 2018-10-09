@@ -68,21 +68,22 @@ namespace ns_fretBuzz
 	  -0.5f,  0.5f, -0.5f
 		};
 
-		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position)
-			: ns_system::GameObject(a_ParentGameObject, a_strName, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
+		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 1.0f)
+			: ns_system::GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("lightShader");
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
 
-			m_pLight = ns_graphics::Light::addToGameObject(*this, ns_graphics::Light::LIGHT_TYPE::POINT);
+			m_pLight = ns_graphics::Light::addToGameObject(*this, a_LightType);
 			ns_graphics::Light::LightSource& l_LightSource = m_pLight->m_LightSource;
 
 			l_LightSource.m_v4LightPosition = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-			l_LightSource.m_v3LightDirection = glm::vec3{ 1.0f, 0.0f, 0.0f };
-			l_LightSource.m_v3ConstLinQuad = { 1.0f, 0.09, 0.032 };
+			l_LightSource.m_v3LightDirection = m_Transform.getForward();
+			l_LightSource.m_v3ConstLinQuad = { 1.0f, 0.09f, 0.032f };
 			l_LightSource.m_v3AmbientColor = {0.2f, 0.2f, 0.2f};
 			l_LightSource.m_v3Diffuse = { 0.7f, 0.7f, 0.7f };
 			l_LightSource.m_v3Specular = { 1.0f, 1.0f, 1.0f };
+			l_LightSource.m_fIntensity = a_fIntensity;
 
 			m_v3LightPosition = a_v3Position;
 			
@@ -105,13 +106,22 @@ namespace ns_fretBuzz
 
 		virtual void update(float a_fDeltaTime) override
 		{
-			rot = rot + M_PI * a_fDeltaTime * 0.5f;
+			/*rot = rot + M_PI * a_fDeltaTime * 0.5f;
 			m_Transform.setLocalRotation({ rot, rot , rot });
 
 			glm::vec3 l_newPosition{ m_v3LightPosition };
 			l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f * m_v3LightPosition.x;
 			l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f * m_v3LightPosition.z;
-			m_Transform.setWorldPosition(l_newPosition);
+			m_Transform.setWorldPosition(l_newPosition);*/
+
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_0))
+			{
+				m_pLight->m_LightSource.m_fIntensity -= 0.1f;
+			}
+			else if (ns_system::Input::IsKeyPutDown(GLFW_KEY_1))
+			{
+				m_pLight->m_LightSource.m_fIntensity += 0.1f;
+			}
 
 			GameObject::update(a_fDeltaTime);
 		}
@@ -128,14 +138,18 @@ namespace ns_fretBuzz
 
 		virtual void render(const ns_graphics::Camera& a_Camera) override
 		{
-			m_pShader->bind();
+		#if 0
+			{
+				m_pShader->bind();
 
-			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
-			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
-			m_pShader->setUniform4f("u_v4LghtColor", m_v4LightColor);
+				const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
+				m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
+				m_pShader->setUniform4f("u_v4LghtColor", m_v4LightColor);
 
-			glBindVertexArray(m_VAO);
-			glDrawArrays(GL_TRIANGLES, 0, 36);
+				glBindVertexArray(m_VAO);
+				glDrawArrays(GL_TRIANGLES, 0, 36);
+			}
+		#endif
 
 			GameObject::render(a_Camera);
 		}

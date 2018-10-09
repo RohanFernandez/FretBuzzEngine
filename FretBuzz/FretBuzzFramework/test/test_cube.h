@@ -119,13 +119,6 @@ namespace ns_fretBuzz
 			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
 
 			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
-
-			//glm::vec4 l_v4LightVector = { /*glm::vec3{1.0f, 0.0f, 0.0f}*/m_pLightCube->getLightPosition(), 1.0f };
-			//m_pShader->setUniform4f("u_Light.m_v4LightVector", l_v4LightVector);
-			//m_pShader->setUniform3f("u_Light.m_v3ConstLinQuad", { 1.0f, 0.09f, 0.032f });
-			//m_pShader->setUniform3f("u_Light.m_v3AmbientColor", {0.2f, 0.2f, 0.2f});
-			//m_pShader->setUniform3f("u_Light.m_v3Diffuse", { 0.7f, 0.7f, 0.7f });
-			//m_pShader->setUniform3f("u_Light.m_v3Specular", { 1.0f, 1.0f, 1.0f });
 			
 			ns_graphics::LightManager::s_setAllLightUniforms(*m_pShader);
 

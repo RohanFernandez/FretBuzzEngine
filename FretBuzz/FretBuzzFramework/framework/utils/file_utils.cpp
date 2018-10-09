@@ -2,6 +2,7 @@
 #include "file_utils.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 namespace ns_fretBuzz
 {
@@ -16,22 +17,10 @@ namespace ns_fretBuzz
 				return nullptr;
 			}
 
-			l_File.seekg(0, std::ios::end);
-			int l_iStreamCount = l_File.tellg();
-			l_File.seekg(0, std::ios::beg);
-
-			char* l_pFileStream = new char[l_iStreamCount];
-
-			memset(l_pFileStream, 0, l_iStreamCount);
-			l_File.read(l_pFileStream, l_iStreamCount);
-
-			std::string l_strReturn(l_pFileStream);
-			delete[] l_pFileStream;
-			l_pFileStream = nullptr;
-
+			std::stringstream l_StringStream;
+			l_StringStream << l_File.rdbuf();
 			l_File.close();
-
-			return l_strReturn;
+			return l_StringStream.str();
 		}
 
 		bool FileUtils::readImage(std::string a_strImagePath, BYTE*& a_pImageData, unsigned int& a_iWidth, unsigned int& a_iHeight, int& a_iChannels)

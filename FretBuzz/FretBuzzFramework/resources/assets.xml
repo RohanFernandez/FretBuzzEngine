@@ -10,7 +10,7 @@
 
 <!-- SHADERS START-->
 	<Shaders>
-		<shader id="default" vert="vertShader.txt" frag="fragShader.txt"/>
+    <shader id="default" vert="vertShader.txt" frag="fragShader.txt"/>
     <shader id="defaultLineShader" vert="defaultLineVertShader.txt" frag="defaultLineFragShader.txt"/>
     <shader id="cube" vert="cube.vs" frag="cube.fs"/>
     <shader id="lightShader" vert="lightCube.vs" frag="lightCube.fs"/>

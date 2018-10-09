@@ -28,8 +28,8 @@ namespace ns_fretBuzz
 			ns_system::Behaviour::addToGameObject<PlayerController>(*m_pManager);
 
 			m_pCube = new test_cube(m_refRootGameObject, "Cube");
-			m_pLightCube1 = new light_cube(m_refRootGameObject, "Light1", {-1.0f, 3.0f, 1.0f});
-			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light2", { 1.0f, -3.0f, 1.0f });
+			m_pLightCube1 = new light_cube(*m_pManager, "Light1", {0.0f, 0.0f, 0.0f}, ns_graphics::Light::LIGHT_TYPE::SPOT, 1.0f);
+			//m_pLightCube2 = new light_cube(m_refRootGameObject, "Light2", { 1.0f, -3.0f, 1.0f }, ns_graphics::Light::LIGHT_TYPE::POINT);
 
 			m_pCube->setCamGameObject(m_pManager);
 		}
