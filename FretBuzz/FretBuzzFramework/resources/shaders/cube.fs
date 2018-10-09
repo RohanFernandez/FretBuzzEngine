@@ -20,9 +20,9 @@ struct Light
 
 struct Material
 {
-	float m_fShininess;
-	sampler2D m_texDiffuse;
-	sampler2D m_texSpecular;
+	float u_fShininess;
+	sampler2D u_texDiffuse;
+	sampler2D u_texSpecular;
 };
 
 in vertData
@@ -52,7 +52,7 @@ vec3 getDirectionalLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3Di
 	
 	vec3 l_v3AmbientColor = a_Light.u_v3AmbientColor * a_v3DiffuseSampledColor;
 	vec3 l_v3DiffuseColor = a_Light.u_v3DiffuseColor * a_v3DiffuseSampledColor * max(0.0, dot(inVertexData.normal, -l_v3LightDirection));
-	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(l_v3LightDirection, inVertexData.normal))),0.0), u_Material.m_fShininess);
+	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(l_v3LightDirection, inVertexData.normal))),0.0), u_Material.u_fShininess);
 	
 	return vec3((l_v3AmbientColor + l_v3DiffuseColor + l_v3SpecularColor) * l_fAttenuation * a_Light.u_fIntensity);
 }
@@ -68,7 +68,7 @@ vec3 getSpotLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3DiffuseSa
 	
 	vec3 l_v3AmbientColor = a_Light.u_v3AmbientColor * a_v3DiffuseSampledColor;
 	vec3 l_v3DiffuseColor = a_Light.u_v3DiffuseColor * a_v3DiffuseSampledColor * max(0.0, dot(inVertexData.normal, -a_Light.u_v3LightDirection));
-	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(a_Light.u_v3LightDirection, inVertexData.normal))),0.0), u_Material.m_fShininess);
+	vec3 l_v3SpecularColor = a_Light.u_v3SpecularColor * a_v3SpecularSampledColor * pow(max(dot(-a_v3ViewDirection, normalize(reflect(a_Light.u_v3LightDirection, inVertexData.normal))),0.0), u_Material.u_fShininess);
 	
 	return vec3((l_v3AmbientColor + l_v3DiffuseColor + l_v3SpecularColor) * l_fAttenuation * l_fSmoothEdge * a_Light.u_fIntensity);
 }
@@ -76,8 +76,8 @@ vec3 getSpotLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3DiffuseSa
 void main()
 {
 	vec3 l_v3ViewDirection = normalize(inVertexData.position - u_v3CamPosition);
-	vec3 l_v3DiffuseSampledColor = vec3(texture(u_Material.m_texDiffuse, inVertexData.texCoords));
-	vec3 l_v3SpecularSampledColor = vec3(texture(u_Material.m_texSpecular, inVertexData.texCoords));
+	vec3 l_v3DiffuseSampledColor = vec3(texture(u_Material.u_texDiffuse, inVertexData.texCoords));
+	vec3 l_v3SpecularSampledColor = vec3(texture(u_Material.u_texSpecular, inVertexData.texCoords));
 	
 	vec3 l_v3FinalLight = vec3(0.0,0.0,0.0);
 	for(int l_iCurrentDirectionalLight = 0; l_iCurrentDirectionalLight < u_iDirectionalLightCount; l_iCurrentDirectionalLight++)

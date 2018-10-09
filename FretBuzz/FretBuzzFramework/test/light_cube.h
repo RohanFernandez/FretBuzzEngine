@@ -138,7 +138,7 @@ namespace ns_fretBuzz
 
 		virtual void render(const ns_graphics::Camera& a_Camera) override
 		{
-		#if 0
+		if (m_pLight->getType() != ns_graphics::Light::LIGHT_TYPE::SPOT) 
 			{
 				m_pShader->bind();
 
@@ -149,7 +149,7 @@ namespace ns_fretBuzz
 				glBindVertexArray(m_VAO);
 				glDrawArrays(GL_TRIANGLES, 0, 36);
 			}
-		#endif
+		
 
 			GameObject::render(a_Camera);
 		}

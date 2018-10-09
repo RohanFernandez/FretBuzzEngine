@@ -4,6 +4,7 @@
 #include "../framework/utils/math.h"
 #include "../framework/graphics/light_manager.h"
 #include "light_cube.h"
+#include "../framework/graphics/material.h"
 
 namespace ns_fretBuzz
 {
@@ -20,6 +21,8 @@ namespace ns_fretBuzz
 		ns_graphics::Shader* m_pShader = nullptr;
 		ns_graphics::Texture* m_pDiffuseTexture = nullptr;
 		ns_graphics::Texture* m_pSpecularTexture = nullptr;
+
+		ns_graphics::Material m_Material;
 
 		light_cube* m_pLightCube = nullptr;
 		GameObject* m_pCamGameObject = nullptr;
@@ -75,6 +78,10 @@ namespace ns_fretBuzz
 			m_pDiffuseTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_diffuse");
 			m_pSpecularTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_specular");
 
+			m_Material.setShader(*m_pShader);
+			m_Material.m_MaterialData.m_pTexDiffuse = m_pDiffuseTexture;
+			m_Material.m_MaterialData.m_pTexSpecular = m_pSpecularTexture;
+
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
 
@@ -119,18 +126,8 @@ namespace ns_fretBuzz
 			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
 
 			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
-			
-			ns_graphics::LightManager::s_setAllLightUniforms(*m_pShader);
 
-			m_pShader->setUniform1f("u_Material.m_fShininess", 32.0f);
-
-			glActiveTexture(GL_TEXTURE0);
-			m_pDiffuseTexture->bind();
-			m_pShader->setUniform1i("u_Material.m_texDiffuse", 0);
-
-			glActiveTexture(GL_TEXTURE1);
-			m_pSpecularTexture->bind();
-			m_pShader->setUniform1i("u_Material.m_texSpecular", 1);
+			m_Material.updateUniform();
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
