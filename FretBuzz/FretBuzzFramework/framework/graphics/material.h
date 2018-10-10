@@ -6,6 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
+		class Camera;
 		class Material
 		{
 		public:
@@ -20,6 +21,8 @@ namespace ns_fretBuzz
 
 				static constexpr char UNIF_MAT_TEX_SPECULAR[] = "u_Material.u_texSpecular";
 				Texture* m_pTexSpecular = nullptr;
+
+				static constexpr char UNIF_CAM_POSITION[] = "u_v3CamPosition";
 			};
 
 			Material();
@@ -31,7 +34,7 @@ namespace ns_fretBuzz
 			void setShader(Shader& a_pShader);
 			Shader* getShader();
 
-			void updateUniform();
+			void updateUniform(const Camera& a_Camera);
 		};
 	}
 }

@@ -1,5 +1,7 @@
 #include "material.h"
 #include "../graphics/light_manager.h"
+#include "../components/gameobject_components/camera.h"
+#include "../system/game_object.h"
 
 namespace ns_fretBuzz
 {
@@ -25,8 +27,10 @@ namespace ns_fretBuzz
 			m_pShader = &a_Shader;
 		}
 
-		void Material::updateUniform()
+		void Material::updateUniform(const Camera& a_Camera)
 		{
+			m_pShader->setUniform3f(MaterialData::UNIF_CAM_POSITION, a_Camera.m_GameObject.m_Transform.getWorldPosition());
+
 			m_pShader->setUniform1f(MaterialData::UNIF_MAT_SHININESS, 32.0f);
 
 			glActiveTexture(GL_TEXTURE0);

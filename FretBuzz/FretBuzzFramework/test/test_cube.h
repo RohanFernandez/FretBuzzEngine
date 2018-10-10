@@ -125,9 +125,7 @@ namespace ns_fretBuzz
 			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
 			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
 
-			m_pShader->setUniform3f("u_v3CamPosition", m_pCamGameObject->m_Transform.getWorldPosition());
-
-			m_Material.updateUniform();
+			m_Material.updateUniform(a_Camera);
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
