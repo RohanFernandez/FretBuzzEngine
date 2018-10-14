@@ -23,8 +23,11 @@ namespace ns_fretBuzz
 			static constexpr char DEFAULT_SHADER_ID[] = "default";
 			static constexpr char DEFAULT_LINE_SHADER_ID[] = "defaultLineShader";
 
+			static constexpr char VERT_SHADER_EXTENSION[] = ".vs";
+			static constexpr char FRAG_SHADER_EXTENSION[] = ".fs";
+
 			Shader() = delete;
-			Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath);
+			Shader(const std::string l_strShaderPath);
 
 			//Copy constructor
 			Shader(Shader& a_Shader);

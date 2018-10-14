@@ -24,8 +24,7 @@ namespace ns_fretBuzz
 			//Shader
 			static constexpr char SHADER_FILE_PATH[] = "resources//shaders//";
 			static constexpr char SHADER_NODE_NAME[] = "Shaders";
-			static constexpr char ATTRIBUTE_VERT_NAME[] = "vert";
-			static constexpr char ATTRIBUTE_FRAG_NAME[] = "frag";
+			static constexpr char ATTRIBUTE_SHADER_NAME[] = "name";
 
 			//Texture
 			static constexpr char TEXTURE_FILE_PATH[] = "resources//textures//";

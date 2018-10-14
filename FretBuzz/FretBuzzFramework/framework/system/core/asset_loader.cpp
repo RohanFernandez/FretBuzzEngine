@@ -105,8 +105,7 @@ namespace ns_fretBuzz
 				l_currentShader++)
 			{
 				std::string l_strShaderID;
-				std::string l_strFragShaderName;
-				std::string l_strVertShaderName;
+				std::string l_strShaderName;
 
 				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentShader->attributes_begin();
 					l_CurrentAttribute != l_currentShader->attributes_end();
@@ -117,20 +116,16 @@ namespace ns_fretBuzz
 					{
 						l_strShaderID = l_CurrentAttribute->value();
 					}
-					else if (l_strAttributeName.compare(ATTRIBUTE_VERT_NAME) == 0)
+					else if (l_strAttributeName.compare(ATTRIBUTE_SHADER_NAME) == 0)
 					{
-						l_strVertShaderName = l_CurrentAttribute->value();
-					}
-					else if (l_strAttributeName.compare(ATTRIBUTE_FRAG_NAME) == 0)
-					{
-						l_strFragShaderName = l_CurrentAttribute->value();
+						l_strShaderName = l_CurrentAttribute->value();
 					}
 					else
 					{
 						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '" << l_strAttributeName << "'";
 					}
 				}
-				ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strVertShaderName, SHADER_FILE_PATH + l_strFragShaderName);
+				ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strShaderName);
 				if (l_Shader.getIsErrorWhileLoading())
 				{
 					std::cout << "AssetLoader::loadShader:: Failed to load Shader with id '"<< l_strShaderID << "\n";

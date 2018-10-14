@@ -8,10 +8,10 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		Shader::Shader(const std::string l_strVertexShaderPath, const std::string l_strFragmentShaderPath)
+		Shader::Shader(const std::string l_strShaderPath)
 			: 
-			m_strVertexShaderPath{ l_strVertexShaderPath },
-			m_strFragmentShaderPath{ l_strFragmentShaderPath },
+			m_strVertexShaderPath{ l_strShaderPath + VERT_SHADER_EXTENSION},
+			m_strFragmentShaderPath{ l_strShaderPath + FRAG_SHADER_EXTENSION},
 			ns_system::IManagedResource()
 		{
 			if (!initialize())

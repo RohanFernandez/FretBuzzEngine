@@ -286,10 +286,10 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="test\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="resources\shaders\defaultLineFragShader.txt" />
-    <Text Include="resources\shaders\defaultLineVertShader.txt" />
-    <Text Include="resources\shaders\fragShader.txt" />
-    <Text Include="resources\shaders\vertShader.txt" />
+    <Text Include="resources\shaders\defaultLine.fs" />
+    <Text Include="resources\shaders\defaultLine.vs" />
+    <Text Include="resources\shaders\default.fs" />
+    <Text Include="resources\shaders\default.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\sprites\sword.png" />
@@ -306,10 +306,10 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\cube.fs" />
-    <None Include="resources\shaders\cube.vs" />
-    <None Include="resources\shaders\lightCube.fs" />
-    <None Include="resources\shaders\lightCube.vs" />
+    <None Include="resources\shaders\phong.fs" />
+    <None Include="resources\shaders\phong.vs" />
+    <None Include="resources\shaders\light.fs" />
+    <None Include="resources\shaders\light.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

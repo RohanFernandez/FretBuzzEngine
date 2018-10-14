@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 			//List of all the scenes present in the game.
 			std::vector<ISceneData*> m_vectScenes;
 
-			//The scene manage that manages the transitions between scenes.
+			//The scene manager that manages the transitions between scenes.
 			SceneManager* m_pSceneManager = nullptr;
 
 			// Add game scenes here for scene management
