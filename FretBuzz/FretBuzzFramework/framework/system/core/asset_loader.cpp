@@ -104,7 +104,6 @@ namespace ns_fretBuzz
 				l_currentShader != a_ShaderNodeIterator->end();
 				l_currentShader++)
 			{
-				std::string l_strShaderID;
 				std::string l_strShaderName;
 
 				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentShader->attributes_begin();
@@ -112,11 +111,7 @@ namespace ns_fretBuzz
 					l_CurrentAttribute++)
 				{
 					std::string l_strAttributeName = l_CurrentAttribute->name();
-					if (l_strAttributeName.compare(ATTRIBUTE_ASSET_ID) == 0)
-					{
-						l_strShaderID = l_CurrentAttribute->value();
-					}
-					else if (l_strAttributeName.compare(ATTRIBUTE_SHADER_NAME) == 0)
+					if (l_strAttributeName.compare(ATTRIBUTE_SHADER_NAME) == 0)
 					{
 						l_strShaderName = l_CurrentAttribute->value();
 					}
@@ -128,11 +123,11 @@ namespace ns_fretBuzz
 				ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strShaderName);
 				if (l_Shader.getIsErrorWhileLoading())
 				{
-					std::cout << "AssetLoader::loadShader:: Failed to load Shader with id '"<< l_strShaderID << "\n";
+					std::cout << "AssetLoader::loadShader:: Failed to load Shader with id '"<< l_strShaderName << "\n";
 					return;
 				}
 
-				a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderID ,l_Shader);
+				a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderName,l_Shader);
 			}
 		}
 

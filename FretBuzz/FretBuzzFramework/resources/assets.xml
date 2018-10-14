@@ -10,10 +10,10 @@
 
 <!-- SHADERS START-->
 	<Shaders>
-    <shader id="default" name="default"/>
-    <shader id="defaultLineShader" name="defaultLine"/>
-    <shader id="cube" name="phong"/>
-    <shader id="lightShader" name="light"/>
+    <shader name="default"/>
+    <shader name="defaultLine"/>
+    <shader name="phong"/>
+    <shader name="light"/>
 	</Shaders>
 <!-- SHADERS END-->
 

@@ -71,7 +71,7 @@ namespace ns_fretBuzz
 		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 1.0f)
 			: ns_system::GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
-			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("lightShader");
+			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("light");
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
 
 			m_pLight = ns_graphics::Light::addToGameObject(*this, a_LightType);

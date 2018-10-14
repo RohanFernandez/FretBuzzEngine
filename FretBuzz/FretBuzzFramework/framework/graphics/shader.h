@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 	{
 		class Shader : public ns_system::IManagedResource
 		{
-		private:
+		protected:
 			GLuint m_ShaderID = 0;
 
 			//creates the shader and retuns if successfully initialized without error.
@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 
 		public:
 			static constexpr char DEFAULT_SHADER_ID[] = "default";
-			static constexpr char DEFAULT_LINE_SHADER_ID[] = "defaultLineShader";
+			static constexpr char DEFAULT_LINE_SHADER_ID[] = "defaultLine";
 
 			static constexpr char VERT_SHADER_EXTENSION[] = ".vs";
 			static constexpr char FRAG_SHADER_EXTENSION[] = ".fs";
