@@ -1,7 +1,7 @@
 #pragma once
 #include "../../system/component.h"
 #include "../sprite.h"
-#include "../../graphics/shader.h"
+#include "../../graphics/material.h"
 
 namespace ns_fretBuzz
 {
@@ -12,31 +12,27 @@ namespace ns_fretBuzz
 		{
 		private:
 			SpriteRenderer(ns_system::GameObject& a_GameObj);
-			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader);
+			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
 			SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
 
 			Sprite* m_pSprite = nullptr;
-			Shader* m_pShader = nullptr;
 
 			Sprite m_DefaultSprite;
-
-			void initialize();
 
 		protected:
 			~SpriteRenderer();
 
+			Material m_Material;
+
 		public:
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj);
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader = nullptr);
+			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
 
 			void setSprite(Sprite* a_Sprite);
 			void setSprite(std::string a_strSpriteID);
-
-			void setShader(std::string a_strShaderId);
-			void setShader(Shader* a_pShader);
 
 			void setDefaultColor(glm::vec4 a_v4Color)
 			{

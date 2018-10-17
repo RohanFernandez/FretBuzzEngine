@@ -31,10 +31,10 @@ namespace ns_fretBuzz
 			static constexpr int VERTICES_PER_SPRITE = 4;
 			static constexpr int INDICES_PER_SPRITE = 6;
 
-			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
+			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Material& a_Material);
 			static void submit(const std::vector<glm::vec4>& a_vectPosition, const glm::vec4& l_v4Color,
 				const Texture* a_pTexture, const std::vector<glm::vec2>& l_vectv2TexCoords,
-				const glm::mat4& a_mat4Transformation, Shader* a_pShader);
+				const glm::mat4& a_mat4Transformation, Material& a_Material);
 
 			virtual void begin() override;
 			virtual void end() override;

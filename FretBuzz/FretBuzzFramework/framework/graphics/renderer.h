@@ -45,8 +45,6 @@ namespace ns_fretBuzz
 			unsigned int m_iTotalIndices = 0;
 			unsigned int m_iVertBufferSize = 0;
 
-			GLuint* m_pIndexBufferArray = nullptr;
-
 			IRenderer();
 
 		public:

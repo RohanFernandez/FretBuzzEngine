@@ -11,38 +11,36 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
+		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
 			m_pSprite{ a_Sprite },
-			m_pShader{ a_pShader },
 			m_DefaultSprite()
 		{
-			initialize();
+			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::DEFAULT_SPRITE));
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj)
-			: SpriteRenderer(a_GameObj, nullptr, nullptr)
+			: SpriteRenderer(a_GameObj, nullptr)
 		{
-			initialize();
+			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::DEFAULT_SPRITE));
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
-			: SpriteRenderer(a_GameObj,ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0), nullptr)
+			: SpriteRenderer(a_GameObj,ns_system::ResourceManager::getResource<SpriteGroup>(a_strSpriteID)->getSprite(0))
 		{
-			initialize();
+			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::DEFAULT_SPRITE));
 		}
 
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions)
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
 			m_DefaultSprite(a_v2Dimensions, a_v4Color)
 		{
-			initialize();
+			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::DEFAULT_SPRITE));
 		}
 
 		SpriteRenderer::~SpriteRenderer()
 		{
 			m_pSprite = nullptr;
-			m_pShader = nullptr;
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj)
@@ -51,10 +49,10 @@ namespace ns_fretBuzz
 				nullptr : new SpriteRenderer(a_GameObj);
 		}
 
-		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite, Shader* a_pShader)
+		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
-				nullptr : new SpriteRenderer(a_GameObj, a_Sprite, a_pShader);
+				nullptr : new SpriteRenderer(a_GameObj, a_Sprite);
 		}
 
 		SpriteRenderer* SpriteRenderer::addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID)
@@ -67,22 +65,6 @@ namespace ns_fretBuzz
 		{
 			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, &a_GameObj) ?
 				nullptr : new SpriteRenderer(a_GameObj, a_v4Color, a_v2Dimensions);
-		}
-
-		void SpriteRenderer::setShader(std::string a_strShaderId)
-		{
-			Shader* l_pShader  = ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE);
-			m_pShader = (l_pShader == nullptr) ? ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE) : l_pShader;
-		}
-
-		void SpriteRenderer::setShader(Shader* a_pShader)
-		{
-			m_pShader = (a_pShader == nullptr) ? ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE) : a_pShader;
-		}
-
-		void SpriteRenderer::initialize()
-		{
-			setShader(m_pShader);
 		}
 
 		void SpriteRenderer::setSprite(Sprite* a_Sprite)
@@ -99,7 +81,7 @@ namespace ns_fretBuzz
 		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
 			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaultSprite : m_pSprite);
-			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_pShader);
+			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_Material);
 
 			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
 			l_CurrentShader.bind();

@@ -5,6 +5,7 @@
 #include "../framework/utils/math.h"
 #include "../framework/components/gameobject_components/light.h"
 #include "../framework/graphics/shader_manager.h"
+#include "../framework/graphics/material.h"
 
 namespace ns_fretBuzz
 {
@@ -20,10 +21,11 @@ namespace ns_fretBuzz
 
 		glm::vec4 m_v4LightColor = {1.0f, 1.0f, 1.0f, 1.0f};
 
-		ns_graphics::Shader* m_pShader = nullptr;
 		ns_graphics::Light* m_pLight = nullptr;
 
 		glm::vec3 m_v3LightPosition;
+
+		ns_graphics::Material m_Material;
 
 		float m_vertices[108] = {
 	  -0.5f, -0.5f, -0.5f,
@@ -72,7 +74,7 @@ namespace ns_fretBuzz
 		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 1.0f)
 			: ns_system::GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
-			m_pShader = ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_3D);
+			m_Material.setShader(*ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_3D));
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
 
 			m_pLight = ns_graphics::Light::addToGameObject(*this, a_LightType);
@@ -144,12 +146,12 @@ namespace ns_fretBuzz
 		{
 		if (m_pLight->getType() != ns_graphics::Light::LIGHT_TYPE::SPOT) 
 			{
-				m_pShader->bind();
+				m_Material.m_MaterialData.m_v4Albedo = m_v4LightColor;
+				m_Material.bind(a_Camera);
 
 				const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
-				m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
-				m_pShader->setUniform4f("u_v4LghtColor", m_v4LightColor);
-
+				m_Material.m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
+				
 				glBindVertexArray(m_VAO);
 				glDrawArrays(GL_TRIANGLES, 0, 36);
 			}

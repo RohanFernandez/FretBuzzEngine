@@ -27,9 +27,10 @@ namespace ns_fretBuzz
 			m_pShader = &a_Shader;
 		}
 
-		void Material::updateUniform(const Camera& a_Camera)
+		void Material::bind(const Camera& a_Camera)
 		{
-			m_pShader->setUniform3f(MaterialData::UNIF_CAM_POSITION, a_Camera.m_GameObject.m_Transform.getWorldPosition());
+			m_pShader->bind(*this, a_Camera);
+			/*m_pShader->setUniform3f(MaterialData::UNIF_CAM_POSITION, a_Camera.m_GameObject.m_Transform.getWorldPosition());
 
 			m_pShader->setUniform1f(MaterialData::UNIF_MAT_SHININESS, 32.0f);
 
@@ -41,7 +42,7 @@ namespace ns_fretBuzz
 			m_MaterialData.m_pTexSpecular->bind();
 			m_pShader->setUniform1i(MaterialData::UNIF_MAT_TEX_SPECULAR, 1);
 
-			LightManager::s_setAllLightUniforms(*m_pShader);
+			LightManager::s_setAllLightUniforms(*m_pShader);*/
 		}
 	}
 }

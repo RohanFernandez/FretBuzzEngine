@@ -12,12 +12,6 @@ namespace ns_fretBuzz
 
 		IRenderer::~IRenderer()
 		{
-			if (m_pIndexBufferArray != nullptr)
-			{
-				delete[] m_pIndexBufferArray;
-				m_pIndexBufferArray = nullptr;
-			}
-
 			if (m_VBO) { glDeleteBuffers(1, &m_VBO); }
 			if (m_IBO) { glDeleteBuffers(1, &m_IBO); }
 			if (m_VAO) { glDeleteVertexArrays(1, &m_VAO); }

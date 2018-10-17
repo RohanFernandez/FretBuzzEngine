@@ -2,9 +2,14 @@
 
 layout(location = 0) out vec4 color;
 
-uniform vec4 u_v4LghtColor;
+struct Material
+{
+	vec4 u_v4Albedo;
+};
+
+uniform Material u_Material;
 
 void main()
 {
-	color = u_v4LghtColor;
+	color = u_Material.u_v4Albedo;
 }

@@ -24,7 +24,6 @@ namespace ns_fretBuzz
 
 		ns_graphics::Material m_Material;
 
-		light_cube* m_pLightCube = nullptr;
 		GameObject* m_pCamGameObject = nullptr;
 
 		float m_vertices[288] = {
@@ -74,11 +73,10 @@ namespace ns_fretBuzz
 		test_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_Position)
 			: ns_system::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
-			m_pShader = ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::PHONG);
+			m_Material.setShader(*ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::PHONG));
 			m_pDiffuseTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_diffuse");
 			m_pSpecularTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container_specular");
 
-			m_Material.setShader(*m_pShader);
 			m_Material.m_MaterialData.m_pTexDiffuse = m_pDiffuseTexture;
 			m_Material.m_MaterialData.m_pTexSpecular = m_pSpecularTexture;
 
@@ -116,16 +114,13 @@ namespace ns_fretBuzz
 
 		virtual void render(const ns_graphics::Camera& a_Camera) override
 		{
-			m_pShader->bind();
-
 			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
+			m_Material.bind(a_Camera);
 
 			glm::mat4 l_m4Model = m_pTransform->getModelMatrix();
-			m_pShader->setUniforMat4fv("u_m4Model", l_m4Model);
-			m_pShader->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
-			m_pShader->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
-
-			m_Material.updateUniform(a_Camera);
+			m_Material.getShader()->setUniforMat4fv("u_m4Model", l_m4Model);
+			m_Material.getShader()->setUniforMat4fv("u_m4transformation", l_mat4RenderTransformation);
+			m_Material.getShader()->setUniforMat3fv("u_m3NormalMatrix", glm::mat3(glm::transpose(glm::inverse(l_m4Model))));
 
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);

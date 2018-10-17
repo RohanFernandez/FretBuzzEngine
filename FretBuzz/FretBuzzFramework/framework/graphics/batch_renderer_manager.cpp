@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 
 		BatchRendererManager::~BatchRendererManager()
 		{
-			for (std::vector<ns_graphics::IBatchRenderer*>::iterator l_Iterator = m_vectBatchRenderers.begin();
+			for (std::vector<IBatchRenderer*>::iterator l_Iterator = m_vectBatchRenderers.begin();
 			l_Iterator != m_vectBatchRenderers.end();)
 			{
 				(*l_Iterator)->destroy();

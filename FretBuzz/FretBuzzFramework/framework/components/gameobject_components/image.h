@@ -1,7 +1,7 @@
 #pragma once
 #include "../../system/component_2d.h"
 #include "../sprite.h"
-#include "../../graphics/shader.h"
+#include "../../graphics/material.h"
 
 namespace ns_fretBuzz
 {
@@ -19,6 +19,8 @@ namespace ns_fretBuzz
 			glm::vec4 m_Color = {1.0f, 1.0f, 1.0f, 1.0f};
 
 			static const std::vector<glm::vec2> s_vectTexcoords;
+
+			Material m_Material;
 
 		public:
 			static Image* addToGameObject(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled = true);

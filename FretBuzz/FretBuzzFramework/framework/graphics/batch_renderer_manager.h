@@ -11,8 +11,17 @@ namespace ns_fretBuzz
 		protected:
 			IBatchRenderer() : IRenderer() {}
 
+			GLuint* m_pIndexBufferArray = nullptr;
+
 		public:
-			virtual ~IBatchRenderer() = 0 {}
+			virtual ~IBatchRenderer() = 0 
+			{
+				if (m_pIndexBufferArray != nullptr)
+				{
+					delete[] m_pIndexBufferArray;
+					m_pIndexBufferArray = nullptr;
+				}
+			}
 
 			virtual void begin() = 0;
 			virtual void end() = 0;
