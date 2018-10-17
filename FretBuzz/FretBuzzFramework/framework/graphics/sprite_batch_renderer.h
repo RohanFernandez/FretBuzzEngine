@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 
 		public:
 			static SpriteBatchRenderer* initialize(unsigned int a_iMaxSprites);
-			void destroy();
+			virtual void destroy() override;
 
 			static constexpr int VERTICES_PER_SPRITE = 4;
 			static constexpr int INDICES_PER_SPRITE = 6;

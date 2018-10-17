@@ -16,12 +16,6 @@ namespace ns_fretBuzz
 			MAX_LINES{ a_iMaxLines},
 			m_fLineWidth{a_fLineWidth}
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
-			s_pInstance = this;
-
 			m_iTotalIndices = MAX_LINES * INDICES_PER_LINE;
 
 			m_iIndexBufferSize = m_iTotalIndices * SIZE_OF_SINGLE_INDEX;

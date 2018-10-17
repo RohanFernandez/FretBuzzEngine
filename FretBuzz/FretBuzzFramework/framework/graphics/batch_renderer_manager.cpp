@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 			for (std::vector<ns_graphics::IBatchRenderer*>::iterator l_Iterator = m_vectBatchRenderers.begin();
 			l_Iterator != m_vectBatchRenderers.end();)
 			{
-				delete (*l_Iterator);
+				(*l_Iterator)->destroy();
 				l_Iterator = m_vectBatchRenderers.erase(l_Iterator);
 			}
 			m_vectBatchRenderers.clear();

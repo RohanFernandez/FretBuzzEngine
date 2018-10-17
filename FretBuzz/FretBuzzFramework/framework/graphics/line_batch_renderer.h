@@ -63,7 +63,7 @@ namespace ns_fretBuzz
 			static constexpr int INDEX_COLOR = 1;
 
 			static LineBatchRenderer* initialize(unsigned int a_iMaxLines, float a_fLineWidth = 1.0f);
-			void destroy();
+			virtual void destroy() override;
 
 			static void submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
 

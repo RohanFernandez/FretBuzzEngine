@@ -17,6 +17,8 @@ namespace ns_fretBuzz
 			virtual void begin() = 0;
 			virtual void end() = 0;
 			virtual void flush() = 0;
+
+			virtual void destroy() = 0;
 		};
 
 		class BatchRendererManager
