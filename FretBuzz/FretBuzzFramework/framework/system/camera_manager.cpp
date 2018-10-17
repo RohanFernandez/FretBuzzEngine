@@ -10,6 +10,7 @@ namespace ns_fretBuzz
 		CameraManager* CameraManager::s_pInstance = nullptr;
 
 		CameraManager::CameraManager()
+			: ResourceContainer<std::vector<Camera*>>()
 		{
 		
 		}
@@ -49,7 +50,7 @@ namespace ns_fretBuzz
 				return;
 			}
 
-			m_vectCameras.emplace_back(a_pCamera);
+			registerResource(a_pCamera);
 		}
 
 		void CameraManager::s_registerCamera(Camera* a_pCamera)
@@ -59,20 +60,7 @@ namespace ns_fretBuzz
 
 		void CameraManager::unregisterCamera(Camera* a_pCamera)
 		{
-			int l_iCameraCount = m_vectCameras.size();
-
-			for (std::vector<Camera*>::iterator l_Iterator = m_vectCameras.begin(),
-				l_iIteratorEnd = m_vectCameras.end();
-				l_Iterator != l_iIteratorEnd;
-				l_Iterator++)
-			{
-				if (*l_Iterator == a_pCamera)
-				{
-					m_vectCameras.erase(l_Iterator);
-					return;
-				}
-				std::cout << "CameraManager::unregisterCamera:: Failed to find Camera to unregister in Camera list\n";
-			}
+			unregisterResource(a_pCamera);
 		}
 
 		void CameraManager::s_unregisterCamera(Camera* a_pCamera)
@@ -82,35 +70,35 @@ namespace ns_fretBuzz
 
 		void CameraManager::updateViewMatrix()
 		{
-			int l_iCameraCount = m_vectCameras.size();
+			int l_iCameraCount = m_Container.size();
 
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
-				if (m_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
+				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
-					m_vectCameras[l_iCameraIndex]->updateViewMatrix();
+					m_Container[l_iCameraIndex]->updateViewMatrix();
 				}
 			}
 		}
 
 		void CameraManager::renderFrame(ns_system::Game& a_Game)
 		{
-			int l_iCameraCount = m_vectCameras.size();
+			int l_iCameraCount = m_Container.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
-				if (m_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
+				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
-					a_Game.renderFrame(*m_vectCameras[l_iCameraIndex]);
+					a_Game.renderFrame(*m_Container[l_iCameraIndex]);
 				}
 			}
 		}
 
 		void CameraManager::windowResize()
 		{
-			int l_iCameraCount = m_vectCameras.size();
+			int l_iCameraCount = m_Container.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
-				m_vectCameras[l_iCameraIndex]->reset();
+				m_Container[l_iCameraIndex]->reset();
 			}
 		}
 	}

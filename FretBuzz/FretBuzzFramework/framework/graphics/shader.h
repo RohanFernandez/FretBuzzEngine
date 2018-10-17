@@ -10,6 +10,13 @@ namespace ns_fretBuzz
 	{
 		class Shader : public ns_system::IManagedResource
 		{
+		public:
+			enum SHADER_TYPE
+			{
+				DEFAULT,
+				PHONG
+			};
+
 		protected:
 			GLuint m_ShaderID = 0;
 

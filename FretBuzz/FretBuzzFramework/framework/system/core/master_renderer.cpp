@@ -39,9 +39,10 @@ namespace ns_fretBuzz
 			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
-			m_pBatchRendererManager = ns_graphics::BatchRendererManager::intialize();
+			m_pBatchRendererManager = BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
-			m_pLightManager = ns_graphics::LightManager::initialize();
+			m_pLightManager = LightManager::initialize();
+			m_pShaderManager = ShaderManager::initialize();
 
 			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
 		}
@@ -58,6 +59,7 @@ namespace ns_fretBuzz
 			
 			m_pCameraManager->destroy();
 			m_pLightManager->destroy();
+			m_pShaderManager->destroy();
 
 			Window::unregisterWindowResizeCallback(windowResizeCallback);
 			m_pWindow->destroy();

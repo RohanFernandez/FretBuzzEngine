@@ -5,6 +5,7 @@
 #include "../../components/viewport.h"
 #include "../../graphics/batch_renderer_manager.h"
 #include "../../graphics/light_manager.h"
+#include "../../graphics/shader_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz
@@ -18,6 +19,7 @@ namespace ns_fretBuzz
 	{
 		class CameraManager;
 		class LightManager;
+		class ShaderManager;
 		class MasterRenderer
 		{
 		private:
@@ -27,10 +29,10 @@ namespace ns_fretBuzz
 			ns_system::TimerFPS* m_pTimer = nullptr;
 
 			CameraManager* m_pCameraManager = nullptr;
-			ns_graphics::LightManager* m_pLightManager = nullptr;
+			LightManager* m_pLightManager = nullptr;
+			ShaderManager* m_pShaderManager = nullptr;
 
-
-			ns_graphics::BatchRendererManager* m_pBatchRendererManager = nullptr;
+			BatchRendererManager* m_pBatchRendererManager = nullptr;
 
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
 			~MasterRenderer();

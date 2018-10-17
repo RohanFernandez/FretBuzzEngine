@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class Light;
-		class LightManager : public ResourceContainer<Light>
+		class LightManager : public ResourceContainer<std::vector<Light*>>
 		{
 		private:
 			static LightManager* s_pInstance;

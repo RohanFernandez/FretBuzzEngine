@@ -2,20 +2,19 @@
 #include "../components/gameobject_components/camera.h"
 #include <vector>
 #include "../system/game.h"
+#include "../system/resource_container.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class CameraManager
+		class CameraManager : ResourceContainer<std::vector<Camera*>>
 		{
 		private:
 			static CameraManager* s_pInstance;
 
 			CameraManager();
 			~CameraManager();
-
-			std::vector<Camera*> m_vectCameras;
 
 		public:
 			static CameraManager* initialize();

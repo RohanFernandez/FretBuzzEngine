@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 		LightManager* LightManager::s_pInstance = nullptr;
 
 		LightManager::LightManager()
-			:ResourceContainer<Light>()
+			:ResourceContainer<std::vector<Light*>>()
 		{
 			
 		}
@@ -46,7 +46,7 @@ namespace ns_fretBuzz
 
 		void LightManager::registerLight(Light* a_pLight)
 		{
-			registerResource(*a_pLight);
+			registerResource(a_pLight);
 		}
 
 		void LightManager::s_registerLight(Light* a_pLight)
@@ -56,7 +56,7 @@ namespace ns_fretBuzz
 
 		void LightManager::unregisterLight(Light* a_pLight)
 		{
-			unregisterResource(*a_pLight);
+			unregisterResource(a_pLight);
 		}
 
 		void LightManager::s_unregisterLight(Light* a_pLight)
@@ -70,10 +70,10 @@ namespace ns_fretBuzz
 			int l_iPointLightIndex = 0;
 			int l_iSpotLightIndex = 0;
 
-			int l_iLightCount = m_vectResourceContainer.size();
+			int l_iLightCount = m_Container.size();
 			for (int l_iLightindex = 0; l_iLightindex < l_iLightCount; l_iLightindex++)
 			{
-				Light& l_Light = *m_vectResourceContainer[l_iLightindex];
+				Light& l_Light = *m_Container[l_iLightindex];
 				std::string l_strLightIndex;
 
 				if (l_Light.getIsEnabled())
