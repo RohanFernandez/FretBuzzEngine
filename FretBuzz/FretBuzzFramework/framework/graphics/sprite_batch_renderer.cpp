@@ -14,12 +14,6 @@ namespace ns_fretBuzz
 			IBatchRenderer(),
 			MAX_SPRITES{a_iMaxSprites}
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
-			s_pInstance = this;
-
 			m_iTotalIndices = MAX_SPRITES * INDICES_PER_SPRITE;
 
 			m_iIndexBufferSize = m_iTotalIndices * SIZE_OF_SINGLE_INDEX;
@@ -70,21 +64,22 @@ namespace ns_fretBuzz
 
 		SpriteBatchRenderer::~SpriteBatchRenderer()
 		{
-			if (s_pInstance != this)
+		}
+
+		SpriteBatchRenderer* SpriteBatchRenderer::initialize(unsigned int a_iMaxSprites)
+		{
+			if (s_pInstance != nullptr)
 			{
-				return;
+				std::cout << "SpriteBatchRenderer::initialize:: SpriteBatchRenderer previously initialized.\n";
+				return nullptr;
 			}
+			s_pInstance = new SpriteBatchRenderer(a_iMaxSprites);
+			return s_pInstance;
+		}
 
-			if (m_pIndexBufferArray != nullptr)
-			{
-				delete[] m_pIndexBufferArray;
-				m_pIndexBufferArray = nullptr;
-			}
-
-			if (m_VBO) { glDeleteBuffers(1, &m_VBO); }
-			if (m_IBO) { glDeleteBuffers(1, &m_IBO); }
-			if (m_VAO) { glDeleteVertexArrays(1, &m_VAO); }
-
+		void SpriteBatchRenderer::destroy()
+		{
+			delete s_pInstance;
 			s_pInstance = nullptr;
 		}
 

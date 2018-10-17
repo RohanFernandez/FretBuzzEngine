@@ -15,8 +15,8 @@ namespace ns_fretBuzz
 
 		BatchRendererManager::BatchRendererManager()
 		{
-			m_vectBatchRenderers.emplace_back(new ns_graphics::SpriteBatchRenderer(10));
-			m_vectBatchRenderers.emplace_back(new ns_graphics::LineBatchRenderer(100, 10.0f));
+			m_vectBatchRenderers.emplace_back(SpriteBatchRenderer::initialize(10));
+			m_vectBatchRenderers.emplace_back(LineBatchRenderer::initialize(100, 10.0f));
 		}
 
 		BatchRendererManager::~BatchRendererManager()
@@ -34,7 +34,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout<<"BatchRendererManager::intialize:: Window already exists.\n";
+				std::cout<<"BatchRendererManager::intialize:: BatchRendererManager previously initialized.\n";
 				return nullptr;
 			}
 

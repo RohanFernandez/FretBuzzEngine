@@ -57,21 +57,23 @@ namespace ns_fretBuzz
 
 		LineBatchRenderer::~LineBatchRenderer()
 		{
-			if (s_pInstance != this)
+		}
+
+		LineBatchRenderer* LineBatchRenderer::initialize(unsigned int a_iMaxLines, float a_fLineWidth)
+		{
+			if (s_pInstance != nullptr)
 			{
-				return;
+				std::cout << "LineBatchRenderer::intialize:: LineBatchRenderer previously initialized.\n";
+				return nullptr;
 			}
 
-			if (m_pIndexBufferArray != nullptr)
-			{
-				delete[] m_pIndexBufferArray;
-				m_pIndexBufferArray = nullptr;
-			}
+			s_pInstance = new LineBatchRenderer(a_iMaxLines, a_fLineWidth);
+			return s_pInstance;
+		}
 
-			if (m_VBO) { glDeleteBuffers(1, &m_VBO); }
-			if (m_IBO) { glDeleteBuffers(1, &m_IBO); }
-			if (m_VAO) { glDeleteVertexArrays(1, &m_VAO); }
-
+		void LineBatchRenderer::destroy()
+		{
+			delete s_pInstance;
 			s_pInstance = nullptr;
 		}
 

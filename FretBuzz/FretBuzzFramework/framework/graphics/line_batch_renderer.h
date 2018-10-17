@@ -49,6 +49,9 @@ namespace ns_fretBuzz
 
 			float m_fLineWidth = 1.0f;
 
+			LineBatchRenderer(unsigned int a_iMaxLines, float a_fLineWidth = 1.0f);
+			~LineBatchRenderer();
+
 		public:
 
 			static constexpr int SIZE_OF_VERTEX_DATA = sizeof(VertexData);
@@ -59,8 +62,8 @@ namespace ns_fretBuzz
 			static constexpr int INDEX_VERTEX = 0;
 			static constexpr int INDEX_COLOR = 1;
 
-			LineBatchRenderer(unsigned int a_iMaxLines, float a_fLineWidth = 1.0f);
-			~LineBatchRenderer();
+			static LineBatchRenderer* initialize(unsigned int a_iMaxLines, float a_fLineWidth = 1.0f);
+			void destroy();
 
 			static void submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
 
