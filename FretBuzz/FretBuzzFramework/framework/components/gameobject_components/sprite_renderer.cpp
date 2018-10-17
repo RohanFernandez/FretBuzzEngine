@@ -5,6 +5,7 @@
 #include "../../system/game_object.h"
 #include "../../system/core/resource_manager.h"
 #include "../../graphics/sprite_batch_renderer.h"
+#include "../../graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -70,13 +71,13 @@ namespace ns_fretBuzz
 
 		void SpriteRenderer::setShader(std::string a_strShaderId)
 		{
-			Shader* l_pShader = ns_system::ResourceManager::getResource<Shader>(a_strShaderId);
-			m_pShader = (l_pShader == nullptr) ? ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID) : l_pShader;
+			Shader* l_pShader  = ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE);
+			m_pShader = (l_pShader == nullptr) ? ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE) : l_pShader;
 		}
 
 		void SpriteRenderer::setShader(Shader* a_pShader)
 		{
-			m_pShader = (a_pShader == nullptr) ? ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID) : a_pShader;
+			m_pShader = (a_pShader == nullptr) ? ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE) : a_pShader;
 		}
 
 		void SpriteRenderer::initialize()

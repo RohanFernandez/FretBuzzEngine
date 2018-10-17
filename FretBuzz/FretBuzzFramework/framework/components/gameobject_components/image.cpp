@@ -3,6 +3,7 @@
 #include "../../system/game_object_2d.h"
 #include "../../graphics/sprite_batch_renderer.h"
 #include "../../system/core/resource_manager.h"
+#include "../../graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -21,7 +22,7 @@ namespace ns_fretBuzz
 			m_pSprite{ a_pSprite },
 			m_Color{a_v4Color}
 		{
-			m_pShader = ns_system::ResourceManager::getResource<Shader>(Shader::DEFAULT_SHADER_ID);
+			m_pShader = ShaderManager::getShaderOfType(Shader::DEFAULT_SPRITE);
 		}
 
 		Image::~Image()

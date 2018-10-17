@@ -13,15 +13,8 @@ namespace ns_fretBuzz
 	protected:
 		std::vector<T> m_Container;
 
-		ResourceContainer()
-		{
-
-		}
-
-		virtual ~ResourceContainer()
-		{
-
-		}
+		ResourceContainer(){}
+		virtual ~ResourceContainer(){}
 
 		void registerResource(T& a_Resource)
 		{
@@ -70,18 +63,36 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void unregisterResource(T_KEY a_Key, T_VALUE a_Value)
+		T_VALUE unregisterResource(T_KEY a_Key)
 		{
 			auto l_Iterator = m_Container.find(a_Key);
+			T_VALUE l_Return = nullptr;
+
 			if (l_Iterator != m_Container.end())
 			{
+				l_Return = l_Iterator->second;
 				m_Container.erase(l_Iterator);
 			}
 			else
 			{
 				std::cout << "ResourceContainer:: unregisterResource:: Failed to unregister key because the key does not exist.\n";
 			}
+
+			return l_Return;
 		}
 
+		T_VALUE getResource(T_KEY a_Key)
+		{
+			auto l_Iterator = m_Container.find(a_Key);
+			if (l_Iterator != m_Container.end())
+			{
+				return l_Iterator->second;
+			}
+			else
+			{
+				std::cout << "ResourceContainer:: get:: Failed to retrieve value with key.\n";
+				return nullptr;
+			}
+		}
 	};
 }

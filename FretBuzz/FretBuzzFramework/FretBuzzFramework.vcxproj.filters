@@ -153,6 +153,18 @@
     <ClCompile Include="framework\graphics\shader_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\shaders\phong_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\shaders\default_3d_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\shaders\default_line_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\shaders\default_sprite_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -335,12 +347,27 @@
     <ClInclude Include="framework\graphics\shader_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\graphics\shaders\phong_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\shader_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\shaders\default_3d_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\shaders\default_line_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\shaders\default_sprite_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="resources\shaders\defaultLine.fs" />
-    <Text Include="resources\shaders\defaultLine.vs" />
-    <Text Include="resources\shaders\default.fs" />
-    <Text Include="resources\shaders\default.vs" />
+    <Text Include="resources\shaders\default_sprite.fs" />
+    <Text Include="resources\shaders\default_sprite.vs" />
+    <Text Include="resources\shaders\default_line.fs" />
+    <Text Include="resources\shaders\default_line.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\darksiders.jpg">
@@ -365,7 +392,7 @@
   <ItemGroup>
     <None Include="resources\shaders\phong.vs" />
     <None Include="resources\shaders\phong.fs" />
-    <None Include="resources\shaders\light.fs" />
-    <None Include="resources\shaders\light.vs" />
+    <None Include="resources\shaders\default_3d.fs" />
+    <None Include="resources\shaders\default_3d.vs" />
   </ItemGroup>
 </Project>

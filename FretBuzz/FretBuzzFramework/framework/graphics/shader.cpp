@@ -1,56 +1,32 @@
 #pragma once
 #include <iostream>
 #include <vector>
+
+#include "material.h"
+#include "../components/gameobject_components/camera.h"
 #include "shader.h"
 #include "../utils/file_utils.h"
+
+#include "shader_manager.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		Shader::Shader(const std::string l_strShaderPath)
+		Shader::Shader(const std::string l_strShaderName, SHADER_TYPE a_ShaderType)
 			: 
-			m_strVertexShaderPath{ l_strShaderPath + VERT_SHADER_EXTENSION},
-			m_strFragmentShaderPath{ l_strShaderPath + FRAG_SHADER_EXTENSION},
-			ns_system::IManagedResource()
+			m_strVertexShaderPath{ SHADER_PATH + l_strShaderName + VERT_SHADER_EXTENSION},
+			m_strFragmentShaderPath{ SHADER_PATH + l_strShaderName + FRAG_SHADER_EXTENSION},
+			m_ShaderType(a_ShaderType)
 		{
 			if (!initialize())
 			{
 				std::cout << "Shader::Shader:: Failed to intialize shader.\n";
-				m_bIsErrorWhileLoading = true;
 			}
-		}
-
-		Shader::Shader(Shader& a_Shader)
-			: m_strVertexShaderPath{ a_Shader.m_strVertexShaderPath },
-			m_strFragmentShaderPath{ a_Shader.m_strFragmentShaderPath },
-			m_ShaderID{ a_Shader.m_ShaderID },
-			ns_system::IManagedResource(a_Shader.m_bIsErrorWhileLoading)
-		{
-		}
-
-		Shader::Shader(Shader&& a_Shader)
-			: m_strVertexShaderPath{ a_Shader.m_strVertexShaderPath },
-			m_strFragmentShaderPath{ a_Shader.m_strFragmentShaderPath },
-			m_ShaderID{ a_Shader.m_ShaderID },
-			ns_system::IManagedResource(a_Shader.m_bIsErrorWhileLoading)
-		{
-		}
-
-		void Shader::operator=(Shader& a_Shader)
-		{
-			m_strVertexShaderPath = a_Shader.m_strVertexShaderPath;
-			m_strFragmentShaderPath = a_Shader.m_strFragmentShaderPath;
-			m_ShaderID = a_Shader.m_ShaderID;
-			m_bIsErrorWhileLoading = a_Shader.m_bIsErrorWhileLoading;
-		}
-
-		void Shader::operator=(Shader&& a_Shader)
-		{
-			m_strVertexShaderPath = a_Shader.m_strVertexShaderPath;
-			m_strFragmentShaderPath = a_Shader.m_strFragmentShaderPath;
-			m_ShaderID = a_Shader.m_ShaderID;
-			m_bIsErrorWhileLoading = a_Shader.m_bIsErrorWhileLoading;
+			else
+			{
+				ShaderManager::get()->registerShader(m_ShaderType, this);
+			}
 		}
 
 		bool Shader::initialize()
@@ -125,12 +101,6 @@ namespace ns_fretBuzz
 
 		Shader::~Shader()
 		{
-			
-		}
-
-		void Shader::destroyResource()
-		{
-			std::cout << "Unloading shader resource\n";
 			glDeleteProgram(m_ShaderID);
 		}
 
@@ -227,6 +197,11 @@ namespace ns_fretBuzz
 		GLint Shader::GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const
 		{
 			return glGetUniformLocation(a_ProgramID, a_pUniformName);
+		}
+
+		void Shader::bind(const Material& a_Material, const Camera& a_Camera)
+		{
+			bind();
 		}
 	}
 }

@@ -4,6 +4,7 @@
 #include "../framework/graphics/texture.h"
 #include "../framework/utils/math.h"
 #include "../framework/components/gameobject_components/light.h"
+#include "../framework/graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -71,7 +72,7 @@ namespace ns_fretBuzz
 		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 1.0f)
 			: ns_system::GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
-			m_pShader = ns_system::ResourceManager::getResource<ns_graphics::Shader>("light");
+			m_pShader = ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_3D);
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");
 
 			m_pLight = ns_graphics::Light::addToGameObject(*this, a_LightType);

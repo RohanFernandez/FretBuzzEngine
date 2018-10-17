@@ -8,12 +8,18 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Shader : public ns_system::IManagedResource
+		class Camera;
+		class Material;
+		class Shader
 		{
 		public:
+			friend class ShaderManager;
+
 			enum SHADER_TYPE
 			{
-				DEFAULT,
+				DEFAULT_SPRITE,
+				DEFAULT_LINE,
+				DEFAULT_3D,
 				PHONG
 			};
 
@@ -26,29 +32,24 @@ namespace ns_fretBuzz
 			std::string m_strVertexShaderPath;
 			std::string m_strFragmentShaderPath;
 
-		public:
-			static constexpr char DEFAULT_SHADER_ID[] = "default";
-			static constexpr char DEFAULT_LINE_SHADER_ID[] = "defaultLine";
-
-			static constexpr char VERT_SHADER_EXTENSION[] = ".vs";
-			static constexpr char FRAG_SHADER_EXTENSION[] = ".fs";
+			SHADER_TYPE m_ShaderType;
 
 			Shader() = delete;
-			Shader(const std::string l_strShaderPath);
-
-			//Copy constructor
-			Shader(Shader& a_Shader);
-			Shader(Shader&& a_Shader);
-
-			void operator=(Shader& a_Shader);
-			void operator=(Shader&& a_Shader);
-
+			Shader(const std::string l_strShaderName, SHADER_TYPE a_ShaderType = SHADER_TYPE::DEFAULT_SPRITE);
 			~Shader();
 
-			virtual void destroyResource() override;
+		public:
+			static constexpr char VERT_SHADER_EXTENSION[] = ".vs";
+			static constexpr char FRAG_SHADER_EXTENSION[] = ".fs";
+			static constexpr char SHADER_PATH[] = "resources//shaders//";
 
 			void bind()  const;
 			void unbind() const;
+
+			inline SHADER_TYPE getShaderType()
+			{
+				return m_ShaderType;
+			}
 
 			inline GLuint getShaderId() const
 			{
@@ -81,6 +82,8 @@ namespace ns_fretBuzz
 
 			GLint GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const;
 
+			virtual void bind(const Material& a_Material, const Camera& a_Camera);
+			virtual void destroy() = 0;
 		};
 	}
 }

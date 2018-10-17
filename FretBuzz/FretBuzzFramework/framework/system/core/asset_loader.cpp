@@ -28,13 +28,13 @@ namespace ns_fretBuzz
 			{
 				std::string l_currentAssetTypeName = l_currentAsset->name();
 
-				//Load Shaders
-				if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
-				{
-					loadShaders(a_pResourceManager, l_currentAsset);
-				}
+				////Load Shaders
+				//if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
+				//{
+				//	loadShaders(a_pResourceManager, l_currentAsset);
+				//}
 				//Load Textures
-				else if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
+				if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
 				{
 					loadTexture(a_pResourceManager, l_currentAsset);
 				}
@@ -98,7 +98,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void AssetLoader::loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator)
+		/*void AssetLoader::loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator)
 		{
 			for (pugi::xml_node_iterator l_currentShader = a_ShaderNodeIterator->begin();
 				l_currentShader != a_ShaderNodeIterator->end();
@@ -129,7 +129,7 @@ namespace ns_fretBuzz
 
 				a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderName,l_Shader);
 			}
-		}
+		}*/
 
 		void AssetLoader::loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_TextureNodeIterator)
 		{

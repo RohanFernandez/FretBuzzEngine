@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../../system/core/input.h"
 #include "../../system/core/resource_manager.h"
+#include "../../graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -15,7 +16,7 @@ namespace ns_fretBuzz
 			m_PhysicsBodyType{ a_PhysicsBodyType},
 			m_bIsFixedRotation{ a_bIsFixedRotation },
 			m_v2DimensionWH{ a_v2Dimensions },
-			m_pDefaultLineShader{ ResourceManager::getResource<ns_graphics::Shader>(ns_graphics::Shader::DEFAULT_LINE_SHADER_ID) }
+			m_pDefaultLineShader{ ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_LINE) }
 		{
 			b2BodyDef l_bodyDef;
 			l_bodyDef.bullet = a_bIsBullet;
