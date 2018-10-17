@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "PhongShader::initialize:: PhongShader previously initialized\n";
+				std::cout << "Default3DShader::initialize:: Default3DShader previously initialized\n";
 				return nullptr;
 			}
 

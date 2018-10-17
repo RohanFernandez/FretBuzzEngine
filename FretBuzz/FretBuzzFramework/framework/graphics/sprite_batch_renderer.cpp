@@ -38,7 +38,7 @@ namespace ns_fretBuzz
 			glEnableVertexAttribArray(INDEX_TEX_UV);
 			glEnableVertexAttribArray(INDEX_TEX_ID);
 
-			glVertexAttribPointer(INDEX_VERTEX, 3, GL_FLOAT, GL_FALSE, SIZE_OF_VERTEX_DATA, (const GLvoid*)(offsetof(VertexData, VertexData::m_v4Position)));
+			glVertexAttribPointer(INDEX_VERTEX, 4, GL_FLOAT, GL_FALSE, SIZE_OF_VERTEX_DATA, (const GLvoid*)(offsetof(VertexData, VertexData::m_v4Position)));
 			glVertexAttribPointer(INDEX_COLOR, 4, GL_FLOAT, GL_FALSE, SIZE_OF_VERTEX_DATA, (const GLvoid*)(offsetof(VertexData, VertexData::m_v4Color)));
 			glVertexAttribPointer(INDEX_TEX_UV, 2, GL_FLOAT, GL_FALSE, SIZE_OF_VERTEX_DATA, (const GLvoid*)(offsetof(VertexData, VertexData::m_v2UV)));
 			glVertexAttribPointer(INDEX_TEX_ID, 1, GL_FLOAT, GL_FALSE, SIZE_OF_VERTEX_DATA, (const GLvoid*)(offsetof(VertexData, VertexData::m_fTextureID)));
