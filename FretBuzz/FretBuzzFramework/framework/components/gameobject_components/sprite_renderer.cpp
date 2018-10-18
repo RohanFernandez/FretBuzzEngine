@@ -13,6 +13,7 @@ namespace ns_fretBuzz
 	{
 		SpriteRenderer::SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite)
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),
+			IRenderer(),
 			m_pSprite{ a_Sprite },
 			m_DefaultSprite()
 		{

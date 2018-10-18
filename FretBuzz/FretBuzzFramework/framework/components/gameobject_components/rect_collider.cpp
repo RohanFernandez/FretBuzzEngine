@@ -13,11 +13,16 @@ namespace ns_fretBuzz
 	{
 		RectCollider::RectCollider(GameObject2D& a_GameObject, glm::vec2 a_v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType, bool a_bIsFixedRotation, bool a_bIsBullet)
 			: IComponent2D(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject),
+#ifdef _IS_DEBUG_RENDERING
+			ns_graphics::IRenderer(),
+#endif
 			m_PhysicsBodyType{ a_PhysicsBodyType},
 			m_bIsFixedRotation{ a_bIsFixedRotation },
-			m_v2DimensionWH{ a_v2Dimensions },
-			m_pDefaultLineShader{ ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_LINE) }
+			m_v2DimensionWH{ a_v2Dimensions }
 		{
+#ifdef _IS_DEBUG_RENDERING
+			m_Material.setShader(*ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_LINE));
+#endif
 			b2BodyDef l_bodyDef;
 			l_bodyDef.bullet = a_bIsBullet;
 
@@ -90,7 +95,6 @@ namespace ns_fretBuzz
 		RectCollider::~RectCollider()
 		{
 			PhysicsEngine::getB2World()->DestroyBody(m_pBody);
-			m_pDefaultLineShader = nullptr;
 		}
 
 		void RectCollider::onEnable()
@@ -154,7 +158,9 @@ namespace ns_fretBuzz
 
 		void RectCollider::debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
-			ns_graphics::LineBatchRenderer::submit(m_arrRectLineBorders, 4, a_mat4Transformation, m_pDefaultLineShader);
+#ifdef _IS_DEBUG_RENDERING
+			ns_graphics::LineBatchRenderer::submit(m_arrRectLineBorders, 4, a_mat4Transformation, m_Material);
+#endif
 		}
 	}
 }

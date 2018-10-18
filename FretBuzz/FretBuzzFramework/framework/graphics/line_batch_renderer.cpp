@@ -71,13 +71,13 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void LineBatchRenderer::submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Shader* a_pShader)
+		void LineBatchRenderer::submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Material& a_Material)
 		{
 			LineBatchRenderer& l_Instance = *s_pInstance;
 
 			if (((l_Instance.m_iIndicesToDraw != 0) &&
 				(l_Instance.m_pCurrentShader != nullptr) &&
-				(l_Instance.m_pCurrentShader->getShaderId() != a_pShader->getShaderId()))
+				(l_Instance.m_pCurrentShader->getShaderId() != a_Material.getShader()->getShaderId()))
 				|| (l_Instance.m_iLinesInBatch == l_Instance.MAX_LINES))
 			{
 				l_Instance.end();
@@ -85,7 +85,7 @@ namespace ns_fretBuzz
 				l_Instance.begin();
 			}
 
-			l_Instance.m_pCurrentShader = a_pShader;
+			l_Instance.m_pCurrentShader = a_Material.getShader();
 
 			VertexData*& l_pCurrentVertexData = l_Instance.m_pCurrentVertexData;
 			for (int l_iLineIndex = 0; l_iLineIndex < a_iNumOfLines; l_iLineIndex++)

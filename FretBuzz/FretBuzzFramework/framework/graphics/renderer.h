@@ -1,5 +1,5 @@
 #pragma once
-#include "../graphics/shader.h"
+#include "material.h"
 #include <vector>
 
 namespace ns_fretBuzz
@@ -46,6 +46,8 @@ namespace ns_fretBuzz
 			unsigned int m_iVertBufferSize = 0;
 
 			IRenderer();
+
+			Material m_Material;
 
 		public:
 			virtual ~IRenderer() = 0;

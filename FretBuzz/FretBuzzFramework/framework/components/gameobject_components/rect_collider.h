@@ -3,19 +3,22 @@
 #include "../../system/core/physics_engine.h"
 #include "../../graphics/line_batch_renderer.h"
 
+
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
 		class GameObject2D;
 		class RectCollider : public IComponent2D
+			#ifdef _IS_DEBUG_RENDERING
+				,public ns_graphics::IRenderer
+			#endif
 		{
 		private:
 			RectCollider(GameObject2D& a_GameObject, glm::vec2 v2Dimensions, PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC
 				, bool a_bIsFixedRotation = true, bool a_bIsBullet = false);
 
 			ns_graphics::LineData m_arrRectLineBorders[4];
-			ns_graphics::Shader* m_pDefaultLineShader = nullptr;
 
 		protected:
 			virtual ~RectCollider();

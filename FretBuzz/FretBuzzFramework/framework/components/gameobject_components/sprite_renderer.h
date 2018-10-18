@@ -2,13 +2,14 @@
 #include "../../system/component.h"
 #include "../sprite.h"
 #include "../../graphics/material.h"
+#include "../../graphics/renderer.h"
 
 namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
 		class GameObject;
-		class SpriteRenderer : public ns_system::IComponent
+		class SpriteRenderer : public ns_system::IComponent, public IRenderer
 		{
 		private:
 			SpriteRenderer(ns_system::GameObject& a_GameObj);
@@ -22,8 +23,6 @@ namespace ns_fretBuzz
 
 		protected:
 			~SpriteRenderer();
-
-			Material m_Material;
 
 		public:
 			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj);

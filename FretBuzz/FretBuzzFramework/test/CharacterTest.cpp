@@ -25,6 +25,8 @@ namespace ns_fretBuzz
 			m_pcamGameObj = a_CamGameObject;
 
 			m_pRefOriginGameObject = &a_refOriginGameObject;
+
+			ns_system::Input::setCursorEnability(true);
 		}
 
 		void CharacterTest::update(float a_fDeltaTime)

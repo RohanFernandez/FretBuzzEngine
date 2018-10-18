@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 			static LineBatchRenderer* initialize(unsigned int a_iMaxLines, float a_fLineWidth = 1.0f);
 			virtual void destroy() override;
 
-			static void submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Shader* a_pShader);
+			static void submit(const LineData* a_pLine, const int a_iNumOfLines, const glm::mat4& a_mat4Transformation, Material& a_Material);
 
 			virtual void begin() override;
 			virtual void end() override;
