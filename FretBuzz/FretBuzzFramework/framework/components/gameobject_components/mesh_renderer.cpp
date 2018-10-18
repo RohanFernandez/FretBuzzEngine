@@ -7,7 +7,8 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		MeshRenderer::MeshRenderer(ns_system::GameObject& a_GameObject)
-			: ns_system::IComponent(ns_system::COMPONENT_TYPE::MESH_RENDERER, a_GameObject)
+			: ns_system::IComponent(ns_system::COMPONENT_TYPE::MESH_RENDERER, a_GameObject),
+			IRenderer()
 		{
 			
 		}
@@ -33,16 +34,6 @@ namespace ns_fretBuzz
 			return m_pMesh;
 		}
 
-		void MeshRenderer::setShader(Shader* a_pShader)
-		{
-			m_pShader = a_pShader;
-		}
-
-		Shader* MeshRenderer::getShader()
-		{
-			return m_pShader;
-		}
-
 		void MeshRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
 			unsigned int l_iDiffuseTexIndex = 1;
@@ -51,15 +42,15 @@ namespace ns_fretBuzz
 			{
 				glActiveTexture(GL_TEXTURE0 + l_iTexIndex);
 				
-				std::string number;
+				/*std::string number;
 				std::string name = m_pMesh->m_vectTextures[l_iTexIndex].m_strType;
 				if (name == "texture_diffuse")
 					number = std::to_string(l_iDiffuseTexIndex++);
 				else if (name == "texture_specular")
-					number = std::to_string(l_iSpecularTexIndex++);
+					number = std::to_string(l_iSpecularTexIndex++);*/
 
-				m_pShader->setUniform1f(("material." + name + number).c_str(), l_iTexIndex);
-				glBindTexture(GL_TEXTURE_2D, m_pMesh->m_vectTextures[l_iTexIndex].m_iTexID);
+				//m_pShader->setUniform1f(("material." + name + number).c_str(), l_iTexIndex);
+				//glBindTexture(GL_TEXTURE_2D, m_pMesh->m_vectTextures[l_iTexIndex].m_iTexID);
 			}
 			glActiveTexture(GL_TEXTURE0);
 

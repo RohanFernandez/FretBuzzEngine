@@ -122,29 +122,6 @@ namespace ns_fretBuzz
 			using T_MAP_RESOURCE = std::map<std::type_index, IResource*>;
 			T_MAP_RESOURCE m_mapResource;
 
-			///Adds resource of type T
-			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
-			bool addResource(std::string a_strResourceName, T& a_TResource)
-			{
-				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
-				const std::type_info& l_typeInfo = typeid(a_TResource);
-
-				Resource<T>* l_pResource = nullptr;
-
-				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
-				{
-					l_pResource = new Resource<T>();
-					l_mapResourceRef.insert({ l_typeInfo , static_cast<IResource*>(l_pResource) });
-				}
-				else
-				{
-					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
-				}
-
-				std::cout << "ResourceManager::addResource:: Adding resource of type '" << l_typeInfo.name() << "' with resource id '"<< a_strResourceName <<"'\n";
-				return l_pResource->addResourceData(a_strResourceName, a_TResource);
-			}
-
 			///destroys resource and removes from the list
 			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
 			static void destroyResource(std::string a_strResourceName)
@@ -211,6 +188,35 @@ namespace ns_fretBuzz
 					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
 					return l_pResource->getResource(a_strResourceName);
 				}
+			}
+
+			///Adds resource of type T
+			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
+			bool addResource(std::string a_strResourceName, T& a_TResource)
+			{
+				T_MAP_RESOURCE& l_mapResourceRef = s_pInstance->m_mapResource;
+				const std::type_info& l_typeInfo = typeid(a_TResource);
+
+				Resource<T>* l_pResource = nullptr;
+
+				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
+				{
+					l_pResource = new Resource<T>();
+					l_mapResourceRef.insert({ l_typeInfo , static_cast<IResource*>(l_pResource) });
+				}
+				else
+				{
+					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
+				}
+
+				std::cout << "ResourceManager::addResource:: Adding resource of type '" << l_typeInfo.name() << "' with resource id '" << a_strResourceName << "'\n";
+				return l_pResource->addResourceData(a_strResourceName, a_TResource);
+			}
+
+			template<typename T, typename = typename std::enable_if<std::is_base_of<IManagedResource, T>::value>::type>
+			static bool s_addResource(std::string a_strResourceName, T& a_TResource)
+			{
+				return s_pInstance->addResource(a_strResourceName, a_TResource);
 			}
 
 			///Returns the number of resource of type T that is included in the vector.

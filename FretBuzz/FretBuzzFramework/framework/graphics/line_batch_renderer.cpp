@@ -76,8 +76,8 @@ namespace ns_fretBuzz
 			LineBatchRenderer& l_Instance = *s_pInstance;
 
 			if (((l_Instance.m_iIndicesToDraw != 0) &&
-				(l_Instance.m_pCurrentShader != nullptr) &&
-				(l_Instance.m_pCurrentShader->getShaderId() != a_Material.getShader()->getShaderId()))
+				(l_Instance.m_Material.getShader() != nullptr) &&
+				(l_Instance.m_Material.getShader()->getShaderId() != a_Material.getShader()->getShaderId()))
 				|| (l_Instance.m_iLinesInBatch == l_Instance.MAX_LINES))
 			{
 				l_Instance.end();
@@ -85,7 +85,7 @@ namespace ns_fretBuzz
 				l_Instance.begin();
 			}
 
-			l_Instance.m_pCurrentShader = a_Material.getShader();
+			l_Instance.m_Material.setShader(*a_Material.getShader());
 
 			VertexData*& l_pCurrentVertexData = l_Instance.m_pCurrentVertexData;
 			for (int l_iLineIndex = 0; l_iLineIndex < a_iNumOfLines; l_iLineIndex++)
@@ -122,7 +122,7 @@ namespace ns_fretBuzz
 			LineBatchRenderer& l_Instance = *s_pInstance;
 			if (l_Instance.m_iIndicesToDraw == 0) { return; }
 
-			l_Instance.m_pCurrentShader->bind();
+			l_Instance.m_Material.getShader()->bind();
 			glBindVertexArray(l_Instance.m_VAO);
 
 			glLineWidth(m_fLineWidth);

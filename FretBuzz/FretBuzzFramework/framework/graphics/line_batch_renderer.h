@@ -45,7 +45,6 @@ namespace ns_fretBuzz
 			unsigned int m_iLinesInBatch = 0;
 
 			int m_iIndicesToDraw = 0;
-			Shader* m_pCurrentShader = nullptr;
 
 			float m_fLineWidth = 1.0f;
 

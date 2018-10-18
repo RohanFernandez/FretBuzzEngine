@@ -8,12 +8,12 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		Mesh::Mesh(std::vector<Vertex> a_vectVertices, std::vector<unsigned int> a_vectIndices,
-			std::vector<Texture> a_vectTextures)
+			std::vector<MeshTexture> a_vectTextures)
 			: m_vectVertices{ a_vectVertices },
 			m_vectIndices{ a_vectIndices },
 			m_vectTextures{ a_vectTextures }
 		{
-			setup();
+			//setup();
 		}
 
 		Mesh::~Mesh()
@@ -42,7 +42,7 @@ namespace ns_fretBuzz
 
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3Position));
 			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3Normal));
-			glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3TexCoords));
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v2TexCoords));
 
 			glBindVertexArray(0);
 		}

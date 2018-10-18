@@ -5,6 +5,8 @@
 #include "../test/PlayerController.h"
 #include "../test/test_cube.h"
 
+#include "../framework/graphics/model.h"
+
 namespace ns_fretBuzz
 {
 	class threed_test_scene:
@@ -18,6 +20,8 @@ namespace ns_fretBuzz
 
 		light_cube* m_pLightCube1 = nullptr;
 		light_cube* m_pLightCube2 = nullptr;
+
+		ns_graphics::Model* m_pModel = nullptr;
 
 	public:
 		threed_test_scene(std::string a_strSceneName) 
@@ -40,6 +44,8 @@ namespace ns_fretBuzz
 			m_pCube1->setCamGameObject(m_pManager);
 			m_pCube2->setCamGameObject(m_pManager);
 			m_pCube3->setCamGameObject(m_pManager);
+
+			m_pModel = new ns_graphics::Model("resources/model/nanosuit/nanosuit.obj");
 		}
 
 		virtual void OnStateEnter() override {};
