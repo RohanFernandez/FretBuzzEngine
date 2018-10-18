@@ -97,4 +97,12 @@
   </SpriteAnimations>
 <!--SPRITE ANIMATIONS END-->
 
+  <!--MODEL START-->
+  
+  <Models>
+    <model name="nanosuit//nanosuit.obj" />
+  </Models>
+
+  <!--MODEL END-->
+
 </Assets>

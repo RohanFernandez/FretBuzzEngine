@@ -45,7 +45,7 @@ namespace ns_fretBuzz
 			m_pCube2->setCamGameObject(m_pManager);
 			m_pCube3->setCamGameObject(m_pManager);
 
-			m_pModel = new ns_graphics::Model("resources/model/nanosuit/nanosuit.obj");
+
 		}
 
 		virtual void OnStateEnter() override {};

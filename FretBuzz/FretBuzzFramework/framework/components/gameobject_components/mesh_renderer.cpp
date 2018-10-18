@@ -36,6 +36,11 @@ namespace ns_fretBuzz
 
 		void MeshRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
+			if (m_pMesh == nullptr)
+			{
+				return;
+			}
+
 			unsigned int l_iDiffuseTexIndex = 1;
 			unsigned int l_iSpecularTexIndex = 1;
 			for (unsigned int l_iTexIndex = 0; l_iTexIndex < m_pMesh->m_vectTextures.size(); l_iTexIndex++)

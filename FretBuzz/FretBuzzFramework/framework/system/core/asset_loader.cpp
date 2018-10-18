@@ -5,6 +5,7 @@
 #include "../../components/sprite.h"
 #include "../../components/audio_clip.h"
 #include "../../components/sprite_animator.h"
+#include "../../graphics/model.h"
 
 #include <fstream>
 #include <sstream>
@@ -52,6 +53,10 @@ namespace ns_fretBuzz
 				else if (l_currentAssetTypeName.compare(SPRITE_ANIMATION_NODE_NAME) == 0)
 				{
 					loadSpriteAnimations(a_pResourceManager, l_currentAsset);
+				}
+				else if (l_currentAssetTypeName.compare(MODEL_NODE_NAME) == 0)
+				{
+					loadModels(a_pResourceManager, l_currentAsset);
 				}
 				else
 				{
@@ -395,6 +400,27 @@ namespace ns_fretBuzz
 				}
 				SpriteAnimator l_CurrentSpriteAnimController(l_strAnimatorID, l_CurrentVectAnimStates);
 				a_pResourceManager->addResource<SpriteAnimator>(l_strAnimatorID, l_CurrentSpriteAnimController);
+			}
+		}
+
+		void AssetLoader::loadModels(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ModelNodeIterator)
+		{
+			for (pugi::xml_node_iterator l_currentModel = a_ModelNodeIterator->begin();
+				l_currentModel != a_ModelNodeIterator->end();
+				l_currentModel++)
+			{
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentModel->attributes_begin();
+					l_CurrentAttribute != l_currentModel->attributes_end();
+					l_CurrentAttribute++)
+				{
+					std::string l_strAttributeName = l_CurrentAttribute->name();
+					if (l_strAttributeName.compare(ATTRIBUTE_MODEL_NAME))
+					{
+						std::string l_strModelPath  = MODEL_DIRECTORY + std::string(l_CurrentAttribute->value());
+						ns_graphics::Model l_Model(l_strModelPath);
+						a_pResourceManager->addResource<ns_graphics::Model>(l_strModelPath, l_Model);
+					}
+				}
 			}
 		}
 	}

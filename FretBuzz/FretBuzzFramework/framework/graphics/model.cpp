@@ -9,17 +9,14 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		Model::Model(std::string a_strModelPath)
+			: ns_system::IManagedResource()
 		{
 			loadModel(a_strModelPath);
 		}
 
 		Model::~Model()
 		{
-			if (m_pParentNode != nullptr)
-			{
-				delete m_pParentNode;
-				m_pParentNode = nullptr;
-			}
+			
 		}
 
 		void Model::loadModel(std::string a_strPath)
@@ -138,6 +135,15 @@ namespace ns_fretBuzz
 				}
 
 				a_vectTextures.emplace_back(l_MeshTexture);
+			}
+		}
+
+		void Model::destroyResource()
+		{
+			if (m_pParentNode != nullptr)
+			{
+				delete m_pParentNode;
+				m_pParentNode = nullptr;
 			}
 		}
 	}

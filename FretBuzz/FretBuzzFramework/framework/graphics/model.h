@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 			}
 		};
 
-		class Model
+		class Model : public ns_system::IManagedResource
 		{
 		private:
 			
@@ -52,7 +52,10 @@ namespace ns_fretBuzz
 		public:
 
 			Model(std::string a_strModelPath);
-			~Model();
+			virtual ~Model();
+
+		protected:
+			virtual void destroyResource() override;
 		};
 	}
 }

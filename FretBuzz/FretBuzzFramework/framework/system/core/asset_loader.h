@@ -10,10 +10,12 @@ namespace ns_fretBuzz
 		{
 		private:
 			static void loadAudioClips(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_AudioNodeIterator);
-			static void loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator);
+			//static void loadShaders(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_ShaderNodeIterator);
 			static void loadTexture(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_TextureNodeIterator);
 			static void loadSprites(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
 			static void loadSpriteAnimations(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
+			static void loadModels(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
+
 
 		public:
 			//Asset
@@ -61,6 +63,11 @@ namespace ns_fretBuzz
 			static constexpr char ATTRIBUTE_ON_COMPLETE_TRIGGER[] = "onCompleteTrigger";
 
 			static void loadAssets(ResourceManager* a_pResourceManager);
+
+			//Model
+			static constexpr char MODEL_NODE_NAME[] = "Models";
+			static constexpr char MODEL_DIRECTORY[] = "resources//model//";
+			static constexpr char ATTRIBUTE_MODEL_NAME[] = "name";
 
 		};
 	}
