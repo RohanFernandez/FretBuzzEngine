@@ -414,11 +414,12 @@ namespace ns_fretBuzz
 					l_CurrentAttribute++)
 				{
 					std::string l_strAttributeName = l_CurrentAttribute->name();
-					if (l_strAttributeName.compare(ATTRIBUTE_MODEL_NAME))
+					if (l_strAttributeName.compare(ATTRIBUTE_MODEL_NAME) == 0)
 					{
+						std::string l_strResourceName = std::string(l_CurrentAttribute->value());
 						std::string l_strModelPath  = MODEL_DIRECTORY + std::string(l_CurrentAttribute->value());
 						ns_graphics::Model l_Model(l_strModelPath);
-						a_pResourceManager->addResource<ns_graphics::Model>(l_strModelPath, l_Model);
+						a_pResourceManager->addResource<ns_graphics::Model>(std::string(l_CurrentAttribute->value()), l_Model);
 					}
 				}
 			}

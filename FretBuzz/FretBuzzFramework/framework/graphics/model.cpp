@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../system/core/resource_manager.h"
 #include "texture.h"
+#include "../components/gameobject_components/mesh_renderer.h"
 
 namespace ns_fretBuzz
 {
@@ -32,8 +33,8 @@ namespace ns_fretBuzz
 
 			m_strDirectory = a_strPath.substr(0, m_strDirectory.find_last_of('/'));
 
-			m_pParentNode = new Node();
-			processNode(l_pScene->mRootNode, m_pParentNode, l_pScene);
+			m_pRootNode = new Node();
+			processNode(l_pScene->mRootNode, m_pRootNode, l_pScene);
 		}
 
 		void Model::processNode(aiNode* a_pNode, Node* a_pLoadedNode, const aiScene* a_pScene)
@@ -140,10 +141,36 @@ namespace ns_fretBuzz
 
 		void Model::destroyResource()
 		{
-			if (m_pParentNode != nullptr)
+			if (m_pRootNode != nullptr)
 			{
-				delete m_pParentNode;
-				m_pParentNode = nullptr;
+				delete m_pRootNode;
+				m_pRootNode = nullptr;
+			}
+		}
+
+		void Model::addToGameObject(ns_system::GameObject& a_GameObject, Model& a_Model)
+		{
+			if (a_Model.m_pRootNode != nullptr)
+			{
+				addMeshToGameObject(a_GameObject, *a_Model.m_pRootNode, 0);
+			}
+		}
+
+		void Model::addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node, int a_iChildIndex)
+		{
+			if (a_Node.m_pMesh != nullptr)
+			{
+				if (MeshRenderer::addToGameObject(a_GameObject, *a_Node.m_pMesh) == nullptr)
+				{
+					std::cout << "Model::addMeshToGameObject:: Failed to load mesh renderer because a mesh renderer already exists.\n";
+				}
+			}
+
+			int l_iChildCount = a_Node.m_vectChildNodes.size();
+			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
+			{
+				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, "Child_"+std::to_string(a_iChildIndex));
+				addMeshToGameObject(*l_pChildGameObject,  *a_Node.m_vectChildNodes[l_iChildIndex], ++a_iChildIndex);
 			}
 		}
 	}

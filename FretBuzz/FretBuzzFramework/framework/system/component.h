@@ -18,6 +18,7 @@ namespace ns_fretBuzz
 			TEXT_RENDERER,
 			CHARACTER_CONTROLLER_2D,
 			CAMERA,
+			MESH_FILTER,
 			MESH_RENDERER,
 			LIGHT,
 

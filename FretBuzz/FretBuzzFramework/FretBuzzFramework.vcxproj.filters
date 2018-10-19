@@ -165,6 +165,9 @@
     <ClCompile Include="framework\graphics\shaders\default_sprite_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\components\gameobject_components\mesh_filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -360,6 +363,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\graphics\shaders\default_sprite_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\gameobject_components\mesh_filter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

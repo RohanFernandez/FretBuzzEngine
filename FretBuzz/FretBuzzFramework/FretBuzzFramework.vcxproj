@@ -183,6 +183,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\gameobject_components\camera.cpp" />
     <ClCompile Include="framework\components\gameobject_components\image.cpp" />
     <ClCompile Include="framework\components\gameobject_components\light.cpp" />
+    <ClCompile Include="framework\components\gameobject_components\mesh_filter.cpp" />
     <ClCompile Include="framework\components\viewport.cpp" />
     <ClCompile Include="framework\components\gameobject_components\character_controller_2d.cpp" />
     <ClCompile Include="framework\components\gameobject_components\rect_collider.cpp" />
@@ -234,6 +235,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\components\gameobject_components\camera.h" />
     <ClInclude Include="framework\components\gameobject_components\character_controller_2d.h" />
     <ClInclude Include="framework\components\gameobject_components\image.h" />
+    <ClInclude Include="framework\components\gameobject_components\mesh_filter.h" />
     <ClInclude Include="framework\components\gameobject_components\rect_collider.h" />
     <ClInclude Include="framework\components\gameobject_components\light.h" />
     <ClInclude Include="framework\components\rect_transform.h" />

@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include "mesh.h"
+#include "../system/game_object.h"
 
 namespace ns_fretBuzz
 {
@@ -35,11 +36,12 @@ namespace ns_fretBuzz
 			}
 		};
 
+		class GameObject;
 		class Model : public ns_system::IManagedResource
 		{
 		private:
 			
-			Node* m_pParentNode = nullptr;
+			Node* m_pRootNode = nullptr;
 
 			void loadModel(std::string a_strPath);
 			void processNode(aiNode* a_pNode, Node* a_pParentNode, const aiScene* a_pScene);
@@ -49,10 +51,14 @@ namespace ns_fretBuzz
 
 			std::string m_strDirectory;
 
+			static void addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node, int a_iChildIndex);
+
 		public:
 
 			Model(std::string a_strModelPath);
 			virtual ~Model();
+
+			static void addToGameObject(ns_system::GameObject& a_GameObject, Model& a_Model);
 
 		protected:
 			virtual void destroyResource() override;
