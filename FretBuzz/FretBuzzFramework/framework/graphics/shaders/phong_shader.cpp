@@ -45,14 +45,29 @@ namespace ns_fretBuzz
 			setUniform1f(Material::MaterialData::UNIF_MAT_SHININESS, a_Material.m_MaterialData.m_fShininess);
 
 			setUniform4f(Material::MaterialData::UNIF_MAT_V4_ALBEDO, a_Material.m_MaterialData.m_v4Albedo);
+			setUniform1iv(Material::MaterialData::UNIFORM_TEXTURE_SAMPLER, Material::MaterialData::TOTAL_TEXTURE_SLOTS, Material::MaterialData::s_arrTextureIDArray);
 
-			glActiveTexture(GL_TEXTURE0);
-			a_Material.m_MaterialData.m_pTexDiffuse->bind();
-			setUniform1i(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 0);
+			if (a_Material.m_MaterialData.m_pTexDiffuse != nullptr)
+			{
+				glActiveTexture(GL_TEXTURE0);
+				a_Material.m_MaterialData.m_pTexDiffuse->bind();
+				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 1.0f);
+			}
+			else
+			{
+				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 0.0f);
+			}
 
-			glActiveTexture(GL_TEXTURE1);
-			a_Material.m_MaterialData.m_pTexSpecular->bind();
-			setUniform1i(Material::MaterialData::UNIF_MAT_TEX_SPECULAR, 1);
+			if (a_Material.m_MaterialData.m_pTexDiffuse != nullptr)
+			{
+				glActiveTexture(GL_TEXTURE1);
+				a_Material.m_MaterialData.m_pTexSpecular->bind();
+				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_SPECULAR, 2.0f);
+			}
+			else
+			{
+				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 0.0f);
+			}
 
 			LightManager::s_setAllLightUniforms(*this);
 		}

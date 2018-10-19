@@ -16,6 +16,7 @@ namespace ns_fretBuzz
 		struct Node
 		{
 		public:
+			std::string m_strName;
 			Mesh* m_pMesh = nullptr;
 			std::vector<Node*> m_vectChildNodes;
 
@@ -51,7 +52,7 @@ namespace ns_fretBuzz
 
 			std::string m_strDirectory;
 
-			static void addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node, int a_iChildIndex);
+			static void addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node);
 
 		public:
 

@@ -39,6 +39,8 @@ namespace ns_fretBuzz
 
 		void Model::processNode(aiNode* a_pNode, Node* a_pLoadedNode, const aiScene* a_pScene)
 		{
+			a_pLoadedNode->m_strName = a_pNode->mName.C_Str();
+
 			int l_iMeshCount = a_pNode->mNumMeshes;
 			for (unsigned int l_iMeshIndex = 0; l_iMeshIndex < l_iMeshCount; l_iMeshIndex++)
 			{
@@ -152,11 +154,11 @@ namespace ns_fretBuzz
 		{
 			if (a_Model.m_pRootNode != nullptr)
 			{
-				addMeshToGameObject(a_GameObject, *a_Model.m_pRootNode, 0);
+				addMeshToGameObject(a_GameObject, *a_Model.m_pRootNode);
 			}
 		}
 
-		void Model::addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node, int a_iChildIndex)
+		void Model::addMeshToGameObject(ns_system::GameObject& a_GameObject, Node& a_Node)
 		{
 			if (a_Node.m_pMesh != nullptr)
 			{
@@ -169,8 +171,9 @@ namespace ns_fretBuzz
 			int l_iChildCount = a_Node.m_vectChildNodes.size();
 			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
-				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, "Child_"+std::to_string(a_iChildIndex));
-				addMeshToGameObject(*l_pChildGameObject,  *a_Node.m_vectChildNodes[l_iChildIndex], ++a_iChildIndex);
+				Node& l_CurrentNode = *a_Node.m_vectChildNodes[l_iChildIndex];
+				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, l_CurrentNode.m_strName);
+				addMeshToGameObject(*l_pChildGameObject, l_CurrentNode);
 			}
 		}
 	}

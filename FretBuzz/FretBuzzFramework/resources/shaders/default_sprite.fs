@@ -12,7 +12,7 @@ in vertData
 
 struct Material
 {
-	sampler2D u_fTexSampler[32];
+	sampler2D u_arrTextureSampler[32];
 };
 
 uniform Material u_Material;
@@ -20,7 +20,7 @@ uniform Material u_Material;
 void main()
 {
 	vec4 pixelColor = (inVertexData.texID > 0.5) ? 
-		texture(u_Material.u_fTexSampler[int(inVertexData.texID - 0.5f)], inVertexData.texCoords) : 
+		texture(u_Material.u_arrTextureSampler[int(inVertexData.texID - 0.5f)], inVertexData.texCoords) : 
 		inVertexData.vertColour;
 
 	if(pixelColor.a < 0.01)

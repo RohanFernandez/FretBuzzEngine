@@ -108,7 +108,7 @@ namespace ns_fretBuzz
 
 			if (l_Instance.m_pCurrentShader != a_Material.getShader())
 			{
-				a_Material.getShader()->setUniform1iv(UNIFORM_TEXTURE_SAMPLER, 32, s_arrTextureIDArray);
+				a_Material.getShader()->setUniform1iv(Material::MaterialData::UNIFORM_TEXTURE_SAMPLER, Material::MaterialData::TOTAL_TEXTURE_SLOTS, Material::MaterialData::s_arrTextureIDArray);
 			}
 
 			l_Instance.m_pCurrentShader = a_Material.getShader();

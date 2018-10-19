@@ -21,8 +21,10 @@ struct Light
 struct Material
 {
 	float u_fShininess;
-	sampler2D u_texDiffuse;
-	sampler2D u_texSpecular;
+	vec4 u_v4Albedo;
+	sampler2D u_arrTextureSampler[32];
+	float u_fTexDiffuseIndex;
+	float u_fTexSpecularIndex;
 };
 
 in vertData
@@ -76,8 +78,17 @@ vec3 getSpotLightColor(Light a_Light, vec3 a_v3ViewDirection, vec3 a_v3DiffuseSa
 void main()
 {
 	vec3 l_v3ViewDirection = normalize(inVertexData.position - u_v3CamPosition);
-	vec3 l_v3DiffuseSampledColor = vec3(texture(u_Material.u_texDiffuse, inVertexData.texCoords));
-	vec3 l_v3SpecularSampledColor = vec3(texture(u_Material.u_texSpecular, inVertexData.texCoords));
+	vec3 l_v3DiffuseSampledColor = vec3(u_Material.u_v4Albedo);
+	if(u_Material.u_fTexDiffuseIndex > 0.5)
+	{
+		l_v3DiffuseSampledColor = vec3(texture(u_Material.u_arrTextureSampler[int(u_Material.u_fTexDiffuseIndex - 0.5)], inVertexData.texCoords));
+	}
+	
+	vec3 l_v3SpecularSampledColor = vec3(u_Material.u_v4Albedo);
+	if(u_Material.u_fTexSpecularIndex > 0.5)
+	{
+		l_v3SpecularSampledColor = vec3(texture(u_Material.u_arrTextureSampler[int(u_Material.u_fTexSpecularIndex - 0.5)], inVertexData.texCoords));
+	}
 	
 	vec3 l_v3FinalLight = vec3(0.0,0.0,0.0);
 	for(int l_iCurrentDirectionalLight = 0; l_iCurrentDirectionalLight < u_iDirectionalLightCount; l_iCurrentDirectionalLight++)

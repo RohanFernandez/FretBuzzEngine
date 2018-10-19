@@ -22,16 +22,7 @@ namespace ns_fretBuzz
 			static constexpr int INDEX_TEX_UV = 2;
 			static constexpr int INDEX_TEX_ID = 3;
 
-			static constexpr int TOTAL_TEXTURE_SLOTS = 32;
 			static constexpr int SIZE_OF_VERTEX_DATA = sizeof(VertexData);
-
-			static constexpr GLint s_arrTextureIDArray[TOTAL_TEXTURE_SLOTS] =
-			{
-				0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,
-				17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
-			};
-
-			static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "textureSampler";
 
 			std::vector<unsigned int> m_vectActiveTexIDs;
 

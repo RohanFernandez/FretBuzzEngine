@@ -17,9 +17,9 @@ namespace ns_fretBuzz
 
 			static void initialize()
 			{
+				DefaultSpriteShader::initialize(SHADER_NAME_DEFAULT_SPRITE);
 				PhongShader::initialize(SHADER_NAME_PHONG);
 				Default3DShader::initialize(SHADER_NAME_DEFAULT_3D);
-				DefaultSpriteShader::initialize(SHADER_NAME_DEFAULT_SPRITE);
 				DefaultLineShader::initialize(SHADER_NAME_DEFAULT_LINE);
 			}
 		};
