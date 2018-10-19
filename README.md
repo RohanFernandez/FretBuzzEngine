@@ -19,3 +19,4 @@ All libraries are contained within the repository and should run out-of-the-box 
 	*Math         		:: GLM
 	*Physics/Collisions :: Box2D 
 	*xml parser 		:: pugixml
+	*Model loader 		:: Assimp
