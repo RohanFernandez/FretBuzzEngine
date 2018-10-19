@@ -31,7 +31,7 @@ namespace ns_fretBuzz
 				return;
 			}
 
-			m_strDirectory = a_strPath.substr(0, m_strDirectory.find_last_of('/'));
+			m_strDirectory = a_strPath.substr(0, a_strPath.find_last_of('/'));
 
 			m_pRootNode = new Node();
 			processNode(l_pScene->mRootNode, m_pRootNode, l_pScene);
@@ -55,34 +55,34 @@ namespace ns_fretBuzz
 			}
 		}
 
-		Mesh* Model::processMesh(aiMesh& a_pMesh, const aiScene* a_pScene)
+		Mesh* Model::processMesh(aiMesh& a_Mesh, const aiScene* a_pScene)
 		{
 			std::vector<Mesh::Vertex> l_vectVertices;
 			std::vector<unsigned int> l_vectIndices;
 			std::vector<Mesh::MeshTexture> l_vectTextures;
 
-			unsigned int l_iVertexCount = a_pMesh.mNumVertices;
+			unsigned int l_iVertexCount = a_Mesh.mNumVertices;
 			for (unsigned int l_iVertexIndex = 0; l_iVertexIndex < l_iVertexCount; l_iVertexIndex++)
 			{
 				Mesh::Vertex l_CurrentVertex;
 
-				aiVector3D l_v3Current = a_pMesh.mVertices[l_iVertexIndex];
+				aiVector3D l_v3Current = a_Mesh.mVertices[l_iVertexIndex];
 				l_CurrentVertex.m_v3Position = { l_v3Current.x, l_v3Current.y, l_v3Current.z };
 
-				l_v3Current = a_pMesh.mNormals[l_iVertexIndex];
+				l_v3Current = a_Mesh.mNormals[l_iVertexIndex];
 				l_CurrentVertex.m_v3Normal = { l_v3Current.x, l_v3Current.y, l_v3Current.z };
 				
-				l_CurrentVertex.m_v2TexCoords = (a_pMesh.mTextureCoords[0] != nullptr) ?
-				glm::vec2{a_pMesh.mTextureCoords[0][l_iVertexIndex].x, a_pMesh.mTextureCoords[0][l_iVertexIndex].y} :
+				l_CurrentVertex.m_v2TexCoords = (a_Mesh.mTextureCoords[0] != nullptr) ?
+				glm::vec2{a_Mesh.mTextureCoords[0][l_iVertexIndex].x, a_Mesh.mTextureCoords[0][l_iVertexIndex].y} :
 				glm::vec2{0.0f, 0.0f};
 
 				l_vectVertices.emplace_back(l_CurrentVertex);
 			}
 
-			unsigned int l_iIndexCount = a_pMesh.mNumFaces;
+			unsigned int l_iIndexCount = a_Mesh.mNumFaces;
 			for (unsigned int l_iIndex = 0; l_iIndex < l_iIndexCount; l_iIndex++)
 			{
-				aiFace& l_Face = a_pMesh.mFaces[l_iIndex];
+				aiFace& l_Face = a_Mesh.mFaces[l_iIndex];
 				unsigned int IndexCount = l_Face.mNumIndices;
 				for (unsigned int l_iFaceIndex = 0; l_iFaceIndex < IndexCount; l_iFaceIndex++)
 				{
@@ -90,9 +90,9 @@ namespace ns_fretBuzz
 				}
 			}
 
-			if (a_pMesh.mMaterialIndex >= 0)
+			if (a_Mesh.mMaterialIndex >= 0)
 			{
-				aiMaterial& l_Material = *a_pScene->mMaterials[a_pMesh.mMaterialIndex];
+				aiMaterial& l_Material = *a_pScene->mMaterials[a_Mesh.mMaterialIndex];
 				loadTextureOfType(l_vectTextures, aiTextureType_DIFFUSE, l_Material);
 				loadTextureOfType(l_vectTextures, aiTextureType_SPECULAR, l_Material);
 			}
@@ -108,10 +108,10 @@ namespace ns_fretBuzz
 				aiString l_strTextureName;
 				a_Material.GetTexture(a_TextureType, 0, &l_strTextureName);
 				
-				Texture* l_pTexture = ns_system::ResourceManager::getResource<Texture>(l_strTextureName.data);
+				std::string l_strTexturePath = m_strDirectory + "/" + l_strTextureName.data;
+				Texture* l_pTexture = ns_system::ResourceManager::getResource<Texture>(l_strTexturePath);
 				if (l_pTexture == nullptr)
 				{
-					std::string l_strTexturePath = m_strDirectory + "/" + l_strTextureName.data;
 					Texture l_texture(l_strTexturePath);
 					ns_system::ResourceManager::s_addResource<Texture>(l_strTexturePath, l_texture);
 					l_pTexture = ns_system::ResourceManager::getResource<Texture>(l_strTexturePath);

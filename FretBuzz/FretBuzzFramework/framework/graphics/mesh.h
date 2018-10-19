@@ -39,18 +39,7 @@ namespace ns_fretBuzz
 				std::vector<MeshTexture> a_vectTextures);
 			~Mesh();
 
-			unsigned int getVAO() const;
-			unsigned int getVBO() const;
-			unsigned int getIBO() const;
-
-			unsigned int getIndexCount() const;
-
-		private:
-			unsigned int m_VAO;
-			unsigned int m_VBO;
-			unsigned int m_IBO;
-
-			void setup();
+			Texture* getTextureOfType(Mesh::MeshTexture::TYPE a_TextureType);
 		};
 	}
 }

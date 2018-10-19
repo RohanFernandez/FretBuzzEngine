@@ -40,6 +40,9 @@ namespace ns_fretBuzz
 
 			m_pLightCube1 = new light_cube(*m_pManager, "Light1", {0.0f, 0.0f, 0.0f}, ns_graphics::Light::LIGHT_TYPE::SPOT, 1.0f);
 			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light2", { 1.0f, 3.0f, 1.0f }, ns_graphics::Light::LIGHT_TYPE::POINT);
+			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light3", { 1.0f, 6.0f, 2.0f }, ns_graphics::Light::LIGHT_TYPE::POINT);
+			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light4", { 1.0f, 9.0f, 3.0f }, ns_graphics::Light::LIGHT_TYPE::POINT);
+			m_pLightCube2 = new light_cube(m_refRootGameObject, "Light5", { 1.0f, 12.0f, 4.0f }, ns_graphics::Light::LIGHT_TYPE::POINT);
 
 			m_pCube1->setCamGameObject(m_pManager);
 			m_pCube2->setCamGameObject(m_pManager);

@@ -115,8 +115,8 @@ namespace ns_fretBuzz
 				m_Transform.setLocalRotation({ rot, rot , rot });
 
 				glm::vec3 l_newPosition{ m_v3LightPosition };
-				l_newPosition.x = glm::sin(glfwGetTime()) * 3.0f * m_v3LightPosition.x;
-				l_newPosition.z = glm::cos(glfwGetTime()) * 3.0f * m_v3LightPosition.z;
+				l_newPosition.x = glm::sin(glfwGetTime()) * 5.0f * m_v3LightPosition.x;
+				l_newPosition.z = glm::cos(glfwGetTime()) * 5.0f * m_v3LightPosition.z;
 				m_Transform.setWorldPosition(l_newPosition);
 			}
 

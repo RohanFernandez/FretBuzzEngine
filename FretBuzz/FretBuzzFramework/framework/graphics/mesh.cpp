@@ -13,58 +13,23 @@ namespace ns_fretBuzz
 			m_vectIndices{ a_vectIndices },
 			m_vectTextures{ a_vectTextures }
 		{
-			//setup();
 		}
 
 		Mesh::~Mesh()
 		{
-			if (m_VBO) { glDeleteBuffers(1, &m_VBO); }
-			if (m_IBO) { glDeleteBuffers(1, &m_IBO); }
-			if (m_VAO) { glDeleteVertexArrays(1, &m_VAO); }
 		}
 
-		void Mesh::setup()
+		Texture* Mesh::getTextureOfType(Mesh::MeshTexture::TYPE a_TextureType)
 		{
-			glGenVertexArrays(1, &m_VAO);
-			glGenBuffers(1, &m_VBO);
-			glGenBuffers(1, &m_IBO);
-
-			glBindVertexArray(m_VAO);
-			glBindBuffer(GL_ARRAY_BUFFER ,m_VAO);
-
-			glBufferData(GL_ARRAY_BUFFER, m_vectVertices.size() * sizeof(Vertex), &m_vectVertices[0], GL_STATIC_DRAW);
-
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_vectIndices.size() * sizeof(unsigned int), &m_vectIndices[0], GL_STATIC_DRAW);
-
-			glEnableVertexAttribArray(0);
-			glEnableVertexAttribArray(1);
-			glEnableVertexAttribArray(2);
-
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3Position));
-			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v3Normal));
-			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, m_v2TexCoords));
-
-			glBindVertexArray(0);
-		}
-
-		unsigned int Mesh::getVAO() const
-		{
-			return m_VAO;
-		}
-
-		unsigned int Mesh::getVBO() const
-		{
-			return m_VBO;
-		}
-
-		unsigned int Mesh::getIBO() const
-		{
-			return m_IBO;
-		}
-
-		unsigned int Mesh::getIndexCount() const
-		{
-			return m_vectIndices.size();
+			int l_iTexCount = m_vectTextures.size();
+			for (int l_iTexIndex = 0; l_iTexIndex < l_iTexCount; l_iTexIndex++)
+			{
+				if (m_vectTextures[l_iTexIndex].m_Type == a_TextureType)
+				{
+					return m_vectTextures[l_iTexIndex].m_pTexture;
+				}
+			}
+			return nullptr;
 		}
 	}
 }

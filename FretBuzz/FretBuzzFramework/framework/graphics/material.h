@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 				
 				static constexpr char UNIF_CAM_POSITION[] = "u_v3CamPosition";
 			};
-
+			
 			Material();
 			~Material();
 

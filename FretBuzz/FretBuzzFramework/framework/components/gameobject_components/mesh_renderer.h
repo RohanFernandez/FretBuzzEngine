@@ -15,6 +15,7 @@ namespace ns_fretBuzz
 		private:
 			MeshRenderer(ns_system::GameObject& a_GameObject, Mesh& a_Mesh);
 			Mesh* m_pMesh = nullptr;
+			void setup();
 
 		protected:
 			virtual ~MeshRenderer();
@@ -23,7 +24,7 @@ namespace ns_fretBuzz
 			static MeshRenderer* addToGameObject(ns_system::GameObject& a_GameObject, Mesh& a_Mesh);
 
 			Mesh& getMesh();
-
+			
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 		};
 	}
