@@ -97,6 +97,8 @@ namespace ns_fretBuzz
 				aiMaterial& l_Material = *a_pScene->mMaterials[a_Mesh.mMaterialIndex];
 				loadTextureOfType(l_vectTextures, aiTextureType_DIFFUSE, l_Material);
 				loadTextureOfType(l_vectTextures, aiTextureType_SPECULAR, l_Material);
+				loadTextureOfType(l_vectTextures, aiTextureType_AMBIENT, l_Material);
+				loadTextureOfType(l_vectTextures, aiTextureType_OPACITY, l_Material);
 			}
 
 			return new Mesh(l_vectVertices, l_vectIndices, l_vectTextures);
@@ -104,13 +106,13 @@ namespace ns_fretBuzz
 
 		void Model::loadTextureOfType(std::vector<Mesh::MeshTexture>& a_vectTextures, aiTextureType a_TextureType, aiMaterial& a_Material)
 		{
-			unsigned int l_iCurrentTexTypeCount = a_Material.GetTextureCount(aiTextureType_DIFFUSE);
+			unsigned int l_iCurrentTexTypeCount = a_Material.GetTextureCount(a_TextureType);
 			if (l_iCurrentTexTypeCount > 0)
 			{
 				aiString l_strTextureName;
 				a_Material.GetTexture(a_TextureType, 0, &l_strTextureName);
 				
-				std::string l_strTexturePath = m_strDirectory + "/" + l_strTextureName.data;
+				std::string l_strTexturePath = m_strDirectory + "/" + l_strTextureName.C_Str();
 				Texture* l_pTexture = ns_system::ResourceManager::getResource<Texture>(l_strTexturePath);
 				if (l_pTexture == nullptr)
 				{
@@ -130,6 +132,14 @@ namespace ns_fretBuzz
 
 				case aiTextureType_SPECULAR:
 					l_MeshTexture.m_Type = Mesh::MeshTexture::SPECULAR;
+					break;
+
+				case aiTextureType_AMBIENT:
+					l_MeshTexture.m_Type = Mesh::MeshTexture::DIFFUSE;
+					break;
+
+				case aiTextureType_OPACITY:
+					l_MeshTexture.m_Type = Mesh::MeshTexture::DIFFUSE;
 					break;
 
 				default:

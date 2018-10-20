@@ -50,6 +50,9 @@ namespace ns_fretBuzz
 
 			ns_system::GameObject* m_pNanoSuit = ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain");
 			ns_graphics::Model::addToGameObject(*m_pNanoSuit, *ns_system::ResourceManager::getResource<ns_graphics::Model>("nanosuit//nanosuit.obj"));
+
+			//ns_system::GameObject* m_pAudi = ns_system::GameObject::instantiate(m_refRootGameObject, "DeskMain");
+			//ns_graphics::Model::addToGameObject(*m_pAudi, *ns_system::ResourceManager::getResource<ns_graphics::Model>("FruitNinja_env//FruitNinja_Env.FBX"));
 		}
 
 		virtual void OnStateEnter() override {};

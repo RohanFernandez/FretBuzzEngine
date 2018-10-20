@@ -303,6 +303,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <Text Include="resources\shaders\default_sprite.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\model\computerdesk\Textures\Dark-Wood-Texture-520x339.jpg" />
     <Image Include="resources\sprites\sword.png" />
     <Image Include="resources\textures\container_diffuse.png" />
     <Image Include="resources\textures\container_specular.png" />

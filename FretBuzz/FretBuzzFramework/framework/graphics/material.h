@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 				float m_fShininess = 32.0f;
 
 				static constexpr char UNIF_MAT_V4_ALBEDO[] = "u_Material.u_v4Albedo";
-				glm::vec4 m_v4Albedo = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+				glm::vec4 m_v4Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 
 				static constexpr char UNIF_MAT_TEX_DIFFUSE[] = "u_Material.u_fTexDiffuseIndex";
 				Texture* m_pTexDiffuse = nullptr;

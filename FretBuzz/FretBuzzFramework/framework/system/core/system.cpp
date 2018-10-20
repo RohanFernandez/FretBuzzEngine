@@ -9,8 +9,8 @@ namespace ns_fretBuzz
 	{
 		System* System::s_pInstance = nullptr;
 
-		const int System::START_SCREEN_WIDTH = 800;;
-		const int System::START_SCREEN_HEIGHT = 600;
+		const int System::START_SCREEN_WIDTH = 1200;;
+		const int System::START_SCREEN_HEIGHT = 900;
 		const std::string System::WINDOW_NAME = "FretBuzz";
 
 		System::System()

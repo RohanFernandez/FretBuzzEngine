@@ -382,6 +382,9 @@
     <Image Include="resources\textures\container_specular.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\model\computerdesk\Textures\Dark-Wood-Texture-520x339.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />

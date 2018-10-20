@@ -58,7 +58,7 @@ namespace ns_fretBuzz
 				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 0.0f);
 			}
 
-			if (a_Material.m_MaterialData.m_pTexDiffuse != nullptr)
+			if (a_Material.m_MaterialData.m_pTexSpecular != nullptr)
 			{
 				glActiveTexture(GL_TEXTURE1);
 				a_Material.m_MaterialData.m_pTexSpecular->bind();
@@ -66,7 +66,7 @@ namespace ns_fretBuzz
 			}
 			else
 			{
-				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_DIFFUSE, 0.0f);
+				setUniform1f(Material::MaterialData::UNIF_MAT_TEX_SPECULAR, 0.0f);
 			}
 
 			LightManager::s_setAllLightUniforms(*this);
