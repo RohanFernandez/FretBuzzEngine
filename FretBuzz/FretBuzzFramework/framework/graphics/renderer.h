@@ -36,6 +36,8 @@ namespace ns_fretBuzz
 			unsigned int m_iTotalIndices = 0;
 			unsigned int m_iVertBufferSize = 0;
 
+			glm::mat4 m_mat4Transformation;
+
 			IRenderer();
 
 			Material m_Material;

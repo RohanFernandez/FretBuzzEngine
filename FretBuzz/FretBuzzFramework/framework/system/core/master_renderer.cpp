@@ -39,6 +39,9 @@ namespace ns_fretBuzz
 			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+
 			m_pBatchRendererManager = BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = LightManager::initialize();

@@ -103,6 +103,6 @@ void main()
 	{
 		l_v3FinalLight += getSpotLightColor(u_SpotLight[l_iCurrentSpotLight], l_v3ViewDirection, l_v3DiffuseSampledColor, l_v3SpecularSampledColor);
 	}
-	
-	color = vec4(l_v3FinalLight, 1.0);
+
+	color = vec4(vec3(l_v3FinalLight), 1.0);
 }

@@ -93,9 +93,6 @@
     <ClCompile Include="framework\system\core\physics_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\init_state.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test\CharacterTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -338,9 +335,6 @@
     <ClInclude Include="framework\graphics\light_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\resource_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\gameobject_components\light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -360,6 +354,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\graphics\shaders\default_sprite_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\utils\resource_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

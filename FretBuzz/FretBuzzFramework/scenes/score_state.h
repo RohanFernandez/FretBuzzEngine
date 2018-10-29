@@ -13,17 +13,5 @@ namespace ns_fretBuzz
 			ns_system::GameObject::instantiate(m_refRootGameObject, "score_!!!!!!", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f })->setAsDontDestroy();
 		}
 
-		virtual void OnStateEnter() override
-		{
-			IScene::OnStateEnter();
-		}
-
-		virtual void OnStateExit() override
-		{
-			IScene::OnStateExit();
-		}
-
-		virtual ~ScoreState()
-		{}
 	};
 }

@@ -18,7 +18,17 @@ namespace ns_fretBuzz
 		public:
 			IScene() = delete;
 
-			virtual ~IScene() = 0
+			virtual void OnStateEnter() override
+			{
+				IFSM::OnStateEnter();
+			}
+
+			virtual void OnStateExit() override
+			{
+				IFSM::OnStateExit();
+			}
+
+			virtual ~IScene()
 			{
 				delete m_pGameObjectRoot;
 				m_pGameObjectRoot = nullptr;

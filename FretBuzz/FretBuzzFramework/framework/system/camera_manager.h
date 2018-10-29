@@ -2,7 +2,7 @@
 #include "../components/gameobject_components/camera.h"
 #include <vector>
 #include "../system/game.h"
-#include "../system/resource_container.h"
+#include "../utils/resource_container.h"
 
 namespace ns_fretBuzz
 {

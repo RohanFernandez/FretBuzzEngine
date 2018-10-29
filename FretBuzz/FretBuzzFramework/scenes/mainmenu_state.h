@@ -14,18 +14,5 @@ namespace ns_fretBuzz
 			IScene(a_strSceneName)
 		{
 		}
-
-		virtual void OnStateEnter() override
-		{
-			IScene::OnStateEnter();
-		}
-
-		virtual void OnStateExit() override
-		{
-			IScene::OnStateExit();
-		}
-
-		virtual ~MainMenuState()
-		{}
 	};
 }
