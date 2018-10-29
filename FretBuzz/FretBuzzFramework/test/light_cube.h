@@ -28,47 +28,47 @@ namespace ns_fretBuzz
 		ns_graphics::Material m_Material;
 
 		float m_vertices[108] = {
-	  -0.5f, -0.5f, -0.5f,
-	   0.5f, -0.5f, -0.5f,
-	   0.5f,  0.5f, -0.5f,
-	   0.5f,  0.5f, -0.5f,
-	  -0.5f,  0.5f, -0.5f,
-	  -0.5f, -0.5f, -0.5f,
-
-	  -0.5f, -0.5f,  0.5f,
-	   0.5f, -0.5f,  0.5f,
-	   0.5f,  0.5f,  0.5f,
-	   0.5f,  0.5f,  0.5f,
-	  -0.5f,  0.5f,  0.5f,
-	  -0.5f, -0.5f,  0.5f,
-
-	  -0.5f,  0.5f,  0.5f,
-	  -0.5f,  0.5f, -0.5f,
-	  -0.5f, -0.5f, -0.5f,
-	  -0.5f, -0.5f, -0.5f,
-	  -0.5f, -0.5f,  0.5f,
-	  -0.5f,  0.5f,  0.5f,
-
-	   0.5f,  0.5f,  0.5f,
-	   0.5f,  0.5f, -0.5f,
-	   0.5f, -0.5f, -0.5f,
-	   0.5f, -0.5f, -0.5f,
-	   0.5f, -0.5f,  0.5f,
-	   0.5f,  0.5f,  0.5f,
-
-	  -0.5f, -0.5f, -0.5f,
-	   0.5f, -0.5f, -0.5f,
-	   0.5f, -0.5f,  0.5f,
-	   0.5f, -0.5f,  0.5f,
-	  -0.5f, -0.5f,  0.5f,
-	  -0.5f, -0.5f, -0.5f,
-
-	  -0.5f,  0.5f, -0.5f,
-	   0.5f,  0.5f, -0.5f,
-	   0.5f,  0.5f,  0.5f,
-	   0.5f,  0.5f,  0.5f,
-	  -0.5f,  0.5f,  0.5f,
-	  -0.5f,  0.5f, -0.5f
+	-0.5f, -0.5f, -0.5f,  // Bottom-left
+	 0.5f,  0.5f, -0.5f,  // top-right
+	 0.5f, -0.5f, -0.5f,  // bottom-right         
+	 0.5f,  0.5f, -0.5f,  // top-right
+	-0.5f, -0.5f, -0.5f,  // bottom-left
+	-0.5f,  0.5f, -0.5f,  // top-left
+	// Front face
+	-0.5f, -0.5f,  0.5f, // bottom-left
+	 0.5f, -0.5f,  0.5f, // bottom-right
+	 0.5f,  0.5f,  0.5f, // top-right
+	 0.5f,  0.5f,  0.5f, // top-right
+	-0.5f,  0.5f,  0.5f, // top-left
+	-0.5f, -0.5f,  0.5f, // bottom-left
+	// Left face
+	-0.5f,  0.5f,  0.5f,  // top-right
+	-0.5f,  0.5f, -0.5f,  // top-left
+	-0.5f, -0.5f, -0.5f,  // bottom-left
+	-0.5f, -0.5f, -0.5f,  // bottom-left
+	-0.5f, -0.5f,  0.5f,  // bottom-right
+	-0.5f,  0.5f,  0.5f,  // top-right
+	// Right face
+	 0.5f,  0.5f,  0.5f,  // top-left
+	 0.5f, -0.5f, -0.5f,  // bottom-right
+	 0.5f,  0.5f, -0.5f,  // top-right         
+	 0.5f, -0.5f, -0.5f,  // bottom-right
+	 0.5f,  0.5f,  0.5f,  // top-left
+	 0.5f, -0.5f,  0.5f,  // bottom-left     
+	// Bottom face
+	-0.5f, -0.5f, -0.5f,  // top-right
+	 0.5f, -0.5f, -0.5f,  // top-left
+	 0.5f, -0.5f,  0.5f,  // bottom-left
+	 0.5f, -0.5f,  0.5f,  // bottom-left
+	-0.5f, -0.5f,  0.5f,  // bottom-right
+	-0.5f, -0.5f, -0.5f,  // top-right
+	// Top face
+	-0.5f,  0.5f, -0.5f,  // top-left
+	 0.5f,  0.5f,  0.5f,  // bottom-right
+	 0.5f,  0.5f, -0.5f,  // top-right     
+	 0.5f,  0.5f,  0.5f,  // bottom-right
+	-0.5f,  0.5f, -0.5f,  // top-left
+	-0.5f,  0.5f,  0.5f  // bottom-left    
 		};
 
 		light_cube(ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 2.0f)

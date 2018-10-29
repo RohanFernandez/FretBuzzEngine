@@ -41,6 +41,7 @@ namespace ns_fretBuzz
 
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_BACK);
+			glFrontFace(GL_CCW);
 
 			m_pBatchRendererManager = BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
