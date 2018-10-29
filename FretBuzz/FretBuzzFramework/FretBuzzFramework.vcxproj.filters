@@ -278,9 +278,6 @@
     <ClInclude Include="framework\graphics\batch_renderer_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\core\system_defines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\viewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -357,6 +354,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\utils\resource_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\system_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

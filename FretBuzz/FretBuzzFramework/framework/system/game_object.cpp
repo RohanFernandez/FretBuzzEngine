@@ -1,5 +1,5 @@
 #pragma once
-#include "../system/core/system_defines.h"
+#include "../system/system_defines.h"
 #include "game_object.h"
 #include <iostream>
 #include "../components/gameobject_components/camera.h"

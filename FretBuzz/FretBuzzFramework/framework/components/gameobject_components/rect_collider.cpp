@@ -1,5 +1,5 @@
 #pragma once
-#include "../../system/core/system_defines.h"
+#include "../../system/system_defines.h"
 #include "rect_collider.h"
 #include "../../system/game_object_2d.h"
 #include <iostream>
