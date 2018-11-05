@@ -6,6 +6,8 @@
 #include "light_cube.h"
 #include "../framework/graphics/material.h"
 
+#include "../framework/graphics/post_process_manager.h"
+
 namespace ns_fretBuzz
 {
 	class test_cube: public ns_system::GameObject
@@ -117,6 +119,12 @@ namespace ns_fretBuzz
 			else if (ns_system::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_2))
 			{
 				m_pNanoSuit->m_Transform.setLocalScale({ l_v3Scale - l_v3Scale * a_fDeltaTime *2.0F });
+			}
+
+
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_C))
+			{
+				ns_graphics::PostProcessManager::togglePostProcess(!ns_graphics::PostProcessManager::isPostProcessActive());
 			}
 
 			GameObject::update(a_fDeltaTime);

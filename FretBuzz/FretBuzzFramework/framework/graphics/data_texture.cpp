@@ -10,10 +10,11 @@ namespace ns_fretBuzz
 		{
 			m_iWidth = a_uiWidth;
 			m_iHeight = a_uiHeight;
+			m_ColorFormat = a_ColorFormat;
 
 			glGenTextures(1, &m_TextureID);
 			glBindTexture(GL_TEXTURE_2D, m_TextureID);
-			glTexImage2D(GL_TEXTURE_2D, 0, a_ColorFormat, m_iWidth, m_iHeight, 0, a_ColorFormat, GL_UNSIGNED_BYTE, a_pData);
+			glTexImage2D(GL_TEXTURE_2D, 0, m_ColorFormat, m_iWidth, m_iHeight, 0, m_ColorFormat, GL_UNSIGNED_BYTE, a_pData);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		}
@@ -31,6 +32,14 @@ namespace ns_fretBuzz
 				glDeleteTextures(1, &m_TextureID);
 				m_TextureID = 0;
 			}
+		}
+
+		void DataTexture::resetTextureDimension(unsigned int a_uiWidth, unsigned int a_uiHeight)
+		{
+			bind();
+			m_iWidth = a_uiWidth;
+			m_iHeight = a_uiHeight;
+			glTexImage2D(GL_TEXTURE_2D, 0, m_ColorFormat, m_iWidth, m_iHeight, 0, m_ColorFormat, GL_UNSIGNED_BYTE, nullptr);
 		}
 	}
 }

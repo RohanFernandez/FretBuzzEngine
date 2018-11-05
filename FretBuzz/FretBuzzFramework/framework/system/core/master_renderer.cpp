@@ -74,7 +74,8 @@ namespace ns_fretBuzz
 		}
 
 		float MasterRenderer::render(ns_system::Game& m_Game)
-		{m_pBatchRendererManager->beginBatches();
+		{
+			m_pBatchRendererManager->beginBatches();
 
 			m_pCameraManager->updateViewMatrix();
 			m_pCameraManager->renderFrame(m_Game, *m_pPostProcessManager);
@@ -103,6 +104,7 @@ namespace ns_fretBuzz
 		void MasterRenderer::windowResizeCallback()
 		{
 			s_pInstance->m_pCameraManager->windowResize();
+			s_pInstance->m_pPostProcessManager->windowResize();
 		}
 	}
 }

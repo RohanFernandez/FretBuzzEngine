@@ -41,20 +41,10 @@ namespace ns_fretBuzz
 			glGenFramebuffers(1, &m_FBO);
 			glGenRenderbuffers(1, &m_RBO);
 
-			bind();
-			m_DataTexture.bind();
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_DataTexture.getID(), 0);
-
-			glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
-			Window::CheckForErrors();
-			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, a_iWidth, a_iHeight);
-			glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RBO);
-
-			if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+			if (!isSetupFrameBufferSuccess(a_iWidth, a_iHeight))
 			{
-				std::cout << "PostProcess::PostProcess:: Failed to initialize framebuffer \n";
+				std::cout << "PostProcessManager::PostProcessManager:: Failed to initialize framebuffer \n";
 			}
-			unbind();
 
 			glGenBuffers(1, &m_ScreenQuadVBO);
 			glGenVertexArrays(1, &m_ScreenQuadVAO);
@@ -74,6 +64,20 @@ namespace ns_fretBuzz
 			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::PP_DEFAULT));
 		}
 
+		bool PostProcessManager::isSetupFrameBufferSuccess(unsigned int a_uiWidth, unsigned int a_uiHeight)
+		{
+			bind();
+			m_DataTexture.resetTextureDimension(a_uiWidth, a_uiHeight);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_DataTexture.getID(), 0);
+
+			glBindRenderbuffer(GL_RENDERBUFFER, m_RBO);
+			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, a_uiWidth, a_uiHeight);
+			glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RBO);
+			unbind();
+			
+			return (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+		}
+
 		PostProcessManager::~PostProcessManager()
 		{
 			if (m_FBO)
@@ -81,6 +85,7 @@ namespace ns_fretBuzz
 				glDeleteFramebuffers(1, &m_FBO);
 				m_FBO = 0;
 			}
+
 			if (m_RBO)
 			{
 				glDeleteRenderbuffers(1, &m_RBO);
@@ -146,12 +151,20 @@ namespace ns_fretBuzz
 
 		void PostProcessManager::togglePostProcess(bool a_bIsPostProcessOn)
 		{
-			m_bIsPostProcessOn = a_bIsPostProcessOn;
+			s_pInstance->m_bIsPostProcessOn = a_bIsPostProcessOn;
 		}
 
-		bool PostProcessManager::isPostProcessActive() const
+		bool PostProcessManager::isPostProcessActive()
 		{
-			return m_bIsPostProcessOn;
+			return s_pInstance->m_bIsPostProcessOn;
+		}
+
+		void PostProcessManager::windowResize()
+		{
+			if (!isSetupFrameBufferSuccess(Window::getWidth(), Window::getHeight()))
+			{
+				std::cout << "PostProcessManager::windowResize:: Failed to resize framebuffer. \n";
+			}
 		}
 	}
 }

@@ -14,9 +14,12 @@ namespace ns_fretBuzz
 
 			bool m_bIsPostProcessOn = true;
 
+			bool isSetupFrameBufferSuccess(unsigned int a_uiWidth, unsigned int a_uiHeight);
+
+			virtual ~PostProcessManager();
+
 		public:
 			PostProcessManager(unsigned int a_iWidth, unsigned int a_iHeight);
-			virtual ~PostProcessManager();
 
 			void bind() const;
 			void unbind() const;
@@ -43,16 +46,18 @@ namespace ns_fretBuzz
 			 1.0f,  1.0f, 1.0f, 1.0f
 		};
 
-			unsigned int m_FBO;
-			unsigned int m_RBO;
+			unsigned int m_FBO = 0;
+			unsigned int m_RBO = 0;
 
-			unsigned int m_ScreenQuadVAO;
-			unsigned int m_ScreenQuadVBO;
+			unsigned int m_ScreenQuadVAO = 0;
+			unsigned int m_ScreenQuadVBO = 0;
 
 			DataTexture m_DataTexture;
 
-			void togglePostProcess(bool a_bIsPostProcessOn);
-			bool isPostProcessActive() const;
+			static void togglePostProcess(bool a_bIsPostProcessOn);
+			static bool isPostProcessActive();
+
+			void windowResize();
 		};
 	}
 }
