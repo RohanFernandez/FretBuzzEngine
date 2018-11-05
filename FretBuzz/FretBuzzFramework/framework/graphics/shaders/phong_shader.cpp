@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		void PhongShader::bind(const Material& a_Material, const Camera& a_Camera)
+		void PhongShader::bind(const Material& a_Material, const Camera& a_Camera) const
 		{
 			Shader::bind();
 

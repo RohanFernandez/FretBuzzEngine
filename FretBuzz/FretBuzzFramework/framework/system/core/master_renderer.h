@@ -6,6 +6,7 @@
 #include "../../graphics/batch_renderer_manager.h"
 #include "../../graphics/light_manager.h"
 #include "../../graphics/shader_manager.h"
+#include "../../graphics/post_process_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz
@@ -31,6 +32,8 @@ namespace ns_fretBuzz
 			CameraManager* m_pCameraManager = nullptr;
 			LightManager* m_pLightManager = nullptr;
 			ShaderManager* m_pShaderManager = nullptr;
+
+			PostProcessManager* m_pPostProcessManager = nullptr;
 
 			BatchRendererManager* m_pBatchRendererManager = nullptr;
 

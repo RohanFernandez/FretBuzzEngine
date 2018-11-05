@@ -20,9 +20,12 @@ namespace ns_fretBuzz
 
 			virtual void destroyResource() override;
 
+			Texture() {};
 		public:
-			Texture() = delete;
 			Texture(std::string a_strTexturePath);
+
+			//Setup texture that holds null data
+			Texture(unsigned int a_iTexWidth, unsigned int a_iTexHeight, GLenum a_ColorFormat);
 
 			//Copy constructor
 			Texture(Texture& a_Texture);

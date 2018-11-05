@@ -64,7 +64,7 @@ namespace ns_fretBuzz
 			s_pInstance->unregisterLight(a_pLight);
 		}
 
-		void LightManager::setAllLightUniforms(Shader& a_Shader)
+		void LightManager::setAllLightUniforms(const Shader& a_Shader) const
 		{
 			int l_iDirectionalLightIndex = 0;
 			int l_iPointLightIndex = 0;
@@ -114,7 +114,7 @@ namespace ns_fretBuzz
 			a_Shader.setUniform1i(Light::LightSource::UNIF_SPOT_LIGHT_COUNT, l_iSpotLightIndex);
 		}
 
-		void LightManager::s_setAllLightUniforms(Shader& a_shader)
+		void LightManager::s_setAllLightUniforms(const Shader& a_shader)
 		{
 			s_pInstance->setAllLightUniforms(a_shader);
 		}

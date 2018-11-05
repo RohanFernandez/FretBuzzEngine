@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		void DefaultSpriteShader::bind(const Material& a_Material, const Camera& a_Camera)
+		void DefaultSpriteShader::bind(const Material& a_Material, const Camera& a_Camera) const
 		{
 			Shader::bind();
 		}

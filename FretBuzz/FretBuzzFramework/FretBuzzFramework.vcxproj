@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -119,7 +119,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_IS_DEBUG;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -163,7 +163,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -188,15 +188,18 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\gameobject_components\rect_collider.cpp" />
     <ClCompile Include="framework\components\gameobject_components\sprite_animation_controller.cpp" />
     <ClCompile Include="framework\graphics\batch_renderer_manager.cpp" />
+    <ClCompile Include="framework\graphics\data_texture.cpp" />
     <ClCompile Include="framework\graphics\light_manager.cpp" />
     <ClCompile Include="framework\graphics\line_batch_renderer.cpp" />
     <ClCompile Include="framework\graphics\material.cpp" />
     <ClCompile Include="framework\graphics\mesh.cpp" />
     <ClCompile Include="framework\components\gameobject_components\mesh_renderer.cpp" />
     <ClCompile Include="framework\graphics\model.cpp" />
+    <ClCompile Include="framework\graphics\post_process_manager.cpp" />
     <ClCompile Include="framework\graphics\renderer.cpp" />
     <ClCompile Include="framework\graphics\shaders\default_3d_shader.cpp" />
     <ClCompile Include="framework\graphics\shaders\default_line_shader.cpp" />
+    <ClCompile Include="framework\graphics\shaders\default_post_process.cpp" />
     <ClCompile Include="framework\graphics\shaders\default_sprite_shader.cpp" />
     <ClCompile Include="framework\graphics\shaders\phong_shader.cpp" />
     <ClCompile Include="framework\graphics\shader_manager.cpp" />
@@ -237,15 +240,18 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\components\gameobject_components\light.h" />
     <ClInclude Include="framework\components\rect_transform.h" />
     <ClInclude Include="framework\graphics\batch_renderer_manager.h" />
+    <ClInclude Include="framework\graphics\data_texture.h" />
     <ClInclude Include="framework\graphics\light_manager.h" />
     <ClInclude Include="framework\graphics\line_batch_renderer.h" />
     <ClInclude Include="framework\graphics\material.h" />
     <ClInclude Include="framework\graphics\mesh.h" />
     <ClInclude Include="framework\components\gameobject_components\mesh_renderer.h" />
     <ClInclude Include="framework\graphics\model.h" />
+    <ClInclude Include="framework\graphics\post_process_manager.h" />
     <ClInclude Include="framework\graphics\rect.h" />
     <ClInclude Include="framework\graphics\shaders\default_3d_shader.h" />
     <ClInclude Include="framework\graphics\shaders\default_line_shader.h" />
+    <ClInclude Include="framework\graphics\shaders\default_post_process.h" />
     <ClInclude Include="framework\graphics\shaders\default_sprite_shader.h" />
     <ClInclude Include="framework\graphics\shaders\phong_shader.h" />
     <ClInclude Include="framework\graphics\shader_factory.h" />
@@ -261,6 +267,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\camera_manager.h" />
     <ClInclude Include="framework\system\component.h" />
     <ClInclude Include="framework\system\component_2d.h" />
+    <ClInclude Include="framework\system\core\game_setup.h" />
     <ClInclude Include="framework\system\core\physics_engine.h" />
     <ClInclude Include="framework\system\game_object.h" />
     <ClInclude Include="framework\components\sprite.h" />
@@ -317,6 +324,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     </Xml>
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\default_post_process.fs" />
+    <None Include="resources\shaders\default_post_process.vs" />
     <None Include="resources\shaders\phong.fs" />
     <None Include="resources\shaders\phong.vs" />
     <None Include="resources\shaders\default_3d.fs" />

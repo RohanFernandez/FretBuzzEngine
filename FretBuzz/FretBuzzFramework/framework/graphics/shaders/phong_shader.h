@@ -18,7 +18,7 @@ namespace ns_fretBuzz
 
 		public:
 			static PhongShader* initialize(std::string a_strShaderPath);
-			virtual void bind(const Material& a_Material, const Camera& a_Camera) override;
+			virtual void bind(const Material& a_Material, const Camera& a_Camera) const override;
 			virtual void destroy() override;
 		};
 	}

@@ -20,7 +20,9 @@ namespace ns_fretBuzz
 				DEFAULT_SPRITE,
 				DEFAULT_LINE,
 				DEFAULT_3D,
-				PHONG
+				PHONG,
+
+				PP_DEFAULT
 			};
 
 		protected:
@@ -82,7 +84,7 @@ namespace ns_fretBuzz
 
 			GLint GetUniformLocation(GLuint a_ProgramID, const char* a_pUniformName) const;
 
-			virtual void bind(const Material& a_Material, const Camera& a_Camera);
+			virtual void bind(const Material& a_Material, const Camera& a_Camera) const;
 			virtual void destroy() = 0;
 		};
 	}

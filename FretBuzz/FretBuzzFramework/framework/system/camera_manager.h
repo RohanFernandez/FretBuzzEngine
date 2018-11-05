@@ -8,6 +8,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
+		class PostProcessManager;
 		class CameraManager : ResourceContainer<std::vector<Camera*>>
 		{
 		private:
@@ -20,6 +21,7 @@ namespace ns_fretBuzz
 			static CameraManager* initialize();
 			void destroy();
 			static const CameraManager* get();
+			Camera& getMainCamera();
 
 			void registerCamera(Camera* a_pCamera);
 			static void s_registerCamera(Camera* a_pCamera);
@@ -28,7 +30,7 @@ namespace ns_fretBuzz
 			static void s_unregisterCamera(Camera* a_pCamera);
 
 			void updateViewMatrix();
-			void renderFrame(ns_system::Game& a_Game);
+			void renderFrame(ns_system::Game& a_Game, const PostProcessManager& a_PostProcessManager);
 			void windowResize();
 		};
 	}

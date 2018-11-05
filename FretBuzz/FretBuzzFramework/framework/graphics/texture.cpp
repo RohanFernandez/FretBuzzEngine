@@ -68,6 +68,21 @@ namespace ns_fretBuzz
 			a_Texture.m_pImageData = nullptr;
 		}
 
+		Texture::Texture(unsigned int a_iTexWidth, unsigned int a_iTexHeight, GLenum a_ColorFormat)
+			: m_iWidth{ a_iTexWidth },
+			m_iHeight{ a_iTexHeight }
+
+		{
+			glGenTextures(1, &m_TextureID);
+			glBindTexture(GL_TEXTURE_2D, m_TextureID);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			glTexImage2D(GL_TEXTURE_2D, 0, a_ColorFormat, m_iWidth, m_iHeight, 0, a_ColorFormat, GL_UNSIGNED_BYTE, NULL);
+		}
+
 		Texture::~Texture()
 		{
 			
@@ -89,6 +104,12 @@ namespace ns_fretBuzz
 			{
 				delete[] m_pImageData;
 				m_pImageData = nullptr;
+			}
+
+			if (m_TextureID)
+			{
+				glDeleteTextures(1, &m_TextureID);
+				m_TextureID = 0;
 			}
 		}
 

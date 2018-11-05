@@ -1,6 +1,8 @@
 #pragma once
 #include "camera_manager.h"
 #include <iostream>
+#include "../graphics/post_process_manager.h"
+
 
 namespace ns_fretBuzz
 {
@@ -43,6 +45,11 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
+		Camera& CameraManager::getMainCamera()
+		{
+			return **m_Container.begin();
+		}
+
 		void CameraManager::registerCamera(Camera* a_pCamera)
 		{
 			if (a_pCamera == nullptr)
@@ -81,14 +88,17 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void CameraManager::renderFrame(ns_system::Game& a_Game)
+		void CameraManager::renderFrame(ns_system::Game& a_Game, const PostProcessManager& a_PostProcessManager)
 		{
 			int l_iCameraCount = m_Container.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
 				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
-					a_Game.renderFrame(*m_Container[l_iCameraIndex]);
+					Camera& l_CurrentCamera = *m_Container[l_iCameraIndex];
+					a_PostProcessManager.begin();
+					a_Game.renderFrame(l_CurrentCamera);
+					a_PostProcessManager.draw(0, l_CurrentCamera);
 				}
 			}
 		}

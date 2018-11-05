@@ -47,6 +47,9 @@ namespace ns_fretBuzz
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = LightManager::initialize();
 			m_pShaderManager = ShaderManager::initialize();
+			m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight);
+
+			m_pPostProcessManager->togglePostProcess(true);
 
 			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
 		}
@@ -61,6 +64,7 @@ namespace ns_fretBuzz
 				m_pTimer = nullptr;
 			}
 			
+			m_pPostProcessManager->destroy();
 			m_pCameraManager->destroy();
 			m_pLightManager->destroy();
 			m_pShaderManager->destroy();
@@ -70,16 +74,12 @@ namespace ns_fretBuzz
 		}
 
 		float MasterRenderer::render(ns_system::Game& m_Game)
-		{
-			m_pWindow->clear();
-
-			m_pBatchRendererManager->beginBatches();
+		{m_pBatchRendererManager->beginBatches();
 
 			m_pCameraManager->updateViewMatrix();
-			m_pCameraManager->renderFrame(m_Game);
+			m_pCameraManager->renderFrame(m_Game, *m_pPostProcessManager);
 
 			m_pBatchRendererManager->endAndflushBatches();
-
 			m_pWindow->update();
 			m_pTimer->update();
 			return m_pTimer->getDeltaTime();

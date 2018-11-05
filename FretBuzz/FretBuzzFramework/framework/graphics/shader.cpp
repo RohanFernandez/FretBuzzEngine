@@ -199,7 +199,7 @@ namespace ns_fretBuzz
 			return glGetUniformLocation(a_ProgramID, a_pUniformName);
 		}
 
-		void Shader::bind(const Material& a_Material, const Camera& a_Camera)
+		void Shader::bind(const Material& a_Material, const Camera& a_Camera) const
 		{
 			bind();
 		}

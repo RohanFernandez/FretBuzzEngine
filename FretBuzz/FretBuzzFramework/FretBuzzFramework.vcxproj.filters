@@ -162,6 +162,15 @@
     <ClCompile Include="framework\graphics\shaders\default_sprite_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\data_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\post_process_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\shaders\default_post_process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -359,6 +368,18 @@
     <ClInclude Include="framework\system\system_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\system\core\game_setup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\data_texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\post_process_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\shaders\default_post_process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_sprite.fs" />
@@ -394,5 +415,7 @@
     <None Include="resources\shaders\phong.fs" />
     <None Include="resources\shaders\default_3d.fs" />
     <None Include="resources\shaders\default_3d.vs" />
+    <None Include="resources\shaders\default_post_process.fs" />
+    <None Include="resources\shaders\default_post_process.vs" />
   </ItemGroup>
 </Project>

@@ -47,7 +47,7 @@ namespace ns_fretBuzz
 			void setShader(Shader& a_pShader);
 			Shader* getShader();
 
-			void bind(const Camera& a_Camera);
+			void bind(const Camera& a_Camera) const;
 		};
 	}
 }

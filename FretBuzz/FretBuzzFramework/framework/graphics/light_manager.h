@@ -25,8 +25,8 @@ namespace ns_fretBuzz
 			void unregisterLight(Light* a_pLight);
 			static void s_unregisterLight(Light* a_pLight);
 
-			void setAllLightUniforms(Shader& a_shader);
-			static void s_setAllLightUniforms(Shader& a_shader);
+			void setAllLightUniforms(const Shader& a_shader) const;
+			static void s_setAllLightUniforms(const Shader& a_shader);
 		};
 	}
 }

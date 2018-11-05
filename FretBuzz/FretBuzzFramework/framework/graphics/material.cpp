@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 			m_pShader = &a_Shader;
 		}
 
-		void Material::bind(const Camera& a_Camera)
+		void Material::bind(const Camera& a_Camera) const
 		{
 			m_pShader->bind(*this, a_Camera);
 			/*m_pShader->setUniform3f(MaterialData::UNIF_CAM_POSITION, a_Camera.m_GameObject.m_Transform.getWorldPosition());

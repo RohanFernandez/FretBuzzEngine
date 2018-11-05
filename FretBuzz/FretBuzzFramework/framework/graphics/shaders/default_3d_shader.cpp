@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		void Default3DShader::bind(const Material& a_Material, const Camera& a_Camera)
+		void Default3DShader::bind(const Material& a_Material, const Camera& a_Camera) const
 		{
 			Shader::bind();
 			a_Material.m_pShader->setUniform4f(Material::MaterialData::UNIF_MAT_V4_ALBEDO, a_Material.m_MaterialData.m_v4Albedo);
