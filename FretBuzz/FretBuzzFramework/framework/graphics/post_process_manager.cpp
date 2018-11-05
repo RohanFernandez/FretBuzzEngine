@@ -13,14 +13,14 @@ namespace ns_fretBuzz
 		//singleton instance
 		PostProcessManager* PostProcessManager:: s_pInstance = nullptr;
 
-		PostProcessManager* PostProcessManager::initialize(unsigned int a_iWidth, unsigned int a_iHeight)
+		PostProcessManager* PostProcessManager::initialize(unsigned int a_iWidth, unsigned int a_iHeight, Material::POST_PROCESS_TYPE a_PostProcessType)
 		{
 			if (s_pInstance != nullptr)
 			{
 				std::cout << "PostProcessManager::initialize:: PostProcessManager already exists.\n";
 				return nullptr;
 			}
-			s_pInstance = new PostProcessManager(a_iWidth, a_iHeight);
+			s_pInstance = new PostProcessManager(a_iWidth, a_iHeight, a_PostProcessType);
 			return s_pInstance;
 		}
 
@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		PostProcessManager::PostProcessManager(unsigned int a_iWidth, unsigned int a_iHeight)
+		PostProcessManager::PostProcessManager(unsigned int a_iWidth, unsigned int a_iHeight, Material::POST_PROCESS_TYPE a_PostProcessType)
 			:m_DataTexture(a_iWidth, a_iHeight, nullptr, GL_RGB)
 		{
 			glGenFramebuffers(1, &m_FBO);
@@ -61,6 +61,8 @@ namespace ns_fretBuzz
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, SIZE_SINGLE_VERTEX_DATA, (const GLvoid*)(2 * sizeof(GLfloat)));
 
 			glBindVertexArray(0);
+
+			m_Material.m_MaterialData.m_PostProcessType = a_PostProcessType;
 			m_Material.setShader(*ShaderManager::getShaderOfType(Shader::SHADER_TYPE::PP_DEFAULT));
 		}
 
@@ -165,6 +167,11 @@ namespace ns_fretBuzz
 			{
 				std::cout << "PostProcessManager::windowResize:: Failed to resize framebuffer. \n";
 			}
+		}
+
+		void PostProcessManager::setPostProcessType(Material::POST_PROCESS_TYPE a_PostProcessType)
+		{
+			s_pInstance->m_Material.m_MaterialData.m_PostProcessType = a_PostProcessType;
 		}
 	}
 }

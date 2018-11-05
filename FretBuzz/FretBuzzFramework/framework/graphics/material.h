@@ -11,6 +11,13 @@ namespace ns_fretBuzz
 		{
 		public:
 
+			enum POST_PROCESS_TYPE
+			{
+				EDGE_DETECT,
+				BLUR,
+				SHARPEN
+			};
+
 			struct MaterialData
 			{
 				static constexpr char UNIF_MAT_SHININESS[] = "u_Material.u_fShininess";
@@ -25,7 +32,6 @@ namespace ns_fretBuzz
 				static constexpr char UNIF_MAT_TEX_SPECULAR[] = "u_Material.u_fTexSpecularIndex";
 				Texture* m_pTexSpecular = nullptr;
 
-				
 				static constexpr char UNIF_CAM_POSITION[] = "u_v3CamPosition";
 
 				static constexpr int TOTAL_TEXTURE_SLOTS = 32;
@@ -36,6 +42,8 @@ namespace ns_fretBuzz
 				};
 
 				static constexpr char UNIFORM_TEXTURE_SAMPLER[] = "u_Material.u_arrTextureSampler";
+
+				POST_PROCESS_TYPE m_PostProcessType = EDGE_DETECT;
 			};
 			
 			Material();

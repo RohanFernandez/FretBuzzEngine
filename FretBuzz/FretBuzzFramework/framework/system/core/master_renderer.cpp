@@ -47,7 +47,7 @@ namespace ns_fretBuzz
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = LightManager::initialize();
 			m_pShaderManager = ShaderManager::initialize();
-			m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight);
+			m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight, Material::EDGE_DETECT);
 
 			m_pPostProcessManager->togglePostProcess(true);
 

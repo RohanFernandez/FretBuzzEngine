@@ -127,6 +127,20 @@ namespace ns_fretBuzz
 				ns_graphics::PostProcessManager::togglePostProcess(!ns_graphics::PostProcessManager::isPostProcessActive());
 			}
 
+			
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_R))
+			{
+				ns_graphics::PostProcessManager::setPostProcessType(ns_graphics::Material::EDGE_DETECT);
+			}
+			else if (ns_system::Input::IsKeyPutDown(GLFW_KEY_T))
+			{
+				ns_graphics::PostProcessManager::setPostProcessType(ns_graphics::Material::BLUR);
+			}
+			else if (ns_system::Input::IsKeyPutDown(GLFW_KEY_Y))
+			{
+				ns_graphics::PostProcessManager::setPostProcessType(ns_graphics::Material::SHARPEN);
+			}
+
 			GameObject::update(a_fDeltaTime);
 		}
 
