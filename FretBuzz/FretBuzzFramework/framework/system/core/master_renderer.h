@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system 
 	{
-		class Game;
+		class SceneManager;
 	}
 
 	namespace ns_graphics
@@ -49,7 +49,7 @@ namespace ns_fretBuzz
 			GLFWwindow* getGLFWWindow() const;
 			bool isWindowClosed() const;
 
-			float render(ns_system::Game& m_Game);
+			float render(ns_system::SceneManager& a_SceneManager);
 
 			void closeWindow() const;
 

@@ -212,7 +212,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\system\core\physics_engine.cpp" />
     <ClCompile Include="framework\system\game_object.cpp" />
     <ClCompile Include="framework\components\transform.cpp" />
-    <ClCompile Include="framework\system\game.cpp" />
     <ClCompile Include="framework\system\game_object_2d.cpp" />
     <ClCompile Include="framework\graphics\shader.cpp" />
     <ClCompile Include="framework\components\sprite.cpp" />
@@ -279,7 +278,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="test\CharacterTest.h" />
     <ClInclude Include="framework\utils\math.h" />
     <ClInclude Include="framework\components\transform.h" />
-    <ClInclude Include="framework\system\game.h" />
     <ClInclude Include="scenes\init_state.h" />
     <ClInclude Include="scenes\mainmenu_state.h" />
     <ClInclude Include="scenes\score_state.h" />

@@ -3,6 +3,12 @@
 #include <iostream>
 #include "asset_loader.h"
 
+
+#include "../../scenes/init_state.h"
+#include "../../scenes/mainmenu_state.h"
+#include "../../scenes/score_state.h"
+#include "../../scenes/threed_test_setup.h"
+
 namespace ns_fretBuzz
 {
 	namespace ns_system
@@ -23,7 +29,18 @@ namespace ns_fretBuzz
 			m_pInput = Input::initialize(m_pMasterRenderer->getGLFWWindow());
 			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 6, 2);
 
-			m_pGame = Game::intialize();
+
+			m_vectScenes =
+			{
+				new SceneData<threed_test_scene>("3d_Test"),
+				new SceneData<InitState>("initstate")
+				/*new SceneData<MainMenuState>("mainmenustate"),
+				new SceneData<ScoreState>("scorestate")*/
+
+			};
+			m_pSceneManager = SceneManager::initialize(m_vectScenes);
+
+			//m_pGame = Game::intialize();
 		}
 
 		bool System::isInitialized()
@@ -34,14 +51,23 @@ namespace ns_fretBuzz
 				    s_pInstance->m_pAudioEngine == nullptr ||
 				    s_pInstance->m_pMasterRenderer == nullptr ||
 				    s_pInstance->m_pInput == nullptr ||
-					s_pInstance->m_pPhysicsEngine == nullptr);
+					s_pInstance->m_pPhysicsEngine == nullptr || 
+					s_pInstance->m_pSceneManager == nullptr );
 		}
 
 		System::~System()
 		{
+			m_pSceneManager->destroy();
+
+			for (auto l_CurrentState = m_vectScenes.begin();
+				l_CurrentState != m_vectScenes.end();)
+			{
+				delete *l_CurrentState;
+				l_CurrentState = m_vectScenes.erase(l_CurrentState);
+			}
+
 			m_pResourceManager->destroy();
 
-			m_pGame->destroy();
 			m_pAudioEngine->destroy();
 			m_pInput->destroy();
 			m_pMasterRenderer->destroy();
@@ -63,7 +89,7 @@ namespace ns_fretBuzz
 				return;
 			}
 
-			Game& l_Game = *(s_pInstance->m_pGame);
+			SceneManager& l_SceneManager = *(s_pInstance->m_pSceneManager);
 			ns_graphics::MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
 			Input& l_Input = *(s_pInstance->m_pInput);
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
@@ -72,10 +98,10 @@ namespace ns_fretBuzz
 
 			while (!l_MasterRenderer.isWindowClosed())
 			{
-				l_Game.updateScenes(l_fCurrentDeltaTime);
+				l_SceneManager.updateActiveScenes(l_fCurrentDeltaTime);
 				l_PhysicsEngine.update(l_fCurrentDeltaTime);
 				l_Input.Update();
-				l_fCurrentDeltaTime = l_MasterRenderer.render(l_Game);
+				l_fCurrentDeltaTime = l_MasterRenderer.render(l_SceneManager);
 			}
 
 			destroy();

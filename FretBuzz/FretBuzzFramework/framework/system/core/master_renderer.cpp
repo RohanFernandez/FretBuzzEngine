@@ -3,7 +3,7 @@
 #include "../../graphics/line_batch_renderer.h"
 #include "../../graphics/sprite_batch_renderer.h"
 #include "../../system/camera_manager.h"
-#include "../game.h"
+#include "../scene_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -73,12 +73,12 @@ namespace ns_fretBuzz
 			m_pWindow->destroy();
 		}
 
-		float MasterRenderer::render(ns_system::Game& m_Game)
+		float MasterRenderer::render(ns_system::SceneManager& a_SceneManager)
 		{
 			m_pBatchRendererManager->beginBatches();
 
 			m_pCameraManager->updateViewMatrix();
-			m_pCameraManager->renderFrame(m_Game, *m_pPostProcessManager);
+			m_pCameraManager->renderFrame(a_SceneManager, *m_pPostProcessManager);
 
 			m_pBatchRendererManager->endAndflushBatches();
 			m_pWindow->update();

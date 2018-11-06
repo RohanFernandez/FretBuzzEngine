@@ -66,9 +66,6 @@
     <ClCompile Include="framework\system\component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\system\game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework\components\audio_clip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,9 +225,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\system\component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\system\game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\audio_clip.h">

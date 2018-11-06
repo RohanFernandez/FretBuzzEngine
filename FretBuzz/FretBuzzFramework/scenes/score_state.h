@@ -1,5 +1,5 @@
 #pragma once
-#include "../system/scene_manager.h"
+#include "../framework/system/scene_manager.h"
 
 namespace ns_fretBuzz
 {

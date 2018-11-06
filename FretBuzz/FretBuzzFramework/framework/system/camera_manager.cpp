@@ -88,7 +88,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void CameraManager::renderFrame(ns_system::Game& a_Game, const PostProcessManager& a_PostProcessManager)
+		void CameraManager::renderFrame(ns_system::SceneManager& a_SceneManager, const PostProcessManager& a_PostProcessManager)
 		{
 			int l_iCameraCount = m_Container.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
@@ -97,7 +97,7 @@ namespace ns_fretBuzz
 				{
 					Camera& l_CurrentCamera = *m_Container[l_iCameraIndex];
 					a_PostProcessManager.begin();
-					a_Game.renderFrame(l_CurrentCamera);
+					a_SceneManager.renderActiveScenes(l_CurrentCamera);
 					a_PostProcessManager.draw(0, l_CurrentCamera);
 				}
 			}

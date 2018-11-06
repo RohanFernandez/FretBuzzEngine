@@ -1,12 +1,12 @@
 #pragma once
 
 #include "../timer/timerFPS.h"
-#include "../game.h"
 #include "audio_engine.h"
 #include "master_renderer.h"
 #include "input.h"
 #include "resource_manager.h"
 #include "physics_engine.h"
+#include "../scene_manager.h"
 
 
 namespace ns_fretBuzz
@@ -31,8 +31,6 @@ namespace ns_fretBuzz
 			//Destroys components if failed to initialize and provides cleanup
 			static void destroy();
 
-			Game* m_pGame = nullptr;
-
 			AudioEngine* m_pAudioEngine = nullptr;
 
 			ns_graphics::MasterRenderer* m_pMasterRenderer = nullptr;
@@ -43,6 +41,9 @@ namespace ns_fretBuzz
 			ResourceManager* m_pResourceManager = nullptr;
 
 			PhysicsEngine* m_pPhysicsEngine = nullptr;
+
+			std::vector<ISceneData*> m_vectScenes;
+			SceneManager* m_pSceneManager = nullptr;
 
 		public:
 			~System();

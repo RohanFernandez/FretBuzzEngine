@@ -34,10 +34,6 @@ namespace ns_fretBuzz
 		SceneManager::SceneManager(ISceneData* a_pStartScene)
 			: FSM<ISceneData>(a_pStartScene, false)
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
 			s_pInstance = this;
 			m_vectActiveStates.emplace_back(a_pStartScene);
 		}
@@ -45,21 +41,12 @@ namespace ns_fretBuzz
 		SceneManager::SceneManager(std::vector<ISceneData*>& a_pVectIScene)
 			: FSM<ISceneData>(a_pVectIScene, false)
 		{
-			if (s_pInstance != nullptr)
-			{
-				return;
-			}
 			s_pInstance = this;
 			m_vectActiveStates.emplace_back(a_pVectIScene[0]);
 		}
 
 		SceneManager::~SceneManager()
 		{
-			if (s_pInstance != this)
-			{
-				return;
-			}
-
 			m_pCurrentState->OnStateExit();
 			m_pCurrentState = nullptr;
 			unloadAllScenes();

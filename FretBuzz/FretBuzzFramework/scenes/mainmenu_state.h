@@ -1,6 +1,6 @@
 #pragma once
-#include "../system/scene_manager.h"
-#include "../system/game_object.h"
+#include "../framework/system/scene_manager.h"
+#include "../framework/system/game_object.h"
 #include "../test/CharacterTest.h"
 
 namespace ns_fretBuzz
