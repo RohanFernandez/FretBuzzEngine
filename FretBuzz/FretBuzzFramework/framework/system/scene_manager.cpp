@@ -34,14 +34,12 @@ namespace ns_fretBuzz
 		SceneManager::SceneManager(ISceneData* a_pStartScene)
 			: FSM<ISceneData>(a_pStartScene, false)
 		{
-			s_pInstance = this;
 			m_vectActiveStates.emplace_back(a_pStartScene);
 		}
 
 		SceneManager::SceneManager(std::vector<ISceneData*>& a_pVectIScene)
 			: FSM<ISceneData>(a_pVectIScene, false)
 		{
-			s_pInstance = this;
 			m_vectActiveStates.emplace_back(a_pVectIScene[0]);
 		}
 
@@ -51,7 +49,7 @@ namespace ns_fretBuzz
 			m_pCurrentState = nullptr;
 			unloadAllScenes();
 
-			s_pInstance = nullptr;	
+			s_pInstance = nullptr;
 		}
 
 		void SceneManager::s_registerState(ISceneData* a_pScene)
@@ -183,13 +181,16 @@ namespace ns_fretBuzz
 		///Deletes the scene from memory
 		void SceneManager::unloadAllScenes()
 		{
-			for (std::vector<ISceneData*>::const_iterator l_pCurrentScene = m_vectActiveStates.cbegin();
-				l_pCurrentScene != m_vectActiveStates.cend();
+			for (std::vector<ISceneData*>::iterator l_pCurrentScene = m_vectActiveStates.begin();
+				l_pCurrentScene != m_vectActiveStates.end();
 				)
 			{
-				ISceneData* l_pCurrentISceneData = *l_pCurrentScene;
+				ISceneData*& l_pCurrentISceneData = *l_pCurrentScene;
 				l_pCurrentScene = m_vectActiveStates.erase(l_pCurrentScene);
 				l_pCurrentISceneData->unloadSceneData();
+
+				delete l_pCurrentISceneData;
+				l_pCurrentISceneData = nullptr;
 			}
 		}
 

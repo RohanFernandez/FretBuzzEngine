@@ -4,11 +4,6 @@
 #include "asset_loader.h"
 
 
-#include "../../scenes/init_state.h"
-#include "../../scenes/mainmenu_state.h"
-#include "../../scenes/score_state.h"
-#include "../../scenes/threed_test_setup.h"
-
 namespace ns_fretBuzz
 {
 	namespace ns_system
@@ -19,7 +14,7 @@ namespace ns_fretBuzz
 		const int System::START_SCREEN_HEIGHT = 900;
 		const std::string System::WINDOW_NAME = "FretBuzz";
 
-		System::System()
+		System::System(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
 		{
 			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
 			m_pAudioEngine = AudioEngine::initialize();
@@ -29,23 +24,12 @@ namespace ns_fretBuzz
 			m_pInput = Input::initialize(m_pMasterRenderer->getGLFWWindow());
 			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 6, 2);
 
-
-			m_vectScenes =
-			{
-				new SceneData<threed_test_scene>("3d_Test"),
-				new SceneData<InitState>("initstate")
-				/*new SceneData<MainMenuState>("mainmenustate"),
-				new SceneData<ScoreState>("scorestate")*/
-
-			};
-			m_pSceneManager = SceneManager::initialize(m_vectScenes);
-
-			//m_pGame = Game::intialize();
+			m_pSceneManager = SceneManager::initialize(a_vectScenes);
 		}
 
-		bool System::isInitialized()
+		bool System::isInitialized(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
 		{
-			s_pInstance = new System();
+			s_pInstance = new System(a_vectScenes);
 			return !(s_pInstance == nullptr ||
 				    s_pInstance->m_pAudioEngine == nullptr ||
 				    s_pInstance->m_pAudioEngine == nullptr ||
@@ -58,14 +42,6 @@ namespace ns_fretBuzz
 		System::~System()
 		{
 			m_pSceneManager->destroy();
-
-			for (auto l_CurrentState = m_vectScenes.begin();
-				l_CurrentState != m_vectScenes.end();)
-			{
-				delete *l_CurrentState;
-				l_CurrentState = m_vectScenes.erase(l_CurrentState);
-			}
-
 			m_pResourceManager->destroy();
 
 			m_pAudioEngine->destroy();
@@ -76,14 +52,14 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void System::run()
+		void System::run(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
 		{
 			if (s_pInstance != nullptr)
 			{
 				return;
 			}
 
-			if (!isInitialized())
+			if (!isInitialized(a_vectScenes))
 			{
 				destroy();
 				return;
