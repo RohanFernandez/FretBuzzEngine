@@ -9,6 +9,28 @@ namespace ns_fretBuzz
 		///singleton instance
 		SceneManager* SceneManager:: s_pInstance = nullptr;
 
+		SceneManager* SceneManager::initialize(std::vector<ISceneData*>& a_pVectIScene)
+		{
+			if (s_pInstance != nullptr)
+			{
+				std::cout << "SceneManager::initialize:: SceneManager instance has already been previously initialized\n";
+				return nullptr;
+			}
+			s_pInstance = new SceneManager(a_pVectIScene);
+			return s_pInstance;
+		}
+
+		const SceneManager* SceneManager:: get()
+		{
+			return s_pInstance;
+		}
+
+		void SceneManager::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
+
 		SceneManager::SceneManager(ISceneData* a_pStartScene)
 			: FSM<ISceneData>(a_pStartScene, false)
 		{

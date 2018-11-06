@@ -214,11 +214,6 @@ namespace ns_fretBuzz
 				Additive
 			};
 
-			SceneManager(ISceneData* a_pStartScene);
-			SceneManager(std::vector<ISceneData*>& a_pVectIScene);
-
-			virtual ~SceneManager();
-
 			static void s_registerState(ISceneData* a_pScene);
 			static void s_loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
 			static void s_unloadScene(std::string a_strSceneName);
@@ -229,7 +224,15 @@ namespace ns_fretBuzz
 
 			static void printSceneHierarchy();
 
+			static SceneManager* initialize(std::vector<ISceneData*>& a_pVectIScene);
+			static const SceneManager* get();
+			void destroy();
+
 		protected:
+			SceneManager(ISceneData* a_pStartScene);
+			SceneManager(std::vector<ISceneData*>& a_pVectIScene);
+
+			virtual ~SceneManager();
 			virtual void transitionTo(std::string a_strTransitionTo) override;
 
 			void registerState(ISceneData* a_pScene);

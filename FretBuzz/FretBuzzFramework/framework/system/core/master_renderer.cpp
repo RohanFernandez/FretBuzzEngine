@@ -49,7 +49,7 @@ namespace ns_fretBuzz
 			m_pShaderManager = ShaderManager::initialize();
 			m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight, Material::EDGE_DETECT);
 
-			m_pPostProcessManager->togglePostProcess(true);
+			m_pPostProcessManager->togglePostProcess(false);
 
 			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
 		}

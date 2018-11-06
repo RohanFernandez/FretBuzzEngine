@@ -22,16 +22,12 @@ namespace ns_fretBuzz
 				new SceneData<ScoreState>("scorestate")*/
 
 			};
-			m_pSceneManager = new SceneManager(m_vectScenes);
+			m_pSceneManager = SceneManager::initialize(m_vectScenes);
 		}
 
 		Game::~Game()
 		{
-			if (m_pSceneManager != nullptr)
-			{
-				delete m_pSceneManager;
-				m_pSceneManager = nullptr;
-			}
+			m_pSceneManager->destroy();
 
 			for (auto l_CurrentState = m_vectScenes.cbegin(), l_EndStateIndex = m_vectScenes.cend();
 				l_CurrentState != l_EndStateIndex; l_CurrentState++)
