@@ -70,26 +70,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Debug;$(SolutionDir)Libs\pugixml\lib\Win32\Debug;$(SolutionDir)Libs\assimp\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Release;$(SolutionDir)Libs\pugixml\lib\Win32\Release;$(SolutionDir)Libs\assimp\lib\Win32\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Debug;$(SolutionDir)Libs\pugixml\lib\x64\Debug;$(SolutionDir)Libs\assimp\lib\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Bin\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Bin\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Release;$(SolutionDir)Libs\pugixml\lib\x64\Release;$(SolutionDir)Libs\assimp\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

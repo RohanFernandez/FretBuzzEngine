@@ -48,8 +48,6 @@ namespace ns_fretBuzz
 			m_pCurrentState->OnStateExit();
 			m_pCurrentState = nullptr;
 			unloadAllScenes();
-
-			s_pInstance = nullptr;
 		}
 
 		void SceneManager::s_registerState(ISceneData* a_pScene)
