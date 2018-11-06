@@ -155,6 +155,12 @@ namespace ns_fretBuzz
 			float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
 			m_pTransform->setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
 
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_O))
+			{
+				ns_system::SceneManager::s_loadScene("3d_Test");
+			}
+
+
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);
 		};

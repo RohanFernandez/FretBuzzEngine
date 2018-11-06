@@ -141,6 +141,11 @@ namespace ns_fretBuzz
 				ns_graphics::PostProcessManager::setPostProcessType(ns_graphics::Material::SHARPEN);
 			}
 
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
+			{
+				ns_system::SceneManager::s_loadScene("initstate");
+			}
+
 			GameObject::update(a_fDeltaTime);
 		}
 

@@ -95,8 +95,7 @@ namespace ns_fretBuzz
 
 		void GameObject::updateComponents(float a_fDeltaTime)
 		{
-			int l_iComponentCount = m_Components.size();
-			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
+			for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
 			{
 				if (m_Components[l_iComponentndex]->getIsEnabled())
 				{
@@ -107,10 +106,9 @@ namespace ns_fretBuzz
 
 		void GameObject::updateChildren(float a_fDeltaTime)
 		{
-			int l_iChildCount = m_Children.size();
 			GameObject* l_pCurrentGameObject = nullptr;
 
-			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
+			for (int l_iChildIndex = 0; l_iChildIndex < m_Children.size(); l_iChildIndex++)
 			{
 				l_pCurrentGameObject = m_Children[l_iChildIndex];
 				if (l_pCurrentGameObject->getIsActiveInHierarchy())
