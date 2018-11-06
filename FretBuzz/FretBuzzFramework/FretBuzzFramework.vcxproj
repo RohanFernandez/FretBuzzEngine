@@ -271,6 +271,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\game_object.h" />
     <ClInclude Include="framework\components\sprite.h" />
     <ClInclude Include="framework\system\core\asset_loader.h" />
+    <ClInclude Include="framework\system\game_startup_data.h" />
     <ClInclude Include="framework\system\system_defines.h" />
     <ClInclude Include="framework\system\game_object_2d.h" />
     <ClInclude Include="framework\utils\resource_container.h" />

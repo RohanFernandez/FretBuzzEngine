@@ -10,13 +10,9 @@ namespace ns_fretBuzz
 	{
 		System* System::s_pInstance = nullptr;
 
-		const int System::START_SCREEN_WIDTH = 1200;;
-		const int System::START_SCREEN_HEIGHT = 900;
-		const std::string System::WINDOW_NAME = "FretBuzz";
-
-		System::System(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
+		System::System(GameStartupData& a_GameStartupData)
 		{
-			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(START_SCREEN_WIDTH, START_SCREEN_HEIGHT, WINDOW_NAME, true);
+			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, true);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
 			AssetLoader::loadAssets(m_pResourceManager);
@@ -24,12 +20,12 @@ namespace ns_fretBuzz
 			m_pInput = Input::initialize(m_pMasterRenderer->getGLFWWindow());
 			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 6, 2);
 
-			m_pSceneManager = SceneManager::initialize(a_vectScenes);
+			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 		}
 
-		bool System::isInitialized(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
+		bool System::isInitialized(GameStartupData& a_GameStartupData)
 		{
-			s_pInstance = new System(a_vectScenes);
+			s_pInstance = new System(a_GameStartupData);
 			return !(s_pInstance == nullptr ||
 				    s_pInstance->m_pAudioEngine == nullptr ||
 				    s_pInstance->m_pAudioEngine == nullptr ||
@@ -43,7 +39,6 @@ namespace ns_fretBuzz
 		{
 			m_pSceneManager->destroy();
 			m_pResourceManager->destroy();
-
 			m_pAudioEngine->destroy();
 			m_pInput->destroy();
 			m_pMasterRenderer->destroy();
@@ -52,14 +47,14 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void System::run(std::vector<ns_fretBuzz::ns_system::ISceneData*> a_vectScenes)
+		void System::run(GameStartupData& a_GameStartupData)
 		{
 			if (s_pInstance != nullptr)
 			{
 				return;
 			}
 
-			if (!isInitialized(a_vectScenes))
+			if (!isInitialized(a_GameStartupData))
 			{
 				destroy();
 				return;
