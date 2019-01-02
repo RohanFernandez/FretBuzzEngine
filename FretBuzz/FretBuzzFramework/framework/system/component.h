@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/viewport.h"
+#include "components/viewport.h"
 
 namespace ns_fretBuzz
 {

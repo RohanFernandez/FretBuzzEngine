@@ -1,11 +1,11 @@
 #pragma once
 #include "asset_loader.h"
-#include "../../graphics/shader.h"
-#include "../../graphics/texture.h"
-#include "../../components/sprite.h"
-#include "../../components/audio_clip.h"
-#include "../../components/sprite_animator.h"
-#include "../../graphics/model.h"
+#include "graphics/shader.h"
+#include "graphics/texture.h"
+#include "components/sprite.h"
+#include "components/audio_clip.h"
+#include "components/sprite_animator.h"
+#include "graphics/model.h"
 
 #include <fstream>
 #include <sstream>

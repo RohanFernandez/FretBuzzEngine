@@ -1,7 +1,7 @@
 #pragma once
 #include "mesh_renderer.h"
-#include "../../system/game_object.h"
-#include "../../graphics/shader_manager.h"
+#include "system/game_object.h"
+#include "graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {

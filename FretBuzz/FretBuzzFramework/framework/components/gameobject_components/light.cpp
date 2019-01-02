@@ -1,7 +1,7 @@
 #pragma once
 #include "light.h"
-#include "../../system/game_object.h"
-#include "../../graphics/light_manager.h"
+#include "system/game_object.h"
+#include "graphics/light_manager.h"
 #include <iostream>
 
 namespace ns_fretBuzz

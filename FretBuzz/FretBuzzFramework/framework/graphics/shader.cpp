@@ -3,9 +3,9 @@
 #include <vector>
 
 #include "material.h"
-#include "../components/gameobject_components/camera.h"
+#include "components/gameobject_components/camera.h"
 #include "shader.h"
-#include "../utils/file_utils.h"
+#include "utils/file_utils.h"
 
 #include "shader_manager.h"
 
@@ -139,7 +139,7 @@ namespace ns_fretBuzz
 			glUniform1i(glGetUniformLocation(m_ShaderID, a_pUniformName), a_Value);
 		}
 
-		void Shader::setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLint* a_arrValue) const
+		void Shader::setUniform1iv(const char* a_pUniformName, int a_iArrayCount, const GLint* a_arrValue) const
 		{
 			glUniform1iv(glGetUniformLocation(m_ShaderID, a_pUniformName), a_iArrayCount, a_arrValue);
 		}

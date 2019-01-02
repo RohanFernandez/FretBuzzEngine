@@ -1,8 +1,8 @@
 #pragma once
-#include "../system/system_defines.h"
+#include "system/system_defines.h"
 #include "game_object.h"
 #include <iostream>
-#include "../components/gameobject_components/camera.h"
+#include "components/gameobject_components/camera.h"
 
 namespace ns_fretBuzz
 {
@@ -65,6 +65,8 @@ namespace ns_fretBuzz
 				delete m_pTransform;
 				m_pTransform = nullptr;
 			}
+
+
 		}
 
 		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)

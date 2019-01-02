@@ -2,8 +2,8 @@
 
 #include "camera.h"
 #include "../viewport.h"
-#include "../../system/game_object.h"
-#include "../../system/camera_manager.h"
+#include "system/game_object.h"
+#include "system/camera_manager.h"
 
 namespace ns_fretBuzz
 {

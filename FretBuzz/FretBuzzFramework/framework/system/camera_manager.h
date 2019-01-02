@@ -1,8 +1,8 @@
 #pragma once
-#include "../components/gameobject_components/camera.h"
 #include <vector>
-#include "../system/scene_manager.h"
-#include "../utils/resource_container.h"
+#include "components/gameobject_components/camera.h"
+#include "system/scene_manager.h"
+#include "utils/resource_container.h"
 
 namespace ns_fretBuzz
 {

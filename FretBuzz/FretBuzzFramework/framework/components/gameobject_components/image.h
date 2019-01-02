@@ -1,7 +1,7 @@
 #pragma once
-#include "../../system/component_2d.h"
+#include "system/component_2d.h"
 #include "../sprite.h"
-#include "../../graphics/material.h"
+#include "graphics/material.h"
 
 namespace ns_fretBuzz
 {

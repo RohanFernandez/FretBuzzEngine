@@ -1,11 +1,11 @@
 #pragma once
-#include "../framework/system/scene_manager.h"
+#include "framework/system/scene_manager.h"
 
-#include "../framework/components/gameobject_components/camera.h"
-#include "../test/PlayerController.h"
-#include "../test/test_cube.h"
+#include "framework/components/gameobject_components/camera.h"
+#include "test/PlayerController.h"
+#include "test/test_cube.h"
 
-#include "../framework/graphics/model.h"
+#include "framework/graphics/model.h"
 
 namespace ns_fretBuzz
 {

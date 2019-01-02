@@ -2,11 +2,11 @@
 
 #include "window.h"
 #include "../timer/timerFPS.h"
-#include "../../components/viewport.h"
-#include "../../graphics/batch_renderer_manager.h"
-#include "../../graphics/light_manager.h"
-#include "../../graphics/shader_manager.h"
-#include "../../graphics/post_process_manager.h"
+#include "components/viewport.h"
+#include "graphics/batch_renderer_manager.h"
+#include "graphics/light_manager.h"
+#include "graphics/shader_manager.h"
+#include "graphics/post_process_manager.h"
 #include <vector>
 
 namespace ns_fretBuzz

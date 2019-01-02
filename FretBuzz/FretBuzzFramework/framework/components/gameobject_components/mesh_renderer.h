@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../system/component.h"
-#include "../../graphics/shader.h"
-#include "../../graphics/renderer.h"
-#include "../../graphics/mesh.h"
+#include "system/component.h"
+#include "graphics/shader.h"
+#include "graphics/renderer.h"
+#include "graphics/mesh.h"
 
 namespace ns_fretBuzz
 {

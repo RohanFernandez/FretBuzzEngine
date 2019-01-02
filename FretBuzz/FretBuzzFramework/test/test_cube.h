@@ -1,12 +1,13 @@
 #pragma once
-#include "../framework/system/game_object.h"
-#include "../framework/graphics/shader.h"
-#include "../framework/utils/math.h"
-#include "../framework/graphics/light_manager.h"
+#include "framework/system/game_object.h"
+#include "framework/graphics/shader.h"
+#include "framework/utils/math.h"
+#include "framework/graphics/light_manager.h"
 #include "light_cube.h"
-#include "../framework/graphics/material.h"
+#include "framework/graphics/material.h"
 
-#include "../framework/graphics/post_process_manager.h"
+#include "framework/graphics/post_process_manager.h"
+#include <iostream>
 
 namespace ns_fretBuzz
 {
@@ -139,11 +140,6 @@ namespace ns_fretBuzz
 			else if (ns_system::Input::IsKeyPutDown(GLFW_KEY_Y))
 			{
 				ns_graphics::PostProcessManager::setPostProcessType(ns_graphics::Material::SHARPEN);
-			}
-
-			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
-			{
-				ns_system::SceneManager::s_loadScene("initstate");
 			}
 
 			GameObject::update(a_fDeltaTime);

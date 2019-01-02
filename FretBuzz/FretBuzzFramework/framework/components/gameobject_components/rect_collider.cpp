@@ -1,11 +1,11 @@
 #pragma once
-#include "../../system/system_defines.h"
-#include "rect_collider.h"
-#include "../../system/game_object_2d.h"
 #include <iostream>
-#include "../../system/core/input.h"
-#include "../../system/core/resource_manager.h"
-#include "../../graphics/shader_manager.h"
+#include "system/system_defines.h"
+#include "rect_collider.h"
+#include "system/game_object_2d.h"
+#include "system/core/input.h"
+#include "system/core/resource_manager.h"
+#include "graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {

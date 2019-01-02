@@ -1,8 +1,8 @@
 #pragma once
-#include "../../system/component.h"
 #include "../sprite.h"
-#include "../../graphics/material.h"
-#include "../../graphics/renderer.h"
+#include "system/component.h"
+#include "graphics/material.h"
+#include "graphics/renderer.h"
 
 namespace ns_fretBuzz
 {

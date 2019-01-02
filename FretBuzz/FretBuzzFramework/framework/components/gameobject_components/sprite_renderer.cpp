@@ -1,11 +1,11 @@
 #pragma once
+#include <iostream>
 #include "sprite_renderer.h"
 #include "../viewport.h"
-#include <iostream>
-#include "../../system/game_object.h"
-#include "../../system/core/resource_manager.h"
-#include "../../graphics/sprite_batch_renderer.h"
-#include "../../graphics/shader_manager.h"
+#include "system/game_object.h"
+#include "system/core/resource_manager.h"
+#include "graphics/sprite_batch_renderer.h"
+#include "graphics/shader_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -83,22 +83,6 @@ namespace ns_fretBuzz
 		{
 			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaultSprite : m_pSprite);
 			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_Material);
-
-			/*const Shader& l_CurrentShader = *(l_CurrentSprite.getShader());
-			l_CurrentShader.bind();
-
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_PROJECTION_MATRIX, a_Camera.getProjectionMatrix());
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_VIEW_MATRIX, a_Camera.getViewMatrix());
-			l_CurrentShader.setUniforMat4fv(Sprite::UNIFORM_MODEL_MATRIX, a_mat4Transformation);
-
-			glActiveTexture(GL_TEXTURE0);
-			l_CurrentSprite.getTexture()->bind();
-
-			l_CurrentShader.setUniform1i(Sprite::UNIFORM_TEXTURE_SAMPLER, 0);
-
-			glBindVertexArray(m_VAO);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-			glBindVertexArray(0);*/
 		}
 	}
 }

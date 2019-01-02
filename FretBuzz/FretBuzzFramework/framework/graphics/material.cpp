@@ -1,7 +1,7 @@
 #include "material.h"
-#include "../graphics/light_manager.h"
-#include "../components/gameobject_components/camera.h"
-#include "../system/game_object.h"
+#include "graphics/light_manager.h"
+#include "components/gameobject_components/camera.h"
+#include "system/game_object.h"
 
 namespace ns_fretBuzz
 {

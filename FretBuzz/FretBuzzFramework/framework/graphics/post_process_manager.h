@@ -1,6 +1,6 @@
 #pragma once
 #include "data_texture.h"
-#include "../utils/math.h"
+#include "utils/math.h"
 #include "material.h"
 
 namespace ns_fretBuzz

@@ -1,6 +1,6 @@
 #pragma once
 #include "../material.h"
-#include "../../components/gameobject_components/camera.h"
+#include "components/gameobject_components/camera.h"
 #include "../shader.h"
 #include "default_line_shader.h"
 #include <iostream>

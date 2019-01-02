@@ -1,11 +1,11 @@
 #pragma once
-#include "../framework/system/game_object.h"
-#include "../framework/graphics/shader.h"
-#include "../framework/graphics/texture.h"
-#include "../framework/utils/math.h"
-#include "../framework/components/gameobject_components/light.h"
-#include "../framework/graphics/shader_manager.h"
-#include "../framework/graphics/material.h"
+#include "system/game_object.h"
+#include "graphics/shader.h"
+#include "graphics/texture.h"
+#include "utils/math.h"
+#include "components/gameobject_components/light.h"
+#include "graphics/shader_manager.h"
+#include "graphics/material.h"
 
 namespace ns_fretBuzz
 {

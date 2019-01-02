@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/rect_transform.h"
+#include "components/rect_transform.h"
 #include "game_object.h"
 
 namespace ns_fretBuzz

@@ -1,8 +1,8 @@
 #pragma once
 #include <glew.h>
 #include <string>
-#include "../utils/math.h"
-#include "../system/core/managed_resource.h"
+#include "utils/math.h"
+#include "system/core/managed_resource.h"
 
 namespace ns_fretBuzz
 {
@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 			void setUniform1dv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLdouble* a_arrValue) const;
 
 			void setUniform1i(const char* a_pUniformName, GLint a_Value) const;
-			void setUniform1iv(const char* a_pUniformName, unsigned int a_iArrayCount, const GLint* a_arrValue) const;
+			void setUniform1iv(const char* a_pUniformName, int a_iArrayCount, const GLint* a_arrValue) const;
 
 			void setUniform1ui(const char* a_pUniformName, GLuint a_Value) const;
 			void setUniform1uiv(const char* a_pUniformName, unsigned int a_iArrayCount, GLuint* a_arrValue) const;

@@ -4,7 +4,7 @@
 #include "post_process_manager.h"
 #include "shader_manager.h"
 
-#include "../system/core/window.h"
+#include "system/core/window.h"
 
 namespace ns_fretBuzz
 {

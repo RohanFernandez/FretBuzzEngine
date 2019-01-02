@@ -1,7 +1,7 @@
 #pragma once
 #include "camera_manager.h"
 #include <iostream>
-#include "../graphics/post_process_manager.h"
+#include "graphics/post_process_manager.h"
 
 
 namespace ns_fretBuzz
@@ -96,9 +96,9 @@ namespace ns_fretBuzz
 				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
 					Camera& l_CurrentCamera = *m_Container[l_iCameraIndex];
-					a_PostProcessManager.begin();
+					//a_PostProcessManager.begin();
 					a_SceneManager.renderActiveScenes(l_CurrentCamera);
-					a_PostProcessManager.draw(0, l_CurrentCamera);
+					//a_PostProcessManager.draw(0, l_CurrentCamera);
 				}
 			}
 		}

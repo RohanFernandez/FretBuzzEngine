@@ -1,6 +1,6 @@
 #pragma once
 #include "texture.h"
-#include "../utils/file_utils.h"
+#include "utils/file_utils.h"
 #include <string>
 #include <iostream>
 

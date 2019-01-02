@@ -377,6 +377,9 @@
     <ClInclude Include="framework\system\game_startup_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test\controller_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_sprite.fs" />

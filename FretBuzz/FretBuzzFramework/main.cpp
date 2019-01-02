@@ -1,10 +1,10 @@
 #pragma once
-#include "framework/system/game_startup_data.h"
-#include "framework/system/core/system.h"
-#include "../../scenes/init_state.h"
-#include "../../scenes/mainmenu_state.h"
-#include "../../scenes/score_state.h"
-#include "../../scenes/threed_test_setup.h"
+#include "system/game_startup_data.h"
+#include "system/core/system.h"
+#include "scenes/init_state.h"
+#include "scenes/mainmenu_state.h"
+#include "scenes/score_state.h"
+#include "scenes/threed_test_setup.h"
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
 	m_GameStartupData.m_uiScreenHeight = 600;
 	m_GameStartupData.m_vectScenes = 
 	{
-		new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::threed_test_scene>("3d_Test"),
+		//new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::threed_test_scene>("3d_Test"),
 		new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::InitState>("initstate")
 		/*new SceneData<MainMenuState>("mainmenustate"),
 		new SceneData<ScoreState>("scorestate")*/

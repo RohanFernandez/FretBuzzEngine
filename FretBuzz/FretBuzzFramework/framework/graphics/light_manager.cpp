@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/gameobject_components/light.h"
+#include "components/gameobject_components/light.h"
 #include "light_manager.h"
 #include <iostream>
 

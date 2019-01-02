@@ -1,11 +1,12 @@
 #pragma once
 
 #include "CharacterTest.h"
-#include "../framework/system/core/resource_manager.h"
-#include "../framework/components/gameobject_components/sprite_renderer.h"
-#include "../framework/components/gameobject_components/image.h"
+#include "controller_2d.h"
+#include "system/core/resource_manager.h"
+#include "components/gameobject_components/sprite_renderer.h"
+#include "components/gameobject_components/image.h"
 
-#include "../framework/system/core/system.h"
+#include "system/core/system.h"
 #include <iostream>
 //#include FT_FREETYPE_H
 
@@ -18,6 +19,8 @@ namespace ns_fretBuzz
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
 			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, { 50.0f, 50.0f }, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
+
+			ns_system::Behaviour::addToGameObject<controller_2d>(*this);
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
@@ -154,12 +157,6 @@ namespace ns_fretBuzz
 
 			float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
 			m_pTransform->setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
-
-			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_O))
-			{
-				ns_system::SceneManager::s_loadScene("3d_Test");
-			}
-
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);

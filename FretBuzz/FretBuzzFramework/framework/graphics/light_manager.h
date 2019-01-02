@@ -1,5 +1,5 @@
 #pragma once
-#include "../utils/resource_container.h"
+#include "utils/resource_container.h"
 
 namespace ns_fretBuzz
 {

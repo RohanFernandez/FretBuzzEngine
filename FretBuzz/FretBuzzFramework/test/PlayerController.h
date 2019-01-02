@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../framework/utils/math.h"
-#include "../framework/components/gameobject_components/camera.h"
-#include "../framework/system/core/input.h"
+#include "framework/utils/math.h"
+#include "framework/components/gameobject_components/camera.h"
+#include "framework/system/core/input.h"
 
-#include "../framework/components/gameobject_components/behaviour.h"
+#include "framework/components/gameobject_components/behaviour.h"
 
 namespace ns_fretBuzz
 {
@@ -95,6 +95,16 @@ namespace ns_fretBuzz
 			glm::vec3 l_v3RotEuler = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
 
 			//std::cout << "Rot :: {"<< l_v3RotEuler.x<<"," << l_v3RotEuler.y <<","<< l_v3RotEuler.z<< "}\n";
+
+			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
+			{
+				ns_system::SceneManager::s_loadScene("initstate");
+			}
+
+			/*if (ns_system::Input::IsKeyPutDown(GLFW_KEY_O))
+			{
+				ns_system::SceneManager::s_loadScene("3d_Test");
+			}*/
 
 			Behaviour::update(a_fDeltaTime);
 		}

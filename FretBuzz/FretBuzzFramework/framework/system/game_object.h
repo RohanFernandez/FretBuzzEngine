@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../components/transform.h"
-#include "../components/gameobject_components/camera.h"
 #include <vector>
 #include <string>
+#include "components/transform.h"
+#include "components/gameobject_components/camera.h"
 
 namespace ns_fretBuzz
 {

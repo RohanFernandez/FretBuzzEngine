@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../system/component.h"
 #include <string>
-#include "../../graphics/shader.h"
+#include "system/component.h"
+#include "graphics/shader.h"
 
 namespace ns_fretBuzz
 {

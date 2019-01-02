@@ -1,7 +1,7 @@
 #pragma once
 #include "sprite_animation_controller.h"
-#include "../../system/core/resource_manager.h"
-#include "../../system/game_object.h"
+#include "system/core/resource_manager.h"
+#include "system/game_object.h"
 
 namespace ns_fretBuzz
 {

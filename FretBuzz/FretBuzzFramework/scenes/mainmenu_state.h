@@ -1,7 +1,7 @@
 #pragma once
-#include "../framework/system/scene_manager.h"
-#include "../framework/system/game_object.h"
-#include "../test/CharacterTest.h"
+#include "framework/system/scene_manager.h"
+#include "framework/system/game_object.h"
+#include "test/CharacterTest.h"
 
 namespace ns_fretBuzz
 {

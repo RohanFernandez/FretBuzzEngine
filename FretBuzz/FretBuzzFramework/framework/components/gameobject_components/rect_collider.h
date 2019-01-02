@@ -1,8 +1,7 @@
 #pragma once
-#include "../../system/component_2d.h"
-#include "../../system/core/physics_engine.h"
-#include "../../graphics/line_batch_renderer.h"
-
+#include "system/component_2d.h"
+#include "system/core/physics_engine.h"
+#include "graphics/line_batch_renderer.h"
 
 namespace ns_fretBuzz
 {

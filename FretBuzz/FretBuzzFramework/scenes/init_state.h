@@ -1,15 +1,16 @@
 #pragma once
-#include "../framework/system/scene_manager.h"
-#include "../framework/graphics/shader.h"
-#include "../framework/graphics/texture.h"
+#include "system/scene_manager.h"
+#include "graphics/shader.h"
+#include "graphics/texture.h"
 
-#include "../test/CharacterTest.h"
+#include "test/CharacterTest.h"
 
-#include "../framework/system/core/resource_manager.h"
-#include "../framework/system/core/window.h"
-#include "../framework/components/gameobject_components/camera.h"
+#include "system/core/resource_manager.h"
+#include "system/core/window.h"
+#include "components/gameobject_components/camera.h"
 
-#include "../framework/components//gameobject_components/image.h"
+#include "components//gameobject_components/image.h"
+#include "system/core/window.h"
 
 namespace ns_fretBuzz
 {
@@ -57,8 +58,12 @@ namespace ns_fretBuzz
 			//ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj6, { 1.0f, 1.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
 			//ns_system::RectCollider::addToGameObject(*l_pLabelGameObj6, { 150.0f, 100.0f });
 
+			ns_graphics::Window::CheckForErrors();
+
 			ns_system::GameObject2D* MainParent = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Main_Parent", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 			CharacterTest* l_gameObjChar = new CharacterTest(*MainParent, "character_test", MainParent, m_refRootGameObject);
+			
+			//ns_graphics::Window::CheckForErrors();
 
 			ns_system::GameObject* m_pCam = ns_system::GameObject::instantiate(*MainParent, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
 			ns_graphics::OrthographicViewport l_MainCam(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);

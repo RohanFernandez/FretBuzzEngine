@@ -1,9 +1,9 @@
 #pragma once
 #include "model.h"
 #include <iostream>
-#include "../system/core/resource_manager.h"
+#include "system/core/resource_manager.h"
 #include "texture.h"
-#include "../components/gameobject_components/mesh_renderer.h"
+#include "components/gameobject_components/mesh_renderer.h"
 
 namespace ns_fretBuzz
 {

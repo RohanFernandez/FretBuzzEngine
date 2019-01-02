@@ -1,10 +1,10 @@
 #pragma once
 #include "../material.h"
-#include "../../components/gameobject_components/camera.h"
+#include "components/gameobject_components/camera.h"
 #include "../shader.h"
 #include "phong_shader.h"
 #include "../light_manager.h"
-#include "../../system/game_object.h"
+#include "system/game_object.h"
 #include <iostream>
 
 namespace ns_fretBuzz

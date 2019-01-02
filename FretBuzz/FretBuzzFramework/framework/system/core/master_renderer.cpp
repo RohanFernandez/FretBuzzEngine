@@ -1,8 +1,8 @@
 #pragma once
 #include "master_renderer.h"
-#include "../../graphics/line_batch_renderer.h"
-#include "../../graphics/sprite_batch_renderer.h"
-#include "../../system/camera_manager.h"
+#include "graphics/line_batch_renderer.h"
+#include "graphics/sprite_batch_renderer.h"
+#include "system/camera_manager.h"
 #include "../scene_manager.h"
 
 namespace ns_fretBuzz
@@ -42,6 +42,7 @@ namespace ns_fretBuzz
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_BACK);
 			glFrontFace(GL_CCW);
+			glEnable(GL_DEPTH_TEST);
 
 			m_pBatchRendererManager = BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
@@ -75,11 +76,12 @@ namespace ns_fretBuzz
 
 		float MasterRenderer::render(ns_system::SceneManager& a_SceneManager)
 		{
+			m_pWindow->clear();
 			m_pBatchRendererManager->beginBatches();
 
 			m_pCameraManager->updateViewMatrix();
 			m_pCameraManager->renderFrame(a_SceneManager, *m_pPostProcessManager);
-
+			
 			m_pBatchRendererManager->endAndflushBatches();
 			m_pWindow->update();
 			m_pTimer->update();
