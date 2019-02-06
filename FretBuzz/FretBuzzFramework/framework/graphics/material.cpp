@@ -1,3 +1,4 @@
+#include <fretbuzz_pch.h>
 #include "material.h"
 #include "graphics/light_manager.h"
 #include "components/gameobject_components/camera.h"

@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "master_renderer.h"
 #include "graphics/line_batch_renderer.h"
 #include "graphics/sprite_batch_renderer.h"

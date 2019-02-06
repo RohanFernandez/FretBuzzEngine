@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "system.h"
 #include <iostream>
 #include "asset_loader.h"

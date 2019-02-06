@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "model.h"
 #include <iostream>
 #include "system/core/resource_manager.h"

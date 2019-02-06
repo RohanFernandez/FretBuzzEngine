@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "../material.h"
 #include "components/gameobject_components/camera.h"
 #include "../shader.h"

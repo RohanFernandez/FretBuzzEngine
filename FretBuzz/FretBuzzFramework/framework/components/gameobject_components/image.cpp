@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "image.h"
 #include "system/game_object_2d.h"
 #include "graphics/sprite_batch_renderer.h"

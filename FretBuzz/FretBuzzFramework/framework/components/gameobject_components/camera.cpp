@@ -1,5 +1,4 @@
-#pragma once
-
+#include <fretbuzz_pch.h>
 #include "camera.h"
 #include "../viewport.h"
 #include "system/game_object.h"

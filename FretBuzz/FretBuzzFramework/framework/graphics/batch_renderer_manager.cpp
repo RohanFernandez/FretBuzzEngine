@@ -1,5 +1,4 @@
-#pragma once
-
+#include <fretbuzz_pch.h>
 #include <iostream>
 #include "batch_renderer_manager.h"
 

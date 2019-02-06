@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "resource_manager.h"
 
 namespace ns_fretBuzz

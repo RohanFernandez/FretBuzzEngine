@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include <glew.h>
 #include <iostream>
 #include "post_process_manager.h"

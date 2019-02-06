@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "audio_source.h"
 #include "system/core/resource_manager.h"
 #include "system/game_object.h"

@@ -1,5 +1,4 @@
-#pragma once
-
+#include <fretbuzz_pch.h>
 #include "CharacterTest.h"
 #include "controller_2d.h"
 #include "system/core/resource_manager.h"

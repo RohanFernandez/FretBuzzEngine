@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "mesh_renderer.h"
 #include "system/game_object.h"
 #include "graphics/shader_manager.h"

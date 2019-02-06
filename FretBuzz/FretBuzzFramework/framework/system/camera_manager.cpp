@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "camera_manager.h"
 #include <iostream>
 #include "graphics/post_process_manager.h"

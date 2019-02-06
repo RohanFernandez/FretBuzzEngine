@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "character_controller_2d.h"
 #include "system/game_object.h"
 

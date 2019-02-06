@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "light.h"
 #include "system/game_object.h"
 #include "graphics/light_manager.h"

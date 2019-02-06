@@ -1,5 +1,4 @@
-#pragma once
-
+#include <fretbuzz_pch.h>
 #include "shader_manager.h"
 #include <iostream>
 #include "shader_factory.h"

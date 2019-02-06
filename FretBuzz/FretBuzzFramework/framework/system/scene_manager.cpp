@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "scene_manager.h"
 #include <algorithm>
 

@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "input.h"
 #include <cassert>
 #include <iostream>

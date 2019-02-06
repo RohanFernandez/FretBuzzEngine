@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "mesh.h"
 #include <glew.h>
 #include <cstdlib>

@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "audio_clip.h"
 #include "system/core/resource_manager.h"
 

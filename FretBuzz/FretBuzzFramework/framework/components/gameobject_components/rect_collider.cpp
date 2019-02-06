@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include <iostream>
 #include "system/system_defines.h"
 #include "rect_collider.h"

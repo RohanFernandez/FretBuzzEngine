@@ -168,6 +168,9 @@
     <ClCompile Include="framework\graphics\shaders\default_post_process.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fretbuzz_pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -378,6 +381,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="test\controller_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fretbuzz_pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

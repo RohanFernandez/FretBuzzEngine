@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "sprite_animator.h"
 
 namespace ns_fretBuzz

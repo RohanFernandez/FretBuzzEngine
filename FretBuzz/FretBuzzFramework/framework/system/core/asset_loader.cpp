@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "asset_loader.h"
 #include "graphics/shader.h"
 #include "graphics/texture.h"

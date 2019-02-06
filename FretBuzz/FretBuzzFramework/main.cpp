@@ -1,4 +1,4 @@
-#pragma once
+#include <fretbuzz_pch.h>
 #include "system/game_startup_data.h"
 #include "system/core/system.h"
 #include "scenes/init_state.h"
