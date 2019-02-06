@@ -365,9 +365,6 @@
     <ClInclude Include="framework\system\system_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\system\core\game_setup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\graphics\data_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>

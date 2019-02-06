@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <string>
 #include "components/transform.h"
 #include "components/gameobject_components/camera.h"
 

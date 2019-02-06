@@ -1,7 +1,6 @@
 #pragma once
 #include "texture.h"
 #include <glew.h>
-#include <string>
 #include "utils/file_utils.h"
 #include "system/core/managed_resource.h"
 

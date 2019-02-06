@@ -1,6 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "model.h"
-#include <iostream>
 #include "system/core/resource_manager.h"
 #include "texture.h"
 #include "components/gameobject_components/mesh_renderer.h"

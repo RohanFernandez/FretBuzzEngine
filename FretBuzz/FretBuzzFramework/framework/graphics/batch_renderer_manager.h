@@ -1,6 +1,5 @@
 #pragma once
 #include "renderer.h"
-#include <vector>
 
 namespace ns_fretBuzz
 {

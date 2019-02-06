@@ -1,7 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "sprite_batch_renderer.h"
-#include <cstddef>
-#include <iostream>
 #include "material.h"
 
 namespace ns_fretBuzz

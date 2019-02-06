@@ -1,6 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "timerFPS.h"
-#include <iostream>
 
 namespace ns_fretBuzz
 {

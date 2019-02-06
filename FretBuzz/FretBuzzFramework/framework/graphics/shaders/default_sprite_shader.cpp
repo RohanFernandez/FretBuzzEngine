@@ -3,7 +3,6 @@
 #include "components/gameobject_components/camera.h"
 #include "../shader.h"
 #include "default_sprite_shader.h"
-#include <iostream>
 
 namespace ns_fretBuzz
 {

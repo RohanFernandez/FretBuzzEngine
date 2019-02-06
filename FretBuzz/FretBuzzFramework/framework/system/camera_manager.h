@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "components/gameobject_components/camera.h"
 #include "system/scene_manager.h"
 #include "utils/resource_container.h"

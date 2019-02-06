@@ -1,6 +1,4 @@
 #include <fretbuzz_pch.h>
-#include <iostream>
-#include <vector>
 
 #include "material.h"
 #include "components/gameobject_components/camera.h"

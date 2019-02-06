@@ -1,6 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "sprite.h"
-#include <cstddef>
 
 namespace ns_fretBuzz
 {

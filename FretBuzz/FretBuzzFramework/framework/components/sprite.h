@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "graphics/texture.h"
 #include "utils/math.h"
 #include "system/game_object.h"

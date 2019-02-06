@@ -2,7 +2,6 @@
 
 #include "system/component.h"
 #include "../audio_clip.h"
-#include <string>
 
 namespace ns_fretBuzz
 {

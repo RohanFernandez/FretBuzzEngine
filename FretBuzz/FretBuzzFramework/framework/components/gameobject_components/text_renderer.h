@@ -1,6 +1,5 @@
 #pragma once
 #include "system/component.h"
-#include <string>
 
 namespace ns_fretBuzz
 {

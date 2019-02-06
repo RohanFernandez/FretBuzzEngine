@@ -2,7 +2,6 @@
 #include "batch_renderer_manager.h"
 #include "utils/math.h"
 #include "components/sprite.h"
-#include <vector>
 
 namespace ns_fretBuzz
 {

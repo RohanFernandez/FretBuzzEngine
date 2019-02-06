@@ -1,8 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "texture.h"
 #include "utils/file_utils.h"
-#include <string>
-#include <iostream>
 
 namespace ns_fretBuzz
 {

@@ -1,6 +1,5 @@
 #pragma once
 #include <FreeImage.h>
-#include <string>
 
 namespace ns_fretBuzz
 {

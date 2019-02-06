@@ -1,5 +1,4 @@
 #include <fretbuzz_pch.h>
-#include <iostream>
 #include "sprite_renderer.h"
 #include "../viewport.h"
 #include "system/game_object.h"

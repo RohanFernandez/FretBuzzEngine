@@ -1,9 +1,6 @@
 #pragma once
 #include <glew.h>
 #include <glfw3.h>
-#include <string>
-#include <vector>
-#include <functional>
 #include "utils/math.h"
 
 namespace ns_fretBuzz

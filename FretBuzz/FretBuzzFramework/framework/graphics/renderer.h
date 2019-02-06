@@ -1,6 +1,5 @@
 #pragma once
 #include "material.h"
-#include <vector>
 
 namespace ns_fretBuzz
 {

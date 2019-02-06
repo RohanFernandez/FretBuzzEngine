@@ -1,7 +1,4 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <map>
 #include "../system/core/resource_manager.h"
 #include "../components/sprite.h"
 

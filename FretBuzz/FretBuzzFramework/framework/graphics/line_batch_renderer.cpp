@@ -1,7 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "line_batch_renderer.h"
-#include <cstddef>
-#include <iostream>
 
 namespace ns_fretBuzz
 {

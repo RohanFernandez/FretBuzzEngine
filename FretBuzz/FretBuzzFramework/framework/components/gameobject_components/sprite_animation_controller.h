@@ -1,7 +1,6 @@
 #pragma once
 #include "../sprite_animator.h"
 #include "sprite_renderer.h"
-#include <map>
 
 namespace ns_fretBuzz
 {

@@ -1,6 +1,5 @@
 #pragma once
 #include "utils/math.h"
-#include <vector>
 
 namespace ns_fretBuzz
 {

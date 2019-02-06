@@ -1,7 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "system/system_defines.h"
 #include "game_object.h"
-#include <iostream>
 #include "components/gameobject_components/camera.h"
 
 namespace ns_fretBuzz

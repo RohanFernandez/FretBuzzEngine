@@ -4,8 +4,6 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include <string>
-#include <vector>
 #include "mesh.h"
 #include "system/game_object.h"
 

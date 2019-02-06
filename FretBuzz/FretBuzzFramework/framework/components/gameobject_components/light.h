@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include "system/component.h"
 #include "graphics/shader.h"
 

@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "batch_renderer_manager.h"
 
 namespace ns_fretBuzz

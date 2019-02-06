@@ -7,7 +7,6 @@
 #include "framework/graphics/material.h"
 
 #include "framework/graphics/post_process_manager.h"
-#include <iostream>
 
 namespace ns_fretBuzz
 {

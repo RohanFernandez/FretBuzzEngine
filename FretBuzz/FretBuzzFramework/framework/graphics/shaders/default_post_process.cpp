@@ -3,7 +3,6 @@
 #include "components/gameobject_components/camera.h"
 #include "../shader.h"
 #include "default_post_process.h"
-#include <iostream>
 
 namespace ns_fretBuzz
 {

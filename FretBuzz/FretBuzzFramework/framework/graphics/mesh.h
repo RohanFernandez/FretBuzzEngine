@@ -1,7 +1,5 @@
 #pragma once
 #include "utils/math.h"
-#include <string>
-#include <vector>
 #include "texture.h"
 
 namespace ns_fretBuzz

@@ -1,5 +1,4 @@
 #include <fretbuzz_pch.h>
-#include <iostream>
 #include "batch_renderer_manager.h"
 
 #include "sprite_batch_renderer.h"

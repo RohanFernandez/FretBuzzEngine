@@ -1,9 +1,4 @@
 #pragma once
-#include <map>
-#include <typeindex>
-#include <string>
-#include <vector>
-#include <iostream>
 #include "managed_resource.h"
 
 namespace ns_fretBuzz

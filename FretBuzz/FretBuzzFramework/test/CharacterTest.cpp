@@ -6,7 +6,6 @@
 #include "components/gameobject_components/image.h"
 
 #include "system/core/system.h"
-#include <iostream>
 //#include FT_FREETYPE_H
 
 namespace ns_fretBuzz

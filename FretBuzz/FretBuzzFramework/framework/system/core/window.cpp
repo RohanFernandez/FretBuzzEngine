@@ -1,6 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "window.h"
-#include <iostream>
 
 namespace ns_fretBuzz
 {

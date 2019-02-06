@@ -7,9 +7,6 @@
 #include "components/sprite_animator.h"
 #include "graphics/model.h"
 
-#include <fstream>
-#include <sstream>
-
 namespace ns_fretBuzz
 {
 	namespace ns_system

@@ -1,6 +1,5 @@
 #pragma once
 #include <glew.h>
-#include <string>
 #include "utils/math.h"
 #include "system/core/managed_resource.h"
 

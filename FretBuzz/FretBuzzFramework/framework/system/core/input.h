@@ -1,6 +1,5 @@
 #pragma once
 #include <glfw3.h>
-#include <stack>
 
 namespace ns_fretBuzz
 {
