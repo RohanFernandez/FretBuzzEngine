@@ -12,7 +12,7 @@
 
 namespace ns_fretBuzz
 {
-	class CharacterTest : public ns_system::GameObject2D
+	class FRETBUZZ_API CharacterTest : public ns_system::GameObject2D
 	{
 	private:
 		ns_system::AudioSource* m_pAudSrc = nullptr;

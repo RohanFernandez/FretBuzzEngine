@@ -2,7 +2,7 @@
 
 namespace ns_fretBuzz
 {
-	class IFSM
+	class FRETBUZZ_API IFSM
 	{
 	protected:
 		std::string m_strStateName;
@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 	};
 
 	template<typename T_STATE, typename = typename std::enable_if<std::is_base_of<IFSM, T_STATE>::value>::type >
-	class FSM
+	class FRETBUZZ_API FSM
 	{
 	protected:
 		bool m_bIsTransitionToSelfAllowed = false;

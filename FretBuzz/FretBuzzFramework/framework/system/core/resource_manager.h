@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class ResourceManager
+		class FRETBUZZ_API ResourceManager
 		{
 		private:
 			friend class AssetLoader;

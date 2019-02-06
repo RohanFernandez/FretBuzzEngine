@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class GameObject
+		class FRETBUZZ_API GameObject
 		{
 			friend class IScene;
 			friend class IComponent;

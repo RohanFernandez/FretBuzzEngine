@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class IRenderer
+		class FRETBUZZ_API IRenderer
 		{
 		protected:
 			struct VertexData

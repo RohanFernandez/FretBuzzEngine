@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class System
+		class FRETBUZZ_API System
 		{
 		private:
 			//Singleton instance pointer

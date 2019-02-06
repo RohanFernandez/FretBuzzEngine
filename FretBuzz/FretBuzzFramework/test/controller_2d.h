@@ -6,7 +6,7 @@
 
 namespace ns_fretBuzz
 {
-	class controller_2d : public ns_system::Behaviour
+	class FRETBUZZ_API controller_2d : public ns_system::Behaviour
 	{
 
 	public:

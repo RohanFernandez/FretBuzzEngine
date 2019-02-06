@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class PostProcessManager
+		class FRETBUZZ_API PostProcessManager
 		{
 		private:
 			static PostProcessManager* s_pInstance;

@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject;
-		class Camera : public ns_system::IComponent
+		class FRETBUZZ_API Camera : public ns_system::IComponent
 		{
 		private:
 			Camera(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport);

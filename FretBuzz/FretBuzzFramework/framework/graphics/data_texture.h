@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class DataTexture : public Texture
+		class FRETBUZZ_API DataTexture : public Texture
 		{
 		private:
 			GLenum m_ColorFormat;

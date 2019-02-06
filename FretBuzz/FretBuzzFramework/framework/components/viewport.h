@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Viewport
+		class FRETBUZZ_API Viewport
 		{
 		public:
 			enum class PROJECTION_TYPE

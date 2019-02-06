@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class TextRenderer : public IComponent
+		class FRETBUZZ_API TextRenderer : public IComponent
 		{
 		private:
 			TextRenderer(GameObject& a_GameObj, std::string a_strText);

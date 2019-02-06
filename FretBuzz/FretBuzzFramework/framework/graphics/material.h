@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class Camera;
-		class Material
+		class FRETBUZZ_API Material
 		{
 		public:
 

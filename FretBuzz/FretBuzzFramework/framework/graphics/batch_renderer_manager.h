@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class IBatchRenderer : public IRenderer
+		class FRETBUZZ_API IBatchRenderer : public IRenderer
 		{
 		protected:
 			IBatchRenderer() : IRenderer() {}
@@ -29,7 +29,7 @@ namespace ns_fretBuzz
 			virtual void destroy() = 0;
 		};
 
-		class BatchRendererManager
+		class FRETBUZZ_API BatchRendererManager
 		{
 		protected:
 			static BatchRendererManager* s_pInstance;

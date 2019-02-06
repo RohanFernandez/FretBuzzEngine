@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class PostProcessManager;
-		class CameraManager : ResourceContainer<std::vector<Camera*>>
+		class FRETBUZZ_API CameraManager : ResourceContainer<std::vector<Camera*>>
 		{
 		private:
 			static CameraManager* s_pInstance;

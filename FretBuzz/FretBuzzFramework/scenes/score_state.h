@@ -3,7 +3,7 @@
 
 namespace ns_fretBuzz
 {
-	class ScoreState 
+	class FRETBUZZ_API ScoreState
 		: public ns_system::IScene
 	{
 	public:

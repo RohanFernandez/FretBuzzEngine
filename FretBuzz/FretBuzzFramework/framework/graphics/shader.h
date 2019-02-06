@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	{
 		class Camera;
 		class Material;
-		class Shader
+		class FRETBUZZ_API Shader
 		{
 		public:
 			friend class ShaderManager;

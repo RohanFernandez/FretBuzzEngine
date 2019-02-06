@@ -5,3 +5,13 @@
 		#define _IS_DEBUG_RENDERING
 	#endif
 #endif
+
+#ifdef _IS_PLATFORM_WINDOWS
+	#ifdef _IS_FRETBUZZ_BUILD_DLL
+		#define FRETBUZZ_API __declspec(dllexport)
+	#else
+		#define FRETBUZZ_API __declspec(dllimport)
+	#endif
+#else
+	#define FRETBUZZ_API
+#endif

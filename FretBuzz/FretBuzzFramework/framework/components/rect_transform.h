@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class RectTransform : public Transform
+		class FRETBUZZ_API RectTransform : public Transform
 		{
 		friend class GameObject2D;
 		protected:

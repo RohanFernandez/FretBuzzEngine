@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		class GameObject2D;
-		class RectCollider : public IComponent2D
+		class FRETBUZZ_API RectCollider : public IComponent2D
 			#ifdef _IS_DEBUG_RENDERING
 				,public ns_graphics::IRenderer
 			#endif

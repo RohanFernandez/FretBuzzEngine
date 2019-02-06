@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		struct LineData
+		struct FRETBUZZ_API LineData
 		{
 			LineData() {}
 

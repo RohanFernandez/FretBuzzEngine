@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		//Each scene state should be inherited from IScene
-		class IScene : public IFSM
+		class FRETBUZZ_API IScene : public IFSM
 		{
 
 		private:
@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 		//The SceneData is inherited from this for the scene management,
 		//mainly to store it as the type of FSM states because scene data is of type and
 		//hence cannot be stored in a list
-		class ISceneData : public IFSM
+		class FRETBUZZ_API ISceneData : public IFSM
 		{
 		public:
 			ISceneData() = delete;
@@ -101,7 +101,7 @@ namespace ns_fretBuzz
 
 		//To create a scene state, this a scene state wtih this class should be created with SCENE_TYPE as the Scene State type.
 		template<typename SCENE_TYPE, typename = typename std::enable_if<std::is_base_of<IScene, SCENE_TYPE>::value>::type>
-		class SceneData : public ISceneData
+		class FRETBUZZ_API SceneData : public ISceneData
 		{
 		private:
 			SCENE_TYPE* m_pScene = nullptr;
@@ -204,7 +204,7 @@ namespace ns_fretBuzz
 
 		//Specialized class for Scene Managment from FSM, could be template specialize but decided to write it separately
 		//The main class for scene management
-		class SceneManager : public FSM<ISceneData>
+		class FRETBUZZ_API SceneManager : public FSM<ISceneData>
 		{
 		public:
 			enum LoadSceneMode

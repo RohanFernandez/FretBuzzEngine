@@ -4,7 +4,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Timer
+		class FRETBUZZ_API Timer
 		{
 		protected:
 			std::chrono::steady_clock::time_point m_CurrentTimePoint;

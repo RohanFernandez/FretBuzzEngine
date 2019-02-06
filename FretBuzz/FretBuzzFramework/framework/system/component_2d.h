@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class IComponent2D : public IComponent
+		class FRETBUZZ_API IComponent2D : public IComponent
 		{
 		public:
 			IComponent2D(const COMPONENT_TYPE a_ComponentType, GameObject2D& a_GameObj, bool a_bIsEnabled = true)

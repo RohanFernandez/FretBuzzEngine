@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class AudioClip : public IManagedResource
+		class FRETBUZZ_API AudioClip : public IManagedResource
 		{
 		private:
 			friend class AudioSource;

@@ -14,7 +14,7 @@
 
 namespace ns_fretBuzz
 {
-	class InitState :
+	class FRETBUZZ_API InitState :
 		public ns_system::IScene
 	{
 	public:

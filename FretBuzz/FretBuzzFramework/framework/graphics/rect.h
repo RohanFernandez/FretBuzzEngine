@@ -4,7 +4,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-	struct Rect
+	struct FRETBUZZ_API Rect
 	{
 
 		glm::vec2 m_v2DimensionsWH = {0.0f, 0.0f};

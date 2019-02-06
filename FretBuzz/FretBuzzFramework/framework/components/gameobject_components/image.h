@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject2D;
-		class Image : public ns_system::IComponent2D
+		class FRETBUZZ_API Image : public ns_system::IComponent2D
 		{
 		protected:
 			Image(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color,  bool a_bIsEnabled);

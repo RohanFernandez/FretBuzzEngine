@@ -7,7 +7,7 @@
 
 namespace ns_fretBuzz
 {
-	class PlayerController : public ns_system::Behaviour
+	class FRETBUZZ_API PlayerController : public ns_system::Behaviour
 	{
 	private:
 		double m_MouseX, m_MouseY;

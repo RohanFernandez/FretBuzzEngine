@@ -9,7 +9,7 @@
 
 namespace ns_fretBuzz
 {
-	class threed_test_scene:
+	class FRETBUZZ_API threed_test_scene:
 		public ns_system::IScene
 	{
 	private:

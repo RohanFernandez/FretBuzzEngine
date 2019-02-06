@@ -5,7 +5,7 @@
 
 namespace ns_fretBuzz
 {
-	class MainMenuState 
+	class FRETBUZZ_API MainMenuState
 		: public ns_system::IScene
 	{
 	public:

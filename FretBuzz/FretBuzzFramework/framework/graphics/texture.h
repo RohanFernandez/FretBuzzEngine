@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Texture : public ns_system::IManagedResource
+		class FRETBUZZ_API Texture : public ns_system::IManagedResource
 		{
 		protected:
 			GLuint m_TextureID;

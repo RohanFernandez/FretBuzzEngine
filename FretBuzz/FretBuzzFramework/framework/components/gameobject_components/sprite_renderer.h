@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject;
-		class SpriteRenderer : public ns_system::IComponent, public IRenderer
+		class FRETBUZZ_API SpriteRenderer : public ns_system::IComponent, public IRenderer
 		{
 		private:
 			SpriteRenderer(ns_system::GameObject& a_GameObj);

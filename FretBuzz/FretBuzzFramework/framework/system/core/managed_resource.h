@@ -4,7 +4,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class IManagedResource
+		class FRETBUZZ_API IManagedResource
 		{
 		public:
 

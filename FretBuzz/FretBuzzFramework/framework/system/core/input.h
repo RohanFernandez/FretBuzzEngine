@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class Input
+		class FRETBUZZ_API Input
 		{
 		private:
 

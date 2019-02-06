@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class PhysicsEngine
+		class FRETBUZZ_API PhysicsEngine
 		{
 		private:
 			static PhysicsEngine* s_pInstance;

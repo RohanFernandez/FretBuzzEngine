@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Sprite
+		class FRETBUZZ_API Sprite
 		{
 		private:
 			Texture* m_pTexture = nullptr;

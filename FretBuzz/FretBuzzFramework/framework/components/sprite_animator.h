@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class AnimationState
+		class FRETBUZZ_API AnimationState
 		{
 		private:
 			std::string m_strStateId;

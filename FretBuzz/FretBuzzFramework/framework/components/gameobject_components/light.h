@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject;
-		class Light : public ns_system::IComponent
+		class FRETBUZZ_API Light : public ns_system::IComponent
 		{
 		public:
 			enum class LIGHT_TYPE

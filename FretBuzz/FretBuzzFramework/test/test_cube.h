@@ -9,7 +9,7 @@
 
 namespace ns_fretBuzz
 {
-	class test_cube: public ns_system::GameObject
+	class FRETBUZZ_API test_cube: public ns_system::GameObject
 	{
 	public:
 

@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		class GameObject;
-		class Behaviour : public IComponent
+		class FRETBUZZ_API Behaviour : public IComponent
 		{
 		protected:
 			Behaviour() = delete;

@@ -3,10 +3,10 @@
 namespace ns_fretBuzz
 {
 	template<typename T_CONTAINER_TYPE>
-	class ResourceContainer{};
+	class FRETBUZZ_API ResourceContainer{};
 
 	template<typename T>
-	class ResourceContainer<std::vector<T>>
+	class FRETBUZZ_API ResourceContainer<std::vector<T>>
 	{
 	protected:
 		std::vector<T> m_Container;

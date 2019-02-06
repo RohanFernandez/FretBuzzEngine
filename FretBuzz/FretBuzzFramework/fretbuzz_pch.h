@@ -24,9 +24,11 @@
 #include <type_traits>
 /// Standard template library
 
-///Math
+/// Math
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/quaternion.hpp>
-///Math
+/// Math
+
+#include <system/system_defines.h>

@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class Window
+		class FRETBUZZ_API Window
 		{
 		private:
 			//singleton instance

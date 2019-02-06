@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		struct Node
+		struct FRETBUZZ_API Node
 		{
 		public:
 			std::string m_strName;
@@ -36,7 +36,7 @@ namespace ns_fretBuzz
 		};
 
 		class GameObject;
-		class Model : public ns_system::IManagedResource
+		class FRETBUZZ_API Model : public ns_system::IManagedResource
 		{
 		private:
 			
