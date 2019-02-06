@@ -194,9 +194,6 @@
     <ClInclude Include="framework\system\scene_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\utils\math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\utils\FSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>

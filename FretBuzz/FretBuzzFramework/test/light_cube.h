@@ -2,7 +2,6 @@
 #include "system/game_object.h"
 #include "graphics/shader.h"
 #include "graphics/texture.h"
-#include "utils/math.h"
 #include "components/gameobject_components/light.h"
 #include "graphics/shader_manager.h"
 #include "graphics/material.h"

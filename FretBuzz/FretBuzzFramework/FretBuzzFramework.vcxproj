@@ -291,7 +291,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="fretbuzz_pch.h" />
     <ClInclude Include="scenes\threed_test_setup.h" />
     <ClInclude Include="test\CharacterTest.h" />
-    <ClInclude Include="framework\utils\math.h" />
     <ClInclude Include="framework\components\transform.h" />
     <ClInclude Include="scenes\init_state.h" />
     <ClInclude Include="scenes\mainmenu_state.h" />

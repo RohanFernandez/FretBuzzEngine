@@ -1,6 +1,5 @@
 #pragma once
 #include "graphics/texture.h"
-#include "utils/math.h"
 #include "system/game_object.h"
 #include "viewport.h"
 

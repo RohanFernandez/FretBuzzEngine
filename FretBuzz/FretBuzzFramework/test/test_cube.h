@@ -1,7 +1,6 @@
 #pragma once
 #include "framework/system/game_object.h"
 #include "framework/graphics/shader.h"
-#include "framework/utils/math.h"
 #include "framework/graphics/light_manager.h"
 #include "light_cube.h"
 #include "framework/graphics/material.h"

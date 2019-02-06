@@ -1,6 +1,5 @@
 #pragma once
 
-#include "framework/utils/math.h"
 #include "framework/components/gameobject_components/camera.h"
 #include "framework/system/core/input.h"
 
