@@ -56,6 +56,14 @@ namespace ns_fretBuzz
 			{
 				m_pSpriteAnimator->play("attack");
 			}
+			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
+			{
+				m_pSpriteAnimator->play("humanshield");
+			}
+			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
+			{
+				m_pSpriteAnimator->play("snap");
+			}
 
 			/*if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 			{

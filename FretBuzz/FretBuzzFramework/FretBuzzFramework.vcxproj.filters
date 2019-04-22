@@ -403,7 +403,16 @@
     <Image Include="resources\sprites\Player\Player_Unarmed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="resources\sprites\Player\PlayerAxe.png">
+    <Image Include="resources\sprites\Player\Player_Bat.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Axe.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_DoubleBarrel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Knife.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
