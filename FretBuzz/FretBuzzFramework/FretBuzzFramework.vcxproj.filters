@@ -391,9 +391,6 @@
     <Image Include="resources\textures\darksiders.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="resources\sprites\sword.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="resources\textures\container_diffuse.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -401,6 +398,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="resources\model\computerdesk\Textures\Dark-Wood-Texture-520x339.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Unarmed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\PlayerAxe.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

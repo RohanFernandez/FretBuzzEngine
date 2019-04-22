@@ -52,12 +52,12 @@ namespace ns_fretBuzz
 				m_pAudSrc->pause();
 			}
 
-			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_U))
+			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 			{
-				m_pSpriteAnimator->play("idle");
+				m_pSpriteAnimator->play("attack");
 			}
 
-			if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
+			/*if (ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 			{
 				if (m_iCurrentWeaponID == 0)
 				{
@@ -100,7 +100,7 @@ namespace ns_fretBuzz
 				{
 					m_pSpriteAnimator->play("mp5WalkTrigger");
 				}
-			}
+			}*/
 
 			float l_fCurrentSpeed = m_fVelocity;
 
