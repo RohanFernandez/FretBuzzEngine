@@ -415,6 +415,36 @@
     <Image Include="resources\sprites\Player\Player_Knife.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\sprites\Player\Player_M16.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Machete.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Magnum.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_MP5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Pipe.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Poolstick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Scorpion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Silencer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Player\Player_Uzi.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />

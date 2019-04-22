@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>xml</string>
         <key>textureFileName</key>
-        <filename>Player_Unarmed.png</filename>
+        <filename></filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>Player_Unarmed.xml</filename>
+                <filename>Player_Poolstick.xml</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -177,12 +177,104 @@
             <key>defaultPivotPoint</key>
             <point_f>0.5,0.5</point_f>
             <key>writePivotPoints</key>
-            <false/>
+            <true/>
         </struct>
         <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap"/>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile000.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.525</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9Paddings</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile001.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile002.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile003.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile004.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile005.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile006.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile007.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Attack/AttackPoolstick_Sprites/tile008.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9Paddings</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile000.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile004.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.53125,0.25</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9Paddings</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.232143</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9Paddings</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile002.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.53125,0.232143</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9Paddings</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile005.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile006.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Poolstick/Walk/WalkPoolstick_Sprites/tile007.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.53125,0.267857</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9Paddings</key>
+                <rect>8,14,16,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileList</key>
-        <array/>
+        <array>
+            <filename>../../SpriteSheets/Player_Sprites/Poolstick</filename>
+        </array>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>

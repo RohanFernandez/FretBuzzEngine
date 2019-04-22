@@ -327,7 +327,17 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <Image Include="resources\sprites\Player\Player_Bat.png" />
     <Image Include="resources\sprites\Player\Player_DoubleBarrel.png" />
     <Image Include="resources\sprites\Player\Player_Knife.png" />
+    <Image Include="resources\sprites\Player\Player_M16.png" />
+    <Image Include="resources\sprites\Player\Player_Machete.png" />
+    <Image Include="resources\sprites\Player\Player_Magnum.png" />
+    <Image Include="resources\sprites\Player\Player_MP5.png" />
+    <Image Include="resources\sprites\Player\Player_Pipe.png" />
+    <Image Include="resources\sprites\Player\Player_Poolstick.png" />
+    <Image Include="resources\sprites\Player\Player_Scorpion.png" />
+    <Image Include="resources\sprites\Player\Player_Silencer.png" />
+    <Image Include="resources\sprites\Player\Player_Sword.png" />
     <Image Include="resources\sprites\Player\Player_Unarmed.png" />
+    <Image Include="resources\sprites\Player\Player_Uzi.png" />
     <Image Include="resources\textures\container_diffuse.png" />
     <Image Include="resources\textures\container_specular.png" />
     <Image Include="resources\textures\darksiders.jpg" />

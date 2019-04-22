@@ -189,12 +189,401 @@
       </spritegroup>
     </spritesheet>
 
+    <spritesheet tex_id="player_machete" file_name="Player/Player_Machete.png">
+      <spritegroup id="machete_walk">
+        <sprite id="0" x="66" y="34" w="29" h="26" pX="0.32" pY="0.5" oX="7" oY="4" oW="50" oH="32"/>
+        <sprite id="1" x="97" y="33" w="29" h="26" pX="0.32" pY="0.46875" oX="8" oY="4" oW="50" oH="32"/>
+        <sprite id="2" x="1" y="35" w="30" h="26" pX="0.32" pY="0.46875" oX="8" oY="4" oW="50" oH="32"/>
+        <sprite id="3" x="123" y="1" w="29" h="26" pX="0.32" pY="0.46875" oX="8" oY="4" oW="50" oH="32"/>
+        <sprite id="4" x="128" y="29" w="29" h="26" pX="0.32" pY="0.5" oX="7" oY="4" oW="50" oH="32"/>
+        <sprite id="5" x="154" y="1" w="29" h="26" pX="0.32" pY="0.53125" oX="6" oY="4" oW="50" oH="32"/>
+        <sprite id="6" x="159" y="29" w="29" h="26" pX="0.3" pY="0.53125" oX="5" oY="4" oW="50" oH="32"/>
+        <sprite id="7" x="154" y="1" w="29" h="26" pX="0.3" pY="0.53125" oX="6" oY="4" oW="50" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="machete_attack">  
+        <sprite id="1" x="63" y="1" w="18" h="31" pX="0.375" pY="0.458333" oX="11" oY="2" oW="48" oH="48"/>
+        <sprite id="2" x="66" y="34" w="29" h="26" pX="0.375" pY="0.458333" oX="9" oY="10" oW="48" oH="48"/>
+        <sprite id="3" x="33" y="34" w="31" h="27" pX="0.375" pY="0.479167" oX="9" oY="12" oW="48" oH="48"/>
+        <sprite id="4" x="190" y="29" w="20" h="26" pX="0.375" pY="0.479167" oX="7" oY="12" oW="48" oH="48"/>
+        <sprite id="5" x="185" y="1" w="25" h="26" pX="0.375" pY="0.5" oX="2" oY="12" oW="48" oH="48"/>
+        <sprite id="6" x="83" y="1" w="38" h="30" pX="0.375" pY="0.458333" oX="10" oY="10" oW="48" oH="48"/>
+        <sprite id="7" x="1" y="1" w="30" h="32" pX="0.375" pY="0.458333" oX="11" oY="2" oW="48" oH="48"/>
+        <sprite id="8" x="33" y="1" w="28" h="31" pX="0.375" pY="0.458333" oX="11" oY="2" oW="48" oH="48"/>
+      </spritegroup>
+    </spritesheet>
+
+    <spritesheet tex_id="player_magnum" file_name="Player/Player_Magnum.png">
+      <spritegroup id="magnum_walk">
+        <sprite id="0" x="46" y="200" w="40" h="15" pX="0.318182" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="1" x="45" y="164" w="39" h="16" pX="0.318182" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="2" x="44" y="127" w="39" h="17" pX="0.318182" pY="0.46875" oX="4" oY="7" oW="44" oH="32"/>
+        <sprite id="3" x="46" y="182" w="40" h="16" pX="0.318182" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="4" x="46" y="200" w="40" h="15" pX="0.318182" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="5" x="43" y="217" w="40" h="15" pX="0.318182" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="6" x="43" y="234" w="40" h="15" pX="0.318182" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="7" x="43" y="217" w="40" h="15" pX="0.318182" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="magnum_attack">
+        <sprite id="1" x="46" y="110" w="44" h="15" pX="0.227273" pY="0.5" oX="0" oY="5" oW="44" oH="24"/>
+        <sprite id="2" x="47" y="91" w="44" h="17" pX="0.204545" pY="0.458333" oX="0" oY="3" oW="44" oH="24"/>
+        <sprite id="3" x="45" y="146" w="38" h="16" pX="0.227273" pY="0.458333" oX="0" oY="4" oW="44" oH="24"/>
+      </spritegroup>
+
+      <spritegroup id="magnum_snap">
+        <sprite id="0" x="1" y="122" w="41" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="48" y="32" w="43" h="28" pX="0.285714" pY="0.482143" oX="7" oY="18" oW="56" oH="56"/>
+        <sprite id="2" x="1" y="62" w="44" h="28" pX="0.285714" pY="0.482143" oX="7" oY="18" oW="56" oH="56"/>
+        <sprite id="3" x="47" y="62" w="44" h="27" pX="0.285714" pY="0.482143" oX="6" oY="18" oW="56" oH="56"/>
+        <sprite id="4" x="1" y="183" w="43" h="27" pX="0.285714" pY="0.482143" oX="6" oY="17" oW="56" oH="56"/>
+        <sprite id="5" x="1" y="183" w="43" h="27" pX="0.267857" pY="0.482143" oX="6" oY="17" oW="56" oH="56"/>
+      </spritegroup>
+      
+      <spritegroup id="magnum_humanshieldwalk">
+        <sprite id="0" x="1" y="122" w="41" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="1" y="153" w="42" h="28" pX="0.285714" pY="0.482143" oX="8" oY="18" oW="56" oH="56"/>
+        <sprite id="2" x="1" y="92" w="43" h="28" pX="0.285714" pY="0.482143" oX="8" oY="18" oW="56" oH="56"/>
+        <sprite id="3" x="1" y="153" w="42" h="28" pX="0.285714" pY="0.482143" oX="8" oY="18" oW="56" oH="56"/>
+        <sprite id="4" x="1" y="122" w="41" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="5" x="51" y="1" w="40" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="6" x="1" y="212" w="40" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="7" x="51" y="1" w="40" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+      </spritegroup>
+
+      <spritegroup id="magnum_humanshieldattack">
+        <sprite id="0" x="1" y="31" w="45" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="1" y="1" w="48" h="28" pX="0.285714" pY="0.482143" oX="8" oY="18" oW="56" oH="56"/>
+      </spritegroup>
+
+    </spritesheet>
+
+    <spritesheet tex_id="player_mp5" file_name="Player/Player_MP5.png">
+      <spritegroup id="mp5_walk">
+        <sprite id="0" x="419" y="1" w="46" h="17" pX="0.230769" pY="0.5" oX="2" oY="9" oW="52" oH="32"/>
+        <sprite id="1" x="323" y="1" w="45" h="18" pX="0.230769" pY="0.46875" oX="2" oY="8" oW="52" oH="32"/>
+        <sprite id="2" x="277" y="42" w="44" h="18" pX="0.230769" pY="0.46875" oX="2" oY="7" oW="52" oH="32"/>
+        <sprite id="3" x="375" y="20" w="46" h="17" pX="0.230769" pY="0.46875" oX="2" oY="8" oW="52" oH="32"/>
+        <sprite id="4" x="376" y="39" w="47" h="16" pX="0.230769" pY="0.5" oX="2" oY="9" oW="52" oH="32"/>
+        <sprite id="5" x="326" y="21" w="47" h="17" pX="0.230769" pY="0.53125" oX="2" oY="9" oW="52" oH="32"/>
+        <sprite id="6" x="370" y="1" w="47" h="17" pX="0.230769" pY="0.53125" oX="2" oY="9" oW="52" oH="32"/>
+        <sprite id="7" x="277" y="22" w="47" h="18" pX="0.230769" pY="0.53125" oX="2" oY="9" oW="52" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="mp5_attack">
+        <sprite id="1" x="273" y="1" w="48" h="19" pX="0.211538" pY="0.4375" oX="2" oY="7" oW="52" oH="32"/>
+        <sprite id="2" x="323" y="42" w="51" h="17" pX="0.211538" pY="0.46875" oX="1" oY="8" oW="52" oH="32"/>
+        <sprite id="3" x="375" y="20" w="46" h="17" pX="0.230769" pY="0.46875" oX="2" oY="8" oW="52" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="mp5_snap">
+        <sprite id="0" x="144" y="32" w="42" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="92" y="1" w="44" h="29" pX="0.285714" pY="0.482143" oX="7" oY="17" oW="56" oH="56"/>
+        <sprite id="2" x="51" y="32" w="45" h="29" pX="0.285714" pY="0.482143" oX="7" oY="17" oW="56" oH="56"/>
+        <sprite id="3" x="226" y="1" w="45" h="28" pX="0.285714" pY="0.482143" oX="6" oY="17" oW="56" oH="56"/>
+        <sprite id="4" x="231" y="31" w="44" h="27" pX="0.285714" pY="0.482143" oX="6" oY="17" oW="56" oH="56"/>
+        <sprite id="5" x="231" y="31" w="44" h="27" pX="0.285714" pY="0.482143" oX="6" oY="17" oW="56" oH="56"/>
+      </spritegroup>
+
+      <spritegroup id="mp5_humanshieldwalk">
+        <sprite id="0" x="144" y="32" w="42" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="138" y="1" w="43" h="29" pX="0.285714" pY="0.482143" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="2" x="98" y="32" w="44" h="29" pX="0.285714" pY="0.482143" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="3" x="138" y="1" w="43" h="29" pX="0.285714" pY="0.482143" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="4" x="144" y="32" w="42" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="5" x="183" y="1" w="41" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="6" x="1" y="1" w="41" h="30" pX="0.285714" pY="0.517857" oX="8" oY="16" oW="56" oH="56"/>
+        <sprite id="7" x="188" y="32" w="41" h="29" pX="0.285714" pY="0.517857" oX="8" oY="17" oW="56" oH="56"/>
+      </spritegroup>
+
+      <spritegroup id="mp5_humanshieldattack">
+        <sprite id="0" x="44" y="1" w="46" h="29" pX="0.285714" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="1" y="33" w="48" h="29" pX="0.285714" pY="0.482143" oX="8" oY="17" oW="56" oH="56"/>
+      </spritegroup>
+    </spritesheet>
+
+    <spritesheet tex_id="player_pipe" file_name="Player/Player_Pipe.png">
+      <spritegroup id="pipe_walk">
+        <sprite id="0" x="99" y="33" w="18" h="30" pX="0.5" pY="0.5" oX="7" oY="16" oW="32" oH="48"/>
+        <sprite id="1" x="119" y="33" w="18" h="30" pX="0.5" pY="0.5" oX="7" oY="16" oW="32" oH="48"/>
+        <sprite id="2" x="77" y="33" w="20" h="30" pX="0.5" pY="0.5" oX="6" oY="16" oW="32" oH="48"/>
+        <sprite id="3" x="119" y="33" w="18" h="30" pX="0.5" pY="0.5" oX="7" oY="16" oW="32" oH="48"/>
+        <sprite id="4" x="99" y="33" w="18" h="30" pX="0.5" pY="0.5" oX="7" oY="16" oW="32" oH="48"/>
+        <sprite id="5" x="139" y="33" w="16" h="30" pX="0.5" pY="0.5" oX="8" oY="16" oW="32" oH="48"/>
+        <sprite id="6" x="133" y="1" w="17" h="30" pX="0.5" pY="0.5" oX="8" oY="16" oW="32" oH="48"/>
+        <sprite id="7" x="139" y="33" w="16" h="30" pX="0.5" pY="0.5" oX="8" oY="16" oW="32" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="pipe_attack">
+        <sprite id="0" x="54" y="1" w="21" h="31" pX="0.340909" pY="0.520833" oX="7" oY="2" oW="44" oH="48"/>
+        <sprite id="1" x="99" y="33" w="18" h="30" pX="0.340909" pY="0.5" oX="5" oY="16" oW="44" oH="48"/>
+        <sprite id="2" x="38" y="34" w="23" h="19" pX="0.340909" pY="0.479167" oX="0" oY="16" oW="44" oH="48"/>
+        <sprite id="3" x="38" y="34" w="23" h="19" pX="0.340909" pY="0.479167" oX="0" oY="16" oW="44" oH="48"/>
+        <sprite id="4" x="113" y="1" w="18" h="30" pX="0.340909" pY="0.5" oX="5" oY="16" oW="44" oH="48"/>
+        <sprite id="5" x="1" y="35" w="35" h="25" pX="0.340909" pY="0.520833" oX="7" oY="15" oW="44" oH="48"/>
+        <sprite id="6" x="77" y="1" w="34" h="30" pX="0.340909" pY="0.541667" oX="7" oY="10" oW="44" oH="48"/>
+        <sprite id="7" x="1" y="1" w="25" h="32" pX="0.340909" pY="0.541667" oX="7" oY="2" oW="44" oH="48"/>
+        <sprite id="8" x="28" y="1" w="24" h="31" pX="0.340909" pY="0.541667" oX="7" oY="2" oW="44" oH="48"/>
+      </spritegroup>
+    </spritesheet>
+
+    <spritesheet tex_id="player_poolstick" file_name="Player/Player_Poolstick.png">
+      <spritegroup id="poolstick_walk">
+        <sprite id="0" x="45" y="1" w="18" h="44" pX="0.53125" pY="0.25" oX="7" oY="6" oW="32" oH="56"/>
+        <sprite id="1" x="21" y="139" w="18" h="44" pX="0.5" pY="0.232143" oX="7" oY="6" oW="32" oH="56"/>
+        <sprite id="2" x="24" y="93" w="20" h="44" pX="0.53125" pY="0.232143" oX="6" oY="6" oW="32" oH="56"/>
+        <sprite id="3" x="21" y="139" w="18" h="44" pX="0.53125" pY="0.232143" oX="7" oY="6" oW="32" oH="56"/>
+        <sprite id="4" x="45" y="1" w="18" h="44" pX="0.53125" pY="0.25" oX="7" oY="6" oW="32" oH="56"/>
+        <sprite id="5" x="46" y="138" w="16" h="43" pX="0.53125" pY="0.267857" oX="8" oY="6" oW="32" oH="56"/>
+        <sprite id="6" x="46" y="93" w="17" h="43" pX="0.53125" pY="0.267857" oX="8" oY="6" oW="32" oH="56"/>
+        <sprite id="7" x="46" y="138" w="16" h="43" pX="0.53125" pY="0.267857" oX="8" oY="6" oW="32" oH="56"/>
+      </spritegroup>
+
+      <spritegroup id="poolstick_attack">
+        <sprite id="0" x="1" y="89" w="21" h="44" pX="0.5" pY="0.525" oX="33" oY="5" oW="80" oH="80"/>
+        <sprite id="1" x="45" y="1" w="18" h="44" pX="0.5" pY="0.5" oX="31" oY="32" oW="80" oH="80"/>
+        <sprite id="2" x="1" y="213" w="39" h="19" pX="0.5" pY="0.5" oX="13" oY="32" oW="80" oH="80"/>
+        <sprite id="3" x="1" y="213" w="39" h="19" pX="0.5" pY="0.5" oX="13" oY="32" oW="80" oH="80"/>
+        <sprite id="4" x="1" y="135" w="18" h="44" pX="0.5" pY="0.5" oX="31" oY="32" oW="80" oH="80"/>
+        <sprite id="5" x="1" y="185" w="47" h="26" pX="0.5" pY="0.5" oX="33" oY="31" oW="80" oH="80"/>
+        <sprite id="6" x="1" y="1" w="42" h="39" pX="0.5" pY="0.5" oX="33" oY="17" oW="80" oH="80"/>
+        <sprite id="7" x="1" y="42" w="25" h="45" pX="0.5" pY="0.5" oX="33" oY="5" oW="80" oH="80"/>
+        <sprite id="8" x="28" y="47" w="24" h="44" pX="0.5" pY="0.5" oX="33" oY="5" oW="80" oH="80"/>
+      </spritegroup>
+    </spritesheet>
+
+
+    <spritesheet tex_id="player_scorpion" file_name="Player/Player_Scorpion.png">
+      <spritegroup id="scorpion_walk">
+        <sprite id="0" x="41" y="189" w="39" h="15" pX="0.25" pY="0.5" oX="0" oY="9" oW="40" oH="32"/>
+        <sprite id="1" x="1" y="220" w="38" h="16" pX="0.275" pY="0.46875" oX="0" oY="8" oW="40" oH="32"/>
+        <sprite id="2" x="1" y="171" w="39" h="16" pX="0.25" pY="0.46875" oX="0" oY="8" oW="40" oH="32"/>
+        <sprite id="3" x="51" y="1" w="37" h="17" pX="0.25" pY="0.46875" oX="0" oY="7" oW="40" oH="32"/>
+        <sprite id="4" x="41" y="189" w="39" h="15" pX="0.275" pY="0.5" oX="0" oY="9" oW="40" oH="32"/>
+        <sprite id="5" x="1" y="137" w="40" h="15" pX="0.25" pY="0.53125" oX="0" oY="9" oW="40" oH="32"/>
+        <sprite id="6" x="1" y="154" w="40" h="15" pX="0.25" pY="0.53125" oX="0" oY="9" oW="40" oH="32"/>
+        <sprite id="7" x="1" y="137" w="40" h="15" pX="0.25" pY="0.53125" oX="0" oY="9" oW="40" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="scorpion_attack">
+        <sprite id="1" x="1" y="62" w="44" h="15" pX="0.25" pY="0.5" oX="0" oY="5" oW="44" oH="24"/>
+        <sprite id="2" x="51" y="20" w="37" h="16" pX="0.25" pY="0.458333" oX="0" oY="4" oW="44" oH="24"/>
+      </spritegroup>
+
+      <spritegroup id="scorpion_snap">
+        <sprite id="0" x="43" y="158" w="39" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="47" y="68" w="41" h="28" pX="0.354167" pY="0.479167" oX="7" oY="14" oW="48" oH="48"/>
+        <sprite id="2" x="45" y="98" w="41" h="28" pX="0.333333" pY="0.479167" oX="7" oY="14" oW="48" oH="48"/>
+        <sprite id="3" x="1" y="79" w="42" h="27" pX="0.333333" pY="0.479167" oX="6" oY="14" oW="48" oH="48"/>
+        <sprite id="4" x="1" y="108" w="41" h="27" pX="0.333333" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="1" y="108" w="41" h="27" pX="0.333333" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="scorpion_humanshieldwalk">
+        <sprite id="0" x="43" y="158" w="39" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="48" y="38" w="40" h="28" pX="0.354167" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="2" x="44" y="128" w="40" h="28" pX="0.333333" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="3" x="48" y="38" w="40" h="28" pX="0.333333" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="4" x="43" y="158" w="39" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="1" y="189" w="38" h="29" pX="0.333333" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="6" x="41" y="206" w="38" h="29" pX="0.333333" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="7" x="1" y="189" w="38" h="29" pX="0.333333" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="scorpion_humanshieldattack">
+        <sprite id="0" x="1" y="31" w="45" h="29" pX="0.303571" pY="0.5" oX="8" oY="17" oW="56" oH="56"/>
+        <sprite id="1" x="1" y="1" w="48" h="28" pX="0.303571" pY="0.482143" oX="8" oY="18" oW="56" oH="56"/>
+      </spritegroup>
+    </spritesheet>
+
+
+    <spritesheet tex_id="player_silencer" file_name="Player/Player_Silencer.png">
+      <spritegroup id="silencer_walk">
+        <sprite id="0" x="85" y="49" w="38" h="15" pX="0.340909" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="1" x="47" y="145" w="37" h="16" pX="0.340909" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="2" x="86" y="145" w="36" h="17" pX="0.340909" pY="0.46875" oX="4" oY="7" oW="44" oH="32"/>
+        <sprite id="3" x="85" y="31" w="38" h="16" pX="0.340909" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="4" x="85" y="49" w="38" h="15" pX="0.340909" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="5" x="40" y="123" w="39" h="15" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="6" x="43" y="60" w="40" h="15" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="7" x="40" y="123" w="39" h="15" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="silencer_attack">
+        <sprite id="1" x="42" y="106" w="43" h="15" pX="0.25" pY="0.5" oX="0" oY="5" oW="44" oH="24"/>
+        <sprite id="2" x="1" y="153" w="44" h="16" pX="0.25" pY="0.458333" oX="0" oY="4" oW="44" oH="24"/>
+        <sprite id="3" x="81" y="128" w="37" h="15" pX="0.25" pY="0.458333" oX="0" oY="5" oW="44" oH="24"/>
+      </spritegroup>
+
+      <spritegroup id="silencer_snap">
+        <sprite id="0" x="1" y="122" w="37" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="1" y="62" w="39" h="28" pX="0.354167" pY="0.479167" oX="7" oY="14" oW="48" oH="48"/>
+        <sprite id="2" x="43" y="1" w="40" h="28" pX="0.354167" pY="0.479167" oX="7" oY="14" oW="48" oH="48"/>
+        <sprite id="3" x="43" y="31" w="40" h="27" pX="0.354167" pY="0.479167" oX="6" oY="14" oW="48" oH="48"/>
+        <sprite id="4" x="42" y="77" w="39" h="27" pX="0.354167" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="42" y="77" w="39" h="27" pX="0.354167" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="silencer_humanshieldwalk">
+        <sprite id="0" x="1" y="122" w="37" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="85" y="1" w="38" h="28" pX="0.354167" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="2" x="1" y="92" w="39" h="28" pX="0.354167" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="3" x="85" y="1" w="38" h="28" pX="0.354167" pY="0.479167" oX="8" oY="14" oW="48" oH="48"/>
+        <sprite id="4" x="1" y="122" w="37" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="87" y="66" w="36" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="6" x="87" y="97" w="36" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="7" x="87" y="66" w="36" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="silencer_humanshieldattack">
+        <sprite id="0" x="1" y="1" w="40" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="1" y="32" w="40" h="28" pX="0.354167" pY="0.5" oX="8" oY="14" oW="48" oH="48"/>
+      </spritegroup>
+    </spritesheet>
+
+
+    <spritesheet tex_id="player_sword" file_name="Player/Player_Sword.png">
+      <spritegroup id="sword_walk">
+        <sprite id="1" x="41" y="26" w="18" h="41" pX="0.53125" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="2" x="21" y="45" w="18" h="40" pX="0.5625" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="3" x="89" y="1" w="20" h="41" pX="0.53125" pY="0.453125" oX="6" oY="22" oW="32" oH="64"/>
+        <sprite id="4" x="61" y="26" w="18" h="41" pX="0.53125" pY="0.453125" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="5" x="1" y="45" w="18" h="41" pX="0.53125" pY="0.46875" oX="7" oY="22" oW="32" oH="64"/>
+        <sprite id="6" x="111" y="1" w="16" h="41" pX="0.53125" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+        <sprite id="7" x="21" y="87" w="17" h="41" pX="0.53125" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+        <sprite id="8" x="111" y="1" w="16" h="41" pX="0.53125" pY="0.484375" oX="8" oY="22" oW="32" oH="64"/>
+      </spritegroup>
+
+      <spritegroup id="sword_attack">
+        <sprite id="0" x="1" y="1" w="45" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="1" x="1" y="88" w="18" h="20" pX="0.466667" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="2" x="48" y="1" w="39" h="23" pX="0.466667" pY="0.525" oX="2" oY="11" oW="75" oH="40"/>
+        <sprite id="3" x="79" y="88" w="41" h="17" pX="0.466667" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
+        <sprite id="4" x="79" y="88" w="41" h="17" pX="0.453333" pY="0.525" oX="0" oY="13" oW="75" oH="40"/>
+        <sprite id="5" x="1" y="23" w="38" h="20" pX="0.48" pY="0.525" oX="26" oY="11" oW="75" oH="40"/>
+        <sprite id="6" x="81" y="44" w="36" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="7" x="81" y="66" w="36" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="8" x="40" y="91" w="37" h="17" pX="0.453333" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="9" x="79" y="107" w="39" h="17" pX="0.426667" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="10" x="79" y="107" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="11" x="40" y="110" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="12" x="41" y="69" w="36" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+        <sprite id="13" x="40" y="110" w="37" h="17" pX="0.466667" pY="0.525" oX="27" oY="12" oW="75" oH="40"/>
+        <sprite id="14" x="79" y="107" w="39" h="17" pX="0.44" pY="0.525" oX="25" oY="12" oW="75" oH="40"/>
+        <sprite id="15" x="1" y="88" w="18" h="20" pX="0.48" pY="0.525" oX="28" oY="11" oW="75" oH="40"/>
+      </spritegroup>
+    </spritesheet>
+
+    <spritesheet tex_id="player_uzi" file_name="Player/Player_Uzi.png">
+      <spritegroup id="uzi_walk">
+        <sprite id="0" x="354" y="1" w="39" h="17" pX="0.340909" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="1" x="272" y="1" w="38" h="18" pX="0.340909" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="2" x="273" y="21" w="37" h="18" pX="0.340909" pY="0.46875" oX="4" oY="7" oW="44" oH="32"/>
+        <sprite id="3" x="354" y="20" w="39" h="17" pX="0.340909" pY="0.46875" oX="4" oY="8" oW="44" oH="32"/>
+        <sprite id="4" x="319" y="39" w="40" h="16" pX="0.340909" pY="0.5" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="5" x="312" y="1" w="40" h="17" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="6" x="312" y="20" w="40" h="17" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+        <sprite id="7" x="231" y="31" w="40" h="18" pX="0.340909" pY="0.53125" oX="4" oY="9" oW="44" oH="32"/>
+      </spritegroup>
+
+      <spritegroup id="uzi_attack">
+        <sprite id="1" x="273" y="41" w="44" h="17" pX="0.25" pY="0.5" oX="0" oY="5" oW="44" oH="24"/>
+        <sprite id="2" x="232" y="1" w="38" h="18" pX="0.25" pY="0.458333" oX="0" oY="4" oW="44" oH="24"/>
+      </spritegroup>
+
+      <spritegroup id="uzi_snap">
+        <sprite id="0" x="120" y="1" w="35" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="43" y="1" w="37" h="29" pX="0.354167" pY="0.479167" oX="7" oY="13" oW="48" oH="48"/>
+        <sprite id="2" x="43" y="32" w="37" h="29" pX="0.354167" pY="0.479167" oX="7" oY="13" oW="48" oH="48"/>
+        <sprite id="3" x="192" y="1" w="38" h="28" pX="0.354167" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+        <sprite id="4" x="192" y="31" w="37" h="27" pX="0.354167" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="192" y="31" w="37" h="27" pX="0.354167" pY="0.479167" oX="6" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="uzi_humanshieldwalk">
+        <sprite id="0" x="120" y="1" w="35" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="82" y="1" w="36" h="29" pX="0.354167" pY="0.458333" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="2" x="82" y="32" w="36" h="29" pX="0.354167" pY="0.479167" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="3" x="82" y="32" w="36" h="29" pX="0.333333" pY="0.479167" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="4" x="120" y="1" w="35" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="5" x="157" y="1" w="33" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="6" x="120" y="32" w="34" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="7" x="156" y="32" w="34" h="29" pX="0.354167" pY="0.520833" oX="8" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+
+      <spritegroup id="uzi_humanshieldattack">
+        <sprite id="0" x="1" y="1" w="40" h="29" pX="0.354167" pY="0.5" oX="8" oY="13" oW="48" oH="48"/>
+        <sprite id="1" x="1" y="32" w="40" h="29" pX="0.354167" pY="0.479167" oX="8" oY="13" oW="48" oH="48"/>
+      </spritegroup>
+    </spritesheet>
+    
   </Sprites>
 <!-- SPRITES END-->
 
 <!--SPRITE ANIMATIONS START-->
   <SpriteAnimations>
         <sprite_animator id ="Character">
+
+          <!-- UZI START-->
+            <anim_state id="UziIdle" spritesheet_id="player_uzi|uzi_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|UziAttack;humanshield|UziHumanShieldWalk" />
+            <anim_state id="UziAttack" spritesheet_id="player_uzi|uzi_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|UziIdle;" onCompleteTrigger="idle"/>
+            <anim_state id="UziSnap" spritesheet_id="player_uzi|uzi_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|UziIdle" onCompleteTrigger="idle"/>
+            <anim_state id="UziHumanShieldWalk" spritesheet_id="player_uzi|uzi_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|UziHumanShieldAttack;snap|UziSnap"/>
+            <anim_state id="UziHumanShieldAttack" spritesheet_id="player_uzi|uzi_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|UziHumanShieldWalk" onCompleteTrigger="idle"/>
+          <!-- UZI END-->
+          
+          <!-- SWORD START-->
+            <anim_state id="SwordIdle" spritesheet_id="player_sword|sword_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SwordAttack;" />
+            <anim_state id="SwordAttack" spritesheet_id="player_sword|sword_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|SwordIdle;" onCompleteTrigger="idle"/>
+          <!-- SWORD END-->
+          
+          <!-- SILENCER START-->
+            <anim_state id="SilencerIdle" spritesheet_id="player_silencer|silencer_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerAttack;humanshield|SilencerHumanShieldWalk" />
+            <anim_state id="SilencerAttack" spritesheet_id="player_silencer|silencer_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle;" onCompleteTrigger="idle"/>
+            <anim_state id="SilencerSnap" spritesheet_id="player_silencer|silencer_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle" onCompleteTrigger="idle"/>
+            <anim_state id="SilencerHumanShieldWalk" spritesheet_id="player_silencer|silencer_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerHumanShieldAttack;snap|SilencerSnap"/>
+            <anim_state id="SilencerHumanShieldAttack" spritesheet_id="player_silencer|silencer_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerHumanShieldWalk" onCompleteTrigger="idle"/>
+          <!-- SILENCER END-->
+
+          <!-- SCORPION START-->
+            <anim_state id="ScorpionIdle" spritesheet_id="player_scorpion|scorpion_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|ScorpionAttack;humanshield|ScorpionHumanShieldWalk" />
+            <anim_state id="ScorpionAttack" spritesheet_id="player_scorpion|scorpion_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|ScorpionIdle;" onCompleteTrigger="idle"/>
+            <anim_state id="ScorpionSnap" spritesheet_id="player_scorpion|scorpion_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|ScorpionIdle" onCompleteTrigger="idle"/>
+            <anim_state id="ScorpionHumanShieldWalk" spritesheet_id="player_scorpion|scorpion_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|ScorpionHumanShieldAttack;snap|ScorpionSnap"/>
+            <anim_state id="ScorpionHumanShieldAttack" spritesheet_id="player_scorpion|scorpion_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|ScorpionHumanShieldWalk" onCompleteTrigger="idle"/>
+          <!-- SCORPION END-->
+
+          <!-- POOL STICK START-->
+            <anim_state id="PoolstickIdle" spritesheet_id="player_poolstick|poolstick_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|PoolstickAttack;" />
+            <anim_state id="PoolstickAttack" spritesheet_id="player_poolstick|poolstick_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|PoolstickIdle;" onCompleteTrigger="idle"/>
+          <!-- POOL STICK END-->
+          
+          <!-- PIPE START-->
+            <anim_state id="PipeIdle" spritesheet_id="player_pipe|pipe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|PipeAttack;" />
+            <anim_state id="PipeAttack" spritesheet_id="player_pipe|pipe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|PipeIdle;" onCompleteTrigger="idle"/>
+          <!-- PIPE END-->
+
+          <!-- MAGNUM START-->
+            <anim_state id="Mp5Idle" spritesheet_id="player_mp5|mp5_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|Mp5Attack;humanshield|Mp5HumanShieldWalk" />
+            <anim_state id="Mp5Attack" spritesheet_id="player_mp5|mp5_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5Idle;" onCompleteTrigger="idle"/>
+            <anim_state id="Mp5Snap" spritesheet_id="player_mp5|mp5_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5Idle" onCompleteTrigger="idle"/>
+            <anim_state id="Mp5HumanShieldWalk" spritesheet_id="player_mp5|mp5_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|Mp5HumanShieldAttack;snap|Mp5Snap"/>
+            <anim_state id="Mp5HumanShieldAttack" spritesheet_id="player_mp5|mp5_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5HumanShieldWalk" onCompleteTrigger="idle"/>
+          <!-- MAGNUM END-->
+
+          <!-- MAGNUM START-->
+            <anim_state id="MagnumIdle" spritesheet_id="player_magnum|magnum_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumAttack;humanshield|MagnumHumanShieldWalk" />
+            <anim_state id="MagnumAttack" spritesheet_id="player_magnum|magnum_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumIdle;" onCompleteTrigger="idle"/>
+            <anim_state id="MagnumSnap" spritesheet_id="player_magnum|magnum_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumIdle" onCompleteTrigger="idle"/>
+            <anim_state id="MagnumHumanShieldWalk" spritesheet_id="player_magnum|magnum_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumHumanShieldAttack;snap|MagnumSnap"/>
+            <anim_state id="MagnumHumanShieldAttack" spritesheet_id="player_magnum|magnum_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumHumanShieldWalk" onCompleteTrigger="idle"/>
+          <!-- MAGNUM END-->
+          
+          <!-- Machete START-->
+            <anim_state id="MacheteIdle" spritesheet_id="player_machete|machete_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|MacheteAttack;" />
+            <anim_state id="MacheteAttack" spritesheet_id="player_machete|machete_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|MacheteIdle;" onCompleteTrigger="idle"/>
+          <!-- Machete END-->
+
           <!-- M16 START-->
             <anim_state id="M16Idle" spritesheet_id="player_M16|M16_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|M16Attack;" />
             <anim_state id="M16Attack" spritesheet_id="player_M16|M16_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|M16Idle;" onCompleteTrigger="idle"/>

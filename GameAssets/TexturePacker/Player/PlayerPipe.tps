@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>xml</string>
         <key>textureFileName</key>
-        <filename>Player_Unarmed.png</filename>
+        <filename>Player_Pipe.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>Player_Unarmed.xml</filename>
+                <filename>Player_Pipe.xml</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -177,12 +177,92 @@
             <key>defaultPivotPoint</key>
             <point_f>0.5,0.5</point_f>
             <key>writePivotPoints</key>
-            <false/>
+            <true/>
         </struct>
         <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap"/>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile000.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile005.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.340909,0.520833</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9Paddings</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile001.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile004.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.340909,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9Paddings</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile002.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.340909,0.479167</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9Paddings</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile006.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile007.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Attack/AttackPipe_Sprites/tile008.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.340909,0.541667</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9Paddings</key>
+                <rect>11,12,22,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile000.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile001.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile002.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile003.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile004.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile005.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile006.png</key>
+            <key type="filename">../../SpriteSheets/Player_Sprites/Pipe/Walk/WalkPipe_Sprites/tile007.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,12,16,24</rect>
+                <key>scale9Paddings</key>
+                <rect>8,12,16,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileList</key>
-        <array/>
+        <array>
+            <filename>../../SpriteSheets/Player_Sprites/Pipe</filename>
+        </array>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>
