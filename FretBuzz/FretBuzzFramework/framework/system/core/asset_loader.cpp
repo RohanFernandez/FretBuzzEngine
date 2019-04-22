@@ -221,7 +221,7 @@ namespace ns_fretBuzz
 					l_currentSprite != l_currentSpriteSheet->end();
 					l_currentSprite++)
 				{
-					std::string l_strSpriteID = l_currentSprite->attributes_begin()->value();
+					std::string l_strSpriteID = l_strTextureId + "|" + l_currentSprite->attributes_begin()->value();
 					std::vector<ns_graphics::Sprite> l_vectSpriteData;
 
 					for (pugi::xml_node_iterator l_currentSpriteData = l_currentSprite->begin();

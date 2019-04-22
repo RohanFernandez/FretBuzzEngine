@@ -58,13 +58,9 @@ namespace ns_fretBuzz
 			//ns_graphics::SpriteRenderer::addToGameObject(*l_pLabelGameObj6, { 1.0f, 1.0f, 1.0f,1.0f }, { 150.0f, 100.0f });
 			//ns_system::RectCollider::addToGameObject(*l_pLabelGameObj6, { 150.0f, 100.0f });
 
-			ns_graphics::Window::CheckForErrors();
-
 			ns_system::GameObject2D* MainParent = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Main_Parent", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 			CharacterTest* l_gameObjChar = new CharacterTest(*MainParent, "character_test", MainParent, m_refRootGameObject);
 			
-			//ns_graphics::Window::CheckForErrors();
-
 			ns_system::GameObject* m_pCam = ns_system::GameObject::instantiate(*MainParent, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
 			ns_graphics::OrthographicViewport l_MainCam(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
 			ns_graphics::Camera::addToGameObject(*m_pCam, ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam);

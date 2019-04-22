@@ -4,7 +4,7 @@
   
 <!-- AUDIO CLIPS START-->
 	<Audio>
-		<audio id="beats" file_name="breakout.mp3"/>
+		<audio id="beats" file_name="HipHop.mp3"/>
 	</Audio>
 <!-- AUDIO CLIPS END-->
 
@@ -27,9 +27,9 @@
 
 <!-- SPRITES START-->
   <Sprites>
-   
+    
+    <!-- To get sprite the id is recognized as "tex_id|spritegroupid" ex: "player_sword|sword_walk" -->
     <spritesheet tex_id="player_sword" file_name="sword.png">
-      
       <spritegroup id="sword_walk">
         <sprite id="0" x="158" y="64" w="18" h="41" pX="0.5" pY="0.5" oX="7" oY="22" oW="32" oH="64"/>
         <sprite id="1" x="218" y="42" w="18" h="40" pX="0.5" pY="0.5" oX="7" oY="22" oW="32" oH="64"/>
@@ -82,17 +82,20 @@
 	  </spritegroup>
       
     </spritesheet>
+
+    
+    
   </Sprites>
 <!-- SPRITES END-->
 
 <!--SPRITE ANIMATIONS START-->
   <SpriteAnimations>
         <sprite_animator id ="Character">
-            <anim_state id="slashIdle" spritesheet_id="sword_walk" is_loop="true" time_per_sprite="0.07" trigger="slash|slash;mp5WalkTrigger|mp5_walk_ID;" />
-            <anim_state id="slash" spritesheet_id="sword_slash" is_loop="false" time_per_sprite="0.07" trigger="idle|slashIdle;" onCompleteTrigger="idle" />
+            <anim_state id="slashIdle" spritesheet_id="player_sword|sword_walk" is_loop="true" time_per_sprite="0.07" trigger="slash|slash;mp5WalkTrigger|mp5_walk_ID;" />
+            <anim_state id="slash" spritesheet_id="player_sword|sword_slash" is_loop="false" time_per_sprite="0.07" trigger="idle|slashIdle;" onCompleteTrigger="idle" />
 			
-			<anim_state id="mp5_walk_ID" spritesheet_id="mp5_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|slashIdle;mp5ShootTrigger|mp5_shoot_ID;" />
-			<anim_state id="mp5_shoot_ID" spritesheet_id="mp5_shoot" is_loop="false" time_per_sprite="0.07" trigger="mp5_walk_ID|mp5_walk_ID;" onCompleteTrigger="mp5_walk_ID"/>
+			      <anim_state id="mp5_walk_ID" spritesheet_id="player_sword|mp5_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|slashIdle;mp5ShootTrigger|mp5_shoot_ID;" />
+			      <anim_state id="mp5_shoot_ID" spritesheet_id="player_sword|mp5_shoot" is_loop="false" time_per_sprite="0.07" trigger="mp5_walk_ID|mp5_walk_ID;" onCompleteTrigger="mp5_walk_ID"/>
         </sprite_animator>  
   </SpriteAnimations>
 <!--SPRITE ANIMATIONS END-->
