@@ -1,6 +1,5 @@
 #include <fretbuzz_pch.h>
 #include "CharacterTest.h"
-#include "controller_2d.h"
 #include "system/core/resource_manager.h"
 #include "components/gameobject_components/sprite_renderer.h"
 #include "components/gameobject_components/image.h"
@@ -10,15 +9,12 @@
 
 namespace ns_fretBuzz
 {
-
 	CharacterTest::CharacterTest(ns_system::GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject)
 		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f }, true)
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Player" );
 			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, { 50.0f, 50.0f }, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
-
-			ns_system::Behaviour::addToGameObject<controller_2d>(*this);
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);
@@ -110,59 +106,7 @@ namespace ns_fretBuzz
 				}
 			}*/
 
-			float l_fCurrentSpeed = m_fVelocity;
-
-			float l_fHorizontalVelocity = 0.0f;
-			float l_fVerticalVelocity = 0.0f;
-
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_W))
-			{
-				l_fVerticalVelocity += l_fCurrentSpeed;
-			}
-
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_S))
-			{
-				l_fVerticalVelocity -= l_fCurrentSpeed;
-			}
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_A))
-			{
-				l_fHorizontalVelocity -= l_fCurrentSpeed;
-			}
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_D))
-			{
-				l_fHorizontalVelocity += l_fCurrentSpeed;
-			}
-
-			if (l_fHorizontalVelocity != 0.0f &&
-				l_fVerticalVelocity != 0.0f)
-			{
-				l_fHorizontalVelocity *= 0.7f;
-				l_fVerticalVelocity *= 0.7f;
-			}
-
-			m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
-			m_pcamGameObj->m_Transform.setWorldPosition(m_pTransform->getWorldPosition());
-
-			if (ns_system::Input::IsKeyDown(GLFW_KEY_R))
-			{
-				m_fScale += a_fDeltaTime * m_fScaleVelocity;
-				m_pTransform->setLocalScale({ m_fScale, m_fScale,0.0f });
-			}
-			else if (ns_system::Input::IsKeyDown(GLFW_KEY_E))
-			{
-				m_fScale -= a_fDeltaTime * m_fScaleVelocity;
-				m_pTransform->setLocalScale({ m_fScale, m_fScale,0.0f });
-			}
-
-			ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
-
-			glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_graphics::Window::getWidth() * 0.5f), (ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
-			glm::vec3 l_v3PlayerPosition = m_pTransform->getLocalPosition();
 			
-			glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition);
-
-			float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
-			m_pTransform->setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);

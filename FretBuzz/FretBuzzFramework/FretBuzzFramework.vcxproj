@@ -237,12 +237,15 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fretbuzz_pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="game\player\PlayerController.cpp" />
+    <ClCompile Include="game\scenes\gameplay_scene.cpp" />
     <ClCompile Include="test\CharacterTest.cpp" />
     <ClCompile Include="framework\utils\file_utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="framework\system\core\input.cpp" />
     <ClCompile Include="framework\system\core\system.cpp" />
     <ClCompile Include="framework\system\core\window.cpp" />
+    <ClCompile Include="test\EnemyTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\components\gameobject_components\behaviour.h" />
@@ -289,12 +292,14 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\game_object_2d.h" />
     <ClInclude Include="framework\utils\resource_container.h" />
     <ClInclude Include="fretbuzz_pch.h" />
-    <ClInclude Include="scenes\threed_test_setup.h" />
+    <ClInclude Include="game\player\PlayerController.h" />
+    <ClInclude Include="game\scenes\gameplay_scene.h" />
+    <ClInclude Include="test\scenes\threed_test_setup.h" />
     <ClInclude Include="test\CharacterTest.h" />
     <ClInclude Include="framework\components\transform.h" />
-    <ClInclude Include="scenes\init_state.h" />
-    <ClInclude Include="scenes\mainmenu_state.h" />
-    <ClInclude Include="scenes\score_state.h" />
+    <ClInclude Include="test\scenes\init_state.h" />
+    <ClInclude Include="test\scenes\mainmenu_state.h" />
+    <ClInclude Include="test\scenes\score_state.h" />
     <ClInclude Include="framework\utils\FSM.h" />
     <ClInclude Include="framework\graphics\renderer.h" />
     <ClInclude Include="framework\graphics\shader.h" />
@@ -310,7 +315,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\timer\timerFPS.h" />
     <ClInclude Include="framework\system\core\window.h" />
     <ClInclude Include="framework\utils\file_utils.h" />
-    <ClInclude Include="test\controller_2d.h" />
+    <ClInclude Include="test\EnemyTest.h" />
     <ClInclude Include="test\light_cube.h" />
     <ClInclude Include="test\test_cube.h" />
     <ClInclude Include="test\PlayerController.h" />

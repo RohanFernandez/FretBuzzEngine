@@ -171,6 +171,15 @@
     <ClCompile Include="fretbuzz_pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test\EnemyTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\scenes\gameplay_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\player\PlayerController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -251,15 +260,6 @@
     <ClInclude Include="framework\system\core\physics_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\init_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenes\mainmenu_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenes\score_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test\CharacterTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -317,9 +317,6 @@
     <ClInclude Include="framework\graphics\model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scenes\threed_test_setup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test\test_cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -374,10 +371,28 @@
     <ClInclude Include="framework\system\game_startup_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test\controller_2d.h">
+    <ClInclude Include="fretbuzz_pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fretbuzz_pch.h">
+    <ClInclude Include="test\EnemyTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\scenes\gameplay_scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\player\PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\scenes\init_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\scenes\mainmenu_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\scenes\score_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test\scenes\threed_test_setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

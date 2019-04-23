@@ -5,6 +5,14 @@
   <SpriteAnimations>
     <sprite_animator id ="Player">
 
+      <!-- SILENCER START-->
+      <anim_state id="SilencerIdle" spritesheet_id="player_silencer|silencer_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerAttack;humanshield|SilencerHumanShieldWalk" />
+      <anim_state id="SilencerAttack" spritesheet_id="player_silencer|silencer_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle;" onCompleteTrigger="idle"/>
+      <anim_state id="SilencerSnap" spritesheet_id="player_silencer|silencer_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle" onCompleteTrigger="idle"/>
+      <anim_state id="SilencerHumanShieldWalk" spritesheet_id="player_silencer|silencer_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerHumanShieldAttack;snap|SilencerSnap"/>
+      <anim_state id="SilencerHumanShieldAttack" spritesheet_id="player_silencer|silencer_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerHumanShieldWalk" onCompleteTrigger="idle"/>
+      <!-- SILENCER END-->
+      
       <!-- UZI START-->
       <anim_state id="UziIdle" spritesheet_id="player_uzi|uzi_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|UziAttack;humanshield|UziHumanShieldWalk" />
       <anim_state id="UziAttack" spritesheet_id="player_uzi|uzi_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|UziIdle;" onCompleteTrigger="idle"/>
@@ -17,14 +25,6 @@
       <anim_state id="SwordIdle" spritesheet_id="player_sword|sword_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SwordAttack;" />
       <anim_state id="SwordAttack" spritesheet_id="player_sword|sword_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|SwordIdle;" onCompleteTrigger="idle"/>
       <!-- SWORD END-->
-
-      <!-- SILENCER START-->
-      <anim_state id="SilencerIdle" spritesheet_id="player_silencer|silencer_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerAttack;humanshield|SilencerHumanShieldWalk" />
-      <anim_state id="SilencerAttack" spritesheet_id="player_silencer|silencer_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle;" onCompleteTrigger="idle"/>
-      <anim_state id="SilencerSnap" spritesheet_id="player_silencer|silencer_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerIdle" onCompleteTrigger="idle"/>
-      <anim_state id="SilencerHumanShieldWalk" spritesheet_id="player_silencer|silencer_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerHumanShieldAttack;snap|SilencerSnap"/>
-      <anim_state id="SilencerHumanShieldAttack" spritesheet_id="player_silencer|silencer_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|SilencerHumanShieldWalk" onCompleteTrigger="idle"/>
-      <!-- SILENCER END-->
 
       <!-- SCORPION START-->
       <anim_state id="ScorpionIdle" spritesheet_id="player_scorpion|scorpion_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|ScorpionAttack;humanshield|ScorpionHumanShieldWalk" />
@@ -99,6 +99,14 @@
       <!-- AXE END-->
 
     </sprite_animator>
+
+    <sprite_animator id ="Enemy">
+      <!-- AXE START-->
+      <anim_state id="AxeIdle" spritesheet_id="player_axe|axe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|AxeAttack;" />
+      <anim_state id="AxeAttack" spritesheet_id="player_axe|axe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|AxeIdle;" onCompleteTrigger="idle"/>
+      <!-- AXE END-->
+    </sprite_animator>
+    
   </SpriteAnimations>
   <!--SPRITE ANIMATIONS END-->
   </Assets>

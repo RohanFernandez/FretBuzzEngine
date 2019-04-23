@@ -1,10 +1,11 @@
 #include <fretbuzz_pch.h>
 #include "system/game_startup_data.h"
 #include "system/core/system.h"
-#include "scenes/init_state.h"
-#include "scenes/mainmenu_state.h"
-#include "scenes/score_state.h"
-#include "scenes/threed_test_setup.h"
+#include "test/scenes/init_state.h"
+#include "test/scenes/mainmenu_state.h"
+#include "test/scenes/score_state.h"
+#include "test/scenes/threed_test_setup.h"
+#include "game/scenes/gameplay_scene.h"
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
 	m_GameStartupData.m_vectScenes = 
 	{
 		//new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::threed_test_scene>("3d_Test"),
-		new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::InitState>("initstate")
+		new ns_fretBuzz::ns_system::SceneData<ns_HMGame::GameplayScene>("GamePlay")
 		/*new SceneData<MainMenuState>("mainmenustate"),
 		new SceneData<ScoreState>("scorestate")*/
 	};

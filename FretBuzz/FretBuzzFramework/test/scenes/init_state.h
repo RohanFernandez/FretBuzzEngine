@@ -4,6 +4,7 @@
 #include "graphics/texture.h"
 
 #include "test/CharacterTest.h"
+#include "test/EnemyTest.h"
 
 #include "system/core/resource_manager.h"
 #include "system/core/window.h"
@@ -18,13 +19,6 @@ namespace ns_fretBuzz
 		public ns_system::IScene
 	{
 	public:
-		ns_system::GameObject* m_goParentGameObj;
-
-		GLuint m_VAO;
-		GLuint m_VBO;
-		GLuint m_IBO;
-		bool isAudioPlaying = false;
-
 		InitState(std::string a_strSceneName) :
 			IScene(a_strSceneName)
 		{
@@ -65,9 +59,7 @@ namespace ns_fretBuzz
 			ns_graphics::OrthographicViewport l_MainCam(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
 			ns_graphics::Camera::addToGameObject(*m_pCam, ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam);
 
-			/*ns_system::GameObject* m_pCam1 = ns_system::GameObject::instantiate(*MainParent, "Main_Cam1", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
-			ns_system::OrthographicViewport l_MainCam1(0.25f, 0.5f, 0.25f, 0.5f, -1.0f, 1.0f);
-			ns_system::Camera::addToGameObject(*m_pCam1, ns_system::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam1);*/
+			EnemyTest* l_pEnemy = new EnemyTest(m_refRootGameObject, "enemy_test");
 		}
 	};
 }
