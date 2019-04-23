@@ -100,6 +100,13 @@
 
     </sprite_animator>
 
+    <sprite_animator id ="CharacterLegs">
+      <!-- AXE START-->
+      <anim_state id="LegsIdle" spritesheet_id="player_legs|bluelegs_idle" is_loop="true" time_per_sprite="0.06" trigger="walk|LegsWalk;"/>
+      <anim_state id="LegsWalk" spritesheet_id="player_legs|bluelegs_walk" is_loop="true" time_per_sprite="0.06" trigger="idle|LegsIdle;"/>
+      <!-- AXE END-->
+    </sprite_animator>
+
     <sprite_animator id ="Enemy">
       <!-- AXE START-->
       <anim_state id="AxeIdle" spritesheet_id="player_axe|axe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|AxeAttack;" />
@@ -108,5 +115,6 @@
     </sprite_animator>
     
   </SpriteAnimations>
+  
   <!--SPRITE ANIMATIONS END-->
   </Assets>

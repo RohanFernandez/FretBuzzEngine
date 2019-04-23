@@ -13,14 +13,19 @@ namespace ns_HMGame
 
 		float m_fVelocity = 250.0f;
 
+		bool m_bIsRunning = false;
+
 		ns_fretBuzz::ns_system::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		ns_fretBuzz::ns_system::SpriteAnimationController* m_pLegsSpriteAnimator = nullptr;
+		
 		ns_fretBuzz::ns_system::RectCollider* m_pRectCollider = nullptr;
 
 		ns_fretBuzz::ns_system::GameObject* m_pCamGameObj = nullptr;
-
+		ns_fretBuzz::ns_system::GameObject* m_pGameObjCharacterLegs = nullptr;
+		
 		void manageInput();
 	public:
-		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject);
+		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
 	};
