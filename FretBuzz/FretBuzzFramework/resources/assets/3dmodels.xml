@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Assets>
+<!--MODEL START-->
+  
+  <Models>
+    <model name="nanosuit//nanosuit.obj" />
+    <!--model name="obj//Five_Wheeler-(Wavefront OBJ).obj" /-->
+    <!--model name="FruitNinja_env//FruitNinja_Env.FBX" /-->
+    <!--model name="High_Cannon//High_Cannon.FBX" /-->
+    <!--model name="audi//Audi R8//Models//Audi R8.fbx" /-->
+    <!--model name="computerdesk//Computer Desk.FBX" /-->
+  </Models>
+
+  <!--MODEL END-->
+</Assets>

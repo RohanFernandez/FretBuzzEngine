@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f }, true)
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
-			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Character" );
+			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Player" );
 			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, { 50.0f, 50.0f }, ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
 
 			ns_system::Behaviour::addToGameObject<controller_2d>(*this);

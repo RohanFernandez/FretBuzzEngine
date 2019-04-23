@@ -450,14 +450,19 @@
     <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="resources\assets.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="resources\shaders\phong.vs" />
     <None Include="resources\shaders\phong.fs" />
     <None Include="resources\shaders\default_3d.fs" />
     <None Include="resources\shaders\default_3d.vs" />
     <None Include="resources\shaders\default_post_process.fs" />
     <None Include="resources\shaders\default_post_process.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="resources\assets\audio.xml" />
+    <Xml Include="resources\assets\shaders.xml" />
+    <Xml Include="resources\assets\textures.xml" />
+    <Xml Include="resources\assets\sprites.xml" />
+    <Xml Include="resources\assets\spriteanimations.xml" />
+    <Xml Include="resources\assets\3dmodels.xml" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Assets>
+<!-- TEXTURES START-->
+  <Textures>
+		<texture id="darksider" file_name="darksiders.jpg"/>
+    <texture id="container_diffuse" file_name="container_diffuse.png"/>
+    <texture id="container_specular" file_name="container_specular.png"/>
+	</Textures>
+<!-- TEXTURES END-->
+</Assets>

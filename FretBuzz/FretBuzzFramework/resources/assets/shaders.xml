@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Assets>
+<!-- SHADERS START-->
+	<Shaders>
+    <shader name="default"/>
+    <shader name="defaultLine"/>
+    <shader name="phong"/>
+    <shader name="light"/>
+	</Shaders>
+<!-- SHADERS END-->
+</Assets>

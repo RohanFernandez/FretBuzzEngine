@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Assets>
+  
+<!-- AUDIO CLIPS START-->
+	<Audio>
+		<audio id="beats" file_name="HipHop.mp3"/>
+	</Audio>
+<!-- AUDIO CLIPS END-->
+</Assets>

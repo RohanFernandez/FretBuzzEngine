@@ -13,51 +13,64 @@ namespace ns_fretBuzz
 	{
 		void AssetLoader::loadAssets(ResourceManager* a_pResourceManager)
 		{
+			std::vector<const char*> l_vectAssetFilePaths;
+			l_vectAssetFilePaths.emplace_back(AUDIO_ASSET_RESOURCE_FILE_PATH);
+			l_vectAssetFilePaths.emplace_back(SHADER_ASSET_RESOURCE_FILE_PATH);
+			l_vectAssetFilePaths.emplace_back(TEXTURE_ASSET_RESOURCE_FILE_PATH);
+			l_vectAssetFilePaths.emplace_back(SPRITES_ASSET_RESOURCE_FILE_PATH);
+			l_vectAssetFilePaths.emplace_back(SPRITE_ANIMATIONS_ASSET_RESOURCE_FILE_PATH);
+			l_vectAssetFilePaths.emplace_back(MODELS_ASSET_RESOURCE_FILE_PATH);
+			
+			for(std::vector<const char*>::const_iterator l_iterator = l_vectAssetFilePaths.cbegin();
+				l_iterator != l_vectAssetFilePaths.cend();
+				l_iterator++)
+			{
 			pugi::xml_document l_doc;
-			std::ifstream l_AssetStream(ASSET_RESOURCE_FILE_PATH);
+			std::ifstream l_AssetStream(*l_iterator);
 			pugi::xml_parse_result l_ParseResult = l_doc.load(l_AssetStream);
 
 			pugi::xml_node l_AssetMainNode = l_doc.child("Assets");
 			pugi::xml_object_range<pugi::xml_node_iterator> l_AssetObject = l_AssetMainNode.children();
 
-			for (pugi::xml_node_iterator l_currentAsset = l_AssetObject.begin();
-				l_currentAsset != l_AssetObject.end();
-				l_currentAsset++)
-			{
-				std::string l_currentAssetTypeName = l_currentAsset->name();
+				for (pugi::xml_node_iterator l_currentAsset = l_AssetObject.begin();
+					l_currentAsset != l_AssetObject.end();
+					l_currentAsset++)
+				{
+					std::string l_currentAssetTypeName = l_currentAsset->name();
 
-				////Load Shaders
-				//if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
-				//{
-				//	loadShaders(a_pResourceManager, l_currentAsset);
-				//}
-				//Load Textures
-				if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
-				{
-					loadTexture(a_pResourceManager, l_currentAsset);
-				}
-				//Load Audio Clips
-				else if (l_currentAssetTypeName.compare(AUDIO_NODE_NAME) == 0)
-				{
-					loadAudioClips(a_pResourceManager, l_currentAsset);
-				}
-				//Load Sprites
-				else if (l_currentAssetTypeName.compare(SPRITE_NODE_NAME) == 0)
-				{
-					loadSprites(a_pResourceManager, l_currentAsset);
-				}
-				//Load Animations
-				else if (l_currentAssetTypeName.compare(SPRITE_ANIMATION_NODE_NAME) == 0)
-				{
-					loadSpriteAnimations(a_pResourceManager, l_currentAsset);
-				}
-				else if (l_currentAssetTypeName.compare(MODEL_NODE_NAME) == 0)
-				{
-					loadModels(a_pResourceManager, l_currentAsset);
-				}
-				else
-				{
-					std::cout << "Cannot read the asset type ::'"<< l_currentAssetTypeName <<"'\n";
+					////Load Shaders
+					//if (l_currentAssetTypeName.compare(SHADER_NODE_NAME) == 0)
+					//{
+					//	loadShaders(a_pResourceManager, l_currentAsset);
+					//}
+					//Load Textures
+					if (l_currentAssetTypeName.compare(TEXTURE_NODE_NAME) == 0)
+					{
+						loadTexture(a_pResourceManager, l_currentAsset);
+					}
+					//Load Audio Clips
+					else if (l_currentAssetTypeName.compare(AUDIO_NODE_NAME) == 0)
+					{
+						loadAudioClips(a_pResourceManager, l_currentAsset);
+					}
+					//Load Sprites
+					else if (l_currentAssetTypeName.compare(SPRITE_NODE_NAME) == 0)
+					{
+						loadSprites(a_pResourceManager, l_currentAsset);
+					}
+					//Load Animations
+					else if (l_currentAssetTypeName.compare(SPRITE_ANIMATION_NODE_NAME) == 0)
+					{
+						loadSpriteAnimations(a_pResourceManager, l_currentAsset);
+					}
+					else if (l_currentAssetTypeName.compare(MODEL_NODE_NAME) == 0)
+					{
+						loadModels(a_pResourceManager, l_currentAsset);
+					}
+					else
+					{
+						std::cout << "Cannot read the asset type ::'" << l_currentAssetTypeName << "'\n";
+					}
 				}
 			}
 		}
