@@ -180,6 +180,9 @@
     <ClCompile Include="game\player\PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\cursor\cursor_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -395,6 +398,9 @@
     <ClInclude Include="test\scenes\threed_test_setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\cursor\cursor_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_sprite.fs" />
@@ -458,6 +464,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="resources\sprites\Player\Player_Uzi.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Cursor\Cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:aa003f54c18bd8fb18a45dfc1bc9dcd8:9e61a07b556f9faedd66cb01b284c2af:abda6cfea73a083fdec1f014628d2f10$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Cursor.png" width="30" height="39">
+    <sprite n="tile000.png" x="1"  y="31" w="7"   h="7"  pX="0" pY="0" oX="3" oY="3" oW="13" oH="13"/>
+    <sprite n="tile001.png" x="10" y="31" w="5"   h="5"  pX="0" pY="0" oX="4" oY="4" oW="13" oH="13"/>
+    <sprite n="tile002.png" x="1"  y="31" w="7"   h="7"  pX="0" pY="0" oX="3" oY="3" oW="13" oH="13"/>
+    <sprite n="tile003.png" x="17" y="29" w="9"   h="9"  pX="0" pY="0" oX="2" oY="2" oW="13" oH="13"/>
+    <sprite n="tile004.png" x="16" y="16" w="11"  h="11" pX="0" pY="0" oX="1" oY="1" oW="13" oH="13"/>
+    <sprite n="tile005.png" x="1"  y="1"  w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/> 
+    <sprite n="tile006.png" x="1"  y="16" w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/>
+    <sprite n="tile007.png" x="16" y="1"  w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/>
+    <sprite n="tile008.png" x="16" y="1"  w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/>
+    <sprite n="tile009.png" x="1"  y="16" w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/>
+    <sprite n="tile010.png" x="1"  y="1"  w="13"  h="13" pX="0" pY="0" oX="0" oY="0" oW="13" oH="13"/>
+    <sprite n="tile011.png" x="16" y="16" w="11"  h="11" pX="0" pY="0" oX="1" oY="1" oW="13" oH="13"/>
+    <sprite n="tile012.png" x="17" y="29" w="9"   h="9"  pX="0" pY="0" oX="2" oY="2" oW="13" oH="13"/>
+</TextureAtlas>

@@ -109,9 +109,13 @@
 
     <sprite_animator id ="Enemy">
       <!-- AXE START-->
-      <anim_state id="AxeIdle" spritesheet_id="player_axe|axe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|AxeAttack;" />
-      <anim_state id="AxeAttack" spritesheet_id="player_axe|axe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|AxeIdle;" onCompleteTrigger="idle"/>
+      <!--anim_state id="AxeIdle" spritesheet_id="player_axe|axe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|AxeAttack;" />
+      <anim_state id="AxeAttack" spritesheet_id="player_axe|axe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|AxeIdle;" onCompleteTrigger="idle"/-->
       <!-- AXE END-->
+    </sprite_animator>
+
+    <sprite_animator id ="Cursor">
+      <anim_state id="Blink" spritesheet_id="cursor|cursor_blink" is_loop="true" time_per_sprite="0.07"/>
     </sprite_animator>
     
   </SpriteAnimations>
