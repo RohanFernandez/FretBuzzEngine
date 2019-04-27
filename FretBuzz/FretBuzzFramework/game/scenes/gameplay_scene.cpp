@@ -51,12 +51,13 @@ namespace ns_HMGame
 
 		/// Player
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerGameObject = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Player", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f }, true);
+		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerUpperGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pPlayerGameObject, "PlayerUpper", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, true);
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerLegsGameObject = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pPlayerGameObject, "PlayerLegs", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, true);
 
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*m_pPlayerLegsGameObject, "CharacterLegs");
-		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*m_pPlayerGameObject, "Player");
+		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*m_pPlayerUpperGameObj, "Player");
 
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*m_pPlayerGameObject, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(*m_pPlayerGameObject, m_pCam, m_pPlayerLegsGameObject);
+		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(*m_pPlayerGameObject, m_pCam, m_pPlayerUpperGameObj, m_pPlayerLegsGameObject);
 	}
 }

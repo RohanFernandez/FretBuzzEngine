@@ -4,15 +4,17 @@
 
 namespace ns_HMGame
 {
-	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
+	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 	{
-		m_pSpriteAnimator = a_GameObject.getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
+		m_pGameObjCharacterLegs = a_pLegsGameObject;
+
 		m_pRectCollider = a_GameObject.getComponent<ns_fretBuzz::ns_system::RectCollider>(ns_fretBuzz::ns_system::COMPONENT_TYPE::RECT_COLLIDER);
 		m_pCamGameObj = a_pCamGameObject;
 
-		m_pGameObjCharacterLegs = a_pLegsGameObject;
 		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController >(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 	}
 
 	void PlayerController::update(float a_fDeltaTime)
@@ -25,15 +27,15 @@ namespace ns_HMGame
 	{
 		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 		{
-			m_pSpriteAnimator->play("attack");
+			m_pUpperSpriteAnimator->play("attack");
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
 		{
-			m_pSpriteAnimator->play("humanshield");
+			m_pUpperSpriteAnimator->play("humanshield");
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
 		{
-			m_pSpriteAnimator->play("snap");
+			m_pUpperSpriteAnimator->play("snap");
 		}
 
 		float l_fHorizontalVelocity = 0.0f;
@@ -57,43 +59,51 @@ namespace ns_HMGame
 			l_fHorizontalVelocity += m_fVelocity;
 		}
 
-		if (l_fHorizontalVelocity != 0.0f &&
-			l_fVerticalVelocity != 0.0f)
-		{
-			l_fHorizontalVelocity *= 0.7f;
-			l_fVerticalVelocity *= 0.7f;
-			
-		}
+		ns_fretBuzz::ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
+		glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_fretBuzz::ns_graphics::Window::getWidth() * 0.5f), (ns_fretBuzz::ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY);
+		glm::vec2 l_v2PlayerToMouseDirection = glm::normalize(l_MousePosition);
+		float a_fZ = glm::atan(l_v2PlayerToMouseDirection.x, l_v2PlayerToMouseDirection.y);
+		m_pPlayerUpperGameObj->m_Transform.setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
 
+		std::string l_strPlayerAnimTrigger = "idle";
+
+		float l_fRotationZ = 0.0f;
 		if (l_fHorizontalVelocity != 0.0f || l_fVerticalVelocity != 0.0f)
 		{
-			if (!m_bIsRunning)
+			l_strPlayerAnimTrigger = "walk";
+			if (l_fHorizontalVelocity != 0.0f &&
+				l_fVerticalVelocity != 0.0f)
 			{
-				m_pLegsSpriteAnimator->play("walk");
+				l_fHorizontalVelocity *= 0.7f;
+				l_fVerticalVelocity *= 0.7f;
+
+				l_fRotationZ = l_fHorizontalVelocity > 0.0f ? M_PI_4 : (M_PI_2 + M_PI_4);
+				if (l_fVerticalVelocity < 0.0f)
+				{
+					l_fRotationZ = -l_fRotationZ;
+				}
 			}
-			m_bIsRunning = true;
-		}
-		else
-		{
-			if (m_bIsRunning)
+			else if (l_fHorizontalVelocity == 0.0f)
 			{
-				m_pLegsSpriteAnimator->play("idle");
+				l_fRotationZ = l_fVerticalVelocity > 0.0f ? M_PI_2 : -M_PI_2;
 			}
-			m_bIsRunning = false;
+			else if (l_fVerticalVelocity == 0.0f)
+			{
+				l_fRotationZ = l_fHorizontalVelocity > 0.0f ? 0.0f : M_PI;
+			}
+
+			float l_fDotMovementToFace = glm::dot(l_v2PlayerToMouseDirection, glm::normalize(glm::vec2{ l_fHorizontalVelocity , l_fVerticalVelocity }));
+			// If movement is opposite direction fo cursor face, the rotate legs by 180 so shoes are always pointing to cursor face.
+			if (l_fDotMovementToFace < -0.5)
+			{
+				l_fRotationZ += M_PI;
+			}
+			m_pGameObjCharacterLegs->m_Transform.setLocalRotation({ 0.0f, 0.0f, l_fRotationZ});
 		}
 
-
+		m_pUpperSpriteAnimator->play(l_strPlayerAnimTrigger);
+		m_pLegsSpriteAnimator->play(l_strPlayerAnimTrigger);
 		m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
 		m_pCamGameObj->m_Transform.setWorldPosition(m_GameObject.m_Transform.getWorldPosition());
-
-		ns_fretBuzz::ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
-
-		glm::vec3 l_MousePosition = glm::vec3((float)m_dMouseX - (ns_fretBuzz::ns_graphics::Window::getWidth() * 0.5f), (ns_fretBuzz::ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY, 0.0f);
-		glm::vec3 l_v3PlayerPosition = m_GameObject.m_Transform.getLocalPosition();
-
-		glm::vec3 l_v3PlayerToMouseDirection = glm::normalize(l_MousePosition);
-
-		float a_fZ = glm::atan(l_v3PlayerToMouseDirection.x, l_v3PlayerToMouseDirection.y);
-		m_GameObject.m_Transform.setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
 	}
 }

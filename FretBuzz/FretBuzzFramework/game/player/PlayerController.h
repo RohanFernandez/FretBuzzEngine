@@ -11,21 +11,22 @@ namespace ns_HMGame
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		float m_fVelocity = 250.0f;
+		float m_fVelocity = 500.0f;
 
 		bool m_bIsRunning = false;
 
-		ns_fretBuzz::ns_system::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		ns_fretBuzz::ns_system::SpriteAnimationController* m_pUpperSpriteAnimator = nullptr;
 		ns_fretBuzz::ns_system::SpriteAnimationController* m_pLegsSpriteAnimator = nullptr;
 		
 		ns_fretBuzz::ns_system::RectCollider* m_pRectCollider = nullptr;
 
 		ns_fretBuzz::ns_system::GameObject* m_pCamGameObj = nullptr;
+		ns_fretBuzz::ns_system::GameObject* m_pPlayerUpperGameObj = nullptr;
 		ns_fretBuzz::ns_system::GameObject* m_pGameObjCharacterLegs = nullptr;
 		
 		void manageInput();
 	public:
-		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
+		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
 	};

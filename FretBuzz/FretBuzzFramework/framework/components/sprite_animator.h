@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 		{
 		private:
 			std::string m_strStateId;
-			ns_graphics::SpriteGroup* m_pSpriteSheet = nullptr;
+			ns_graphics::SpriteGroup* m_pSpriteGroup = nullptr;
 			bool m_bIsLoop = false;
 			float m_fTimePerSprite = 0.0f;
 			std::map<std::string, std::string> m_mapTrigger;
@@ -18,9 +18,9 @@ namespace ns_fretBuzz
 
 		public:
 			AnimationState(std::string a_strStateId, std::string a_strSpriteSheetId, bool a_bIsLoop,
-				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger, std::string a_strOnCompleteTrigger = "")
+				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger, bool a_bIsWaitForComplete, std::string a_strOnCompleteTrigger = "")
 				: m_strStateId(a_strStateId),
-				m_pSpriteSheet(ResourceManager::getResource<ns_graphics::SpriteGroup>(a_strSpriteSheetId)),
+				m_pSpriteGroup(ResourceManager::getResource<ns_graphics::SpriteGroup>(a_strSpriteSheetId)),
 				m_bIsLoop(a_bIsLoop),
 				m_fTimePerSprite(a_fTimePerSprite),
 				m_mapTrigger(a_mapTrigger),
@@ -31,7 +31,7 @@ namespace ns_fretBuzz
 
 			AnimationState(AnimationState& a_AnimationState)
 				: m_strStateId(a_AnimationState.m_strStateId),
-				m_pSpriteSheet(a_AnimationState.m_pSpriteSheet),
+				m_pSpriteGroup(a_AnimationState.m_pSpriteGroup),
 				m_bIsLoop(a_AnimationState.m_bIsLoop),
 				m_fTimePerSprite(a_AnimationState.m_fTimePerSprite),
 				m_mapTrigger(a_AnimationState.m_mapTrigger),
@@ -42,7 +42,7 @@ namespace ns_fretBuzz
 
 			AnimationState(AnimationState&& a_AnimationState)
 				: m_strStateId(a_AnimationState.m_strStateId),
-				m_pSpriteSheet(a_AnimationState.m_pSpriteSheet),
+				m_pSpriteGroup(a_AnimationState.m_pSpriteGroup),
 				m_bIsLoop(a_AnimationState.m_bIsLoop),
 				m_fTimePerSprite(a_AnimationState.m_fTimePerSprite),
 				m_mapTrigger(a_AnimationState.m_mapTrigger),
@@ -54,7 +54,7 @@ namespace ns_fretBuzz
 			void operator=(AnimationState a_AnimationState)
 			{
 				m_strStateId = a_AnimationState.m_strStateId;
-				m_pSpriteSheet = a_AnimationState.m_pSpriteSheet;
+				m_pSpriteGroup = a_AnimationState.m_pSpriteGroup;
 				m_bIsLoop = a_AnimationState.m_bIsLoop;
 				m_fTimePerSprite = a_AnimationState.m_fTimePerSprite;
 				m_mapTrigger = a_AnimationState.m_mapTrigger;
@@ -69,9 +69,9 @@ namespace ns_fretBuzz
 				return m_strStateId;
 			}
 
-			inline ns_graphics::SpriteGroup* getSpriteSheet() const
+			inline ns_graphics::SpriteGroup* getSpriteGroup() const
 			{
-				return m_pSpriteSheet;
+				return m_pSpriteGroup;
 			}
 
 			inline bool isLooped() const

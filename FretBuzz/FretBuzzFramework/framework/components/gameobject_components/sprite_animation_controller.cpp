@@ -45,7 +45,7 @@ namespace ns_fretBuzz
 			std::map<std::string, std::string>::iterator l_SpriteSheetIterator = l_MapTriggers.find(a_strTrigger);
 			if (l_SpriteSheetIterator == l_MapTriggers.end())
 			{
-				std::cout << "SpriteAnimationController::play::: Could not find trigger id '"<< a_strTrigger <<"'\n";
+				//std::cout << "SpriteAnimationController::play::: Could not find trigger id '"<< a_strTrigger <<"'\n";
 				return;
 			}
 
@@ -55,7 +55,7 @@ namespace ns_fretBuzz
 		void SpriteAnimationController::playStateID(std::string a_strAnimationID)
 		{
 			m_pAnimState = m_pSpriteAnimator->getAnimStateWithID(a_strAnimationID);
-			m_pCurrentSpriteSheet = m_pAnimState->getSpriteSheet()->getSprites();
+			m_pCurrentSpriteSheet = m_pAnimState->getSpriteGroup()->getSprites();
 			m_iCurrentSpriteIndex = 0;
 			m_pCurrentSprite = &(*m_pCurrentSpriteSheet)[m_iCurrentSpriteIndex];
 			m_pSpriteRenderer->setSprite(m_pCurrentSprite);
@@ -63,7 +63,7 @@ namespace ns_fretBuzz
 			m_fTimePassedInCurrentSprite = 0.0f;
 			m_fTimePerSprite = m_pAnimState->getTimePerSprite();
 			m_bIsCurrentAnimationLooped = m_pAnimState->isLooped();
-			m_iSpriteCount = m_pAnimState->getSpriteSheet()->getSpriteCount();
+			m_iSpriteCount = m_pAnimState->getSpriteGroup()->getSpriteCount();
 
 			std::string l_strOnCompleteTrigger = m_pAnimState->getOnCompleteTrigger();
 			m_strCurrentonCompleteTrigger = ((l_strOnCompleteTrigger.compare("") == 0) ? m_strDefaultStateID : l_strOnCompleteTrigger);

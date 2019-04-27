@@ -469,6 +469,9 @@
     <Image Include="resources\sprites\Cursor\Cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\sprites\Enemy\EnemyUnarmed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
