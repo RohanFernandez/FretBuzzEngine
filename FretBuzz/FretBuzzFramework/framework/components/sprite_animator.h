@@ -18,7 +18,7 @@ namespace ns_fretBuzz
 
 		public:
 			AnimationState(std::string a_strStateId, std::string a_strSpriteSheetId, bool a_bIsLoop,
-				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger, bool a_bIsWaitForComplete, std::string a_strOnCompleteTrigger = "")
+				float a_fTimePerSprite, std::map<std::string, std::string> a_mapTrigger, std::string a_strOnCompleteTrigger = "")
 				: m_strStateId(a_strStateId),
 				m_pSpriteGroup(ResourceManager::getResource<ns_graphics::SpriteGroup>(a_strSpriteSheetId)),
 				m_bIsLoop(a_bIsLoop),
