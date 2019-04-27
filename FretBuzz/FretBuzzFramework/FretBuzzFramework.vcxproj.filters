@@ -177,13 +177,19 @@
     <ClCompile Include="game\scenes\gameplay_scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player\PlayerController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game\cursor\cursor_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="game\prefab\prefab_player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\managers\cursor\cursor_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\managers\weapon\weapon_manger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\prefab\prefab_game_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\managers\player\PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -386,9 +392,6 @@
     <ClInclude Include="game\scenes\gameplay_scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\player\PlayerController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test\scenes\init_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -401,10 +404,19 @@
     <ClInclude Include="test\scenes\threed_test_setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\cursor\cursor_manager.h">
+    <ClInclude Include="game\prefab\prefab_player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\prefab\prefab_player.h">
+    <ClInclude Include="game\managers\cursor\cursor_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\managers\weapon\weapon_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\prefab\prefab_game_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\managers\player\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

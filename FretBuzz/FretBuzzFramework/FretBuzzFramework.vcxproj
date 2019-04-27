@@ -182,7 +182,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="game\cursor\cursor_manager.cpp" />
+    <ClCompile Include="game\managers\cursor\cursor_manager.cpp" />
     <ClCompile Include="framework\components\audio_clip.cpp" />
     <ClCompile Include="framework\components\gameobject_components\audio_source.cpp" />
     <ClCompile Include="framework\components\gameobject_components\camera.cpp" />
@@ -238,7 +238,9 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fretbuzz_pch.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="game\player\PlayerController.cpp" />
+    <ClCompile Include="game\managers\weapon\weapon_manger.cpp" />
+    <ClCompile Include="game\managers\player\PlayerController.cpp" />
+    <ClCompile Include="game\prefab\prefab_game_manager.cpp" />
     <ClCompile Include="game\prefab\prefab_player.cpp" />
     <ClCompile Include="game\scenes\gameplay_scene.cpp" />
     <ClCompile Include="test\CharacterTest.cpp" />
@@ -250,7 +252,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="test\EnemyTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game\cursor\cursor_manager.h" />
+    <ClInclude Include="game\managers\cursor\cursor_manager.h" />
     <ClInclude Include="framework\components\gameobject_components\behaviour.h" />
     <ClInclude Include="framework\components\gameobject_components\camera.h" />
     <ClInclude Include="framework\components\gameobject_components\character_controller_2d.h" />
@@ -295,7 +297,9 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\game_object_2d.h" />
     <ClInclude Include="framework\utils\resource_container.h" />
     <ClInclude Include="fretbuzz_pch.h" />
-    <ClInclude Include="game\player\PlayerController.h" />
+    <ClInclude Include="game\managers\weapon\weapon_manager.h" />
+    <ClInclude Include="game\managers\player\PlayerController.h" />
+    <ClInclude Include="game\prefab\prefab_game_manager.h" />
     <ClInclude Include="game\prefab\prefab_player.h" />
     <ClInclude Include="game\scenes\gameplay_scene.h" />
     <ClInclude Include="test\scenes\threed_test_setup.h" />

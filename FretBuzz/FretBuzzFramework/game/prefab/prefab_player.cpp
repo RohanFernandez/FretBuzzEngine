@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "prefab_player.h"
-#include "game/player/PlayerController.h"
+#include "game/managers/player/PlayerController.h"
 #include <components/gameobject_components/camera.h>
 #include <system/camera_manager.h>
 

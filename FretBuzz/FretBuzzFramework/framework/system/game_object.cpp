@@ -43,6 +43,11 @@ namespace ns_fretBuzz
 			a_ParentGameObject.addChild(this);
 		}
 
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf)
+			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 0.0f, 0.0f,0.0f }, a_bIsActiveSelf)
+		{
+		}
+
 		GameObject::~GameObject()
 		{
 			for (std::vector<GameObject*>::iterator l_IGameObjCurrent = m_Children.begin();

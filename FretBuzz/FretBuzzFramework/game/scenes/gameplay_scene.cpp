@@ -4,23 +4,21 @@
 #include "components/gameobject_components/rect_collider.h"
 #include "components/gameobject_components/audio_source.h"
 #include "components//gameobject_components/image.h"
-#include "../game/player/PlayerController.h"
-#include "../game/cursor/cursor_manager.h"
+#include "game/managers/player/PlayerController.h"
+#include "game/managers/cursor/cursor_manager.h"
 
 #include <components/sprite.h>
 #include "components/gameobject_components/sprite_animation_controller.h"
 
 #include "game/prefab/prefab_player.h"
+#include "game/prefab/prefab_game_manager.h"
 
 namespace ns_HMGame
 {
 	GameplayScene::GameplayScene(std::string a_strSceneName):
 		ns_fretBuzz::ns_system::IScene(a_strSceneName)
 	{
-		ns_fretBuzz::ns_system::GameObject* l_pGameManager = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "GameManager", true);
-		ns_fretBuzz::ns_system::AudioSource *l_pAudSrc = ns_fretBuzz::ns_system::AudioSource::addToGameObject(*l_pGameManager, "beats");
-		l_pAudSrc->play();
-		l_pAudSrc->setLooping(true);
+		ns_HMGame::PrefabGameManager* l_pGameManager = new ns_HMGame::PrefabGameManager(m_refRootGameObject, "GameManager");
 
 		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
