@@ -221,7 +221,7 @@ namespace ns_fretBuzz
 			void updateActiveScenes(float a_fDeltaTime);
 			void renderActiveScenes(const ns_graphics::Camera& a_Camera);
 
-			static void printSceneHierarchy();
+			static void LogSceneHierarchy();
 
 			static SceneManager* initialize(std::vector<ISceneData*>& a_pVectIScene);
 			static const SceneManager* get();

@@ -46,7 +46,7 @@ namespace ns_fretBuzz
 
 		Camera& CameraManager::getMainCamera()
 		{
-			return **m_Container.begin();
+			return **(s_pInstance->m_Container.begin());
 		}
 
 		void CameraManager::registerCamera(Camera* a_pCamera)

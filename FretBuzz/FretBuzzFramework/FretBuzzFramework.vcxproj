@@ -239,6 +239,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fretbuzz_pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="game\player\PlayerController.cpp" />
+    <ClCompile Include="game\prefab\prefab_player.cpp" />
     <ClCompile Include="game\scenes\gameplay_scene.cpp" />
     <ClCompile Include="test\CharacterTest.cpp" />
     <ClCompile Include="framework\utils\file_utils.cpp" />
@@ -295,6 +296,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\utils\resource_container.h" />
     <ClInclude Include="fretbuzz_pch.h" />
     <ClInclude Include="game\player\PlayerController.h" />
+    <ClInclude Include="game\prefab\prefab_player.h" />
     <ClInclude Include="game\scenes\gameplay_scene.h" />
     <ClInclude Include="test\scenes\threed_test_setup.h" />
     <ClInclude Include="test\CharacterTest.h" />

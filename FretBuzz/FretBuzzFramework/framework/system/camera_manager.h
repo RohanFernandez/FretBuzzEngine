@@ -20,7 +20,7 @@ namespace ns_fretBuzz
 			static CameraManager* initialize();
 			void destroy();
 			static const CameraManager* get();
-			Camera& getMainCamera();
+			static Camera& getMainCamera();
 
 			void registerCamera(Camera* a_pCamera);
 			static void s_registerCamera(Camera* a_pCamera);

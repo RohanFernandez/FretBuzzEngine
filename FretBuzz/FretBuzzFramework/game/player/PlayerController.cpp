@@ -1,6 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "PlayerController.h"
 #include <system/core/input.h>
+#include <system/scene_manager.h>
 
 namespace ns_HMGame
 {
@@ -105,5 +106,13 @@ namespace ns_HMGame
 		m_pLegsSpriteAnimator->play(l_strPlayerAnimTrigger);
 		m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
 		m_pCamGameObj->m_Transform.setWorldPosition(m_GameObject.m_Transform.getWorldPosition());
+
+
+		//// DEBUG START //// 
+		if (ns_fretBuzz::ns_system::Input::IsKeyPutDown(GLFW_KEY_L))
+		{
+			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
+		}
+		//// DEBUG END //// 
 	}
 }

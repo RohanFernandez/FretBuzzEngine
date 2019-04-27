@@ -231,7 +231,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void SceneManager::printSceneHierarchy()
+		void SceneManager::LogSceneHierarchy()
 		{
 			int l_iActiveSceneCount = s_pInstance->m_vectActiveStates.size();
 			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)

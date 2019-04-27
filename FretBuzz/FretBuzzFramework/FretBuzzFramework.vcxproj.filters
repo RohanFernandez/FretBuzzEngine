@@ -183,6 +183,9 @@
     <ClCompile Include="game\cursor\cursor_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\prefab\prefab_player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -399,6 +402,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\cursor\cursor_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\prefab\prefab_player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
