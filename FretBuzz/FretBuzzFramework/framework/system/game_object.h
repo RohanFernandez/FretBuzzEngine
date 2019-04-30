@@ -103,9 +103,15 @@ namespace ns_fretBuzz
 			// Removes the GameObject from its parent m_Children container.
 			// Destroys the GameObject
 			static void destroy(GameObject*& a_GameObject);
+			
+			// Returns all component of the game object
+			inline const std::vector<IComponent*> getAllComponents()
+			{
+				return m_Components;
+			}
 
-			///Returns a component from the components vector, if the COMPONENT_TYPE is equal to the input.
-			///If the component pointer is found it returns the component cast to the type specified else returns null.
+			// Returns a component from the components vector, if the COMPONENT_TYPE is equal to the input.
+			// If the component pointer is found it returns the component cast to the type specified else returns null.
 			template<typename T_COMPONENT_TYPE, typename = typename std::enable_if<std::is_base_of<IComponent, T_COMPONENT_TYPE>::value>::type>
 			T_COMPONENT_TYPE* getComponent(COMPONENT_TYPE a_COMPONENT_TYPE)
 			{

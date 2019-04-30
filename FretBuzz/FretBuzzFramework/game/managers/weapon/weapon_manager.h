@@ -3,6 +3,11 @@
 
 namespace ns_HMGame
 {
+	enum WEAPON_TYPE
+	{
+
+	};
+
 	class WeaponManager : public ns_fretBuzz::ns_system::Behaviour
 	{
 	private:

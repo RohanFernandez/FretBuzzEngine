@@ -4,6 +4,8 @@
 #include <components/gameobject_components/camera.h>
 #include <system/camera_manager.h>
 
+#include <components/gameobject_components/audio_source.h>
+
 namespace ns_HMGame
 {
 	PrefabPlayer::PrefabPlayer(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH)

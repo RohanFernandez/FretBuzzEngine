@@ -12,23 +12,30 @@ namespace ns_fretBuzz
 			m_bIsEnabled{a_bIsEnabled}
 		{
 			m_GameObject.addComponent(this);
-
-			if (isActiveAndEnabled()) { onEnable(); };
+			
+			onAddedToGameObj();
+			if (isActiveAndEnabled()) 
+			{
+				onEnable(); 
+			};
 		};
 
 		IComponent::~IComponent()
 		{
 			onDisable();
+			onRemovedFromGameObj();
 		}
 
 		void IComponent::onEnable()
 		{
 			std::cout << "ON ENABLE:: "<< m_GameObject.getName()<<" \n";
+			callFuncInSiblings(&IComponent::onSiblingComponentEnabled);
 		}
 
 		void IComponent::onDisable()
 		{
 			std::cout << "ON DISABLE:: "<<m_GameObject.getName() <<"\n";
+			callFuncInSiblings(&IComponent::onSiblingComponentDisabled);
 		}
 
 		bool IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject)
@@ -78,6 +85,51 @@ namespace ns_fretBuzz
 		bool IComponent::isActiveAndEnabled() const
 		{
 			return m_bIsEnabled && m_GameObject.getIsActiveInHierarchy();
+		}
+
+		void IComponent::onAddedToGameObj()
+		{
+			callFuncInSiblings(&IComponent::onSiblingComponentAdded);
+		}
+
+		void IComponent::onRemovedFromGameObj()
+		{
+			callFuncInSiblings(&IComponent::onSiblingComponentRemoved);
+		}
+
+		void IComponent::onSiblingComponentAdded(IComponent* a_Component)
+		{
+			
+		}
+
+		void IComponent::onSiblingComponentRemoved(IComponent* a_Component)
+		{
+		
+		}
+
+		void IComponent::onSiblingComponentEnabled(IComponent* a_Component)
+		{
+
+		}
+
+		void IComponent::onSiblingComponentDisabled(IComponent* a_Component)
+		{
+		
+		}
+
+		void IComponent::callFuncInSiblings(void(IComponent::* FUNC)(IComponent*))
+		{
+			const std::vector<IComponent*> l_vectComponents = m_GameObject.getAllComponents();
+
+			for (auto l_CurrentComponent = l_vectComponents.begin();
+				l_CurrentComponent != l_vectComponents.end(); l_CurrentComponent++)
+			{
+				IComponent* l_pCurrentComponent = *l_CurrentComponent;
+				if (l_pCurrentComponent != this)
+				{
+					(l_pCurrentComponent->*FUNC)(this);
+				}
+			}
 		}
 	}
 }

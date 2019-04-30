@@ -52,6 +52,12 @@ namespace ns_fretBuzz
 			// Calls the onEnable / onDisable callback if the component is enabled / disabled respectively.
 			void onGameObjectActivated(bool a_bIsGameObjectActivated);
 
+			virtual void onAddedToGameObj();
+			virtual void onRemovedFromGameObj();
+
+			// Calls all function in the gameobject's siblings.
+			void callFuncInSiblings(void(IComponent::* FUNC)(IComponent*));
+
 		public:
 			IComponent() = delete;
 
@@ -77,6 +83,11 @@ namespace ns_fretBuzz
 
 			//Is the component enabled and the GameObject activated.
 			bool isActiveAndEnabled() const;
+
+			virtual void onSiblingComponentAdded(IComponent* a_Component);
+			virtual void onSiblingComponentRemoved(IComponent* a_Component);
+			virtual void onSiblingComponentEnabled(IComponent* a_Component);
+			virtual void onSiblingComponentDisabled(IComponent* a_Component);
 		};
 	}
 }

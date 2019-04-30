@@ -19,6 +19,15 @@ namespace ns_fretBuzz
 
 			ns_graphics::LineData m_arrRectLineBorders[4];
 
+		public:
+			struct RectColliderData
+			{
+				PhysicsEngine::PHYSICS_BODY_TYPE m_PhysicsBodyType;
+				bool m_bIsSensor = false;
+				bool m_bIsBullet = false;
+				bool m_bIsFixedRotation = false;
+			};
+
 		protected:
 			virtual ~RectCollider();
 			PhysicsEngine::PHYSICS_BODY_TYPE m_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
