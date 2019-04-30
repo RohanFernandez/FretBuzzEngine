@@ -192,6 +192,9 @@
     <ClCompile Include="game\managers\player\PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\components\collider_2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -417,6 +420,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\managers\player\PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\collision_events_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\collider_2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\collider_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

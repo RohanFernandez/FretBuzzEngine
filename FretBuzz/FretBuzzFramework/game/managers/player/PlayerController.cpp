@@ -6,7 +6,8 @@
 namespace ns_HMGame
 {
 	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
+		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
+		ns_fretBuzz::ns_system::CollisionEvents2D()
 	{
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
@@ -113,6 +114,6 @@ namespace ns_HMGame
 		{
 			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
 		}
-		//// DEBUG END //// 
+		//// DEBUG END ////
 	}
 }

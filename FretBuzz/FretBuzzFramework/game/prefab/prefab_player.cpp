@@ -18,7 +18,9 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pPlayerLowerGameObj, "CharacterLegs");
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pPlayerUpperGameObj, "Player");
 
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC, true);
+		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
+		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC;
+		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
 		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(*this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
 	}
 }

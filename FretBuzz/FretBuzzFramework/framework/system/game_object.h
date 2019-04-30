@@ -19,8 +19,11 @@ namespace ns_fretBuzz
 			GameObject* m_pParentGameObject = nullptr;
 
 			const std::string m_strName;
+
+			// The int ID of the current gameobject
 			const int m_iID;
 
+			// The total number of gameobjects, provides a unique ID for nw gameobjects.
 			static int s_iID;
 
 			bool m_bIsDontDestroy = false;

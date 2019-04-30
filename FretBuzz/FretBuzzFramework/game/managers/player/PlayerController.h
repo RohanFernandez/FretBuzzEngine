@@ -2,10 +2,12 @@
 #include <components/gameobject_components/behaviour.h>
 #include "components/gameobject_components/sprite_animation_controller.h"
 #include <components/gameobject_components/rect_collider.h>
+#include <components/collision_events_2d.h>
 
 namespace ns_HMGame
 {
-	class PlayerController : public ns_fretBuzz::ns_system::Behaviour
+	class PlayerController : public ns_fretBuzz::ns_system::Behaviour,
+		virtual public ns_fretBuzz::ns_system::CollisionEvents2D
 	{
 	private:
 		double m_dMouseX = 0.0;
