@@ -255,7 +255,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
   <ItemGroup>
     <ClInclude Include="framework\components\collider_2d.h" />
     <ClInclude Include="framework\components\collider_data.h" />
-    <ClInclude Include="framework\components\collision_events_2d.h" />
     <ClInclude Include="game\managers\cursor\cursor_manager.h" />
     <ClInclude Include="framework\components\gameobject_components\behaviour.h" />
     <ClInclude Include="framework\components\gameobject_components\camera.h" />

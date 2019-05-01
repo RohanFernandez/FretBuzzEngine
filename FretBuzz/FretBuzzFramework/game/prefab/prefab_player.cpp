@@ -20,6 +20,11 @@ namespace ns_HMGame
 
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
 		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC;
+		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
+		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
+
+		l_RectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
 		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(*this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
 	}

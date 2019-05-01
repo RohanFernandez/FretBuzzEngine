@@ -23,13 +23,14 @@ namespace ns_fretBuzz
 
 			//2D GameObject specific
 			IMAGE,
-			RECT_COLLIDER,
+			COLLIDER_2D,
 
 			//Custom user created
 			BEHAVIOUR
 		};
 
 		class GameObject;
+		class Collider2D;
 		class FRETBUZZ_API IComponent
 		{
 		friend class GameObject;
@@ -84,10 +85,15 @@ namespace ns_fretBuzz
 			//Is the component enabled and the GameObject activated.
 			bool isActiveAndEnabled() const;
 
-			virtual void onSiblingComponentAdded(IComponent* a_Component);
-			virtual void onSiblingComponentRemoved(IComponent* a_Component);
-			virtual void onSiblingComponentEnabled(IComponent* a_Component);
-			virtual void onSiblingComponentDisabled(IComponent* a_Component);
+			virtual void onSiblingComponentAdded(IComponent* a_Component) {};
+			virtual void onSiblingComponentRemoved(IComponent* a_Component) {};
+			virtual void onSiblingComponentEnabled(IComponent* a_Component) {};
+			virtual void onSiblingComponentDisabled(IComponent* a_Component) {};
+
+			virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
+			virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
+			virtual void onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
+			virtual void onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
 		};
 	}
 }

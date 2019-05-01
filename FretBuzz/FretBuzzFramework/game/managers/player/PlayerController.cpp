@@ -6,13 +6,12 @@
 namespace ns_HMGame
 {
 	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
-		ns_fretBuzz::ns_system::CollisionEvents2D()
+		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 	{
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
 
-		m_pRectCollider = a_GameObject.getComponent<ns_fretBuzz::ns_system::RectCollider>(ns_fretBuzz::ns_system::COMPONENT_TYPE::RECT_COLLIDER);
+		m_pRectCollider = a_GameObject.getComponent<ns_fretBuzz::ns_system::RectCollider>(ns_fretBuzz::ns_system::COMPONENT_TYPE::COLLIDER_2D);
 		m_pCamGameObj = a_pCamGameObject;
 
 		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController >(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
@@ -115,5 +114,25 @@ namespace ns_HMGame
 			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
 		}
 		//// DEBUG END ////
+	}
+
+	void PlayerController::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "PlayerController::OnCollisionEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+	}
+
+	void PlayerController::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "PlayerController::OnCollisionExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+	}
+
+	void PlayerController::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+	}
+
+	void PlayerController::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 }

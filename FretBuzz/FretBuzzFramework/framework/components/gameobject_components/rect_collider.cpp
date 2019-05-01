@@ -12,7 +12,7 @@ namespace ns_fretBuzz
 	{
 		RectCollider::RectCollider(GameObject2D& a_GameObject, ColliderData& a_RectColliderData)
 			: 
-			Collider2D(COMPONENT_TYPE::RECT_COLLIDER, a_GameObject, a_RectColliderData),
+			Collider2D(a_GameObject, a_RectColliderData),
 #ifdef _IS_DEBUG_RENDERING
 			ns_graphics::IRenderer()
 #endif
@@ -75,7 +75,7 @@ namespace ns_fretBuzz
 			a_RectColliderData.m_ColliderShape = ColliderData::SHAPE_RECT;
 			a_RectColliderData.m_v2DimensionWH = a_GameObject.m_RectTransform.getRect().m_v2DimensionsWH;
 
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::RECT_COLLIDER, &a_GameObject) ?
+			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::COLLIDER_2D, &a_GameObject) ?
 				nullptr : new RectCollider(a_GameObject, a_RectColliderData);
 		}
 

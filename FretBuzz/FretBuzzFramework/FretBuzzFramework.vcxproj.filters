@@ -422,9 +422,6 @@
     <ClInclude Include="game\managers\player\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\components\collision_events_2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\components\collider_2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>

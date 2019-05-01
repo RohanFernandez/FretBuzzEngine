@@ -2,12 +2,10 @@
 #include <components/gameobject_components/behaviour.h>
 #include "components/gameobject_components/sprite_animation_controller.h"
 #include <components/gameobject_components/rect_collider.h>
-#include <components/collision_events_2d.h>
 
 namespace ns_HMGame
 {
-	class PlayerController : public ns_fretBuzz::ns_system::Behaviour,
-		virtual public ns_fretBuzz::ns_system::CollisionEvents2D
+	class PlayerController : public ns_fretBuzz::ns_system::Behaviour
 	{
 	private:
 		double m_dMouseX = 0.0;
@@ -31,5 +29,10 @@ namespace ns_HMGame
 		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
+
+		virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
+		virtual void onCollisionExit2D (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
+		virtual void onTriggerEnter2D  (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
+		virtual void onTriggerExit2D   (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
 	};
 }

@@ -5,8 +5,8 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		Collider2D::Collider2D(COMPONENT_TYPE a_ComponentType, GameObject2D& a_GameObject2D, ColliderData& a_ColliderData)
-			: IComponent2D(a_ComponentType, a_GameObject2D),
+		Collider2D::Collider2D(GameObject2D& a_GameObject2D, ColliderData& a_ColliderData)
+			: IComponent2D(COMPONENT_TYPE::COLLIDER_2D, a_GameObject2D),
 			m_ColliderData{ a_ColliderData }
 		{
 			b2BodyDef l_bodyDef;
@@ -42,16 +42,16 @@ namespace ns_fretBuzz
 			}
 
 			b2FixtureDef l_fixtureDef;
+			l_fixtureDef.isSensor = m_ColliderData.m_bIsSensor;
 			l_fixtureDef.shape = l_pb2Shape;
+			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_vectColliderCategoryBits);
+			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_vectColliderMaskBits);
+			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex;
 			l_fixtureDef.density = (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ? 0.0f : 1.0f;
 			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
-			const std::vector<IComponent*>& l_vectComponents = m_GameObject.getAllComponents();
-			for (auto l_CurrentComponent = l_vectComponents.begin(); l_CurrentComponent != l_vectComponents.end(); l_CurrentComponent++)
-			{
-				registerColliderEvent(*l_CurrentComponent);
-			}
+			PhysicsEngine::getB2World()->SetContactListener(this);
 		};
 
 		Collider2D::~Collider2D()
@@ -90,35 +90,12 @@ namespace ns_fretBuzz
 			m_pBody->SetActive(false);
 		}
 
-		void Collider2D::registerColliderEvent(IComponent* a_pIComponent)
-		{
-			CollisionEvents2D* l_pCollisionEvents2D = nullptr;
-			l_pCollisionEvents2D = dynamic_cast<CollisionEvents2D*>(a_pIComponent);
-			if (l_pCollisionEvents2D != nullptr)
-			{
-				m_lstRegisteredCollisionEvents.emplace_back(l_pCollisionEvents2D);
-			}
-		}
-
-		void Collider2D::unregisterColliderEvent(IComponent* a_pIComponent)
-		{
-			CollisionEvents2D* l_pCollisionEvents2D = nullptr;
-			l_pCollisionEvents2D = dynamic_cast<CollisionEvents2D*>(a_pIComponent);
-			if (l_pCollisionEvents2D != nullptr)
-			{
-				auto l_FoundIterator = std::find(m_lstRegisteredCollisionEvents.begin(), m_lstRegisteredCollisionEvents.end(), l_pCollisionEvents2D);
-				m_lstRegisteredCollisionEvents.erase(l_FoundIterator);
-			}
-		}
-
 		void Collider2D::onSiblingComponentAdded(IComponent* a_pComponent)
 		{
-			registerColliderEvent(a_pComponent);
 		}
 
 		void Collider2D::onSiblingComponentRemoved(IComponent* a_pComponent)
 		{
-			unregisterColliderEvent(a_pComponent);
 		}
 
 		void Collider2D::applyForce(glm::vec2 a_v2ForceDirection)
@@ -134,6 +111,126 @@ namespace ns_fretBuzz
 		void Collider2D::applyImpulse(glm::vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyLinearImpulseToCenter(b2Vec2{ a_v2ForceDirection.x, a_v2ForceDirection.y }, true);
+		}
+
+#pragma region GETTERS AND SETTERS
+
+		void Collider2D::setSensor(bool a_bIsEnabled)
+		{
+			m_pFixture->SetSensor(a_bIsEnabled);
+		}
+
+		bool Collider2D::isSensor() const
+		{
+			return m_ColliderData.m_bIsSensor;
+		}
+
+		void Collider2D::setMaskBits(std::vector<uint16> a_vectMaskBits)
+		{
+			m_ColliderData.m_vectColliderMaskBits = a_vectMaskBits;
+		}
+
+		std::vector<uint16> Collider2D::Collider2D::getMaskBits() const
+		{
+			return m_ColliderData.m_vectColliderMaskBits;
+		}
+
+		void Collider2D::setCategoryBits(std::vector<uint16> a_vectCategoryBits)
+		{
+			m_ColliderData.m_vectColliderCategoryBits = a_vectCategoryBits;
+		}
+
+		std::vector<uint16> Collider2D::getCategoryBits() const
+		{
+			return m_ColliderData.m_vectColliderCategoryBits;
+		}
+
+		uint16 Collider2D::GetBitField(std::vector<uint16>& a_vectBits) const
+		{
+			uint16 l_Return = 0;
+			for (auto l_CollliderBit = a_vectBits.begin(); l_CollliderBit != a_vectBits.end(); l_CollliderBit++)
+			{
+				l_Return |= *l_CollliderBit;
+			}
+			return l_Return;
+		}
+
+#pragma endregion GETTERS AND SETTERS
+
+		void Collider2D::BeginContact(b2Contact* a_pContact)
+		{
+			Collider2D* l_pColliderA = static_cast<Collider2D*>(a_pContact->GetFixtureA()->GetBody()->GetUserData());
+			Collider2D* l_pColliderB = static_cast<Collider2D*>(a_pContact->GetFixtureB()->GetBody()->GetUserData());
+
+			bool l_bIsSensorColliderA = l_pColliderA->m_ColliderData.m_bIsSensor;
+			bool l_bIsSensorColliderB = l_pColliderB->m_ColliderData.m_bIsSensor;
+
+			if (l_bIsSensorColliderA && l_bIsSensorColliderB)
+			{
+				return;
+			}
+			manageCollisionContactStart(l_pColliderA, l_pColliderB);
+			manageCollisionContactStart(l_pColliderB, l_pColliderA);
+		}
+
+		void Collider2D::EndContact(b2Contact* a_pContact)
+		{
+			Collider2D* l_pColliderA = static_cast<Collider2D*>(a_pContact->GetFixtureA()->GetBody()->GetUserData());
+			Collider2D* l_pColliderB = static_cast<Collider2D*>(a_pContact->GetFixtureB()->GetBody()->GetUserData());
+
+			bool l_bIsSensorColliderA = l_pColliderA->m_ColliderData.m_bIsSensor;
+			bool l_bIsSensorColliderB = l_pColliderB->m_ColliderData.m_bIsSensor;
+
+			if (l_bIsSensorColliderA && l_bIsSensorColliderB)
+			{
+				return;
+			}
+
+			manageCollisionContactEnd(l_pColliderA, l_pColliderB);
+			manageCollisionContactEnd(l_pColliderB, l_pColliderA);
+		}
+
+		void Collider2D::callContactInSiblingComponents(void(IComponent::* FUNC_CONTACT)(Collider2D*), Collider2D* a_pOtherCollider)
+		{
+			const std::vector<IComponent*> l_vectComponents = m_GameObject.getAllComponents();
+
+			for (auto l_Component = l_vectComponents.begin();
+				l_Component != l_vectComponents.end(); l_Component++)
+			{
+				((*l_Component)->*FUNC_CONTACT)(a_pOtherCollider);
+			}
+		}
+
+		void Collider2D::manageCollisionContactStart(Collider2D* a_pColliderA, Collider2D* a_pColliderB)
+		{
+			if (a_pColliderA->m_ColliderData.m_bIsSensor)
+			{
+				std::cout << "TRIGGER ENTER " << a_pColliderA->m_GameObject.getName() << "\n";
+				a_pColliderA->callContactInSiblingComponents(&IComponent::onTriggerEnter2D, a_pColliderB);
+			}
+			else
+			{
+				if (!a_pColliderB->m_ColliderData.m_bIsSensor)
+				{
+					a_pColliderA->callContactInSiblingComponents(&IComponent::onCollisionEnter2D, a_pColliderB);
+				}
+			}
+		}
+
+		void Collider2D::manageCollisionContactEnd(Collider2D* a_pColliderA, Collider2D* a_pColliderB)
+		{
+			if (a_pColliderA->m_ColliderData.m_bIsSensor)
+			{
+				std::cout << "TRIGGER EXIT " << a_pColliderA->m_GameObject.getName() << "\n";
+				a_pColliderA->callContactInSiblingComponents(&IComponent::onTriggerExit2D, a_pColliderB);
+			}
+			else
+			{
+				if (!a_pColliderB->m_ColliderData.m_bIsSensor)
+				{
+					a_pColliderA->callContactInSiblingComponents(&IComponent::onCollisionExit2D, a_pColliderB);
+				}
+			}
 		}
 	}
 }

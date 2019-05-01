@@ -1,6 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "component.h"
 #include "game_object.h"
+#include <components/collider_2d.h>
 
 namespace ns_fretBuzz
 {
@@ -95,26 +96,6 @@ namespace ns_fretBuzz
 		void IComponent::onRemovedFromGameObj()
 		{
 			callFuncInSiblings(&IComponent::onSiblingComponentRemoved);
-		}
-
-		void IComponent::onSiblingComponentAdded(IComponent* a_Component)
-		{
-			
-		}
-
-		void IComponent::onSiblingComponentRemoved(IComponent* a_Component)
-		{
-		
-		}
-
-		void IComponent::onSiblingComponentEnabled(IComponent* a_Component)
-		{
-
-		}
-
-		void IComponent::onSiblingComponentDisabled(IComponent* a_Component)
-		{
-		
 		}
 
 		void IComponent::callFuncInSiblings(void(IComponent::* FUNC)(IComponent*))

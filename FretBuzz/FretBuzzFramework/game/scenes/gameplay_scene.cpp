@@ -30,6 +30,9 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::Behaviour::addToGameObject<CursorManager>(*l_pCursor, l_pCamComponent);
 
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
+		l_RectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
+		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+
 		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj1 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "LABEL1", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj1, nullptr, { 1.0f, 0.0f, 0.0f,1.0f }, true);
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj1, l_RectColliderData);
@@ -52,5 +55,16 @@ namespace ns_HMGame
 
 		/// Player
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+
+		ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj4, "LABEL5", { 300.0f, 300.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
+		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pPickupGameObj, nullptr, { 1.0f, 1.0f, 1.0f, 1.0f }, true);
+
+		ns_fretBuzz::ns_system::ColliderData l_SensorRectColliderData;
+		l_SensorRectColliderData.m_bIsSensor = true;
+		l_SensorRectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
+		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+		l_SensorRectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
+		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
+		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pPickupGameObj, l_SensorRectColliderData);
 	}
 }
