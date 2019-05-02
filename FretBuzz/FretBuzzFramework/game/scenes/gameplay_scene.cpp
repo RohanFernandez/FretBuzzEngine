@@ -56,7 +56,7 @@ namespace ns_HMGame
 		/// Player
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
 
-		ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj4, "LABEL5", { 300.0f, 300.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
+		ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj4, "PICKUP", { 300.0f, 300.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
 		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pPickupGameObj, nullptr, { 1.0f, 1.0f, 1.0f, 1.0f }, true);
 
 		ns_fretBuzz::ns_system::ColliderData l_SensorRectColliderData;

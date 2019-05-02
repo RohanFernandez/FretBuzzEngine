@@ -195,6 +195,9 @@
     <ClCompile Include="framework\components\collider_2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\components\raycast_callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -426,6 +429,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\collider_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\components\raycast_callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

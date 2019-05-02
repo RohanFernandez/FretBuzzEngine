@@ -1,5 +1,5 @@
 #pragma once
-#include <Box2D/Box2D.h>
+#include <components/raycast_callback.h>
 
 namespace ns_fretBuzz
 {
@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 			static PhysicsEngine* s_pInstance;
 
 			b2World* m_pB2World = nullptr;
+			RaycastCallback m_RaycastCallback;
 
 			int m_iVelocityIteration = 0;
 			int m_iStepIteration = 0;
@@ -33,6 +34,8 @@ namespace ns_fretBuzz
 			void update(float a_fDeltaTime);
 
 			static b2World* getB2World();
+
+			static void Raycast(Collider2D*& a_pCollider2D, glm::vec2& a_v2Point1, glm::vec2& a_v2Point2);
 		};
 	}
 }

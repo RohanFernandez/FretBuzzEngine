@@ -26,19 +26,6 @@ namespace ns_HMGame
 
 	void PlayerController::manageInput()
 	{
-		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
-		{
-			m_pUpperSpriteAnimator->play("attack");
-		}
-		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
-		{
-			m_pUpperSpriteAnimator->play("humanshield");
-		}
-		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
-		{
-			m_pUpperSpriteAnimator->play("snap");
-		}
-
 		float l_fHorizontalVelocity = 0.0f;
 		float l_fVerticalVelocity = 0.0f;
 
@@ -114,6 +101,29 @@ namespace ns_HMGame
 			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
 		}
 		//// DEBUG END ////
+
+		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
+		{
+			m_pUpperSpriteAnimator->play("attack");
+			ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
+			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
+			glm::vec2 l_v2MouseWorldPosition = l_v2PlayerPosition + l_MousePosition;
+
+			ns_fretBuzz::ns_system::PhysicsEngine::Raycast(l_pCollider2D, l_v2PlayerPosition, l_v2MouseWorldPosition);
+
+			if (l_pCollider2D != nullptr)
+			{
+				std::cout << "Raycast Intersection:: " << l_pCollider2D->m_GameObject.getName() << "\n";
+			}
+		}
+		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
+		{
+			m_pUpperSpriteAnimator->play("humanshield");
+		}
+		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
+		{
+			m_pUpperSpriteAnimator->play("snap");
+		}
 	}
 
 	void PlayerController::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)

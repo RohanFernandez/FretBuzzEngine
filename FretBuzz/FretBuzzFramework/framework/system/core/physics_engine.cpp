@@ -1,4 +1,6 @@
 #include <fretbuzz_pch.h>
+#include <components/raycast_callback.h>
+#include <components/collider_2d.h>
 #include "physics_engine.h"
 
 namespace ns_fretBuzz
@@ -52,6 +54,13 @@ namespace ns_fretBuzz
 		b2World* PhysicsEngine::getB2World()
 		{
 			return s_pInstance->m_pB2World;
+		}
+
+		void PhysicsEngine::Raycast(Collider2D*& a_pCollider2D, glm::vec2& a_v2Point1, glm::vec2& a_v2Point2)
+		{
+			s_pInstance->m_RaycastCallback.reset();
+			s_pInstance->m_pB2World->RayCast(&s_pInstance->m_RaycastCallback, b2Vec2{ a_v2Point1.x, a_v2Point1.y }, b2Vec2{ a_v2Point2.x, a_v2Point2.y });
+			a_pCollider2D = s_pInstance->m_RaycastCallback.getIntersectedCollider2D();
 		}
 	}
 }
