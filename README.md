@@ -10,13 +10,13 @@ All libraries are contained within the repository and should run out-of-the-box 
 
 
 ## **Engine/Game progress build**
-[BUILD LINK](https://www.dropbox.com/sh/gdy1z1pm8tm8aci/AAC0EbwKl79VLTXVyjHdGlPja?dl=0)
+[BUILD LINK](https://www.dropbox.com/s/cxd343pf7sr2v35/FretBuzzGameEngine_20190502_1806.zip?dl=0)
 
 ## **Resources/Libs::**
 	*Graphics API 		:: Open GL, GLEW, GLFW
     *Image        		:: FreeImage
 	*Audio        		:: irrKlang
 	*Math         		:: GLM
-	*Physics/Collisions :: Box2D 
+	*Physics/Collisions 	:: Box2D 
 	*xml parser 		:: pugixml
 	*Model loader 		:: Assimp
