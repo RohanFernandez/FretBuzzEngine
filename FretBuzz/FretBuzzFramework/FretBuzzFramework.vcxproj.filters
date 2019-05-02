@@ -198,6 +198,12 @@
     <ClCompile Include="framework\components\raycast_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\prefab\prefab_label.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\managers\InteractiveObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -432,6 +438,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework\components\raycast_callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\prefab\prefab_label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\managers\InteractiveObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

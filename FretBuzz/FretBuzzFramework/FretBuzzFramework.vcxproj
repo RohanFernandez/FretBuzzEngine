@@ -240,9 +240,11 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fretbuzz_pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="game\managers\InteractiveObject.cpp" />
     <ClCompile Include="game\managers\weapon\weapon_manger.cpp" />
     <ClCompile Include="game\managers\player\PlayerController.cpp" />
     <ClCompile Include="game\prefab\prefab_game_manager.cpp" />
+    <ClCompile Include="game\prefab\prefab_label.cpp" />
     <ClCompile Include="game\prefab\prefab_player.cpp" />
     <ClCompile Include="game\scenes\gameplay_scene.cpp" />
     <ClCompile Include="test\CharacterTest.cpp" />
@@ -302,9 +304,11 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\game_object_2d.h" />
     <ClInclude Include="framework\utils\resource_container.h" />
     <ClInclude Include="fretbuzz_pch.h" />
+    <ClInclude Include="game\managers\InteractiveObject.h" />
     <ClInclude Include="game\managers\weapon\weapon_manager.h" />
     <ClInclude Include="game\managers\player\PlayerController.h" />
     <ClInclude Include="game\prefab\prefab_game_manager.h" />
+    <ClInclude Include="game\prefab\prefab_label.h" />
     <ClInclude Include="game\prefab\prefab_player.h" />
     <ClInclude Include="game\scenes\gameplay_scene.h" />
     <ClInclude Include="test\scenes\threed_test_setup.h" />

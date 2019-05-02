@@ -2,6 +2,7 @@
 #include "PlayerController.h"
 #include <system/core/input.h>
 #include <system/scene_manager.h>
+#include <game/managers/InteractiveObject.h>
 
 namespace ns_HMGame
 {
@@ -113,7 +114,11 @@ namespace ns_HMGame
 
 			if (l_pCollider2D != nullptr)
 			{
-				std::cout << "Raycast Intersection:: " << l_pCollider2D->m_GameObject.getName() << "\n";
+				InteractiveObject* l_pInteractiveObject = l_pCollider2D->m_GameObject.getComponent<InteractiveObject>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+				if (l_pInteractiveObject != nullptr)
+				{
+					l_pInteractiveObject->onLabelHit();
+				}
 			}
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))

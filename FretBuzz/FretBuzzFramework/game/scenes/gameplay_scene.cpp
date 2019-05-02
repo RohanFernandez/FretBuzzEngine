@@ -11,6 +11,7 @@
 #include "components/gameobject_components/sprite_animation_controller.h"
 
 #include "game/prefab/prefab_player.h"
+#include "game/prefab/prefab_label.h"
 #include "game/prefab/prefab_game_manager.h"
 
 namespace ns_HMGame
@@ -33,31 +34,14 @@ namespace ns_HMGame
 		l_RectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 
-		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj1 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "LABEL1", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj1, nullptr, { 1.0f, 0.0f, 0.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj1, l_RectColliderData);
-
-		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj2 = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj1, "LABEL2", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj2, nullptr, { 0.0f, 1.0f, 0.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj2, l_RectColliderData);
-
-		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj3 = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj2, "LABEL3", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj3, nullptr, { 0.0f, 0.0f, 1.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj3, l_RectColliderData);
-
-		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj4 = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj3, "LABEL4", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj4, nullptr, { 1.0f, 1.0f, 0.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj4, l_RectColliderData);
-
-		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj5 = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj4, "LABEL5", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pLabelGameObj5, nullptr, { 0.0f, 1.0f, 1.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pLabelGameObj5, l_RectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj1 = new ns_HMGame::PrefabLabel(m_refRootGameObject, "LABEL1", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_RectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj2 = new ns_HMGame::PrefabLabel(*l_pLabelGameObj1, "LABEL2", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_RectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj3 = new ns_HMGame::PrefabLabel(*l_pLabelGameObj2, "LABEL3", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_RectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj4 = new ns_HMGame::PrefabLabel(*l_pLabelGameObj3, "LABEL4", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_RectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pLabelGameObj5 = new ns_HMGame::PrefabLabel(*l_pLabelGameObj4, "LABEL5", { 50.0f, 50.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_RectColliderData);
 
 		/// Player
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
-
-		ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*l_pLabelGameObj4, "PICKUP", { 300.0f, 300.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f });
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*l_pPickupGameObj, nullptr, { 1.0f, 1.0f, 1.0f, 1.0f }, true);
 
 		ns_fretBuzz::ns_system::ColliderData l_SensorRectColliderData;
 		l_SensorRectColliderData.m_bIsSensor = true;
@@ -65,6 +49,6 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 		l_SensorRectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
 		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*l_pPickupGameObj, l_SensorRectColliderData);
+		ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = new ns_HMGame::PrefabLabel(*l_pLabelGameObj5, "PICKUP", { 300.0f, 300.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, l_SensorRectColliderData);
 	}
 }
