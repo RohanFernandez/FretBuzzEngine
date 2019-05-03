@@ -6,6 +6,7 @@
 #include "components/audio_clip.h"
 #include "components/sprite_animator.h"
 #include "graphics/model.h"
+#include <filesystem>
 
 namespace ns_fretBuzz
 {
@@ -13,16 +14,17 @@ namespace ns_fretBuzz
 	{
 		void AssetLoader::loadAssets(ResourceManager* a_pResourceManager)
 		{
-			std::vector<const char*> l_vectAssetFilePaths;
-			l_vectAssetFilePaths.emplace_back(AUDIO_ASSET_RESOURCE_FILE_PATH);
-			l_vectAssetFilePaths.emplace_back(SHADER_ASSET_RESOURCE_FILE_PATH);
-			l_vectAssetFilePaths.emplace_back(TEXTURE_ASSET_RESOURCE_FILE_PATH);
-			l_vectAssetFilePaths.emplace_back(SPRITES_ASSET_RESOURCE_FILE_PATH);
-			l_vectAssetFilePaths.emplace_back(SPRITE_ANIMATIONS_ASSET_RESOURCE_FILE_PATH);
-			l_vectAssetFilePaths.emplace_back(MODELS_ASSET_RESOURCE_FILE_PATH);
-			
-			for(std::vector<const char*>::const_iterator l_iterator = l_vectAssetFilePaths.cbegin();
-				l_iterator != l_vectAssetFilePaths.cend();
+			std::vector<std::string> l_vectXMLPathName;
+			for (auto& l_CurrentDirectory : std::experimental::filesystem::recursive_directory_iterator(ASSET_RESOURCE_FILE_PATH))
+			{
+				if (l_CurrentDirectory.status().type() != std::experimental::filesystem::file_type::directory)
+				{
+					l_vectXMLPathName.push_back(l_CurrentDirectory.path().string());
+				}
+			}
+
+			for(auto l_iterator = l_vectXMLPathName.cbegin();
+				l_iterator != l_vectXMLPathName.cend();
 				l_iterator++)
 			{
 			pugi::xml_document l_doc;

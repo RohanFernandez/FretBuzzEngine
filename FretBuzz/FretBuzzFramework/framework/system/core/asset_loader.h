@@ -19,14 +19,8 @@ namespace ns_fretBuzz
 
 		public:
 			//Asset
-			static constexpr char AUDIO_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//audio.xml";
-			static constexpr char SHADER_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//shaders.xml";
-			static constexpr char TEXTURE_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//textures.xml";
-			static constexpr char SPRITES_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//sprites.xml";
-			static constexpr char SPRITE_ANIMATIONS_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//spriteanimations.xml";
-			static constexpr char MODELS_ASSET_RESOURCE_FILE_PATH[] = "resources//assets//3dmodels.xml";
-
-
+			static constexpr char ASSET_RESOURCE_FILE_PATH[] = "resources/assets";
+			
 			static constexpr char ATTRIBUTE_ASSET_ID[] = "id";
 			static constexpr char ATTRIBUTE_AUDIO_NAME[] = "file_name";
 
