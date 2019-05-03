@@ -2,7 +2,6 @@
 #include "PlayerController.h"
 #include <system/core/input.h>
 #include <system/scene_manager.h>
-#include <game/managers/InteractiveObject.h>
 
 namespace ns_HMGame
 {
@@ -106,7 +105,7 @@ namespace ns_HMGame
 		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 		{
 			m_pUpperSpriteAnimator->play("attack");
-			ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
+			/*ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
 			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			glm::vec2 l_v2MouseWorldPosition = l_v2PlayerPosition + l_MousePosition;
 
@@ -119,11 +118,16 @@ namespace ns_HMGame
 				{
 					l_pInteractiveObject->onLabelHit();
 				}
-			}
+			}*/
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
 		{
-			m_pUpperSpriteAnimator->play("humanshield");
+			//m_pUpperSpriteAnimator->play("humanshield");
+			if (m_pPlayerOverWeapon != nullptr)
+			{
+				m_pUpperSpriteAnimator->play("silenceridle");
+				m_pPlayerOverWeapon->m_GameObject.setActive(false);
+			}
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
 		{
@@ -149,5 +153,19 @@ namespace ns_HMGame
 	void PlayerController::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
 		std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+	}
+
+	void PlayerController::setAsCurrentWeapon(ns_HMGame::Weapon* a_pWeapon)
+	{
+		m_iWeaponOverCount = a_pWeapon == nullptr ? --m_iWeaponOverCount : ++m_iWeaponOverCount;
+
+		if (a_pWeapon != nullptr)
+		{
+			m_pPlayerOverWeapon = a_pWeapon;
+		}
+		else if (m_iWeaponOverCount == 0)
+		{
+			m_pPlayerOverWeapon = nullptr;
+		}
 	}
 }

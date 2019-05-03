@@ -372,7 +372,10 @@ namespace ns_fretBuzz
 						}
 						else if (l_strCurrentAttribute.compare(ATTRIBUTE_ANIM_TRIGGER) == 0)
 						{
-							std::stringstream l_strStream(l_CurrentAttribute->value());
+							std::string l_strTriggerString = l_CurrentAttribute->value();
+							l_strTriggerString.erase(std::remove(l_strTriggerString.begin(), l_strTriggerString.end(), ' '), l_strTriggerString.end());
+
+							std::stringstream l_strStream(l_strTriggerString);
 							std::string l_strCurrentTrigger;
 							while (getline(l_strStream, l_strCurrentTrigger, ';'))
 							{
@@ -403,7 +406,7 @@ namespace ns_fretBuzz
 						}
 						else
 						{
-							std::cout << "AssetLoader::loadAnimations:: Failed to parse anim state attribute with name '" << l_strCurrentAttribute << "'/n";
+							std::cout << "AssetLoader::loadAnimations:: Failed to parse anim state attribute with name '" << l_strCurrentAttribute << "'\n";
 						}
 					}
 					l_CurrentVectAnimStates.emplace_back(AnimationState(l_strAnimId, l_strSpriteSheetId, is_loop, l_fTimePerSprite, l_mapTrigger, l_strOnCompleteTrigger));

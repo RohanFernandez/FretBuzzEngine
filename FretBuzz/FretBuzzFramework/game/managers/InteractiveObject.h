@@ -20,5 +20,7 @@ namespace ns_HMGame
 		void onLabelHit();
 		virtual void onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override;
 		virtual void onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override;
+		virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override;
+		virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override;
 	};
 }

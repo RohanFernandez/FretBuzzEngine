@@ -28,4 +28,14 @@ namespace ns_HMGame
 	{
 		onLabelHit();
 	}
+
+	void InteractiveObject::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	{
+		onLabelHit();
+	}
+
+	void InteractiveObject::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	{
+		onLabelHit();
+	}
 }

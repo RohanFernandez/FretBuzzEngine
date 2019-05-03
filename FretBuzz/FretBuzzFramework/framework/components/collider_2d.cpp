@@ -18,7 +18,7 @@ namespace ns_fretBuzz
 
 			glm::vec2 l_Position = m_GameObject.m_Transform.getWorldPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
-			l_bodyDef.angle = m_GameObject.m_Transform.getLocalRotation().z;
+			l_bodyDef.angle = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation()).z;
 			l_bodyDef.fixedRotation = m_ColliderData.m_bIsFixedRotation;
 
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
