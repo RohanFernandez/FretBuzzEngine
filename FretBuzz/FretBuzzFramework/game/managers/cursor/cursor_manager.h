@@ -14,7 +14,7 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_graphics::Camera* m_pCamComponent = nullptr;
 
 	public:
-		CursorManager(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_graphics::Camera* a_pCamComponent);
+		CursorManager(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_graphics::Camera* a_pCamComponent);
 		virtual void update(float a_fDeltaTime) override;
 	};
 }

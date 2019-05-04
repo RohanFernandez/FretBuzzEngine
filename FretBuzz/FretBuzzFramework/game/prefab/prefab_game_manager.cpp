@@ -9,7 +9,7 @@ namespace ns_HMGame
 		: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName, true)
 	{
 		ns_fretBuzz::ns_system::AudioSource* l_pAudSrc = ns_fretBuzz::ns_system::AudioSource::addToGameObject(*this, "beats");
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<WeaponManager>(*this);
+		ns_fretBuzz::ns_system::Behaviour::addToGameObject<WeaponManager>(this);
 
 		l_pAudSrc->setLooping(true);
 		l_pAudSrc->play();

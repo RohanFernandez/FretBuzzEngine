@@ -2,11 +2,13 @@
 #include "weapon.h"
 #include <system/core/resource_manager.h>
 #include <game/managers/player/PlayerController.h>
+#include "weapon_manager.h"
 
 namespace ns_HMGame
 {
-	Weapon::Weapon(ns_fretBuzz::ns_system::GameObject2D& a_GameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
+	Weapon::Weapon(ns_fretBuzz::ns_system::GameObject2D* a_pGameObject)
+		:m_WeaponType{ WEAPON_TYPE::WEAPON_UNARMED },
+		ns_fretBuzz::ns_system::Behaviour(a_pGameObject)
 	{
 		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_RENDERER);
 		m_pSpriteRenderer->setSprite(ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_M16")->getSprite(0));

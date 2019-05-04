@@ -26,6 +26,6 @@ namespace ns_HMGame
 		l_RectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(*this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
+		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
 	}
 }

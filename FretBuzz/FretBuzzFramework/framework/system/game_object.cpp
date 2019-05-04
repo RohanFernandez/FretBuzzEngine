@@ -44,7 +44,7 @@ namespace ns_fretBuzz
 		}
 
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf)
-			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 0.0f, 0.0f,0.0f }, a_bIsActiveSelf)
+			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 1.0f, 1.0f,1.0f }, a_bIsActiveSelf)
 		{
 		}
 

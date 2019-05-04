@@ -4,10 +4,10 @@
 
 namespace ns_HMGame
 {
-	CursorManager::CursorManager(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_graphics::Camera* a_CameraComponent)
+	CursorManager::CursorManager(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_graphics::Camera* a_CameraComponent)
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 	{
-		m_pSpriteAnimator = a_GameObject.getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pSpriteAnimator = a_GameObject->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 		m_pCamComponent = a_CameraComponent;
 	}
 

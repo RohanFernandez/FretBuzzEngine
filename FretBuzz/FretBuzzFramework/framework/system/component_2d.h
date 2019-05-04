@@ -21,6 +21,19 @@ namespace ns_fretBuzz
 			}
 
 			GameObject2D& m_GameObject2D;
+
+		protected:
+			// Event called when the GameObject is activated.
+			virtual void onEnable() override 
+			{
+				IComponent::onEnable();
+			}
+
+			// Event called when the GameObject is deactivated.
+			virtual void onDisable() override 
+			{
+				IComponent::onDisable();
+			}
 		};
 
 		

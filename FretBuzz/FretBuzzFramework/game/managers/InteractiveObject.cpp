@@ -5,7 +5,7 @@
 
 namespace ns_HMGame
 {
-	InteractiveObject::InteractiveObject(ns_fretBuzz::ns_system::GameObject& a_GameObject)
+	InteractiveObject::InteractiveObject(ns_fretBuzz::ns_system::GameObject* a_GameObject)
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 	{
 		m_pImage = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::Image>(ns_fretBuzz::ns_system::COMPONENT_TYPE::IMAGE);

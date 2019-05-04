@@ -61,25 +61,29 @@ namespace ns_fretBuzz
 
 		void Collider2D::Update(float a_fDeltaTime)
 		{
-			if (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC)
+			if (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC)
 			{
-				return;
+				//Set transform position from collider position.
+				const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
+				m_GameObject.m_Transform.setWorldPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, m_GameObject.m_Transform.getWorldPosition().z });
+
+				//Set transform rotation from collider rotation if the collider's rotation is not fixed.
+				if (!m_ColliderData.m_bIsFixedRotation)
+				{
+					glm::quat l_quatTransformRotation = m_GameObject.m_Transform.getLocalRotation();
+					m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
+				}
 			}
-
-			//Set transform position from collider position.
-			const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
-			m_GameObject.m_Transform.setWorldPosition({ l_v2ColliderPosition.x, l_v2ColliderPosition.y, m_GameObject.m_Transform.getWorldPosition().z });
-
-			//Set transform rotation from collider rotation if the collider's rotation is not fixed.
-			if (!m_ColliderData.m_bIsFixedRotation)
+			else if(m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::KINEMATIC)
 			{
-				glm::quat l_quatTransformRotation = m_GameObject.m_Transform.getLocalRotation();
-				m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
+				glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
+				m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation()).z);
 			}
 		}
 
 		void Collider2D::onEnable()
 		{
+			IComponent2D::onEnable();
 			glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
 			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, m_GameObject.m_Transform.getLocalRotation().z);
 			m_pBody->SetActive(true);
@@ -87,6 +91,7 @@ namespace ns_fretBuzz
 
 		void Collider2D::onDisable()
 		{
+			IComponent2D::onDisable();
 			m_pBody->SetActive(false);
 		}
 

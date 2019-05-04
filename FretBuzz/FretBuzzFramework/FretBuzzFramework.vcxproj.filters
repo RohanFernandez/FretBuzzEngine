@@ -213,7 +213,10 @@
     <ClCompile Include="game\managers\weapon\weapon_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\utils\object_pool.cpp">
+    <ClCompile Include="framework\utils\pool\object_pool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\utils\pool\gameobject_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -467,7 +470,10 @@
     <ClInclude Include="game\managers\weapon\weapon_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\utils\object_pool.h">
+    <ClInclude Include="framework\utils\pool\object_pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\utils\pool\gameobject_pool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

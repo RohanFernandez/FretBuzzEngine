@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 	public:
 
 
-		PlayerController(ns_system::GameObject& a_GameObject)
+		PlayerController(ns_system::GameObject* a_GameObject)
 			: ns_system::Behaviour(a_GameObject)
 		{
 			ns_system::Input::setCursorEnability(false, false);

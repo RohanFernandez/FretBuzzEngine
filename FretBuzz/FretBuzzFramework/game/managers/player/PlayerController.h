@@ -30,7 +30,7 @@ namespace ns_HMGame
 		int m_iWeaponOverCount = 0;
 
 	public:
-		PlayerController(ns_fretBuzz::ns_system::GameObject& a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
+		PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
 

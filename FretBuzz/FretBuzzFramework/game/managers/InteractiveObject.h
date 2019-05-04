@@ -15,7 +15,7 @@ namespace ns_HMGame
 		int m_iColorIndex = 0;
 
 	public:
-		InteractiveObject(ns_fretBuzz::ns_system::GameObject& a_GameObject);
+		InteractiveObject(ns_fretBuzz::ns_system::GameObject* a_GameObject);
 
 		void onLabelHit();
 		virtual void onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override;
