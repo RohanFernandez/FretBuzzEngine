@@ -7,17 +7,17 @@
 
       <!-- UNARMED START-->
       <anim_state id="UnarmedIdle" spritesheet_id="player_unarmed|unarmed_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|UnarmedPunch;walk|UnarmedWalk;
-                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
       <anim_state id="UnarmedWalk" spritesheet_id="player_unarmed|unarmed_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|UnarmedPunch;idle|UnarmedIdle;
-                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
       <anim_state id="UnarmedPunch" spritesheet_id="player_unarmed|unarmed_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|UnarmedIdle" onCompleteTrigger="attackComplete" />
       <!-- UNARMED END-->
 
       <!-- SILENCER START-->
       <anim_state id="SilencerIdle" spritesheet_id="player_silencer|silencer_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|SilencerAttack;walk|SilencerWalk;humanshield|SilencerHumanShieldIdle;
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> 
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> 
       <anim_state id="SilencerWalk" spritesheet_id="player_silencer|silencer_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|SilencerIdle;attack|SilencerAttack;humanshield|SilencerHumanShieldIdle;
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> 
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> 
       
       <anim_state id="SilencerAttack" spritesheet_id="player_silencer|silencer_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|SilencerIdle;" onCompleteTrigger="attackComplete"/>
       <anim_state id="SilencerSnap" spritesheet_id="player_silencer|silencer_snap" is_loop="false" time_per_sprite="0.07" trigger="snapComplete|SilencerIdle" onCompleteTrigger="snapComplete"/>
@@ -28,9 +28,9 @@
       
       <!-- UZI START-->
       <anim_state id="UziIdle" spritesheet_id="player_uzi|uzi_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|UziAttack;walk|UziWalk;humanshield|UziHumanShieldWalk
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> " />
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" /> " />
       <anim_state id="UziWalk" spritesheet_id="player_uzi|uzi_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|SilencerIdle;attack|UziAttack;
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
 
       <anim_state id="UziAttack" spritesheet_id="player_uzi|uzi_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|UziIdle;" onCompleteTrigger="attackComplete"/>
       <anim_state id="UziSnap" spritesheet_id="player_uzi|uzi_snap" is_loop="false" time_per_sprite="0.07" trigger="snapComplete|UziIdle" onCompleteTrigger="snapComplete"/>
@@ -40,18 +40,18 @@
 
       <!-- SWORD START-->
       <anim_state id="SwordIdle" spritesheet_id="player_sword|sword_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|SwordAttack;
-                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
       <anim_state id="SwordWalk" spritesheet_id="player_sword|sword_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|SwordIdle;attack|SwordAttack;
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
 
       <anim_state id="SwordAttack" spritesheet_id="player_sword|sword_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|SwordIdle;" onCompleteTrigger="attackComplete"/>
       <!-- SWORD END-->
 
       <!-- SCORPION START-->
       <anim_state id="ScorpionIdle" spritesheet_id="player_scorpion|scorpion_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|ScorpionAttack;humanshield|ScorpionHumanShieldWalk;
-                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
       <anim_state id="ScorpionWalk" spritesheet_id="player_scorpion|scorpion_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|ScorpionIdle;attack|ScorpionAttack;
-              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+              uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
       
       <anim_state id="ScorpionAttack" spritesheet_id="player_scorpion|scorpion_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|ScorpionIdle;" onCompleteTrigger="attackComplete"/>
       <anim_state id="ScorpionSnap" spritesheet_id="player_scorpion|scorpion_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|ScorpionIdle" onCompleteTrigger="idle"/>
@@ -65,24 +65,32 @@
       <!-- POOL STICK END-->
 
       <!-- PIPE START-->
-      <anim_state id="PipeIdle" spritesheet_id="player_pipe|pipe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|PipeAttack;" />
-      <anim_state id="PipeAttack" spritesheet_id="player_pipe|pipe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|PipeIdle;" onCompleteTrigger="idle"/>
+      <anim_state id="PipeIdle" spritesheet_id="player_pipe|pipe_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|PipeAttack;walk|PipeWalk;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="PipeWalk" spritesheet_id="player_pipe|pipe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|PipeAttack;idle|PipeIdle;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="PipeAttack" spritesheet_id="player_pipe|pipe_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|PipeIdle;" onCompleteTrigger="attackComplete"/>
       <!-- PIPE END-->
 
-      <!-- MAGNUM START-->
+      <!-- MP5 START-->
       <anim_state id="Mp5Idle" spritesheet_id="player_mp5|mp5_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|Mp5Attack;humanshield|Mp5HumanShieldWalk" />
       <anim_state id="Mp5Attack" spritesheet_id="player_mp5|mp5_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5Idle;" onCompleteTrigger="idle"/>
       <anim_state id="Mp5Snap" spritesheet_id="player_mp5|mp5_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5Idle" onCompleteTrigger="idle"/>
       <anim_state id="Mp5HumanShieldWalk" spritesheet_id="player_mp5|mp5_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|Mp5HumanShieldAttack;snap|Mp5Snap"/>
       <anim_state id="Mp5HumanShieldAttack" spritesheet_id="player_mp5|mp5_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|Mp5HumanShieldWalk" onCompleteTrigger="idle"/>
-      <!-- MAGNUM END-->
+      <!-- MP5 END-->
 
       <!-- MAGNUM START-->
-      <anim_state id="MagnumIdle" spritesheet_id="player_magnum|magnum_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumAttack;humanshield|MagnumHumanShieldWalk" />
-      <anim_state id="MagnumAttack" spritesheet_id="player_magnum|magnum_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumIdle;" onCompleteTrigger="idle"/>
-      <anim_state id="MagnumSnap" spritesheet_id="player_magnum|magnum_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumIdle" onCompleteTrigger="idle"/>
-      <anim_state id="MagnumHumanShieldWalk" spritesheet_id="player_magnum|magnum_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumHumanShieldAttack;snap|MagnumSnap"/>
-      <anim_state id="MagnumHumanShieldAttack" spritesheet_id="player_magnum|magnum_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|MagnumHumanShieldWalk" onCompleteTrigger="idle"/>
+      <anim_state id="MagnumIdle" spritesheet_id="player_magnum|magnum_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumAttack;humanshield|MagnumHumanShieldIdle;walk|MagnumWalk;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="MagnumWalk" spritesheet_id="player_magnum|magnum_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumAttack;humanshield|MagnumHumanShieldIdle;idle|MagnumIdle;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrellidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="MagnumAttack" spritesheet_id="player_magnum|magnum_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|MagnumIdle;" onCompleteTrigger="attackComplete"/>
+      
+      <anim_state id="MagnumSnap" spritesheet_id="player_magnum|magnum_snap" is_loop="false" time_per_sprite="0.07" trigger="snapComplete|MagnumIdle" onCompleteTrigger="snapComplete"/>
+      <anim_state id="MagnumHumanShieldIdle" spritesheet_id="player_magnum|magnum_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumHumanShieldAttack;snap|MagnumSnap;walk|MagnumHumanShieldWalk;"/>
+      <anim_state id="MagnumHumanShieldWalk" spritesheet_id="player_magnum|magnum_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|MagnumHumanShieldAttack;snap|MagnumSnap;idle|MagnumHumanShieldIdle;"/>
+      <anim_state id="MagnumHumanShieldAttack" spritesheet_id="player_magnum|magnum_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|MagnumHumanShieldIdle" onCompleteTrigger="attackComplete"/>
       <!-- MAGNUM END-->
 
       <!-- Machete START-->
@@ -91,27 +99,38 @@
       <!-- Machete END-->
 
       <!-- M16 START-->
-      <anim_state id="M16Idle" spritesheet_id="player_M16|M16_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|M16Attack;walk|M16Walk" />
-      <anim_state id="M16Walk" spritesheet_id="player_M16|M16_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|M16Idle;attack|M16Attack" />
-      <anim_state id="M16Attack" spritesheet_id="player_M16|M16_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|M16Idle;" onCompleteTrigger="idle"/>
+      <anim_state id="M16Idle" spritesheet_id="player_M16|M16_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|M16Attack;walk|M16Walk;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="M16Walk" spritesheet_id="player_M16|M16_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|M16Idle;attack|M16Attack;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="M16Attack" spritesheet_id="player_M16|M16_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|M16Idle;" onCompleteTrigger="attackComplete"/>
       <!-- KNIFE END-->
 
       <!-- KNIFE START-->
-      <anim_state id="KnifeIdle" spritesheet_id="player_knife|knife_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|KnifeAttack;" />
-      <anim_state id="KnifeAttack" spritesheet_id="player_knife|knife_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|KnifeIdle;" onCompleteTrigger="idle"/>
+      <anim_state id="KnifeIdle" spritesheet_id="player_knife|knife_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|KnifeAttack;walk|KnifeWalk;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle;" />
+      <anim_state id="KnifeWalk" spritesheet_id="player_knife|knife_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|KnifeAttack;idle|KnifeIdle;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle;" />
+      <anim_state id="KnifeAttack" spritesheet_id="player_knife|knife_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|KnifeIdle;" onCompleteTrigger="attackComplete"/>
       <!-- KNIFE END-->
 
       <!-- DOUBLE BARREL START-->
-      <anim_state id="DoubleBarrelIdle" spritesheet_id="player_doublebarrel|doublebarrel_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelAttack;humanshield|DoubleBarrelHumanShieldWalk" />
-      <anim_state id="DoubleBarrelAttack" spritesheet_id="player_doublebarrel|doublebarrel_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|DoubleBarrelIdle;" onCompleteTrigger="idle"/>
-      <anim_state id="DoubleBarrelSnap" spritesheet_id="player_doublebarrel|doublebarrel_snap" is_loop="false" time_per_sprite="0.07" trigger="idle|DoubleBarrelIdle" onCompleteTrigger="idle"/>
-      <anim_state id="DoubleBarrelHumanShieldWalk" spritesheet_id="player_doublebarrel|doublebarrel_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelHumanShieldAttack;snap|DoubleBarrelSnap"/>
-      <anim_state id="DoubleBarrelHumanShieldAttack" spritesheet_id="player_doublebarrel|doublebarrel_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="idle|DoubleBarrelHumanShieldWalk" onCompleteTrigger="idle"/>
+      <anim_state id="DoubleBarrelIdle" spritesheet_id="player_doublebarrel|doublebarrel_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelAttack;humanshield|DoubleBarrelHumanShieldWalk;walk|DoubleBarrelWalk;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="DoubleBarrelWalk" spritesheet_id="player_doublebarrel|doublebarrel_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelAttack;humanshield|DoubleBarrelHumanShieldWalk;idle|DoubleBarrelIdle;
+                  uziidle|UziIdle;swordidle|SwordIdle;scorpionidle|ScorpionIdle;poolstickidle|PoolstickIdle;pipeidle|PipeIdle;mp5idle|Mp5Idle;magnumidle|MagnumIdle;macheteidle|MacheteIdle;m16idle|M16Idle;knifeidle|KnifeIdle;doublebarrelidle|DoubleBarrelIdle;batidle|BatIdle;unarmedidle|UnarmedIdle;axeidle|AxeIdle;silenceridle|SilencerIdle" />
+      <anim_state id="DoubleBarrelAttack" spritesheet_id="player_doublebarrel|doublebarrel_attack" is_loop="false" time_per_sprite="0.07" trigger="atackComplete|DoubleBarrelIdle;" onCompleteTrigger="atackComplete"/>
+      
+      <anim_state id="DoubleBarrelSnap" spritesheet_id="player_doublebarrel|doublebarrel_snap" is_loop="false" time_per_sprite="0.07" trigger="snapComplete|DoubleBarrelIdle" onCompleteTrigger="snapComplete"/>
+      <anim_state id="DoubleBarrelHumanShieldIdle" spritesheet_id="player_doublebarrel|doublebarrel_humanshieldidle" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelHumanShieldAttack;snap|DoubleBarrelSnap;walk|DoubleBarrelHumanShieldWalk"/>
+      <anim_state id="DoubleBarrelHumanShieldWalk" spritesheet_id="player_doublebarrel|doublebarrel_humanshieldwalk" is_loop="true" time_per_sprite="0.07" trigger="attack|DoubleBarrelHumanShieldAttack;snap|DoubleBarrelSnap;idle|DoubleBarrelHumanShieldIdle"/>
+      <anim_state id="DoubleBarrelHumanShieldAttack" spritesheet_id="player_doublebarrel|doublebarrel_humanshieldattack" is_loop="false" time_per_sprite="0.07" trigger="humanShieldAttackComplete|DoubleBarrelIdle" onCompleteTrigger="humanShieldAttackComplete"/>
       <!-- DOUBLE BARREL END-->
 
       <!-- BAT START-->
-      <anim_state id="BatIdle" spritesheet_id="player_bat|bat_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|BatAttack;" />
-      <anim_state id="BatAttack" spritesheet_id="player_bat|bat_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|BatIdle;" onCompleteTrigger="idle"/>
+      <anim_state id="BatIdle" spritesheet_id="player_bat|bat_idle" is_loop="true" time_per_sprite="0.07" trigger="attack|BatAttack;walk|BatWalk;" />
+      <anim_state id="BatWalk" spritesheet_id="player_bat|bat_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|BatAttack;idle|BatIdle;" />
+      <anim_state id="BatAttack" spritesheet_id="player_bat|bat_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|BatIdle;" onCompleteTrigger="attackComplete"/>
       <!-- BAT END-->
 
       <!-- AXE START-->

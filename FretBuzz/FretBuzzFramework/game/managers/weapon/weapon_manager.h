@@ -30,15 +30,19 @@ namespace ns_HMGame
 		WEAPON_BRICK			= 22
 	};
 
+	class WeaponData;
 	class WeaponManager : public ns_fretBuzz::ns_system::Behaviour
 	{
 	private:
 		static WeaponManager* s_pInstance;
+		std::map<WEAPON_TYPE, WeaponData> m_WeaponMap;
 
 	protected:
 		virtual ~WeaponManager();
 
 	public:
 		WeaponManager(ns_fretBuzz::ns_system::GameObject& a_GameObject);
+
+		//static void AddWeapon();
 	};
 }

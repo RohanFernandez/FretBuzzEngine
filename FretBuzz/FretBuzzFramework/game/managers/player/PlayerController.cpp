@@ -125,7 +125,7 @@ namespace ns_HMGame
 			//m_pUpperSpriteAnimator->play("humanshield");
 			if (m_pPlayerOverWeapon != nullptr)
 			{
-				m_pUpperSpriteAnimator->play("silenceridle");
+				m_pUpperSpriteAnimator->play("magnumidle");
 				m_pPlayerOverWeapon->m_GameObject.setActive(false);
 			}
 		}
