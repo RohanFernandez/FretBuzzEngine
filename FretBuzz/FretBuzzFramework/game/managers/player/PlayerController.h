@@ -2,6 +2,7 @@
 #include <components/gameobject_components/behaviour.h>
 #include "components/gameobject_components/sprite_animation_controller.h"
 #include <components/gameobject_components/rect_collider.h>
+#include <game/managers/weapon/weapon_data.h>
 #include <game/managers/weapon/weapon.h>
 
 namespace ns_HMGame
@@ -27,12 +28,17 @@ namespace ns_HMGame
 		void manageInput();
 
 		ns_HMGame::Weapon* m_pPlayerOverWeapon = nullptr;;
+
+		WeaponData m_WeaponData;
+
 		int m_iWeaponOverCount = 0;
 
 	public:
 		PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
 		virtual void update(float a_fDeltaTime) override;
+
+		const WeaponData getWeaponData() const { return m_WeaponData; };
 
 		void setAsCurrentWeapon(Weapon* a_pWeapon);
 

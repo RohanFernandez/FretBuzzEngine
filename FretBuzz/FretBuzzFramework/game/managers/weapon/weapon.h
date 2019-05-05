@@ -2,6 +2,7 @@
 #include <components/gameobject_components/behaviour.h>
 #include <components/gameobject_components/rect_collider.h>
 #include <components/gameobject_components/sprite_renderer.h>
+#include "game/managers/weapon/weapon_data.h"
 
 namespace ns_HMGame
 {
@@ -35,11 +36,13 @@ namespace ns_HMGame
 	class Weapon : public ns_fretBuzz::ns_system::Behaviour
 	{
 	private:
-		WEAPON_TYPE m_WeaponType = WEAPON_TYPE::WEAPON_UNARMED;
 		ns_fretBuzz::ns_graphics::SpriteRenderer* m_pSpriteRenderer = nullptr;
+		WeaponData m_WeaponData;
 
 	public:
 		Weapon(ns_fretBuzz::ns_system::GameObject2D* a_GameObject);
+		WeaponData getWeaponData();
+
 		void setWeapon(WEAPON_TYPE a_WeaponType);
 		virtual void onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
 		virtual void onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;

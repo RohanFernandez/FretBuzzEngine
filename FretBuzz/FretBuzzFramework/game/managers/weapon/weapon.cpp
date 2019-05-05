@@ -7,8 +7,9 @@
 namespace ns_HMGame
 {
 	Weapon::Weapon(ns_fretBuzz::ns_system::GameObject2D* a_pGameObject)
-		:m_WeaponType{ WEAPON_TYPE::WEAPON_UNARMED },
-		ns_fretBuzz::ns_system::Behaviour(a_pGameObject)
+		:
+		ns_fretBuzz::ns_system::Behaviour(a_pGameObject),
+		m_WeaponData{ WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED)}
 	{
 		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_RENDERER);
 		m_pSpriteRenderer->setSprite(ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_M16")->getSprite(0));
@@ -16,7 +17,13 @@ namespace ns_HMGame
 
 	void Weapon::setWeapon(WEAPON_TYPE a_WeaponType)
 	{
-		m_WeaponType = a_WeaponType;
+		m_WeaponData = WeaponManager::GetWeaponData(a_WeaponType);
+		m_pSpriteRenderer->setSprite(m_WeaponData.getWeaponSpriteName());
+	}
+
+	WeaponData Weapon::getWeaponData()
+	{
+		return m_WeaponData;
 	}
 
 	void Weapon::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)

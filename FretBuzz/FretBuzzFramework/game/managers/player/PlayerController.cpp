@@ -2,11 +2,14 @@
 #include "PlayerController.h"
 #include <system/core/input.h>
 #include <system/scene_manager.h>
+#include "game/managers/weapon/weapon_data.h"
+#include "game/managers/weapon/weapon_manager.h"
 
 namespace ns_HMGame
 {
 	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
+		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
+		m_WeaponData{WeaponManager::GetWeaponData(WEAPON_UNARMED)}
 	{
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
@@ -125,7 +128,7 @@ namespace ns_HMGame
 			//m_pUpperSpriteAnimator->play("humanshield");
 			if (m_pPlayerOverWeapon != nullptr)
 			{
-				m_pUpperSpriteAnimator->play("magnumidle");
+				m_pUpperSpriteAnimator->play(m_pPlayerOverWeapon->getWeaponData().getWeaponAnimTrigger());
 				m_pPlayerOverWeapon->m_GameObject.setActive(false);
 			}
 		}

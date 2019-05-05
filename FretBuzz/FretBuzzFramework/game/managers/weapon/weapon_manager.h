@@ -21,6 +21,7 @@ namespace ns_HMGame
 	public:
 		WeaponManager(ns_fretBuzz::ns_system::GameObject* a_GameObject);
 
+		static WeaponData GetWeaponData(WEAPON_TYPE a_WeaponType);
 		static Weapon* AddWeapon(glm::vec3 a_v3Position, WEAPON_TYPE a_WeaponType);
 	};
 }
