@@ -125,10 +125,20 @@ namespace ns_HMGame
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
 		{
-			//m_pUpperSpriteAnimator->play("humanshield");
+			WEAPON_TYPE l_CurrentWeaponType = m_WeaponData.getWeaponType();
+			if (l_CurrentWeaponType != WEAPON_TYPE::WEAPON_UNARMED)
+			{
+				Weapon* l_pWeaponToThrow = WeaponManager::AddWeapon(m_GameObject.m_Transform.getWorldPosition() + glm::vec3(l_v2PlayerToMouseDirection,0.0f) * 100.0f, l_CurrentWeaponType);
+				l_pWeaponToThrow->startWeaponThrow(l_MousePosition);
+
+				m_WeaponData = WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED);
+				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
+			}
+
 			if (m_pPlayerOverWeapon != nullptr)
 			{
-				m_pUpperSpriteAnimator->play(m_pPlayerOverWeapon->getWeaponData().getWeaponAnimTrigger());
+				m_WeaponData = m_pPlayerOverWeapon->getWeaponData();
+				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
 				m_pPlayerOverWeapon->m_GameObject.setActive(false);
 			}
 		}

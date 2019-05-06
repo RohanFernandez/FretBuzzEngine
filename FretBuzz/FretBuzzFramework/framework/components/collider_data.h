@@ -27,6 +27,7 @@ namespace ns_fretBuzz
 			bool m_bIsSensor = false;
 			bool m_bIsBullet = false;
 			bool m_bIsFixedRotation = true;
+			float m_fDensity = 0.0f;
 			COLLIDER_SHAPE m_ColliderShape = SHAPE_RECT;
 			glm::vec2 m_v2DimensionWH = { 0, 0 };
 			glm::vec2 m_v2RelativePos = { 0, 0 };
@@ -48,6 +49,7 @@ namespace ns_fretBuzz
 				m_bIsSensor				    = a_Other.m_bIsSensor;
 				m_bIsBullet				    = a_Other.m_bIsBullet;
 				m_bIsFixedRotation		    = a_Other.m_bIsFixedRotation;
+				m_fDensity					= a_Other.m_bIsFixedRotation;
 				m_ColliderShape			    = a_Other.m_ColliderShape;
 				m_v2RelativePos			    = a_Other.m_v2RelativePos;
 				m_fRadius				    = a_Other.m_fRadius;

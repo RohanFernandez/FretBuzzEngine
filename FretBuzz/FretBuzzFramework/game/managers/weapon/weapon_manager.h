@@ -13,7 +13,7 @@ namespace ns_HMGame
 		static WeaponManager* s_pInstance;
 		std::map<WEAPON_TYPE, WeaponData> m_WeaponMap;
 
-		ns_fretBuzz::GameObjectPool<PrefabWeapon, ns_fretBuzz::ns_system::GameObject*> m_WeaponPool;
+		ns_fretBuzz::GameObjectPool<PrefabWeapon> m_WeaponPool;
 
 	protected:
 		virtual ~WeaponManager();

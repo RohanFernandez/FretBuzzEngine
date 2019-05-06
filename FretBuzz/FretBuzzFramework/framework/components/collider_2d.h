@@ -11,13 +11,24 @@ namespace ns_fretBuzz
 		public:
 
 			void applyForce(glm::vec2 a_v2ForceDirection);
-			void setLinearVelocity(glm::vec2 a_v2VelocityDirection);
 			void applyImpulse(glm::vec2 a_v2ForceDirection);
+			void setLinearVelocity(glm::vec2 a_v2VelocityDirection);
+			void setAngularVelocity(float a_fAngularVelocity);
 
 #pragma region GETTERS AND SETTERS
 
+			void setPhysicsBodyType(PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType);
+			PhysicsEngine::PHYSICS_BODY_TYPE getPhysicsBodyType();
+
 			void setSensor(bool a_bIsSensor);
 			bool isSensor() const;
+
+			void setFixedRotation(bool a_bIsFixedRotation);
+			bool getIsFixedRotation();
+
+			void setDensity(float a_fDensity);
+			float getDensity();
+
 			void setMaskBits(std::vector<uint16> a_vectMaskBits);
 			std::vector<uint16> getMaskBits() const;
 			void setCategoryBits(std::vector<uint16> a_vectCategoryBits);

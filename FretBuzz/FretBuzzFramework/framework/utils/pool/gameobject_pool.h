@@ -4,31 +4,27 @@
 
 namespace ns_fretBuzz
 {
-	template<typename T, typename... TArgs/*, typename = typename std::enable_if<std::is_base_of<ns_system::GameObject, T>::value>::type*/>
-	class FRETBUZZ_API GameObjectPool: protected ObjectPool<T, TArgs...>
+	template<typename T, typename = typename std::enable_if<std::is_base_of<ns_system::GameObject, T>::value>::type>
+	class FRETBUZZ_API GameObjectPool: protected ObjectPool<T>
 	{
 	public:
-		GameObjectPool(int a_iStart, TArgs... a_Args)
-			: ObjectPool<T, TArgs...>(a_iStart, false, a_Args...)
+		GameObjectPool()
+			: ObjectPool<T>(false)
 		{
-			for (auto l_PooledObject = this->m_Pool.begin(); l_PooledObject != this->m_Pool.end(); l_PooledObject++)
-			{
-				(*l_PooledObject)->setActive(false);
-			}
 		}
 
 		virtual ~GameObjectPool() {};
 
+		template<typename... TArgs>
 		T* getGameObject(TArgs... a_Args)
 		{
-			T* l_pGameObj = ObjectPool<T, TArgs...>::getObject(a_Args...);
-			return l_pGameObj;
+			return ObjectPool<T>::getObject(a_Args...);
 		};
 
 		virtual void returnToPool(T* a_pReturnObject)
 		{
 			a_pReturnObject->setActive(false);
-			ObjectPool<T, TArgs...>::returnToPool(a_pReturnObject);
+			ObjectPool<T>::returnToPool(a_pReturnObject);
 		};
 	};
 }

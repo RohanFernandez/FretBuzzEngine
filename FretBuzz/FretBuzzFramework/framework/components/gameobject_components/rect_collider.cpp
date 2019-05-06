@@ -12,9 +12,9 @@ namespace ns_fretBuzz
 	{
 		RectCollider::RectCollider(GameObject2D& a_GameObject, ColliderData& a_RectColliderData)
 			: 
-			Collider2D(a_GameObject, a_RectColliderData),
+			Collider2D(a_GameObject, a_RectColliderData)
 #ifdef _IS_DEBUG_RENDERING
-			ns_graphics::IRenderer()
+			, ns_graphics::IRenderer()
 #endif
 		{
 #ifdef _IS_DEBUG_RENDERING

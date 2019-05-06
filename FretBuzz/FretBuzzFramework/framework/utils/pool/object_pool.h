@@ -2,27 +2,24 @@
 
 namespace ns_fretBuzz
 {
-	template<typename T, typename ...TArgs>
+	template<typename T>
 	class FRETBUZZ_API ObjectPool
 	{
 	protected:
 		std::vector<T*> m_Pool;
 		const bool m_bIsPoolMemoryManaged = true;
 
-		virtual void addToPool(TArgs... a_Args)
+		template<typename... TArgs>
+		void addToPool(TArgs... a_Args)
 		{
 			T* l_newObj = new T(a_Args...);
 			m_Pool.emplace_back(l_newObj);
 		}
 
 	public:
-		ObjectPool(int a_iInitSize, bool a_bIsPoolMemoryManaged, TArgs... a_Args)
+		ObjectPool(bool a_bIsPoolMemoryManaged)
 			: m_bIsPoolMemoryManaged{a_bIsPoolMemoryManaged}
 		{
-			for (int l_iCurrentIndex = 0; l_iCurrentIndex < a_iInitSize; l_iCurrentIndex++)
-			{
-				addToPool(a_Args...);
-			}
 		}
 
 		virtual ~ObjectPool() 
@@ -38,7 +35,8 @@ namespace ns_fretBuzz
 		}
 
 		// Returns managed object from pool stack
-		virtual T* getObject(TArgs... a_Args)
+		template<typename... TArgs>
+		T* getObject(TArgs... a_Args)
 		{
 			if (m_Pool.size() == 0)
 			{

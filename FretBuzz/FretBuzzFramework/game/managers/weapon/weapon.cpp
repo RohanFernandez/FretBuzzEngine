@@ -13,6 +13,8 @@ namespace ns_HMGame
 	{
 		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_RENDERER);
 		m_pSpriteRenderer->setSprite(ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_M16")->getSprite(0));
+
+		m_pCollider2D = m_GameObject.getComponent<ns_fretBuzz::ns_system::Collider2D>(ns_fretBuzz::ns_system::COMPONENT_TYPE::COLLIDER_2D);
 	}
 
 	void Weapon::setWeapon(WEAPON_TYPE a_WeaponType)
@@ -34,6 +36,31 @@ namespace ns_HMGame
 		{
 			l_pPlayerController->setAsCurrentWeapon(this);
 		}
+	}
+
+	void Weapon::startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection)
+	{
+		m_pCollider2D->setSensor(false);
+		m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC);
+		m_pCollider2D->setDensity(0.5f);
+		m_pCollider2D->setFixedRotation(false);
+		m_pCollider2D->setLinearVelocity(a_v2PlayerToMouseDirection * 3000.0f);
+		m_pCollider2D->setAngularVelocity(M_PI);
+	}
+
+	void Weapon::stopWeaponThrow()
+	{
+	
+	}
+
+	void Weapon::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "COLLISION ENTER!!!!!!!!!!!!!!!!!!\n";
+	}
+
+	void Weapon::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		std::cout << "COLLISION EXIT!!!!!!!!!!!!!!!!!!\n";
 	}
 
 	void Weapon::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)

@@ -22,9 +22,9 @@ namespace ns_fretBuzz
 		public:
 			enum class PHYSICS_BODY_TYPE
 			{
-				STATIC,
-				DYNAMIC,
-				KINEMATIC
+				STATIC		= 0,
+				KINEMATIC	= 1,
+				DYNAMIC		= 2
 			};
 
 			static PhysicsEngine* initialize(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration);

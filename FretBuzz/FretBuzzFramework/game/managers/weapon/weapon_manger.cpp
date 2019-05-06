@@ -9,7 +9,7 @@ namespace ns_HMGame
 
 	WeaponManager::WeaponManager(ns_fretBuzz::ns_system::GameObject* a_GameObject)
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
-		m_WeaponPool(0, a_GameObject)
+		m_WeaponPool()
 	{
 		if (s_pInstance != nullptr)
 		{

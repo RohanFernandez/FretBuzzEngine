@@ -12,9 +12,7 @@ namespace ns_fretBuzz
 			b2BodyDef l_bodyDef;
 			l_bodyDef.bullet = m_ColliderData.m_bIsBullet;
 
-			l_bodyDef.type = (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ?
-				b2_staticBody : (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC) ?
-				b2_dynamicBody : b2_kinematicBody;
+			l_bodyDef.type = (b2BodyType)m_ColliderData.m_PhysicsBodyType;
 
 			glm::vec2 l_Position = m_GameObject.m_Transform.getWorldPosition();
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
@@ -47,7 +45,7 @@ namespace ns_fretBuzz
 			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_vectColliderCategoryBits);
 			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_vectColliderMaskBits);
 			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex;
-			l_fixtureDef.density = (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::STATIC) ? 0.0f : 1.0f;
+			l_fixtureDef.density = m_ColliderData.m_fDensity;
 			l_fixtureDef.friction = 0.0f;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
@@ -56,7 +54,7 @@ namespace ns_fretBuzz
 
 		Collider2D::~Collider2D()
 		{
-			PhysicsEngine::getB2World()->DestroyBody(m_pBody);
+			b2World* l_pb2World = PhysicsEngine::getB2World();
 		}
 
 		void Collider2D::Update(float a_fDeltaTime)
@@ -118,10 +116,27 @@ namespace ns_fretBuzz
 			m_pBody->ApplyLinearImpulseToCenter(b2Vec2{ a_v2ForceDirection.x, a_v2ForceDirection.y }, true);
 		}
 
+		void Collider2D::setAngularVelocity(float a_fAngularVelocity)
+		{
+			m_pBody->SetAngularVelocity(a_fAngularVelocity);
+		}
+
 #pragma region GETTERS AND SETTERS
+
+		void Collider2D::setPhysicsBodyType(PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType)
+		{
+			m_ColliderData.m_PhysicsBodyType = a_PhysicsBodyType;
+			m_pBody->SetType((b2BodyType)a_PhysicsBodyType);
+		}
+
+		PhysicsEngine::PHYSICS_BODY_TYPE Collider2D::getPhysicsBodyType()
+		{
+			return m_ColliderData.m_PhysicsBodyType;
+		}
 
 		void Collider2D::setSensor(bool a_bIsEnabled)
 		{
+			m_ColliderData.m_bIsSensor = a_bIsEnabled;
 			m_pFixture->SetSensor(a_bIsEnabled);
 		}
 
@@ -130,9 +145,34 @@ namespace ns_fretBuzz
 			return m_ColliderData.m_bIsSensor;
 		}
 
+		void Collider2D::setFixedRotation(bool a_bIsFixedRotation)
+		{
+			m_ColliderData.m_bIsFixedRotation = a_bIsFixedRotation;
+			m_pBody->SetFixedRotation(a_bIsFixedRotation);
+		}
+
+		bool Collider2D::getIsFixedRotation()
+		{
+			return m_ColliderData.m_bIsFixedRotation;
+		}
+
+		void Collider2D::setDensity(float a_fDensity)
+		{
+			m_ColliderData.m_fDensity = a_fDensity;
+			m_pFixture->SetDensity(a_fDensity);
+		}
+
+		float Collider2D::getDensity()
+		{
+			return m_ColliderData.m_fDensity;
+		}
+
 		void Collider2D::setMaskBits(std::vector<uint16> a_vectMaskBits)
 		{
 			m_ColliderData.m_vectColliderMaskBits = a_vectMaskBits;
+			b2Filter l_b2Filter;
+			l_b2Filter.maskBits = GetBitField(m_ColliderData.m_vectColliderMaskBits);
+			m_pFixture->SetFilterData(l_b2Filter);
 		}
 
 		std::vector<uint16> Collider2D::Collider2D::getMaskBits() const
@@ -143,6 +183,9 @@ namespace ns_fretBuzz
 		void Collider2D::setCategoryBits(std::vector<uint16> a_vectCategoryBits)
 		{
 			m_ColliderData.m_vectColliderCategoryBits = a_vectCategoryBits;
+			b2Filter l_b2Filter;
+			l_b2Filter.categoryBits = GetBitField(m_ColliderData.m_vectColliderCategoryBits);
+			m_pFixture->SetFilterData(l_b2Filter);
 		}
 
 		std::vector<uint16> Collider2D::getCategoryBits() const
