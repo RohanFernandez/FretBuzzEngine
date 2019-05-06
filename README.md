@@ -1,7 +1,6 @@
 # **FretBuzz OpenGL Game Engine**
 
-A game engine made to support 2D and 3D games. 
-All libraries are contained within the repository and should run out-of-the-box provided you use Visual Studio 2017, Platform toolset v141.
+A game engine made to support 2D and 3D games.
 
 ## **Notes**
 1. On building in either of the build conifigurations, the 'Resources' folder (which holds all the assets) is copied to the 'Output' directory using xcopy each time as a Post Build Event.
