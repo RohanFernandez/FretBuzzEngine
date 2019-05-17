@@ -15,7 +15,7 @@ namespace ns_fretBuzz
 		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
 			: m_iVelocityIteration{ a_iVelocityIteration },
 			  m_iStepIteration{ a_iStepIteration },
-			m_StepDuration{ System::PHYSICS_TIME_STEP }
+			m_StepDuration{ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(System::PHYSICS_TIME_STEP)) }
 		{
 			s_pInstance = this;
 			m_pB2World = new b2World(a_v2Gravity);
@@ -72,14 +72,9 @@ namespace ns_fretBuzz
 		{
 			while (IsPhysicsStepping)
 			{
-				std::this_thread::sleep_for( std::chrono::duration_cast<std::chrono::milliseconds>(s_pInstance->m_StepDuration));
-				s_pInstance->setStepReady();
+				std::this_thread::sleep_for( s_pInstance->m_StepDuration);
+				s_pInstance->m_bIsStepReady = true;
 			}
-		}
-
-		void PhysicsEngine::setStepReady()
-		{
-			m_bIsStepReady = true;
 		}
 
 		void PhysicsEngine::step()

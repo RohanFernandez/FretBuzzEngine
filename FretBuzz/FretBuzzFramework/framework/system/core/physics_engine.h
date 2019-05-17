@@ -22,9 +22,8 @@ namespace ns_fretBuzz
 			static bool IsPhysicsStepping;
 			bool m_bIsStepReady = false;
 
-			std::chrono::duration<float> m_StepDuration;
+			std::chrono::milliseconds m_StepDuration;
 
-			void setStepReady();
 			static void CalculateTimeStep();
 
 			PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration);

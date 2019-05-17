@@ -45,7 +45,7 @@ namespace ns_HMGame
 		m_pCollider2D->setDensity(0.0f);
 		m_pCollider2D->setFixedRotation(false);
 		m_pCollider2D->setAngularVelocity(M_PI);
-		m_pCollider2D->applyImpulseToCenter(a_v2PlayerToMouseDirection * 1000.0f);
+		m_pCollider2D->applyImpulseToCenter(a_v2PlayerToMouseDirection * 1200.0f);
 	}
 
 	void Weapon::stopWeaponThrow()
