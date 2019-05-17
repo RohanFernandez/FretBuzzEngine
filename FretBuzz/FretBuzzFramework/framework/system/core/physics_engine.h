@@ -19,12 +19,7 @@ namespace ns_fretBuzz
 			int m_iVelocityIteration = 0;
 			int m_iStepIteration = 0;
 
-			static bool IsPhysicsStepping;
-			bool m_bIsStepReady = false;
-
-			std::chrono::milliseconds m_StepDuration;
-
-			static void CalculateTimeStep();
+			float m_fTimePassedSinceLastStep = 0.0f;
 
 			PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration);
 			~PhysicsEngine();
@@ -43,8 +38,7 @@ namespace ns_fretBuzz
 
 			static b2World* getB2World();
 
-			void startTimeStepper();
-			void step();
+			void step(float a_fDeltaTime);
 
 			static void Raycast(Collider2D*& a_pCollider2D, glm::vec2& a_v2Point1, glm::vec2& a_v2Point2);
 		};

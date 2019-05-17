@@ -13,7 +13,7 @@ namespace ns_HMGame
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		float m_fVelocity = 600.0f;
+		float m_fVelocity = 700.0f;
 
 		bool m_bIsRunning = false;
 

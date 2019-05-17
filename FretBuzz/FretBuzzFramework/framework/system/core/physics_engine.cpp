@@ -10,12 +10,9 @@ namespace ns_fretBuzz
 	{	
 		PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 
-		bool PhysicsEngine::IsPhysicsStepping = false;
-
 		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
 			: m_iVelocityIteration{ a_iVelocityIteration },
-			  m_iStepIteration{ a_iStepIteration },
-			m_StepDuration{ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(System::PHYSICS_TIME_STEP)) }
+			  m_iStepIteration{ a_iStepIteration }
 		{
 			s_pInstance = this;
 			m_pB2World = new b2World(a_v2Gravity);
@@ -23,28 +20,10 @@ namespace ns_fretBuzz
 
 		PhysicsEngine::~PhysicsEngine()
 		{
-			IsPhysicsStepping = false;
-			if (m_pTimeStepCalculatorThread != nullptr)
-			{
-				m_pTimeStepCalculatorThread->join();
-				delete m_pTimeStepCalculatorThread;
-				m_pTimeStepCalculatorThread = nullptr;
-			}
-
 			delete m_pB2World;
 			m_pB2World = nullptr;
 		}
 
-		void PhysicsEngine::startTimeStepper()
-		{
-			if (IsPhysicsStepping)
-			{
-				return;
-			}
-			IsPhysicsStepping = true;
-			m_pTimeStepCalculatorThread = new std::thread(CalculateTimeStep);
-		}
-		
 		PhysicsEngine* PhysicsEngine::initialize(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
 		{
 			if (s_pInstance != nullptr)
@@ -68,21 +47,13 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		void PhysicsEngine::CalculateTimeStep()
+		void PhysicsEngine::step(float a_fDeltaTime)
 		{
-			while (IsPhysicsStepping)
+			m_fTimePassedSinceLastStep += a_fDeltaTime;
+			if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP)
 			{
-				std::this_thread::sleep_for( s_pInstance->m_StepDuration);
-				s_pInstance->m_bIsStepReady = true;
-			}
-		}
-
-		void PhysicsEngine::step()
-		{
-			if (m_bIsStepReady)
-			{
+				m_fTimePassedSinceLastStep = 0.0f;
 				m_pB2World->Step(System::PHYSICS_TIME_STEP, m_iVelocityIteration, m_iStepIteration);
-				m_bIsStepReady = false;
 			}
 		}
 

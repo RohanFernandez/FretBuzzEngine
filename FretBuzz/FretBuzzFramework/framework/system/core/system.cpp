@@ -65,12 +65,12 @@ namespace ns_fretBuzz
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
 
 			float l_fCurrentDeltaTime = 0.0f;
-			l_PhysicsEngine.startTimeStepper();
+			//l_PhysicsEngine.startTimeStepper();
 
 			while (!l_MasterRenderer.isWindowClosed())
 			{
 				l_SceneManager.updateActiveScenes(l_fCurrentDeltaTime);
-				l_PhysicsEngine.step();
+				l_PhysicsEngine.step(l_fCurrentDeltaTime);
 				l_Input.Update();
 				l_fCurrentDeltaTime = l_MasterRenderer.render(l_SceneManager);
 			}
