@@ -23,11 +23,11 @@ namespace ns_HMGame
 
 	void PlayerController::update(float a_fDeltaTime)
 	{
-		manageInput();
+		manageInput(a_fDeltaTime);
 		Behaviour::update(a_fDeltaTime);
 	}
 
-	void PlayerController::manageInput()
+	void PlayerController::manageInput(float a_fDeltaTime)
 	{
 		float l_fHorizontalVelocity = 0.0f;
 		float l_fVerticalVelocity = 0.0f;
@@ -94,7 +94,7 @@ namespace ns_HMGame
 
 		m_pUpperSpriteAnimator->play(l_strPlayerAnimTrigger);
 		m_pLegsSpriteAnimator->play(l_strPlayerAnimTrigger);
-		m_pRectCollider->setLinearVelocity({ l_fHorizontalVelocity, l_fVerticalVelocity });
+		m_pRectCollider->setLinearVelocity(glm::vec2{ l_fHorizontalVelocity, l_fVerticalVelocity} );
 		m_pCamGameObj->m_Transform.setWorldPosition(m_GameObject.m_Transform.getWorldPosition());
 
 
@@ -128,8 +128,8 @@ namespace ns_HMGame
 			WEAPON_TYPE l_CurrentWeaponType = m_WeaponData.getWeaponType();
 			if (l_CurrentWeaponType != WEAPON_TYPE::WEAPON_UNARMED)
 			{
-				Weapon* l_pWeaponToThrow = WeaponManager::AddWeapon(m_GameObject.m_Transform.getWorldPosition() + glm::vec3(l_v2PlayerToMouseDirection,0.0f) * 100.0f, l_CurrentWeaponType);
-				l_pWeaponToThrow->startWeaponThrow(l_MousePosition);
+				Weapon* l_pWeaponToThrow = WeaponManager::AddWeapon(m_GameObject.m_Transform.getWorldPosition() + glm::vec3(l_v2PlayerToMouseDirection,0.0f) * 150.0f, l_CurrentWeaponType);
+				l_pWeaponToThrow->startWeaponThrow(l_v2PlayerToMouseDirection);
 
 				m_WeaponData = WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED);
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());

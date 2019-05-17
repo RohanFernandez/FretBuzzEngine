@@ -2,6 +2,7 @@
 #include <components/raycast_callback.h>
 #include <components/collider_2d.h>
 #include "physics_engine.h"
+#include "system.h"
 
 namespace ns_fretBuzz
 {
@@ -9,9 +10,12 @@ namespace ns_fretBuzz
 	{	
 		PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 
+		bool PhysicsEngine::IsPhysicsStepping = false;
+
 		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
 			: m_iVelocityIteration{ a_iVelocityIteration },
-			  m_iStepIteration{ a_iStepIteration }
+			  m_iStepIteration{ a_iStepIteration },
+			m_StepDuration{ System::PHYSICS_TIME_STEP }
 		{
 			s_pInstance = this;
 			m_pB2World = new b2World(a_v2Gravity);
@@ -19,8 +23,26 @@ namespace ns_fretBuzz
 
 		PhysicsEngine::~PhysicsEngine()
 		{
+			IsPhysicsStepping = false;
+			if (m_pTimeStepCalculatorThread != nullptr)
+			{
+				m_pTimeStepCalculatorThread->join();
+				delete m_pTimeStepCalculatorThread;
+				m_pTimeStepCalculatorThread = nullptr;
+			}
+
 			delete m_pB2World;
 			m_pB2World = nullptr;
+		}
+
+		void PhysicsEngine::startTimeStepper()
+		{
+			if (IsPhysicsStepping)
+			{
+				return;
+			}
+			IsPhysicsStepping = true;
+			m_pTimeStepCalculatorThread = new std::thread(CalculateTimeStep);
 		}
 		
 		PhysicsEngine* PhysicsEngine::initialize(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
@@ -46,9 +68,27 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		void PhysicsEngine::update(float a_fDeltaTime)
+		void PhysicsEngine::CalculateTimeStep()
 		{
-			m_pB2World->Step(a_fDeltaTime, m_iVelocityIteration, m_iStepIteration);
+			while (IsPhysicsStepping)
+			{
+				std::this_thread::sleep_for( std::chrono::duration_cast<std::chrono::milliseconds>(s_pInstance->m_StepDuration));
+				s_pInstance->setStepReady();
+			}
+		}
+
+		void PhysicsEngine::setStepReady()
+		{
+			m_bIsStepReady = true;
+		}
+
+		void PhysicsEngine::step()
+		{
+			if (m_bIsStepReady)
+			{
+				m_pB2World->Step(System::PHYSICS_TIME_STEP, m_iVelocityIteration, m_iStepIteration);
+				m_bIsStepReady = false;
+			}
 		}
 
 		b2World* PhysicsEngine::getB2World()

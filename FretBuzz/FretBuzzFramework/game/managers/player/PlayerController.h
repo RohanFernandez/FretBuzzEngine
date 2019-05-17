@@ -13,7 +13,7 @@ namespace ns_HMGame
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		float m_fVelocity = 500.0f;
+		float m_fVelocity = 1000.0f;
 
 		bool m_bIsRunning = false;
 
@@ -25,7 +25,7 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject* m_pCamGameObj = nullptr;
 		ns_fretBuzz::ns_system::GameObject* m_pPlayerUpperGameObj = nullptr;
 		ns_fretBuzz::ns_system::GameObject* m_pGameObjCharacterLegs = nullptr;
-		void manageInput();
+		void manageInput(float a_fDeltaTime);
 
 		ns_HMGame::Weapon* m_pPlayerOverWeapon = nullptr;;
 

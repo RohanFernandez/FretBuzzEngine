@@ -101,9 +101,14 @@ namespace ns_fretBuzz
 		{
 		}
 
-		void Collider2D::applyForce(glm::vec2 a_v2ForceDirection)
+		void Collider2D::applyForceToCenter(glm::vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyForceToCenter(b2Vec2{ a_v2ForceDirection.x, a_v2ForceDirection.y }, true);
+		}
+
+		void Collider2D::applyForceAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point)
+		{
+			m_pBody->ApplyForce(b2Vec2{ a_v2ForceDirection.x,  a_v2ForceDirection.y }, m_pBody->GetWorldPoint(b2Vec2{ a_v2Point.x, a_v2Point.y }), true);
 		}
 
 		void Collider2D::setLinearVelocity(glm::vec2 a_v2VelocityDirection)
@@ -111,14 +116,25 @@ namespace ns_fretBuzz
 			m_pBody->SetLinearVelocity(b2Vec2{ a_v2VelocityDirection.x, a_v2VelocityDirection.y });
 		}
 
-		void Collider2D::applyImpulse(glm::vec2 a_v2ForceDirection)
+		void Collider2D::applyImpulseToCenter(glm::vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyLinearImpulseToCenter(b2Vec2{ a_v2ForceDirection.x, a_v2ForceDirection.y }, true);
+		}
+
+		void Collider2D::applyImpulseAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point)
+		{
+			m_pBody->ApplyLinearImpulse(b2Vec2{ a_v2ForceDirection.x,  a_v2ForceDirection.y }, m_pBody->GetWorldPoint(b2Vec2{ a_v2Point.x, a_v2Point.y }), true);
 		}
 
 		void Collider2D::setAngularVelocity(float a_fAngularVelocity)
 		{
 			m_pBody->SetAngularVelocity(a_fAngularVelocity);
+		}
+
+		glm::vec2 Collider2D::getWorldCenterOfCollider()
+		{
+			b2Vec2 l_b2v2WorldCenter = m_pBody->GetWorldCenter();
+			return glm::vec2{ l_b2v2WorldCenter.x, l_b2v2WorldCenter.y };
 		}
 
 #pragma region GETTERS AND SETTERS

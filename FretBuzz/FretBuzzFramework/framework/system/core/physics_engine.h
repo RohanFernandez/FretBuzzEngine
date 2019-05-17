@@ -1,5 +1,6 @@
 #pragma once
 #include <components/raycast_callback.h>
+#include <thread>
 
 namespace ns_fretBuzz
 {
@@ -13,8 +14,18 @@ namespace ns_fretBuzz
 			b2World* m_pB2World = nullptr;
 			RaycastCallback m_RaycastCallback;
 
+			std::thread* m_pTimeStepCalculatorThread = nullptr;
+
 			int m_iVelocityIteration = 0;
 			int m_iStepIteration = 0;
+
+			static bool IsPhysicsStepping;
+			bool m_bIsStepReady = false;
+
+			std::chrono::duration<float> m_StepDuration;
+
+			void setStepReady();
+			static void CalculateTimeStep();
 
 			PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration);
 			~PhysicsEngine();
@@ -31,9 +42,10 @@ namespace ns_fretBuzz
 			void destroy();
 			static const PhysicsEngine* get();
 
-			void update(float a_fDeltaTime);
-
 			static b2World* getB2World();
+
+			void startTimeStepper();
+			void step();
 
 			static void Raycast(Collider2D*& a_pCollider2D, glm::vec2& a_v2Point1, glm::vec2& a_v2Point2);
 		};

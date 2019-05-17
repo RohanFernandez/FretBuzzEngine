@@ -10,12 +10,15 @@ namespace ns_fretBuzz
 		{
 		public:
 
-			void applyForce(glm::vec2 a_v2ForceDirection);
-			void applyImpulse(glm::vec2 a_v2ForceDirection);
+			void applyForceToCenter(glm::vec2 a_v2ForceDirection);
+			void applyForceAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point);
+			void applyImpulseToCenter(glm::vec2 a_v2ForceDirection);
+			void applyImpulseAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point);
 			void setLinearVelocity(glm::vec2 a_v2VelocityDirection);
 			void setAngularVelocity(float a_fAngularVelocity);
 
 #pragma region GETTERS AND SETTERS
+			glm::vec2 getWorldCenterOfCollider();
 
 			void setPhysicsBodyType(PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType);
 			PhysicsEngine::PHYSICS_BODY_TYPE getPhysicsBodyType();

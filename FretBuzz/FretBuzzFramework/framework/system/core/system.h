@@ -41,6 +41,7 @@ namespace ns_fretBuzz
 			SceneManager* m_pSceneManager = nullptr;
 
 		public:
+			static constexpr float PHYSICS_TIME_STEP = 1.0f / 400.0f;
 			~System();
 
 			//Runs the main loop, initializes system publicly if not previusly initialized

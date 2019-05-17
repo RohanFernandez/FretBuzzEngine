@@ -42,10 +42,10 @@ namespace ns_HMGame
 	{
 		m_pCollider2D->setSensor(false);
 		m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC);
-		m_pCollider2D->setDensity(0.5f);
+		m_pCollider2D->setDensity(0.0f);
 		m_pCollider2D->setFixedRotation(false);
-		m_pCollider2D->setLinearVelocity(a_v2PlayerToMouseDirection * 3000.0f);
 		m_pCollider2D->setAngularVelocity(M_PI);
+		m_pCollider2D->applyImpulseToCenter(a_v2PlayerToMouseDirection * 1000.0f);
 	}
 
 	void Weapon::stopWeaponThrow()
@@ -55,12 +55,10 @@ namespace ns_HMGame
 
 	void Weapon::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "COLLISION ENTER!!!!!!!!!!!!!!!!!!\n";
 	}
 
 	void Weapon::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "COLLISION EXIT!!!!!!!!!!!!!!!!!!\n";
 	}
 
 	void Weapon::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
