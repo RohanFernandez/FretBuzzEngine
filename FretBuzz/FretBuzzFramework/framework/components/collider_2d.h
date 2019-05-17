@@ -20,8 +20,8 @@ namespace ns_fretBuzz
 #pragma region GETTERS AND SETTERS
 			glm::vec2 getWorldCenterOfCollider();
 
-			void setPhysicsBodyType(PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType);
-			PhysicsEngine::PHYSICS_BODY_TYPE getPhysicsBodyType();
+			void setPhysicsBodyType(PHYSICS_BODY_TYPE a_PhysicsBodyType);
+			PHYSICS_BODY_TYPE getPhysicsBodyType();
 
 			void setSensor(bool a_bIsSensor);
 			bool isSensor() const;

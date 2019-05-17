@@ -19,7 +19,7 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
 		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
-		l_SensorRectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
+		l_SensorRectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::STATIC;
 		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
 
 		ns_fretBuzz::ns_graphics::SpriteRenderer::addToGameObject(*this);

@@ -41,7 +41,7 @@ namespace ns_HMGame
 	void Weapon::startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection)
 	{
 		m_pCollider2D->setSensor(false);
-		m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC);
+		m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC);
 		m_pCollider2D->setDensity(0.0f);
 		m_pCollider2D->setFixedRotation(false);
 		m_pCollider2D->setAngularVelocity(M_PI);

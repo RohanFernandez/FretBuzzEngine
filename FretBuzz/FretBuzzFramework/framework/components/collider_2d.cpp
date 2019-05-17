@@ -59,7 +59,7 @@ namespace ns_fretBuzz
 
 		void Collider2D::Update(float a_fDeltaTime)
 		{
-			if (m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC)
+			if (m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::DYNAMIC)
 			{
 				//Set transform position from collider position.
 				const b2Vec2& l_v2ColliderPosition = m_pBody->GetPosition();
@@ -72,7 +72,7 @@ namespace ns_fretBuzz
 					m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
 				}
 			}
-			else if(m_ColliderData.m_PhysicsBodyType == PhysicsEngine::PHYSICS_BODY_TYPE::KINEMATIC)
+			else if(m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::KINEMATIC)
 			{
 				glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
 				m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation()).z);
@@ -139,13 +139,13 @@ namespace ns_fretBuzz
 
 #pragma region GETTERS AND SETTERS
 
-		void Collider2D::setPhysicsBodyType(PhysicsEngine::PHYSICS_BODY_TYPE a_PhysicsBodyType)
+		void Collider2D::setPhysicsBodyType(PHYSICS_BODY_TYPE a_PhysicsBodyType)
 		{
 			m_ColliderData.m_PhysicsBodyType = a_PhysicsBodyType;
 			m_pBody->SetType((b2BodyType)a_PhysicsBodyType);
 		}
 
-		PhysicsEngine::PHYSICS_BODY_TYPE Collider2D::getPhysicsBodyType()
+		PHYSICS_BODY_TYPE Collider2D::getPhysicsBodyType()
 		{
 			return m_ColliderData.m_PhysicsBodyType;
 		}

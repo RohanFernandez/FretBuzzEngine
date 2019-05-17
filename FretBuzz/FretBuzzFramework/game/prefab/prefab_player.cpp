@@ -19,7 +19,7 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pPlayerUpperGameObj, "Player");
 
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
-		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::DYNAMIC;
+		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC;
 		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_RectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
 

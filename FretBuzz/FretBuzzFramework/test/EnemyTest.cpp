@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Enemy");
 
 		ns_system::ColliderData l_RectColliderData;
-		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PhysicsEngine::PHYSICS_BODY_TYPE::KINEMATIC;
+		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::KINEMATIC;
 		l_RectColliderData.m_bIsFixedRotation = true;
 		l_RectColliderData.m_v2DimensionWH = { 50.0f, 50.0f };
 		m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);

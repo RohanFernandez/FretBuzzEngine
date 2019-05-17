@@ -23,7 +23,7 @@ namespace ns_fretBuzz
 				BIT_EVERYTHING  = 0x8888
 			};
 
-			PhysicsEngine::PHYSICS_BODY_TYPE m_PhysicsBodyType = PhysicsEngine::PHYSICS_BODY_TYPE::STATIC;
+			PHYSICS_BODY_TYPE m_PhysicsBodyType = PHYSICS_BODY_TYPE::STATIC;
 			bool m_bIsSensor = false;
 			bool m_bIsBullet = false;
 			bool m_bIsFixedRotation = true;
