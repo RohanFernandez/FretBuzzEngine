@@ -1,6 +1,5 @@
 #pragma once
 #include <components/raycast_callback.h>
-#include <thread>
 
 namespace ns_fretBuzz
 {

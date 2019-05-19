@@ -15,13 +15,14 @@ namespace ns_HMGame
 
 		WeaponData(WEAPON_TYPE a_WeaponType);
 		WeaponData(const WeaponData& a_WeaponData);
-		WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName);
+		WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName);
 		~WeaponData();
 
 		WEAPON_TYPE getWeaponType() const;
 		WEAPON_ATTACK_TYPE getWeaponAttackType() const;
 		std::string getWeaponAnimTrigger() const;
 		std::string getWeaponSpriteName() const;
+		std::string getBulletSpriteName() const;
 
 		void operator=(const WeaponData& a_Other);
 
@@ -30,5 +31,6 @@ namespace ns_HMGame
 		WEAPON_ATTACK_TYPE m_WeaponAttackType;
 		std::string m_strAnimOverrideTrigger;
 		std::string m_strWeaponSpriteName;
+		std::string m_strBulletSpriteName;
 	};
 }

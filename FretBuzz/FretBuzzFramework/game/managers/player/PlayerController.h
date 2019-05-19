@@ -27,11 +27,14 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject* m_pGameObjCharacterLegs = nullptr;
 		void manageInput(float a_fDeltaTime);
 
-		ns_HMGame::Weapon* m_pPlayerOverWeapon = nullptr;;
+		std::vector<Weapon*> m_vectWeaponOver;
 
 		WeaponData m_WeaponData;
 
 		int m_iWeaponOverCount = 0;
+
+		void addToWeaponOver(Weapon* a_Weapon);
+		void removeFromWeaponOver(Weapon* a_Weapon);
 
 	public:
 		PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
@@ -40,7 +43,7 @@ namespace ns_HMGame
 
 		const WeaponData getWeaponData() const { return m_WeaponData; };
 
-		void setAsCurrentWeapon(Weapon* a_pWeapon);
+		void setAsCurrentWeaponOver(Weapon* a_pWeapon, bool a_bIsOver);
 
 		virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
 		virtual void onCollisionExit2D (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;

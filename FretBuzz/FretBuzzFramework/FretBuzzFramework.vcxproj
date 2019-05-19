@@ -186,6 +186,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\raycast_callback.cpp" />
     <ClCompile Include="framework\utils\pool\gameobject_pool.cpp" />
     <ClCompile Include="framework\utils\pool\object_pool.cpp" />
+    <ClCompile Include="game\managers\bullet\bullet.cpp" />
     <ClCompile Include="game\managers\cursor\cursor_manager.cpp" />
     <ClCompile Include="framework\components\audio_clip.cpp" />
     <ClCompile Include="framework\components\gameobject_components\audio_source.cpp" />
@@ -247,6 +248,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="game\managers\weapon\weapon_data.cpp" />
     <ClCompile Include="game\managers\weapon\weapon_manger.cpp" />
     <ClCompile Include="game\managers\player\PlayerController.cpp" />
+    <ClCompile Include="game\prefab\prefab_bullet.cpp" />
     <ClCompile Include="game\prefab\prefab_game_manager.cpp" />
     <ClCompile Include="game\prefab\prefab_wall.cpp" />
     <ClCompile Include="game\prefab\prefab_player.cpp" />
@@ -316,6 +318,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="game\managers\weapon\weapon_data.h" />
     <ClInclude Include="game\managers\weapon\weapon_manager.h" />
     <ClInclude Include="game\managers\player\PlayerController.h" />
+    <ClInclude Include="game\managers\bullet\bullet.h" />
+    <ClInclude Include="game\prefab\prefab_bullet.h" />
     <ClInclude Include="game\prefab\prefab_game_manager.h" />
     <ClInclude Include="game\prefab\prefab_wall.h" />
     <ClInclude Include="game\prefab\prefab_player.h" />

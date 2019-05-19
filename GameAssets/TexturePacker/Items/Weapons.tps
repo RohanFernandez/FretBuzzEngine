@@ -78,7 +78,7 @@
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
-        <string></string>
+        <string>E:/Projects/Personal/FretBuzzGameEngine/GameAssets/TexturePacker/Items/Weapons.png</string>
         <key>atfFormats</key>
         <string></string>
         <key>textureFormat</key>
@@ -175,7 +175,7 @@
             <key>heuristicMask</key>
             <false/>
             <key>defaultPivotPoint</key>
-            <point_f>0.5,0.5</point_f>
+            <point_f>0.333333,0.5</point_f>
             <key>writePivotPoints</key>
             <true/>
         </struct>
@@ -357,6 +357,33 @@
                 <rect>18,15,35,30</rect>
                 <key>scale9Paddings</key>
                 <rect>18,15,35,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Items/Weapons/Sprites/bullet_m16.png</key>
+            <key type="filename">../../SpriteSheets/Items/Weapons/Sprites/bullet_uzi.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,0,1,1</rect>
+                <key>scale9Paddings</key>
+                <rect>1,0,1,1</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../SpriteSheets/Items/Weapons/Sprites/bullet_shotgun.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,1,3,1</rect>
+                <key>scale9Paddings</key>
+                <rect>1,1,3,1</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

@@ -18,6 +18,8 @@ namespace ns_fretBuzz
 			l_bodyDef.position.Set(l_Position.x, l_Position.y);
 			l_bodyDef.angle = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation()).z;
 			l_bodyDef.fixedRotation = m_ColliderData.m_bIsFixedRotation;
+			l_bodyDef.linearDamping = m_ColliderData.m_fLinearDamping;
+			l_bodyDef.angularDamping = m_ColliderData.m_fAngularDamping;
 
 			m_pBody = PhysicsEngine::getB2World()->CreateBody(&l_bodyDef);
 			m_pBody->SetUserData(this);
@@ -42,8 +44,8 @@ namespace ns_fretBuzz
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.isSensor = m_ColliderData.m_bIsSensor;
 			l_fixtureDef.shape = l_pb2Shape;
-			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_vectColliderCategoryBits);
-			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_vectColliderMaskBits);
+			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_usetColliderCategoryBits);
+			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_usetColliderMaskBits);
 			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex;
 			l_fixtureDef.density = m_ColliderData.m_fDensity;
 			l_fixtureDef.friction = 0.0f;
@@ -116,6 +118,12 @@ namespace ns_fretBuzz
 			m_pBody->SetLinearVelocity(b2Vec2{ a_v2VelocityDirection.x, a_v2VelocityDirection.y });
 		}
 
+		glm::vec2 Collider2D::getLinearVelocity()
+		{
+			b2Vec2 l_b2v2LinearVelocity = m_pBody->GetLinearVelocity();
+			return glm::vec2{ l_b2v2LinearVelocity.x, l_b2v2LinearVelocity.y};
+		}
+
 		void Collider2D::applyImpulseToCenter(glm::vec2 a_v2ForceDirection)
 		{
 			m_pBody->ApplyLinearImpulseToCenter(b2Vec2{ a_v2ForceDirection.x, a_v2ForceDirection.y }, true);
@@ -129,6 +137,31 @@ namespace ns_fretBuzz
 		void Collider2D::setAngularVelocity(float a_fAngularVelocity)
 		{
 			m_pBody->SetAngularVelocity(a_fAngularVelocity);
+		}
+
+		float Collider2D::getAngularVelocity()
+		{
+			return m_pBody->GetAngularVelocity();
+		}
+
+		void Collider2D::setLinearDamping(float a_fLinearDamping)
+		{
+			m_pBody->SetLinearDamping(a_fLinearDamping);
+		}
+
+		float Collider2D::getLinearDamping()
+		{
+			return m_pBody->GetLinearDamping();
+		}
+
+		void Collider2D::setAngularDamping(float a_fAngularDamping)
+		{
+			m_pBody->SetAngularDamping(a_fAngularDamping);
+		}
+
+		float Collider2D::getAngularDamping()
+		{
+			return m_pBody->GetAngularDamping();
 		}
 
 		glm::vec2 Collider2D::getWorldCenterOfCollider()
@@ -183,40 +216,82 @@ namespace ns_fretBuzz
 			return m_ColliderData.m_fDensity;
 		}
 
-		void Collider2D::setMaskBits(std::vector<uint16> a_vectMaskBits)
+		void Collider2D::setMaskBits(std::unordered_set<uint16> a_usetMaskBits)
 		{
-			m_ColliderData.m_vectColliderMaskBits = a_vectMaskBits;
-			b2Filter l_b2Filter;
-			l_b2Filter.maskBits = GetBitField(m_ColliderData.m_vectColliderMaskBits);
-			m_pFixture->SetFilterData(l_b2Filter);
+			m_ColliderData.m_usetColliderMaskBits = a_usetMaskBits;
+			updateFilterData();
 		}
 
-		std::vector<uint16> Collider2D::Collider2D::getMaskBits() const
+		const std::unordered_set<uint16> Collider2D::Collider2D::getMaskBits() const
 		{
-			return m_ColliderData.m_vectColliderMaskBits;
+			return m_ColliderData.m_usetColliderMaskBits;
 		}
 
-		void Collider2D::setCategoryBits(std::vector<uint16> a_vectCategoryBits)
+		void Collider2D::removeMaskBit(uint16 a_BitToRemove)
 		{
-			m_ColliderData.m_vectColliderCategoryBits = a_vectCategoryBits;
-			b2Filter l_b2Filter;
-			l_b2Filter.categoryBits = GetBitField(m_ColliderData.m_vectColliderCategoryBits);
-			m_pFixture->SetFilterData(l_b2Filter);
+			auto l_FoundBitIterator = m_ColliderData.m_usetColliderMaskBits.find(a_BitToRemove);
+			if (l_FoundBitIterator != m_ColliderData.m_usetColliderMaskBits.end())
+			{
+				m_ColliderData.m_usetColliderMaskBits.erase(l_FoundBitIterator);
+				setMaskBits(m_ColliderData.m_usetColliderMaskBits);
+			}
 		}
 
-		std::vector<uint16> Collider2D::getCategoryBits() const
+		void Collider2D::addMaskBit(uint16 a_BitToAdd)
 		{
-			return m_ColliderData.m_vectColliderCategoryBits;
+			if (m_ColliderData.m_usetColliderMaskBits.find(a_BitToAdd) == m_ColliderData.m_usetColliderMaskBits.end())
+			{
+				m_ColliderData.m_usetColliderMaskBits.insert(a_BitToAdd);
+				setMaskBits(m_ColliderData.m_usetColliderMaskBits);
+			}
 		}
 
-		uint16 Collider2D::GetBitField(std::vector<uint16>& a_vectBits) const
+		void Collider2D::setCategoryBits(std::unordered_set<uint16> a_usetCategoryBits)
+		{
+			m_ColliderData.m_usetColliderCategoryBits = a_usetCategoryBits;
+			updateFilterData();
+		}
+
+		const std::unordered_set<uint16> Collider2D::getCategoryBits() const
+		{
+			return m_ColliderData.m_usetColliderCategoryBits;
+		}
+
+		void Collider2D::removeCategoryBit(uint16 a_BitToRemove)
+		{
+			auto l_FoundBitIterator = m_ColliderData.m_usetColliderCategoryBits.find(a_BitToRemove);
+			if (l_FoundBitIterator != m_ColliderData.m_usetColliderCategoryBits.end())
+			{
+				m_ColliderData.m_usetColliderCategoryBits.erase(l_FoundBitIterator);
+				setCategoryBits(m_ColliderData.m_usetColliderCategoryBits);
+			}
+		}
+
+		void Collider2D::addCategoryBit(uint16 a_BitToAdd)
+		{
+			if (m_ColliderData.m_usetColliderCategoryBits.find(a_BitToAdd) == m_ColliderData.m_usetColliderCategoryBits.end())
+			{
+				m_ColliderData.m_usetColliderCategoryBits.insert(a_BitToAdd);
+				setCategoryBits(m_ColliderData.m_usetColliderCategoryBits);
+			}
+		}
+
+		uint16 Collider2D::GetBitField(std::unordered_set<uint16>& a_usetBits) const
 		{
 			uint16 l_Return = 0;
-			for (auto l_CollliderBit = a_vectBits.begin(); l_CollliderBit != a_vectBits.end(); l_CollliderBit++)
+			for (auto l_CollliderBit = a_usetBits.begin(); l_CollliderBit != a_usetBits.end(); l_CollliderBit++)
 			{
 				l_Return |= *l_CollliderBit;
 			}
 			return l_Return;
+		}
+
+		void Collider2D::updateFilterData()
+		{
+			b2Filter l_b2Filter;
+			l_b2Filter.maskBits = GetBitField(m_ColliderData.m_usetColliderMaskBits);
+			l_b2Filter.categoryBits= GetBitField(m_ColliderData.m_usetColliderCategoryBits);
+			m_pFixture->SetFilterData(l_b2Filter);
 		}
 
 #pragma endregion GETTERS AND SETTERS
@@ -269,7 +344,6 @@ namespace ns_fretBuzz
 		{
 			if (a_pColliderA->m_ColliderData.m_bIsSensor)
 			{
-				std::cout << "TRIGGER ENTER " << a_pColliderA->m_GameObject.getName() << "\n";
 				a_pColliderA->callContactInSiblingComponents(&IComponent::onTriggerEnter2D, a_pColliderB);
 			}
 			else

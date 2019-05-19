@@ -42,7 +42,7 @@ namespace ns_HMGame
 
 		//ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = new ns_HMGame::PrefabWeapon(&m_refRootGameObject, "WEAPON", { -375.0f, -100.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 70.0f, 70.0f });
 
-		WeaponManager::AddWeapon({ -200.0f, 200.0f , 0.0f }, WEAPON_DOUBLE_BARREL);
-		WeaponManager::AddWeapon({ -300.0f, 70.0f , 0.0f }, WEAPON_M16);
+		WeaponManager::AddWeapon({ -200.0f, 200.0f , 0.0f }, WEAPON_DOUBLE_BARREL, true);
+		WeaponManager::AddWeapon({ -300.0f, 70.0f , 0.0f }, WEAPON_M16, true);
 	}
 }

@@ -14,14 +14,19 @@ namespace ns_fretBuzz
 			void applyForceAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point);
 			void applyImpulseToCenter(glm::vec2 a_v2ForceDirection);
 			void applyImpulseAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point);
-			void setLinearVelocity(glm::vec2 a_v2VelocityDirection);
-			void setAngularVelocity(float a_fAngularVelocity);
+			
 
 #pragma region GETTERS AND SETTERS
 			glm::vec2 getWorldCenterOfCollider();
 
 			void setPhysicsBodyType(PHYSICS_BODY_TYPE a_PhysicsBodyType);
 			PHYSICS_BODY_TYPE getPhysicsBodyType();
+
+			void setLinearVelocity(glm::vec2 a_v2VelocityDirection);
+			glm::vec2 getLinearVelocity();
+
+			void setAngularVelocity(float a_fAngularVelocity);
+			float getAngularVelocity();
 
 			void setSensor(bool a_bIsSensor);
 			bool isSensor() const;
@@ -32,12 +37,23 @@ namespace ns_fretBuzz
 			void setDensity(float a_fDensity);
 			float getDensity();
 
-			void setMaskBits(std::vector<uint16> a_vectMaskBits);
-			std::vector<uint16> getMaskBits() const;
-			void setCategoryBits(std::vector<uint16> a_vectCategoryBits);
-			std::vector<uint16> getCategoryBits() const;
+			void setLinearDamping(float a_fLinearDamping);
+			float getLinearDamping();
 
-			uint16 GetBitField(std::vector<uint16>& a_vectBits) const;
+			void setAngularDamping(float a_fAngularDamping);
+			float getAngularDamping();
+
+			void setMaskBits(std::unordered_set<uint16> a_usetMaskBits);
+			const std::unordered_set<uint16> getMaskBits() const;
+			void removeMaskBit(uint16 a_BitToRemove);
+			void addMaskBit(uint16 a_BitToAdd);
+
+			void setCategoryBits(std::unordered_set<uint16> a_usetCategoryBits);
+			const std::unordered_set<uint16> getCategoryBits() const;
+			void removeCategoryBit(uint16 a_BitToRemove);
+			void addCategoryBit(uint16 a_BitToAdd);
+
+			uint16 GetBitField(std::unordered_set<uint16>& a_vectBits) const;
 
 #pragma endregion GETTERS AND SETTERS
 
@@ -60,6 +76,7 @@ namespace ns_fretBuzz
 			virtual void EndContact(b2Contact* a_pContact) override;
 
 			void callContactInSiblingComponents(void(IComponent::* FUNC_CONTACT)(Collider2D*), Collider2D* a_pOtherCollider);
+			void updateFilterData();
 
 		private:
 			void manageCollisionContactStart(Collider2D* a_pColliderA, Collider2D* a_pColliderB);

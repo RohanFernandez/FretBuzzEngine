@@ -3,6 +3,7 @@
 #include "weapon.h"
 #include <utils/pool/gameobject_pool.h>
 #include <game/prefab/prefab_weapon.h>
+#include <game/prefab/prefab_bullet.h>
 
 namespace ns_HMGame
 {
@@ -14,6 +15,7 @@ namespace ns_HMGame
 		std::map<WEAPON_TYPE, WeaponData> m_WeaponMap;
 
 		ns_fretBuzz::GameObjectPool<PrefabWeapon> m_WeaponPool;
+		ns_fretBuzz::GameObjectPool<PrefabBullet> m_BulletPool;
 
 	protected:
 		virtual ~WeaponManager();
@@ -22,6 +24,7 @@ namespace ns_HMGame
 		WeaponManager(ns_fretBuzz::ns_system::GameObject* a_GameObject);
 
 		static WeaponData GetWeaponData(WEAPON_TYPE a_WeaponType);
-		static Weapon* AddWeapon(glm::vec3 a_v3Position, WEAPON_TYPE a_WeaponType);
+		static Weapon* AddWeapon(glm::vec3 a_v3Position, WEAPON_TYPE a_WeaponType, bool a_bIsActiv);
+		static void ReturnWeaponToPool(PrefabWeapon* a_pWeaponToReturn);
 	};
 }

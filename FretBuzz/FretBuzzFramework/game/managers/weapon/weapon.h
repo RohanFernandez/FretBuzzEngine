@@ -41,6 +41,16 @@ namespace ns_HMGame
 
 		WeaponData m_WeaponData;
 
+		enum WEAPON_STATE
+		{
+			DROP,
+			IN_USE,
+			THROWN
+		};
+
+		WEAPON_STATE m_CurrentWeaponState;
+		void setWeaponState(WEAPON_STATE a_State);
+
 	public:
 		Weapon(ns_fretBuzz::ns_system::GameObject2D* a_GameObject);
 		WeaponData getWeaponData();
@@ -52,6 +62,10 @@ namespace ns_HMGame
 		virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
 
 		void startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection);
-		void stopWeaponThrow();
+		void pickup();
+
+		virtual void update(float a_fDeltaTime) override;
+
+		void fire();
 	};
 }

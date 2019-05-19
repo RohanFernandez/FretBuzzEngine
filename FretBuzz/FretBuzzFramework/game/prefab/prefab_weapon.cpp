@@ -15,12 +15,13 @@ namespace ns_HMGame
 		: ns_fretBuzz::ns_system::GameObject2D(*a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, false)
 	{
 		ns_fretBuzz::ns_system::ColliderData l_SensorRectColliderData;
-		l_SensorRectColliderData.m_bIsSensor = true;
-		l_SensorRectColliderData.m_vectColliderCategoryBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
-		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
-		l_SensorRectColliderData.m_vectColliderMaskBits.emplace_back(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
-		l_SensorRectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::STATIC;
+		l_SensorRectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
+		l_SensorRectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+		l_SensorRectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
+		l_SensorRectColliderData.m_fDensity = 0.0f;
+		l_SensorRectColliderData.m_fLinearDamping = 0.5f;
+		l_SensorRectColliderData.m_fAngularDamping = 0.5f;
 
 		ns_fretBuzz::ns_graphics::SpriteRenderer::addToGameObject(*this);
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_SensorRectColliderData);

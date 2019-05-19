@@ -52,7 +52,9 @@ namespace ns_fretBuzz
 			m_fTimePassedSinceLastStep += a_fDeltaTime;
 			if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP)
 			{
-				m_fTimePassedSinceLastStep = 0.0f;
+				m_fTimePassedSinceLastStep -= System::PHYSICS_TIME_STEP;
+				if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP) { m_fTimePassedSinceLastStep = 0.0f; }
+
 				m_pB2World->Step(System::PHYSICS_TIME_STEP, m_iVelocityIteration, m_iStepIteration);
 			}
 		}

@@ -128,18 +128,18 @@ namespace ns_HMGame
 			WEAPON_TYPE l_CurrentWeaponType = m_WeaponData.getWeaponType();
 			if (l_CurrentWeaponType != WEAPON_TYPE::WEAPON_UNARMED)
 			{
-				Weapon* l_pWeaponToThrow = WeaponManager::AddWeapon(m_GameObject.m_Transform.getWorldPosition() + glm::vec3(l_v2PlayerToMouseDirection,0.0f) * 150.0f, l_CurrentWeaponType);
+				Weapon* l_pWeaponToThrow = WeaponManager::AddWeapon(m_GameObject.m_Transform.getWorldPosition() + glm::vec3(l_v2PlayerToMouseDirection, 0.0f) * 50.0f, l_CurrentWeaponType,true);
 				l_pWeaponToThrow->startWeaponThrow(l_v2PlayerToMouseDirection);
 
 				m_WeaponData = WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED);
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
 			}
 
-			if (m_pPlayerOverWeapon != nullptr)
+			if (m_vectWeaponOver.size() > 0)
 			{
-				m_WeaponData = m_pPlayerOverWeapon->getWeaponData();
+				m_WeaponData = m_vectWeaponOver[0]->getWeaponData();
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
-				m_pPlayerOverWeapon->m_GameObject.setActive(false);
+				m_vectWeaponOver[0]->pickup();
 			}
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
@@ -168,17 +168,23 @@ namespace ns_HMGame
 		std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
-	void PlayerController::setAsCurrentWeapon(ns_HMGame::Weapon* a_pWeapon)
+	void PlayerController::setAsCurrentWeaponOver(ns_HMGame::Weapon* a_pWeapon, bool a_bIsOver)
 	{
-		m_iWeaponOverCount = a_pWeapon == nullptr ? --m_iWeaponOverCount : ++m_iWeaponOverCount;
+		if (a_bIsOver) { addToWeaponOver(a_pWeapon); }
+		else { removeFromWeaponOver(a_pWeapon); }
+	}
 
-		if (a_pWeapon != nullptr)
+	void PlayerController::addToWeaponOver(Weapon* a_Weapon)
+	{
+		m_vectWeaponOver.emplace_back(a_Weapon);
+	}
+
+	void PlayerController::removeFromWeaponOver(Weapon* a_Weapon)
+	{
+		auto it = std::find(m_vectWeaponOver.begin(), m_vectWeaponOver.end(), a_Weapon);
+		if (it != m_vectWeaponOver.end())
 		{
-			m_pPlayerOverWeapon = a_pWeapon;
-		}
-		else if (m_iWeaponOverCount == 0)
-		{
-			m_pPlayerOverWeapon = nullptr;
+			m_vectWeaponOver.erase(it);
 		}
 	}
 }

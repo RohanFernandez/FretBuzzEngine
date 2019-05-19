@@ -12,16 +12,17 @@ namespace ns_HMGame
 	}
 
 	WeaponData::WeaponData(const WeaponData& a_WeaponData)
-		: WeaponData{ a_WeaponData.m_WeaponAttackType, a_WeaponData.m_WeaponType, a_WeaponData.m_strAnimOverrideTrigger, a_WeaponData.m_strWeaponSpriteName }
+		: WeaponData{ a_WeaponData.m_WeaponAttackType, a_WeaponData.m_WeaponType, a_WeaponData.m_strAnimOverrideTrigger, a_WeaponData.m_strWeaponSpriteName, a_WeaponData.m_strBulletSpriteName }
 	{
 
 	}
 
-	WeaponData::WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName)
+	WeaponData::WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName)
 		:	m_WeaponAttackType{ a_WeaponAttackType },
 			m_WeaponType{a_WeaponType},
 			m_strAnimOverrideTrigger{ a_strAnimOverrideTrigger },
-			m_strWeaponSpriteName{ a_strSpriteName }
+			m_strWeaponSpriteName{ a_strSpriteName },
+			m_strBulletSpriteName{ a_strBulletSpriteName }
 	{
 		
 	}
@@ -37,6 +38,7 @@ namespace ns_HMGame
 		m_WeaponAttackType = a_Other.m_WeaponAttackType;
 		m_strAnimOverrideTrigger = a_Other.m_strAnimOverrideTrigger;
 		m_strWeaponSpriteName = a_Other.m_strWeaponSpriteName;
+		m_strBulletSpriteName = a_Other.m_strBulletSpriteName;
 	}
 
 	WEAPON_TYPE WeaponData::getWeaponType() const
@@ -57,5 +59,10 @@ namespace ns_HMGame
 	std::string WeaponData::getWeaponSpriteName() const
 	{
 		return m_strWeaponSpriteName;
+	}
+
+	std::string WeaponData::getBulletSpriteName() const
+	{
+		return m_strBulletSpriteName;
 	}
 }
