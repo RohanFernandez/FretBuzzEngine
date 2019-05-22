@@ -58,6 +58,9 @@ namespace ns_fretBuzz
 #pragma endregion GETTERS AND SETTERS
 
 		protected:
+
+			using FUNC_CONTACT_EVENT = void(IComponent::*)(Collider2D*);
+
 			Collider2D(GameObject2D& a_GameObject2D, ColliderData& a_ColliderData);
 			~Collider2D();
 
@@ -75,12 +78,11 @@ namespace ns_fretBuzz
 			virtual void BeginContact(b2Contact* a_pContact) override;
 			virtual void EndContact(b2Contact* a_pContact) override;
 
-			void callContactInSiblingComponents(void(IComponent::* FUNC_CONTACT)(Collider2D*), Collider2D* a_pOtherCollider);
+			void callContactInSiblingComponents(FUNC_CONTACT_EVENT a_pFuncContact, Collider2D* a_pOtherCollider);
 			void updateFilterData();
 
 		private:
-			void manageCollisionContactStart(Collider2D* a_pColliderA, Collider2D* a_pColliderB);
-			void manageCollisionContactEnd(Collider2D* a_pColliderA, Collider2D* a_pColliderB);
+			void manageContacts(b2Contact* a_pContact, FUNC_CONTACT_EVENT a_pFuncCollision, FUNC_CONTACT_EVENT a_pFuncTrigger);
 		};
 	}
 }

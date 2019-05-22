@@ -33,7 +33,7 @@ namespace ns_HMGame
 
 	void Weapon::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		//std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+		std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 		ns_HMGame::PlayerController* l_pPlayerController = a_pIComponent->m_GameObject.getComponent<ns_HMGame::PlayerController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
 		if (l_pPlayerController != nullptr)
 		{
