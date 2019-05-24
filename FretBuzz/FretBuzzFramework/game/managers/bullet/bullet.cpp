@@ -20,6 +20,7 @@ namespace ns_HMGame
 
 	void Bullet::shootAt(glm::vec2 a_v2Direction)
 	{
+		m_fLifetime = 0.0f;
 		m_pCollider2D->setLinearVelocity(a_v2Direction * 1500.0f);
 	}
 
@@ -41,5 +42,14 @@ namespace ns_HMGame
 	void Bullet::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
 	
+	}
+
+	void Bullet::update(float a_fDeltaTime)
+	{
+		m_fLifetime += a_fDeltaTime;
+		if (m_fLifetime > MAX_LIFETIME)
+		{
+			WeaponManager::ReturnBulletToPool(dynamic_cast<PrefabBullet*>(&m_GameObject));
+		}
 	}
 }

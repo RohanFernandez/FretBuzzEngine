@@ -10,6 +10,9 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_graphics::SpriteRenderer* m_pSpriteRenderer = nullptr;
 		ns_fretBuzz::ns_system::Collider2D* m_pCollider2D = nullptr;
 
+		float m_fLifetime = 0.0f;
+		static constexpr float MAX_LIFETIME = 3.0f;
+
 	public:
 		Bullet(ns_fretBuzz::ns_system::GameObject2D* a_GameObject);
 		void setBulletType(std::string a_strBulletSpriteName);
@@ -21,5 +24,7 @@ namespace ns_HMGame
 
 		virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
 		virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
+
+		void virtual update(float a_fDeltaTime) override;
 	};
 }
