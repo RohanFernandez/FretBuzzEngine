@@ -29,6 +29,7 @@ namespace ns_fretBuzz
 			bool m_bIsBullet = false;
 			bool m_bIsFixedRotation = true;
 			float m_fDensity = 0.0f;
+			float m_fFriction = 0.0f;
 			float m_fLinearDamping = 0.0f;
 			float m_fAngularDamping = 0.0f;
 			COLLIDER_SHAPE m_ColliderShape = SHAPE_RECT;
@@ -55,6 +56,7 @@ namespace ns_fretBuzz
 				m_fLinearDamping			= a_Other.m_fLinearDamping;
 				m_fAngularDamping			= a_Other.m_fAngularDamping;
 				m_fDensity					= a_Other.m_fDensity;
+				m_fFriction					= a_Other.m_fFriction;
 				m_ColliderShape			    = a_Other.m_ColliderShape;
 				m_v2RelativePos			    = a_Other.m_v2RelativePos;
 				m_fRadius				    = a_Other.m_fRadius;

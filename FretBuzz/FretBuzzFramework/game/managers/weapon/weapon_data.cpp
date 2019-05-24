@@ -65,4 +65,13 @@ namespace ns_HMGame
 	{
 		return m_strBulletSpriteName;
 	}
+
+	void WeaponData::fire(glm::vec2 a_v2Position, glm::vec2 a_v2Direction, glm::quat a_quatRotation)
+	{
+		if (GUN == m_WeaponAttackType)
+		{
+			Bullet* l_pBullet = WeaponManager::AddBullet(a_v2Position, a_quatRotation, m_strBulletSpriteName);
+			l_pBullet->shootAt(a_v2Direction);
+		}
+	}
 }

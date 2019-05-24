@@ -24,6 +24,8 @@ namespace ns_HMGame
 		std::string getWeaponSpriteName() const;
 		std::string getBulletSpriteName() const;
 
+		void fire(glm::vec2 a_v2Position, glm::vec2 a_v3Direction,glm::quat a_quatRotation);
+
 		void operator=(const WeaponData& a_Other);
 
 	private:

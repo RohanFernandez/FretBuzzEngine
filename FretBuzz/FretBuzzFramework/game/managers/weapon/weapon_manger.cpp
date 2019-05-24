@@ -70,8 +70,26 @@ namespace ns_HMGame
 		return l_pWeapon;
 	}
 
+	Bullet* WeaponManager::AddBullet(glm::vec2 a_v2Position, glm::quat a_quatRotation, std::string a_strBulletSpriteName)
+	{
+		PrefabBullet* l_pPrefabBullet = s_pInstance->m_BulletPool.getGameObject(&s_pInstance->m_GameObject);
+		l_pPrefabBullet->setAsParent(&s_pInstance->m_GameObject);
+		l_pPrefabBullet->m_Transform.setLocalRotation(a_quatRotation);
+		l_pPrefabBullet->m_Transform.setWorldPosition(glm::vec3{a_v2Position,0.0f});
+		l_pPrefabBullet->setActive(true);
+		Bullet* l_pBullet = l_pPrefabBullet->getComponent<Bullet>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+		l_pBullet->setBulletType(a_strBulletSpriteName);
+
+		return l_pBullet;
+	}
+
 	void WeaponManager::ReturnWeaponToPool(PrefabWeapon* a_pWeaponToReturn)
 	{
 		s_pInstance->m_WeaponPool.returnToPool(a_pWeaponToReturn);
+	}
+
+	void WeaponManager::ReturnBulletToPool(PrefabBullet* a_pWeaponToReturn)
+	{
+		s_pInstance->m_BulletPool.returnToPool(a_pWeaponToReturn);
 	}
 }

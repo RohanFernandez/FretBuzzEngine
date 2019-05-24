@@ -12,7 +12,8 @@ namespace ns_fretBuzz
 
 		PhysicsEngine::PhysicsEngine(b2Vec2 a_v2Gravity, int a_iVelocityIteration, int a_iStepIteration)
 			: m_iVelocityIteration{ a_iVelocityIteration },
-			  m_iStepIteration{ a_iStepIteration }
+			  m_iStepIteration{ a_iStepIteration },
+			m_stackContactEvent()
 		{
 			s_pInstance = this;
 			m_pB2World = new b2World(a_v2Gravity);
@@ -47,6 +48,8 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
+		// Contacts i.e. TriggerEnter, TriggerExit, CollisionEnter, CollisionExit that occured during step
+		// are collected and invoked after the step because Box2D is locked during and no Box2D component should be calculated during.
 		void PhysicsEngine::step(float a_fDeltaTime)
 		{
 			m_fTimePassedSinceLastStep += a_fDeltaTime;
@@ -56,6 +59,18 @@ namespace ns_fretBuzz
 				if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP) { m_fTimePassedSinceLastStep = 0.0f; }
 
 				m_pB2World->Step(System::PHYSICS_TIME_STEP, m_iVelocityIteration, m_iStepIteration);
+				invokeContactCallbacks();
+			}
+		}
+
+		void PhysicsEngine::invokeContactCallbacks()
+		{
+			Collider2DContactEvent l_ContactEvent;
+			while (!m_stackContactEvent.empty())
+			{
+				l_ContactEvent = m_stackContactEvent.top();
+				l_ContactEvent.invoke();
+				m_stackContactEvent.pop();
 			}
 		}
 
@@ -69,6 +84,11 @@ namespace ns_fretBuzz
 			s_pInstance->m_RaycastCallback.reset();
 			s_pInstance->m_pB2World->RayCast(&s_pInstance->m_RaycastCallback, b2Vec2{ a_v2Point1.x, a_v2Point1.y }, b2Vec2{ a_v2Point2.x, a_v2Point2.y });
 			a_pCollider2D = s_pInstance->m_RaycastCallback.getIntersectedCollider2D();
+		}
+
+		void PhysicsEngine::AddContactEvent(Collider2DContactEvent a_ContactEvent)
+		{
+			s_pInstance->m_stackContactEvent.push(a_ContactEvent);
 		}
 	}
 }

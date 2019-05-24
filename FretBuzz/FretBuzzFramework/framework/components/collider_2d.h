@@ -9,6 +9,7 @@ namespace ns_fretBuzz
 		class Collider2D : public IComponent2D, protected b2ContactListener
 		{
 		public:
+			using FUNC_CONTACT_EVENT = void(IComponent::*)(Collider2D*);
 
 			void applyForceToCenter(glm::vec2 a_v2ForceDirection);
 			void applyForceAtPoint(glm::vec2 a_v2ForceDirection, glm::vec2 a_v2Point);
@@ -55,12 +56,11 @@ namespace ns_fretBuzz
 
 			uint16 GetBitField(std::unordered_set<uint16>& a_vectBits) const;
 
+			static void ManageContacts(Collider2D* a_pColliderA, Collider2D* a_pColliderB, FUNC_CONTACT_EVENT a_pFuncCollision, FUNC_CONTACT_EVENT a_pFuncTrigger);
+
 #pragma endregion GETTERS AND SETTERS
 
 		protected:
-
-			using FUNC_CONTACT_EVENT = void(IComponent::*)(Collider2D*);
-
 			Collider2D(GameObject2D& a_GameObject2D, ColliderData& a_ColliderData);
 			~Collider2D();
 
@@ -75,14 +75,11 @@ namespace ns_fretBuzz
 			void onSiblingComponentAdded(IComponent* a_pComponent);
 			void onSiblingComponentRemoved(IComponent* a_pComponent);
 
-			virtual void BeginContact(b2Contact* a_pContact) override;
-			virtual void EndContact(b2Contact* a_pContact) override;
+			void BeginContact(b2Contact* a_pContact) override;
+			void EndContact(b2Contact* a_pContact) override;
 
 			void callContactInSiblingComponents(FUNC_CONTACT_EVENT a_pFuncContact, Collider2D* a_pOtherCollider);
 			void updateFilterData();
-
-		private:
-			void manageContacts(b2Contact* a_pContact, FUNC_CONTACT_EVENT a_pFuncCollision, FUNC_CONTACT_EVENT a_pFuncTrigger);
 		};
 	}
 }

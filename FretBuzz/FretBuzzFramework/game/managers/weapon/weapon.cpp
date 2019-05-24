@@ -105,18 +105,10 @@ namespace ns_HMGame
 	{
 		if (WEAPON_STATE::THROWN == m_CurrentWeaponState)
 		{
-			if (glm::length(m_pCollider2D->getLinearVelocity()) < 60.0f)
+			if (glm::length(m_pCollider2D->getLinearVelocity()) < 75.0f)
 			{
 				setWeaponState(WEAPON_STATE::DROP);
 			}
-		}
-	}
-
-	void Weapon::fire()
-	{
-		if (m_WeaponData.GUN == m_WeaponData.getWeaponAttackType())
-		{
-			
 		}
 	}
 }

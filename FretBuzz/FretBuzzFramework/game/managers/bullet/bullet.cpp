@@ -1,6 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "bullet.h"
 #include <system/core/resource_manager.h>
+#include "game/managers/weapon/weapon_manager.h"
 
 namespace ns_HMGame
 {
@@ -9,6 +10,7 @@ namespace ns_HMGame
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 	{
 		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_RENDERER);
+		m_pCollider2D = m_GameObject.getComponent<ns_fretBuzz::ns_system::Collider2D>(ns_fretBuzz::ns_system::COMPONENT_TYPE::COLLIDER_2D);
 	}
 
 	void Bullet::setBulletType(std::string a_strBulletSpriteName)
@@ -16,13 +18,28 @@ namespace ns_HMGame
 		m_pSpriteRenderer->setSprite(a_strBulletSpriteName);
 	}
 
+	void Bullet::shootAt(glm::vec2 a_v2Direction)
+	{
+		m_pCollider2D->setLinearVelocity(a_v2Direction * 1500.0f);
+	}
+
 	void Bullet::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-
+		WeaponManager::ReturnBulletToPool(dynamic_cast<PrefabBullet*>(&m_GameObject));
 	}
 
 	void Bullet::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
 		
+	}
+
+	void Bullet::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+		WeaponManager::ReturnBulletToPool(dynamic_cast<PrefabBullet*>(&m_GameObject));
+	}
+
+	void Bullet::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	{
+	
 	}
 }

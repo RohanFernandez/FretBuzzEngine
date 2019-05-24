@@ -66,6 +66,6 @@ namespace ns_HMGame
 
 		virtual void update(float a_fDeltaTime) override;
 
-		void fire();
+		void fire(glm::vec3 a_v3Position, glm::vec3 a_v3Direction);
 	};
 }

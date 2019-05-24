@@ -104,10 +104,12 @@ namespace ns_HMGame
 			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
 		}
 		//// DEBUG END ////
-
 		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 		{
 			m_pUpperSpriteAnimator->play("attack");
+			glm::vec3 l_v3PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
+			m_WeaponData.fire(glm::vec2{l_v3PlayerPosition.x, l_v3PlayerPosition.y} +l_v2PlayerToMouseDirection * 100.0f, l_v2PlayerToMouseDirection, m_pPlayerUpperGameObj->m_Transform.getLocalRotation());
+
 			/*ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
 			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			glm::vec2 l_v2MouseWorldPosition = l_v2PlayerPosition + l_MousePosition;
