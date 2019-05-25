@@ -10,6 +10,8 @@ namespace ns_HMGame
 	class PlayerController : public ns_fretBuzz::ns_system::Behaviour
 	{
 	private:
+		static PlayerController* s_Instance;
+
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
@@ -49,5 +51,10 @@ namespace ns_HMGame
 		virtual void onCollisionExit2D (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
 		virtual void onTriggerEnter2D  (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
 		virtual void onTriggerExit2D   (ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) override ;
+
+		inline static PlayerController* GetInstance()
+		{
+			return s_Instance;
+		}
 	};
 }

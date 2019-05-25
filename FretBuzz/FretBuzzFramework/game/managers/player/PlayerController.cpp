@@ -7,10 +7,13 @@
 
 namespace ns_HMGame
 {
+	PlayerController* PlayerController:: s_Instance = nullptr;;
+
 	PlayerController::PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
 		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
 		m_WeaponData{WeaponManager::GetWeaponData(WEAPON_UNARMED)}
 	{
+		s_Instance = this;
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
 

@@ -22,6 +22,7 @@ namespace ns_HMGame
 		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC;
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
+		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BULLET);
 
 		l_RectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 

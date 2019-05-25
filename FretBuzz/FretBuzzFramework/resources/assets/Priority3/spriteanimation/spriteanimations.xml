@@ -141,7 +141,7 @@
     </sprite_animator>
 
     <sprite_animator id ="CharacterLegs">
-      <!-- AXE START-->
+      <!-- PLAYER CHARACTER LEGS-->
       <anim_state id="LegsIdle" spritesheet_id="player_legs|bluelegs_idle" is_loop="true" time_per_sprite="0.06" trigger="walk|LegsWalk;"/>
       <anim_state id="LegsWalk" spritesheet_id="player_legs|bluelegs_walk" is_loop="true" time_per_sprite="0.06" trigger="idle|LegsIdle;"/>
       <!-- AXE END-->
@@ -149,8 +149,16 @@
 
     <sprite_animator id ="Enemy">
       <!-- AXE START-->
-      <!--anim_state id="AxeIdle" spritesheet_id="player_axe|axe_walk" is_loop="true" time_per_sprite="0.07" trigger="attack|AxeAttack;" />
-      <anim_state id="AxeAttack" spritesheet_id="player_axe|axe_attack" is_loop="false" time_per_sprite="0.07" trigger="idle|AxeIdle;" onCompleteTrigger="idle"/-->
+      <anim_state id="M16Idle" spritesheet_id="enemy_M16|M16_idle" is_loop="true" time_per_sprite="0.07" trigger="walk|M16Walk;attack|M16Attack;" />
+      <anim_state id="M16Walk" spritesheet_id="enemy_M16|M16_walk" is_loop="true" time_per_sprite="0.07" trigger="idle|M16Idle;attack|M16Attack;" />
+      <anim_state id="M16Attack" spritesheet_id="enemy_M16|M16_attack" is_loop="false" time_per_sprite="0.07" trigger="attackComplete|M16Idle;" onCompleteTrigger="attackComplete"/>
+      <!-- AXE END-->
+    </sprite_animator>
+
+    <sprite_animator id ="EnemyLegs">
+      <!-- PLAYER CHARACTER LEGS-->
+      <anim_state id="LegsIdle" spritesheet_id="enemy_legs|enemylegs_idle" is_loop="true" time_per_sprite="0.06" trigger="walk|LegsWalk;"/>
+      <anim_state id="LegsWalk" spritesheet_id="enemy_legs|enemylegs_walk" is_loop="true" time_per_sprite="0.06" trigger="idle|LegsIdle;"/>
       <!-- AXE END-->
     </sprite_animator>
 

@@ -11,6 +11,7 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
 		l_RectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_ENEMY);
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PICKUP);
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BULLET);
 		l_RectColliderData.m_fFriction = 1.0f;

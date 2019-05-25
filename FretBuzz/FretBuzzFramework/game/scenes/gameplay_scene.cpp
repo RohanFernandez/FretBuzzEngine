@@ -15,6 +15,7 @@
 #include "game/prefab/prefab_game_manager.h"
 #include "game/prefab/prefab_weapon.h"
 #include "game/managers/weapon/weapon_manager.h"
+#include "game/prefab/prefab_enemy.h"
 
 namespace ns_HMGame
 {
@@ -39,6 +40,10 @@ namespace ns_HMGame
 
 		/// Player
 		ns_fretBuzz::ns_system::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, -100.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+
+		/// Enemy
+		ns_fretBuzz::ns_system::GameObject2D* m_pEnemyGameObject1 = new PrefabEnemy(m_refRootGameObject, "Enemy1", { 0.0f, -200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+		ns_fretBuzz::ns_system::GameObject2D* m_pEnemyGameObject2 = new PrefabEnemy(m_refRootGameObject, "Enemy2", { 300.0f, 200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
 
 		//ns_fretBuzz::ns_system::GameObject2D* l_pPickupGameObj = new ns_HMGame::PrefabWeapon(&m_refRootGameObject, "WEAPON", { -375.0f, -100.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 70.0f, 70.0f });
 

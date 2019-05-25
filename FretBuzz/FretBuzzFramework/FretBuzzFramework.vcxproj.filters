@@ -225,6 +225,12 @@
     <ClCompile Include="game\managers\bullet\bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\managers\enemy\EnemyController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\prefab\prefab_enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -488,6 +494,12 @@
     <ClInclude Include="game\managers\bullet\bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\managers\enemy\EnemyController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\prefab\prefab_enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_sprite.fs" />
@@ -557,6 +569,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="resources\sprites\Enemy\EnemyUnarmed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Enemy\EnemyBat.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\sprites\Enemy\EnemyM16.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

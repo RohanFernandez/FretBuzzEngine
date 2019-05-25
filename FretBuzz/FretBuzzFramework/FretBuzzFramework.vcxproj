@@ -243,12 +243,14 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fretbuzz_pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="game\managers\enemy\EnemyController.cpp" />
     <ClCompile Include="game\managers\InteractiveObject.cpp" />
     <ClCompile Include="game\managers\weapon\weapon.cpp" />
     <ClCompile Include="game\managers\weapon\weapon_data.cpp" />
     <ClCompile Include="game\managers\weapon\weapon_manger.cpp" />
     <ClCompile Include="game\managers\player\PlayerController.cpp" />
     <ClCompile Include="game\prefab\prefab_bullet.cpp" />
+    <ClCompile Include="game\prefab\prefab_enemy.cpp" />
     <ClCompile Include="game\prefab\prefab_game_manager.cpp" />
     <ClCompile Include="game\prefab\prefab_wall.cpp" />
     <ClCompile Include="game\prefab\prefab_player.cpp" />
@@ -313,6 +315,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\game_object_2d.h" />
     <ClInclude Include="framework\utils\resource_container.h" />
     <ClInclude Include="fretbuzz_pch.h" />
+    <ClInclude Include="game\managers\enemy\EnemyController.h" />
     <ClInclude Include="game\managers\InteractiveObject.h" />
     <ClInclude Include="game\managers\weapon\weapon.h" />
     <ClInclude Include="game\managers\weapon\weapon_data.h" />
@@ -320,6 +323,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="game\managers\player\PlayerController.h" />
     <ClInclude Include="game\managers\bullet\bullet.h" />
     <ClInclude Include="game\prefab\prefab_bullet.h" />
+    <ClInclude Include="game\prefab\prefab_enemy.h" />
     <ClInclude Include="game\prefab\prefab_game_manager.h" />
     <ClInclude Include="game\prefab\prefab_wall.h" />
     <ClInclude Include="game\prefab\prefab_player.h" />
@@ -360,6 +364,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
   <ItemGroup>
     <Image Include="resources\model\computerdesk\Textures\Dark-Wood-Texture-520x339.jpg" />
     <Image Include="resources\sprites\Cursor\Cursor.png" />
+    <Image Include="resources\sprites\Enemy\EnemyBat.png" />
+    <Image Include="resources\sprites\Enemy\EnemyM16.png" />
     <Image Include="resources\sprites\Enemy\EnemyUnarmed.png" />
     <Image Include="resources\sprites\Player\Player_Axe.png" />
     <Image Include="resources\sprites\Player\Player_Bat.png" />
