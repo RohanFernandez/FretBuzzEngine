@@ -11,10 +11,10 @@ A game engine made to support 2D and 3D games.
 ## **Engine/Game progress build**
 [BUILD LINK](https://www.dropbox.com/s/2rbgrtq2f33v41i/FretBuzzEngine_Build.zip?dl=0)
 
-Controls:
-Mouse Left Click : Attack / Fire
-Mouse Right Click : Pick Weapon / Throw Weapon
-Movement : W,A,S,D 
+*Controls:*
+1. Mouse Left Click : Attack / Fire
+1. Mouse Right Click : Pick Weapon / Throw Weapon
+1. Movement : W,A,S,D 
 
 ## **Resources/Libs::**
 	*Graphics API 		:: Open GL, GLEW, GLFW
