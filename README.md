@@ -9,10 +9,10 @@ A game engine made to support 2D and 3D games.
 
 ## **Resources/Libs::**
 	*Graphics API 		:: Open GL, GLEW, GLFW
-    *Image        		:: FreeImage
+	*Image        		:: FreeImage
 	*Audio        		:: irrKlang
 	*Math         		:: GLM
-	*Physics/Collisions 	:: Box2D 
+	*Physics/Collisions :: Box2D 
 	*xml parser 		:: pugixml
 	*Model loader 		:: Assimp
-	*Engine Editor UI 	:: Assimp
+	*Engine Editor UI 	:: ImGUI
