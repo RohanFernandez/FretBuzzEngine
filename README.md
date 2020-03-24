@@ -12,7 +12,7 @@ A game engine made to support 2D and 3D games.
 	*Image        		:: FreeImage
 	*Audio        		:: irrKlang
 	*Math         		:: GLM
-	*Physics/Collisions :: Box2D 
+	*Physics/Collisions	:: Box2D 
 	*xml parser 		:: pugixml
 	*Model loader 		:: Assimp
 	*Engine Editor UI 	:: ImGUI
