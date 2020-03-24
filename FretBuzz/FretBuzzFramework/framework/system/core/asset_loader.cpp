@@ -15,9 +15,9 @@ namespace ns_fretBuzz
 		void AssetLoader::loadAssets(ResourceManager* a_pResourceManager)
 		{
 			std::vector<std::string> l_vectXMLPathName;
-			for (auto& l_CurrentDirectory : std::experimental::filesystem::recursive_directory_iterator(ASSET_RESOURCE_FILE_PATH))
+			for (auto& l_CurrentDirectory : std::filesystem::recursive_directory_iterator(ASSET_RESOURCE_FILE_PATH))
 			{
-				if (l_CurrentDirectory.status().type() != std::experimental::filesystem::file_type::directory)
+				if (l_CurrentDirectory.status().type() != std::filesystem::file_type::directory)
 				{
 					l_vectXMLPathName.push_back(l_CurrentDirectory.path().string());
 				}

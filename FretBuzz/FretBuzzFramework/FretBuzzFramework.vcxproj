@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6FC8790C-2839-4D4E-9AB5-2A059207B2B6}</ProjectGuid>
     <RootNamespace>FretBuzzFramework</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,6 +103,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -123,6 +124,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;irrKlang.lib;freetype.lib;Box2D.lib;pugixml.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -145,6 +147,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -169,6 +172,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
