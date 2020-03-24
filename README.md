@@ -15,3 +15,4 @@ A game engine made to support 2D and 3D games.
 	*Physics/Collisions 	:: Box2D 
 	*xml parser 		:: pugixml
 	*Model loader 		:: Assimp
+	*Engine Editor UI 	:: Assimp
