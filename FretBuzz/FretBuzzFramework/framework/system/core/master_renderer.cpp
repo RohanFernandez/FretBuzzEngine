@@ -4,6 +4,10 @@
 #include "graphics/sprite_batch_renderer.h"
 #include "system/camera_manager.h"
 #include "../scene_manager.h"
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_glfw.h>
+#include <imgui/imgui_impl_opengl3.h>
+#include "system.h"
 
 namespace ns_fretBuzz
 {
@@ -53,6 +57,13 @@ namespace ns_fretBuzz
 			m_pPostProcessManager->togglePostProcess(false);
 
 			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
+
+#if _IS_DEBUG
+			ImGui::CreateContext();
+			ImGui::StyleColorsDark();
+			ImGui_ImplGlfw_InitForOpenGL(getGLFWWindow(), true);
+			ImGui_ImplOpenGL3_Init();
+#endif
 		}
 
 		MasterRenderer:: ~MasterRenderer()
@@ -74,17 +85,47 @@ namespace ns_fretBuzz
 			m_pWindow->destroy();
 		}
 
+		bool show_demo_window = true;
+		bool show_another_window = false;
+		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
 		float MasterRenderer::render(ns_system::SceneManager& a_SceneManager)
 		{
 			m_pWindow->clear();
+			
+#if _IS_DEBUG
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+
+			ImGui::Begin("System Manager");
+			bool l_bIsPaused = ns_system::System::IsSystemPaused();
+			ImGui::Checkbox("Pause", &l_bIsPaused);
+			ns_system::System::ToggleSystemPause(l_bIsPaused);
+
+			float l_fCurentScaledTime = ns_system::System::GetScaledTime();
+			ImGui::SliderFloat("Scale Time", &l_fCurentScaledTime, 0.0f ,1.0f);
+			ns_system::System::SetScaledTime(l_fCurentScaledTime);
+			ImGui::End();
+#endif
+
+
 			m_pBatchRendererManager->beginBatches();
 
 			m_pCameraManager->updateViewMatrix();
 			m_pCameraManager->renderFrame(a_SceneManager, *m_pPostProcessManager);
 			
 			m_pBatchRendererManager->endAndflushBatches();
+
+#if _IS_DEBUG
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+#endif
+
 			m_pWindow->update();
 			m_pTimer->update();
+
+
 			return m_pTimer->getDeltaTime();
 		}
 
@@ -100,6 +141,11 @@ namespace ns_fretBuzz
 
 		void MasterRenderer::closeWindow() const
 		{
+#if _IS_DEBUG
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplGlfw_Shutdown();
+#endif
+
 			m_pWindow->closeWindow();
 		}
 

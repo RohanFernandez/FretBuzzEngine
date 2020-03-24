@@ -72,25 +72,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libs\GLFW;$(SolutionDir)Libs\GLEW;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(SolutionDir)Libs\;$(ProjectDir)vendor;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Debug;$(SolutionDir)Libs\pugixml\lib\Win32\Debug;$(SolutionDir)Libs\assimp\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libs\GLFW;$(SolutionDir)Libs\GLEW;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(SolutionDir)Libs;$(ProjectDir)vendor;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\Win32;$(SolutionDir)Libs\GLEW\lib\Win32;$(SolutionDir)Libs\FreeImage\lib\Win32;$(SolutionDir)Libs\irrKlang\lib\Win32;$(SolutionDir)Libs\Freetype\lib\Win32;$(SolutionDir)Libs\Box2D\lib\Win32\Release;$(SolutionDir)Libs\pugixml\lib\Win32\Release;$(SolutionDir)Libs\assimp\lib\Win32\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libs\GLFW;$(SolutionDir)Libs\GLEW;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(SolutionDir)Libs;$(ProjectDir)vendor;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Debug;$(SolutionDir)Libs\pugixml\lib\x64\Debug;$(SolutionDir)Libs\assimp\lib\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Bin\FretBuzzFramework\$(PlatformTarget)\Intermediate\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Libs\GLFW\include\;$(SolutionDir)Libs\GLEW\include\;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libs\GLFW;$(SolutionDir)Libs\GLEW;$(SolutionDir)Libs\FreeImage\include;$(SolutionDir)Libs\GLM\include;$(SolutionDir)Libs\irrKlang\include;$(SolutionDir)Libs\Freetype\include;$(SolutionDir)Libs\Box2D\include;$(SolutionDir)Libs\pugixml\include;$(SolutionDir)Libs\assimp\include;$(SolutionDir)Libs;$(ProjectDir)vendor;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\GLFW\lib\x64;$(SolutionDir)Libs\GLEW\lib\x64;$(SolutionDir)Libs\FreeImage\lib\x64;$(SolutionDir)Libs\irrKlang\lib\x64;$(SolutionDir)Libs\Freetype\lib\x64;$(SolutionDir)Libs\Box2D\lib\x64\Release;$(SolutionDir)Libs\pugixml\lib\x64\Release;$(SolutionDir)Libs\assimp\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)FretBuzzFramework;$(SolutionDir)FretBuzzFramework\framework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -121,7 +121,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)FretBuzzFramework;$(SolutionDir)FretBuzzFramework\framework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_IS_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -144,7 +144,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)FretBuzzFramework;$(SolutionDir)FretBuzzFramework\framework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -169,7 +169,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x86" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)FretBuzzFramework;$(SolutionDir)FretBuzzFramework\framework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_USE_MATH_DEFINES;_FRETBUZZ_WINDOWS;_FRET_BUZZ_CONFIG_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>fretbuzz_pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -267,6 +267,12 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\system\core\system.cpp" />
     <ClCompile Include="framework\system\core\window.cpp" />
     <ClCompile Include="test\EnemyTest.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\components\collider_2d.h" />
@@ -358,6 +364,14 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="test\light_cube.h" />
     <ClInclude Include="test\test_cube.h" />
     <ClInclude Include="test\PlayerController.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_line.fs" />

@@ -40,6 +40,13 @@ namespace ns_fretBuzz
 
 			SceneManager* m_pSceneManager = nullptr;
 
+			bool m_bIsSystemPaused = false;
+
+			float m_fDeltaTime = 0.0f;
+
+			//The delta time is scaled to this value between 0 - 1
+			float m_fScaledTime = 1.0f;
+
 		public:
 			static constexpr float PHYSICS_TIME_STEP = 1.0f / 400.0f;
 			~System();
@@ -47,6 +54,12 @@ namespace ns_fretBuzz
 			//Runs the main loop, initializes system publicly if not previusly initialized
 			static void run(GameStartupData& a_GameStartupData);
 			static void close();
+
+			static void SetScaledTime(float a_fScaledTime);
+			static float GetScaledTime();
+			static float GetDeltaTime();
+			static bool IsSystemPaused();
+			static void ToggleSystemPause(bool a_bisPause);
 		};
 	}
 }

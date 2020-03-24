@@ -2,6 +2,7 @@
 #include "system/system_defines.h"
 #include "game_object.h"
 #include "components/gameobject_components/camera.h"
+#include <imgui/imgui.h>
 
 namespace ns_fretBuzz
 {
@@ -126,9 +127,22 @@ namespace ns_fretBuzz
 
 		void GameObject::render(const ns_graphics::Camera& a_Camera)
 		{
-			const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
-
-			renderComponents(l_mat4RenderTransformation, a_Camera);
+//#if _IS_DEBUG
+//			ImGui::Begin(m_strName.c_str());
+//			bool l_bIsActive = m_bIsActiveSelf;
+//			ImGui::Checkbox("Active", &l_bIsActive);
+//
+//			if (l_bIsActive != m_bIsActiveSelf)
+//			{
+//				setActive(l_bIsActive);
+//			}
+//			ImGui::End();
+//#endif
+			if (getIsActiveInHierarchy())
+			{
+				const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
+				renderComponents(l_mat4RenderTransformation, a_Camera);
+			}
 			renderChildren(a_Camera);
 		}
 
@@ -158,7 +172,6 @@ namespace ns_fretBuzz
 			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				l_pCurrentGameObject = m_Children[l_iChildIndex];
-
 				if (l_pCurrentGameObject->getIsActiveInHierarchy())
 				{
 					l_pCurrentGameObject->render(a_Camera);
