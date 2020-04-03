@@ -92,23 +92,6 @@ namespace ns_fretBuzz
 		float MasterRenderer::render(ns_system::SceneManager& a_SceneManager)
 		{
 			m_pWindow->clear();
-			
-#if _IS_DEBUG
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplGlfw_NewFrame();
-			ImGui::NewFrame();
-
-			ImGui::Begin("System Manager");
-			bool l_bIsPaused = ns_system::System::IsSystemPaused();
-			ImGui::Checkbox("Pause", &l_bIsPaused);
-			ns_system::System::ToggleSystemPause(l_bIsPaused);
-
-			float l_fCurentScaledTime = ns_system::System::GetScaledTime();
-			ImGui::SliderFloat("Scale Time", &l_fCurentScaledTime, 0.0f ,1.0f);
-			ns_system::System::SetScaledTime(l_fCurentScaledTime);
-			ImGui::End();
-#endif
-
 
 			m_pBatchRendererManager->beginBatches();
 
@@ -118,6 +101,12 @@ namespace ns_fretBuzz
 			m_pBatchRendererManager->endAndflushBatches();
 
 #if _IS_DEBUG
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+
+			m_pInspector->render(m_pTimer->getFPS());
+
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
@@ -154,5 +143,12 @@ namespace ns_fretBuzz
 			s_pInstance->m_pCameraManager->windowResize();
 			s_pInstance->m_pPostProcessManager->windowResize();
 		}
+
+#if _IS_DEBUG
+		void MasterRenderer::setInspector(ns_editor::Inspector* a_pInspector)
+		{
+			m_pInspector = a_pInspector;
+		}
+#endif
 	}
 }

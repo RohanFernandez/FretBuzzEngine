@@ -8,7 +8,8 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API TimerFPS : public Timer
 		{
 		private:
-			unsigned int m_CurrentFPS = 0;
+			unsigned int m_iCurrentFPS = 0;
+			unsigned int m_iLastFPSPerSec = 0;
 			float m_fTimeElapsedInSecond = 0.0f;
 			static constexpr float ONE_SECOND = 1.0f;
 			bool m_bPrintFPS = false;

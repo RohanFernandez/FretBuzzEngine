@@ -8,6 +8,7 @@
 #include "physics_engine.h"
 #include "../scene_manager.h"
 #include "../game_startup_data.h"
+#include <system/editor/editor_inspector.h>
 
 namespace ns_fretBuzz
 {
@@ -39,6 +40,10 @@ namespace ns_fretBuzz
 			PhysicsEngine* m_pPhysicsEngine = nullptr;
 
 			SceneManager* m_pSceneManager = nullptr;
+
+#if _IS_DEBUG
+			ns_editor::Inspector* m_pInspector = nullptr;
+#endif
 
 			bool m_bIsSystemPaused = false;
 

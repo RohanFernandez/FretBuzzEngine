@@ -23,6 +23,8 @@ namespace ns_fretBuzz
 			void destroy();
 
 			static const AudioEngine* get();
+
+			static void ToggleMute(bool a_bIsPaused);
 		};
 	}
 }

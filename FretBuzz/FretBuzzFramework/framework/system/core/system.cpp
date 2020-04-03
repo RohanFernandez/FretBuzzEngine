@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 
 		System::System(GameStartupData& a_GameStartupData)
 		{
-			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, true);
+			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, false);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
 			AssetLoader::loadAssets(m_pResourceManager);
@@ -20,6 +20,11 @@ namespace ns_fretBuzz
 			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 8, 3);
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
+
+#if _IS_DEBUG
+			m_pInspector = ns_editor::Inspector::initialize();
+			m_pMasterRenderer->setInspector(m_pInspector);
+#endif
 		}
 
 		bool System::isInitialized(GameStartupData& a_GameStartupData)
@@ -30,7 +35,11 @@ namespace ns_fretBuzz
 				    s_pInstance->m_pMasterRenderer == nullptr ||
 				    s_pInstance->m_pInput == nullptr ||
 					s_pInstance->m_pPhysicsEngine == nullptr || 
-					s_pInstance->m_pSceneManager == nullptr );
+					s_pInstance->m_pSceneManager == nullptr 
+#if _IS_DEBUG
+				|| s_pInstance->m_pInspector == nullptr
+#endif
+				);
 		}
 
 		System::~System()
@@ -42,6 +51,10 @@ namespace ns_fretBuzz
 			m_pMasterRenderer->destroy();
 			m_pPhysicsEngine->destroy();
 
+#if _IS_DEBUG
+			 m_pInspector->destroy();
+#endif
+
 			s_pInstance = nullptr;
 		}
 
@@ -50,9 +63,10 @@ namespace ns_fretBuzz
 			return s_pInstance->m_bIsSystemPaused;
 		}
 
-		void System::ToggleSystemPause(bool a_bIsPause)
+		void System::ToggleSystemPause(bool a_bIsPaused)
 		{
-			s_pInstance->m_bIsSystemPaused = a_bIsPause;
+			s_pInstance->m_bIsSystemPaused = a_bIsPaused;
+			s_pInstance->m_pAudioEngine->ToggleMute(a_bIsPaused);
 		}
 
 		void System::SetScaledTime(float a_fScaledTime)

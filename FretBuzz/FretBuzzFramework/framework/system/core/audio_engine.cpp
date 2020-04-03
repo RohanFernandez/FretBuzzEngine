@@ -42,5 +42,10 @@ namespace ns_fretBuzz
 		{
 			return s_pInstance;
 		}
+
+		void AudioEngine::ToggleMute(bool a_bIsPaused)
+		{
+			s_pInstance->m_pISoundEngine->setAllSoundsPaused(a_bIsPaused);
+		}
 	}
 }

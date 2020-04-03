@@ -186,8 +186,13 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="framework\components\gameobject_components\canvas.cpp" />
     <ClCompile Include="framework\components\collider_2d.cpp" />
     <ClCompile Include="framework\components\raycast_callback.cpp" />
+    <ClCompile Include="framework\system\editor\editor_inspector.cpp" />
+    <ClCompile Include="framework\utils\Event\Delegate\action.cpp" />
+    <ClCompile Include="framework\utils\Event\Delegate\delegate.cpp" />
+    <ClCompile Include="framework\utils\Event\Delegate\delegate_base.cpp" />
     <ClCompile Include="framework\utils\pool\gameobject_pool.cpp" />
     <ClCompile Include="framework\utils\pool\object_pool.cpp" />
     <ClCompile Include="game\managers\bullet\bullet.cpp" />
@@ -275,9 +280,14 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="framework\components\gameobject_components\canvas.h" />
     <ClInclude Include="framework\components\collider_2d.h" />
     <ClInclude Include="framework\components\collider_data.h" />
     <ClInclude Include="framework\components\raycast_callback.h" />
+    <ClInclude Include="framework\system\editor\editor_inspector.h" />
+    <ClInclude Include="framework\utils\Event\Delegate\action.h" />
+    <ClInclude Include="framework\utils\Event\Delegate\delegate.h" />
+    <ClInclude Include="framework\utils\Event\Delegate\delegate_base.h" />
     <ClInclude Include="framework\utils\pool\gameobject_pool.h" />
     <ClInclude Include="framework\utils\pool\object_pool.h" />
     <ClInclude Include="game\managers\cursor\cursor_manager.h" />

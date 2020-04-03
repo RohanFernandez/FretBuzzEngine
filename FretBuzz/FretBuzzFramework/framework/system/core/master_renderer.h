@@ -7,6 +7,7 @@
 #include "graphics/light_manager.h"
 #include "graphics/shader_manager.h"
 #include "graphics/post_process_manager.h"
+#include "system/editor/editor_inspector.h"
 
 namespace ns_fretBuzz
 {
@@ -39,6 +40,10 @@ namespace ns_fretBuzz
 			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
 			~MasterRenderer();
 
+#if _IS_DEBUG
+			ns_editor::Inspector* m_pInspector = nullptr;
+#endif
+
 		public:
 
 			static MasterRenderer* initialize(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
@@ -53,6 +58,10 @@ namespace ns_fretBuzz
 			void closeWindow() const;
 
 			static void windowResizeCallback();
+
+#if _IS_DEBUG
+			void setInspector(ns_editor::Inspector* a_pInspector);
+#endif
 		};
 	}
 }

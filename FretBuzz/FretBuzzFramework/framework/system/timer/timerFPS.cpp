@@ -20,19 +20,19 @@ namespace ns_fretBuzz
 		void TimerFPS::update()
 		{
 			Timer::update();
-			m_CurrentFPS++;
+			m_iCurrentFPS++;
 
 			m_fTimeElapsedInSecond += m_fDeltaTime;
 
 			if (m_fTimeElapsedInSecond >= ONE_SECOND)
 			{
 				m_fTimeElapsedInSecond -= ONE_SECOND;
-
+				m_iLastFPSPerSec = m_iCurrentFPS;
 				if (m_bPrintFPS)
 				{
-					std::cout << "TimerFPS::update::FPS::"<< m_CurrentFPS<<"\n";
+					std::cout << "TimerFPS::update::FPS::"<< m_iCurrentFPS<<"\n";
 				}
-				m_CurrentFPS = 0;
+				m_iCurrentFPS = 0;
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace ns_fretBuzz
 
 		unsigned int TimerFPS::getFPS() const
 		{
-			return m_CurrentFPS;
+			return m_iLastFPSPerSec;
 		}
 	}
 }
