@@ -1,9 +1,6 @@
 #pragma once
-#include <iostream>
 #include "action.h"
-#include <functional>
-#include <typeinfo>
-#include <set>
+#include <vector>
 
 namespace ns_fretBuzz
 {
@@ -14,21 +11,10 @@ namespace ns_fretBuzz
 	{
 		private:
 
-			using T_IACTION = IAction<T_RET_TYPE(T_ARGS...)>;
+			using T_ACTION = Action<T_RET_TYPE(T_ARGS...)>;
 
 			///Set to store all the Actions of the same type
-			std::set<T_IACTION*> m_SetActions;
-
-			///Deletes all actions stored in the delegate list
-			void DeleteAllActions()
-			{
-				for (typename std::set<T_IACTION*>::iterator l_iterator = m_SetActions.begin();
-					l_iterator != m_SetActions.end();
-					l_iterator++)
-				{
-					delete *l_iterator;
-				}
-			}
+			std::vector<T_ACTION> m_vectActions;
 
 		protected:
 			///Constructor, Instantiates the List that stores the Actions of type T_RET_TYPE(T_ARGS...)
@@ -39,31 +25,27 @@ namespace ns_fretBuzz
 			///Destructor
 			virtual ~DelegateBase()
 			{
-				DeleteAllActions();
 			}
 
 			///Adds a member function into the delegate list
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::*T_METHOD)(T_ARGS...)>
 			void Add(T_CLASS_TYPE* a_Instance)
 			{
-				T_IACTION* l_pNewIAction = T_IACTION::template GetIAction<T_CLASS_TYPE, T_METHOD>(a_Instance);
-				m_SetActions.insert(l_pNewIAction);
+				m_vectActions.emplace_back(T_ACTION::template GetAction<T_CLASS_TYPE, T_METHOD>(a_Instance));
 			}
 
 			///Adds a const member function into the delegate list
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::*T_METHOD)(T_ARGS...) const>
 			void Add(T_CLASS_TYPE* const a_Instance)
 			{
-				T_IACTION* const l_pNewIFuzzyAction = T_IACTION::template GetIAction<T_CLASS_TYPE, T_METHOD>(a_Instance);
-				m_SetActions.insert(const_cast<T_IACTION*>(l_pNewIFuzzyAction));
+				m_vectActions.emplace_back(T_ACTION::template GetAction<T_CLASS_TYPE, T_METHOD>(a_Instance));
 			}
 
 			///Adds an static or global action into the list
 			template<T_RET_TYPE(*T_METHOD)(T_ARGS...)>
 			void Add()
 			{
-				T_IACTION* l_l_pNewIAction = T_IACTION::template GetIAction<T_METHOD>();
-				m_SetActions.insert(l_l_pNewIAction);
+				m_vectActions.emplace_back(T_ACTION::template GetAction<T_METHOD>());
 			}
 
 			///Calls all the actions stored within the delegate
@@ -71,17 +53,17 @@ namespace ns_fretBuzz
 			{
 				try
 				{
-					if (m_SetActions.size() == 0)
+					if (m_vectActions.size() == 0)
 					{
 						throw std::out_of_range("Delegate is empty\n");
 					}
 
 					T_RET_TYPE l_tReturn;
-					for (typename std::set<T_IACTION*>::iterator l_iterator = m_SetActions.begin();
-						l_iterator != m_SetActions.end();
+					for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
+						l_iterator != m_vectActions.end();
 						l_iterator++)
 					{
-						l_tReturn = (*l_iterator)->Invoke(a_Args...);
+						l_tReturn = l_iterator->Invoke(a_Args...);
 					}
 
 					if (typeid(T_RET_TYPE) != typeid(void))
@@ -99,14 +81,13 @@ namespace ns_fretBuzz
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...)>
 			void Remove(T_CLASS_TYPE* a_Instance)
 			{
-				for (typename std::set<T_IACTION*>::iterator l_iterator = m_SetActions.begin();
-					l_iterator != m_SetActions.end();
+				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
+					l_iterator != m_vectActions.end();
 					l_iterator++)
 				{
-					if ((*l_iterator)->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
+					if (l_iterator->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
 					{
-						delete (*l_iterator);
-						m_SetActions.erase(l_iterator);
+						m_vectActions.erase(l_iterator);
 						break;
 					}
 				}
@@ -116,14 +97,13 @@ namespace ns_fretBuzz
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...) const>
 			void Remove(T_CLASS_TYPE* const a_Instance)
 			{
-				for (typename std::set<T_IACTION*>::iterator l_iterator = m_SetActions.begin();
-					l_iterator != m_SetActions.end();
+				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
+					l_iterator != m_vectActions.end();
 					l_iterator++)
 				{
-					if ((*l_iterator)->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
+					if (l_iterator->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
 					{
-						delete (*l_iterator);
-						m_SetActions.erase(l_iterator);
+						m_vectActions.erase(l_iterator);
 						break;
 					}
 				}
@@ -133,14 +113,13 @@ namespace ns_fretBuzz
 			template<T_RET_TYPE(*T_METHOD)(T_ARGS...)>
 			void Remove()
 			{
-				for (typename std::set<T_IACTION*>::iterator l_iterator = m_SetActions.begin();
-					l_iterator != m_SetActions.end();
+				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
+					l_iterator != m_vectActions.end();
 					l_iterator++)
 				{
-					if ((*l_iterator)->isActionEqual<T_METHOD>())
+					if (l_iterator->isActionEqual<T_METHOD>())
 					{
-						delete (*l_iterator);
-						m_SetActions.erase(l_iterator);
+						m_vectActions.erase(l_iterator);
 						break;
 					}
 				}
@@ -149,8 +128,7 @@ namespace ns_fretBuzz
 			///Clears the stored actions of type withing the delegate
 			void Clear()
 			{
-				DeleteAllActions();
-				m_SetActions.clear();
+				m_vectActions.clear();
 			}
 	};
 

@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <functional>
 #include "delegate_base.h"
 
 namespace ns_fretBuzz
@@ -45,21 +44,21 @@ namespace ns_fretBuzz
 			}
 		}
 
-		///removes a member function into the delegate list
+		///removes a member function from the collection of actions
 		template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...)>
 		void Remove(T_CLASS_TYPE* a_Instance)
 		{
 			DelegateBase<T_RET_TYPE(T_ARGS...)>::template Remove<T_CLASS_TYPE, T_METHOD>(a_Instance);
 		}
 
-		///removes a const member function into the delegate list
+		///removes a const member function from the collection of actions
 		template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...) const>
 		void Remove(T_CLASS_TYPE* const a_Instance)
 		{
 			DelegateBase<T_RET_TYPE(T_ARGS...)>::template Remove<T_CLASS_TYPE, T_METHOD>(a_Instance);
 		}
 
-		///removes an static or global action into the list
+		///removes an static or global action from the collection of actions
 		template<T_RET_TYPE(*T_METHOD)(T_ARGS...)>
 		void Remove()
 		{
