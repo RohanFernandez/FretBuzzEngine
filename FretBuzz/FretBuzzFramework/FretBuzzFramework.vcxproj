@@ -284,7 +284,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\system\editor\editor_inspector.h" />
     <ClInclude Include="framework\utils\Event\Delegate\action.h" />
     <ClInclude Include="framework\utils\Event\Delegate\delegate.h" />
-    <ClInclude Include="framework\utils\Event\Delegate\delegate_base.h" />
     <ClInclude Include="framework\utils\pool\gameobject_pool.h" />
     <ClInclude Include="framework\utils\pool\object_pool.h" />
     <ClInclude Include="game\managers\cursor\cursor_manager.h" />

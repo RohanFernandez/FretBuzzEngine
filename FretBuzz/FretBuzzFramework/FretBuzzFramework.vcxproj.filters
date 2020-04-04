@@ -554,9 +554,6 @@
     <ClInclude Include="framework\system\editor\editor_inspector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\utils\Event\Delegate\delegate_base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\utils\Event\Delegate\action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
