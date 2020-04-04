@@ -190,9 +190,6 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\collider_2d.cpp" />
     <ClCompile Include="framework\components\raycast_callback.cpp" />
     <ClCompile Include="framework\system\editor\editor_inspector.cpp" />
-    <ClCompile Include="framework\utils\Event\Delegate\action.cpp" />
-    <ClCompile Include="framework\utils\Event\Delegate\delegate.cpp" />
-    <ClCompile Include="framework\utils\Event\Delegate\delegate_base.cpp" />
     <ClCompile Include="framework\utils\pool\gameobject_pool.cpp" />
     <ClCompile Include="framework\utils\pool\object_pool.cpp" />
     <ClCompile Include="game\managers\bullet\bullet.cpp" />
