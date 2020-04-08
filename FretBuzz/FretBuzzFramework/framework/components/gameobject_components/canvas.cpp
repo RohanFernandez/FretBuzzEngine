@@ -44,19 +44,22 @@ namespace ns_fretBuzz
 				nullptr : new Canvas(a_GameObject2D, a_CanvasData, a_bIsEnabled);
 		}
 
-		void Canvas::update(float a_fDeltaTime)
-		{
-		}
-
 		//If the canvas is not world space, then it sets the canvas gameobject to be projected in front of the given camera,
 		// The canvas's local position then works as if its center is at the center of the camera
 		void Canvas::lateUpdate(float a_fDeltaTime)
 		{
 			if (m_CanvasType != CANVAS_SPACE_TYPE::WORLD_SPACE)
 			{
-				glm::vec3 l_v3LocalPosition = m_GameObject.m_Transform.getLocalPosition();
-				m_GameObject.m_Transform.setWorldPosition(m_pCamera->m_GameObject.m_Transform.getWorldPosition() + (m_pCamera->m_GameObject.m_Transform.getForward() * m_fPlaneDistance));
-				m_GameObject.m_Transform.setLocalPosition(l_v3LocalPosition);
+				if (m_CanvasType == CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY)
+				{
+					m_GameObject.m_Transform.setWorldPosition(m_pCamera->m_GameObject.m_Transform.getWorldPosition() + (m_pCamera->m_GameObject.m_Transform.getForward() * m_pCamera->getViewport().getNearFar().x));
+				}
+				else if (m_CanvasType == CANVAS_SPACE_TYPE::SCREEN_SPACE_CAMERA)
+				{
+					m_GameObject.m_Transform.setWorldPosition(m_pCamera->m_GameObject.m_Transform.getWorldPosition() + (m_pCamera->m_GameObject.m_Transform.getForward() * m_fPlaneDistance));
+				}
+
+				m_GameObject.m_Transform.setLocalRotation(m_pCamera->m_GameObject.m_Transform.getLocalRotation());
 			}
 		}
 	}

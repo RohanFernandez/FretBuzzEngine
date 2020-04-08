@@ -5,6 +5,8 @@
 
 #include "framework/components/gameobject_components/behaviour.h"
 
+#include <imgui/imgui.h>
+
 namespace ns_fretBuzz
 {
 	class FRETBUZZ_API PlayerController : public ns_system::Behaviour
@@ -66,13 +68,13 @@ namespace ns_fretBuzz
 
 				glm::vec3 l_v3InitRotation = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
 
-				m_v3PitchYawRoll.x += (l_v3InitRotation.x / M_PI) * 180.0f;
-				m_v3PitchYawRoll.y += (l_v3InitRotation.y / M_PI) * 180.0f;
-				m_v3PitchYawRoll.z = (l_v3InitRotation.z / M_PI) * 180.0f;
+				m_v3PitchYawRoll.x = (l_v3InitRotation.x);
+				m_v3PitchYawRoll.y = (l_v3InitRotation.y);
+				m_v3PitchYawRoll.z = (l_v3InitRotation.z);
 			}
 
 			float l_DeltaX = (m_MouseX - m_v2LastMouseXY.x);
-			float l_DeltaY = (m_MouseY - m_v2LastMouseXY.y);
+			float l_DeltaY = (m_v2LastMouseXY.y - m_MouseY);
 
 			l_DeltaX *= m_fMouseSensitivity;
 			l_DeltaY *= m_fMouseSensitivity;
@@ -80,10 +82,10 @@ namespace ns_fretBuzz
 			m_v2LastMouseXY.x = m_MouseX;
 			m_v2LastMouseXY.y = m_MouseY;
 
-			m_v3PitchYawRoll.y += l_DeltaX;
-			m_v3PitchYawRoll.x += l_DeltaY;
+			m_v3PitchYawRoll.y += glm::radians(l_DeltaX);
+			m_v3PitchYawRoll.x -= glm::radians(l_DeltaY);
 
-			m_GameObject.m_Transform.setLocalRotation(glm::quat({glm::radians(m_v3PitchYawRoll.x), glm::radians(m_v3PitchYawRoll.y), glm::radians(m_v3PitchYawRoll.z)}));
+			m_GameObject.m_Transform.setLocalRotation(glm::quat({m_v3PitchYawRoll.x, m_v3PitchYawRoll.y, m_v3PitchYawRoll.z}));
 
 			int l_iScrollValue = ns_system::Input::GetMouseScroll();
 			if (l_iScrollValue == 1 || l_iScrollValue == -1)
@@ -91,9 +93,6 @@ namespace ns_fretBuzz
 				m_pPerspectiveCamera->zoom(5.0f * l_iScrollValue);
 			}
 
-			glm::vec3 l_v3RotEuler = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
-
-			//std::cout << "Rot :: {"<< l_v3RotEuler.x<<"," << l_v3RotEuler.y <<","<< l_v3RotEuler.z<< "}\n";
 
 			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
 			{
@@ -106,6 +105,11 @@ namespace ns_fretBuzz
 			}*/
 
 			Behaviour::update(a_fDeltaTime);
+		}
+
+		virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override
+		{
+			Behaviour::render(a_mat4Transformation,a_Camera);
 		}
 	};
 }

@@ -38,7 +38,6 @@ namespace ns_fretBuzz
 			//else will required to be set
 			void setupCanvas(CanvasData& a_CanvasData);
 
-			virtual void update(float a_fDeltaTime) override;
 			virtual void lateUpdate(float a_fDeltaTime) override;
 
 		public:

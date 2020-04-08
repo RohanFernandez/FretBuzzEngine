@@ -43,8 +43,8 @@ namespace ns_fretBuzz
 			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
 			Window::registerWindowResizeCallback(windowResizeCallback);
 
-			glEnable(GL_CULL_FACE);
-			glCullFace(GL_BACK);
+			//glEnable(GL_CULL_FACE);
+			//glCullFace(GL_BACK);
 			glFrontFace(GL_CCW);
 			glEnable(GL_DEPTH_TEST);
 
@@ -101,6 +101,7 @@ namespace ns_fretBuzz
 			m_pBatchRendererManager->endAndflushBatches();
 
 #if _IS_DEBUG
+
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();

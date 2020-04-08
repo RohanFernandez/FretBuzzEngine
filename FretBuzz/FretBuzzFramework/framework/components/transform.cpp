@@ -55,19 +55,12 @@ namespace ns_fretBuzz
 		{
 			glm::vec3 l_v3OldPosition = m_v3Position;
 			m_v3Position = a_v3Position;
-			
 			m_bIsDirty = (l_v3OldPosition != m_v3Position) || m_bIsDirty;
 		}
 
 		void Transform::setWorldPosition(glm::vec3 a_v3Position)
 		{
-			glm::vec3 l_v3OldPosition = getWorldPosition();
-			m_bIsDirty = (l_v3OldPosition != a_v3Position) || m_bIsDirty;
-
-			if (m_bIsDirty)
-			{
-				m_v3Position = a_v3Position - m_pParentTransform->getWorldPosition();
-			}
+			setLocalPosition(a_v3Position - m_pParentTransform->getWorldPosition());
 		}
 
 		glm::vec3 Transform::getWorldPosition() const
