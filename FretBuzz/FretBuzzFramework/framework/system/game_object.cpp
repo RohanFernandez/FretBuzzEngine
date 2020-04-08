@@ -111,7 +111,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::updateChildren(float a_fDeltaTime)
+		void GameObject::lateUpdateChildren(float a_fDeltaTime)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 
@@ -121,6 +121,37 @@ namespace ns_fretBuzz
 				if (l_pCurrentGameObject->getIsActiveInHierarchy())
 				{
 					l_pCurrentGameObject->update(a_fDeltaTime);
+				}
+			}
+		}
+
+		void GameObject::lateUpdate(float a_fDeltaTime)
+		{
+			lateUpdateComponents(a_fDeltaTime);
+			lateUpdateChildren(a_fDeltaTime);
+		}
+
+		void GameObject::updateChildren(float a_fDeltaTime)
+		{
+			GameObject* l_pCurrentGameObject = nullptr;
+
+			for (int l_iChildIndex = 0; l_iChildIndex < m_Children.size(); l_iChildIndex++)
+			{
+				l_pCurrentGameObject = m_Children[l_iChildIndex];
+				if (l_pCurrentGameObject->getIsActiveInHierarchy())
+				{
+					l_pCurrentGameObject->lateUpdate(a_fDeltaTime);
+				}
+			}
+		}
+
+		void GameObject::lateUpdateComponents(float a_fDeltaTime)
+		{
+			for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
+			{
+				if (m_Components[l_iComponentndex]->getIsEnabled())
+				{
+					m_Components[l_iComponentndex]->lateUpdate(a_fDeltaTime);
 				}
 			}
 		}

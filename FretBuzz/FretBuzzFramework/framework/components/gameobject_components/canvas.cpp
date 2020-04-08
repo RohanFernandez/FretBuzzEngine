@@ -1,0 +1,63 @@
+#include <fretbuzz_pch.h>
+#include "canvas.h"
+#include <system/camera_manager.h>
+
+namespace ns_fretBuzz
+{
+	namespace ns_UI
+	{
+		Canvas::Canvas(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
+			: ns_system::IComponent2D(ns_system::COMPONENT_TYPE::CANVAS, a_GameObject2D, a_bIsEnabled)
+		{
+			setupCanvas(a_CanvasData);
+		}
+
+		Canvas::~Canvas()
+		{
+		
+		}
+
+		void Canvas::setupCanvas(CanvasData& a_CanvasData)
+		{
+			m_CanvasType = a_CanvasData.m_CanvasSpaceType;
+
+			//Setup the camera type
+			ns_graphics::Camera* l_pCamera = nullptr;
+			if ((m_CanvasType != CANVAS_SPACE_TYPE::WORLD_SPACE) && (a_CanvasData.m_pCamera == nullptr))
+			{
+				std::cout << "Canvas::setupCanvas:: Canvas requires a camera component tp be set, setting to Main Camera\n";
+				l_pCamera = &ns_graphics::CameraManager::getMainCamera();
+			}
+			else
+			{
+				l_pCamera = a_CanvasData.m_pCamera;
+			}
+			m_pCamera = l_pCamera;
+
+			//Setup plane distance
+			m_fPlaneDistance = (m_CanvasType == CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY) ? 0.0f : a_CanvasData.m_fPlaneDistance;
+		}
+
+		Canvas* Canvas::addToGameObject(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
+		{
+			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::CANVAS, &a_GameObject2D) ?
+				nullptr : new Canvas(a_GameObject2D, a_CanvasData, a_bIsEnabled);
+		}
+
+		void Canvas::update(float a_fDeltaTime)
+		{
+		}
+
+		//If the canvas is not world space, then it sets the canvas gameobject to be projected in front of the given camera,
+		// The canvas's local position then works as if its center is at the center of the camera
+		void Canvas::lateUpdate(float a_fDeltaTime)
+		{
+			if (m_CanvasType != CANVAS_SPACE_TYPE::WORLD_SPACE)
+			{
+				glm::vec3 l_v3LocalPosition = m_GameObject.m_Transform.getLocalPosition();
+				m_GameObject.m_Transform.setWorldPosition(m_pCamera->m_GameObject.m_Transform.getWorldPosition() + (m_pCamera->m_GameObject.m_Transform.getForward() * m_fPlaneDistance));
+				m_GameObject.m_Transform.setLocalPosition(l_v3LocalPosition);
+			}
+		}
+	}
+}

@@ -8,6 +8,10 @@
 
 namespace ns_HMGame
 {
+	PrefabPlayer* PrefabPlayer::s_pInstance = nullptr;
+
+	PrefabPlayer* PrefabPlayer::getInstance() { return s_pInstance; }
+
 	PrefabPlayer::PrefabPlayer(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH)
 		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, true)
 	{
@@ -28,5 +32,7 @@ namespace ns_HMGame
 
 		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
 		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
+
+		s_pInstance = this;
 	}
 }

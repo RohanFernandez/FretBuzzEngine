@@ -221,6 +221,15 @@ namespace ns_fretBuzz
 			}
 		}
 
+		void SceneManager::lateUpdateActiveScenes(float a_fDeltaTime)
+		{
+			int l_iActiveSceneCount = m_vectActiveStates.size();
+			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			{
+				m_vectActiveStates[l_iSceneIndex]->lateUpdate(a_fDeltaTime);
+			}
+		}
+
 		///all scenes should have its object render calls via this function
 		void SceneManager::renderActiveScenes(const ns_graphics::Camera& a_Camera)
 		{

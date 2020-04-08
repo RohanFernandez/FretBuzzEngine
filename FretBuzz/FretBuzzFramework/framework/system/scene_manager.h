@@ -45,6 +45,11 @@ namespace ns_fretBuzz
 				m_refRootGameObject.update(a_fDeltaTime);
 			}
 
+			void lateUpdate(float a_fDeltaTime)
+			{
+				m_refRootGameObject.lateUpdate(a_fDeltaTime);
+			}
+			
 			void resetDontDestroyParentTo(IScene* a_IScene)
 			{
 				m_pGameObjectRoot->resetDontDestroyParent(a_IScene->m_refRootGameObject);
@@ -83,6 +88,7 @@ namespace ns_fretBuzz
 
 			virtual void render(const ns_graphics::Camera& a_Camera) = 0;
 			virtual void update(float a_fDeltaTime) = 0;
+			virtual void lateUpdate(float a_fDeltaTime) = 0;
 
 			virtual void resetDontDestroyParent(ISceneData& a_NewSceneParent)
 			{}
@@ -179,6 +185,11 @@ namespace ns_fretBuzz
 				m_pScene->update(a_fDeltaTime);
 			}
 
+			void lateUpdate(float a_fDeltaTime)
+			{
+				m_pScene->lateUpdate(a_fDeltaTime);
+			}
+
 			///Unloads the scene object, destroys and deletes all data initialize in that scene class.
 			virtual void unloadSceneData() override
 			{
@@ -219,6 +230,7 @@ namespace ns_fretBuzz
 			static void s_logAllActiveSceneNames();
 
 			void updateActiveScenes(float a_fDeltaTime);
+			void lateUpdateActiveScenes(float a_fDeltaTime);
 			void renderActiveScenes(const ns_graphics::Camera& a_Camera);
 
 			static void LogSceneHierarchy();

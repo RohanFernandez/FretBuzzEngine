@@ -110,6 +110,7 @@ namespace ns_fretBuzz
 				if (!s_pInstance->m_bIsSystemPaused)
 				{
 					l_SceneManager.updateActiveScenes(l_fTimeStep);
+					l_SceneManager.lateUpdateActiveScenes(l_fTimeStep);
 					l_PhysicsEngine.step(l_fTimeStep);
 					l_Input.Update();
 				}

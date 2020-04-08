@@ -66,7 +66,7 @@ namespace ns_fretBuzz
 
 			if (m_bIsDirty)
 			{
-				m_v3Position += a_v3Position - l_v3OldPosition;
+				m_v3Position = a_v3Position - m_pParentTransform->getWorldPosition();
 			}
 		}
 
@@ -80,8 +80,8 @@ namespace ns_fretBuzz
 		glm::mat4 Transform::getModelMatrix()
 		{
 			glm::mat4 l_mat4Model = glm::mat4{ 1.0f };
-			l_mat4Model = glm::translate(l_mat4Model, glm::vec3(m_v3Position));
-			l_mat4Model = glm::scale(l_mat4Model, glm::vec3(m_v3Scale));
+			l_mat4Model = glm::translate(l_mat4Model, m_v3Position);
+			l_mat4Model = glm::scale(l_mat4Model, m_v3Scale);
 			l_mat4Model *= glm::mat4(m_quatRotation);
 
 			return l_mat4Model;
@@ -120,7 +120,7 @@ namespace ns_fretBuzz
 		glm::mat4 Transform::getRotationTransformation()
 		{
 			return (m_pParentTransform == nullptr) ? 
-				glm::mat4{ m_quatRotation } :
+				glm::mat4( m_quatRotation ) :
 				m_pParentTransform->getRotationTransformation() * glm::mat4(m_quatRotation);
 		}
 	}

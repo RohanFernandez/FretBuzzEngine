@@ -8,9 +8,9 @@ namespace ns_fretBuzz
 		{
 		friend class GameObject;
 		protected:
-			glm::vec3 m_v3Position;
+			glm::vec3 m_v3Position{0.0f};
 			glm::quat m_quatRotation;
-			glm::vec3 m_v3Scale;
+			glm::vec3 m_v3Scale{1.0f};
 
 			bool m_bIsDirty = false;
 

@@ -16,6 +16,7 @@
 #include "game/prefab/prefab_weapon.h"
 #include "game/managers/weapon/weapon_manager.h"
 #include "game/prefab/prefab_enemy.h"
+#include "components/gameobject_components/canvas.h"
 
 namespace ns_HMGame
 {
@@ -27,6 +28,13 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
 		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = ns_fretBuzz::ns_graphics::Camera::addToGameObject(*m_pCam, ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport);
+		
+		ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pCam, "Canvas", { 300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f });
+		ns_fretBuzz::ns_UI::CanvasData l_uiPlayerCanvasData;
+		l_uiPlayerCanvasData.m_CanvasSpaceType = ns_fretBuzz::ns_UI::CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY;
+		l_uiPlayerCanvasData.m_pCamera = l_pCamComponent;
+		ns_fretBuzz::ns_UI::Canvas* m_pCanvas = ns_fretBuzz::ns_UI::Canvas::addToGameObject(*m_pGameObjectUI, l_uiPlayerCanvasData);
+		ns_fretBuzz::ns_graphics::Image* m_pImage = ns_fretBuzz::ns_graphics::Image::addToGameObject(*m_pGameObjectUI, nullptr, { 0.0f, 0.0f, 1.0f, 1.0f });
 
 		ns_fretBuzz::ns_system::Input::setCursorEnability(true, false);
 		ns_fretBuzz::ns_system::GameObject2D* l_pCursor = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f });
