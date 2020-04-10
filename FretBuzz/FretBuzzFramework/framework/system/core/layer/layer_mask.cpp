@@ -6,6 +6,11 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		LayerMask::LayerMask(const LayerMask& a_LayerMask)
+		{
+			m_Bits = a_LayerMask.m_Bits;
+		}
+
 		LayerMask::LayerMask(PREDEFINED_MASK a_PredefinedMask)
 		{
 			setPredefined(a_PredefinedMask);
@@ -36,7 +41,7 @@ namespace ns_fretBuzz
 
 		void LayerMask::addLayer(std::string a_strLayerName) 
 		{
-			const Layer* l_pLayer = LayerManager::getLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
 			if (l_pLayer != nullptr)
 			{
 				addLayer(*l_pLayer);
@@ -59,7 +64,7 @@ namespace ns_fretBuzz
 
 		void LayerMask::removeLayer(std::string a_strLayerName) 
 		{
-			const Layer* l_pLayer = LayerManager::getLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
 			if (l_pLayer != nullptr)
 			{
 				removeLayer(*l_pLayer);
@@ -80,15 +85,20 @@ namespace ns_fretBuzz
 			}
 		}
 
-		bool LayerMask::isLayerInMask(const std::string& a_strLayerName) 
+		bool LayerMask::isLayerInMask(const std::string& a_strLayerName) const
 		{
-			const Layer* l_pLayer = LayerManager::getLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
 			return  l_pLayer == nullptr ? false : isLayerInMask(*l_pLayer);
 		}
 
-		bool LayerMask::isLayerInMask(const Layer& a_Layer)
+		bool LayerMask::isLayerInMask(const Layer& a_Layer) const
 		{
 			return m_Bits.test(a_Layer.getID());
+		}
+
+		void LayerMask::operator=(const LayerMask& a_LayerMask)
+		{
+			m_Bits = a_LayerMask.m_Bits;
 		}
 	}
 }

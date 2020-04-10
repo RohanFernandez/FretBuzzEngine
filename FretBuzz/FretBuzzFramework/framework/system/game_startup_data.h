@@ -8,6 +8,7 @@ namespace ns_fretBuzz
 		struct FRETBUZZ_API GameStartupData
 		{
 			std::vector<ns_fretBuzz::ns_system::ISceneData*> m_vectScenes;
+			std::vector<std::string> m_vectLayers;
 			unsigned int m_uiScreenWidth, m_uiScreenHeight;
 			std::string m_strWindowName;
 		};

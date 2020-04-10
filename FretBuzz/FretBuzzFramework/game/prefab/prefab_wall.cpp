@@ -6,7 +6,7 @@
 namespace ns_HMGame
 {
 	PrefabWall::PrefabWall(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH)
-		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, true)
+		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, ns_fretBuzz::ns_system::Layer(), true)
 	{
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
 		l_RectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);

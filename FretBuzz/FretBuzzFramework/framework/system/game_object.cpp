@@ -3,6 +3,7 @@
 #include "game_object.h"
 #include "components/gameobject_components/camera.h"
 #include <imgui/imgui.h>
+#include "core/layer/layer_mask.h"
 
 namespace ns_fretBuzz
 {
@@ -11,15 +12,15 @@ namespace ns_fretBuzz
 		//static counter that specifies the id.
 		int GameObject::s_iID = 0;
 
-
 		//GameObject 2D constructor
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, bool a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, Layer a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ a_pTransform },
-			m_Transform(*a_pTransform)
+			m_Transform(*a_pTransform),
+			m_Layer {a_Layer}
 		{
 			a_ParentGameObject.addChild(this);
 		}
@@ -33,19 +34,20 @@ namespace ns_fretBuzz
 		{
 		}
 
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strName{ a_strName },
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform) },
-			m_Transform(*m_pTransform)
+			m_Transform(*m_pTransform),
+			m_Layer{ a_Layer }
 		{
 			a_ParentGameObject.addChild(this);
 		}
 
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf)
-			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 1.0f, 1.0f,1.0f }, a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf)
+			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 1.0f, 1.0f,1.0f }, a_Layer, a_bIsActiveSelf)
 		{
 		}
 
@@ -74,14 +76,14 @@ namespace ns_fretBuzz
 
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
 		{
-			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_bIsActiveSelf);
+			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_Layer, a_bIsActiveSelf);
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf)
 		{
-			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f }, a_bIsActiveSelf);
+			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f }, a_Layer, a_bIsActiveSelf);
 		}
 
 		void GameObject::addChild(GameObject* a_pChildGameObject)
@@ -158,18 +160,7 @@ namespace ns_fretBuzz
 
 		void GameObject::render(const ns_graphics::Camera& a_Camera)
 		{
-//#if _IS_DEBUG
-//			ImGui::Begin(m_strName.c_str());
-//			bool l_bIsActive = m_bIsActiveSelf;
-//			ImGui::Checkbox("Active", &l_bIsActive);
-//
-//			if (l_bIsActive != m_bIsActiveSelf)
-//			{
-//				setActive(l_bIsActive);
-//			}
-//			ImGui::End();
-//#endif
-			if (getIsActiveInHierarchy())
+			if (getIsActiveInHierarchy() && a_Camera.m_CullingMask.isLayerInMask(m_Layer))
 			{
 				const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 				renderComponents(l_mat4RenderTransformation, a_Camera);

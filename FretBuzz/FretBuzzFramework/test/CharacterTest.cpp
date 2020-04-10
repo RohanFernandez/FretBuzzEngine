@@ -10,7 +10,7 @@
 namespace ns_fretBuzz
 {
 	CharacterTest::CharacterTest(ns_system::GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject)
-		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f }, true)
+		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::Layer(), true)
 		{
 			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
 			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Player" );

@@ -24,6 +24,7 @@ namespace ns_fretBuzz
 					l_iLayerIndex++;
 				}
 			}
+			printLayers();
 		}
 
 		LayerManager::~LayerManager() 
@@ -70,15 +71,20 @@ namespace ns_fretBuzz
 			return true;
 		}
 
-		const Layer* LayerManager::getLayerIdByName(std::string a_strLayerName)
+		Layer* LayerManager::getLayerIdByName(std::string a_strLayerName)
 		{
-			T_LAYER_MAP_TYPE::iterator l_Layer = s_pInstance->m_layerMap.find(a_strLayerName);
-			if (l_Layer != s_pInstance->m_layerMap.end())
+			T_LAYER_MAP_TYPE::iterator l_Layer = m_layerMap.find(a_strLayerName);
+			if (l_Layer != m_layerMap.end())
 			{
 				return &l_Layer->second;
 			}
 
 			return nullptr;
+		}
+
+		const Layer* LayerManager::GetLayerIdByName(std::string a_strLayerName)
+		{
+			return s_pInstance->getLayerIdByName(a_strLayerName);
 		}
 
 		void LayerManager::printLayers()

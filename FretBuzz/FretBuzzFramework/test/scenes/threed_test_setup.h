@@ -32,23 +32,23 @@ namespace ns_fretBuzz
 			: IScene(a_strSceneName) 
 		{
 			ns_system::GameObject* m_pManager = ns_system::GameObject::instantiate(m_refRootGameObject, "3D_Manager", { 0.0f, 0.0f, 5.0f },
-				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f });
+				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
 
 			ns_graphics::PerspectiveViewport l_PerspectiveViewport(60.0f, 1.0f, 50.0f);
-			ns_graphics::Camera* l_pMainCam =  ns_graphics::Camera::addToGameObject(*m_pManager, ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport);
+			ns_graphics::Camera* l_pMainCam =  ns_graphics::Camera::addToGameObject(*m_pManager, ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport,ns_system::LayerMask());
 			ns_system::Behaviour::addToGameObject<PlayerController>(m_pManager);
 
-			ns_system::GameObject* m_pNanoSuit = ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain", { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f });
+			ns_system::GameObject* m_pNanoSuit = ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain", { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
 			ns_graphics::Model::addToGameObject(*m_pNanoSuit, *ns_system::ResourceManager::getResource<ns_graphics::Model>("nanosuit//nanosuit.obj"));
 
 			//Canvas Overlay
-			ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f });
+			ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f }, ns_fretBuzz::ns_system::Layer());
 			ns_fretBuzz::ns_UI::CanvasData l_uiPlayerCanvasData;
 			l_uiPlayerCanvasData.m_CanvasSpaceType = ns_fretBuzz::ns_UI::CANVAS_SPACE_TYPE::SCREEN_SPACE_CAMERA;
 			l_uiPlayerCanvasData.m_pCamera = l_pMainCam;
 			l_uiPlayerCanvasData.m_fPlaneDistance = 1.05f;
 			ns_fretBuzz::ns_UI::Canvas* m_pCanvas = ns_fretBuzz::ns_UI::Canvas::addToGameObject(*m_pGameObjectUI, l_uiPlayerCanvasData);
-			ns_fretBuzz::ns_system::GameObject2D* m_pImgWeapon = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pGameObjectUI, "img", { 0.5f, -0.5f, 0.0f }, { 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 0.3f, 0.3f });
+			ns_fretBuzz::ns_system::GameObject2D* m_pImgWeapon = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pGameObjectUI, "img", { 0.5f, -0.5f, 0.0f }, { 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 0.3f, 0.3f }, ns_fretBuzz::ns_system::Layer());
 			ns_fretBuzz::ns_graphics::Image* m_pImage = ns_fretBuzz::ns_graphics::Image::addToGameObject(*m_pImgWeapon, ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_golf_club")->getSprite(0), { 0.0f, 0.0f, 0.0f, 1.0f });
 
 

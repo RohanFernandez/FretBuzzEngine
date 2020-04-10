@@ -5,10 +5,10 @@
 namespace ns_HMGame
 {
 	PrefabEnemy::PrefabEnemy(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH)
-		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, true)
+		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, ns_fretBuzz::ns_system::Layer("Enemy"), true)
 	{
-		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyUpperGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyUpper", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, true);
-		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyLowerGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyLegs", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, true);
+		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyUpperGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyUpper", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer("Enemy"), true);
+		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyLowerGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyLegs", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer("Enemy"), true);
 
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pEnemyLowerGameObj, "EnemyLegs");
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pEnemyUpperGameObj, "Enemy");

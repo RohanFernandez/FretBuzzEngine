@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 		{
 			friend class IScene;
 			friend class IComponent;
+			
 		protected:
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
@@ -47,21 +48,22 @@ namespace ns_fretBuzz
 			glm::mat4 m_mat4Transformation{1.0f};
 
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSel = true);
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf = true);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf);
 
 			// GameObject 2D constructor
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, bool a_bIsActiveSelf);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, Layer a_Layer, bool a_bIsActiveSelf);
 
 			Transform* m_pTransform;
 			virtual ~GameObject();
 
 		public:
+			Layer m_Layer;
 
 			// Creates a GameObject, adds this GameObject to the m_Children of its a_ParentGameObject.
 			// Sets its active state in hierarchy to the a_bIsActiveSelf, depends on its ParentGameObject.
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, bool a_bIsActiveSelf = true);
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, bool a_bIsActiveSelf = true);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf = true);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf = true);
 
 			Transform& m_Transform;
 

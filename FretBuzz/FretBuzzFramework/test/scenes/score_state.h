@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 		ScoreState(std::string a_strSceneName) :
 			IScene(a_strSceneName)
 		{
-			ns_system::GameObject::instantiate(m_refRootGameObject, "score_!!!!!!", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f })->setAsDontDestroy();
+			ns_system::GameObject::instantiate(m_refRootGameObject, "score_!!!!!!", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer())->setAsDontDestroy();
 		}
 
 	};

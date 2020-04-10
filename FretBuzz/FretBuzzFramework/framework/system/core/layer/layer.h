@@ -13,6 +13,7 @@ namespace ns_fretBuzz
 			static constexpr unsigned int MAX_CAPACITY_LAYERS = 16;
 
 			Layer();
+			Layer(std::string a_strName);
 
 		private:
 			Layer(std::string a_strName, int a_uiID);

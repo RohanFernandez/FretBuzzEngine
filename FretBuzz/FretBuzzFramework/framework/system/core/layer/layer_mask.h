@@ -20,6 +20,7 @@ namespace ns_fretBuzz
 			std::bitset<Layer::MAX_CAPACITY_LAYERS> m_Bits;
 
 		public:
+			LayerMask(const LayerMask& a_LayerMask);
 			LayerMask(PREDEFINED_MASK a_PredefinedMask);
 			LayerMask(std::vector<std::string> a_vectLayers);
 			LayerMask();
@@ -34,8 +35,10 @@ namespace ns_fretBuzz
 			void removeLayer(const Layer& a_Layer);
 			void removeLayers(std::vector<std::string> a_vectLayers);
 
-			bool isLayerInMask(const std::string& a_strLayerName);
-			bool isLayerInMask(const Layer& a_Layer);
+			bool isLayerInMask(const std::string& a_strLayerName) const;
+			bool isLayerInMask(const Layer& a_Layer) const;
+
+			void operator=(const LayerMask& a_LayerMask);
 		};
 	}
 }

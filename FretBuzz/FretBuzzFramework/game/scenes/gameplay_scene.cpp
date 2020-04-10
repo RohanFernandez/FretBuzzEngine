@@ -26,20 +26,20 @@ namespace ns_HMGame
 	{
 		ns_HMGame::PrefabGameManager* l_pGameManager = new ns_HMGame::PrefabGameManager(m_refRootGameObject, "GameManager");
 
-		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, true);
+		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer(), true);
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
-		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = ns_fretBuzz::ns_graphics::Camera::addToGameObject(*m_pCam, ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport);
+		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = ns_fretBuzz::ns_graphics::Camera::addToGameObject(*m_pCam, ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, ns_fretBuzz::ns_system::LayerMask(/*{ "Enemy", "Player" }*/ ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING));
 		
-		ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { -300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f });
+		ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { -300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f }, ns_fretBuzz::ns_system::Layer());
 		ns_fretBuzz::ns_UI::CanvasData l_uiPlayerCanvasData;
 		l_uiPlayerCanvasData.m_CanvasSpaceType = ns_fretBuzz::ns_UI::CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY;
 		l_uiPlayerCanvasData.m_pCamera = l_pCamComponent;
 		ns_fretBuzz::ns_UI::Canvas* m_pCanvas = ns_fretBuzz::ns_UI::Canvas::addToGameObject(*m_pGameObjectUI, l_uiPlayerCanvasData);
-		ns_fretBuzz::ns_system::GameObject2D* m_pImgWeapon = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pGameObjectUI, "img", { 300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f });
+		ns_fretBuzz::ns_system::GameObject2D* m_pImgWeapon = ns_fretBuzz::ns_system::GameObject2D::instantiate(*m_pGameObjectUI, "img", { 300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f }, ns_fretBuzz::ns_system::Layer());
 		ns_fretBuzz::ns_graphics::Image* m_pImage = ns_fretBuzz::ns_graphics::Image::addToGameObject(*m_pImgWeapon, ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_golf_club")->getSprite(0), { 0.0f, 0.0f, 0.0f, 1.0f });
 
 		ns_fretBuzz::ns_system::Input::setCursorEnability(true, false);
-		ns_fretBuzz::ns_system::GameObject2D* l_pCursor = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f });
+		ns_fretBuzz::ns_system::GameObject2D* l_pCursor = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::Layer());
 		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pCursor, "Cursor");
 		ns_fretBuzz::ns_system::Behaviour::addToGameObject<CursorManager>(l_pCursor, l_pCamComponent);
 

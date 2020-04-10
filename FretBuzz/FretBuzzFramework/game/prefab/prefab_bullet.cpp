@@ -13,7 +13,7 @@ namespace ns_HMGame
 	}
 	
 	PrefabBullet::PrefabBullet(ns_fretBuzz::ns_system::GameObject* a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH)
-		: ns_fretBuzz::ns_system::GameObject2D(*a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, false)
+		: ns_fretBuzz::ns_system::GameObject2D(*a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_v2DimensionWH, ns_fretBuzz::ns_system::Layer(), false)
 	{
 		ns_fretBuzz::ns_system::ColliderData l_SensorRectColliderData;
 		l_SensorRectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BULLET);

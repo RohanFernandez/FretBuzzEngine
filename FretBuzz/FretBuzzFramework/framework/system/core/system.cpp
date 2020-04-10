@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 
 		System::System(GameStartupData& a_GameStartupData)
 		{
+			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
 			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, false);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
@@ -21,8 +22,6 @@ namespace ns_fretBuzz
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 
-			std::vector<std::string> a_vectStr;
-			m_pLayerManager = LayerManager::initialize(a_vectStr);
 
 #if _IS_DEBUG
 			m_pInspector = ns_editor::Inspector::initialize();
