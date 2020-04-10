@@ -21,6 +21,9 @@ namespace ns_fretBuzz
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 
+			std::vector<std::string> a_vectStr;
+			m_pLayerManager = LayerManager::initialize(a_vectStr);
+
 #if _IS_DEBUG
 			m_pInspector = ns_editor::Inspector::initialize();
 			m_pMasterRenderer->setInspector(m_pInspector);
@@ -35,7 +38,8 @@ namespace ns_fretBuzz
 				    s_pInstance->m_pMasterRenderer == nullptr ||
 				    s_pInstance->m_pInput == nullptr ||
 					s_pInstance->m_pPhysicsEngine == nullptr || 
-					s_pInstance->m_pSceneManager == nullptr 
+					s_pInstance->m_pSceneManager == nullptr ||
+					s_pInstance->m_pLayerManager == nullptr
 #if _IS_DEBUG
 				|| s_pInstance->m_pInspector == nullptr
 #endif
@@ -44,6 +48,7 @@ namespace ns_fretBuzz
 
 		System::~System()
 		{
+			m_pLayerManager->destroy();
 			m_pSceneManager->destroy();
 			m_pResourceManager->destroy();
 			m_pAudioEngine->destroy();

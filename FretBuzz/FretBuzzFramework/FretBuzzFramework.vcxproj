@@ -189,6 +189,9 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\gameobject_components\canvas.cpp" />
     <ClCompile Include="framework\components\collider_2d.cpp" />
     <ClCompile Include="framework\components\raycast_callback.cpp" />
+    <ClCompile Include="framework\system\core\layer\layer.cpp" />
+    <ClCompile Include="framework\system\core\layer\layer_manager.cpp" />
+    <ClCompile Include="framework\system\core\layer\layer_mask.cpp" />
     <ClCompile Include="framework\system\editor\editor_inspector.cpp" />
     <ClCompile Include="framework\utils\pool\gameobject_pool.cpp" />
     <ClCompile Include="framework\utils\pool\object_pool.cpp" />
@@ -281,6 +284,9 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\components\collider_2d.h" />
     <ClInclude Include="framework\components\collider_data.h" />
     <ClInclude Include="framework\components\raycast_callback.h" />
+    <ClInclude Include="framework\system\core\layer\layer.h" />
+    <ClInclude Include="framework\system\core\layer\layer_manager.h" />
+    <ClInclude Include="framework\system\core\layer\layer_mask.h" />
     <ClInclude Include="framework\system\editor\editor_inspector.h" />
     <ClInclude Include="framework\utils\Event\Delegate\action.h" />
     <ClInclude Include="framework\utils\Event\Delegate\delegate.h" />

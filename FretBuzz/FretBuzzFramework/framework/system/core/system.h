@@ -9,6 +9,7 @@
 #include "../scene_manager.h"
 #include "../game_startup_data.h"
 #include <system/editor/editor_inspector.h>
+#include "layer/layer_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -38,6 +39,8 @@ namespace ns_fretBuzz
 			ResourceManager* m_pResourceManager = nullptr;
 
 			PhysicsEngine* m_pPhysicsEngine = nullptr;
+
+			LayerManager* m_pLayerManager = nullptr;
 
 			SceneManager* m_pSceneManager = nullptr;
 
