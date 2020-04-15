@@ -16,8 +16,8 @@ int main()
 	m_GameStartupData.m_vectLayers = {"Enemy", "Player", "Walls", "Bullets", "Drops", "layercube"};
 	m_GameStartupData.m_vectScenes = 
 	{
-		//new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::threed_test_scene>("3d_Test"),
-		new ns_fretBuzz::ns_system::SceneData<ns_HMGame::GameplayScene>("GamePlay")
+		new ns_fretBuzz::ns_system::SceneData<ns_fretBuzz::threed_test_scene>("3d_Test"),
+		//new ns_fretBuzz::ns_system::SceneData<ns_HMGame::GameplayScene>("GamePlay")
 		/*new SceneData<MainMenuState>("mainmenustate"),
 		new SceneData<ScoreState>("scorestate")*/
 	};

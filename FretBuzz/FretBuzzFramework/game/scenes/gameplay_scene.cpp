@@ -45,7 +45,7 @@ namespace ns_HMGame
 
 		ns_fretBuzz::ns_system::GameObject* m_pCam2 = ns_fretBuzz::ns_system::GameObject::instantiate(*m_pCam, "m_pCam2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer(), true);
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport2(-0.5, 0.5, -0.5, 0.5, -1.0f, 1.0f, {0.7, 0.7}, {0.3, 0.3 });
-		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent2 = ns_fretBuzz::ns_graphics::Camera::addToGameObject(*m_pCam2, ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport2, ns_fretBuzz::ns_system::LayerMask(/*{ "Enemy", "Player" }*/ ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING));
+		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent2 = ns_fretBuzz::ns_graphics::Camera::addToGameObject(*m_pCam2, ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport2, ns_fretBuzz::ns_system::LayerMask(ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING));
 
 
 

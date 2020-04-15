@@ -88,7 +88,7 @@ namespace ns_fretBuzz
 
 			static float getAspectRatio()
 			{
-				return s_pInstance->m_fAspectRatio;
+				return ((float)s_pInstance->getWidth()) / ((float)s_pInstance->getHeight());
 			}
 
 			void setViewport(const Viewport& a_Viewport) const;
