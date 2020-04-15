@@ -18,10 +18,6 @@ namespace ns_fretBuzz
 
 		Inspector::Inspector()
 		{
-			fuzzDele.Add<doClass, &doClass::printThis1>(&testDoClass);
-			fuzzDele.Add<doClass, &doClass::printThis2>(&testDoClass);
-			fuzzDele.Add<&doClass::printThis3>();
-			fuzzDele.Add <&printThis4>();
 		}
 
 		Inspector::~Inspector()
@@ -50,8 +46,7 @@ namespace ns_fretBuzz
 		{
 			ImGui::Begin("System Manager");
 
-			std::string l_strFPS = "FPS : " + std::to_string(a_iFPS);
-			ImGui::Text(l_strFPS.c_str());
+			ImGui::Text("FPS %d", a_iFPS);
 
 			bool l_bIsPaused = ns_system::System::IsSystemPaused();
 			ImGui::Checkbox("Pause", &l_bIsPaused);
@@ -60,34 +55,6 @@ namespace ns_fretBuzz
 			float l_fCurentScaledTime = ns_system::System::GetScaledTime();
 			ImGui::SliderFloat("Scale Time", &l_fCurentScaledTime, 0.0f, 1.0f);
 			ns_system::System::SetScaledTime(l_fCurentScaledTime);
-
-			if(ImGui::Button("Delegate Test", { 10.0f, 5.0f }))
-			{
-				fuzzDele(6);
-
-				m_iActionRemoveCount++;
-
-				if (m_iActionRemoveCount == 1)
-				{
-					std::cout << "1\n";
-					fuzzDele.Remove<&printThis4>();
-				}
-				else if (m_iActionRemoveCount == 2)
-				{
-					std::cout << "2\n";
-					fuzzDele.Remove<&doClass::printThis3>();
-				}
-				else if (m_iActionRemoveCount == 3)
-				{
-					std::cout << "3\n";
-					fuzzDele.Remove<doClass, &doClass::printThis2>(&testDoClass);
-				}
-				else if (m_iActionRemoveCount == 4)
-				{
-					std::cout << "4\n";
-					fuzzDele.Remove<doClass, &doClass::printThis1>(&testDoClass);
-				}
-			}
 
 			ImGui::End();
 		}

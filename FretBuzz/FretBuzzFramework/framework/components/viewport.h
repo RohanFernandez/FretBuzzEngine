@@ -23,13 +23,14 @@ namespace ns_fretBuzz
 
 		protected:
 			PROJECTION_TYPE m_ProjectionType;
-			glm::mat4 m_mat4Projection;
-			glm::mat4 m_mat4View;
+			glm::mat4 m_mat4Projection = glm::mat4{ 1.0f };
+			glm::mat4 m_mat4View = glm::mat4{1.0f};
 
 			Viewport() = delete;
-			Viewport(PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection);
-			glm::vec2 m_v2NearFar = {};
-
+			Viewport(PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection, glm::vec2 a_v2OriginXY, glm::vec2 a_v2DimensionWH01);
+			glm::vec2 m_v2NearFar = { 0.0f, 1.0f };
+			glm::vec2 m_v2OriginXY01 = {0.0f, 0.0f};
+			glm::vec2 m_v2DimensionWH01 = { 0.0f, 0.0f };
 
 		public:
 			virtual ~Viewport() = 0 {};
@@ -50,6 +51,26 @@ namespace ns_fretBuzz
 				return m_v2NearFar;
 			}
 
+			const glm::vec2& getOriginXY01() const
+			{
+				return m_v2OriginXY01;
+			}
+
+			glm::vec2 getOriginXY() const
+			{
+				return { m_v2OriginXY01.x * Window::getWidth() , m_v2OriginXY01.y * Window::getHeight() };
+			}
+
+			const glm::vec2& getDimensionWH01() const
+			{
+				return m_v2DimensionWH01;
+			}
+
+			glm::vec2 getDimensionWH() const
+			{
+				return { m_v2DimensionWH01.x * Window::getWidth() , m_v2DimensionWH01.y * Window::getHeight() };
+			}
+
 			virtual void resetProjectionMatrix() = 0;
 		};
 
@@ -60,17 +81,15 @@ namespace ns_fretBuzz
 			glm::vec2 m_v2BottomTop;
 
 		public:
-			OrthographicViewport(float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
+			OrthographicViewport(float a_fleft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar, glm::vec2 a_v2OriginXY01, glm::vec2 a_v2DimensionWH01)
 				: Viewport(PROJECTION_TYPE::ORTHOGRAPHIC,
-					glm::ortho(a_fleft * Window::getWidth(), a_fRight * Window::getWidth(), a_fBottom * Window::getHeight(), a_fTop * Window::getHeight(), a_fNear, a_fFar))
+					glm::ortho(a_fleft * (float)Window::getWidth(), a_fRight * (float)Window::getWidth(), a_fBottom * (float)Window::getHeight(), a_fTop * (float)Window::getHeight(), a_fNear, a_fFar), a_v2OriginXY01, a_v2DimensionWH01)
 			{
-				m_v2NearFar = { a_fNear, a_fFar };
-				m_v2LeftRight = { a_fleft, a_fRight };
-				m_v2BottomTop = { a_fBottom , a_fTop };
+				setProjectionMatrix(a_fleft, a_fRight, a_fBottom, a_fTop, a_fNear, a_fFar);
 			}
 
 			OrthographicViewport(float a_fNear, float a_fFar)
-				: OrthographicViewport(-0.5f, 0.5f, -0.5f, 0.5f, a_fNear, a_fFar)
+				: OrthographicViewport(-0.5f, 0.5f, -0.5f, 0.5f, a_fNear, a_fFar, glm::vec2{ 0.0f,0.0f }, {1.0f, 1.0f })
 			{	
 			}
 
@@ -81,20 +100,15 @@ namespace ns_fretBuzz
 			//resets the projection matrix
 			void setProjectionMatrix(float a_fLeft, float a_fRight, float a_fBottom, float a_fTop, float a_fNear, float a_fFar)
 			{
-				float l_fWindowWidth = Window::getWidth();
-				float l_fWindowHeight = Window::getHeight();
-
 				m_v2BottomTop = {a_fBottom, a_fTop};
 				m_v2LeftRight = { a_fLeft, a_fRight};
 				m_v2NearFar = { a_fNear, a_fFar };
-				m_mat4Projection = glm::ortho(a_fLeft * l_fWindowWidth, a_fRight * l_fWindowWidth, a_fBottom * l_fWindowHeight, a_fTop * l_fWindowHeight, a_fNear, a_fFar);
+				resetProjectionMatrix();
 			}
 
 			virtual void resetProjectionMatrix() override
 			{
-				float l_fWindowWidth = Window::getWidth();
-				float l_fWindowHeight = Window::getHeight();
-				m_mat4Projection = glm::ortho(m_v2LeftRight.x * l_fWindowWidth, m_v2LeftRight.y * l_fWindowWidth, m_v2BottomTop.x * l_fWindowHeight, m_v2BottomTop.y * l_fWindowHeight, m_v2NearFar.x, m_v2NearFar.y);
+				m_mat4Projection = glm::ortho(m_v2LeftRight.x * (float)Window::getWidth(), m_v2LeftRight.y * (float)Window::getWidth(), m_v2BottomTop.x * (float)Window::getHeight(), m_v2BottomTop.y * (float)Window::getHeight(), m_v2NearFar.x, m_v2NearFar.y);
 			}
 
 			const glm::vec2& getBottomTop() const
@@ -115,17 +129,15 @@ namespace ns_fretBuzz
 			float m_fAspectRatio = 0.0f;
 
 		public:
-			PerspectiveViewport(float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
+			PerspectiveViewport(float a_fDegreesFOV, float a_fNear, float a_fFar, glm::vec2 a_v2OriginXY01, glm::vec2 a_v2DimensionWH01)
 				: Viewport(PROJECTION_TYPE::PERSPECTIVE,
-					glm::perspective(glm::radians(a_fDegreesFOV), a_fAspectRatio, a_fNear, a_fFar))
+					glm::perspective(glm::radians(a_fDegreesFOV), (a_v2DimensionWH01.x * (float)Window::getWidth())/ (a_v2DimensionWH01.y * (float)Window::getHeight()), a_fNear, a_fFar), a_v2OriginXY01, a_v2DimensionWH01)
 			{
-				m_v2NearFar = { a_fNear, a_fFar };
-				m_fFOV = a_fDegreesFOV;
-				m_fAspectRatio = a_fAspectRatio;
+				setProjectionMatrix(a_fDegreesFOV, a_fNear, a_fFar, m_v2DimensionWH01);
 			}
 
 			PerspectiveViewport(float a_fDegreesFOV, float a_fNear, float a_fFar)
-				: PerspectiveViewport(a_fDegreesFOV, (float)Window::getWidth() / (float)Window::getHeight(), a_fNear, a_fFar)
+				: PerspectiveViewport(a_fDegreesFOV, a_fNear, a_fFar, {0.0f, 0.0f}, {1.0f, 1.0f })
 			{
 			}
 
@@ -134,17 +146,18 @@ namespace ns_fretBuzz
 			}
 
 			//resets the projection matrix
-			void setProjectionMatrix(float a_fDegreesFOV, float a_fAspectRatio, float a_fNear, float a_fFar)
+			void setProjectionMatrix(float a_fDegreesFOV, float a_fNear, float a_fFar, glm::vec2 a_v2DimensionWH01)
 			{
-				m_mat4Projection = glm::perspective(glm::radians(a_fDegreesFOV), a_fAspectRatio, a_fNear, a_fFar);
-				m_fAspectRatio = a_fAspectRatio;
 				m_fFOV = a_fDegreesFOV;
-				m_v2NearFar = { a_fNear, a_fFar };
+				m_v2NearFar = { a_fNear, a_fFar }; 
+				m_v2DimensionWH01 = a_v2DimensionWH01;
+				resetProjectionMatrix();
 			}
 
 			virtual  void resetProjectionMatrix() override
 			{
-				m_fAspectRatio = Window::getAspectRatio();
+				const glm::vec2& l_v2DimensionWH = getDimensionWH();
+				m_fAspectRatio = (l_v2DimensionWH.x) / (l_v2DimensionWH.y);
 				m_mat4Projection = glm::perspective(glm::radians(m_fFOV), m_fAspectRatio, m_v2NearFar.x, m_v2NearFar.y);
 			}
 

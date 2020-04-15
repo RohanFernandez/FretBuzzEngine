@@ -59,7 +59,7 @@ namespace ns_fretBuzz
 					m_GameObject.m_Transform.setWorldPosition(m_pCamera->m_GameObject.m_Transform.getWorldPosition() + (m_pCamera->m_GameObject.m_Transform.getForward() * m_fPlaneDistance));
 				}
 
-				m_GameObject.m_Transform.setLocalRotation(m_pCamera->m_GameObject.m_Transform.getLocalRotation());
+				//m_GameObject.m_Transform.setLocalRotation(m_pCamera->m_GameObject.m_Transform.getLocalRotation());
 			}
 		}
 	}

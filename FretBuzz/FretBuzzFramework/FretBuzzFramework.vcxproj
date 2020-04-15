@@ -189,6 +189,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClCompile Include="framework\components\gameobject_components\canvas.cpp" />
     <ClCompile Include="framework\components\collider_2d.cpp" />
     <ClCompile Include="framework\components\raycast_callback.cpp" />
+    <ClCompile Include="framework\graphics\font.cpp" />
+    <ClCompile Include="framework\graphics\font_manager.cpp" />
     <ClCompile Include="framework\system\core\layer\layer.cpp" />
     <ClCompile Include="framework\system\core\layer\layer_manager.cpp" />
     <ClCompile Include="framework\system\core\layer\layer_mask.cpp" />
@@ -284,6 +286,8 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <ClInclude Include="framework\components\collider_2d.h" />
     <ClInclude Include="framework\components\collider_data.h" />
     <ClInclude Include="framework\components\raycast_callback.h" />
+    <ClInclude Include="framework\graphics\font.h" />
+    <ClInclude Include="framework\graphics\font_manager.h" />
     <ClInclude Include="framework\system\core\layer\layer.h" />
     <ClInclude Include="framework\system\core\layer\layer_manager.h" />
     <ClInclude Include="framework\system\core\layer\layer_mask.h" />
@@ -420,6 +424,7 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <Media Include="resources\audio\breakout.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="resources\assets\Priority1\fonts\font.xml" />
     <Xml Include="resources\assets\Priority2\models\3dmodels.xml" />
     <Xml Include="resources\assets\Priority1\audio\audio.xml" />
     <Xml Include="resources\assets\Priority1\shaders\shaders.xml" />
@@ -434,6 +439,9 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <None Include="resources\shaders\phong.vs" />
     <None Include="resources\shaders\default_3d.fs" />
     <None Include="resources\shaders\default_3d.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\fonts\Cousine-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

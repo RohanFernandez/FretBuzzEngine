@@ -15,6 +15,7 @@ namespace ns_fretBuzz
 			static void loadSprites(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
 			static void loadSpriteAnimations(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
 			static void loadModels(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_SpriteNodeIterator);
+			static void loadFonts(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_FontNodeIterator);
 
 
 		public:
@@ -69,6 +70,12 @@ namespace ns_fretBuzz
 			static constexpr char MODEL_NODE_NAME[] = "Models";
 			static constexpr char MODEL_DIRECTORY[] = "resources//model//";
 			static constexpr char ATTRIBUTE_MODEL_NAME[] = "name";
+
+			//Fonts
+			static constexpr char FONTS_NODE_NAME[] = "Font";
+			static constexpr char FONTS_DIRECTORY[] = "resources//fonts//";
+			static constexpr char ATTRIBUTE_FONT_NAME[] = "name";
+			static constexpr char ATTRIBUTE_FONT_FILE_NAME[] = "file_name";
 
 		};
 	}

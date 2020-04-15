@@ -264,6 +264,12 @@
     <ClCompile Include="framework\system\core\layer\layer_mask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\graphics\font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\graphics\font_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\system\timer\timer.h">
@@ -578,6 +584,12 @@
     <ClInclude Include="framework\system\core\layer\layer_mask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\graphics\font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\graphics\font_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\shaders\default_sprite.fs" />
@@ -674,5 +686,9 @@
     <Xml Include="resources\assets\Priority2\sprites\player\sprites.xml" />
     <Xml Include="resources\assets\Priority2\models\3dmodels.xml" />
     <Xml Include="resources\assets\Priority3\spriteanimation\spriteanimations.xml" />
+    <Xml Include="resources\assets\Priority1\fonts\font.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\fonts\Cousine-Regular.ttf" />
   </ItemGroup>
 </Project>

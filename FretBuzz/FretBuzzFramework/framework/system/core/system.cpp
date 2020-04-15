@@ -12,6 +12,8 @@ namespace ns_fretBuzz
 		System::System(GameStartupData& a_GameStartupData)
 		{
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
+			m_pFontManager = ns_graphics::FontManager::initialize();
+
 			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, false);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
@@ -38,7 +40,8 @@ namespace ns_fretBuzz
 				    s_pInstance->m_pInput == nullptr ||
 					s_pInstance->m_pPhysicsEngine == nullptr || 
 					s_pInstance->m_pSceneManager == nullptr ||
-					s_pInstance->m_pLayerManager == nullptr
+					s_pInstance->m_pLayerManager == nullptr ||
+					s_pInstance->m_pFontManager == nullptr 
 #if _IS_DEBUG
 				|| s_pInstance->m_pInspector == nullptr
 #endif
@@ -54,6 +57,7 @@ namespace ns_fretBuzz
 			m_pInput->destroy();
 			m_pMasterRenderer->destroy();
 			m_pPhysicsEngine->destroy();
+			m_pFontManager->destroy();
 
 #if _IS_DEBUG
 			 m_pInspector->destroy();

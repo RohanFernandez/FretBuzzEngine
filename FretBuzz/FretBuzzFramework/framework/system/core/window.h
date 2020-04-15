@@ -6,6 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
+		class Viewport;
 		class FRETBUZZ_API Window
 		{
 		private:
@@ -13,11 +14,9 @@ namespace ns_fretBuzz
 			static Window* s_pInstance;
 
 			GLFWwindow* m_pGLFWwindow = nullptr;
-			unsigned int m_uiWidth = 0;
-			unsigned int m_uiHeight = 0;
+			int m_iWidth = 0;
+			int m_iHeight = 0;
 			std::string m_strName;
-
-			float m_fAspectRatio = 0.0f;
 
 			bool m_bIsInitialized = false;
 
@@ -32,12 +31,12 @@ namespace ns_fretBuzz
 			using WINDOW_RESIZE_TYPE = void(*)();
 			std::vector<WINDOW_RESIZE_TYPE> m_vectWindowResizeCallbacks;
 
-			Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName);
+			Window(int a_iWidth, int a_iHeight, const std::string a_strName);
 			~Window();
 
 		public:
 
-			static Window* initialize(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName);
+			static Window* initialize(int a_iWidth, int a_iHeight, const std::string a_strName);
 			void destroy();
 			static const Window* get();
 
@@ -64,15 +63,15 @@ namespace ns_fretBuzz
 			}
 
 			//Returns the width of the window
-			static inline unsigned int getWidth()
+			static inline int getWidth()
 			{
-				return s_pInstance->m_uiWidth;
+				return s_pInstance->m_iWidth;
 			}
 
 			//Returns the height of the window
-			static inline unsigned int getHeight()
+			static inline int getHeight()
 			{
-				return s_pInstance->m_uiHeight;
+				return s_pInstance->m_iHeight;
 			}
 
 			//Changes the background color via OPEN GL
@@ -91,6 +90,8 @@ namespace ns_fretBuzz
 			{
 				return s_pInstance->m_fAspectRatio;
 			}
+
+			void setViewport(const Viewport& a_Viewport) const;
 
 			static void registerWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
 			static void unregisterWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);

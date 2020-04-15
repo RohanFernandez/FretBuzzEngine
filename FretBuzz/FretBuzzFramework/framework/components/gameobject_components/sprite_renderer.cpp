@@ -81,7 +81,7 @@ namespace ns_fretBuzz
 		void SpriteRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
 			Sprite* l_pSpriteToRender = ((m_pSprite == nullptr) ? &m_DefaultSprite : m_pSprite);
-			SpriteBatchRenderer::submit(*l_pSpriteToRender, a_mat4Transformation, m_Material);
+			SpriteBatchRenderer::submit(*l_pSpriteToRender, &a_Camera, a_mat4Transformation, m_Material);
 		}
 	}
 }

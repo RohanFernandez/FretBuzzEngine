@@ -82,23 +82,25 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void SpriteBatchRenderer::submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Material& a_Material)
+		void SpriteBatchRenderer::submit(const Sprite& a_Sprite, const Camera* a_pCamera, const glm::mat4& a_mat4Transformation, Material& a_Material)
 		{
 			submit(a_Sprite.getVertPosition() , a_Sprite.getColor(), a_Sprite.getTexture(), a_Sprite.getTexCoords(),
-				a_mat4Transformation, a_Material);
+				a_pCamera, a_mat4Transformation, a_Material);
 		}
 
 		void SpriteBatchRenderer:: submit(const std::vector<glm::vec4>& a_vectPosition, const glm::vec4& l_v4Color, 
 			const Texture* a_pTexture, const std::vector<glm::vec2>& a_vectv2TexCoords,
-			const glm::mat4& a_mat4Transformation, Material& a_Material)
+			const Camera* a_pCamera, const glm::mat4& a_mat4Transformation , Material& a_Material)
 		{
 			SpriteBatchRenderer& l_Instance = *s_pInstance;
 			
 			if (((l_Instance.m_iIndicesToDraw != 0) &&
 				(l_Instance.m_pCurrentShader != nullptr) &&
 				(l_Instance.m_pCurrentShader->getShaderId() != a_Material.getShader()->getShaderId()))
-				 || (l_Instance.m_iSpritesInBatch == l_Instance.MAX_SPRITES))
+				 || (l_Instance.m_iSpritesInBatch == l_Instance.MAX_SPRITES)
+				 || (l_Instance.m_pCurrRenderCamera != a_pCamera))
 			{
+				l_Instance.m_pCurrRenderCamera = a_pCamera;
 				l_Instance.end();
 				l_Instance.flush();
 				l_Instance.begin();

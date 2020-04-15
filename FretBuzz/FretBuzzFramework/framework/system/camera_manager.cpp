@@ -96,6 +96,7 @@ namespace ns_fretBuzz
 				{
 					Camera& l_CurrentCamera = *m_Container[l_iCameraIndex];
 					//a_PostProcessManager.begin();
+					Window::get()->setViewport(l_CurrentCamera.getViewport());
 					a_SceneManager.renderActiveScenes(l_CurrentCamera);
 					//a_PostProcessManager.draw(0, l_CurrentCamera);
 				}

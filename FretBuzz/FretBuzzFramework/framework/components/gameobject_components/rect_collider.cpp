@@ -79,9 +79,9 @@ namespace ns_fretBuzz
 				nullptr : new RectCollider(a_GameObject, a_RectColliderData);
 		}
 
-		void RectCollider::update(float a_fDeltaTime)
+		void RectCollider::lateUpdate(float a_fDeltaTime)
 		{
-			Collider2D::Update(a_fDeltaTime);
+			Collider2D::lateUpdate(a_fDeltaTime);
 		}
 
 		void RectCollider::debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)

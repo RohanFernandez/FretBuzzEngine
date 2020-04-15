@@ -23,7 +23,8 @@ namespace ns_fretBuzz
 		public:
 			static RectCollider* addToGameObject(GameObject2D& a_GameObject, ColliderData& a_RectColliderData);
 
-			virtual void update(float a_fDeltaTime) override;
+			//virtual void update(float a_fDeltaTime) override;
+			virtual void lateUpdate(float a_fDeltaTime) override;
 			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
 		};
 	}

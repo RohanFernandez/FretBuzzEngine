@@ -1,5 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "window.h"
+#include "components/viewport.h"
 
 namespace ns_fretBuzz
 {
@@ -8,15 +9,15 @@ namespace ns_fretBuzz
 		//singleton instance
 		Window* Window::s_pInstance = nullptr;
 
-		Window::Window(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName)
-			: m_uiWidth{ a_uiWidth },
-			m_uiHeight{ a_uiHeight },
+		Window::Window(int a_iWidth, int a_iHeight, const std::string a_strName)
+			: m_iWidth{ a_iWidth },
+			m_iHeight{ a_iHeight },
 			m_strName{ a_strName }
 		{
 			m_bIsInitialized = initialize();
 		}
 
-		Window* Window::initialize(unsigned int a_uiWidth, unsigned int a_uiHeight, const std::string a_strName)
+		Window* Window::initialize(int a_uiWidth, int a_uiHeight, const std::string a_strName)
 		{
 			if (s_pInstance != nullptr)
 			{
@@ -52,7 +53,7 @@ namespace ns_fretBuzz
 				return false;
 			}
 
-			m_pGLFWwindow = glfwCreateWindow(m_uiWidth, m_uiHeight, m_strName.c_str(), nullptr, nullptr);
+			m_pGLFWwindow = glfwCreateWindow(m_iWidth, m_iHeight, m_strName.c_str(), nullptr, nullptr);
 			if (m_pGLFWwindow == nullptr)
 			{
 				std::cout << "Window::initialize:: Failed to create GLFW window. \n";
@@ -78,8 +79,6 @@ namespace ns_fretBuzz
 
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_STENCIL_TEST);
-
-			glViewport(0, 0, m_uiWidth, m_uiHeight);
 
 			return true;
 		}
@@ -124,11 +123,8 @@ namespace ns_fretBuzz
 		void Window::OnWindowResize(GLFWwindow* a_pGLFWwindow, int a_iWidth, int a_iHeight)
 		{
 			Window* l_pWindow = static_cast<Window*>(glfwGetWindowUserPointer(a_pGLFWwindow));
-			l_pWindow->m_uiWidth = a_iWidth;
-			l_pWindow->m_uiHeight = a_iHeight;
-			glViewport(0, 0, a_iWidth, a_iHeight);
-
-			l_pWindow->m_fAspectRatio = (float)a_iWidth / (float)a_iHeight;
+			l_pWindow->m_iWidth = a_iWidth;
+			l_pWindow->m_iHeight = a_iHeight;
 
 			for (std::vector<WINDOW_RESIZE_TYPE>::iterator l_Iterator = l_pWindow->m_vectWindowResizeCallbacks.begin(),
 				l_IteratorEnd = l_pWindow->m_vectWindowResizeCallbacks.end();
@@ -172,6 +168,13 @@ namespace ns_fretBuzz
 					}
 				}
 			}
+		}
+
+		void Window::setViewport(const ns_graphics::Viewport& a_Viewport) const
+		{
+			const glm::vec2& l_v2OriginXY = a_Viewport.getOriginXY();
+			const glm::vec2& l_v2DimensionWH = a_Viewport.getDimensionWH();
+			glViewport(l_v2OriginXY.x, l_v2OriginXY.y, l_v2DimensionWH.x, l_v2DimensionWH.y);
 		}
 	}
 }

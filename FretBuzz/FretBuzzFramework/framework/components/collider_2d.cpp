@@ -59,7 +59,7 @@ namespace ns_fretBuzz
 			b2World* l_pb2World = PhysicsEngine::getB2World();
 		}
 
-		void Collider2D::Update(float a_fDeltaTime)
+		void Collider2D::lateUpdate(float a_fDeltaTime)
 		{
 			if (m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::DYNAMIC)
 			{
@@ -70,8 +70,8 @@ namespace ns_fretBuzz
 				//Set transform rotation from collider rotation if the collider's rotation is not fixed.
 				if (!m_ColliderData.m_bIsFixedRotation)
 				{
-					glm::quat l_quatTransformRotation = m_GameObject.m_Transform.getLocalRotation();
-					m_GameObject.m_Transform.setLocalRotation({ l_quatTransformRotation.x , l_quatTransformRotation.y , m_pBody->GetAngle() });
+					glm::vec3 l_v3tTransformRotation = glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation());
+					m_GameObject.m_Transform.setLocalRotation({ l_v3tTransformRotation.x , l_v3tTransformRotation.y , m_pBody->GetAngle() });
 				}
 			}
 			else if(m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::KINEMATIC)

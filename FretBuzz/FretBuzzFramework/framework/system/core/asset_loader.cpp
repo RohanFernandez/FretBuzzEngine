@@ -7,6 +7,7 @@
 #include "components/sprite_animator.h"
 #include "graphics/model.h"
 #include <filesystem>
+#include "framework/graphics/font_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -68,6 +69,10 @@ namespace ns_fretBuzz
 					else if (l_currentAssetTypeName.compare(MODEL_NODE_NAME) == 0)
 					{
 						loadModels(a_pResourceManager, l_currentAsset);
+					}
+					else if (l_currentAssetTypeName.compare(FONTS_NODE_NAME) == 0)
+					{
+						loadFonts(a_pResourceManager, l_currentAsset);
 					}
 					else
 					{
@@ -437,6 +442,35 @@ namespace ns_fretBuzz
 						a_pResourceManager->addResource<ns_graphics::Model>(std::string(l_CurrentAttribute->value()), l_Model);
 					}
 				}
+			}
+		}
+
+		void AssetLoader::loadFonts(ResourceManager* a_pResourceManager, pugi::xml_node_iterator a_FontNodeIterator)
+		{
+			for (pugi::xml_node_iterator l_currentFont = a_FontNodeIterator->begin();
+				l_currentFont != a_FontNodeIterator->end();
+				l_currentFont++)
+			{
+
+				std::string l_strResourceName;
+				std::string l_strFileName;
+
+				for (pugi::xml_attribute_iterator l_CurrentAttribute = l_currentFont->attributes_begin();
+					l_CurrentAttribute != l_currentFont->attributes_end();
+					l_CurrentAttribute++)
+				{
+					std::string l_strAttributeName = l_CurrentAttribute->name();
+					if (l_strAttributeName.compare(ATTRIBUTE_FONT_NAME) == 0)
+					{
+						l_strResourceName = std::string(l_CurrentAttribute->value());
+					}
+					else if (l_strAttributeName.compare(ATTRIBUTE_FONT_FILE_NAME) == 0)
+					{
+						l_strFileName = std::string(l_CurrentAttribute->value());
+					}
+				}
+				ns_graphics::Font l_Font = ns_graphics::FontManager::createFont(l_strResourceName, FONTS_DIRECTORY + l_strFileName);
+				a_pResourceManager->addResource<ns_graphics::Font>(l_Font.getName(), l_Font);
 			}
 		}
 	}

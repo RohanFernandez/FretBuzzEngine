@@ -21,7 +21,7 @@ namespace ns_HMGame
 	void Bullet::shootAt(glm::vec2 a_v2Direction)
 	{
 		m_fLifetime = 0.0f;
-		m_pCollider2D->setLinearVelocity(a_v2Direction * 1500.0f);
+		m_pCollider2D->setLinearVelocity(a_v2Direction * 1000.0f);
 	}
 
 	void Bullet::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)

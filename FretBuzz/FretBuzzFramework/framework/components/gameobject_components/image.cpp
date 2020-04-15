@@ -50,7 +50,7 @@ namespace ns_fretBuzz
 			}
 
 			const Texture* l_pTexture = (m_pSprite == nullptr) ? nullptr : m_pSprite->getTexture();
-			SpriteBatchRenderer::submit(m_GameObject2D.m_RectTransform.getRect().m_VertPosition, m_Color, l_pTexture, s_vectTexcoords, a_mat4Transformation, m_Material);
+			SpriteBatchRenderer::submit(m_GameObject2D.m_RectTransform.getRect().m_VertPosition, m_Color, l_pTexture, s_vectTexcoords, &a_Camera, a_mat4Transformation, m_Material);
 		}
 
 		void Image::setColor(glm::vec4 a_Color)

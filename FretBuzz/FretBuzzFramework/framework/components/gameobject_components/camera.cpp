@@ -89,11 +89,11 @@ namespace ns_fretBuzz
 			else
 			{
 				PerspectiveViewport* l_pPerspectiveViewport = dynamic_cast<PerspectiveViewport*>(m_pViewPort);
-				float a_fAspectRatio = l_pPerspectiveViewport->getAspectRatio();
 				glm::vec2 l_v2NearFar = l_pPerspectiveViewport->getNearFar();
 				float l_fFOV = l_pPerspectiveViewport->getFOV();
+				glm::vec2 l_v2DimensionWH = l_pPerspectiveViewport->getDimensionWH01();
 
-				l_pPerspectiveViewport->setProjectionMatrix(l_fFOV - a_fFactor, a_fAspectRatio, l_v2NearFar.x, l_v2NearFar.y);
+				l_pPerspectiveViewport->setProjectionMatrix(l_fFOV - a_fFactor, l_v2NearFar.x, l_v2NearFar.y, l_v2DimensionWH);
 			}
 		}
 	}

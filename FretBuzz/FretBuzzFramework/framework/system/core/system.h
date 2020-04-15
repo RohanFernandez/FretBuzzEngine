@@ -10,6 +10,7 @@
 #include "../game_startup_data.h"
 #include <system/editor/editor_inspector.h>
 #include "layer/layer_manager.h"
+#include "graphics/font_manager.h"
 
 namespace ns_fretBuzz
 {
@@ -43,6 +44,8 @@ namespace ns_fretBuzz
 			LayerManager* m_pLayerManager = nullptr;
 
 			SceneManager* m_pSceneManager = nullptr;
+
+			ns_graphics::FontManager* m_pFontManager = nullptr;
 
 #if _IS_DEBUG
 			ns_editor::Inspector* m_pInspector = nullptr;

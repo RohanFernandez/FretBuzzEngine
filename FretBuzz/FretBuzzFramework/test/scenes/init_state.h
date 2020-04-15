@@ -58,7 +58,7 @@ namespace ns_fretBuzz
 			CharacterTest* l_gameObjChar = new CharacterTest(*MainParent, "character_test", MainParent, m_refRootGameObject);
 			
 			ns_system::GameObject* m_pCam = ns_system::GameObject::instantiate(*MainParent, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer(), true);
-			ns_graphics::OrthographicViewport l_MainCam(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
+			ns_graphics::OrthographicViewport l_MainCam(-1.0f, 1.0f);
 			ns_graphics::Camera::addToGameObject(*m_pCam, ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_MainCam, ns_system::LayerMask());
 
 			EnemyTest* l_pEnemy = new EnemyTest(m_refRootGameObject, "enemy_test");
