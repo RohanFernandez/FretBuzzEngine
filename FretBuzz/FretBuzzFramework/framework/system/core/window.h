@@ -1,6 +1,7 @@
 #pragma once
 #include <glew.h>
 #include <glfw3.h>
+#include <utils/Event/Delegate/delegate.h>
 
 namespace ns_fretBuzz
 {
@@ -9,6 +10,10 @@ namespace ns_fretBuzz
 		class Viewport;
 		class FRETBUZZ_API Window
 		{
+		public:
+			//window resize callback type
+			using WINDOW_RESIZE_TYPE = void(int, int);
+
 		private:
 			//singleton instance
 			static Window* s_pInstance;
@@ -28,14 +33,13 @@ namespace ns_fretBuzz
 			//Callback called on window resized
 			static void OnWindowResize(GLFWwindow* a_pGLFWwindow, int a_iWidth, int a_iHeight);
 
-			using WINDOW_RESIZE_TYPE = void(*)();
-			std::vector<WINDOW_RESIZE_TYPE> m_vectWindowResizeCallbacks;
-
 			Window(int a_iWidth, int a_iHeight, const std::string a_strName);
 			~Window();
 
-		public:
+			///event to be called on window resized
+			Delegate<WINDOW_RESIZE_TYPE> m_EventOnWindowResized;
 
+		public:
 			static Window* initialize(int a_iWidth, int a_iHeight, const std::string a_strName);
 			void destroy();
 			static const Window* get();
@@ -93,8 +97,8 @@ namespace ns_fretBuzz
 
 			void setViewport(const Viewport& a_Viewport) const;
 
-			static void registerWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
-			static void unregisterWindowResizeCallback(WINDOW_RESIZE_TYPE a_WindowResizeCallback);
+			static void registerWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback);
+			static void unregisterWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback);
 		};
 	}
 }

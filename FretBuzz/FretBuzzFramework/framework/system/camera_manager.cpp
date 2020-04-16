@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "camera_manager.h"
 #include "graphics/post_process_manager.h"
-
+#include <utils/Event/Delegate/delegate.h>
 
 namespace ns_fretBuzz
 {
@@ -13,12 +13,16 @@ namespace ns_fretBuzz
 		CameraManager::CameraManager()
 			: ResourceContainer<std::vector<Camera*>>()
 		{
-		
+			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
+			l_Delegate.Add<CameraManager, &CameraManager::windowResize>(this);
+			Window::registerWindowResizeCallback(l_Delegate);
 		}
 
 		CameraManager::~CameraManager()
 		{
-
+			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
+			l_Delegate.Add<CameraManager, &CameraManager::windowResize>(this);
+			Window::unregisterWindowResizeCallback(l_Delegate);
 		}
 
 		CameraManager* CameraManager::initialize()
@@ -103,7 +107,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void CameraManager::windowResize()
+		void CameraManager::windowResize(int a_iWidth, int a_iHeight)
 		{
 			int l_iCameraCount = m_Container.size();
 			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)

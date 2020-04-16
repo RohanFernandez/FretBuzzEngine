@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 
 			void updateViewMatrix();
 			void renderFrame(ns_system::SceneManager& a_SceneManager, const PostProcessManager& a_PostProcessManager);
-			void windowResize();
+			void windowResize(int a_iWidth, int a_iHeight);
 		};
 	}
 }

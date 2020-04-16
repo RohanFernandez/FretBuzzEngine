@@ -41,7 +41,6 @@ namespace ns_fretBuzz
 		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
 		{
 			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
-			Window::registerWindowResizeCallback(windowResizeCallback);
 
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_BACK);
@@ -80,8 +79,6 @@ namespace ns_fretBuzz
 			m_pCameraManager->destroy();
 			m_pLightManager->destroy();
 			m_pShaderManager->destroy();
-
-			Window::unregisterWindowResizeCallback(windowResizeCallback);
 			m_pWindow->destroy();
 		}
 
@@ -109,6 +106,7 @@ namespace ns_fretBuzz
 					a_SceneManager.renderActiveScenes(l_CurrentCamera);
 
 					m_pBatchRendererManager->endAndflushBatches();
+					glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 					//a_PostProcessManager.draw(0, l_CurrentCamera);
 				}
 			}
@@ -149,12 +147,6 @@ namespace ns_fretBuzz
 #endif
 
 			m_pWindow->closeWindow();
-		}
-
-		void MasterRenderer::windowResizeCallback()
-		{
-			s_pInstance->m_pCameraManager->windowResize();
-			s_pInstance->m_pPostProcessManager->windowResize();
 		}
 
 #if _IS_DEBUG

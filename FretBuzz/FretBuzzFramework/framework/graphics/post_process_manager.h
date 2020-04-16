@@ -51,7 +51,7 @@ namespace ns_fretBuzz
 
 			Material m_Material;
 			DataTexture m_DataTexture;
-			void windowResize();
+			void windowResize(int a_iWidth, int a_iHeight);
 
 			static void togglePostProcess(bool a_bIsPostProcessOn);
 			static bool isPostProcessActive();

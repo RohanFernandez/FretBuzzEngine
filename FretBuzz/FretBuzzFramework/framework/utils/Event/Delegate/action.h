@@ -1,3 +1,6 @@
+//Project created by RohanFernandez
+//repository : https://github.com/RohanFernandez/DankeDelegate
+
 #pragma once
 
 namespace ns_fretBuzz
@@ -16,13 +19,6 @@ namespace ns_fretBuzz
 
 		///Pointer to the object which cointains the function to be called
 		void* m_pObjectPtr = nullptr;
-
-		///Constructor
-		Action(void* a_pObj, FUNC_STUB a_pFuncStub)
-		{
-			m_pObjectPtr = a_pObj;
-			m_pFuncStub = a_pFuncStub;
-		}
 
 #pragma region FUNCTION BLUEPRINT
 
@@ -52,7 +48,7 @@ namespace ns_fretBuzz
 #pragma endregion FUNCTION BLUEPRINT
 
 	public:
-
+		Action() = delete;
 
 #pragma region CONSTRUCTOR
 
@@ -75,6 +71,12 @@ namespace ns_fretBuzz
 		static Action <T_RET_TYPE(T_ARGS...)> GetAction()
 		{
 			return Action(nullptr, FunctionBlueprint<T_METHOD>);
+		}
+
+		///Return an Action of static / global type 
+		static Action <T_RET_TYPE(T_ARGS...)> GetAction(Action <T_RET_TYPE(T_ARGS...)>& a_Action)
+		{
+			return Action <T_RET_TYPE(T_ARGS...)>(a_Action.m_pObjectPtr, a_Action.m_pFuncStub);
 		}
 
 #pragma endregion CONSTRUCTOR
@@ -105,12 +107,44 @@ namespace ns_fretBuzz
 				nullptr == m_pObjectPtr;
 		}
 
+		//checks if the action provided is equal to this action
+		bool isActionEqual(Action& a_Action)
+		{
+			return (a_Action.m_pFuncStub == m_pFuncStub) &&
+				(a_Action.m_pObjectPtr == m_pObjectPtr);
+		}
+
 #pragma endregion IS_ACTION_EQUAL_TO
 
 		///Calls the function
 		T_RET_TYPE Invoke(T_ARGS... a_Args) const
 		{
 			return (*m_pFuncStub)(m_pObjectPtr, a_Args...);
+		}
+
+		void operator=(Action&& a_Action)
+		{
+			m_pFuncStub = a_Action.m_pFuncStub;
+			m_pObjectPtr = a_Action.m_pObjectPtr;
+		}
+
+		///Constructor
+		Action(void* a_pObj, FUNC_STUB a_pFuncStub)
+		{
+			m_pObjectPtr = a_pObj;
+			m_pFuncStub = a_pFuncStub;
+		}
+
+		///Constructor
+		Action(Action& a_Action)
+			: Action(a_Action.m_pObjectPtr, a_Action.m_pFuncStub)
+		{
+		}
+
+		///Constructor
+		Action(Action&& a_Action)
+			: Action(a_Action.m_pObjectPtr, a_Action.m_pFuncStub)
+		{
 		}
 	};
 }

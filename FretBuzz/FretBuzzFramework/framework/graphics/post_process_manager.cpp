@@ -2,8 +2,8 @@
 #include <glew.h>
 #include "post_process_manager.h"
 #include "shader_manager.h"
-
 #include "system/core/window.h"
+#include <utils/Event/Delegate/delegate.h>
 
 namespace ns_fretBuzz
 {
@@ -37,6 +37,10 @@ namespace ns_fretBuzz
 		PostProcessManager::PostProcessManager(unsigned int a_iWidth, unsigned int a_iHeight, Material::POST_PROCESS_TYPE a_PostProcessType)
 			:m_DataTexture(a_iWidth, a_iHeight, nullptr, GL_RGB)
 		{
+			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
+			l_Delegate.Add<PostProcessManager, &PostProcessManager::windowResize>(this);
+			Window::registerWindowResizeCallback(l_Delegate);
+
 			glGenFramebuffers(1, &m_FBO);
 			glGenRenderbuffers(1, &m_RBO);
 
@@ -81,6 +85,10 @@ namespace ns_fretBuzz
 
 		PostProcessManager::~PostProcessManager()
 		{
+			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
+			l_Delegate.Add<PostProcessManager, &PostProcessManager::windowResize>(this);
+			Window::unregisterWindowResizeCallback(l_Delegate);
+
 			if (m_FBO)
 			{
 				glDeleteFramebuffers(1, &m_FBO);
@@ -160,7 +168,7 @@ namespace ns_fretBuzz
 			return s_pInstance->m_bIsPostProcessOn;
 		}
 
-		void PostProcessManager::windowResize()
+		void PostProcessManager::windowResize(int a_iWidth, int a_iHeight)
 		{
 			if (!isSetupFrameBufferSuccess(Window::getWidth(), Window::getHeight()))
 			{

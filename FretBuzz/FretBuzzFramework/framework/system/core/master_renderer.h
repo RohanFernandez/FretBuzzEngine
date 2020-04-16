@@ -57,8 +57,6 @@ namespace ns_fretBuzz
 
 			void closeWindow() const;
 
-			static void windowResizeCallback();
-
 #if _IS_DEBUG
 			void setInspector(ns_editor::Inspector* a_pInspector);
 #endif

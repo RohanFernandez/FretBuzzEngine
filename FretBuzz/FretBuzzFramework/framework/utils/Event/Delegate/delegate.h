@@ -1,3 +1,6 @@
+//Project created by RohanFernandez
+//repository : https://github.com/RohanFernandez/DankeDelegate
+
 #pragma once
 #include "action.h"
 #include <vector>
@@ -10,13 +13,29 @@ namespace ns_fretBuzz
 	class Delegate <T_RET_TYPE(T_ARGS...)>
 	{
 		private:
-
 			using T_ACTION = Action<T_RET_TYPE(T_ARGS...)>;
 
 			///Set to store all the Actions of the same type
 			std::vector<T_ACTION> m_vectActions;
 
+			//removes action given if found
+			void remove(T_ACTION& a_Action)
+			{
+				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
+					l_iterator != m_vectActions.end();
+					l_iterator++)
+				{
+					if (l_iterator->isActionEqual(a_Action))
+					{
+						m_vectActions.erase(l_iterator);
+						break;
+					}
+				}
+			}
+
 		public:
+
+			Delegate() {}
 
 			///Adds a member function into the delegate list
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::*T_METHOD)(T_ARGS...)>
@@ -39,13 +58,24 @@ namespace ns_fretBuzz
 				m_vectActions.emplace_back(T_ACTION::template GetAction<T_METHOD>());
 			}
 
+			///Adds an static or global action into the list
+			void Add(Delegate<T_RET_TYPE(T_ARGS...)>& a_Delegate)
+			{
+				for (typename std::vector<T_ACTION>::iterator l_iterator = a_Delegate.m_vectActions.begin();
+					l_iterator != a_Delegate.m_vectActions.end();
+					l_iterator++)
+				{
+					m_vectActions.emplace_back(T_ACTION::GetAction(*l_iterator));
+				}
+			}
+
 			T_RET_TYPE operator()(T_ARGS... a_Args)
 			{
 				return Invoke(a_Args...);
 			}
 
 			///Calls all the actions stored within the delegate
-			T_RET_TYPE Invoke(T_ARGS... a_Args) throw(std::out_of_range)
+			void Invoke(T_ARGS... a_Args) throw(std::out_of_range)
 			{
 				try
 				{
@@ -54,17 +84,11 @@ namespace ns_fretBuzz
 						throw std::out_of_range("Delegate is empty\n");
 					}
 
-					T_RET_TYPE l_tReturn;
 					for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
 						l_iterator != m_vectActions.end();
 						l_iterator++)
 					{
-						l_tReturn = l_iterator->Invoke(a_Args...);
-					}
-
-					if (typeid(T_RET_TYPE) != typeid(void))
-					{
-						return l_tReturn;
+						l_iterator->Invoke(a_Args...);
 					}
 				}
 				catch (std::out_of_range& a_Exception)
@@ -77,47 +101,34 @@ namespace ns_fretBuzz
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...)>
 			void Remove(T_CLASS_TYPE* a_Instance)
 			{
-				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
-					l_iterator != m_vectActions.end();
-					l_iterator++)
-				{
-					if (l_iterator->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
-					{
-						m_vectActions.erase(l_iterator);
-						break;
-					}
-				}
+				T_ACTION l_Action = T_ACTION::template GetAction<T_CLASS_TYPE, T_METHOD>(a_Instance);
+				remove(l_Action);
 			}
 
 			///removes a const member function into the delegate list
 			template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...) const>
 			void Remove(T_CLASS_TYPE* const a_Instance)
 			{
-				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
-					l_iterator != m_vectActions.end();
-					l_iterator++)
-				{
-					if (l_iterator->isActionEqual<T_CLASS_TYPE, T_METHOD>(a_Instance))
-					{
-						m_vectActions.erase(l_iterator);
-						break;
-					}
-				}
+				T_ACTION l_Action = T_ACTION::template GetAction<T_CLASS_TYPE, T_METHOD>(a_Instance);
+				remove(l_Action);
 			}
 
 			///removes an static or global action into the list
 			template<T_RET_TYPE(*T_METHOD)(T_ARGS...)>
 			void Remove()
 			{
-				for (typename std::vector<T_ACTION>::iterator l_iterator = m_vectActions.begin();
-					l_iterator != m_vectActions.end();
+				T_ACTION l_Action = T_ACTION::template GetAction<T_METHOD>();
+				remove(l_Action);
+			}
+
+			///removes all actions in the delegate if it exists
+			void Remove(Delegate<T_RET_TYPE(T_ARGS...)>& a_Delegate)
+			{
+				for (typename std::vector<T_ACTION>::iterator l_iterator = a_Delegate.m_vectActions.begin();
+					l_iterator != a_Delegate.m_vectActions.end();
 					l_iterator++)
 				{
-					if (l_iterator->isActionEqual<T_METHOD>())
-					{
-						m_vectActions.erase(l_iterator);
-						break;
-					}
+					remove(*l_iterator);
 				}
 			}
 
