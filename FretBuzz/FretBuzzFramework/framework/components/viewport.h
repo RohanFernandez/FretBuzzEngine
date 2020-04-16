@@ -89,7 +89,7 @@ namespace ns_fretBuzz
 			}
 
 			OrthographicViewport(float a_fNear, float a_fFar)
-				: OrthographicViewport(-0.5f, 0.5f, -0.5f, 0.5f, a_fNear, a_fFar, glm::vec2{ 0.0f,0.0f }, {1.0f, 1.0f })
+				: OrthographicViewport(-0.5f, 0.5f, -0.5f, 0.5f, a_fNear, a_fFar, { 0.0f,0.0f }, {1.0f, 1.0f })
 			{	
 			}
 

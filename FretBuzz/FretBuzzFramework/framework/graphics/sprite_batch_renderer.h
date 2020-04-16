@@ -19,8 +19,6 @@ namespace ns_fretBuzz
 			int m_iIndicesToDraw = 0;
 			Shader* m_pCurrentShader = nullptr;
 
-			 const Camera* m_pCurrRenderCamera = nullptr;
-
 			SpriteBatchRenderer(unsigned int a_iMaxSprites);
 			~SpriteBatchRenderer();
 
@@ -31,9 +29,9 @@ namespace ns_fretBuzz
 			static constexpr int VERTICES_PER_SPRITE = 4;
 			static constexpr int INDICES_PER_SPRITE = 6;
 
-			static void submit(const Sprite& a_Sprite, const Camera* a_pCamera, const glm::mat4& a_mat4Transformation, Material& a_Material);
+			static void submit(const Sprite& a_Sprite, const glm::mat4& a_mat4Transformation, Material& a_Material);
 			static void submit(const std::vector<glm::vec4>& a_vectPosition, const glm::vec4& l_v4Color,
-				const Texture* a_pTexture, const std::vector<glm::vec2>& l_vectv2TexCoords, const Camera* a_pCamera,
+				const Texture* a_pTexture, const std::vector<glm::vec2>& l_vectv2TexCoords,
 				const glm::mat4& a_mat4Transformation, Material& a_Material);
 
 			virtual void begin() override;

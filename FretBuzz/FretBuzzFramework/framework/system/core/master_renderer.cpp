@@ -93,12 +93,25 @@ namespace ns_fretBuzz
 		{
 			m_pWindow->clear();
 
-			m_pBatchRendererManager->beginBatches();
-
+			//Render Pass
 			m_pCameraManager->updateViewMatrix();
-			m_pCameraManager->renderFrame(a_SceneManager, *m_pPostProcessManager);
-			
-			m_pBatchRendererManager->endAndflushBatches();
+			std::vector<Camera*>& l_vectCameras = m_pCameraManager->getCameras();
+			int l_iCameraCount = l_vectCameras.size();
+			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			{
+				if (l_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
+				{
+					//a_PostProcessManager.begin();
+					m_pBatchRendererManager->beginBatches();
+
+					Camera& l_CurrentCamera = *l_vectCameras[l_iCameraIndex];
+					Window::get()->setViewport(l_CurrentCamera.getViewport());
+					a_SceneManager.renderActiveScenes(l_CurrentCamera);
+
+					m_pBatchRendererManager->endAndflushBatches();
+					//a_PostProcessManager.draw(0, l_CurrentCamera);
+				}
+			}
 
 #if _IS_DEBUG
 
@@ -114,7 +127,6 @@ namespace ns_fretBuzz
 
 			m_pWindow->update();
 			m_pTimer->update();
-
 
 			return m_pTimer->getDeltaTime();
 		}

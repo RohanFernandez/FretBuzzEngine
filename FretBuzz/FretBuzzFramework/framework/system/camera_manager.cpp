@@ -46,7 +46,7 @@ namespace ns_fretBuzz
 
 		Camera& CameraManager::getMainCamera()
 		{
-			return **(s_pInstance->m_Container.begin());
+			return *(s_pInstance->m_Container[0]);
 		}
 
 		void CameraManager::registerCamera(Camera* a_pCamera)
@@ -110,6 +110,11 @@ namespace ns_fretBuzz
 			{
 				m_Container[l_iCameraIndex]->reset();
 			}
+		}
+
+		std::vector<Camera*>& CameraManager::getCameras()
+		{
+			return m_Container;
 		}
 	}
 }

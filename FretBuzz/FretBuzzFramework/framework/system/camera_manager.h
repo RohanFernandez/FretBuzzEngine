@@ -22,6 +22,8 @@ namespace ns_fretBuzz
 			static const CameraManager* get();
 			static Camera& getMainCamera();
 
+			std::vector<Camera*>& getCameras();
+
 			void registerCamera(Camera* a_pCamera);
 			static void s_registerCamera(Camera* a_pCamera);
 
