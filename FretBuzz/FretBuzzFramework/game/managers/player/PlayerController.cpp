@@ -100,6 +100,7 @@ namespace ns_HMGame
 		m_pRectCollider->setLinearVelocity(glm::vec2{ l_fHorizontalVelocity, l_fVerticalVelocity} );
 		m_pCamGameObj->m_Transform.setWorldPosition(m_GameObject.m_Transform.getWorldPosition());
 
+		//std::cout << "x: "<<l_v2PlayerToMouseDirection.x << "\ty: " << l_v2PlayerToMouseDirection.y << "\n";
 
 		//// DEBUG START //// 
 		if (ns_fretBuzz::ns_system::Input::IsKeyPutDown(GLFW_KEY_L))
@@ -111,7 +112,7 @@ namespace ns_HMGame
 		{
 			m_pUpperSpriteAnimator->play("attack");
 			glm::vec3 l_v3PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
-			m_WeaponData.fire(glm::vec2{l_v3PlayerPosition.x, l_v3PlayerPosition.y} +l_v2PlayerToMouseDirection * 100.0f, l_v2PlayerToMouseDirection, m_pPlayerUpperGameObj->m_Transform.getLocalRotation());
+			m_WeaponData.fire(glm::vec2{l_v3PlayerPosition.x, l_v3PlayerPosition.y} +l_v2PlayerToMouseDirection * 150.0f, l_v2PlayerToMouseDirection, m_pPlayerUpperGameObj->m_Transform.getLocalRotation());
 
 			/*ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
 			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
@@ -155,22 +156,22 @@ namespace ns_HMGame
 
 	void PlayerController::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "PlayerController::OnCollisionEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+		//std::cout << "PlayerController::OnCollisionEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
 	void PlayerController::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "PlayerController::OnCollisionExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+		//std::cout << "PlayerController::OnCollisionExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
 	void PlayerController::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+		//std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
 	void PlayerController::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
 	{
-		std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
+		//std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
 	void PlayerController::setAsCurrentWeaponOver(ns_HMGame::Weapon* a_pWeapon, bool a_bIsOver)

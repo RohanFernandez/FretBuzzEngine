@@ -47,6 +47,9 @@ namespace ns_fretBuzz
 			glFrontFace(GL_CCW);
 			glEnable(GL_DEPTH_TEST);
 
+			glDepthMask(GL_TRUE);
+			glDepthFunc(GL_LESS);
+
 			m_pBatchRendererManager = BatchRendererManager::intialize();
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = LightManager::initialize();

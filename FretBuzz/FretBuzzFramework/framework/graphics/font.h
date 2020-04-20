@@ -17,6 +17,7 @@ namespace ns_fretBuzz
 			virtual ~Font();
 
 			std::string getName();
+			FT_Face getFTFace();
 
 		protected:
 			virtual void destroyResource();

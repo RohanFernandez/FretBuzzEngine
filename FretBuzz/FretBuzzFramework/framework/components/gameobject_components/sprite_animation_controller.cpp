@@ -55,7 +55,8 @@ namespace ns_fretBuzz
 		void SpriteAnimationController::playStateID(std::string a_strAnimationID)
 		{
 			m_pAnimState = m_pSpriteAnimator->getAnimStateWithID(a_strAnimationID);
-			m_pCurrentSpriteSheet = m_pAnimState->getSpriteGroup()->getSprites();
+			ns_graphics::SpriteGroup* l_pCurrentSpriteGroup = ResourceManager::getResource<ns_graphics::SpriteGroup>(m_pAnimState->getSpriteGroupID());
+			m_pCurrentSpriteSheet = l_pCurrentSpriteGroup->getSprites();
 			m_iCurrentSpriteIndex = 0;
 			m_pCurrentSprite = &(*m_pCurrentSpriteSheet)[m_iCurrentSpriteIndex];
 			m_pSpriteRenderer->setSprite(m_pCurrentSprite);
@@ -63,7 +64,7 @@ namespace ns_fretBuzz
 			m_fTimePassedInCurrentSprite = 0.0f;
 			m_fTimePerSprite = m_pAnimState->getTimePerSprite();
 			m_bIsCurrentAnimationLooped = m_pAnimState->isLooped();
-			m_iSpriteCount = m_pAnimState->getSpriteGroup()->getSpriteCount();
+			m_iSpriteCount = l_pCurrentSpriteGroup->getSpriteCount();
 
 			std::string l_strOnCompleteTrigger = m_pAnimState->getOnCompleteTrigger();
 			m_strCurrentonCompleteTrigger = ((l_strOnCompleteTrigger.compare("") == 0) ? m_strDefaultStateID : l_strOnCompleteTrigger);

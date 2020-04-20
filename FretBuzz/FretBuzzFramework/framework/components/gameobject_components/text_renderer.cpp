@@ -41,6 +41,7 @@ namespace ns_fretBuzz
 
 		void TextRenderer::render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
+			FT_Face l_FTFace = m_pFont->getFTFace();
 			
 		}
 	}

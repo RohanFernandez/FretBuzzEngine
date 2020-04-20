@@ -145,8 +145,9 @@ namespace ns_fretBuzz
 
 		virtual void render(const ns_graphics::Camera& a_Camera) override
 		{
-			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+			//glStencilFunc(GL_EQUAL, 1, 0xFF);
 			m_Material.bind(a_Camera);
+			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 			glClear(GL_STENCIL_BUFFER_BIT);
 			glStencilFunc(GL_ALWAYS, 1, 0xFF);
 			glStencilMask(0xFF);
@@ -163,7 +164,7 @@ namespace ns_fretBuzz
 
 			m_HighlighterMaterial.bind(a_Camera);
 			glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-			glStencilMask(0x00);
+			glStencilMask(GL_FALSE);
 			glDisable(GL_DEPTH_TEST);
 
 			l_m4Model = glm::mat4(1.0f);
@@ -176,7 +177,7 @@ namespace ns_fretBuzz
 			glBindVertexArray(m_VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 
-			glStencilMask(0xFF);
+			glStencilMask(GL_TRUE);
 			glStencilFunc(GL_ALWAYS, 1, 0xFF);
 			glEnable(GL_DEPTH_TEST);
 			

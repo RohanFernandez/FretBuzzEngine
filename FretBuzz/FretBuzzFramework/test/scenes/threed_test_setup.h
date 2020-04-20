@@ -71,6 +71,15 @@ namespace ns_fretBuzz
 
 			//ns_system::GameObject* m_pAudi = ns_system::GameObject::instantiate(m_refRootGameObject, "DeskMain");
 			//ns_graphics::Model::addToGameObject(*m_pAudi, *ns_system::ResourceManager::getResource<ns_graphics::Model>("FruitNinja_env//FruitNinja_Env.FBX"));
+
+			ns_system::GameObject2D* m_pPlant0 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant0", { 0.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, {2.0f, 2.0f}, ns_fretBuzz::ns_system::Layer());
+			ns_graphics::Image* l_pPlantImg0 = ns_graphics::Image::addToGameObject(*m_pPlant0, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
+
+			ns_system::GameObject2D* m_pPlant1 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant1", { 5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
+			ns_graphics::Image* l_pPlantImg1 = ns_graphics::Image::addToGameObject(*m_pPlant1, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
+
+			ns_system::GameObject2D* m_pPlant2 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant2", { -5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
+			ns_graphics::Image* l_pPlantImg2 = ns_graphics::Image::addToGameObject(*m_pPlant2, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
 		}
 	};
 }

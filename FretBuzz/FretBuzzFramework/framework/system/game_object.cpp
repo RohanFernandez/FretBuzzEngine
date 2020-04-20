@@ -244,7 +244,7 @@ namespace ns_fretBuzz
 
 			if (a_pNewParentGameObject == this || a_pNewParentGameObject == m_pParentGameObject)
 			{
-				std::cout << "GameObject::setAsParent:: The new parent to set of the child GameObject are the same GameObject\n";
+				//std::cout << "GameObject::setAsParent:: The new parent to set of the child GameObject are the same GameObject\n";
 				return;
 			}
 

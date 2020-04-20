@@ -13,6 +13,8 @@ namespace ns_HMGame
 		float m_fLifetime = 0.0f;
 		static constexpr float MAX_LIFETIME = 3.0f;
 
+		glm::vec2 m_v2Direction{1.0f, 1.0f};
+
 	public:
 		Bullet(ns_fretBuzz::ns_system::GameObject2D* a_GameObject);
 		void setBulletType(std::string a_strBulletSpriteName);

@@ -419,18 +419,10 @@ xcopy /E /Y "$(SolutionDir)Libs\DLL\x64" "$(TargetDir)"</Command>
     <Image Include="resources\textures\container_diffuse.png" />
     <Image Include="resources\textures\container_specular.png" />
     <Image Include="resources\textures\darksiders.jpg" />
+    <Image Include="resources\textures\grass.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="resources\assets\Priority1\fonts\font.xml" />
-    <Xml Include="resources\assets\Priority2\models\3dmodels.xml" />
-    <Xml Include="resources\assets\Priority1\audio\audio.xml" />
-    <Xml Include="resources\assets\Priority1\shaders\shaders.xml" />
-    <Xml Include="resources\assets\Priority3\spriteanimation\spriteanimations.xml" />
-    <Xml Include="resources\assets\Priority2\sprites\player\sprites.xml" />
-    <Xml Include="resources\assets\Priority1\textures\textures.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\default_post_process.fs" />

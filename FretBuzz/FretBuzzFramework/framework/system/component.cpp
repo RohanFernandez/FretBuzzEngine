@@ -29,13 +29,13 @@ namespace ns_fretBuzz
 
 		void IComponent::onEnable()
 		{
-			std::cout << "ON ENABLE:: "<< m_GameObject.getName()<<" \n";
+			//std::cout << "ON ENABLE:: "<< m_GameObject.getName()<<" \n";
 			callFuncInSiblings(&IComponent::onSiblingComponentEnabled);
 		}
 
 		void IComponent::onDisable()
 		{
-			std::cout << "ON DISABLE:: "<<m_GameObject.getName() <<"\n";
+			//std::cout << "ON DISABLE:: "<<m_GameObject.getName() <<"\n";
 			callFuncInSiblings(&IComponent::onSiblingComponentDisabled);
 		}
 

@@ -22,7 +22,6 @@ namespace ns_fretBuzz
 
 	public:
 
-
 		PlayerController(ns_system::GameObject* a_GameObject)
 			: ns_system::Behaviour(a_GameObject)
 		{
@@ -94,10 +93,10 @@ namespace ns_fretBuzz
 			}
 
 
-			if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
+			/*if (ns_system::Input::IsKeyPutDown(GLFW_KEY_I))
 			{
 				ns_system::SceneManager::s_loadScene("initstate");
-			}
+			}*/
 
 			/*if (ns_system::Input::IsKeyPutDown(GLFW_KEY_O))
 			{

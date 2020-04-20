@@ -130,12 +130,12 @@ namespace ns_fretBuzz
 
 		void Window::registerWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback)
 		{
-			s_pInstance->m_EventOnWindowResized.Add(a_WindowResizeCallback);
+			s_pInstance->m_EventOnWindowResized += a_WindowResizeCallback;
 		}
 
 		void Window::unregisterWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback)
 		{
-			s_pInstance->m_EventOnWindowResized.Remove(a_WindowResizeCallback);
+			s_pInstance->m_EventOnWindowResized -= a_WindowResizeCallback;
 		}
 
 		bool Window::isWindowClosed() const

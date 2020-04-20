@@ -667,6 +667,9 @@
     <Image Include="resources\sprites\Enemy\EnemyM16.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="resources\textures\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="resources\audio\breakout.mp3" />
@@ -678,15 +681,6 @@
     <None Include="resources\shaders\default_3d.vs" />
     <None Include="resources\shaders\default_post_process.fs" />
     <None Include="resources\shaders\default_post_process.vs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="resources\assets\Priority1\shaders\shaders.xml" />
-    <Xml Include="resources\assets\Priority1\audio\audio.xml" />
-    <Xml Include="resources\assets\Priority1\textures\textures.xml" />
-    <Xml Include="resources\assets\Priority2\sprites\player\sprites.xml" />
-    <Xml Include="resources\assets\Priority2\models\3dmodels.xml" />
-    <Xml Include="resources\assets\Priority3\spriteanimation\spriteanimations.xml" />
-    <Xml Include="resources\assets\Priority1\fonts\font.xml" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="resources\fonts\Cousine-Regular.ttf" />

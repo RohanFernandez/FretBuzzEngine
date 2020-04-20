@@ -26,5 +26,10 @@ namespace ns_fretBuzz
 		{
 			return m_strName;
 		}
+
+		FT_Face Font::getFTFace()
+		{
+			return m_FontFace;
+		}
 	}
 }
