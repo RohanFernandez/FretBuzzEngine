@@ -248,5 +248,19 @@ namespace ns_fretBuzz
 				s_pInstance->m_vectActiveStates[l_iSceneIndex]->logHierarchy();
 			}
 		}
+
+		void SceneManager::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
+		{
+			int l_iActiveSceneCount = m_vectActiveStates.size();
+			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			{
+				m_vectActiveStates[l_iSceneIndex]->editorHierarchyRender(a_pSelectedGameObject);
+			}
+		}
+
+		GameObject& SceneManager::getRootGameObject()
+		{
+			return m_vectActiveStates[0]->getRootGameObject();
+		}
 	}
 }

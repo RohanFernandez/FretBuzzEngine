@@ -120,7 +120,7 @@ namespace ns_fretBuzz
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			m_pInspector->render(m_pTimer->getFPS());
+			m_pInspector->render(a_SceneManager, m_pTimer->getFPS());
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

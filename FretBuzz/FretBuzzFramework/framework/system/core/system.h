@@ -48,7 +48,7 @@ namespace ns_fretBuzz
 			ns_graphics::FontManager* m_pFontManager = nullptr;
 
 #if _IS_DEBUG
-			ns_editor::Inspector* m_pInspector = nullptr;
+			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;
 #endif
 
 			bool m_bIsSystemPaused = false;

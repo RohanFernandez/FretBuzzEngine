@@ -24,6 +24,8 @@ namespace ns_fretBuzz
 			// The int ID of the current gameobject
 			const int m_iID;
 
+			const std::string m_strID;
+
 			// The total number of gameobjects, provides a unique ID for nw gameobjects.
 			static int s_iID;
 
@@ -42,6 +44,10 @@ namespace ns_fretBuzz
 
 			void renderComponents(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera);
 			void renderChildren(const ns_graphics::Camera& a_Camera);
+
+			// Renders all the inspector hierarchy data.
+			virtual void editorHierarchyRender(GameObject*& a_pSelectedGameObject);
+			virtual void editorTransformRender();
 
 			void addComponent(IComponent* a_IComponent);
 			void resetDontDestroyParent(GameObject& a_NewParent);

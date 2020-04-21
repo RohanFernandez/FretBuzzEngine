@@ -40,6 +40,11 @@ namespace ns_fretBuzz
 				m_refRootGameObject.render(a_Camera);
 			}
 
+			void editorHierarchyRender(GameObject*& a_pSelectedGameObject)
+			{
+				m_refRootGameObject.editorHierarchyRender(a_pSelectedGameObject);
+			}
+
 			void update(float a_fDeltaTime)
 			{
 				m_refRootGameObject.update(a_fDeltaTime);
@@ -60,6 +65,11 @@ namespace ns_fretBuzz
 				std::cout << "\n\nSCENE:: " << m_strStateName << "\n\t";
 				m_refRootGameObject.logHierarchy(1);
 				std::cout << "\n\n";
+			}
+
+			GameObject& getRootGameObject()
+			{
+				return m_refRootGameObject;
 			}
 
 		protected:
@@ -96,6 +106,10 @@ namespace ns_fretBuzz
 			virtual IScene* getIScene() = 0;
 
 			virtual void logHierarchy() = 0;
+
+			virtual void editorHierarchyRender(GameObject*& a_pSelectedGameObject) = 0;
+
+			virtual GameObject& getRootGameObject() = 0;
 
 		protected:
 			ISceneData(std::string a_strSceneID)
@@ -180,6 +194,11 @@ namespace ns_fretBuzz
 				m_pScene->render(a_Camera);
 			}
 
+			void editorHierarchyRender(GameObject*& a_pSelectedGameObject)
+			{
+				m_pScene->editorHierarchyRender(a_pSelectedGameObject);
+			}
+
 			void update(float a_fDeltaTime)
 			{
 				m_pScene->update(a_fDeltaTime);
@@ -211,6 +230,11 @@ namespace ns_fretBuzz
 			{
 				m_pScene->logHierarchy();
 			}
+
+			virtual GameObject& getRootGameObject()
+			{
+				return m_pScene->getRootGameObject();
+			}
 		};
 
 		//Specialized class for Scene Managment from FSM, could be template specialize but decided to write it separately
@@ -232,6 +256,9 @@ namespace ns_fretBuzz
 			void updateActiveScenes(float a_fDeltaTime);
 			void lateUpdateActiveScenes(float a_fDeltaTime);
 			void renderActiveScenes(const ns_graphics::Camera& a_Camera);
+			void editorHierarchyRender(GameObject*& a_pSelectedGameObject);
+
+			GameObject& getRootGameObject();
 
 			static void LogSceneHierarchy();
 
@@ -250,6 +277,7 @@ namespace ns_fretBuzz
 			void loadScene(std::string a_strSceneName, LoadSceneMode a_LoadSceneMode = Single);
 			void unloadScene(std::string a_strSceneName);
 			void logAllActiveSceneNames();
+
 
 		private:
 			static SceneManager* s_pInstance;

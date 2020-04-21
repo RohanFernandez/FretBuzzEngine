@@ -4,6 +4,7 @@
 #include "components/gameobject_components/camera.h"
 #include <imgui/imgui.h>
 #include "core/layer/layer_mask.h"
+#include <system/editor/editor_inspector.h>
 
 namespace ns_fretBuzz
 {
@@ -15,6 +16,7 @@ namespace ns_fretBuzz
 		//GameObject 2D constructor
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, Layer a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
+			m_strID{ std::to_string(m_iID) },
 			m_strName{ a_strName },
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
@@ -27,7 +29,8 @@ namespace ns_fretBuzz
 
 		GameObject::GameObject(std::string a_strName, bool a_bIsRoot)
 			: m_iID{++s_iID},
-		     m_strName{a_strName},
+			m_strID{ std::to_string(m_iID) },
+		    m_strName{a_strName},
 			m_bIsRoot{a_bIsRoot},
 			m_pTransform{ new Transform() },
 			m_Transform(*m_pTransform)
@@ -36,6 +39,7 @@ namespace ns_fretBuzz
 
 		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
+			m_strID{ std::to_string(m_iID) },
 			m_strName{ a_strName },
 			m_bIsActiveSelf{ a_bIsActiveSelf },
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
@@ -155,6 +159,30 @@ namespace ns_fretBuzz
 				{
 					m_Components[l_iComponentndex]->lateUpdate(a_fDeltaTime);
 				}
+			}
+		}
+
+		void GameObject::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
+		{
+			int l_iChildrenCount = m_Children.size();
+
+			const auto m_NodeFlags = ImGuiTreeNodeFlags_OpenOnArrow
+				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
+				| (((a_pSelectedGameObject != nullptr) && (a_pSelectedGameObject->m_iID == m_iID)) ? ImGuiTreeNodeFlags_Selected : 0);
+
+			bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)m_iID, m_NodeFlags, m_strName.c_str());
+			if (ImGui::IsItemClicked())
+			{
+				a_pSelectedGameObject = this;
+			}
+
+			if (l_bIsTreeNodeOpen)
+			{
+				for (int l_iChildIndex = 0; l_iChildIndex < l_iChildrenCount; l_iChildIndex++)
+				{
+					m_Children[l_iChildIndex]->editorHierarchyRender(a_pSelectedGameObject);
+				}
+				ImGui::TreePop();
 			}
 		}
 
@@ -390,6 +418,12 @@ namespace ns_fretBuzz
 
 			std::cout << "GameObject::destroy:: GameObject to destroy with name :: " << a_pGameObject->getName() << 
 				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
+		}
+
+
+		void GameObject::editorTransformRender()
+		{
+			
 		}
 	}
 }

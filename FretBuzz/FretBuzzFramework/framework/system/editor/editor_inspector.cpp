@@ -10,14 +10,9 @@ namespace ns_fretBuzz
 		//singleton instance
 		Inspector* Inspector::s_pInstance = nullptr;
 
-		int printThis4(int)
-		{
-			std::cout << "Printing 444 ... global func\n";
-			return 0;
-		}
-
 		Inspector::Inspector()
 		{
+			
 		}
 
 		Inspector::~Inspector()
@@ -42,9 +37,14 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void Inspector::render(int a_iFPS)
+		void Inspector::render(ns_system::SceneManager& a_SceneManager, int a_iFPS)
 		{
-			ImGui::Begin("System Manager");
+			if (m_pSelectedGameObject == nullptr)
+			{
+				m_pSelectedGameObject = &a_SceneManager.getRootGameObject();
+			}
+
+			ImGui::Begin("EDITOR");
 
 			ImGui::Text("FPS %d", a_iFPS);
 
@@ -52,9 +52,24 @@ namespace ns_fretBuzz
 			ImGui::Checkbox("Pause", &l_bIsPaused);
 			ns_system::System::ToggleSystemPause(l_bIsPaused);
 
-			float l_fCurentScaledTime = ns_system::System::GetScaledTime();
+			/*float l_fCurentScaledTime = ns_system::System::GetScaledTime();
 			ImGui::SliderFloat("Scale Time", &l_fCurentScaledTime, 0.0f, 1.0f);
-			ns_system::System::SetScaledTime(l_fCurentScaledTime);
+			ns_system::System::SetScaledTime(l_fCurentScaledTime);*/
+
+			ImGui::Columns(2, "Hierarchy");
+
+			a_SceneManager.editorHierarchyRender(m_pSelectedGameObject);
+
+			ImGui::NextColumn();
+
+			if (m_pSelectedGameObject != nullptr)
+			{
+				ImGui::Text("Selected : %s", m_pSelectedGameObject->getName().c_str());
+				
+				ImGui::BeginChild("Transform");
+				ImGui::Text("FPS %d", a_iFPS);
+				ImGui::EndChild();
+			}
 
 			ImGui::End();
 		}
