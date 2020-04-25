@@ -2,6 +2,7 @@
 #include "audio_source.h"
 #include "system/core/resource_manager.h"
 #include "system/game_object.h"
+#include <imgui/imgui.h>
 
 namespace ns_fretBuzz
 {
@@ -144,6 +145,31 @@ namespace ns_fretBuzz
 		bool AudioSource::getIsFinishedPlaying() const
 		{
 			return m_pISound == nullptr ? true : m_pISound->isFinished();
+		}
+
+		void AudioSource::editorInspectorRender()
+		{
+			//Is looping
+			bool l_bIsLooping = getIsLooping();
+			ImGui::Text("Is Looped");
+			ImGui::SameLine(100); 
+			bool l_IsLoopChecked = ImGui::Checkbox("##IsLoop", &l_bIsLooping);
+			if (l_IsLoopChecked)
+			{
+				setLooping(l_bIsLooping);
+			}
+
+			//Volume
+			float l_fCurentVolume = getVolume();;
+			ImGui::Text("Volume");
+			ImGui::SameLine(100);
+			ImGui::SliderFloat("##Volume", &l_fCurentVolume, 0.0f, 1.0f);
+			setVolume(l_fCurentVolume);
+
+			//Audio clip name
+			ImGui::Text("Clip");
+			ImGui::SameLine(100); 
+			ImGui::Text(m_pISoundSource->getName());
 		}
 	}
 }

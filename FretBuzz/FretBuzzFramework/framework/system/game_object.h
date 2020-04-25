@@ -122,7 +122,7 @@ namespace ns_fretBuzz
 			static void destroy(GameObject*& a_GameObject);
 
 #pragma region Editor
-			virtual void editorTransformRender();
+			virtual void editorInspectorRender();
 #pragma endregion Editor
 			
 			// Returns all component of the game object

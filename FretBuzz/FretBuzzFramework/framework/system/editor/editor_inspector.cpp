@@ -69,14 +69,15 @@ namespace ns_fretBuzz
 				bool l_bIsGameObjectActive = m_pSelectedGameObject->getIsActiveSelf();
 				if (ImGui::Checkbox("##IsActive", &l_bIsGameObjectActive))
 				{m_pSelectedGameObject->setActive(l_bIsGameObjectActive);}
-				ImGui::SameLine(40); ImGui::Text("%s", m_pSelectedGameObject->getName().c_str());
+				ImGui::SameLine(40); 
 				
-				bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
-				if (l_bIsTreeNodeOpen)
-				{
-					m_pSelectedGameObject->editorTransformRender();
-					ImGui::TreePop();
-				}
+				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
+				ImGui::Text("%s", m_pSelectedGameObject->getName().c_str());
+				ImGui::PopStyleColor();
+				
+				ImGui::NewLine();
+
+				m_pSelectedGameObject->editorInspectorRender();
 			}
 
 			ImGui::End();

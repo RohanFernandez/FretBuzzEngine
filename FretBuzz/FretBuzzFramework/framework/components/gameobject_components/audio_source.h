@@ -25,6 +25,8 @@ namespace ns_fretBuzz
 		protected:
 			virtual ~AudioSource();
 
+			virtual void editorInspectorRender() override;
+
 		public:
 
 			static AudioSource* addToGameObject(GameObject& a_GameObj);

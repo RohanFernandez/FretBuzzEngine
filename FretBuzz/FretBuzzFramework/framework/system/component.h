@@ -38,6 +38,9 @@ namespace ns_fretBuzz
 
 		protected:
 			bool m_bIsEnabled = true;
+
+			std::string m_strComponentName;
+
 			virtual ~IComponent() = 0;
 			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj, bool a_bIsEnabled = true);
 
@@ -59,6 +62,8 @@ namespace ns_fretBuzz
 
 			// Calls all function in the gameobject's siblings.
 			void callFuncInSiblings(void(IComponent::* FUNC)(IComponent*));
+
+			virtual void editorInspectorRender() {};
 
 		public:
 			IComponent() = delete;
@@ -88,6 +93,9 @@ namespace ns_fretBuzz
 
 			//Is the component enabled and the GameObject activated.
 			bool isActiveAndEnabled() const;
+
+			//Returns name of the component script
+			const std::string getName();
 
 			virtual void onSiblingComponentAdded(IComponent* a_Component) {};
 			virtual void onSiblingComponentRemoved(IComponent* a_Component) {};

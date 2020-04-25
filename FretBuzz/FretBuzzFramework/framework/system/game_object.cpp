@@ -168,19 +168,21 @@ namespace ns_fretBuzz
 				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
 				| (((a_pSelectedGameObject != nullptr) && (a_pSelectedGameObject->m_iID == m_iID)) ? ImGuiTreeNodeFlags_Selected : 0);
 
-			if (!getIsActiveInHierarchy())
+			if (getIsActiveInHierarchy())
 			{
-				ImGui::PushStyleColor(ImGuiCol_Text, { 0.5, 0.5, 0.5, 1 });			}
+				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
+			}
+			else
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, { 0.5, 0.5, 0.5, 1 });
+			}
 
 			bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)m_iID, m_NodeFlags, m_strName.c_str());
+			ImGui::PopStyleColor();
+
 			if (ImGui::IsItemClicked())
 			{
 				a_pSelectedGameObject = this;
-			}
-
-			if (!getIsActiveInHierarchy())
-			{
-				ImGui::PopStyleColor();
 			}
 			
 			if (l_bIsTreeNodeOpen)
@@ -427,32 +429,78 @@ namespace ns_fretBuzz
 				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
 		}
 
-		void GameObject::editorTransformRender()
+		void GameObject::editorInspectorRender()
 		{
-			float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
+			bool l_bIsTreeNodeOpen = false;
 
-			ImGui::Text("Position "); ImGui::SameLine(100);
-			if (ImGui::InputFloat3("##Pos", l_arrTransform, 2))
+			//TRANSFORM COMPONENT
+			ImGui::PushStyleColor(ImGuiCol_Text, { 0.9, 0.9, 0.9, 1.0 });
+			l_bIsTreeNodeOpen = ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
+			ImGui::PopStyleColor();
+
+			ImGui::PushStyleColor(ImGuiCol_Text, { 0.8, 0.8, 0.8, 1.0 });
+
+			if (l_bIsTreeNodeOpen)
 			{
-				m_Transform.setLocalPosition({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+				float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
+
+				ImGui::Text("Position "); ImGui::SameLine(100);
+				if (ImGui::InputFloat3("##Pos", l_arrTransform, 2))
+				{
+					m_Transform.setLocalPosition({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+				}
+
+				glm::vec3 l_v3Rotation = glm::eulerAngles(m_Transform.getLocalRotation());
+				l_arrTransform[0] = glm::degrees(l_v3Rotation.x); l_arrTransform[1] = glm::degrees(l_v3Rotation.y), l_arrTransform[2] = glm::degrees(l_v3Rotation.z);
+
+				ImGui::Text("Rotation "); ImGui::SameLine(100);
+				if (ImGui::InputFloat3("##Rot", l_arrTransform, 2))
+				{
+					m_Transform.setLocalRotation({ glm::radians(l_arrTransform[0]), glm::radians(l_arrTransform[1]), glm::radians(l_arrTransform[2]) });
+				}
+
+				glm::vec3 l_v3Scale = m_Transform.getLocalScale();
+				l_arrTransform[0] = l_v3Scale.x; l_arrTransform[1] = l_v3Scale.y, l_arrTransform[2] = l_v3Scale.z;
+
+				ImGui::Text("Scale "); ImGui::SameLine(100);
+				if (ImGui::InputFloat3("##Scale", l_arrTransform, 2))
+				{
+					m_Transform.setLocalScale({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+				}
+
+				ImGui::TreePop();
 			}
+			ImGui::PopStyleColor();
+			ImGui::NewLine();
 
-			glm::vec3 l_v3Rotation = glm::eulerAngles(m_Transform.getLocalRotation());
-			l_arrTransform[0] = l_v3Rotation.x; l_arrTransform[1] = l_v3Rotation.y, l_arrTransform[2] = l_v3Rotation.z;
+			//CHILDREN COMPONENTS
 
-			ImGui::Text("Rotation "); ImGui::SameLine(100);
-			if (ImGui::InputFloat3("##Rot", l_arrTransform, 2))
+			int l_iComponentSize = m_Components.size();
+			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentSize; l_iComponentIndex++)
 			{
-				m_Transform.setLocalRotation({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
-			}
+				IComponent& l_CurrentComponent = (*m_Components[l_iComponentIndex]);
+				bool l_bIsComponentEnabled = l_CurrentComponent.getIsEnabled();
 
-			glm::vec3 l_v3Scale = m_Transform.getLocalScale();
-			l_arrTransform[0] = l_v3Scale.x; l_arrTransform[1] = l_v3Scale.y, l_arrTransform[2] = l_v3Scale.z;
+				std::string l_strNodeName = "##IsEnabled" + std::to_string(l_iComponentIndex);
 
-			ImGui::Text("Scale "); ImGui::SameLine(100);
-			if (ImGui::InputFloat3("##Scale", l_arrTransform, 2))
-			{
-				m_Transform.setLocalScale({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+				if (ImGui::Checkbox(l_strNodeName.c_str(), &l_bIsComponentEnabled))
+				{
+					l_CurrentComponent.setIsEnabled(l_bIsComponentEnabled);
+				}
+				ImGui::SameLine(25);
+
+				ImGui::PushStyleColor(ImGuiCol_Text, { 0.9, 0.9, 0.9, 1.0 });
+				l_bIsTreeNodeOpen = ImGui::TreeNodeEx(l_CurrentComponent.getName().c_str(), ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
+				ImGui::PopStyleColor();
+
+				if (l_bIsTreeNodeOpen)
+				{
+					ImGui::PushStyleColor(ImGuiCol_Text, { 0.8, 0.8, 0.8, 1.0 });
+					l_CurrentComponent.editorInspectorRender();
+					ImGui::TreePop();
+					ImGui::PopStyleColor();
+				}
+				ImGui::NewLine();
 			}
 		}
 	}

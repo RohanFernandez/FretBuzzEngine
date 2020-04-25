@@ -112,5 +112,15 @@ namespace ns_fretBuzz
 				}
 			}
 		}
+
+		const std::string IComponent::getName()
+		{
+			if (m_strComponentName.empty())
+			{
+				std::string l_strClassName = typeid(*this).name();
+				m_strComponentName = l_strClassName.substr(l_strClassName.find_last_of(':') + 1);
+			}
+			return m_strComponentName;
+		}
 	}
 }
