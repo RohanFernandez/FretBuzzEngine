@@ -76,8 +76,6 @@ namespace ns_fretBuzz
 				delete m_pTransform;
 				m_pTransform = nullptr;
 			}
-
-
 		}
 
 		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
@@ -170,12 +168,21 @@ namespace ns_fretBuzz
 				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
 				| (((a_pSelectedGameObject != nullptr) && (a_pSelectedGameObject->m_iID == m_iID)) ? ImGuiTreeNodeFlags_Selected : 0);
 
+			if (!getIsActiveInHierarchy())
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, { 0.5, 0.5, 0.5, 1 });			}
+
 			bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)m_iID, m_NodeFlags, m_strName.c_str());
 			if (ImGui::IsItemClicked())
 			{
 				a_pSelectedGameObject = this;
 			}
 
+			if (!getIsActiveInHierarchy())
+			{
+				ImGui::PopStyleColor();
+			}
+			
 			if (l_bIsTreeNodeOpen)
 			{
 				for (int l_iChildIndex = 0; l_iChildIndex < l_iChildrenCount; l_iChildIndex++)
@@ -420,10 +427,33 @@ namespace ns_fretBuzz
 				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
 		}
 
-
 		void GameObject::editorTransformRender()
 		{
-			
+			float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
+
+			ImGui::Text("Position "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Pos", l_arrTransform, 2))
+			{
+				m_Transform.setLocalPosition({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+			}
+
+			glm::vec3 l_v3Rotation = glm::eulerAngles(m_Transform.getLocalRotation());
+			l_arrTransform[0] = l_v3Rotation.x; l_arrTransform[1] = l_v3Rotation.y, l_arrTransform[2] = l_v3Rotation.z;
+
+			ImGui::Text("Rotation "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Rot", l_arrTransform, 2))
+			{
+				m_Transform.setLocalRotation({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+			}
+
+			glm::vec3 l_v3Scale = m_Transform.getLocalScale();
+			l_arrTransform[0] = l_v3Scale.x; l_arrTransform[1] = l_v3Scale.y, l_arrTransform[2] = l_v3Scale.z;
+
+			ImGui::Text("Scale "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Scale", l_arrTransform, 2))
+			{
+				m_Transform.setLocalScale({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+			}
 		}
 	}
 }

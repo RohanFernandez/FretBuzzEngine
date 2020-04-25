@@ -45,12 +45,14 @@ namespace ns_fretBuzz
 			}
 
 			ImGui::Begin("EDITOR");
-
 			ImGui::Text("FPS %d", a_iFPS);
+			ImGui::SameLine(100);
 
 			bool l_bIsPaused = ns_system::System::IsSystemPaused();
 			ImGui::Checkbox("Pause", &l_bIsPaused);
 			ns_system::System::ToggleSystemPause(l_bIsPaused);
+
+			ImGui::Separator();
 
 			/*float l_fCurentScaledTime = ns_system::System::GetScaledTime();
 			ImGui::SliderFloat("Scale Time", &l_fCurentScaledTime, 0.0f, 1.0f);
@@ -64,11 +66,17 @@ namespace ns_fretBuzz
 
 			if (m_pSelectedGameObject != nullptr)
 			{
-				ImGui::Text("Selected : %s", m_pSelectedGameObject->getName().c_str());
+				bool l_bIsGameObjectActive = m_pSelectedGameObject->getIsActiveSelf();
+				if (ImGui::Checkbox("##IsActive", &l_bIsGameObjectActive))
+				{m_pSelectedGameObject->setActive(l_bIsGameObjectActive);}
+				ImGui::SameLine(40); ImGui::Text("%s", m_pSelectedGameObject->getName().c_str());
 				
-				ImGui::BeginChild("Transform");
-				ImGui::Text("FPS %d", a_iFPS);
-				ImGui::EndChild();
+				bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
+				if (l_bIsTreeNodeOpen)
+				{
+					m_pSelectedGameObject->editorTransformRender();
+					ImGui::TreePop();
+				}
 			}
 
 			ImGui::End();

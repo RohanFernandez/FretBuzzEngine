@@ -13,6 +13,7 @@ namespace ns_fretBuzz
 			friend class IComponent;
 			
 		protected:
+
 			std::vector<IComponent*> m_Components;
 			std::vector<GameObject*> m_Children;
 			bool m_bIsRoot = false;
@@ -47,8 +48,7 @@ namespace ns_fretBuzz
 
 			// Renders all the inspector hierarchy data.
 			virtual void editorHierarchyRender(GameObject*& a_pSelectedGameObject);
-			virtual void editorTransformRender();
-
+			
 			void addComponent(IComponent* a_IComponent);
 			void resetDontDestroyParent(GameObject& a_NewParent);
 			glm::mat4 m_mat4Transformation{1.0f};
@@ -120,6 +120,10 @@ namespace ns_fretBuzz
 			// Removes the GameObject from its parent m_Children container.
 			// Destroys the GameObject
 			static void destroy(GameObject*& a_GameObject);
+
+#pragma region Editor
+			virtual void editorTransformRender();
+#pragma endregion Editor
 			
 			// Returns all component of the game object
 			inline const std::vector<IComponent*> getAllComponents()
