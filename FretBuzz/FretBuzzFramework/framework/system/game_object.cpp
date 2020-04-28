@@ -429,46 +429,49 @@ namespace ns_fretBuzz
 				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
 		}
 
+		void GameObject::editorTransformRender()
+		{
+			float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
+
+			ImGui::Text("Position "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Pos", l_arrTransform, 2))
+			{
+				m_Transform.setLocalPosition({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+			}
+
+			glm::vec3 l_v3Rotation = glm::eulerAngles(m_Transform.getLocalRotation());
+			l_arrTransform[0] = glm::degrees(l_v3Rotation.x); l_arrTransform[1] = glm::degrees(l_v3Rotation.y), l_arrTransform[2] = glm::degrees(l_v3Rotation.z);
+
+			ImGui::Text("Rotation "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Rot", l_arrTransform, 2))
+			{
+				m_Transform.setLocalRotation({ glm::radians(l_arrTransform[0]), glm::radians(l_arrTransform[1]), glm::radians(l_arrTransform[2]) });
+			}
+
+			glm::vec3 l_v3Scale = m_Transform.getLocalScale();
+			l_arrTransform[0] = l_v3Scale.x; l_arrTransform[1] = l_v3Scale.y, l_arrTransform[2] = l_v3Scale.z;
+
+			ImGui::Text("Scale "); ImGui::SameLine(100);
+			if (ImGui::InputFloat3("##Scale", l_arrTransform, 2))
+			{
+				m_Transform.setLocalScale({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
+			}
+
+			ImGui::TreePop();
+		}
+
 		void GameObject::editorInspectorRender()
 		{
-			bool l_bIsTreeNodeOpen = false;
-
 			//TRANSFORM COMPONENT
+			bool l_bIsTreeNodeOpen = false;
 			ImGui::PushStyleColor(ImGuiCol_Text, { 0.9, 0.9, 0.9, 1.0 });
 			l_bIsTreeNodeOpen = ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
 			ImGui::PopStyleColor();
-
 			ImGui::PushStyleColor(ImGuiCol_Text, { 0.8, 0.8, 0.8, 1.0 });
 
 			if (l_bIsTreeNodeOpen)
 			{
-				float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
-
-				ImGui::Text("Position "); ImGui::SameLine(100);
-				if (ImGui::InputFloat3("##Pos", l_arrTransform, 2))
-				{
-					m_Transform.setLocalPosition({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
-				}
-
-				glm::vec3 l_v3Rotation = glm::eulerAngles(m_Transform.getLocalRotation());
-				l_arrTransform[0] = glm::degrees(l_v3Rotation.x); l_arrTransform[1] = glm::degrees(l_v3Rotation.y), l_arrTransform[2] = glm::degrees(l_v3Rotation.z);
-
-				ImGui::Text("Rotation "); ImGui::SameLine(100);
-				if (ImGui::InputFloat3("##Rot", l_arrTransform, 2))
-				{
-					m_Transform.setLocalRotation({ glm::radians(l_arrTransform[0]), glm::radians(l_arrTransform[1]), glm::radians(l_arrTransform[2]) });
-				}
-
-				glm::vec3 l_v3Scale = m_Transform.getLocalScale();
-				l_arrTransform[0] = l_v3Scale.x; l_arrTransform[1] = l_v3Scale.y, l_arrTransform[2] = l_v3Scale.z;
-
-				ImGui::Text("Scale "); ImGui::SameLine(100);
-				if (ImGui::InputFloat3("##Scale", l_arrTransform, 2))
-				{
-					m_Transform.setLocalScale({ l_arrTransform[0], l_arrTransform[1], l_arrTransform[2] });
-				}
-
-				ImGui::TreePop();
+				editorTransformRender();
 			}
 			ImGui::PopStyleColor();
 			ImGui::NewLine();

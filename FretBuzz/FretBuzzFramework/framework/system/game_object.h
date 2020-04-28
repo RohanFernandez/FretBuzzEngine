@@ -123,6 +123,7 @@ namespace ns_fretBuzz
 
 #pragma region Editor
 			virtual void editorInspectorRender();
+			virtual void editorTransformRender();
 #pragma endregion Editor
 			
 			// Returns all component of the game object

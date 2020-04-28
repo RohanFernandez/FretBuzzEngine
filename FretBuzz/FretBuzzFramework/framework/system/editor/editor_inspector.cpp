@@ -72,11 +72,10 @@ namespace ns_fretBuzz
 				ImGui::SameLine(40); 
 				
 				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
-				ImGui::Text("%s", m_pSelectedGameObject->getName().c_str());
+				ImGui::Text(m_pSelectedGameObject->getName().c_str());
 				ImGui::PopStyleColor();
 				
 				ImGui::NewLine();
-
 				m_pSelectedGameObject->editorInspectorRender();
 			}
 
