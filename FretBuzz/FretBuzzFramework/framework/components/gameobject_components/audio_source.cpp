@@ -8,40 +8,22 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{	
-		AudioSource::AudioSource(GameObject& a_GameObj)
+		AudioSource::AudioSource(GameObject* a_GameObj)
 			: IComponent(COMPONENT_TYPE::AUDIO_SOURCE, a_GameObj)
 		{
 			m_pISoundEngine = AudioEngine::s_pInstance->m_pISoundEngine;
 		}
 
-		AudioSource::AudioSource(GameObject& a_GameObj, AudioClip* a_AudioClip)
+		AudioSource::AudioSource(GameObject* a_GameObj, AudioClip* a_AudioClip)
 			:AudioSource(a_GameObj)
 		{
 			setAudioClip(a_AudioClip);
 		}
 
-		AudioSource::AudioSource(GameObject& a_GameObj, std::string a_strAudioClipResourceName)
+		AudioSource::AudioSource(GameObject* a_GameObj, std::string a_strAudioClipResourceName)
 			: AudioSource(a_GameObj)
 		{
 			setAudioClip(a_strAudioClipResourceName);
-		}
-
-		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::AUDIO_SOURCE, &a_GameObj) ?
-				nullptr : new AudioSource(a_GameObj);
-		}
-
-		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj, AudioClip* a_AudioClip)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::AUDIO_SOURCE, &a_GameObj) ?
-				nullptr : new AudioSource(a_GameObj, a_AudioClip);
-		}
-
-		AudioSource* AudioSource::addToGameObject(GameObject& a_GameObj, std::string a_strAudFilePath)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::AUDIO_SOURCE, &a_GameObj) ?
-				nullptr : new AudioSource(a_GameObj, a_strAudFilePath);
 		}
 
 		void AudioSource::setAudioClip(AudioClip* a_AudioClip)

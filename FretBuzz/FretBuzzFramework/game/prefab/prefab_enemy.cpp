@@ -10,8 +10,8 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyUpperGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyUpper", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer("Enemy"), true);
 		ns_fretBuzz::ns_system::GameObject2D* l_pEnemyLowerGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "EnemyLegs", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer("Enemy"), true);
 
-		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pEnemyLowerGameObj, "EnemyLegs");
-		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pEnemyUpperGameObj, "Enemy");
+		l_pEnemyLowerGameObj->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("EnemyLegs");
+		l_pEnemyUpperGameObj->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("Enemy");
 
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
 		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC;
@@ -21,7 +21,7 @@ namespace ns_HMGame
 
 		l_RectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_ENEMY);
 
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<EnemyController>(this, l_pEnemyUpperGameObj, l_pEnemyLowerGameObj);
+		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_RectColliderData);
+		this->addComponent<EnemyController>(l_pEnemyUpperGameObj, l_pEnemyLowerGameObj);
 	}
 }

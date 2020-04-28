@@ -13,12 +13,6 @@ namespace ns_fretBuzz
 		protected:
 			Behaviour() = delete;
 
-			Behaviour(GameObject* a_GameObject)
-				: IComponent(COMPONENT_TYPE::BEHAVIOUR, *a_GameObject)
-			{
-				
-			}
-
 		protected:
 			virtual ~Behaviour(){};
 
@@ -26,28 +20,11 @@ namespace ns_fretBuzz
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override {};
 
 		public:
-			template<typename T_BEHAVIOUR, typename = typename std::enable_if<std::is_base_of<Behaviour, T_BEHAVIOUR>::value>::type>
-			static T_BEHAVIOUR* addToGameObject(GameObject* a_GameObject)
-			{
-				return new T_BEHAVIOUR(a_GameObject);
-			}
 
-			template<typename T_BEHAVIOUR, typename = typename std::enable_if<std::is_base_of<Behaviour, T_BEHAVIOUR>::value>::type>
-			static T_BEHAVIOUR* addToGameObject(GameObject2D* a_GameObject)
+			Behaviour(GameObject* a_GameObject)
+				: IComponent(COMPONENT_TYPE::BEHAVIOUR, a_GameObject)
 			{
-				return new T_BEHAVIOUR(a_GameObject);
-			}
 
-			template<typename T_BEHAVIOUR, typename... Args, typename = typename std::enable_if<std::is_base_of<Behaviour, T_BEHAVIOUR>::value>::type>
-			static T_BEHAVIOUR* addToGameObject(GameObject* a_GameObject, Args... a_Args)
-			{
-				return new T_BEHAVIOUR(a_GameObject, a_Args...);
-			}
-
-			template<typename T_BEHAVIOUR, typename... Args, typename = typename std::enable_if<std::is_base_of<Behaviour, T_BEHAVIOUR>::value>::type>
-			static T_BEHAVIOUR* addToGameObject(GameObject2D* a_GameObject, Args... a_Args)
-			{
-				return new T_BEHAVIOUR(a_GameObject, a_Args...);
 			}
 		};
 	}

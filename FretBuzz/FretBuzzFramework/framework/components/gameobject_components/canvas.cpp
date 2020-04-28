@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_UI
 	{
-		Canvas::Canvas(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
+		Canvas::Canvas(ns_system::GameObject2D* a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
 			: ns_system::IComponent2D(ns_system::COMPONENT_TYPE::CANVAS, a_GameObject2D, a_bIsEnabled)
 		{
 			setupCanvas(a_CanvasData);
@@ -36,12 +36,6 @@ namespace ns_fretBuzz
 
 			//Setup plane distance
 			m_fPlaneDistance = (m_CanvasType == CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY) ? 0.0f : a_CanvasData.m_fPlaneDistance;
-		}
-
-		Canvas* Canvas::addToGameObject(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::CANVAS, &a_GameObject2D) ?
-				nullptr : new Canvas(a_GameObject2D, a_CanvasData, a_bIsEnabled);
 		}
 
 		//If the canvas is not world space, then it sets the canvas gameobject to be projected in front of the given camera,

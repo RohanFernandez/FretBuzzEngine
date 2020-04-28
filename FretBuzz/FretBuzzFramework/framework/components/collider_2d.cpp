@@ -5,9 +5,14 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		Collider2D::Collider2D(GameObject2D& a_GameObject2D, ColliderData& a_ColliderData)
+		Collider2D::Collider2D(GameObject2D* a_GameObject2D, ColliderData& a_ColliderData)
 			: IComponent2D(COMPONENT_TYPE::COLLIDER_2D, a_GameObject2D),
 			m_ColliderData{ a_ColliderData }
+		{
+			
+		};
+
+		void Collider2D::setupCollisionData()
 		{
 			b2BodyDef l_bodyDef;
 			l_bodyDef.bullet = m_ColliderData.m_bIsBullet;
@@ -34,10 +39,10 @@ namespace ns_fretBuzz
 				l_boxShape.SetAsBox(m_ColliderData.m_v2DimensionWH.x * l_LocalScale.x * 0.5f, m_ColliderData.m_v2DimensionWH.y * l_LocalScale.y * 0.5f);
 				l_pb2Shape = &l_boxShape;
 			}
-			else if(m_ColliderData.m_ColliderShape == m_ColliderData.SHAPE_CIRCLE)
+			else if (m_ColliderData.m_ColliderShape == m_ColliderData.SHAPE_CIRCLE)
 			{
 				l_circleShape.m_p.Set(m_ColliderData.m_v2RelativePos.x, m_ColliderData.m_v2RelativePos.y);
-				l_circleShape.m_radius = m_ColliderData.m_fRadius; 
+				l_circleShape.m_radius = m_ColliderData.m_fRadius;
 				l_pb2Shape = &l_circleShape;
 			}
 
@@ -52,7 +57,7 @@ namespace ns_fretBuzz
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
 			PhysicsEngine::getB2World()->SetContactListener(this);
-		};
+		}
 
 		Collider2D::~Collider2D()
 		{

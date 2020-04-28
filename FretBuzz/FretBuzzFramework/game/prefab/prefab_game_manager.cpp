@@ -9,8 +9,8 @@ namespace ns_HMGame
 	PrefabGameManager::PrefabGameManager(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName)
 		: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName, ns_fretBuzz::ns_system::Layer(),true)
 	{
-		ns_fretBuzz::ns_system::AudioSource* l_pAudSrc = ns_fretBuzz::ns_system::AudioSource::addToGameObject(*this, "beats");
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<WeaponManager>(this);
+		auto l_pAudSrc = this->addComponent<ns_fretBuzz::ns_system::AudioSource>("beats");
+		this->addComponent<WeaponManager>();
 
 		l_pAudSrc->setLooping(true);
 		l_pAudSrc->play();

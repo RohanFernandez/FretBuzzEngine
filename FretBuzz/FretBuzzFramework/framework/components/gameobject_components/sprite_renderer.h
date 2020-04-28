@@ -12,10 +12,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API SpriteRenderer : public ns_system::IComponent, public IRenderer
 		{
 		private:
-			SpriteRenderer(ns_system::GameObject& a_GameObj);
-			SpriteRenderer(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
-			SpriteRenderer(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
-			SpriteRenderer(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
 
 			Sprite* m_pSprite = nullptr;
 
@@ -25,10 +21,10 @@ namespace ns_fretBuzz
 			~SpriteRenderer();
 
 		public:
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj);
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, Sprite* a_Sprite);
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strSpriteID);
-			static SpriteRenderer* addToGameObject(ns_system::GameObject& a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
+			SpriteRenderer(ns_system::GameObject* a_GameObj);
+			SpriteRenderer(ns_system::GameObject* a_GameObj, Sprite* a_Sprite);
+			SpriteRenderer(ns_system::GameObject* a_GameObj, std::string a_strSpriteID);
+			SpriteRenderer(ns_system::GameObject* a_GameObj, glm::vec4 a_v4Color, glm::vec2 a_v2Dimensions);
 
 			void setSprite(Sprite* a_Sprite);
 			void setSprite(std::string a_strSpriteID);

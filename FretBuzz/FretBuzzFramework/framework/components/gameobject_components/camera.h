@@ -11,7 +11,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API Camera : public ns_system::IComponent
 		{
 		private:
-			Camera(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask);
 			Viewport* m_pViewPort = nullptr;
 			Viewport::PROJECTION_TYPE m_PROJECTION_TYPE = Viewport::PROJECTION_TYPE::ORTHOGRAPHIC;
 
@@ -21,9 +20,8 @@ namespace ns_fretBuzz
 			virtual ~Camera();
 
 		public:
+			Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask);
 			ns_system::LayerMask m_CullingMask;
-
-			static Camera* addToGameObject(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport, const ns_system::LayerMask& a_LayerMask);
 
 			Viewport& getViewport();
 			Viewport::PROJECTION_TYPE getProjectionType() const;

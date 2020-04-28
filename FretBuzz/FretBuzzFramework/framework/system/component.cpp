@@ -1,15 +1,16 @@
 #include <fretbuzz_pch.h>
 #include "component.h"
 #include "game_object.h"
+#include "game_object_2d.h"
 #include <components/collider_2d.h>
 
 namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		IComponent::IComponent(COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj, bool a_bIsEnabled)
+		IComponent::IComponent(COMPONENT_TYPE a_ComponentType, GameObject* a_GameObj, bool a_bIsEnabled)
 			: m_ComponentType{ a_ComponentType },
-	   		  m_GameObject{ a_GameObj },
+	   		  m_GameObject{ *a_GameObj },
 			m_bIsEnabled{a_bIsEnabled}
 		{
 			m_GameObject.addComponent(this);

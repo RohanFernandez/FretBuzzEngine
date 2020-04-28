@@ -23,8 +23,8 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_fLinearDamping = 0.5f;
 		l_SensorRectColliderData.m_fAngularDamping = 0.5f;
 
-		ns_fretBuzz::ns_graphics::SpriteRenderer::addToGameObject(*this);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_SensorRectColliderData);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<Weapon>(this);
+		this->addComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>();
+		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_SensorRectColliderData);
+		this->addComponent<Weapon>();
 	}
 }

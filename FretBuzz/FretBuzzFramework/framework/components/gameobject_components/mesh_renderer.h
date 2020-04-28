@@ -13,7 +13,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API MeshRenderer : public ns_system::IComponent, public IRenderer
 		{
 		private:
-			MeshRenderer(ns_system::GameObject& a_GameObject, Mesh& a_Mesh);
 			Mesh* m_pMesh = nullptr;
 			void setup();
 
@@ -21,7 +20,7 @@ namespace ns_fretBuzz
 			virtual ~MeshRenderer();
 
 		public:
-			static MeshRenderer* addToGameObject(ns_system::GameObject& a_GameObject, Mesh& a_Mesh);
+			MeshRenderer(ns_system::GameObject* a_GameObject, Mesh& a_Mesh);
 
 			Mesh& getMesh();
 			

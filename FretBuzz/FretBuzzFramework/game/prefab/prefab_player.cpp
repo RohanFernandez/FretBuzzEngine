@@ -19,8 +19,8 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject2D* l_pPlayerLowerGameObj = ns_fretBuzz::ns_system::GameObject2D::instantiate(*this, "PlayerLegs", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer("Player"), true);
 		ns_fretBuzz::ns_system::GameObject* l_pCamGameObj = &ns_fretBuzz::ns_graphics::CameraManager::get()->getMainCamera().m_GameObject;
 
-		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pPlayerLowerGameObj, "CharacterLegs");
-		ns_fretBuzz::ns_system::SpriteAnimationController::addToGameObject(*l_pPlayerUpperGameObj, "Player");
+		l_pPlayerLowerGameObj->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("CharacterLegs");
+		l_pPlayerUpperGameObj->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("Player");
 
 		ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
 		l_RectColliderData.m_PhysicsBodyType = ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC;
@@ -30,8 +30,8 @@ namespace ns_HMGame
 
 		l_RectColliderData.m_usetColliderCategoryBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<PlayerController>(this, l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
+		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_RectColliderData);
+		this->addComponent<PlayerController>(l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
 
 		s_pInstance = this;
 	}

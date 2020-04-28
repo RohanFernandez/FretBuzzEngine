@@ -147,6 +147,21 @@ namespace ns_fretBuzz
 				}
 				return nullptr;
 			}
+
+			//Adds a component of the given type to this gameobject
+			template<typename T_COMPONENT_TYPE, typename ...T_ARGS, typename = typename std::enable_if<std::is_base_of<IComponent, T_COMPONENT_TYPE>::value>::type>
+			T_COMPONENT_TYPE* addComponent(T_ARGS... a_Args)
+			{
+				T_COMPONENT_TYPE* l_pNewComponent = new T_COMPONENT_TYPE(this, a_Args...);
+				IComponent* l_pIComponent = static_cast<T_COMPONENT_TYPE*>(l_pNewComponent);
+
+				l_pIComponent->onAddedToGameObj();
+				if (l_pIComponent->isActiveAndEnabled())
+				{
+					l_pIComponent->onEnable();
+				}
+				return l_pNewComponent;
+			}
 		};
 	}
 }

@@ -22,7 +22,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API Canvas : public ns_system::IComponent2D
 		{
 		protected:
-			Canvas(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled = true);
 			virtual ~Canvas();
 
 			///Camera component
@@ -41,7 +40,7 @@ namespace ns_fretBuzz
 			virtual void lateUpdate(float a_fDeltaTime) override;
 
 		public:
-			static Canvas* addToGameObject(ns_system::GameObject2D& a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled = true);
+			Canvas(ns_system::GameObject2D* a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled = true);
 		};
 	}
 }

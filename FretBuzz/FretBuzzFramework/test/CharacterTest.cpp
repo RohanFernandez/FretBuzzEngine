@@ -12,11 +12,11 @@ namespace ns_fretBuzz
 	CharacterTest::CharacterTest(ns_system::GameObject& a_ParentGameObject , std::string a_Name, ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject)
 		: ns_system::GameObject2D(a_ParentGameObject, a_Name, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::Layer(), true)
 		{
-			m_pAudSrc = ns_system::AudioSource::addToGameObject(*this, "beats");
-			m_pSpriteAnimator = ns_system::SpriteAnimationController::addToGameObject(*this, "Player" );
+			m_pAudSrc = this->addComponent<ns_system::AudioSource>("beats");
+			m_pSpriteAnimator = this->addComponent<ns_system::SpriteAnimationController>("Player" );
 
 			ns_fretBuzz::ns_system::ColliderData l_RectColliderData;
-			m_pRectCollider = ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
+			m_pRectCollider = this->addComponent<ns_system::RectCollider>(l_RectColliderData);
 
 			m_pAudSrc->play();
 			m_pAudSrc->setLooping(true);

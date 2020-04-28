@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 			{ 1.0f, 0.0f }   //3
 		};
 
-		Image::Image(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled)
+		Image::Image(ns_system::GameObject2D* a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled)
 			: ns_system::IComponent2D(ns_system::COMPONENT_TYPE::IMAGE, a_GameObject2D, a_bIsEnabled),
 			m_pSprite{ a_pSprite },
 			m_Color{a_v4Color}
@@ -28,12 +28,6 @@ namespace ns_fretBuzz
 		Image::~Image()
 		{
 
-		}
-
-		Image* Image::addToGameObject(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::IMAGE, &a_GameObject2D) ?
-				nullptr : new Image(a_GameObject2D, a_pSprite, a_v4Color, a_bIsEnabled);
 		}
 
 		void Image::setSprite(Sprite* a_pSpite)

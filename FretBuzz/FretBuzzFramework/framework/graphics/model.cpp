@@ -171,7 +171,7 @@ namespace ns_fretBuzz
 		{
 			if (a_Node.m_pMesh != nullptr)
 			{
-				if (MeshRenderer::addToGameObject(a_GameObject, *a_Node.m_pMesh) == nullptr)
+				if (a_GameObject.addComponent<MeshRenderer>(*a_Node.m_pMesh) == nullptr)
 				{
 					std::cout << "Model::addMeshToGameObject:: Failed to load mesh renderer because a mesh renderer already exists.\n";
 				}

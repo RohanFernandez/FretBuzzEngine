@@ -16,7 +16,7 @@ namespace ns_HMGame
 		l_RectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BULLET);
 		l_RectColliderData.m_fFriction = 1.0f;
 
-		ns_fretBuzz::ns_graphics::Image::addToGameObject(*this, nullptr, { 1.0f, 0.0f, 0.0f,1.0f }, true);
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_RectColliderData);
+		this->addComponent<ns_fretBuzz::ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f,1.0f }, true);
+		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_RectColliderData);
 	}
 }

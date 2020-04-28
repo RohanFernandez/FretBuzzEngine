@@ -71,10 +71,10 @@ namespace ns_fretBuzz
 		protected:
 			LIGHT_TYPE m_LightType;
 
-			Light(ns_system::GameObject& a_GameObj, LIGHT_TYPE a_LightType);
 			virtual ~Light();
 
 		public:
+			Light(ns_system::GameObject* a_GameObj, LIGHT_TYPE a_LightType);
 			static Light* addToGameObject(ns_system::GameObject& a_GameObj, LIGHT_TYPE a_LightType);
 
 			LightSource m_LightSource;

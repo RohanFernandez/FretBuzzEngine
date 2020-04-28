@@ -26,8 +26,8 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_bIsBullet = false;
 		l_SensorRectColliderData.m_fDensity = 0.0f;
 
-		ns_fretBuzz::ns_system::RectCollider::addToGameObject(*this, l_SensorRectColliderData);
-		ns_fretBuzz::ns_graphics::SpriteRenderer::addToGameObject(*this);
-		ns_fretBuzz::ns_system::Behaviour::addToGameObject<Bullet>(this);
+		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_SensorRectColliderData);
+		this->addComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>();
+		this->addComponent<Bullet>();
 	}
 }

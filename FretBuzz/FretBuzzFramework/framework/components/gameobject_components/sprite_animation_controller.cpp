@@ -7,13 +7,13 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		SpriteAnimationController::SpriteAnimationController(GameObject& a_GameObj, std::string a_strAnimatorId)
+		SpriteAnimationController::SpriteAnimationController(GameObject* a_GameObj, std::string a_strAnimatorId)
 			: IComponent(COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER, a_GameObj)
 		{
 			m_pSpriteRenderer = m_GameObject.getComponent<ns_graphics::SpriteRenderer>(COMPONENT_TYPE::SPRITE_RENDERER);
 			if (m_pSpriteRenderer == nullptr)
 			{
-				m_pSpriteRenderer = ns_graphics::SpriteRenderer::addToGameObject(m_GameObject, nullptr);
+				m_pSpriteRenderer = m_GameObject.addComponent<ns_graphics::SpriteRenderer>(nullptr);
 			}
 
 			m_pSpriteAnimator = ResourceManager::getResource<SpriteAnimator>(a_strAnimatorId);
@@ -31,12 +31,6 @@ namespace ns_fretBuzz
 		SpriteAnimationController::~SpriteAnimationController()
 		{
 			
-		}
-
-		SpriteAnimationController* SpriteAnimationController::addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER, &a_GameObj) ?
-				nullptr : new SpriteAnimationController(a_GameObj, a_strAnimationControllerId);
 		}
 
 		void SpriteAnimationController::play(std::string a_strTrigger)

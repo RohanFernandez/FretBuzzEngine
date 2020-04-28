@@ -9,7 +9,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API TextRenderer : public ns_system::IComponent
 		{
 		private:
-			TextRenderer(ns_system::GameObject& a_GameObj, std::string a_strText, std::string a_strFontName);
 
 			ns_graphics::Font* m_pFont = nullptr;
 
@@ -19,7 +18,7 @@ namespace ns_fretBuzz
 			virtual ~TextRenderer();
 
 		public:
-			static TextRenderer* addToGameObject(ns_system::GameObject& a_GameObj, std::string a_strText, std::string a_strFontName);
+			TextRenderer(ns_system::GameObject* a_GameObj, std::string a_strText, std::string a_strFontName);
 
 			void setText(std::string a_strText);
 			void setFont(std::string a_strFontName);

@@ -61,8 +61,10 @@ namespace ns_fretBuzz
 #pragma endregion GETTERS AND SETTERS
 
 		protected:
-			Collider2D(GameObject2D& a_GameObject2D, ColliderData& a_ColliderData);
+			Collider2D(GameObject2D* a_GameObject2D, ColliderData& a_ColliderData);
 			~Collider2D();
+
+			void setupCollisionData();
 
 			ColliderData m_ColliderData;
 			b2Body* m_pBody = nullptr;

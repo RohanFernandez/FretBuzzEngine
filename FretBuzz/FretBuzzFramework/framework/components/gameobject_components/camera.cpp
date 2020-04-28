@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		Camera::Camera(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask)
+		Camera::Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask)
 			: IComponent(ns_system::COMPONENT_TYPE::CAMERA, a_GameObj),
 			m_PROJECTION_TYPE(a_ProjectionType),
 			m_CullingMask{a_LayerMask}
@@ -45,12 +45,6 @@ namespace ns_fretBuzz
 		Viewport::PROJECTION_TYPE Camera::getProjectionType() const
 		{
 			return m_PROJECTION_TYPE;
-		}
-
-		Camera* Camera::addToGameObject(ns_system::GameObject& a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_pViewport, const ns_system::LayerMask& a_LayerMask)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::CAMERA, &a_GameObj) ?
-				nullptr : new Camera(a_GameObj, a_ProjectionType, a_pViewport, a_LayerMask);
 		}
 
 		const glm::mat4 Camera::getViewMatrix() const

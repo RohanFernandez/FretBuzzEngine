@@ -9,9 +9,9 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API IComponent2D : public IComponent
 		{
 		public:
-			IComponent2D(const COMPONENT_TYPE a_ComponentType, GameObject2D& a_GameObj, bool a_bIsEnabled = true)
+			IComponent2D(const COMPONENT_TYPE a_ComponentType, GameObject2D* a_GameObj, bool a_bIsEnabled = true)
 				: IComponent(a_ComponentType, a_GameObj, a_bIsEnabled),
-				m_GameObject2D{ a_GameObj }
+				m_GameObject2D{ *a_GameObj }
 			{
 
 			}

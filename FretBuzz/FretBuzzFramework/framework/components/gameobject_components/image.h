@@ -11,7 +11,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API Image : public ns_system::IComponent2D
 		{
 		protected:
-			Image(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color,  bool a_bIsEnabled);
 			virtual ~Image();
 			Sprite* m_pSprite = nullptr;
 			Shader* m_pShader = nullptr;
@@ -23,7 +22,7 @@ namespace ns_fretBuzz
 			Material m_Material;
 
 		public:
-			static Image* addToGameObject(ns_system::GameObject2D& a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color, bool a_bIsEnabled = true);
+			Image(ns_system::GameObject2D* a_GameObject2D, Sprite* a_pSprite, glm::vec4 a_v4Color,  bool a_bIsEnabled = true);
 			void setSprite(Sprite* a_pSpite);
 
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;

@@ -9,7 +9,6 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API SpriteAnimationController : public IComponent
 		{
 		private:
-			SpriteAnimationController(GameObject& a_GameObj, std::string a_strAnimatorId);
 
 			SpriteAnimator* m_pSpriteAnimator = nullptr;
 
@@ -35,7 +34,7 @@ namespace ns_fretBuzz
 			~SpriteAnimationController();
 
 		public:
-			static SpriteAnimationController* addToGameObject(GameObject& a_GameObj, std::string a_strAnimationControllerId);
+			SpriteAnimationController(GameObject* a_GameObj, std::string a_strAnimatorId);
 
 			void play(std::string a_strAnimationID);
 

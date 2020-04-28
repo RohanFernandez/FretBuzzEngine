@@ -18,9 +18,6 @@ namespace ns_fretBuzz
 			float m_fVolume = 0.0f;
 			bool m_bIsLooping = false;
 
-			AudioSource(GameObject& a_GameObj);
-			AudioSource(GameObject& a_GameObj, AudioClip* a_AudioClip);
-			AudioSource(GameObject& a_GameObj, std::string a_strAudFilePath);
 
 		protected:
 			virtual ~AudioSource();
@@ -28,10 +25,9 @@ namespace ns_fretBuzz
 			virtual void editorInspectorRender() override;
 
 		public:
-
-			static AudioSource* addToGameObject(GameObject& a_GameObj);
-			static AudioSource* addToGameObject(GameObject& a_GameObj, AudioClip* a_AudioClip);
-			static AudioSource* addToGameObject(GameObject& a_GameObj, std::string a_strAudFilePath);
+			AudioSource(GameObject* a_GameObj);
+			AudioSource(GameObject* a_GameObj, AudioClip* a_AudioClip);
+			AudioSource(GameObject* a_GameObj, std::string a_strAudFilePath);
 
 			void setAudioClip(AudioClip* a_AudioClip);
 			void setAudioClip(std::string a_strAudioClipResourceName);

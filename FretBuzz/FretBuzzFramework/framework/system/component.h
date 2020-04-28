@@ -35,6 +35,7 @@ namespace ns_fretBuzz
 		class FRETBUZZ_API IComponent
 		{
 		friend class GameObject;
+		friend class GameObject2D;
 
 		protected:
 			bool m_bIsEnabled = true;
@@ -42,7 +43,7 @@ namespace ns_fretBuzz
 			std::string m_strComponentName;
 
 			virtual ~IComponent() = 0;
-			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject& a_GameObj, bool a_bIsEnabled = true);
+			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject* a_GameObj, bool a_bIsEnabled = true);
 
 			// Does the component of type m_ComponentType exists in the GameObject m_Components list.
 			static bool isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject);

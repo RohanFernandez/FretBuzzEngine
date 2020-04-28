@@ -10,13 +10,19 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		RectCollider::RectCollider(GameObject2D& a_GameObject, ColliderData& a_RectColliderData)
+		RectCollider::RectCollider(GameObject2D* a_GameObject, ColliderData& a_RectColliderData)
 			: 
 			Collider2D(a_GameObject, a_RectColliderData)
 #ifdef _IS_DEBUG_RENDERING
 			, ns_graphics::IRenderer()
 #endif
 		{
+			//Specialize with rect collision data
+			m_ColliderData.m_ColliderShape = ColliderData::SHAPE_RECT;
+			m_ColliderData.m_v2DimensionWH = m_GameObject2D.m_RectTransform.getRect().m_v2DimensionsWH;
+			setupCollisionData();
+
+
 #ifdef _IS_DEBUG_RENDERING
 			m_Material.setShader(*ns_graphics::ShaderManager::getShaderOfType(ns_graphics::Shader::DEFAULT_LINE));
 
@@ -68,15 +74,6 @@ namespace ns_fretBuzz
 		RectCollider::~RectCollider()
 		{
 			
-		}
-
-		RectCollider* RectCollider::addToGameObject(GameObject2D& a_GameObject, ColliderData& a_RectColliderData)
-		{
-			a_RectColliderData.m_ColliderShape = ColliderData::SHAPE_RECT;
-			a_RectColliderData.m_v2DimensionWH = a_GameObject.m_RectTransform.getRect().m_v2DimensionsWH;
-
-			return IComponent::isComponentOfTypeExistInGameObj(COMPONENT_TYPE::COLLIDER_2D, &a_GameObject) ?
-				nullptr : new RectCollider(a_GameObject, a_RectColliderData);
 		}
 
 		void RectCollider::lateUpdate(float a_fDeltaTime)

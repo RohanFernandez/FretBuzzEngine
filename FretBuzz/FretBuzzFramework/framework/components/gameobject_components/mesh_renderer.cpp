@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		MeshRenderer::MeshRenderer(ns_system::GameObject& a_GameObject, Mesh& a_Mesh)
+		MeshRenderer::MeshRenderer(ns_system::GameObject* a_GameObject, Mesh& a_Mesh)
 			: ns_system::IComponent(ns_system::COMPONENT_TYPE::MESH_RENDERER, a_GameObject),
 			IRenderer(),
 			m_pMesh{ &a_Mesh }
@@ -21,12 +21,6 @@ namespace ns_fretBuzz
 		MeshRenderer::~MeshRenderer()
 		{
 		
-		}
-
-		MeshRenderer* MeshRenderer::addToGameObject(ns_system::GameObject& a_GameObject, Mesh& a_Mesh)
-		{
-			return IComponent::isComponentOfTypeExistInGameObj(ns_system::COMPONENT_TYPE::MESH_RENDERER, &a_GameObject) ?
-				nullptr : new MeshRenderer(a_GameObject, a_Mesh);
 		}
 
 		Mesh& MeshRenderer::getMesh()
