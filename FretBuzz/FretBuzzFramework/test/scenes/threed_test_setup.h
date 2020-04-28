@@ -35,13 +35,13 @@ namespace ns_fretBuzz
 				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
 
 			ns_graphics::PerspectiveViewport l_PerspectiveViewport(60.0f, 1.0f, 50.0f);
-			ns_graphics::Camera* l_pMainCam =  ns_graphics::Camera::addToGameObject(*m_pManager, ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport,ns_system::LayerMask());
-			ns_system::Behaviour::addToGameObject<PlayerController>(m_pManager);
+			ns_graphics::Camera* l_pMainCam = m_pManager->addComponent<ns_graphics::Camera>(ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport,ns_system::LayerMask());
+			m_pManager->addComponent<PlayerController>();
 
 			ns_system::GameObject* m_pCam2GameObj = ns_system::GameObject::instantiate(*m_pManager, "Cam2", { 0.0f, 0.0f, 0.0f },
 					{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
 			ns_graphics::PerspectiveViewport l_PerspectiveViewport2(60.0f, 1.0f, 50.0f, { 0.7, 0.7 }, { 0.3, 0.3 });
-			ns_graphics::Camera* l_pMainCam2 = ns_graphics::Camera::addToGameObject(*m_pCam2GameObj, ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport2, ns_system::LayerMask());
+			ns_graphics::Camera* l_pMainCam2 = m_pCam2GameObj->addComponent<ns_graphics::Camera>(ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport2, ns_system::LayerMask());
 
 			ns_system::GameObject* m_pNanoSuit = ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain", { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
 			ns_graphics::Model::addToGameObject(*m_pNanoSuit, *ns_system::ResourceManager::getResource<ns_graphics::Model>("nanosuit//nanosuit.obj"));
@@ -73,13 +73,13 @@ namespace ns_fretBuzz
 			//ns_graphics::Model::addToGameObject(*m_pAudi, *ns_system::ResourceManager::getResource<ns_graphics::Model>("FruitNinja_env//FruitNinja_Env.FBX"));
 
 			ns_system::GameObject2D* m_pPlant0 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant0", { 0.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, {2.0f, 2.0f}, ns_fretBuzz::ns_system::Layer());
-			ns_graphics::Image* l_pPlantImg0 = ns_graphics::Image::addToGameObject(*m_pPlant0, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
+			ns_graphics::Image* l_pPlantImg0 = m_pPlant0->addComponent<ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
 			ns_system::GameObject2D* m_pPlant1 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant1", { 5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
-			ns_graphics::Image* l_pPlantImg1 = ns_graphics::Image::addToGameObject(*m_pPlant1, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
+			ns_graphics::Image* l_pPlantImg1 = m_pPlant1->addComponent<ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
 			ns_system::GameObject2D* m_pPlant2 = ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant2", { -5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
-			ns_graphics::Image* l_pPlantImg2 = ns_graphics::Image::addToGameObject(*m_pPlant2, nullptr, { 1.0f, 0.0f, 0.0f, 1.0f });
+			ns_graphics::Image* l_pPlantImg2 = m_pPlant2->addComponent<ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 		}
 	};
 }
