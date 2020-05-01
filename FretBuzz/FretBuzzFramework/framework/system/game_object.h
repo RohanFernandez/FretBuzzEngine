@@ -53,6 +53,8 @@ namespace ns_fretBuzz
 			void resetDontDestroyParent(GameObject& a_NewParent);
 			glm::mat4 m_mat4Transformation{1.0f};
 
+			void onComponentCreated(IComponent* a_IComponent);
+
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
 			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf = true);
 			GameObject(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf);
@@ -154,12 +156,9 @@ namespace ns_fretBuzz
 			{
 				T_COMPONENT_TYPE* l_pNewComponent = new T_COMPONENT_TYPE(this, a_Args...);
 				IComponent* l_pIComponent = static_cast<T_COMPONENT_TYPE*>(l_pNewComponent);
+				addComponent(l_pIComponent);
+				onComponentCreated(l_pIComponent);
 
-				l_pIComponent->onAddedToGameObj();
-				if (l_pIComponent->isActiveAndEnabled())
-				{
-					l_pIComponent->onEnable();
-				}
 				return l_pNewComponent;
 			}
 		};

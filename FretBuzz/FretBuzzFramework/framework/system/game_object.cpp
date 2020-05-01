@@ -96,6 +96,7 @@ namespace ns_fretBuzz
 		void GameObject::addComponent(IComponent* a_IComponent)
 		{
 			m_Components.emplace_back(a_IComponent);
+			a_IComponent->onAddedToGameObj();
 		}
 
 		void GameObject::update(float a_fDeltaTime)
@@ -504,6 +505,14 @@ namespace ns_fretBuzz
 					ImGui::PopStyleColor();
 				}
 				ImGui::NewLine();
+			}
+		}
+
+		void GameObject::onComponentCreated(IComponent* a_IComponent)
+		{
+			if (a_IComponent->isActiveAndEnabled())
+			{
+				a_IComponent->onEnable();
 			}
 		}
 	}

@@ -13,13 +13,7 @@ namespace ns_fretBuzz
 	   		  m_GameObject{ *a_GameObj },
 			m_bIsEnabled{a_bIsEnabled}
 		{
-			m_GameObject.addComponent(this);
 			
-			onAddedToGameObj();
-			if (isActiveAndEnabled()) 
-			{
-				onEnable(); 
-			};
 		};
 
 		IComponent::~IComponent()
@@ -30,13 +24,11 @@ namespace ns_fretBuzz
 
 		void IComponent::onEnable()
 		{
-			//std::cout << "ON ENABLE:: "<< m_GameObject.getName()<<" \n";
 			callFuncInSiblings(&IComponent::onSiblingComponentEnabled);
 		}
 
 		void IComponent::onDisable()
 		{
-			//std::cout << "ON DISABLE:: "<<m_GameObject.getName() <<"\n";
 			callFuncInSiblings(&IComponent::onSiblingComponentDisabled);
 		}
 
