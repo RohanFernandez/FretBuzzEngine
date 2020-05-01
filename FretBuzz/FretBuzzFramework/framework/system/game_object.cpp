@@ -477,8 +477,7 @@ namespace ns_fretBuzz
 			ImGui::PopStyleColor();
 			ImGui::NewLine();
 
-			//CHILDREN COMPONENTS
-
+			//COMPONENTS
 			int l_iComponentSize = m_Components.size();
 			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentSize; l_iComponentIndex++)
 			{

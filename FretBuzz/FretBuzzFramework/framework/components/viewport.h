@@ -1,6 +1,7 @@
 #pragma once
 #include "system/core/window.h"
 #include "transform.h"
+#include <imgui/imgui.h>
 
 namespace ns_fretBuzz
 {
@@ -13,12 +14,6 @@ namespace ns_fretBuzz
 			{
 				ORTHOGRAPHIC,
 				PERSPECTIVE
-			};
-
-			enum CONTROLLER_TYPE
-			{
-				NONE,
-				FPS
 			};
 
 		protected:
@@ -71,6 +66,51 @@ namespace ns_fretBuzz
 				return { m_v2DimensionWH01.x * Window::getWidth() , m_v2DimensionWH01.y * Window::getHeight() };
 			}
 
+			virtual void editorInspectorRender()
+			{
+				bool l_bIsResetProjectionMatrix = false;
+
+				float l_fArr[2] = {};
+
+				//Near Far
+				l_fArr[0] = m_v2NearFar.x;
+				l_fArr[1] = m_v2NearFar.y;
+				ImGui::Text("Near Far "); ImGui::SameLine(100);
+				if (ImGui::InputFloat2("##NearFar", l_fArr, 1))
+				{
+					m_v2NearFar.x = l_fArr[0];
+					m_v2NearFar.y = l_fArr[1];
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				//Origin X Y
+				l_fArr[0] = m_v2OriginXY01.x;
+				l_fArr[1] = m_v2OriginXY01.y;
+				ImGui::Text("XY "); ImGui::SameLine(100);
+				if (ImGui::InputFloat2("##XY", l_fArr, 1))
+				{
+					m_v2OriginXY01.x = l_fArr[0];
+					m_v2OriginXY01.y = l_fArr[1];
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				//Dimension width - height
+				l_fArr[0] = m_v2DimensionWH01.x;
+				l_fArr[1] = m_v2DimensionWH01.y;
+				ImGui::Text("WH "); ImGui::SameLine(100);
+				if (ImGui::InputFloat2("##WH", l_fArr, 1))
+				{
+					m_v2DimensionWH01.x = l_fArr[0];
+					m_v2DimensionWH01.y = l_fArr[1];
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				if (l_bIsResetProjectionMatrix)
+				{
+					resetProjectionMatrix();
+				}
+			}
+
 			virtual void resetProjectionMatrix() = 0;
 		};
 
@@ -120,6 +160,11 @@ namespace ns_fretBuzz
 			{
 				return m_v2LeftRight;
 			}
+
+			virtual void editorInspectorRender() override
+			{
+				Viewport::editorInspectorRender();
+			}
 		};
 
 		class PerspectiveViewport : public Viewport
@@ -154,7 +199,7 @@ namespace ns_fretBuzz
 				resetProjectionMatrix();
 			}
 
-			virtual  void resetProjectionMatrix() override
+			virtual void resetProjectionMatrix() override
 			{
 				const glm::vec2& l_v2DimensionWH = getDimensionWH();
 				m_fAspectRatio = (l_v2DimensionWH.x) / (l_v2DimensionWH.y);
@@ -169,6 +214,11 @@ namespace ns_fretBuzz
 			float getAspectRatio() const
 			{
 				return m_fAspectRatio;
+			}
+
+			virtual void editorInspectorRender() override
+			{
+				Viewport::editorInspectorRender();
 			}
 		};
 	}

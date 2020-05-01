@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 				T_COMPONENT_TYPE* l_pNewComponent = new T_COMPONENT_TYPE(this, a_Args...);
 				IComponent* l_pIComponent = static_cast<T_COMPONENT_TYPE*>(l_pNewComponent);
 				GameObject::addComponent(l_pIComponent);
-				onComponentCreated(l_pIComponent);
+				GameObject::onComponentCreated(l_pIComponent);
 				return l_pNewComponent;
 			}
 		};

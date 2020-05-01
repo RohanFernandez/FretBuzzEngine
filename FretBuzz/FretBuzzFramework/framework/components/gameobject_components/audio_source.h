@@ -17,6 +17,7 @@ namespace ns_fretBuzz
 
 			float m_fVolume = 0.0f;
 			bool m_bIsLooping = false;
+			bool m_bIsPlayOnAwake = true;
 
 
 		protected:
@@ -24,10 +25,13 @@ namespace ns_fretBuzz
 
 			virtual void editorInspectorRender() override;
 
+			virtual void onEnable() override;
+			virtual void onDisable() override;
+
 		public:
-			AudioSource(GameObject* a_GameObj);
-			AudioSource(GameObject* a_GameObj, AudioClip* a_AudioClip);
-			AudioSource(GameObject* a_GameObj, std::string a_strAudFilePath);
+			AudioSource(GameObject* a_GameObj, bool a_bIsPlayOnAwake = false);
+			AudioSource(GameObject* a_GameObj, AudioClip* a_AudioClip, bool a_bIsPlayOnAwake = false);
+			AudioSource(GameObject* a_GameObj, std::string a_strAudFilePath, bool a_bIsPlayOnAwake = false);
 
 			void setAudioClip(AudioClip* a_AudioClip);
 			void setAudioClip(std::string a_strAudioClipResourceName);
@@ -43,6 +47,9 @@ namespace ns_fretBuzz
 			bool getIsLooping() const;
 			void setLooping(bool a_bIsLoop);
 			bool getIsFinishedPlaying() const;
+
+			void setPlayOnAwake(bool a_bIsPlayOnAwake);
+			bool isPlayOnAwake() const;
 		};
 	}
 }

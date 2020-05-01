@@ -3,6 +3,7 @@
 #include "../viewport.h"
 #include "system/game_object.h"
 #include "system/camera_manager.h"
+#include <imgui/imgui.h>
 
 namespace ns_fretBuzz
 {
@@ -89,6 +90,12 @@ namespace ns_fretBuzz
 
 				l_pPerspectiveViewport->setProjectionMatrix(l_fFOV - a_fFactor, l_v2NearFar.x, l_v2NearFar.y, l_v2DimensionWH);
 			}
+		}
+
+		void Camera::editorInspectorRender()
+		{
+			IComponent::editorInspectorRender();
+			m_pViewPort->editorInspectorRender();
 		}
 	}
 }

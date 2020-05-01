@@ -17,6 +17,8 @@ namespace ns_fretBuzz
 			glm::mat4 m_mat4View = glm::mat4(1.0f);
 
 		protected:
+			virtual void editorInspectorRender() override;
+
 			virtual ~Camera();
 
 		public:
