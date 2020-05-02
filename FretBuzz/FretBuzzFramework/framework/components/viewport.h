@@ -164,6 +164,38 @@ namespace ns_fretBuzz
 			virtual void editorInspectorRender() override
 			{
 				Viewport::editorInspectorRender();
+
+				bool l_bIsResetProjectionMatrix = false;
+
+				float l_fArr[2] = {};
+
+				//Left Right
+				l_fArr[0] = m_v2LeftRight.x;
+				l_fArr[1] = m_v2LeftRight.y;
+				ImGui::Text("Left Right "); ImGui::SameLine(100);
+				if (ImGui::InputFloat2("##LeftRight", l_fArr, 1))
+				{
+					m_v2LeftRight.x = l_fArr[0];
+					m_v2LeftRight.y = l_fArr[1];
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				//bottom top
+				l_fArr[0] = m_v2BottomTop.x;
+				l_fArr[1] = m_v2BottomTop.y;
+				ImGui::Text("Bottom Top "); ImGui::SameLine(100);
+				if(ImGui::InputFloat2("##BottomTop", l_fArr, 1))
+				{
+					m_v2BottomTop.x = l_fArr[0];
+					m_v2BottomTop.y = l_fArr[1];
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				if (l_bIsResetProjectionMatrix)
+				{
+					resetProjectionMatrix();
+				}
+
 			}
 		};
 
@@ -219,6 +251,27 @@ namespace ns_fretBuzz
 			virtual void editorInspectorRender() override
 			{
 				Viewport::editorInspectorRender();
+
+				bool l_bIsResetProjectionMatrix = false;
+
+				//sets FOV
+				ImGui::Text("FOV "); ImGui::SameLine(100);
+				if (ImGui::InputFloat("##FOV", &m_fFOV, 1))
+				{
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				//sets aspect ratio
+				ImGui::Text("Aspect Ratio "); ImGui::SameLine(100);
+				if (ImGui::InputFloat("##AspectRatio", &m_fAspectRatio, 1))
+				{
+					l_bIsResetProjectionMatrix = true;
+				}
+
+				if (l_bIsResetProjectionMatrix)
+				{
+					resetProjectionMatrix();
+				}
 			}
 		};
 	}
