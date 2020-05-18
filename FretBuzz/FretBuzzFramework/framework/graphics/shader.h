@@ -1,5 +1,5 @@
 #pragma once
-#include <glew.h>
+#include <GL/glew.h>
 #include "system/core/managed_resource.h"
 
 namespace ns_fretBuzz

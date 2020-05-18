@@ -1,0 +1,1 @@
+call Dependencies\premake\premake5.exe vs2019

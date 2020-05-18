@@ -1,5 +1,5 @@
 #include <fretbuzz_pch.h>
-#include <glew.h>
+#include <GL/glew.h>
 #include "post_process_manager.h"
 #include "shader_manager.h"
 #include "system/core/window.h"

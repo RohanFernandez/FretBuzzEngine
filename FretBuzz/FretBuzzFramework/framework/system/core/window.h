@@ -1,5 +1,5 @@
 #pragma once
-#include <glew.h>
+#include <GL/glew.h>
 #include <glfw3.h>
 #include <utils/Event/Delegate/delegate.h>
 

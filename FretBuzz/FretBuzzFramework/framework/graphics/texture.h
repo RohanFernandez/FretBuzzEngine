@@ -1,6 +1,6 @@
 #pragma once
 #include "texture.h"
-#include <glew.h>
+#include <GL/glew.h>
 #include "utils/file_utils.h"
 #include "system/core/managed_resource.h"
 

@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "mesh.h"
-#include <glew.h>
+#include <GL/glew.h>
 
 namespace ns_fretBuzz
 {
