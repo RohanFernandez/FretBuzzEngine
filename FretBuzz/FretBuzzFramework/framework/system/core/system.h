@@ -11,6 +11,7 @@
 #include <system/editor/editor_inspector.h>
 #include "layer/layer_manager.h"
 #include "graphics/font_manager.h"
+#include <log/log.h>
 
 namespace ns_fretBuzz
 {
@@ -46,6 +47,8 @@ namespace ns_fretBuzz
 			SceneManager* m_pSceneManager = nullptr;
 
 			ns_graphics::FontManager* m_pFontManager = nullptr;
+
+			Log* m_pLog = nullptr;
 
 #if _IS_DEBUG
 			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;

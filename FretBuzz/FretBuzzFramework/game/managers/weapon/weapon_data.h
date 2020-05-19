@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fretbuzz.h>
 
 namespace ns_HMGame
 {

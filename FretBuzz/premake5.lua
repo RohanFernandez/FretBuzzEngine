@@ -15,34 +15,46 @@ workspace "FretBuzz"
 	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["glm"] = "FretBuzzFramework/vendor/glm"
+
 project "FretBuzzFramework"
 	location "FretBuzzFramework"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
 	architecture "x64"
+	-- staticruntime "on"
 	
-	targetdir ("Bin/" .. outputdir .. "/%{prj.name}" )
-	objdir ("Bin/" .. outputdir .. "/Intermediates")
+	targetdir ("Bin/" .. outputdir .. "/%{prj.name}/Output" )
+	objdir ("Bin/" .. outputdir .. "/%{prj.name}/Intermediates")
 	
 	pchheader "fretbuzz_pch.h"
-	pchsource "FretBuzzFramework/fretbuzz_pch.cpp"
+	pchsource "FretBuzzFramework/framework/fretbuzz_pch.cpp"
 	
 	files
 	{
-		"%{prj.name}/**.h",
-		"%{prj.name}/**.cpp",
-		"%{prj.name}/**.hpp",
-		"%{prj.name}/**.xml"
+		"%{prj.name}/main.cpp",
+		"%{prj.name}/framework/**.h",
+		"%{prj.name}/framework/**.cpp",
+		"%{prj.name}/game/**.h",
+		"%{prj.name}/game/**.cpp",
+		"%{prj.name}/test/**.h",
+		"%{prj.name}/test/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/imgui/**.hpp",
+		"%{prj.name}/vendor/imgui/**.cpp"
 	}
 	
 	includedirs
 	{
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.glm}",
 		"Libs",
 		"Libs/GLFW",
 		"Libs/GLEW",
 		"Libs/FreeImage/include",
-		"Libs/GLM/include",
 		"Libs/irrKlang/include",
 		"Libs/Freetype/include",
 		"Libs/Box2D/include",
@@ -83,7 +95,7 @@ project "FretBuzzFramework"
 		{
 			"GLEW_STATIC",
 			"_USE_MATH_DEFINES",
-			"_FRETBUZZ_WINDOWS",
+			"_IS_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 		
@@ -113,3 +125,46 @@ project "FretBuzzFramework"
 			"Libs/pugixml/lib/x64/Release",
 			"Libs/assimp/lib/x64/Release"
 		}
+		
+		
+project "Sandbox"
+	location "Sandbox"
+	kind "StaticLib"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("Bin/" .. outputdir .. "/%{prj.name}/Output" )
+	objdir ("Bin/" .. outputdir .. "/%{prj.name}/Intermediates")
+
+	files
+	{
+		"%{prj.name}/**.h",
+		"%{prj.name}/**.cpp"
+	}
+
+	includedirs
+	{
+		"FretBuzzFramework",
+		"FretBuzzFramework/framework",
+		-- "Hazel/vendor/spdlog/include",
+		-- "Hazel/src",
+		-- "Hazel/vendor",
+		-- "%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		--"FretBuzzFramework"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"

@@ -3,38 +3,41 @@
 
 namespace ns_fretBuzz
 {
-	//singleton instance
-	Log* Log::s_pInstance = nullptr;
-
-	//Logger for the engine
-	//std::shared_ptr<spdlog::logger> Log::s_Engine;
-	//Logger for the application
-	//std::shared_ptr<spdlog::logger> Log::s_Application;
-
-	Log::Log()
+	namespace ns_system
 	{
-		//s_Engine = spdlog::stdout_color_mt("FretBuzz");
-		//s_Application = spdlog::stdout_color_mt("Application");
-	}
+		//singleton instance
+		Log* Log::s_pInstance = nullptr;
 
-	Log::~Log()
-	{
+		//Logger for the engine
+		std::shared_ptr<spdlog::logger> Log::s_Engine;
+		//Logger for the application
+		std::shared_ptr<spdlog::logger> Log::s_Application;
 
-	}
-
-	Log* Log::initialize()
-	{
-		if (s_pInstance != nullptr)
+		Log::Log()
 		{
-			return nullptr;
+			s_Engine = spdlog::stdout_color_mt("FretBuzz");
+			s_Application = spdlog::stdout_color_mt("Application");
 		}
-		s_pInstance = new Log();
-		return s_pInstance;
-	}
 
-	void Log::destroy()
-	{
-		delete s_pInstance;
-		s_pInstance = nullptr;
+		Log::~Log()
+		{
+
+		}
+
+		Log* Log::initialize()
+		{
+			if (s_pInstance != nullptr)
+			{
+				return nullptr;
+			}
+			s_pInstance = new Log();
+			return s_pInstance;
+		}
+
+		void Log::destroy()
+		{
+			delete s_pInstance;
+			s_pInstance = nullptr;
+		}
 	}
 }

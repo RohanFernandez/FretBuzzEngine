@@ -66,7 +66,7 @@ namespace ns_fretBuzz
 
 			if (l_KeyState == KEY_PRESS || l_KeyState == KEY_RELEASED)
 			{
-				KEY_EVENT l_KeyEvent;
+				KeyEvent l_KeyEvent;
 				l_KeyEvent.m_iKeyIndex = a_iKey;
 				l_KeyEvent.m_KeyState = l_KeyState;
 
@@ -81,7 +81,7 @@ namespace ns_fretBuzz
 
 			if (l_KeyState == KEY_PRESS || l_KeyState == KEY_RELEASED)
 			{
-				KEY_EVENT l_KeyEvent;
+				KeyEvent l_KeyEvent;
 				l_KeyEvent.m_iKeyIndex = a_iButton;
 				l_KeyEvent.m_KeyState = l_KeyState;
 
@@ -156,7 +156,7 @@ namespace ns_fretBuzz
 
 		void Input::Update()
 		{
-			KEY_EVENT l_StackKeyEvent;
+			KeyEvent l_StackKeyEvent;
 			while (!m_StackKeyInput.empty())
 			{
 				l_StackKeyEvent = m_StackKeyInput.top();

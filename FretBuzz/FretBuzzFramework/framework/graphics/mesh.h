@@ -1,5 +1,6 @@
 #pragma once
 #include "texture.h"
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {

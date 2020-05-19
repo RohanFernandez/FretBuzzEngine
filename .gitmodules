@@ -1,0 +1,7 @@
+[submodule "FretBuzz/FretBuzzFramework/vendor/glm"]
+	path = FretBuzz/FretBuzzFramework/vendor/glm
+	url = https://github.com/g-truc/glm
+[submodule "FretBuzz/FretBuzzFramework/vendor/spdlog"]
+	path = FretBuzz/FretBuzzFramework/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+	branch = v1.x

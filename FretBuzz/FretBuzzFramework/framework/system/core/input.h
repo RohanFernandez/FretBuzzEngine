@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 				KEY_UNTOUCHED = 3
 			};
 
-			struct KEY_EVENT
+			struct KeyEvent
 			{
 				KEY_STATE m_KeyState = KEY_UNTOUCHED;
 				int m_iKeyIndex = 0;
@@ -54,8 +54,8 @@ namespace ns_fretBuzz
 			//GLFW event called on mouse scroll.
 			static void OnMouseScroll(GLFWwindow* a_pWindow, double a_dXoffset, double a_dYoffset);
 
-			std::stack<KEY_EVENT> m_StackKeyInput;
-			std::stack<KEY_EVENT> m_StackMouseInput;
+			std::stack<KeyEvent> m_StackKeyInput;
+			std::stack<KeyEvent> m_StackMouseInput;
 
 			Input(GLFWwindow* a_pGLFWWindow);
 			~Input();

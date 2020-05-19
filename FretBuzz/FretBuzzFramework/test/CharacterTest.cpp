@@ -108,7 +108,11 @@ namespace ns_fretBuzz
 				}
 			}*/
 
-			
+			/*int l_iScrollValue = ns_system::Input::GetMouseScroll();
+			if (l_iScrollValue == 1 || l_iScrollValue == -1)
+			{
+				m_pPerspectiveCamera->zoom(5.0f * l_iScrollValue);
+			}*/
 
 			//std::cout << "Angle to rotate :: "<< l_fAngleToRotate <<"\n";
 			ns_system::GameObject::update(a_fDeltaTime);

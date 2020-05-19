@@ -34,6 +34,7 @@ namespace ns_fretBuzz
 		int m_iCurrentWeaponID = 0;
 		GameObject* m_pRefOriginGameObject = nullptr;
 
+
 	public:
 
 		ns_system::GameObject* m_pTestGameObject1 = nullptr;

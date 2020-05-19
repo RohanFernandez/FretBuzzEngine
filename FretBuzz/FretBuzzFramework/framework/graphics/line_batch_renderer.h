@@ -1,5 +1,6 @@
 #pragma once
 #include "batch_renderer_manager.h"
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {

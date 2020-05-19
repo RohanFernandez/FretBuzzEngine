@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <glfw3.h>
 #include <utils/Event/Delegate/delegate.h>
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
