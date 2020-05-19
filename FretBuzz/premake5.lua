@@ -57,7 +57,7 @@ project "FretBuzzFramework"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLFW}/include",
 		"Libs",
 		"Libs/GLEW",
 		"Libs/FreeImage/include",
