@@ -9,3 +9,6 @@
 	path = FretBuzz/FretBuzzFramework/vendor/imgui
 	url = https://github.com/ocornut/imgui
 	branch = docking
+[submodule "FretBuzz/FretBuzzFramework/vendor/glfw"]
+	path = FretBuzz/FretBuzzFramework/vendor/glfw
+	url = https://github.com/glfw/glfw
