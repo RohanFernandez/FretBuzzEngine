@@ -15,3 +15,4 @@ A game engine made to create 2D and 3D games.
 	*xml parser 		:: pugixml
 	*Model loader 		:: Assimp
 	*Engine Editor UI 	:: ImGUI
+	*Logging			:: spdlog

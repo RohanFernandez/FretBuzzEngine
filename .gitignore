@@ -8,5 +8,7 @@ Bin/
 *.vcxproj.filters
 *.vcxproj.user
 
+*.log
+
 # FretBuzz example game specific
 GameAssets/HotlineMiamiSprites*

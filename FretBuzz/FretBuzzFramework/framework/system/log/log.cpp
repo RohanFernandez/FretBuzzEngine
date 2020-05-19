@@ -1,5 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "log.h"
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/basic_file_sink.h>
 
 namespace ns_fretBuzz
 {
@@ -15,8 +17,22 @@ namespace ns_fretBuzz
 
 		Log::Log()
 		{
-			s_Engine = spdlog::stdout_color_mt("FretBuzz");
-			s_Application = spdlog::stdout_color_mt("Application");
+			std::vector<spdlog::sink_ptr> logSinks;
+			logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+			logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>("FretBuzz.log", true));
+
+			logSinks[0]->set_pattern("%^[%T] %n: %v%$");
+			logSinks[1]->set_pattern("[%T] [%l] %n: %v");
+
+			s_Engine = std::make_shared<spdlog::logger>("FretBuzz", begin(logSinks), end(logSinks));
+			spdlog::register_logger(s_Engine);
+			s_Engine->set_level(spdlog::level::trace);
+			s_Engine->flush_on(spdlog::level::trace);
+
+			s_Application = std::make_shared<spdlog::logger>("Application", begin(logSinks), end(logSinks));
+			spdlog::register_logger(s_Application);
+			s_Application->set_level(spdlog::level::trace);
+			s_Application->flush_on(spdlog::level::trace);
 		}
 
 		Log::~Log()

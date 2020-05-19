@@ -19,10 +19,12 @@ IncludeDir = {}
 IncludeDir["glm"] = "FretBuzzFramework/vendor/glm"
 IncludeDir["ImGui"] = "FretBuzzFramework/vendor/imgui"
 IncludeDir["GLFW"] = "FretBuzzFramework/vendor/glfw"
+IncludeDir["spdlog"] = "FretBuzzFramework/vendor/spdlog"
 
 group "Dependencies"
 	include "FretBuzzFramework/vendor/imgui"
 	include "FretBuzzFramework/vendor/glfw"
+	include "FretBuzzFramework/vendor/spdlog"
 group ""
 
 project "FretBuzzFramework"
@@ -54,7 +56,7 @@ project "FretBuzzFramework"
 	
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.spdlog}/include",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}/include",
@@ -85,6 +87,7 @@ project "FretBuzzFramework"
 	{ 
 		"ImGui",
 		"GLFW",
+		"spdlog",
 		"opengl32.lib",
 		"glew32s.lib",
 		"FreeImage.lib",
