@@ -3,10 +3,10 @@
 #include "graphics/line_batch_renderer.h"
 #include "graphics/sprite_batch_renderer.h"
 #include "system/camera_manager.h"
-#include "../scene_manager.h"
 #include <imgui/imgui.h>
-#include <imgui/imgui_impl_glfw.h>
-#include <imgui/imgui_impl_opengl3.h>
+#include <examples/imgui_impl_glfw.cpp>
+#include <examples/imgui_impl_opengl3.cpp>
+#include "../scene_manager.h"
 #include "system.h"
 
 namespace ns_fretBuzz

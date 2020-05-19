@@ -17,6 +17,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["glm"] = "FretBuzzFramework/vendor/glm"
+IncludeDir["ImGui"] = "FretBuzzFramework/vendor/imgui"
+
+group "Dependencies"
+	include "FretBuzzFramework/vendor/imgui"
+	
+group ""
 
 project "FretBuzzFramework"
 	location "FretBuzzFramework"
@@ -42,14 +48,13 @@ project "FretBuzzFramework"
 		"%{prj.name}/test/**.h",
 		"%{prj.name}/test/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
-		"%{prj.name}/vendor/imgui/**.hpp",
-		"%{prj.name}/vendor/imgui/**.cpp"
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 	
 	includedirs
 	{
 		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"Libs",
 		"Libs/GLFW",
@@ -78,6 +83,7 @@ project "FretBuzzFramework"
 	
 	links 
 	{ 
+		"ImGui",
 		"opengl32.lib",
 		"glfw3.lib",
 		"glew32s.lib",
