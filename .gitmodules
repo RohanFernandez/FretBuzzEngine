@@ -1,17 +1,17 @@
-[submodule "FretBuzz/FretBuzzFramework/vendor/glm"]
-	path = FretBuzz/FretBuzzFramework/vendor/glm
+[submodule "FretBuzz/FretBuzzFramework/vendor/glm/glm"]
+	path = FretBuzz/FretBuzzFramework/vendor/glm/glm
 	url = https://github.com/g-truc/glm
-[submodule "FretBuzz/FretBuzzFramework/vendor/spdlog"]
-	path = FretBuzz/FretBuzzFramework/vendor/spdlog
+[submodule "FretBuzz/FretBuzzFramework/vendor/spdlog/spdlog"]
+	path = FretBuzz/FretBuzzFramework/vendor/spdlog/spdlog
 	url = https://github.com/gabime/spdlog
 	branch = v1.x
-[submodule "FretBuzz/FretBuzzFramework/vendor/imgui"]
-	path = FretBuzz/FretBuzzFramework/vendor/imgui
+[submodule "FretBuzz/FretBuzzFramework/vendor/imgui/imgui"]
+	path = FretBuzz/FretBuzzFramework/vendor/imgui/imgui
 	url = https://github.com/ocornut/imgui
 	branch = docking
-[submodule "FretBuzz/FretBuzzFramework/vendor/glfw"]
-	path = FretBuzz/FretBuzzFramework/vendor/glfw
+[submodule "FretBuzz/FretBuzzFramework/vendor/glfw/glfw"]
+	path = FretBuzz/FretBuzzFramework/vendor/glfw/glfw
 	url = https://github.com/glfw/glfw
-[submodule "FretBuzz/FretBuzzFramework/vendor/box2d"]
-	path = FretBuzz/FretBuzzFramework/vendor/box2d
+[submodule "FretBuzz/FretBuzzFramework/vendor/box2d/box2d"]
+	path = FretBuzz/FretBuzzFramework/vendor/box2d/box2d
 	url = https://github.com/erincatto/box2d
