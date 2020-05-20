@@ -16,3 +16,9 @@
 [submodule "FretBuzz/FretBuzzFramework/vendor/box2d/box2d"]
 	path = FretBuzz/FretBuzzFramework/vendor/box2d/box2d
 	url = https://github.com/erincatto/box2d
+[submodule "FretBuzz/FretBuzzFramework/vendor/glew/glew"]
+	path = FretBuzz/FretBuzzFramework/vendor/glew/glew
+	url = https://github.com/nigels-com/glew
+[submodule "FretBuzz/FretBuzzFramework/vendor/glm/glm"]
+	path = FretBuzz/FretBuzzFramework/vendor/glm/glm
+	url = https://github.com/g-truc/glm
