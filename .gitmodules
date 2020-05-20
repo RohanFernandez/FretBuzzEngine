@@ -10,3 +10,9 @@
 [submodule "FretBuzz/FretBuzzFramework/vendor/assimp/assimp"]
 	path = FretBuzz/FretBuzzFramework/vendor/assimp/assimp
 	url = https://github.com/assimp/assimp
+[submodule "FretBuzz/FretBuzzFramework/vendor/glfw/glfw"]
+	path = FretBuzz/FretBuzzFramework/vendor/glfw/glfw
+	url = https://github.com/glfw/glfw
+[submodule "FretBuzz/FretBuzzFramework/vendor/box2d/box2d"]
+	path = FretBuzz/FretBuzzFramework/vendor/box2d/box2d
+	url = https://github.com/erincatto/box2d
