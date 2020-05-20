@@ -20,11 +20,13 @@ IncludeDir["glm"] = "FretBuzzFramework/vendor/glm"
 IncludeDir["ImGui"] = "FretBuzzFramework/vendor/imgui"
 IncludeDir["GLFW"] = "FretBuzzFramework/vendor/glfw"
 IncludeDir["spdlog"] = "FretBuzzFramework/vendor/spdlog"
+IncludeDir["Box2D"] = "FretBuzzFramework/vendor/Box2D"
 
 group "Dependencies"
 	include "FretBuzzFramework/vendor/imgui"
 	include "FretBuzzFramework/vendor/glfw"
 	include "FretBuzzFramework/vendor/spdlog"
+	include "FretBuzzFramework/vendor/Box2D"
 group ""
 
 project "FretBuzzFramework"
@@ -60,12 +62,12 @@ project "FretBuzzFramework"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}/include",
+		"%{IncludeDir.Box2D}/include",
 		"Libs",
 		"Libs/GLEW",
 		"Libs/FreeImage/include",
 		"Libs/irrKlang/include",
 		"Libs/Freetype/include",
-		"Libs/Box2D/include",
 		"Libs/pugixml/include",
 		"Libs/assimp/include",
 		"FretBuzzFramework",
@@ -85,6 +87,7 @@ project "FretBuzzFramework"
 	
 	links 
 	{ 
+		"Box2D",
 		"ImGui",
 		"GLFW",
 		"spdlog",
@@ -93,7 +96,6 @@ project "FretBuzzFramework"
 		"FreeImage.lib",
 		"irrKlang.lib",
 		"freetype.lib",
-		"Box2D.lib",
 		"pugixml.lib",
 		"assimp-vc140-mt.lib"
 	}

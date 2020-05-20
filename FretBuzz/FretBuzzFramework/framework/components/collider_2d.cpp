@@ -51,7 +51,7 @@ namespace ns_fretBuzz
 			l_fixtureDef.shape = l_pb2Shape;
 			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_usetColliderCategoryBits);
 			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_usetColliderMaskBits);
-			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex;
+			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex ;
 			l_fixtureDef.density = m_ColliderData.m_fDensity;
 			l_fixtureDef.friction = m_ColliderData.m_fFriction;
 			m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
@@ -91,13 +91,13 @@ namespace ns_fretBuzz
 			IComponent2D::onEnable();
 			glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
 			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, m_GameObject.m_Transform.getLocalRotation().z);
-			m_pBody->SetActive(true);
+			m_pBody->SetEnabled(true);
 		}
 
 		void Collider2D::onDisable()
 		{
 			IComponent2D::onDisable();
-			m_pBody->SetActive(false);
+			m_pBody->SetEnabled(false);
 		}
 
 		void Collider2D::onSiblingComponentAdded(IComponent* a_pComponent)

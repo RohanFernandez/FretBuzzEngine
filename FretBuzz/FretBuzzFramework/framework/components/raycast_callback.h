@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 
 		public:
 			void reset();
-			virtual float32 ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float32 a_fFraction) override;
+			virtual float ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float a_fFraction) override;
 			Collider2D* getIntersectedCollider2D() const;
 		};
 	}

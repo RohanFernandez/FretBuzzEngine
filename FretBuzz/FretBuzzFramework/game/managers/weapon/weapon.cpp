@@ -44,7 +44,7 @@ namespace ns_HMGame
 	void Weapon::startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection)
 	{
 		setWeaponState(WEAPON_STATE::THROWN);
-		m_pCollider2D->applyImpulseToCenter(a_v2PlayerToMouseDirection * 1200.0f);
+		m_pCollider2D->setLinearVelocity(a_v2PlayerToMouseDirection * 700.0f);
 	}
 
 	void Weapon::pickup()
@@ -75,10 +75,11 @@ namespace ns_HMGame
 			{
 				m_pCollider2D->setSensor(false);
 				m_pCollider2D->removeMaskBit(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
-				m_GameObject.setActive(true);
 				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC);
 				m_pCollider2D->setFixedRotation(false);
 				m_pCollider2D->setAngularVelocity(M_PI);
+				m_pCollider2D->setDensity(1.0f);
+				m_GameObject.setActive(true);
 				break;
 			}
 		}

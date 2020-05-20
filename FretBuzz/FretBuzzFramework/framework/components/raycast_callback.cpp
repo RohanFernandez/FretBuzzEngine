@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 			m_pIntersectedFixture = nullptr;
 		}
 
-		float32 RaycastCallback::ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float32 a_fFraction)
+		float RaycastCallback::ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float a_fFraction)
 		{
 			m_pIntersectedFixture = a_pFixture;
 			return a_fFraction;

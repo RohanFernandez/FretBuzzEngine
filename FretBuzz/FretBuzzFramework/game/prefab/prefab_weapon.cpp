@@ -19,7 +19,9 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
 		l_SensorRectColliderData.m_usetColliderMaskBits.insert(ns_fretBuzz::ns_system::ColliderData::BIT_BOUNDARY);
 		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
-		l_SensorRectColliderData.m_fDensity = 0.0f;
+		l_SensorRectColliderData.m_bIsSensor = false;
+		l_SensorRectColliderData.m_bIsBullet = false;
+		l_SensorRectColliderData.m_fDensity = 1.0f;
 		l_SensorRectColliderData.m_fLinearDamping = 0.5f;
 		l_SensorRectColliderData.m_fAngularDamping = 0.5f;
 

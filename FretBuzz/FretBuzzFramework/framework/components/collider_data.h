@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 			bool m_bIsSensor = false;
 			bool m_bIsBullet = false;
 			bool m_bIsFixedRotation = true;
-			float m_fDensity = 0.0f;
+			float m_fDensity = 1.0f;
 			float m_fFriction = 0.0f;
 			float m_fLinearDamping = 0.0f;
 			float m_fAngularDamping = 0.0f;

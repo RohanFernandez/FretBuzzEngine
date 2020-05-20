@@ -22,6 +22,7 @@ namespace ns_HMGame
 	{
 		m_fLifetime = 0.0f;
 		m_v2Direction = a_v2Direction;
+		m_pCollider2D->setLinearVelocity(m_v2Direction * 4000.0f);
 	}
 
 	void Bullet::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
@@ -46,7 +47,6 @@ namespace ns_HMGame
 
 	void Bullet::update(float a_fDeltaTime)
 	{
-		m_pCollider2D->setLinearVelocity(m_v2Direction * 4000.0f);
 		m_fLifetime += a_fDeltaTime;
 		if (m_fLifetime > MAX_LIFETIME)
 		{

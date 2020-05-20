@@ -24,7 +24,7 @@ namespace ns_HMGame
 		l_SensorRectColliderData.m_ColliderShape = ns_fretBuzz::ns_system::ColliderData::SHAPE_RECT;
 		l_SensorRectColliderData.m_bIsSensor = true;
 		l_SensorRectColliderData.m_bIsBullet = false;
-		l_SensorRectColliderData.m_fDensity = 0.0f;
+		l_SensorRectColliderData.m_fDensity = 1.0f;
 
 		this->addComponent<ns_fretBuzz::ns_system::RectCollider>(l_SensorRectColliderData);
 		this->addComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>();
