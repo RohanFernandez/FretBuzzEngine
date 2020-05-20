@@ -21,12 +21,14 @@ IncludeDir["ImGui"] = "FretBuzzFramework/vendor/imgui"
 IncludeDir["GLFW"] = "FretBuzzFramework/vendor/glfw"
 IncludeDir["spdlog"] = "FretBuzzFramework/vendor/spdlog"
 IncludeDir["Box2D"] = "FretBuzzFramework/vendor/Box2D"
+IncludeDir["pugixml"] = "FretBuzzFramework/vendor/pugixml"
 
 group "Dependencies"
 	include "FretBuzzFramework/vendor/imgui"
 	include "FretBuzzFramework/vendor/glfw"
 	include "FretBuzzFramework/vendor/spdlog"
 	include "FretBuzzFramework/vendor/Box2D"
+	include "FretBuzzFramework/vendor/pugixml"
 group ""
 
 project "FretBuzzFramework"
@@ -58,6 +60,7 @@ project "FretBuzzFramework"
 	
 	includedirs
 	{
+		"%{IncludeDir.pugixml}/pugixml/src",
 		"%{IncludeDir.spdlog}/spdlog/include",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.ImGui}/imgui",
@@ -88,6 +91,7 @@ project "FretBuzzFramework"
 	
 	links 
 	{ 
+		"pugixml",
 		"Box2D",
 		"ImGui",
 		"GLFW",
@@ -97,7 +101,6 @@ project "FretBuzzFramework"
 		"FreeImage.lib",
 		"irrKlang.lib",
 		"freetype.lib",
-		"pugixml.lib",
 		"assimp-vc140-mt.lib"
 	}
 	
@@ -123,8 +126,6 @@ project "FretBuzzFramework"
 		symbols "on"
 		libdirs
 		{
-			"Libs/Box2D/lib/x64/Debug",
-			"Libs/pugixml/lib/x64/Debug",
 			"Libs/assimp/lib/x64/Debug"
 		}
 		
@@ -133,8 +134,6 @@ project "FretBuzzFramework"
 		optimize "on"
 		libdirs
 		{
-			"Libs/Box2D/lib/x64/Release",
-			"Libs/pugixml/lib/x64/Release",
 			"Libs/assimp/lib/x64/Release"
 		}
 		

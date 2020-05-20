@@ -22,3 +22,6 @@
 [submodule "FretBuzz/FretBuzzFramework/vendor/glm/glm"]
 	path = FretBuzz/FretBuzzFramework/vendor/glm/glm
 	url = https://github.com/g-truc/glm
+[submodule "FretBuzz/FretBuzzFramework/vendor/pugixml/pugixml"]
+	path = FretBuzz/FretBuzzFramework/vendor/pugixml/pugixml
+	url = https://github.com/zeux/pugixml
