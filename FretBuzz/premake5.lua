@@ -58,11 +58,12 @@ project "FretBuzzFramework"
 	
 	includedirs
 	{
-		"%{IncludeDir.spdlog}/include",
+		"%{IncludeDir.spdlog}/spdlog/include",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.GLFW}/include",
-		"%{IncludeDir.Box2D}/include",
+		"%{IncludeDir.ImGui}/imgui",
+		"%{IncludeDir.glm}/glm",
+		"%{IncludeDir.GLFW}/glfw/include",
+		"%{IncludeDir.Box2D}/box2d/include",
 		"Libs",
 		"Libs/GLEW",
 		"Libs/FreeImage/include",
