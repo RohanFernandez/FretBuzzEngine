@@ -3,3 +3,10 @@
 	path = FretBuzz/FretBuzzFramework/vendor/spdlog/spdlog
 	url = https://github.com/gabime/spdlog
 	branch = v1.x
+[submodule "FretBuzz/FretBuzzFramework/vendor/imgui/imgui"]
+	path = FretBuzz/FretBuzzFramework/vendor/imgui/imgui
+	url = https://github.com/ocornut/imgui
+	branch = docking
+[submodule "FretBuzz/FretBuzzFramework/vendor/assimp/assimp"]
+	path = FretBuzz/FretBuzzFramework/vendor/assimp/assimp
+	url = https://github.com/assimp/assimp
