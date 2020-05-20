@@ -1,1 +1,5 @@
 
+[submodule "FretBuzz/FretBuzzFramework/vendor/spdlog/spdlog"]
+	path = FretBuzz/FretBuzzFramework/vendor/spdlog/spdlog
+	url = https://github.com/gabime/spdlog
+	branch = v1.x
