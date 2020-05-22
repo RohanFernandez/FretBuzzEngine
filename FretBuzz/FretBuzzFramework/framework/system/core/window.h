@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class Viewport;
-		class FRETBUZZ_API Window
+		class  Window
 		{
 		public:
 			//window resize callback type

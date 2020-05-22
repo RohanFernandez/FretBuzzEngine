@@ -60,7 +60,7 @@ namespace ns_fretBuzz
 				return false;
 			}
 
-			int l_iLayerCount = m_layerMap.size();
+			size_t l_iLayerCount = m_layerMap.size();
 			if (l_iLayerCount >= (Layer::MAX_CAPACITY_LAYERS))
 			{
 				std::cout << "LayerManager::addLayer:: Cannot add the layer " << a_strLayerName << " because the layer list is full\n";

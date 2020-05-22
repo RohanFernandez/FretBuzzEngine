@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject;
-		class FRETBUZZ_API Camera : public ns_system::IComponent
+		class  Camera : public ns_system::IComponent
 		{
 		private:
 			Viewport* m_pViewPort = nullptr;

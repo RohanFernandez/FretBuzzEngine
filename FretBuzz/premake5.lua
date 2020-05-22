@@ -1,6 +1,6 @@
 workspace "FretBuzz"
 	architecture "x64"
-	startproject "FretBuzzFramework"
+	startproject "Sandbox"
 		
 	configurations
 	{
@@ -33,11 +33,11 @@ group ""
 
 project "FretBuzzFramework"
 	location "FretBuzzFramework"
-	kind "ConsoleApp"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	architecture "x64"
-	-- staticruntime "on"
+	staticruntime "on"
 	
 	targetdir ("Bin/" .. outputdir .. "/%{prj.name}/Output" )
 	objdir ("Bin/" .. outputdir .. "/%{prj.name}/Intermediates")
@@ -47,7 +47,9 @@ project "FretBuzzFramework"
 	
 	files
 	{
-		"%{prj.name}/main.cpp",
+		"%{prj.name}/main.h",
+		"%{prj.name}/game_startup.h",
+		"%{prj.name}/game_startup.cpp",
 		"%{prj.name}/framework/**.h",
 		"%{prj.name}/framework/**.cpp",
 		"%{prj.name}/game/**.h",
@@ -72,7 +74,6 @@ project "FretBuzzFramework"
 		"Libs/FreeImage/include",
 		"Libs/irrKlang/include",
 		"Libs/Freetype/include",
-		"Libs/pugixml/include",
 		"Libs/assimp/include",
 		"FretBuzzFramework",
 		"FretBuzzFramework/vendor",
@@ -114,12 +115,6 @@ project "FretBuzzFramework"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 		
-		postbuildcommands 
-		{
-			"{COPY} ../Libs/DLL/x64 %{cfg.targetdir}",
-			"{COPY} resources %{cfg.targetdir}/resources"
-		}
-		
 	filter {"configurations:Debug"}
 		defines "_IS_DEBUG"
 		runtime "Debug"
@@ -140,7 +135,7 @@ project "FretBuzzFramework"
 		
 project "Sandbox"
 	location "Sandbox"
-	kind "StaticLib"
+	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
@@ -150,29 +145,58 @@ project "Sandbox"
 
 	files
 	{
-		"%{prj.name}/**.h",
-		"%{prj.name}/**.cpp"
+		"%{prj.name}/game/**.h",
+		"%{prj.name}/game/**.cpp",
+		"%{prj.name}/test/**.h",
+		"%{prj.name}/test/**.cpp",
+		"%{prj.name}/sandbox.cpp"
 	}
 
 	includedirs
 	{
+		"%{IncludeDir.pugixml}/pugixml/src",
+		"%{IncludeDir.spdlog}/spdlog/include",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.ImGui}/imgui",
+		"%{IncludeDir.glm}/glm",
+		"%{IncludeDir.GLFW}/glfw/include",
+		"%{IncludeDir.Box2D}/box2d/include",
+		"Libs",
+		"Libs/GLEW",
+		"Libs/FreeImage/include",
+		"Libs/irrKlang/include",
+		"Libs/Freetype/include",
+		"Libs/assimp/include",
 		"FretBuzzFramework",
+		"FretBuzzFramework/vendor",
+		"FretBuzzFramework/game",
 		"FretBuzzFramework/framework",
-		-- "Hazel/vendor/spdlog/include",
-		-- "Hazel/src",
-		-- "Hazel/vendor",
-		-- "%{IncludeDir.glm}"
+		"FretBuzzFramework/framework/system",
+		"Sandbox"
 	}
 
 	links
 	{
-		--"FretBuzzFramework"
+		"FretBuzzFramework"
+	}
+	
+	postbuildcommands 
+	{
+		"{COPY} ../Libs/DLL/x64 %{cfg.targetdir}",
+		"{COPY} resources %{cfg.targetdir}/resources"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+		defines
+		{
+			"_IS_PLATFORM_WINDOWS",
+			"_USE_MATH_DEFINES",
+			"_CRT_SECURE_NO_WARNINGS"
+		}
 		
 	filter "configurations:Debug"
+		defines "_IS_DEBUG"
 		runtime "Debug"
 		symbols "on"
 

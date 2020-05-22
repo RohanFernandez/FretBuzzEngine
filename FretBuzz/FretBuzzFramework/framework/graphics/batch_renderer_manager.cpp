@@ -53,8 +53,8 @@ namespace ns_fretBuzz
 
 		void BatchRendererManager::beginBatches()
 		{
-			int l_iBatchRendererCount = m_vectBatchRenderers.size();
-			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			size_t l_iBatchRendererCount = m_vectBatchRenderers.size();
+			for (size_t l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
 			{
 				m_vectBatchRenderers[l_iBatchRendererIndex]->begin();
 			}
@@ -62,8 +62,8 @@ namespace ns_fretBuzz
 
 		void BatchRendererManager::endBatches()
 		{
-			int l_iBatchRendererCount = m_vectBatchRenderers.size();
-			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			size_t l_iBatchRendererCount = m_vectBatchRenderers.size();
+			for (size_t l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
 			{
 				m_vectBatchRenderers[l_iBatchRendererIndex]->end();
 			}
@@ -71,8 +71,8 @@ namespace ns_fretBuzz
 
 		void BatchRendererManager::flushBatches()
 		{
-			int l_iBatchRendererCount = m_vectBatchRenderers.size();
-			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			size_t l_iBatchRendererCount = m_vectBatchRenderers.size();
+			for (size_t l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
 			{
 				m_vectBatchRenderers[l_iBatchRendererIndex]->flush();
 			}
@@ -80,8 +80,8 @@ namespace ns_fretBuzz
 
 		void BatchRendererManager::endAndflushBatches()
 		{
-			int l_iBatchRendererCount = m_vectBatchRenderers.size();
-			for (int l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
+			size_t l_iBatchRendererCount = m_vectBatchRenderers.size();
+			for (size_t l_iBatchRendererIndex = 0; l_iBatchRendererIndex < l_iBatchRendererCount; l_iBatchRendererIndex++)
 			{
 				m_vectBatchRenderers[l_iBatchRendererIndex]->end();
 				m_vectBatchRenderers[l_iBatchRendererIndex]->flush();

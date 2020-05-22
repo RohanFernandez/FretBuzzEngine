@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		class GameObject;
-		class FRETBUZZ_API CharacterController2D : public IComponent
+		class  CharacterController2D : public IComponent
 		{
 		private:
 

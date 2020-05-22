@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API LayerMask
+		class  LayerMask
 		{
 		public:
 			enum class PREDEFINED_MASK

@@ -5,7 +5,7 @@
 namespace ns_fretBuzz
 {
 	template<typename T, typename = typename std::enable_if<std::is_base_of<ns_system::GameObject, T>::value>::type>
-	class FRETBUZZ_API GameObjectPool: protected ObjectPool<T>
+	class  GameObjectPool: protected ObjectPool<T>
 	{
 	public:
 		GameObjectPool()

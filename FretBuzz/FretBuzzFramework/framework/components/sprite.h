@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API Sprite
+		class  Sprite
 		{
 		private:
 			Texture* m_pTexture = nullptr;
@@ -187,7 +187,7 @@ namespace ns_fretBuzz
 
 			inline int getSpriteCount() const
 			{
-				return m_vectSpriteData.size();
+				return (int)m_vectSpriteData.size();
 			}
 		};
 	}

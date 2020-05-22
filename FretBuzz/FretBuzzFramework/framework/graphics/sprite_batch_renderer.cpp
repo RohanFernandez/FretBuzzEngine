@@ -39,7 +39,7 @@ namespace ns_fretBuzz
 			m_pIndexBufferArray = new GLuint[m_iIndexBufferSize];
 
 			unsigned int l_iOffset = 0;
-			for (int l_iIBOindex = 0; l_iIBOindex < m_iIndexBufferSize; l_iIBOindex += 6)
+			for (unsigned int l_iIBOindex = 0; l_iIBOindex < m_iIndexBufferSize; l_iIBOindex += 6)
 			{
 				//First Triangle
 				m_pIndexBufferArray[l_iIBOindex] = l_iOffset;
@@ -119,8 +119,8 @@ namespace ns_fretBuzz
 			if (l_iTexID > 0)
 			{
 				bool l_bIsTextureIDFound = false;
-				int l_iTexIDCount = l_Instance.m_vectActiveTexIDs.size();
-				for (int l_iCurrentTexID = 0; l_iCurrentTexID < l_iTexIDCount; l_iCurrentTexID++)
+				size_t l_iTexIDCount = l_Instance.m_vectActiveTexIDs.size();
+				for (size_t l_iCurrentTexID = 0; l_iCurrentTexID < l_iTexIDCount; l_iCurrentTexID++)
 				{
 					if (l_iTexID == l_Instance.m_vectActiveTexIDs[l_iCurrentTexID])
 					{
@@ -193,10 +193,10 @@ namespace ns_fretBuzz
 			SpriteBatchRenderer& l_Instance = *s_pInstance;
 			if (l_Instance.m_iIndicesToDraw == 0) { return; }
 
-			int l_iCount = l_Instance.m_vectActiveTexIDs.size();
-			for (int l_iTexindex = 0; l_iTexindex < l_iCount; l_iTexindex++)
+			size_t l_iCount = l_Instance.m_vectActiveTexIDs.size();
+			for (size_t l_iTexindex = 0; l_iTexindex < l_iCount; l_iTexindex++)
 			{
-				glActiveTexture(GL_TEXTURE0 + l_iTexindex);
+				glActiveTexture((GLenum)(GL_TEXTURE0 + l_iTexindex));
 				glBindTexture(GL_TEXTURE_2D, l_Instance.m_vectActiveTexIDs[l_iTexindex]);
 			}
 

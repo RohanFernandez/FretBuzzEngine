@@ -69,8 +69,8 @@ namespace ns_fretBuzz
 			int l_iPointLightIndex = 0;
 			int l_iSpotLightIndex = 0;
 
-			int l_iLightCount = m_Container.size();
-			for (int l_iLightindex = 0; l_iLightindex < l_iLightCount; l_iLightindex++)
+			size_t l_iLightCount = m_Container.size();
+			for (size_t l_iLightindex = 0; l_iLightindex < l_iLightCount; l_iLightindex++)
 			{
 				Light& l_Light = *m_Container[l_iLightindex];
 				std::string l_strLightIndex;

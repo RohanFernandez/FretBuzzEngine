@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class GameObject;
-		class FRETBUZZ_API MeshRenderer : public ns_system::IComponent, public IRenderer
+		class  MeshRenderer : public ns_system::IComponent, public IRenderer
 		{
 		private:
 			Mesh* m_pMesh = nullptr;

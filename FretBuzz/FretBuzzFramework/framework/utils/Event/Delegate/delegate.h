@@ -101,7 +101,7 @@ namespace ns_fretBuzz
 		}
 
 		///Calls all the actions stored within the delegate
-		T_RET_TYPE Invoke(T_ARGS... a_Args) throw(std::out_of_range)
+		T_RET_TYPE Invoke(T_ARGS... a_Args)
 		{
 			try
 			{

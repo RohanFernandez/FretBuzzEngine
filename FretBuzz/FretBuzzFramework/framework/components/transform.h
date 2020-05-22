@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API Transform
+		class  Transform
 		{
 		friend class GameObject;
 		protected:

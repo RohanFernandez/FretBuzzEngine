@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API Mesh
+		class  Mesh
 		{
 		public:
 

@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API GameObject2D : public GameObject
+		class  GameObject2D : public GameObject
 		{
 		protected:
 			GameObject2D(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH, Layer a_Layer, bool a_bIsActiveSelf);

@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 		class CameraManager;
 		class LightManager;
 		class ShaderManager;
-		class FRETBUZZ_API MasterRenderer
+		class  MasterRenderer
 		{
 		private:
 			static MasterRenderer* s_pInstance;

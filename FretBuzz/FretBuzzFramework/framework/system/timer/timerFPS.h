@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API TimerFPS : public Timer
+		class  TimerFPS : public Timer
 		{
 		private:
 			unsigned int m_iCurrentFPS = 0;

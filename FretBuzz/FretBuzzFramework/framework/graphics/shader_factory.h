@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		struct FRETBUZZ_API ShaderFactory
+		struct  ShaderFactory
 		{
 			static constexpr char SHADER_NAME_PHONG[] = "phong";
 			static constexpr char SHADER_NAME_DEFAULT_3D[] = "default_3d";

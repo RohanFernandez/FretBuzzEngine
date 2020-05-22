@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API ShaderManager : public ResourceContainer<std::map<Shader::SHADER_TYPE, Shader*>>
+		class  ShaderManager : public ResourceContainer<std::map<Shader::SHADER_TYPE, Shader*>>
 		{
 		public:
 			static ShaderManager* initialize();

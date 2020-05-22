@@ -24,8 +24,6 @@
 #include <type_traits>
 /// Standard template library
 
-#include <system/system_defines.h>
-
 #ifdef _IS_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

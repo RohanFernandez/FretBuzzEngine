@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API TextRenderer : public ns_system::IComponent
+		class  TextRenderer : public ns_system::IComponent
 		{
 		private:
 

@@ -91,7 +91,7 @@ namespace ns_fretBuzz
 
 		void Input::OnMouseScroll(GLFWwindow* a_pWindow, double a_dXoffset, double a_dYoffset)
 		{
-			s_pInput->m_iScrollValue = a_dYoffset;
+			s_pInput->m_iScrollValue = (int)(a_dYoffset);
 		}
 
 		void Input::OnGetCursorPosition(GLFWwindow* a_pGLFWwindow, double a_dPositionX, double a_dPositionY)

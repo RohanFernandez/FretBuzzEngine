@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		class Camera;
 		class Shader;
 
-		class FRETBUZZ_API PhongShader : Shader
+		class  PhongShader : Shader
 		{
 		private:
 			static PhongShader* s_pInstance;

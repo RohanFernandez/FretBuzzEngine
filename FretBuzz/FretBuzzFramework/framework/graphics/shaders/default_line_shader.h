@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		class Camera;
 		class Shader;
 
-		class FRETBUZZ_API DefaultLineShader : Shader
+		class  DefaultLineShader : Shader
 		{
 		private:
 			static DefaultLineShader* s_pInstance;

@@ -163,7 +163,7 @@ namespace ns_fretBuzz
 
 		void GameObject::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
 		{
-			int l_iChildrenCount = m_Children.size();
+			size_t l_iChildrenCount = m_Children.size();
 
 			const auto m_NodeFlags = ImGuiTreeNodeFlags_OpenOnArrow
 				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
@@ -208,7 +208,7 @@ namespace ns_fretBuzz
 
 		void GameObject::renderComponents(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera)
 		{
-			int l_iComponentCount = m_Components.size();
+			size_t l_iComponentCount = m_Components.size();
 			for (int l_iComponentndex = 0; l_iComponentndex < l_iComponentCount; l_iComponentndex++)
 			{
 				IComponent& l_Component =  *m_Components[l_iComponentndex];
@@ -228,7 +228,7 @@ namespace ns_fretBuzz
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 
-			int l_iChildCount = m_Children.size();
+			size_t l_iChildCount = m_Children.size();
 			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				l_pCurrentGameObject = m_Children[l_iChildIndex];
@@ -241,8 +241,8 @@ namespace ns_fretBuzz
 
 		bool GameObject::isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const
 		{
-			int l_iComponentCount = m_Components.size();
-			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+			size_t l_iComponentCount = m_Components.size();
+			for (size_t l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
 			{
 				if (m_Components[l_iComponentIndex]->m_ComponentType == a_ComponentType)
 				{
@@ -368,14 +368,14 @@ namespace ns_fretBuzz
 
 		void GameObject::setActiveInHierarchyRecursively(bool a_bIsActiveInHierarchy)
 		{
-			int l_iComponentCount = m_Components.size();
-			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+			size_t l_iComponentCount = m_Components.size();
+			for (size_t l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
 			{
 				m_Components[l_iComponentIndex]->onGameObjectActivated(a_bIsActiveInHierarchy);
 			}
 
-			int l_iChildCount = m_Children.size();
-			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
+			size_t l_iChildCount = m_Children.size();
+			for (size_t l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				GameObject& l_Child = *m_Children[l_iChildIndex];
 
@@ -465,10 +465,10 @@ namespace ns_fretBuzz
 		{
 			//TRANSFORM COMPONENT
 			bool l_bIsTreeNodeOpen = false;
-			ImGui::PushStyleColor(ImGuiCol_Text, { 0.9, 0.9, 0.9, 1.0 });
+			ImGui::PushStyleColor(ImGuiCol_Text, { 0.9f, 0.9f, 0.9f, 1.0f });
 			l_bIsTreeNodeOpen = ImGui::TreeNodeEx("Transform", ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
 			ImGui::PopStyleColor();
-			ImGui::PushStyleColor(ImGuiCol_Text, { 0.8, 0.8, 0.8, 1.0 });
+			ImGui::PushStyleColor(ImGuiCol_Text, { 0.8f, 0.8f, 0.8f, 1.0f });
 
 			if (l_bIsTreeNodeOpen)
 			{
@@ -478,8 +478,8 @@ namespace ns_fretBuzz
 			ImGui::NewLine();
 
 			//COMPONENTS
-			int l_iComponentSize = m_Components.size();
-			for (int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentSize; l_iComponentIndex++)
+			size_t l_iComponentSize = m_Components.size();
+			for (size_t l_iComponentIndex = 0; l_iComponentIndex < l_iComponentSize; l_iComponentIndex++)
 			{
 				IComponent& l_CurrentComponent = (*m_Components[l_iComponentIndex]);
 				bool l_bIsComponentEnabled = l_CurrentComponent.getIsEnabled();
@@ -492,13 +492,13 @@ namespace ns_fretBuzz
 				}
 				ImGui::SameLine(25);
 
-				ImGui::PushStyleColor(ImGuiCol_Text, { 0.9, 0.9, 0.9, 1.0 });
+				ImGui::PushStyleColor(ImGuiCol_Text, { 0.9f, 0.9f, 0.9f, 1.0f });
 				l_bIsTreeNodeOpen = ImGui::TreeNodeEx(l_CurrentComponent.getName().c_str(), ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen);
 				ImGui::PopStyleColor();
 
 				if (l_bIsTreeNodeOpen)
 				{
-					ImGui::PushStyleColor(ImGuiCol_Text, { 0.8, 0.8, 0.8, 1.0 });
+					ImGui::PushStyleColor(ImGuiCol_Text, { 0.8f, 0.8f, 0.8f, 1.0f });
 					l_CurrentComponent.editorInspectorRender();
 					ImGui::TreePop();
 					ImGui::PopStyleColor();

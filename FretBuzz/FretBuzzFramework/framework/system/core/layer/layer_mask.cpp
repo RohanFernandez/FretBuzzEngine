@@ -55,8 +55,8 @@ namespace ns_fretBuzz
 
 		void LayerMask::addLayers(std::vector<std::string> a_vectLayers)
 		{
-			int l_iLayerCount = a_vectLayers.size();
-			for (int l_iLayerIndex = 0; l_iLayerIndex < l_iLayerCount; l_iLayerIndex++)
+			size_t l_iLayerCount = a_vectLayers.size();
+			for (size_t l_iLayerIndex = 0; l_iLayerIndex < l_iLayerCount; l_iLayerIndex++)
 			{
 				addLayer(a_vectLayers[l_iLayerIndex]);
 			}
@@ -78,8 +78,8 @@ namespace ns_fretBuzz
 
 		void LayerMask::removeLayers(std::vector<std::string> a_vectLayers)
 		{
-			int l_iLayerCount = a_vectLayers.size();
-			for (int l_iLayerIndex = 0; l_iLayerIndex < l_iLayerCount; l_iLayerIndex++)
+			size_t l_iLayerCount = a_vectLayers.size();
+			for (size_t l_iLayerIndex = 0; l_iLayerIndex < l_iLayerCount; l_iLayerIndex++)
 			{
 				removeLayer(a_vectLayers[l_iLayerIndex]);
 			}

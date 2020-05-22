@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_UI
 	{
-		enum class FRETBUZZ_API CANVAS_SPACE_TYPE
+		enum class  CANVAS_SPACE_TYPE
 		{
 			WORLD_SPACE = 0,
 			SCREEN_SPACE_CAMERA = 1,
@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 			float m_fPlaneDistance = 0.0f;
 		};
 
-		class FRETBUZZ_API Canvas : public ns_system::IComponent2D
+		class  Canvas : public ns_system::IComponent2D
 		{
 		protected:
 			virtual ~Canvas();

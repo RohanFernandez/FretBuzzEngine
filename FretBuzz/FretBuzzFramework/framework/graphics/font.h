@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API Font : public ns_system::IManagedResource
+		class  Font : public ns_system::IManagedResource
 		{
 			friend class FontManager;
 		private:

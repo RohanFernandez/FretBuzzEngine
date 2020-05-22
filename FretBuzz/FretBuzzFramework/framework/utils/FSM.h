@@ -2,7 +2,7 @@
 
 namespace ns_fretBuzz
 {
-	class FRETBUZZ_API IFSM
+	class  IFSM
 	{
 	protected:
 		std::string m_strStateName;
@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 	};
 
 	template<typename T_STATE, typename = typename std::enable_if<std::is_base_of<IFSM, T_STATE>::value>::type >
-	class FRETBUZZ_API FSM
+	class  FSM
 	{
 	protected:
 		bool m_bIsTransitionToSelfAllowed = false;
@@ -110,9 +110,9 @@ namespace ns_fretBuzz
 		///Checks if the state with given state name already exists in the vector of all states.
 		IFSM* getStateRegisteredWithID(const std::string& a_strStateName)
 		{
-			int l_iStateCount = m_vectStates.size();
+			size_t l_iStateCount = m_vectStates.size();
 
-			for (int l_iStateIndex = 0; l_iStateIndex < l_iStateCount; l_iStateIndex++)
+			for (size_t l_iStateIndex = 0; l_iStateIndex < l_iStateCount; l_iStateIndex++)
 			{
 				if (std::strcmp(a_strStateName.c_str(), m_vectStates[l_iStateIndex]->getStateName().c_str()) == 0)
 				{

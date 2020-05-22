@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 		class Camera;
 		class Shader;
 
-		class FRETBUZZ_API DefaultPostProcess : Shader
+		class  DefaultPostProcess : Shader
 		{
 		private:
 			static DefaultPostProcess* s_pInstance;

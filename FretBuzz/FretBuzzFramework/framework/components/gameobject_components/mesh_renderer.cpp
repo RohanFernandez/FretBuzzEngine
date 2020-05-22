@@ -30,9 +30,9 @@ namespace ns_fretBuzz
 
 		void MeshRenderer::setup()
 		{
-			m_iVertBufferSize = m_pMesh->m_vectVertices.size() * sizeof(Mesh::Vertex);
-			m_iTotalIndices = m_pMesh->m_vectIndices.size();
-			m_iIndexBufferSize = m_iTotalIndices * sizeof(unsigned int);
+			m_iVertBufferSize = (unsigned int)(m_pMesh->m_vectVertices.size() * sizeof(Mesh::Vertex));
+			m_iTotalIndices = (unsigned int)m_pMesh->m_vectIndices.size();
+			m_iIndexBufferSize = (unsigned int)(m_iTotalIndices * sizeof(unsigned int));
 
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);

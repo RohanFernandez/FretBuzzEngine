@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_editor
 	{
-		class FRETBUZZ_API Inspector
+		class  Inspector
 		{
 		private:
 			static Inspector* s_pInstance;

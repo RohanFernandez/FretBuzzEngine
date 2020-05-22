@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API SpriteAnimationController : public IComponent
+		class  SpriteAnimationController : public IComponent
 		{
 		private:
 

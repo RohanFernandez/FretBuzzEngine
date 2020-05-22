@@ -1,7 +1,7 @@
 project "pugixml"
-	location "pugixml"
 	kind "StaticLib"
 	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("Bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("Bin/" .. outputdir .. "/%{prj.name}")

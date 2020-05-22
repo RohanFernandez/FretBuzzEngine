@@ -3,7 +3,7 @@
 namespace ns_fretBuzz
 {
 	template<typename T>
-	class FRETBUZZ_API ObjectPool
+	class  ObjectPool
 	{
 	protected:
 		std::vector<T*> m_Pool;

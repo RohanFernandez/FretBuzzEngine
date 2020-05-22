@@ -40,7 +40,7 @@ namespace ns_fretBuzz
 		{
 			a_pLoadedNode->m_strName = a_pNode->mName.C_Str();
 
-			int l_iMeshCount = a_pNode->mNumMeshes;
+			unsigned int l_iMeshCount = a_pNode->mNumMeshes;
 			for (unsigned int l_iMeshIndex = 0; l_iMeshIndex < l_iMeshCount; l_iMeshIndex++)
 			{
 				aiMesh* l_pMesh = a_pScene->mMeshes[a_pNode->mMeshes[l_iMeshIndex]];
@@ -177,8 +177,8 @@ namespace ns_fretBuzz
 				}
 			}
 
-			int l_iChildCount = a_Node.m_vectChildNodes.size();
-			for (int l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
+			size_t l_iChildCount = a_Node.m_vectChildNodes.size();
+			for (size_t l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				Node& l_CurrentNode = *a_Node.m_vectChildNodes[l_iChildIndex];
 				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, l_CurrentNode.m_strName, ns_fretBuzz::ns_system::Layer());

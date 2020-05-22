@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API Log
+		class  Log
 		{
 		private:
 			//singleton instance

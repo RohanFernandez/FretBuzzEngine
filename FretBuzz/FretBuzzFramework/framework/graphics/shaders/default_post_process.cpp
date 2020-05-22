@@ -59,6 +59,8 @@ namespace ns_fretBuzz
 
 			case Material::POST_PROCESS_TYPE::SHARPEN:
 				return s_arrSharpenKernel;
+			default:
+				return nullptr;
 			}
 		}
 	}

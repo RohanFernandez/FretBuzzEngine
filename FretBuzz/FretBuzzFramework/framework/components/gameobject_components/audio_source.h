@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 	namespace ns_system
 	{
 		class GameObject;
-		class FRETBUZZ_API AudioSource : public IComponent
+		class  AudioSource : public IComponent
 		{
 		private:
 			irrklang::ISoundEngine* m_pISoundEngine = nullptr;

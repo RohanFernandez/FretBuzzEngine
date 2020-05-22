@@ -121,7 +121,7 @@ namespace ns_fretBuzz
 
 		float AudioSource::getLength() const
 		{
-			return m_pISoundSource->getPlayLength();
+			return (float)m_pISoundSource->getPlayLength();
 		}
 
 		bool AudioSource::getIsLooping() const

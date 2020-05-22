@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 
 			m_pIndexBufferArray = new GLuint[m_iIndexBufferSize];
 
-			for (int l_iIBOindex = 0; l_iIBOindex < m_iIndexBufferSize; l_iIBOindex++)
+			for (unsigned int l_iIBOindex = 0; l_iIBOindex < m_iIndexBufferSize; l_iIBOindex++)
 			{
 				m_pIndexBufferArray[l_iIBOindex] = l_iIBOindex;
 			}

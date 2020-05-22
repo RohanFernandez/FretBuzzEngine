@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 	{
 		System* System::s_pInstance = nullptr;
 
-		System::System(GameStartupData& a_GameStartupData)
+		System::System(GameStartup& a_GameStartupData)
 		{
 			m_pLog = Log::initialize();
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
@@ -31,7 +31,7 @@ namespace ns_fretBuzz
 #endif
 		}
 
-		bool System::isInitialized(GameStartupData& a_GameStartupData)
+		bool System::isInitialized(GameStartup& a_GameStartupData)
 		{
 			s_pInstance = new System(a_GameStartupData);
 			return !(s_pInstance == nullptr ||
@@ -94,7 +94,7 @@ namespace ns_fretBuzz
 			return s_pInstance->m_fDeltaTime;
 		}
 
-		void System::run(GameStartupData& a_GameStartupData)
+		void System::run(GameStartup& a_GameStartupData)
 		{
 			if (s_pInstance != nullptr)
 			{

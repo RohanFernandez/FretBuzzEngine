@@ -158,8 +158,8 @@ namespace ns_fretBuzz
 			{
 				/// if scene was created in this function i.e. was not in the active state list previously.
 				/// put the newly added state( current state ) as the last iterator in the active state list.
-				int l_iActiveSceneCount = m_vectActiveStates.size();
-				int l_iCurrentScenePosition = 0;
+				size_t l_iActiveSceneCount = m_vectActiveStates.size();
+				size_t l_iCurrentScenePosition = 0;
 
 				for (; l_iCurrentScenePosition < l_iActiveSceneCount; l_iCurrentScenePosition++)
 				{
@@ -214,8 +214,8 @@ namespace ns_fretBuzz
 
 		void SceneManager::updateActiveScenes(float a_fDeltaTime)
 		{
-			int l_iActiveSceneCount = m_vectActiveStates.size();
-			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			size_t l_iActiveSceneCount = m_vectActiveStates.size();
+			for (size_t l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				m_vectActiveStates[l_iSceneIndex]->update(a_fDeltaTime);
 			}
@@ -223,8 +223,8 @@ namespace ns_fretBuzz
 
 		void SceneManager::lateUpdateActiveScenes(float a_fDeltaTime)
 		{
-			int l_iActiveSceneCount = m_vectActiveStates.size();
-			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			size_t l_iActiveSceneCount = m_vectActiveStates.size();
+			for (size_t l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				m_vectActiveStates[l_iSceneIndex]->lateUpdate(a_fDeltaTime);
 			}
@@ -233,8 +233,8 @@ namespace ns_fretBuzz
 		///all scenes should have its object render calls via this function
 		void SceneManager::renderActiveScenes(const ns_graphics::Camera& a_Camera)
 		{
-			int l_iActiveSceneCount = m_vectActiveStates.size();
-			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			size_t l_iActiveSceneCount = m_vectActiveStates.size();
+			for (size_t l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				m_vectActiveStates[l_iSceneIndex]->render(a_Camera);
 			}
@@ -242,8 +242,8 @@ namespace ns_fretBuzz
 
 		void SceneManager::LogSceneHierarchy()
 		{
-			int l_iActiveSceneCount = s_pInstance->m_vectActiveStates.size();
-			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			size_t l_iActiveSceneCount = s_pInstance->m_vectActiveStates.size();
+			for (size_t l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				s_pInstance->m_vectActiveStates[l_iSceneIndex]->logHierarchy();
 			}
@@ -251,8 +251,8 @@ namespace ns_fretBuzz
 
 		void SceneManager::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
 		{
-			int l_iActiveSceneCount = m_vectActiveStates.size();
-			for (int l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
+			size_t l_iActiveSceneCount = m_vectActiveStates.size();
+			for (size_t l_iSceneIndex = 0; l_iSceneIndex < l_iActiveSceneCount; l_iSceneIndex++)
 			{
 				m_vectActiveStates[l_iSceneIndex]->editorHierarchyRender(a_pSelectedGameObject);
 			}

@@ -5,7 +5,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API AudioEngine
+		class  AudioEngine
 		{
 		friend class AudioSource;
 		friend class AudioClip;

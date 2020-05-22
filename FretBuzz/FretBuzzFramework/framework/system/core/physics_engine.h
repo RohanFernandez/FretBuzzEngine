@@ -31,7 +31,7 @@ namespace ns_fretBuzz
 			}
 		};
 
-		class FRETBUZZ_API PhysicsEngine
+		class  PhysicsEngine
 		{
 		private:
 			static PhysicsEngine* s_pInstance;

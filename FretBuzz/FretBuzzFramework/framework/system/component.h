@@ -10,7 +10,7 @@ namespace ns_fretBuzz
 
 	namespace ns_system
 	{
-		enum class FRETBUZZ_API COMPONENT_TYPE
+		enum class  COMPONENT_TYPE
 		{
 			AUDIO_SOURCE,
 			SPRITE_RENDERER,
@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 
 		class GameObject;
 		class Collider2D;
-		class FRETBUZZ_API IComponent
+		class  IComponent
 		{
 		friend class GameObject;
 		friend class GameObject2D;

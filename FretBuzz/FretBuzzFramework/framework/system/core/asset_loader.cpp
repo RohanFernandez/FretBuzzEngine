@@ -234,8 +234,8 @@ namespace ns_fretBuzz
 					a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureId, l_Texture);
 					l_pTexture = a_pResourceManager->getResource<ns_graphics::Texture>(l_strTextureId);
 				}
-				l_fTextureW = l_pTexture->getWidth();
-				l_fTextureH = l_pTexture->getHeight();
+				l_fTextureW = (float)(l_pTexture->getWidth());
+				l_fTextureH = (float)(l_pTexture->getHeight());
 
 				for (pugi::xml_node_iterator l_currentSprite = l_currentSpriteSheet->begin();
 					l_currentSprite != l_currentSpriteSheet->end();

@@ -96,8 +96,8 @@ namespace ns_fretBuzz
 			//Render Pass
 			m_pCameraManager->updateViewMatrix();
 			std::vector<Camera*>& l_vectCameras = m_pCameraManager->getCameras();
-			int l_iCameraCount = l_vectCameras.size();
-			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			size_t l_iCameraCount = l_vectCameras.size();
+			for (size_t l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
 				if (l_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
 				{

@@ -20,8 +20,8 @@ namespace ns_fretBuzz
 
 		Texture* Mesh::getTextureOfType(Mesh::MeshTexture::TYPE a_TextureType)
 		{
-			int l_iTexCount = m_vectTextures.size();
-			for (int l_iTexIndex = 0; l_iTexIndex < l_iTexCount; l_iTexIndex++)
+			size_t l_iTexCount = m_vectTextures.size();
+			for (size_t l_iTexIndex = 0; l_iTexIndex < l_iTexCount; l_iTexIndex++)
 			{
 				if (m_vectTextures[l_iTexIndex].m_Type == a_TextureType)
 				{

@@ -4,7 +4,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API Layer
+		class  Layer
 		{
 			friend class LayerManager;
 

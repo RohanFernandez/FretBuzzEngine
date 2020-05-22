@@ -3,10 +3,10 @@
 namespace ns_fretBuzz
 {
 	template<typename T_CONTAINER_TYPE>
-	class FRETBUZZ_API ResourceContainer{};
+	class  ResourceContainer{};
 
 	template<typename T>
-	class FRETBUZZ_API ResourceContainer<std::vector<T>>
+	class  ResourceContainer<std::vector<T>>
 	{
 	protected:
 		std::vector<T> m_Container;
@@ -21,7 +21,7 @@ namespace ns_fretBuzz
 
 		void unregisterResource(T& a_Resource)
 		{
-			int l_iContainerCount = m_Container.size();
+			size_t l_iContainerCount = m_Container.size();
 
 			for (auto l_Iterator = m_Container.begin(),
 				l_iIteratorEnd = m_Container.end();

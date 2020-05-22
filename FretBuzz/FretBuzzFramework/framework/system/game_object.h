@@ -7,7 +7,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class FRETBUZZ_API GameObject
+		class  GameObject
 		{
 			friend class IScene;
 			friend class IComponent;
@@ -139,8 +139,8 @@ namespace ns_fretBuzz
 			template<typename T_COMPONENT_TYPE, typename = typename std::enable_if<std::is_base_of<IComponent, T_COMPONENT_TYPE>::value>::type>
 			T_COMPONENT_TYPE* getComponent(COMPONENT_TYPE a_COMPONENT_TYPE)
 			{
-				int l_iComponentCount = m_Components.size();
-				for(int l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
+				size_t l_iComponentCount = m_Components.size();
+				for(size_t l_iComponentIndex = 0; l_iComponentIndex < l_iComponentCount; l_iComponentIndex++)
 				{
 					if (m_Components[l_iComponentIndex]->m_ComponentType == a_COMPONENT_TYPE)
 					{

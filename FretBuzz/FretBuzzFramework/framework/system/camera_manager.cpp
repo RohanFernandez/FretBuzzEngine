@@ -80,9 +80,9 @@ namespace ns_fretBuzz
 
 		void CameraManager::updateViewMatrix()
 		{
-			int l_iCameraCount = m_Container.size();
+			size_t l_iCameraCount = m_Container.size();
 
-			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			for (size_t l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
 				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
@@ -93,8 +93,8 @@ namespace ns_fretBuzz
 
 		void CameraManager::renderFrame(ns_system::SceneManager& a_SceneManager, const PostProcessManager& a_PostProcessManager)
 		{
-			int l_iCameraCount = m_Container.size();
-			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			size_t l_iCameraCount = m_Container.size();
+			for (size_t l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
 				if (m_Container[l_iCameraIndex]->isActiveAndEnabled())
 				{
@@ -109,8 +109,8 @@ namespace ns_fretBuzz
 
 		void CameraManager::windowResize(int a_iWidth, int a_iHeight)
 		{
-			int l_iCameraCount = m_Container.size();
-			for (int l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
+			size_t l_iCameraCount = m_Container.size();
+			for (size_t l_iCameraIndex = 0; l_iCameraIndex < l_iCameraCount; l_iCameraIndex++)
 			{
 				m_Container[l_iCameraIndex]->reset();
 			}

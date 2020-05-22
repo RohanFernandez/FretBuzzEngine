@@ -8,7 +8,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class FRETBUZZ_API FontManager
+		class  FontManager
 		{
 		private:
 			//singleton instance
