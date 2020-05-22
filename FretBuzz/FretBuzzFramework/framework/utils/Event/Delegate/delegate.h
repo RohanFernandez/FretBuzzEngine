@@ -7,10 +7,16 @@
 
 namespace ns_fretBuzz
 {
-	template<typename T> class Delegate;
+	class IDelegate
+	{
+	};
+
+	template<typename T> class Delegate : public IDelegate
+	{
+	};
 
 	template<typename T_RET_TYPE, typename ...T_ARGS>
-	class Delegate <T_RET_TYPE(T_ARGS...)>
+	class Delegate <T_RET_TYPE(T_ARGS...)> : public IDelegate
 	{
 	private:
 		bool m_bIsReturnable = false;
@@ -36,13 +42,15 @@ namespace ns_fretBuzz
 		}
 
 	public:
-		Delegate()
+		Delegate() : IDelegate()
 		{
 			if (typeid(T_RET_TYPE) != typeid(void))
 			{
 				m_bIsReturnable = true;
 			}
 		}
+
+		virtual ~Delegate() {}
 
 		///Adds a member function into the delegate list
 		template<typename T_CLASS_TYPE, T_RET_TYPE(T_CLASS_TYPE::* T_METHOD)(T_ARGS...)>

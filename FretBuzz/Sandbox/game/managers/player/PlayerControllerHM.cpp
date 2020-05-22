@@ -4,6 +4,7 @@
 #include <system/scene_manager.h>
 #include "game/managers/weapon/weapon_data.h"
 #include "game/managers/weapon/weapon_manager.h"
+#include <fretbuzz.h>
 
 namespace ns_HMGame
 {
@@ -147,6 +148,7 @@ namespace ns_HMGame
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
 				m_vectWeaponOver[0]->pickup();
 			}
+			APP_ERROR("Tracing weapon throw");
 		}
 		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
 		{

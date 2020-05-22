@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <utils/Event/Delegate/delegate.h>
+#include <utils/Event/EventManager/event_manager.h>
 #include <fretbuzz.h>
 
 namespace ns_fretBuzz
@@ -9,7 +10,7 @@ namespace ns_fretBuzz
 	namespace ns_graphics
 	{
 		class Viewport;
-		class  Window
+		class Window
 		{
 		public:
 			//window resize callback type

@@ -11,9 +11,9 @@ namespace ns_fretBuzz
 		Log* Log::s_pInstance = nullptr;
 
 		//Logger for the engine
-		std::shared_ptr<spdlog::logger> Log::s_Engine;
+		std::shared_ptr<spdlog::logger> Log::s_EngineLogger;
 		//Logger for the application
-		std::shared_ptr<spdlog::logger> Log::s_Application;
+		std::shared_ptr<spdlog::logger> Log::s_AppLogger;
 
 		Log::Log()
 		{
@@ -24,15 +24,15 @@ namespace ns_fretBuzz
 			logSinks[0]->set_pattern("%^[%T] %n: %v%$");
 			logSinks[1]->set_pattern("[%T] [%l] %n: %v");
 
-			s_Engine = std::make_shared<spdlog::logger>("FretBuzz", begin(logSinks), end(logSinks));
-			spdlog::register_logger(s_Engine);
-			s_Engine->set_level(spdlog::level::trace);
-			s_Engine->flush_on(spdlog::level::trace);
+			s_EngineLogger = std::make_shared<spdlog::logger>("FretBuzz", begin(logSinks), end(logSinks));
+			spdlog::register_logger(s_EngineLogger);
+			s_EngineLogger->set_level(spdlog::level::trace);
+			s_EngineLogger->flush_on(spdlog::level::trace);
 
-			s_Application = std::make_shared<spdlog::logger>("Application", begin(logSinks), end(logSinks));
-			spdlog::register_logger(s_Application);
-			s_Application->set_level(spdlog::level::trace);
-			s_Application->flush_on(spdlog::level::trace);
+			s_AppLogger = std::make_shared<spdlog::logger>("Application", begin(logSinks), end(logSinks));
+			spdlog::register_logger(s_AppLogger);
+			s_AppLogger->set_level(spdlog::level::trace);
+			s_AppLogger->flush_on(spdlog::level::trace);
 		}
 
 		Log::~Log()

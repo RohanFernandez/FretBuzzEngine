@@ -72,8 +72,8 @@ namespace ns_HMGame
 				m_v3PitchYawRoll.z = (l_v3InitRotation.z);
 			}
 
-			float l_DeltaX = (m_MouseX - m_v2LastMouseXY.x);
-			float l_DeltaY = (m_v2LastMouseXY.y - m_MouseY);
+			float l_DeltaX = (float)(m_MouseX - m_v2LastMouseXY.x);
+			float l_DeltaY = (float)(m_v2LastMouseXY.y - m_MouseY);
 
 			l_DeltaX *= m_fMouseSensitivity;
 			l_DeltaY *= m_fMouseSensitivity;

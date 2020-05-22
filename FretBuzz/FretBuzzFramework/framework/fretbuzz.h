@@ -3,9 +3,9 @@
 #pragma once
 
 #ifdef _IS_DEBUG
-#ifndef _IS_DEBUG_RENDERING
-#define _IS_DEBUG_RENDERING
-#endif
+	#ifndef _IS_DEBUG_RENDERING
+		#define _IS_DEBUG_RENDERING
+	#endif
 #endif
 
 #ifdef _IS_PLATFORM_WINDOWS
@@ -20,6 +20,10 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/quaternion.hpp>
 /// Math
+
+/// Utils
+#include <log/log.h>
+/// Utils
 
 /////Gameobject Components
 //#include <components/gameobject_components/audio_source.h>

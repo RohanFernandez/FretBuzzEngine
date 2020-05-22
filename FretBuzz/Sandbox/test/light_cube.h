@@ -111,7 +111,7 @@ namespace ns_HMGame
 		{
 			if (m_pLight->getType() == ns_fretBuzz::ns_graphics::Light::LIGHT_TYPE::POINT)
 			{
-				rot = rot + M_PI * a_fDeltaTime * 0.5f;
+				rot = rot + (float)M_PI * a_fDeltaTime * 0.5f;
 				m_Transform.setLocalRotation({ rot, rot , rot });
 
 				glm::vec3 l_newPosition{ m_v3LightPosition };
