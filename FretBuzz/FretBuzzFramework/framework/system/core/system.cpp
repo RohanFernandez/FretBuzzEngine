@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 
 		System::System(GameStartup& a_GameStartupData)
 		{
+			m_pEventManager = EventManager::Initialize();
 			m_pLog = Log::initialize();
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
 			m_pFontManager = ns_graphics::FontManager::initialize();
@@ -42,7 +43,8 @@ namespace ns_fretBuzz
 					s_pInstance->m_pSceneManager == nullptr ||
 					s_pInstance->m_pLayerManager == nullptr ||
 					s_pInstance->m_pFontManager == nullptr ||
-					s_pInstance->m_pLog == nullptr
+					s_pInstance->m_pLog == nullptr ||
+					s_pInstance->m_pEventManager == nullptr
 #if _IS_DEBUG
 				|| s_pInstance->m_pInspector == nullptr
 #endif

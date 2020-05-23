@@ -9,6 +9,8 @@ namespace ns_fretBuzz
 {
 	class IDelegate
 	{
+	public:
+		virtual ~IDelegate() {}
 	};
 
 	template<typename T> class Delegate : public IDelegate

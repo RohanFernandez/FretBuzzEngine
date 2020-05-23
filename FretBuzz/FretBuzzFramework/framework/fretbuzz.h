@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #ifdef _IS_DEBUG
 	#ifndef _IS_DEBUG_RENDERING
 		#define _IS_DEBUG_RENDERING
@@ -14,6 +12,16 @@
 #else
 #endif
 
+namespace ns_fretBuzz
+{
+	namespace ns_system
+	{
+		///System Consts
+		constexpr char* FRETBUZZ_ON_WINDOW_RESIZE = "FRETBUZZ_ON_WINDOW_RESIZE";
+		///System Consts
+	}
+}
+
 /// Math
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -23,6 +31,7 @@
 
 /// Utils
 #include <log/log.h>
+#include <utils/Event/event_manager.h>
 /// Utils
 
 /////Gameobject Components

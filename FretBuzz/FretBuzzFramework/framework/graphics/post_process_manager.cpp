@@ -3,7 +3,7 @@
 #include "post_process_manager.h"
 #include "shader_manager.h"
 #include "system/core/window.h"
-#include <utils/Event/Delegate/delegate.h>
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
@@ -39,8 +39,8 @@ namespace ns_fretBuzz
 		{
 			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
 			l_Delegate.Add<PostProcessManager, &PostProcessManager::windowResize>(this);
-			Window::registerWindowResizeCallback(l_Delegate);
-
+			EventManager::Subscribe<Window::WINDOW_RESIZE_TYPE>(ns_system::FRETBUZZ_ON_WINDOW_RESIZE, l_Delegate);
+			
 			glGenFramebuffers(1, &m_FBO);
 			glGenRenderbuffers(1, &m_RBO);
 
@@ -87,7 +87,7 @@ namespace ns_fretBuzz
 		{
 			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
 			l_Delegate.Add<PostProcessManager, &PostProcessManager::windowResize>(this);
-			Window::unregisterWindowResizeCallback(l_Delegate);
+			EventManager::Unsubscribe<Window::WINDOW_RESIZE_TYPE>(ns_system::FRETBUZZ_ON_WINDOW_RESIZE, l_Delegate);
 
 			if (m_FBO)
 			{

@@ -1,7 +1,8 @@
 #include <fretbuzz_pch.h>
+#include <fretbuzz.h>
 #include "camera_manager.h"
 #include "graphics/post_process_manager.h"
-#include <utils/Event/Delegate/delegate.h>
+
 
 namespace ns_fretBuzz
 {
@@ -15,14 +16,14 @@ namespace ns_fretBuzz
 		{
 			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
 			l_Delegate.Add<CameraManager, &CameraManager::windowResize>(this);
-			Window::registerWindowResizeCallback(l_Delegate);
+			 EventManager::Subscribe<Window::WINDOW_RESIZE_TYPE>(ns_system::FRETBUZZ_ON_WINDOW_RESIZE, l_Delegate);
 		}
 
 		CameraManager::~CameraManager()
 		{
 			Delegate<Window::WINDOW_RESIZE_TYPE> l_Delegate;
 			l_Delegate.Add<CameraManager, &CameraManager::windowResize>(this);
-			Window::unregisterWindowResizeCallback(l_Delegate);
+			EventManager::Unsubscribe<Window::WINDOW_RESIZE_TYPE>(ns_system::FRETBUZZ_ON_WINDOW_RESIZE, l_Delegate);
 		}
 
 		CameraManager* CameraManager::initialize()

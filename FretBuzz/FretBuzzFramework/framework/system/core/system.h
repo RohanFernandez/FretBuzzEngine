@@ -12,6 +12,7 @@
 #include "layer/layer_manager.h"
 #include "graphics/font_manager.h"
 #include <log/log.h>
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
@@ -49,6 +50,8 @@ namespace ns_fretBuzz
 			ns_graphics::FontManager* m_pFontManager = nullptr;
 
 			Log* m_pLog = nullptr;
+
+			EventManager* m_pEventManager = nullptr;
 
 #if _IS_DEBUG
 			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;

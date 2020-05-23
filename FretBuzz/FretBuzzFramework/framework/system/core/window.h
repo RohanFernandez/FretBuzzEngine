@@ -1,9 +1,7 @@
 #pragma once
+#include <fretbuzz.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <utils/Event/Delegate/delegate.h>
-#include <utils/Event/EventManager/event_manager.h>
-#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
@@ -37,9 +35,6 @@ namespace ns_fretBuzz
 
 			Window(int a_iWidth, int a_iHeight, const std::string a_strName);
 			~Window();
-
-			///event to be called on window resized
-			Delegate<WINDOW_RESIZE_TYPE> m_EventOnWindowResized;
 
 		public:
 			static Window* initialize(int a_iWidth, int a_iHeight, const std::string a_strName);
@@ -98,9 +93,6 @@ namespace ns_fretBuzz
 			}
 
 			void setViewport(const Viewport& a_Viewport) const;
-
-			static void registerWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback);
-			static void unregisterWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback);
 		};
 	}
 }

@@ -1,6 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "window.h"
 #include "components/viewport.h"
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
@@ -125,17 +126,7 @@ namespace ns_fretBuzz
 			l_pWindow->m_iWidth = a_iWidth;
 			l_pWindow->m_iHeight = a_iHeight;
 
-			l_pWindow->m_EventOnWindowResized.Invoke(a_iWidth, a_iHeight);
-		}
-
-		void Window::registerWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback)
-		{
-			s_pInstance->m_EventOnWindowResized += a_WindowResizeCallback;
-		}
-
-		void Window::unregisterWindowResizeCallback(Delegate<WINDOW_RESIZE_TYPE>& a_WindowResizeCallback)
-		{
-			s_pInstance->m_EventOnWindowResized -= a_WindowResizeCallback;
+			EventManager::Invoke<WINDOW_RESIZE_TYPE>(ns_system::FRETBUZZ_ON_WINDOW_RESIZE, a_iWidth, a_iHeight);
 		}
 
 		bool Window::isWindowClosed() const
