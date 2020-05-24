@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "PostProcessManager::initialize:: PostProcessManager already exists.\n";
+				ENGINE_WARN("PostProcessManager::initialize:: PostProcessManager already exists.\n");
 				return nullptr;
 			}
 			s_pInstance = new PostProcessManager(a_iWidth, a_iHeight, a_PostProcessType);
@@ -46,7 +46,7 @@ namespace ns_fretBuzz
 
 			if (!isSetupFrameBufferSuccess(a_iWidth, a_iHeight))
 			{
-				std::cout << "PostProcessManager::PostProcessManager:: Failed to initialize framebuffer \n";
+				ENGINE_ERROR("PostProcessManager::PostProcessManager:: Failed to initialize framebuffer.");
 			}
 
 			glGenBuffers(1, &m_ScreenQuadVBO);
@@ -172,7 +172,7 @@ namespace ns_fretBuzz
 		{
 			if (!isSetupFrameBufferSuccess(Window::getWidth(), Window::getHeight()))
 			{
-				std::cout << "PostProcessManager::windowResize:: Failed to resize framebuffer. \n";
+				ENGINE_ERROR("PostProcessManager::windowResize:: Failed to resize framebuffer.");
 			}
 		}
 

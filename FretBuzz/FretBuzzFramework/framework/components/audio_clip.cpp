@@ -34,7 +34,6 @@ namespace ns_fretBuzz
 
 		void AudioClip::destroyResource()
 		{
-			std::cout << "Unloading audio clip resource\n";
 			m_pISoundEngine->removeSoundSource(m_pISoundSource);
 		}
 	}

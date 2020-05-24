@@ -25,7 +25,6 @@ namespace ns_fretBuzz
 			ns_graphics::Camera* l_pCamera = nullptr;
 			if ((m_CanvasType != CANVAS_SPACE_TYPE::WORLD_SPACE) && (a_CanvasData.m_pCamera == nullptr))
 			{
-				std::cout << "Canvas::setupCanvas:: Canvas requires a camera component tp be set, setting to Main Camera\n";
 				l_pCamera = &ns_graphics::CameraManager::getMainCamera();
 			}
 			else

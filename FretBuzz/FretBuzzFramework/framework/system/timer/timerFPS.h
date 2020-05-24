@@ -28,6 +28,12 @@ namespace ns_fretBuzz
 			virtual void update() override;
 
 			//gets the FPS
+			static unsigned int GetFPS()
+			{
+				return s_pInstance->getFPS();
+			}
+
+			//gets the FPS
 			unsigned int getFPS() const;
 
 			//prints fps, can be set via constructor

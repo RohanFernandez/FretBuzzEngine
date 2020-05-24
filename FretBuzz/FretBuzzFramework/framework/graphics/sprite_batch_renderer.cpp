@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "SpriteBatchRenderer::initialize:: SpriteBatchRenderer previously initialized.\n";
+				ENGINE_WARN("SpriteBatchRenderer::initialize:: SpriteBatchRenderer previously initialized.");
 				return nullptr;
 			}
 			s_pInstance = new SpriteBatchRenderer(a_iMaxSprites);

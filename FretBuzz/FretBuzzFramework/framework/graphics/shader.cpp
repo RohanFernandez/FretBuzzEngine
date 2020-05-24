@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 		{
 			if (!initialize())
 			{
-				std::cout << "Shader::Shader:: Failed to intialize shader.\n";
+				ENGINE_WARN("Shader::Shader:: Failed to intialize shader.");
 			}
 			else
 			{
@@ -50,7 +50,7 @@ namespace ns_fretBuzz
 				glGetShaderiv(l_VertexShaderID, GL_INFO_LOG_LENGTH, &l_ErrorLogLegth);
 				std::vector<char> l_vectorErrorLength(l_ErrorLogLegth);
 				glGetShaderInfoLog(l_VertexShaderID, l_ErrorLogLegth, &l_ErrorLogLegth, &l_vectorErrorLength[0]);
-				std::cout << "Shader::initialize:: Error compiling vertex shader at path ::'" << m_strVertexShaderPath << "'::\n" << &l_vectorErrorLength[0] << "\n";
+				ENGINE_ERROR("Shader::initialize:: Error compiling vertex shader at path ::'{0}'::\n {1}", m_strVertexShaderPath , &l_vectorErrorLength[0]);
 				glDeleteShader(l_VertexShaderID);
 				return false;
 			}
@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 				glGetShaderiv(l_FragmentShaderID, GL_INFO_LOG_LENGTH, &l_ErrorLogLegth);
 				std::vector<char> l_vectorErrorLength(l_ErrorLogLegth);
 				glGetShaderInfoLog(l_FragmentShaderID, l_ErrorLogLegth, &l_ErrorLogLegth, &l_vectorErrorLength[0]);
-				std::cout << "Shader::initialize:: Error compiling fragment shader at path ::'" << m_strFragmentShaderPath << "'::\n" << &l_vectorErrorLength[0] << "\n";
+				ENGINE_ERROR("Shader::initialize:: Error compiling fragment shader at path ::'{0}'::\n {1}", m_strFragmentShaderPath, &l_vectorErrorLength[0]);
 				glDeleteShader(l_FragmentShaderID);
 				glDeleteShader(l_VertexShaderID);
 				return false;
@@ -83,7 +83,7 @@ namespace ns_fretBuzz
 				glGetProgramiv(m_ShaderID, GL_INFO_LOG_LENGTH, &l_ErrorLogLegth);
 				std::vector<char> l_vectorErrorLength(l_ErrorLogLegth);
 				glGetProgramInfoLog(m_ShaderID, l_ErrorLogLegth, &l_ErrorLogLegth, &l_vectorErrorLength[0]);
-				std::cout << "Shader::initialize:: Failed to link program\n" << &l_vectorErrorLength[0] << "\n";
+				ENGINE_ERROR("Shader::initialize:: Failed to link program\n {0}",&l_vectorErrorLength[0]);
 				glDeleteShader(l_FragmentShaderID);
 				glDeleteShader(l_VertexShaderID);
 				return false;

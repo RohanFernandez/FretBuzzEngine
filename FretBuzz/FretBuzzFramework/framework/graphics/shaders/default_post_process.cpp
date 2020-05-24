@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "DefaultLineShader::initialize:: DefaultLineShader previously initialized\n";
+				ENGINE_WARN("DefaultLineShader::initialize:: DefaultLineShader previously initialized");
 				return nullptr;
 			}
 

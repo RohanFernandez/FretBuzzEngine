@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 
 			if (!l_pScene || l_pScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !l_pScene->mRootNode)
 			{
-				std::cout << "Model::loadModel:: Failed to load model ::" << l_Importer.GetErrorString() << "\n";
+				ENGINE_WARN("Model::loadModel:: Failed to load model :: {0}", l_Importer.GetErrorString());
 				return;
 			}
 
@@ -173,7 +173,7 @@ namespace ns_fretBuzz
 			{
 				if (a_GameObject.addComponent<MeshRenderer>(*a_Node.m_pMesh) == nullptr)
 				{
-					std::cout << "Model::addMeshToGameObject:: Failed to load mesh renderer because a mesh renderer already exists.\n";
+					ENGINE_WARN("Model::addMeshToGameObject:: Failed to load mesh renderer because a mesh renderer already exists.");
 				}
 			}
 

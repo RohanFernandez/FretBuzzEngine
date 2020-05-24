@@ -78,7 +78,7 @@ namespace ns_fretBuzz
 		{
 			if (m_pISoundSource == nullptr)
 			{
-				std::cout << "AudioSource::restart:: No audio clip is set in the audio source.\n";
+				ENGINE_WARN("AudioSource::restart:: No audio clip is set in the audio source.");
 				return;
 			}
 			stop();

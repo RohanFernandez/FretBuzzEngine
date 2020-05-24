@@ -180,7 +180,7 @@ namespace ns_fretBuzz
 				}
 				else
 				{
-					std::cout<<"SceneManager::OnStateExit::" << std::string(typeid(SCENE_TYPE).name()) << " cannot be casted to base class ' FretBuzzManager::IFSM* '\n";
+					ENGINE_ERROR("SceneManager::OnStateExit:: {0} cannot be casted to base class ' FretBuzzManager::IFSM*", std::string(typeid(SCENE_TYPE).name()));
 				}
 			}
 

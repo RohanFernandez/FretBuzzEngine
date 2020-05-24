@@ -11,7 +11,7 @@ namespace ns_fretBuzz
 		{
 			if (!ns_utils::FileUtils::readImage(a_strTexturePath, m_pImageData, m_iWidth, m_iHeight, m_iChannels))
 			{
-				std::cout << "Texture::Texture:: Failed to load image at path :: '" << a_strTexturePath << "' into texture.\n";
+				ENGINE_ERROR("Texture::Texture:: Failed to load image at path :: '{0}' into texture.", a_strTexturePath);
 				m_pImageData = nullptr;
 				m_bIsErrorWhileLoading = true;
 				return;
@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 				l_ColorTarget = GL_RGBA;
 				break;
 			default:
-				std::cout << "Texture::Texture:: Failed to detect texture channels ::" << m_iChannels << " in texture '"<< a_strTexturePath <<"'\n";
+				ENGINE_ERROR("Texture::Texture:: Failed to detect texture channels ::{0} in texture {1}'", m_iChannels, a_strTexturePath);
 				return;;
 			}
 
@@ -97,7 +97,6 @@ namespace ns_fretBuzz
 
 		void Texture::destroyResource()
 		{
-			std::cout << "Unloading texture resource\n";
 			if (m_pImageData != nullptr)
 			{
 				delete[] m_pImageData;

@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 			m_pSpriteAnimator = ResourceManager::getResource<SpriteAnimator>(a_strAnimatorId);
 			if (m_pSpriteAnimator == nullptr)
 			{
-				std::cout << "SpriteAnimationController::SpriteAnimationController:: Sprite anim controller with id '"<< a_strAnimatorId <<"' does not exist as a resource\n";
+				ENGINE_WARN("SpriteAnimationController::SpriteAnimationController:: Sprite anim controller with id {0} does not exist as a resource", a_strAnimatorId);
 				return;
 			}
 
@@ -37,13 +37,11 @@ namespace ns_fretBuzz
 		{
 			std::map<std::string, std::string> l_MapTriggers = m_pAnimState->getMapTriggers();
 			std::map<std::string, std::string>::iterator l_SpriteSheetIterator = l_MapTriggers.find(a_strTrigger);
-			if (l_SpriteSheetIterator == l_MapTriggers.end())
+			if (l_SpriteSheetIterator != l_MapTriggers.end())
 			{
-				//std::cout << "SpriteAnimationController::play::: Could not find trigger id '"<< a_strTrigger <<"'\n";
-				return;
+				playStateID(l_SpriteSheetIterator->second);
 			}
 
-			playStateID(l_SpriteSheetIterator->second);
 		}
 
 		void SpriteAnimationController::playStateID(std::string a_strAnimationID)

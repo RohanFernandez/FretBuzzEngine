@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "layer_manager.h"
-
+#include <iomanip>
 
 namespace ns_fretBuzz
 {
@@ -89,12 +89,19 @@ namespace ns_fretBuzz
 
 		void LayerManager::printLayers()
 		{
+			std::stringstream l_strStream;
+			l_strStream << "\n";
 			for (T_LAYER_MAP_TYPE::iterator l_LayerIterator = m_layerMap.begin();
 				l_LayerIterator != m_layerMap.end();
 				l_LayerIterator++)
 			{
-				std::cout << "LayerName:\t\t" << l_LayerIterator->first.c_str() << "\t\tBIT: "<< l_LayerIterator->second.getID()<<"\n";
+				l_strStream << "LayerName:\t\t" 
+							<< std::setw(10) 
+							<< l_LayerIterator->first.c_str() 
+							<< "\t\tBIT: " << l_LayerIterator->second.getID() 
+							<< "\n";
 			}
+			ENGINE_INFO(l_strStream.str());
 		}
 	}
 }

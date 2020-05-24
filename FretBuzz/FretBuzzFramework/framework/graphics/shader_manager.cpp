@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "ShaderManager::initialize:: Shader Manager instance has already been previously initialized\n";
+				ENGINE_WARN("ShaderManager::initialize:: Shader Manager instance has already been previously initialized");
 				return nullptr;
 			}
 			s_pInstance = new ShaderManager();

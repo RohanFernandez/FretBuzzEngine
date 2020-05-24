@@ -55,7 +55,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "LineBatchRenderer::intialize:: LineBatchRenderer previously initialized.\n";
+				ENGINE_ERROR("LineBatchRenderer::intialize:: LineBatchRenderer previously initialized.");
 				return nullptr;
 			}
 
@@ -125,8 +125,6 @@ namespace ns_fretBuzz
 
 			glLineWidth(m_fLineWidth);
 			glDrawElements(GL_LINES, l_Instance.m_iIndicesToDraw, GL_UNSIGNED_INT, NULL);
-
-			//std::cout << "SpriteBatchRenderer::flush:: Total sprites drawn in batch ::" << l_Instance.m_iSpritesInBatch <<"\n";
 
 			l_Instance.m_iIndicesToDraw = 0;
 			l_Instance.m_iLinesInBatch = 0;

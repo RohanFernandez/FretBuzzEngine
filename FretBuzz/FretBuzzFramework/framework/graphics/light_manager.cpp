@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "LightManager::initialize:: LightManager already exists.\n";
+				ENGINE_WARN("LightManager::initialize:: LightManager already exists");
 				return nullptr;
 			}
 

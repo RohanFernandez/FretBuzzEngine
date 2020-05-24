@@ -2,6 +2,7 @@
 #include "editor_inspector.h"
 #include <imgui/imgui.h>
 #include <system/core/system.h>
+#include <timer/timerFPS.h>
 
 namespace ns_fretBuzz
 {
@@ -45,7 +46,7 @@ namespace ns_fretBuzz
 			}
 
 			ImGui::Begin("EDITOR");
-			ImGui::Text("FPS %d", a_iFPS);
+			ImGui::Text("FPS %d", ns_system::TimerFPS::GetFPS());
 			ImGui::SameLine(100);
 
 			bool l_bIsPaused = ns_system::System::IsSystemPaused();

@@ -26,7 +26,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout << "DefaultSpriteShader::initialize:: DefaultSpriteShader previously initialized\n";
+				ENGINE_WARN("DefaultSpriteShader::initialize:: DefaultSpriteShader previously initialized");
 				return nullptr;
 			}
 

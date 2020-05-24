@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				std::cout<<"BatchRendererManager::intialize:: BatchRendererManager previously initialized.\n";
+				ENGINE_WARN("BatchRendererManager::intialize:: BatchRendererManager previously initialized.");
 				return nullptr;
 			}
 

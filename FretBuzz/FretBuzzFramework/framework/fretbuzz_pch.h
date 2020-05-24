@@ -27,3 +27,6 @@
 #ifdef _IS_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
+
+//Common fretbuzz files
+#include <fretbuzz.h>

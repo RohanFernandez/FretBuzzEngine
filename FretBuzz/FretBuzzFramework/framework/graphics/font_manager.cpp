@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 			FT_Error l_error = FT_Init_FreeType(&m_FontLibrary);
 			if (l_error)
 			{
-				std::cout << "FontManager::FontManager:: Error occured on Font Manager initialization\n";
+				ENGINE_ERROR("FontManager::FontManager:: Error occured on Font Manager initialization");
 			}
 		}
 
@@ -56,11 +56,11 @@ namespace ns_fretBuzz
 
 			if (l_error == FT_Err_Unknown_File_Format)
 			{
-				std::cout << "FontManager::getFont:: File at location " << a_strLocation << " is unsupported.\n";
+				ENGINE_WARN("FontManager::getFont:: File at location '{0}' is unsupported.", a_strLocation);
 			}
 			else if (l_error)
 			{
-				std::cout << "FontManager::getFont:: File at location "<< a_strLocation <<" is broken with eror "<< l_error <<".\n";
+				ENGINE_WARN("FontManager::getFont:: File at location {0} is broken with eror ",l_error);
 			}
 			return l_Font;
 		}
