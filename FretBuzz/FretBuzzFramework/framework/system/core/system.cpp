@@ -15,13 +15,15 @@ namespace ns_fretBuzz
 			m_pLog = Log::initialize();
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
 			m_pFontManager = ns_graphics::FontManager::initialize();
+			m_pTimer = ns_system::TimerFPS::Initialize();
 
-			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName, false);
+			m_pWindow = ns_graphics::Window::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName);
+			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(*m_pWindow);
 			m_pAudioEngine = AudioEngine::initialize();
 			m_pResourceManager = ResourceManager::initialize();
 			AssetLoader::loadAssets(m_pResourceManager);
 
-			m_pInput = Input::initialize(m_pMasterRenderer->getGLFWWindow());
+			m_pInput = Input::initialize(*m_pWindow);
 			m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 8, 3);
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
@@ -36,15 +38,17 @@ namespace ns_fretBuzz
 		{
 			s_pInstance = new System(a_GameStartupData);
 			return !(s_pInstance == nullptr ||
-				    s_pInstance->m_pAudioEngine == nullptr ||
-				    s_pInstance->m_pMasterRenderer == nullptr ||
-				    s_pInstance->m_pInput == nullptr ||
-					s_pInstance->m_pPhysicsEngine == nullptr || 
-					s_pInstance->m_pSceneManager == nullptr ||
-					s_pInstance->m_pLayerManager == nullptr ||
-					s_pInstance->m_pFontManager == nullptr ||
-					s_pInstance->m_pLog == nullptr ||
-					s_pInstance->m_pEventManager == nullptr
+				s_pInstance->m_pAudioEngine == nullptr ||
+				s_pInstance->m_pMasterRenderer == nullptr ||
+				s_pInstance->m_pInput == nullptr ||
+				s_pInstance->m_pPhysicsEngine == nullptr ||
+				s_pInstance->m_pSceneManager == nullptr ||
+				s_pInstance->m_pLayerManager == nullptr ||
+				s_pInstance->m_pFontManager == nullptr ||
+				s_pInstance->m_pLog == nullptr ||
+				s_pInstance->m_pEventManager == nullptr ||
+				s_pInstance->m_pTimer == nullptr	||
+				s_pInstance->m_pWindow == nullptr
 #if _IS_DEBUG
 				|| s_pInstance->m_pInspector == nullptr
 #endif
@@ -60,8 +64,10 @@ namespace ns_fretBuzz
 			m_pInput->destroy();
 			m_pMasterRenderer->destroy();
 			m_pPhysicsEngine->destroy();
+			m_pWindow->destroy();
 			m_pFontManager->destroy();
 			m_pLog->destroy();
+			m_pTimer->destroy();
 
 #if _IS_DEBUG
 			 m_pInspector->destroy();
@@ -113,9 +119,11 @@ namespace ns_fretBuzz
 			ns_graphics::MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
 			Input& l_Input = *(s_pInstance->m_pInput);
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
+			TimerFPS& l_Timer = *(s_pInstance->m_pTimer);
+			ns_graphics::Window& l_Window = *(s_pInstance->m_pWindow);
 			float l_fTimeStep = 0.0f;
 
-			while (!l_MasterRenderer.isWindowClosed())
+			while (!l_Window.isWindowClosed())
 			{
 				l_fTimeStep = s_pInstance->m_fDeltaTime * s_pInstance->m_fScaledTime * (s_pInstance->m_bIsSystemPaused ? 0.0f : 1.0f);
 
@@ -126,7 +134,13 @@ namespace ns_fretBuzz
 					l_PhysicsEngine.step(l_fTimeStep);
 					l_Input.Update();
 				}
-				s_pInstance->m_fDeltaTime = l_MasterRenderer.render(l_SceneManager);
+				
+				l_Window.clear();
+				l_MasterRenderer.render(l_SceneManager, s_pInstance->m_fDeltaTime);
+				l_Window.update();
+				
+				l_Timer.update();
+				s_pInstance->m_fDeltaTime = l_Timer.getDeltaTime();
 			}
 
 			destroy();
@@ -146,6 +160,7 @@ namespace ns_fretBuzz
 			if (s_pInstance != nullptr)
 			{
 				s_pInstance->m_pMasterRenderer->closeWindow();
+				s_pInstance->m_pWindow->closeWindow();
 			}
 		}
 	}

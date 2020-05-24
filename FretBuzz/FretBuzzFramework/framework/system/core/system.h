@@ -53,6 +53,10 @@ namespace ns_fretBuzz
 
 			EventManager* m_pEventManager = nullptr;
 
+			TimerFPS* m_pTimer = nullptr;
+
+			ns_graphics::Window* m_pWindow = nullptr;
+
 #if _IS_DEBUG
 			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;
 #endif

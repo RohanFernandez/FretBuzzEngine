@@ -16,14 +16,14 @@ namespace ns_fretBuzz
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;
 
-		MasterRenderer* MasterRenderer::initialize(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
+		MasterRenderer* MasterRenderer::initialize(Window& a_Window)
 		{
 			if (s_pInstance != nullptr)
 			{
 				std::cout << "MasterRenderer::initialize:: Master Renderer already exists.\n";
 				return nullptr;
 			}
-			s_pInstance = new MasterRenderer(a_iWidth, a_iHeight, a_strWindowName, a_bLogFPS);
+			s_pInstance = new MasterRenderer(a_Window);
 			return s_pInstance;
 		}
 
@@ -38,10 +38,8 @@ namespace ns_fretBuzz
 			return s_pInstance;
 		}
 
-		MasterRenderer::MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS)
+		MasterRenderer::MasterRenderer(Window& a_Window)
 		{
-			m_pWindow = Window::initialize(a_iWidth, a_iHeight, a_strWindowName);
-
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_BACK);
 			glFrontFace(GL_CCW);
@@ -54,16 +52,14 @@ namespace ns_fretBuzz
 			m_pCameraManager = CameraManager::initialize();
 			m_pLightManager = LightManager::initialize();
 			m_pShaderManager = ShaderManager::initialize();
-			m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight, Material::EDGE_DETECT);
+			//m_pPostProcessManager = PostProcessManager::initialize(a_iWidth, a_iHeight, Material::EDGE_DETECT);
 
-			m_pPostProcessManager->togglePostProcess(false);
-
-			m_pTimer = new ns_system::TimerFPS(a_bLogFPS);
+			//m_pPostProcessManager->togglePostProcess(false);
 
 #if _IS_DEBUG
 			ImGui::CreateContext();
 			ImGui::StyleColorsDark();
-			ImGui_ImplGlfw_InitForOpenGL(getGLFWWindow(), true);
+			ImGui_ImplGlfw_InitForOpenGL(a_Window.getGLFWWindow(), true);
 			ImGui_ImplOpenGL3_Init();
 #endif
 		}
@@ -71,28 +67,14 @@ namespace ns_fretBuzz
 		MasterRenderer:: ~MasterRenderer()
 		{
 			m_pBatchRendererManager->destroy();
-
-			if (m_pTimer != nullptr)
-			{
-				delete m_pTimer;
-				m_pTimer = nullptr;
-			}
-			
-			m_pPostProcessManager->destroy();
+			//m_pPostProcessManager->destroy();
 			m_pCameraManager->destroy();
 			m_pLightManager->destroy();
 			m_pShaderManager->destroy();
-			m_pWindow->destroy();
 		}
 
-		bool show_demo_window = true;
-		bool show_another_window = false;
-		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
-		float MasterRenderer::render(ns_system::SceneManager& a_SceneManager)
+		void MasterRenderer::render(ns_system::SceneManager& a_SceneManager, float a_fDeltaTime)
 		{
-			m_pWindow->clear();
-
 			//Render Pass
 			m_pCameraManager->updateViewMatrix();
 			std::vector<Camera*>& l_vectCameras = m_pCameraManager->getCameras();
@@ -120,26 +102,11 @@ namespace ns_fretBuzz
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			m_pInspector->render(a_SceneManager, m_pTimer->getFPS());
+			m_pInspector->render(a_SceneManager, a_fDeltaTime);
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
-
-			m_pWindow->update();
-			m_pTimer->update();
-
-			return m_pTimer->getDeltaTime();
-		}
-
-		bool MasterRenderer::isWindowClosed() const
-		{
-			return m_pWindow->isWindowClosed();
-		}
-
-		GLFWwindow* MasterRenderer::getGLFWWindow() const
-		{
-			return m_pWindow->getGLFWWindow();
 		}
 
 		void MasterRenderer::closeWindow() const
@@ -148,8 +115,6 @@ namespace ns_fretBuzz
 			ImGui_ImplOpenGL3_Shutdown();
 			ImGui_ImplGlfw_Shutdown();
 #endif
-
-			m_pWindow->closeWindow();
 		}
 
 #if _IS_DEBUG

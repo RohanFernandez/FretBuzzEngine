@@ -5,6 +5,9 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
+		///Singleton instance
+		TimerFPS* TimerFPS::s_pInstance = nullptr;
+
 		TimerFPS::TimerFPS(bool a_bIsPrintFPS)
 			: Timer(), 
 			m_bPrintFPS{a_bIsPrintFPS}
@@ -15,6 +18,26 @@ namespace ns_fretBuzz
 		TimerFPS::~TimerFPS()
 		{
 			
+		}
+
+		TimerFPS* TimerFPS::Initialize()
+		{
+			if (s_pInstance != nullptr)
+			{
+				return nullptr;
+			}
+			s_pInstance = new TimerFPS();
+			return s_pInstance;
+		}
+
+		void TimerFPS::destroy()
+		{
+			if (s_pInstance == nullptr)
+			{
+				return;
+			}
+			delete s_pInstance;
+			s_pInstance = nullptr;
 		}
 
 		void TimerFPS::update()

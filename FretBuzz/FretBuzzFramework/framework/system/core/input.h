@@ -57,11 +57,11 @@ namespace ns_fretBuzz
 			std::stack<KeyEvent> m_StackKeyInput;
 			std::stack<KeyEvent> m_StackMouseInput;
 
-			Input(GLFWwindow* a_pGLFWWindow);
+			Input(ns_graphics::Window& a_Window);
 			~Input();
 
 		public:
-			static Input* initialize(GLFWwindow* a_pGLFWWindow);
+			static Input* initialize(ns_graphics::Window& a_Window);
 			void destroy();
 			static const Input* get();
 

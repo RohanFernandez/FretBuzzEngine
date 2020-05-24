@@ -1,7 +1,6 @@
 #pragma once
 
 #include "window.h"
-#include "../timer/timerFPS.h"
 #include "components/viewport.h"
 #include "graphics/batch_renderer_manager.h"
 #include "graphics/light_manager.h"
@@ -26,9 +25,6 @@ namespace ns_fretBuzz
 		private:
 			static MasterRenderer* s_pInstance;
 
-			Window* m_pWindow = nullptr;
-			ns_system::TimerFPS* m_pTimer = nullptr;
-
 			CameraManager* m_pCameraManager = nullptr;
 			LightManager* m_pLightManager = nullptr;
 			ShaderManager* m_pShaderManager = nullptr;
@@ -37,7 +33,7 @@ namespace ns_fretBuzz
 
 			BatchRendererManager* m_pBatchRendererManager = nullptr;
 
-			MasterRenderer(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
+			MasterRenderer(Window& a_Window);
 			~MasterRenderer();
 
 #if _IS_DEBUG
@@ -46,14 +42,11 @@ namespace ns_fretBuzz
 
 		public:
 
-			static MasterRenderer* initialize(int a_iWidth, int a_iHeight, std::string a_strWindowName, bool a_bLogFPS = false);
+			static MasterRenderer* initialize(Window& a_Window);
 			void destroy();
 			static const MasterRenderer* get();
 
-			GLFWwindow* getGLFWWindow() const;
-			bool isWindowClosed() const;
-
-			float render(ns_system::SceneManager& a_SceneManager);
+			void render(ns_system::SceneManager& a_SceneManager, float a_fDeltaTime);
 
 			void closeWindow() const;
 

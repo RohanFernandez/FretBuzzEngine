@@ -5,18 +5,24 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		class  TimerFPS : public Timer
+		class TimerFPS : public Timer
 		{
 		private:
+			static TimerFPS* s_pInstance;
+
 			unsigned int m_iCurrentFPS = 0;
 			unsigned int m_iLastFPSPerSec = 0;
 			float m_fTimeElapsedInSecond = 0.0f;
 			static constexpr float ONE_SECOND = 1.0f;
 			bool m_bPrintFPS = false;
 
-		public:
 			TimerFPS(bool a_bIsPrintFPS = false);
 			~TimerFPS();
+
+		public:
+
+			static TimerFPS* Initialize();
+			void destroy();
 
 			//calculates the delta time
 			virtual void update() override;

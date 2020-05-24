@@ -1,4 +1,5 @@
 #include <fretbuzz_pch.h>
+#include <system/core/window.h>
 #include "input.h"
 
 namespace ns_fretBuzz
@@ -7,13 +8,13 @@ namespace ns_fretBuzz
 	{
 		Input* Input::s_pInput = nullptr;
 
-		Input::Input(GLFWwindow* a_pGLFWWindow)
-			: m_pGLFWWindowRef{ a_pGLFWWindow }
+		Input::Input(ns_graphics::Window& a_Window)
+			: m_pGLFWWindowRef{ a_Window.getGLFWWindow() }
 		{
 			if (s_pInput == nullptr)
 			{
 				s_pInput = this;
-				SetInputCallbacks(a_pGLFWWindow);
+				SetInputCallbacks(m_pGLFWWindowRef);
 			}
 
 			memset(m_arrCurrentKeyCode, KEY_UNTOUCHED, sizeof(m_arrCurrentKeyCode));
@@ -29,14 +30,14 @@ namespace ns_fretBuzz
 			}
 		}
 
-		Input* Input::initialize(GLFWwindow* a_pGLFWWindow)
+		Input* Input::initialize(ns_graphics::Window& a_Window)
 		{
 			if (s_pInput != nullptr)
 			{
 				std::cout << "Input::initialize:: Input already exists.\n";
 				return nullptr;
 			}
-			s_pInput = new Input(a_pGLFWWindow);
+			s_pInput = new Input(a_Window);
 			return s_pInput;
 		}
 
