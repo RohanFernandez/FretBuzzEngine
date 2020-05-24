@@ -6,8 +6,8 @@
 void SetStartupData(ns_fretBuzz::ns_system::GameStartup& a_GameStartupData)
 {
 	a_GameStartupData.m_strWindowName = "FretBuzz";
-	a_GameStartupData.m_uiScreenWidth = 800;
-	a_GameStartupData.m_uiScreenHeight = 600;
+	a_GameStartupData.m_uiScreenWidth = 1200;
+	a_GameStartupData.m_uiScreenHeight = 900;
 	a_GameStartupData.m_vectLayers = {"Enemy", "Player", "Walls", "Bullets", "Drops", "layercube"};
 	a_GameStartupData.m_vectScenes =
 	{

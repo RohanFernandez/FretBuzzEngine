@@ -87,7 +87,7 @@ namespace ns_fretBuzz
 
 					if (l_bIsResourceFound)
 					{
-						std::cout << "ResourceManager::addResourceData:: Resource with name '" << a_strResourceName << "' cannot be added because a resource with the same name and type name '"<< typeid(a_Resource).name() <<"' already exists.\n";
+						ENGINE_ERROR("ResourceManager::addResourceData:: Resource with name '{0}' cannot be added because a resource with the same name and type name '{1}' already exists.", a_strResourceName, typeid(a_Resource).name());
 						return false;
 					}
 
@@ -109,7 +109,7 @@ namespace ns_fretBuzz
 						}
 					}
 
-					std::cout << "ResourceManager::getResource:: Resource with name '" << a_strResourceName << "' does not exist\n";
+					//ENGINE_WARN("ResourceManager::getResource:: Resource with name '{0}' does not exist.", a_strResourceName);
 					return nullptr;
 				}
 			};
@@ -126,7 +126,7 @@ namespace ns_fretBuzz
 
 				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
 				{
-					std::cout << "ResourceManager::destroyResource:: Could not find resource with typename '" << l_typeInfo.name() << "' with name '" << a_strResourceName << "' \n";
+					ENGINE_WARN("ResourceManager::destroyResource:: Could not find resource with typename '{0}' with name '{1}'", l_typeInfo.name(), a_strResourceName);
 				}
 				else
 				{
@@ -150,7 +150,7 @@ namespace ns_fretBuzz
 
 					if (!l_bIsResourceDataFound)
 					{
-						std::cout << "ResourceManager::destroyResource:: Could not find resource with name'" << a_strResourceName << "' with typename '" << l_typeInfo.name() << "' \n";
+						ENGINE_WARN("ResourceManager::destroyResource:: Could not find resource with name '{0}' with typename '{1}'", a_strResourceName, l_typeInfo.name());
 					}
 				}
 			}
@@ -175,7 +175,7 @@ namespace ns_fretBuzz
 
 				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
 				{
-					std::cout << "ResourceManager::getResource:: Resource with name '" << a_strResourceName << "' of type '"<< l_typeInfo.name()<<"' does not exist in storage.\n";
+					ENGINE_WARN("ResourceManager::getResource:: Resource with name '{0}' of type '{1}' does not exist in storage.", a_strResourceName,l_typeInfo.name());
 					return nullptr;
 				}
 				else
@@ -203,8 +203,6 @@ namespace ns_fretBuzz
 				{
 					l_pResource = dynamic_cast<Resource<T>*>(l_mapResourceRef[l_typeInfo]);
 				}
-
-				std::cout << "ResourceManager::addResource:: Adding resource of type '" << l_typeInfo.name() << "' with resource id '" << a_strResourceName << "'\n";
 				return l_pResource->addResourceData(a_strResourceName, a_TResource);
 			}
 
@@ -225,7 +223,7 @@ namespace ns_fretBuzz
 
 				if (l_mapResourceRef.end() == l_mapResourceRef.find(l_typeInfo))
 				{
-					std::cout << "ResourceManager::getResourceCount:: Resource with type name '"<< l_typeInfo.name() <<"' does not exist in storage.\n";
+					ENGINE_WARN("ResourceManager::getResourceCount:: Resource with type name '{0}' does not exist in storage.", l_typeInfo.name());
 					return 0;
 				}
 				else
