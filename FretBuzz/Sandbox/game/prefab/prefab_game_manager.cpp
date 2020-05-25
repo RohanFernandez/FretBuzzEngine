@@ -7,9 +7,10 @@
 namespace ns_HMGame
 {
 	PrefabGameManager::PrefabGameManager(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName)
-		: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName, ns_fretBuzz::ns_system::Layer(),true)
+		: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName)
 	{
 		auto l_pAudSrc = this->addComponent<ns_fretBuzz::ns_system::AudioSource>("beats", true);
+		l_pAudSrc->setVolume(0.1f);
 		this->addComponent<WeaponManager>();
 	}
 }

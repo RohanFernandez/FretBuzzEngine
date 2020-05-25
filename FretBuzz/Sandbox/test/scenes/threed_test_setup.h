@@ -32,18 +32,18 @@ namespace ns_HMGame
 			: IScene(a_strSceneName) 
 		{
 			ns_fretBuzz::ns_system::GameObject* m_pManager = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "3D_Manager", { 0.0f, 0.0f, 5.0f },
-				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
+				{ 0.0f, M_PI, 0.0f }, { 1.0f, 1.0f, 1.0f });
 
 			ns_fretBuzz::ns_graphics::PerspectiveViewport l_PerspectiveViewport(60.0f, 1.0f, 50.0f);
 			ns_fretBuzz::ns_graphics::Camera* l_pMainCam = m_pManager->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport, ns_fretBuzz::ns_system::LayerMask());
 			m_pManager->addComponent<ns_HMGame::PlayerController>();
 
 			ns_fretBuzz::ns_system::GameObject* m_pCam2GameObj = ns_fretBuzz::ns_system::GameObject::instantiate(*m_pManager, "Cam2", { 0.0f, 0.0f, 0.0f },
-					{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
+					{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f });
 			ns_fretBuzz::ns_graphics::PerspectiveViewport l_PerspectiveViewport2(60.0f, 1.0f, 50.0f, { 0.7, 0.7 }, { 0.3, 0.3 });
 			ns_fretBuzz::ns_graphics::Camera* l_pMainCam2 = m_pCam2GameObj->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::PERSPECTIVE, &l_PerspectiveViewport2, ns_fretBuzz::ns_system::LayerMask());
 
-			ns_fretBuzz::ns_system::GameObject* m_pNanoSuit = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain", { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer());
+			ns_fretBuzz::ns_system::GameObject* m_pNanoSuit = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "NanoSuitMain", { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f });
 			ns_fretBuzz::ns_graphics::Model::addToGameObject(*m_pNanoSuit, *ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::Model>("nanosuit//nanosuit.obj"));
 
 			////Canvas Overlay
@@ -72,13 +72,13 @@ namespace ns_HMGame
 			//ns_system::GameObject* m_pAudi = ns_system::GameObject::instantiate(m_refRootGameObject, "DeskMain");
 			//ns_graphics::Model::addToGameObject(*m_pAudi, *ns_system::ResourceManager::getResource<ns_graphics::Model>("FruitNinja_env//FruitNinja_Env.FBX"));
 
-			ns_fretBuzz::ns_system::GameObject2D* m_pPlant0 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant0", { 0.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, {2.0f, 2.0f}, ns_fretBuzz::ns_system::Layer());
+			ns_fretBuzz::ns_system::GameObject2D* m_pPlant0 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant0", { 0.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, {2.0f, 2.0f});
 			ns_fretBuzz::ns_graphics::Image* l_pPlantImg0 = m_pPlant0->addComponent<ns_fretBuzz::ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
-			ns_fretBuzz::ns_system::GameObject2D* m_pPlant1 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant1", { 5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
+			ns_fretBuzz::ns_system::GameObject2D* m_pPlant1 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant1", { 5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f });
 			ns_fretBuzz::ns_graphics::Image* l_pPlantImg1 = m_pPlant1->addComponent<ns_fretBuzz::ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
-			ns_fretBuzz::ns_system::GameObject2D* m_pPlant2 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant2", { -5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f }, ns_fretBuzz::ns_system::Layer());
+			ns_fretBuzz::ns_system::GameObject2D* m_pPlant2 = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Plant2", { -5.0f, 0.0f, -5.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 2.0f, 2.0f });
 			ns_fretBuzz::ns_graphics::Image* l_pPlantImg2 = m_pPlant2->addComponent<ns_fretBuzz::ns_graphics::Image>(nullptr, glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 		}
 	};

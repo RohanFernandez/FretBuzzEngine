@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 		}
 
 		LayerMask::LayerMask()
-			:LayerMask(std::vector<std::string>({ LayerManager::LAYER_NAME_DEFAULT }))
+			:LayerMask(PREDEFINED_MASK::NONE)
 		{
 		
 		}
@@ -39,13 +39,15 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void LayerMask::addLayer(std::string a_strLayerName) 
+		bool LayerMask::addLayer(std::string a_strLayerName) 
 		{
 			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
 			if (l_pLayer != nullptr)
 			{
 				addLayer(*l_pLayer);
+				return true;
 			}
+			return false;
 		}
 
 		void LayerMask::addLayer(const Layer& a_Layer)
@@ -62,18 +64,16 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void LayerMask::removeLayer(std::string a_strLayerName) 
+		bool LayerMask::removeLayer(std::string a_strLayerName) 
 		{
 			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
-			if (l_pLayer != nullptr)
-			{
-				removeLayer(*l_pLayer);
-			}
+			return (l_pLayer != nullptr) ? removeLayer(*l_pLayer) : false;
 		}
 
-		void LayerMask::removeLayer(const Layer& a_Layer)
+		bool LayerMask::removeLayer(const Layer& a_Layer)
 		{
 			m_Bits.reset(a_Layer.getID());
+			return true;
 		}
 
 		void LayerMask::removeLayers(std::vector<std::string> a_vectLayers)
@@ -99,6 +99,11 @@ namespace ns_fretBuzz
 		void LayerMask::operator=(const LayerMask& a_LayerMask)
 		{
 			m_Bits = a_LayerMask.m_Bits;
+		}
+
+		int LayerMask::getBitfield()
+		{
+			return m_Bits.to_ulong();
 		}
 	}
 }

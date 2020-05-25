@@ -9,7 +9,7 @@ namespace ns_fretBuzz
 		class  GameObject2D : public GameObject
 		{
 		protected:
-			GameObject2D(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH, Layer a_Layer, bool a_bIsActiveSelf);
+			GameObject2D(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
 			virtual ~GameObject2D();
 
 			RectTransform* m_pRectTransform = nullptr;
@@ -17,7 +17,7 @@ namespace ns_fretBuzz
 			virtual void editorTransformRender() override;
 
 		public:
-			static GameObject2D* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH, Layer a_Layer, bool a_bIsActiveSelf = true);
+			static GameObject2D* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
 
 			RectTransform& m_RectTransform;
 

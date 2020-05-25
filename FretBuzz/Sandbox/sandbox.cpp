@@ -8,7 +8,8 @@ void SetStartupData(ns_fretBuzz::ns_system::GameStartup& a_GameStartupData)
 	a_GameStartupData.m_strWindowName = "FretBuzz";
 	a_GameStartupData.m_uiScreenWidth = 1200;
 	a_GameStartupData.m_uiScreenHeight = 900;
-	a_GameStartupData.m_vectLayers = {"Enemy", "Player", "Walls", "Bullets", "Drops", "layercube"};
+	a_GameStartupData.m_vectLayers = { "PLAYER", "ENEMY", "PICKUP", "BOUNDARY", "BULLET"};
+
 	a_GameStartupData.m_vectScenes =
 	{
 		//new ns_fretBuzz::ns_system::SceneData<ns_HMGame::threed_test_scene>("3d_Test"),

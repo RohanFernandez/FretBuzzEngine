@@ -3,7 +3,7 @@
 namespace ns_HMGame
 {
 	EnemyTest::EnemyTest(GameObject& a_ParentGameObject, std::string a_strName)
-		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, { 300.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f }, ns_fretBuzz::ns_system::Layer(), true)
+		: ns_fretBuzz::ns_system::GameObject2D(a_ParentGameObject, a_strName, { 300.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 150.0f, 100.0f })
 	{
 		m_pSpriteAnimator = this->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("Enemy");
 

@@ -181,7 +181,7 @@ namespace ns_fretBuzz
 			for (size_t l_iChildIndex = 0; l_iChildIndex < l_iChildCount; l_iChildIndex++)
 			{
 				Node& l_CurrentNode = *a_Node.m_vectChildNodes[l_iChildIndex];
-				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, l_CurrentNode.m_strName, ns_fretBuzz::ns_system::Layer());
+				ns_system::GameObject* l_pChildGameObject = ns_system::GameObject::instantiate(a_GameObject, l_CurrentNode.m_strName);
 				addMeshToGameObject(*l_pChildGameObject, l_CurrentNode);
 			}
 		}

@@ -13,17 +13,6 @@ namespace ns_fretBuzz
 				SHAPE_CIRCLE
 			};
 
-			enum COLLIDER_BITS
-			{
-				BIT_NOTHING		= 0x0000,
-				BIT_PLAYER		= 0x0001,
-				BIT_ENEMY		= 0x0002,
-				BIT_PICKUP		= 0x0004,
-				BIT_BOUNDARY	= 0x0008,
-				BIT_BULLET		= 0x0010,
-				BIT_EVERYTHING  = 0x8888
-			};
-
 			PHYSICS_BODY_TYPE m_PhysicsBodyType = PHYSICS_BODY_TYPE::STATIC;
 			bool m_bIsSensor = false;
 			bool m_bIsBullet = false;
@@ -37,8 +26,8 @@ namespace ns_fretBuzz
 			glm::vec2 m_v2RelativePos = { 0, 0 };
 			float m_fRadius = 1.0f;
 			int m_iGroupIndex = 0;
-			std::unordered_set<uint16> m_usetColliderCategoryBits;
-			std::unordered_set<uint16> m_usetColliderMaskBits;
+			LayerMask m_CategoryMask;
+			LayerMask m_CollisionMask;
 
 			ColliderData(){}
 
@@ -62,8 +51,8 @@ namespace ns_fretBuzz
 				m_fRadius				    = a_Other.m_fRadius;
 				m_v2DimensionWH			    = a_Other.m_v2DimensionWH;
 				m_iGroupIndex			    = a_Other.m_iGroupIndex;
-				m_usetColliderMaskBits		= a_Other.m_usetColliderMaskBits;
-				m_usetColliderCategoryBits  = a_Other.m_usetColliderCategoryBits;
+				m_CollisionMask				= a_Other.m_CollisionMask;
+				m_CategoryMask		= a_Other.m_CategoryMask;
 			}
 		};
 	}

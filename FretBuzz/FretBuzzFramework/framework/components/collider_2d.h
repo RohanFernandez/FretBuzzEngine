@@ -44,17 +44,15 @@ namespace ns_fretBuzz
 			void setAngularDamping(float a_fAngularDamping);
 			float getAngularDamping();
 
-			void setMaskBits(std::unordered_set<uint16> a_usetMaskBits);
-			const std::unordered_set<uint16> getMaskBits() const;
-			void removeMaskBit(uint16 a_BitToRemove);
-			void addMaskBit(uint16 a_BitToAdd);
+			void setCollisionMask(const LayerMask& a_CollisionMask);
+			const LayerMask& getCollisionMask() const;
+			bool removeCollisionLayer(const std::string& a_strLayerName);
+			bool addCollisionLayer(const std::string& a_strLayerName);
 
-			void setCategoryBits(std::unordered_set<uint16> a_usetCategoryBits);
-			const std::unordered_set<uint16> getCategoryBits() const;
-			void removeCategoryBit(uint16 a_BitToRemove);
-			void addCategoryBit(uint16 a_BitToAdd);
-
-			uint16 GetBitField(std::unordered_set<uint16>& a_vectBits) const;
+			void setCategoryMask(const LayerMask& a_CategoryMask);
+			const LayerMask& getCategoryMask() const;
+			bool removeCategoryLayer(const std::string& a_strLayerName);
+			bool addCategoryLayer(const std::string& a_strLayerName);
 
 			static void ManageContacts(Collider2D* a_pColliderA, Collider2D* a_pColliderB, FUNC_CONTACT_EVENT a_pFuncCollision, FUNC_CONTACT_EVENT a_pFuncTrigger);
 

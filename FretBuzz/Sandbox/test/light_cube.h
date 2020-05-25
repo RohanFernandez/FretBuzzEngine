@@ -72,7 +72,7 @@ namespace ns_HMGame
 		};
 
 		light_cube(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_fretBuzz::ns_graphics::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 2.0f)
-			: GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer())
+			: GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_Material.setShader(*ns_fretBuzz::ns_graphics::ShaderManager::getShaderOfType(ns_fretBuzz::ns_graphics::Shader::DEFAULT_3D));
 			//m_pTexture = ns_system::ResourceManager::getResource<ns_graphics::Texture>("container");

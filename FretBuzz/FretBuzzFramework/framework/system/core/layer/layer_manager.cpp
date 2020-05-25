@@ -6,8 +6,6 @@ namespace ns_fretBuzz
 {
 	namespace ns_system
 	{
-		const std::string LayerManager::LAYER_NAME_DEFAULT = "DEFAULT";
-
 		LayerManager* LayerManager::s_pInstance = nullptr;
 
 		LayerManager::LayerManager(std::vector<std::string> a_vectLayerNames)

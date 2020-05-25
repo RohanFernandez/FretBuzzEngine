@@ -27,7 +27,7 @@ namespace ns_fretBuzz
 			void destroy();
 
 			//Layer name of default
-			static const std::string LAYER_NAME_DEFAULT;
+			static constexpr char* LAYER_NAME_DEFAULT = "DEFAULT";
 			//Layer id of default
 			static const int LAYER_DEFAULT_ID = 0;
 

@@ -2,6 +2,7 @@
 
 #include "components/transform.h"
 #include "components/gameobject_components/camera.h"
+#include <fretbuzz.h>
 
 namespace ns_fretBuzz
 {
@@ -56,11 +57,11 @@ namespace ns_fretBuzz
 			void onComponentCreated(IComponent* a_IComponent);
 
 			GameObject(std::string a_strName, bool a_bIsRoot = true);
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf = true);
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
 
 			// GameObject 2D constructor
-			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, Layer a_Layer, bool a_bIsActiveSelf);
+			GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
 
 			Transform* m_pTransform;
 			virtual ~GameObject();
@@ -70,8 +71,8 @@ namespace ns_fretBuzz
 
 			// Creates a GameObject, adds this GameObject to the m_Children of its a_ParentGameObject.
 			// Sets its active state in hierarchy to the a_bIsActiveSelf, depends on its ParentGameObject.
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf = true);
-			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf = true);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
+			static GameObject* instantiate(GameObject& a_ParentGameObject, std::string a_strName, char* a_Layer = LayerManager::LAYER_NAME_DEFAULT, bool a_bIsActiveSelf = true);
 
 			Transform& m_Transform;
 

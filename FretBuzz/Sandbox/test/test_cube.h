@@ -74,7 +74,7 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_system::GameObject* m_pNanoSuit = nullptr;
 
 		test_cube(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_Position, ns_fretBuzz::ns_system::GameObject* a_pNanoSuit)
-			: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer("layercube"))
+			: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pNanoSuit = a_pNanoSuit;
 			m_Material.setShader(*ns_fretBuzz::ns_graphics::ShaderManager::getShaderOfType(ns_fretBuzz::ns_graphics::Shader::PHONG));

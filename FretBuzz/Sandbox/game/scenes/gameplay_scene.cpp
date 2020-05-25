@@ -26,7 +26,7 @@ namespace ns_HMGame
 	{
 		PrefabGameManager* l_pGameManager = new PrefabGameManager(m_refRootGameObject, "GameManager");
 
-		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer(), true);
+		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f });
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport(-1.0f, 1.0f);
 		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = m_pCam->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, ns_fretBuzz::ns_system::LayerMask(ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING));
 		
@@ -40,13 +40,13 @@ namespace ns_HMGame
 		ns_fretBuzz::ns_graphics::TextRenderer* m_pTxtRnd = ns_fretBuzz::ns_graphics::TextRenderer::addToGameObject(*m_pImgWeapon, "asd", "Cousine-Regular");*/
 
 
-		ns_fretBuzz::ns_system::GameObject* m_pCam2 = ns_fretBuzz::ns_system::GameObject::instantiate(*m_pCam, "Camera2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, ns_fretBuzz::ns_system::Layer(), true);
+		ns_fretBuzz::ns_system::GameObject* m_pCam2 = ns_fretBuzz::ns_system::GameObject::instantiate(*m_pCam, "Camera2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport2(-0.5, 0.5, -0.5, 0.5, -1.0f, 1.0f, {0.7f, 0.7f}, {0.3f, 0.3 });
 		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent2 = m_pCam2->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport2, ns_fretBuzz::ns_system::LayerMask(ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING));
 
 
 		ns_fretBuzz::ns_system::Input::setCursorEnability(true, false);
-		ns_fretBuzz::ns_system::GameObject2D* l_pCursor = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f }, ns_fretBuzz::ns_system::Layer());
+		ns_fretBuzz::ns_system::GameObject2D* l_pCursor = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f });
 		l_pCursor->addComponent<ns_fretBuzz::ns_system::SpriteAnimationController>("Cursor");
 		l_pCursor->addComponent<CursorManager>(l_pCamComponent);
 

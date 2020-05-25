@@ -3,6 +3,7 @@
 #include <system/core/resource_manager.h>
 #include <game/managers/player/PlayerControllerHM.h>
 #include "weapon_manager.h"
+#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {
@@ -60,7 +61,7 @@ namespace ns_HMGame
 			case WEAPON_STATE::DROP:
 			{
 				m_pCollider2D->setSensor(true);
-				m_pCollider2D->addMaskBit(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+				m_pCollider2D->addCollisionLayer("PLAYER");
 				m_pCollider2D->setFixedRotation(false);
 				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::STATIC);
 				break;
@@ -74,7 +75,7 @@ namespace ns_HMGame
 			case WEAPON_STATE::THROWN:
 			{
 				m_pCollider2D->setSensor(false);
-				m_pCollider2D->removeMaskBit(ns_fretBuzz::ns_system::ColliderData::BIT_PLAYER);
+				m_pCollider2D->removeCollisionLayer("PLAYER");
 				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC);
 				m_pCollider2D->setFixedRotation(false);
 				m_pCollider2D->setAngularVelocity((float)M_PI);
@@ -106,7 +107,7 @@ namespace ns_HMGame
 	{
 		if (WEAPON_STATE::THROWN == m_CurrentWeaponState)
 		{
-			if (glm::length(m_pCollider2D->getLinearVelocity()) < 75.0f)
+			if (glm::length(m_pCollider2D->getLinearVelocity()) < 120.0f)
 			{
 				setWeaponState(WEAPON_STATE::DROP);
 			}

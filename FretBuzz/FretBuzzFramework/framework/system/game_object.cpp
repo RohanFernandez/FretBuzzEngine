@@ -14,7 +14,7 @@ namespace ns_fretBuzz
 		int GameObject::s_iID = 0;
 
 		//GameObject 2D constructor
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, Layer a_Layer, bool a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pTransform, char* a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strID{ std::to_string(m_iID) },
 			m_strName{ a_strName },
@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ a_pTransform },
 			m_Transform(*a_pTransform),
-			m_Layer {a_Layer}
+			m_Layer { LayerManager::GetLayerIdByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer }
 		{
 			a_ParentGameObject.addChild(this);
 		}
@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 		{
 		}
 
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, char* a_Layer, bool a_bIsActiveSelf)
 			: m_iID{ ++s_iID },
 			m_strID{ std::to_string(m_iID) },
 			m_strName{ a_strName },
@@ -45,12 +45,12 @@ namespace ns_fretBuzz
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform) },
 			m_Transform(*m_pTransform),
-			m_Layer{ a_Layer }
+			m_Layer{ LayerManager::GetLayerIdByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer}
 		{
 			a_ParentGameObject.addChild(this);
 		}
 
-		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf)
+		GameObject::GameObject(GameObject& a_ParentGameObject, std::string a_strName, char* a_Layer, bool a_bIsActiveSelf)
 			: GameObject(a_ParentGameObject, a_strName, {0.0f, 0.0f,0.0f}, { 0.0f, 0.0f,0.0f }, { 1.0f, 1.0f,1.0f }, a_Layer, a_bIsActiveSelf)
 		{
 		}
@@ -78,12 +78,12 @@ namespace ns_fretBuzz
 			}
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Layer a_Layer, bool a_bIsActiveSelf)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, char* a_Layer, bool a_bIsActiveSelf)
 		{
 			return new GameObject(a_ParentGameObject, a_strName, a_v3Position, a_v3Rotation, a_v3Scale, a_Layer, a_bIsActiveSelf);
 		}
 
-		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, Layer a_Layer, bool a_bIsActiveSelf)
+		GameObject* GameObject::instantiate(GameObject& a_ParentGameObject, std::string a_strName, char* a_Layer, bool a_bIsActiveSelf)
 		{
 			return new GameObject(a_ParentGameObject, a_strName, {0.0f,0.0f,0.0f}, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f }, a_Layer, a_bIsActiveSelf);
 		}
@@ -198,7 +198,7 @@ namespace ns_fretBuzz
 
 		void GameObject::render(const ns_graphics::Camera& a_Camera)
 		{
-			if (getIsActiveInHierarchy() && a_Camera.m_CullingMask.isLayerInMask(m_Layer))
+			if (m_bIsRoot || (getIsActiveInHierarchy() && a_Camera.m_CullingMask.isLayerInMask(m_Layer)))
 			{
 				const glm::mat4 l_mat4RenderTransformation = a_Camera.getProjectionMatrix() * a_Camera.getViewMatrix() * m_pTransform->getTransformationMatrix();
 				renderComponents(l_mat4RenderTransformation, a_Camera);

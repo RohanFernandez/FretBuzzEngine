@@ -1,5 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "collider_2d.h"
+#include <bitset>
 
 namespace ns_fretBuzz
 {
@@ -49,8 +50,8 @@ namespace ns_fretBuzz
 			b2FixtureDef l_fixtureDef;
 			l_fixtureDef.isSensor = m_ColliderData.m_bIsSensor;
 			l_fixtureDef.shape = l_pb2Shape;
-			l_fixtureDef.filter.categoryBits = GetBitField(m_ColliderData.m_usetColliderCategoryBits);
-			l_fixtureDef.filter.maskBits = GetBitField(m_ColliderData.m_usetColliderMaskBits);
+			l_fixtureDef.filter.categoryBits = m_ColliderData.m_CategoryMask.getBitfield();
+			l_fixtureDef.filter.maskBits = m_ColliderData.m_CollisionMask.getBitfield();
 			l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex ;
 			l_fixtureDef.density = m_ColliderData.m_fDensity;
 			l_fixtureDef.friction = m_ColliderData.m_fFriction;
@@ -221,81 +222,82 @@ namespace ns_fretBuzz
 			return m_ColliderData.m_fDensity;
 		}
 
-		void Collider2D::setMaskBits(std::unordered_set<uint16> a_usetMaskBits)
+#pragma region COLLISION MASK
+
+		void Collider2D::setCollisionMask(const LayerMask& a_CollisionMask)
 		{
-			m_ColliderData.m_usetColliderMaskBits = a_usetMaskBits;
+			m_ColliderData.m_CollisionMask = a_CollisionMask;
 			updateFilterData();
 		}
 
-		const std::unordered_set<uint16> Collider2D::Collider2D::getMaskBits() const
+		const LayerMask& Collider2D::Collider2D::getCollisionMask() const
 		{
-			return m_ColliderData.m_usetColliderMaskBits;
+			return m_ColliderData.m_CollisionMask;
 		}
 
-		void Collider2D::removeMaskBit(uint16 a_BitToRemove)
+		bool Collider2D::removeCollisionLayer(const std::string& a_strLayerName)
 		{
-			auto l_FoundBitIterator = m_ColliderData.m_usetColliderMaskBits.find(a_BitToRemove);
-			if (l_FoundBitIterator != m_ColliderData.m_usetColliderMaskBits.end())
+			if (m_ColliderData.m_CollisionMask.removeLayer(a_strLayerName))
 			{
-				m_ColliderData.m_usetColliderMaskBits.erase(l_FoundBitIterator);
-				setMaskBits(m_ColliderData.m_usetColliderMaskBits);
+				updateFilterData();
+				return true;
 			}
+			return false;
 		}
 
-		void Collider2D::addMaskBit(uint16 a_BitToAdd)
+		bool Collider2D::addCollisionLayer(const std::string& a_strLayerName)
 		{
-			if (m_ColliderData.m_usetColliderMaskBits.find(a_BitToAdd) == m_ColliderData.m_usetColliderMaskBits.end())
+			if (m_ColliderData.m_CollisionMask.addLayer(a_strLayerName))
 			{
-				m_ColliderData.m_usetColliderMaskBits.insert(a_BitToAdd);
-				setMaskBits(m_ColliderData.m_usetColliderMaskBits);
+				updateFilterData();
+				return true;
 			}
+			return false;
 		}
 
-		void Collider2D::setCategoryBits(std::unordered_set<uint16> a_usetCategoryBits)
+#pragma endregion COLLISION MASK
+
+#pragma region CATEGORY MASK
+
+		///Category Mask
+		void Collider2D::setCategoryMask(const LayerMask& a_LayerMask)
 		{
-			m_ColliderData.m_usetColliderCategoryBits = a_usetCategoryBits;
+			m_ColliderData.m_CategoryMask  = a_LayerMask;
 			updateFilterData();
 		}
 
-		const std::unordered_set<uint16> Collider2D::getCategoryBits() const
+		const LayerMask& Collider2D::Collider2D::getCategoryMask() const
 		{
-			return m_ColliderData.m_usetColliderCategoryBits;
+			return m_ColliderData.m_CategoryMask;
 		}
 
-		void Collider2D::removeCategoryBit(uint16 a_BitToRemove)
+		bool Collider2D::removeCategoryLayer(const std::string& a_strLayerName)
 		{
-			auto l_FoundBitIterator = m_ColliderData.m_usetColliderCategoryBits.find(a_BitToRemove);
-			if (l_FoundBitIterator != m_ColliderData.m_usetColliderCategoryBits.end())
+			if (m_ColliderData.m_CategoryMask.removeLayer(a_strLayerName))
 			{
-				m_ColliderData.m_usetColliderCategoryBits.erase(l_FoundBitIterator);
-				setCategoryBits(m_ColliderData.m_usetColliderCategoryBits);
+				updateFilterData();
+				return true;
 			}
+			return false;
 		}
 
-		void Collider2D::addCategoryBit(uint16 a_BitToAdd)
+		bool Collider2D::addCategoryLayer(const std::string& a_strLayerName)
 		{
-			if (m_ColliderData.m_usetColliderCategoryBits.find(a_BitToAdd) == m_ColliderData.m_usetColliderCategoryBits.end())
+			if (m_ColliderData.m_CategoryMask.addLayer(a_strLayerName))
 			{
-				m_ColliderData.m_usetColliderCategoryBits.insert(a_BitToAdd);
-				setCategoryBits(m_ColliderData.m_usetColliderCategoryBits);
+				updateFilterData();
+				return true;
 			}
+			return false;
 		}
 
-		uint16 Collider2D::GetBitField(std::unordered_set<uint16>& a_usetBits) const
-		{
-			uint16 l_Return = 0;
-			for (auto l_CollliderBit = a_usetBits.begin(); l_CollliderBit != a_usetBits.end(); l_CollliderBit++)
-			{
-				l_Return |= *l_CollliderBit;
-			}
-			return l_Return;
-		}
+#pragma endregion CATEGORY MASK
 
 		void Collider2D::updateFilterData()
 		{
 			b2Filter l_b2Filter;
-			l_b2Filter.maskBits = GetBitField(m_ColliderData.m_usetColliderMaskBits);
-			l_b2Filter.categoryBits = GetBitField(m_ColliderData.m_usetColliderCategoryBits);
+			l_b2Filter.maskBits = m_ColliderData.m_CollisionMask.getBitfield();
+			l_b2Filter.categoryBits = m_ColliderData.m_CategoryMask.getBitfield();
 			l_b2Filter.groupIndex = m_ColliderData.m_iGroupIndex;
 			m_pFixture->SetFilterData(l_b2Filter);
 		}

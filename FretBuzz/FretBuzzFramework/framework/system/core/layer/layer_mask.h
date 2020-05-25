@@ -27,18 +27,20 @@ namespace ns_fretBuzz
 
 			void setPredefined(PREDEFINED_MASK a_PredefinedMask);
 
-			void addLayer(std::string a_strLayerName);
+			bool addLayer(std::string a_strLayerName);
 			void addLayer(const Layer& a_Layer);
 			void addLayers(std::vector<std::string> a_vectLayers);
 
-			void removeLayer(std::string a_strLayerName);
-			void removeLayer(const Layer& a_Layer);
+			bool removeLayer(std::string a_strLayerName);
+			bool removeLayer(const Layer& a_Layer);
 			void removeLayers(std::vector<std::string> a_vectLayers);
 
 			bool isLayerInMask(const std::string& a_strLayerName) const;
 			bool isLayerInMask(const Layer& a_Layer) const;
 
 			void operator=(const LayerMask& a_LayerMask);
+
+			int getBitfield();
 		};
 	}
 }
