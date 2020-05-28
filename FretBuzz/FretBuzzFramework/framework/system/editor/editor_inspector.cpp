@@ -73,16 +73,12 @@ namespace ns_fretBuzz
 				ImGui::SameLine(40); 
 				
 				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
-				ImGui::Text(m_pSelectedGameObject->getName().c_str());
+				ImGui::LabelText("##GameObjName", m_pSelectedGameObject->getName().c_str());
 				ImGui::PopStyleColor();
-				
-				ImGui::NewLine();
+
 				m_pSelectedGameObject->editorInspectorRender();
 			}
 
-			ImGui::End();
-
-			ImGui::Begin("HIERARCHY");
 			ImGui::End();
 		}
 	}

@@ -22,7 +22,7 @@ namespace ns_fretBuzz
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ a_pTransform },
 			m_Transform(*a_pTransform),
-			m_Layer { LayerManager::GetLayerIdByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer }
+			m_Layer { LayerManager::GetLayerByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer }
 		{
 			a_ParentGameObject.addChild(this);
 		}
@@ -45,7 +45,7 @@ namespace ns_fretBuzz
 			m_bIsActiveInHierarchy{ !a_ParentGameObject.m_bIsActiveInHierarchy },
 			m_pTransform{ new Transform(a_v3Position, a_v3Rotation, a_v3Scale, a_ParentGameObject.m_pTransform) },
 			m_Transform(*m_pTransform),
-			m_Layer{ LayerManager::GetLayerIdByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer}
+			m_Layer{ LayerManager::GetLayerByName(a_Layer) == nullptr ? LayerManager::LAYER_NAME_DEFAULT : a_Layer}
 		{
 			a_ParentGameObject.addChild(this);
 		}
@@ -161,41 +161,6 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
-		{
-			size_t l_iChildrenCount = m_Children.size();
-
-			const auto m_NodeFlags = ImGuiTreeNodeFlags_OpenOnArrow
-				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
-				| (((a_pSelectedGameObject != nullptr) && (a_pSelectedGameObject->m_iID == m_iID)) ? ImGuiTreeNodeFlags_Selected : 0);
-
-			if (getIsActiveInHierarchy())
-			{
-				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
-			}
-			else
-			{
-				ImGui::PushStyleColor(ImGuiCol_Text, { 0.5, 0.5, 0.5, 1 });
-			}
-
-			bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)m_iID, m_NodeFlags, m_strName.c_str());
-			ImGui::PopStyleColor();
-
-			if (ImGui::IsItemClicked())
-			{
-				a_pSelectedGameObject = this;
-			}
-			
-			if (l_bIsTreeNodeOpen)
-			{
-				for (int l_iChildIndex = 0; l_iChildIndex < l_iChildrenCount; l_iChildIndex++)
-				{
-					m_Children[l_iChildIndex]->editorHierarchyRender(a_pSelectedGameObject);
-				}
-				ImGui::TreePop();
-			}
-		}
-
 		void GameObject::render(const ns_graphics::Camera& a_Camera)
 		{
 			if (m_bIsRoot || (getIsActiveInHierarchy() && a_Camera.m_CullingMask.isLayerInMask(m_Layer)))
@@ -306,8 +271,6 @@ namespace ns_fretBuzz
 			m_pTransform->m_pParentTransform = m_pParentGameObject->m_pTransform;
 
 			setActive(m_bIsActiveSelf);
-
-			//TODO :: Add on parent change callback to change transformations
 		}
 
 		void GameObject::logHierarchy(int l_iNumOfTabs)
@@ -430,6 +393,41 @@ namespace ns_fretBuzz
 				" and ID :: " << a_pGameObject->m_iID << " was not found in the Parent's children\n";
 		}
 
+		void GameObject::editorHierarchyRender(GameObject*& a_pSelectedGameObject)
+		{
+			size_t l_iChildrenCount = m_Children.size();
+
+			const auto m_NodeFlags = ImGuiTreeNodeFlags_OpenOnArrow
+				| (l_iChildrenCount == 0 ? ImGuiTreeNodeFlags_Leaf : 0)
+				| (((a_pSelectedGameObject != nullptr) && (a_pSelectedGameObject->m_iID == m_iID)) ? ImGuiTreeNodeFlags_Selected : 0);
+
+			if (getIsActiveInHierarchy())
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, { 1, 1, 1, 1 });
+			}
+			else
+			{
+				ImGui::PushStyleColor(ImGuiCol_Text, { 0.5, 0.5, 0.5, 1 });
+			}
+
+			bool l_bIsTreeNodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)m_iID, m_NodeFlags, m_strName.c_str());
+			ImGui::PopStyleColor();
+
+			if (ImGui::IsItemClicked())
+			{
+				a_pSelectedGameObject = this;
+			}
+
+			if (l_bIsTreeNodeOpen)
+			{
+				for (int l_iChildIndex = 0; l_iChildIndex < l_iChildrenCount; l_iChildIndex++)
+				{
+					m_Children[l_iChildIndex]->editorHierarchyRender(a_pSelectedGameObject);
+				}
+				ImGui::TreePop();
+			}
+		}
+
 		void GameObject::editorTransformRender()
 		{
 			float l_arrTransform[3] = { m_Transform.m_v3Position.x, m_Transform.m_v3Position.y, m_Transform.m_v3Position.z };
@@ -463,6 +461,27 @@ namespace ns_fretBuzz
 
 		void GameObject::editorInspectorRender()
 		{
+			if (!m_bIsRoot)
+			{
+				//Layer
+				ImGui::LabelText("##LayerLabel", "Layer"); ImGui::SameLine(100);
+
+				if (ImGui::BeginCombo("##Layer", m_Layer.getName().c_str()))
+				{
+					for (LayerManager::T_LAYER_MAP_TYPE::const_iterator l_Iterator = LayerManager::Begin();
+						l_Iterator != LayerManager::End(); l_Iterator++)
+					{
+						if (ImGui::Selectable(l_Iterator->second.getName().c_str(), m_Layer.getID() == l_Iterator->second.getID()))
+						{
+							m_Layer.changeLayer(l_Iterator->first);
+						}
+					}
+					ImGui::EndCombo();
+				}
+			}
+
+			ImGui::NewLine();
+
 			//TRANSFORM COMPONENT
 			bool l_bIsTreeNodeOpen = false;
 			ImGui::PushStyleColor(ImGuiCol_Text, { 0.9f, 0.9f, 0.9f, 1.0f });

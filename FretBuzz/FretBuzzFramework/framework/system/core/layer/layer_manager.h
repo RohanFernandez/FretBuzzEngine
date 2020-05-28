@@ -8,19 +8,21 @@ namespace ns_fretBuzz
 	{
 		class  LayerManager
 		{
+		public:
+			using T_LAYER_MAP_TYPE = std::unordered_map<std::string, Layer>;
+
 		private:
 
 			//singleton instance
 			static LayerManager* s_pInstance;
 
-			using T_LAYER_MAP_TYPE = std::unordered_map<std::string, Layer>;
 			T_LAYER_MAP_TYPE m_layerMap;
 
 			LayerManager(std::vector<std::string> a_vectLayerNames);
 			~LayerManager();
 
 			bool addLayer(std::string a_strLayerName, int a_iLayerIndex);
-			Layer* getLayerIdByName(std::string a_strLayerName);
+			Layer* getLayerByName(std::string a_strLayerName);
 
 		public:
 			static LayerManager* initialize(std::vector<std::string> a_vectLayerNames);
@@ -31,9 +33,20 @@ namespace ns_fretBuzz
 			//Layer id of default
 			static const int LAYER_DEFAULT_ID = 0;
 
-			static const Layer* GetLayerIdByName(std::string a_strLayerName);
+			static const Layer* GetLayerByName(std::string a_strLayerName);
+			static const Layer* GetLayerByID(int a_iID);
 
 			void printLayers();
+
+			static T_LAYER_MAP_TYPE::const_iterator Begin()
+			{
+				return s_pInstance->m_layerMap.begin();
+			}
+
+			static T_LAYER_MAP_TYPE::const_iterator End()
+			{
+				return s_pInstance->m_layerMap.end();
+			}
 		};
 	}
 }

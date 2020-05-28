@@ -98,7 +98,77 @@ namespace ns_fretBuzz
 			IComponent::editorInspectorRender();
 			m_pViewPort->editorInspectorRender();
 
-			ImGui::LabelText("##BackgroundColorLabel", "Background"); ImGui::SameLine(100.0f);ImGui::ColorEdit4("##BackgroundColour", glm::value_ptr(m_v4ClearColour));
+			int l_iLayerCount = m_CullingMask.getLayersCount();
+			std::string l_strLayerMaskLabel;
+			
+			if (l_iLayerCount == 0)
+			{
+				l_strLayerMaskLabel= "NONE";
+			}
+			else if (l_iLayerCount > 1 && l_iLayerCount < ns_system::Layer::MAX_CAPACITY_LAYERS)
+			{
+				l_strLayerMaskLabel = "MIXED...";
+			} 
+			else if(l_iLayerCount == ns_system::Layer::MAX_CAPACITY_LAYERS)
+			{
+				l_strLayerMaskLabel = "EVERYTHING";
+			}
+			else
+			{
+				const std::bitset<ns_system::Layer::MAX_CAPACITY_LAYERS>& l_Bitset = m_CullingMask.getBitset();
+				int l_iIndex = 0;
+				while (l_iIndex < ns_system::Layer::MAX_CAPACITY_LAYERS)
+				{
+					if (l_Bitset.test(l_iIndex))
+					{
+						break;
+					}
+					l_iIndex++;
+				}
+
+				l_strLayerMaskLabel = ns_system::LayerManager::GetLayerByID(l_iIndex)->getName();
+			}
+
+			ImGui::LabelText("##CullingMask", "Culling Mask"); ImGui::SameLine(120);
+
+			if (ImGui::BeginCombo("##LayerCullMask", l_strLayerMaskLabel.c_str()))
+			{
+				if (ImGui::Selectable("EVERYTHING", (l_iLayerCount == ns_system::Layer::MAX_CAPACITY_LAYERS)))
+				{
+					if (l_iLayerCount != ns_system::Layer::MAX_CAPACITY_LAYERS)
+					{
+						m_CullingMask = ns_system::LayerMask::PREDEFINED_MASK(ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING);
+					}
+				}
+				if (ImGui::Selectable("NONE", (l_iLayerCount == 0)))
+				{
+					if (l_iLayerCount != 0)
+					{
+						m_CullingMask = ns_system::LayerMask::PREDEFINED_MASK(ns_system::LayerMask::PREDEFINED_MASK::NONE);
+					}
+				}
+
+				for (ns_system::LayerManager::T_LAYER_MAP_TYPE::const_iterator l_Iterator = ns_system::LayerManager::Begin();
+					l_Iterator != ns_system::LayerManager::End(); l_Iterator++)
+				{
+					const ns_system::Layer& l_CurrentLayer = l_Iterator->second;
+					bool l_bIsLayerinMask = m_CullingMask.isLayerInMask(l_CurrentLayer.getID());
+					if (ImGui::Selectable(l_CurrentLayer.getName().c_str(), l_bIsLayerinMask))
+					{
+						if (l_bIsLayerinMask)
+						{
+							m_CullingMask.removeLayer(l_CurrentLayer);
+						}
+						else
+						{
+							m_CullingMask.addLayer(l_CurrentLayer);
+						}
+					}
+				}
+				ImGui::EndCombo();
+			}
+
+			ImGui::LabelText("##BackgroundColorLabel", "Background"); ImGui::SameLine(120.0f);ImGui::ColorEdit4("##BackgroundColour", glm::value_ptr(m_v4ClearColour));
 		}
 	}
 }

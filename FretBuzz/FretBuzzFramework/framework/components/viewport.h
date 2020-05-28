@@ -75,7 +75,7 @@ namespace ns_fretBuzz
 				//Near Far
 				l_fArr[0] = m_v2NearFar.x;
 				l_fArr[1] = m_v2NearFar.y;
-				ImGui::Text("Near Far "); ImGui::SameLine(100);
+				ImGui::Text("Near Far "); ImGui::SameLine(120);
 				if (ImGui::InputFloat2("##NearFar", l_fArr, 1))
 				{
 					m_v2NearFar.x = l_fArr[0];
@@ -86,7 +86,7 @@ namespace ns_fretBuzz
 				//Origin X Y
 				l_fArr[0] = m_v2OriginXY01.x;
 				l_fArr[1] = m_v2OriginXY01.y;
-				ImGui::Text("XY "); ImGui::SameLine(100);
+				ImGui::Text("XY "); ImGui::SameLine(120);
 				if (ImGui::InputFloat2("##XY", l_fArr, 1))
 				{
 					m_v2OriginXY01.x = l_fArr[0];
@@ -97,7 +97,7 @@ namespace ns_fretBuzz
 				//Dimension width - height
 				l_fArr[0] = m_v2DimensionWH01.x;
 				l_fArr[1] = m_v2DimensionWH01.y;
-				ImGui::Text("WH "); ImGui::SameLine(100);
+				ImGui::Text("WH "); ImGui::SameLine(120);
 				if (ImGui::InputFloat2("##WH", l_fArr, 1))
 				{
 					m_v2DimensionWH01.x = l_fArr[0];
@@ -172,7 +172,7 @@ namespace ns_fretBuzz
 				//Left Right
 				l_fArr[0] = m_v2LeftRight.x;
 				l_fArr[1] = m_v2LeftRight.y;
-				ImGui::Text("Left Right "); ImGui::SameLine(100);
+				ImGui::Text("Left Right "); ImGui::SameLine(120);
 				if (ImGui::InputFloat2("##LeftRight", l_fArr, 1))
 				{
 					m_v2LeftRight.x = l_fArr[0];
@@ -183,7 +183,7 @@ namespace ns_fretBuzz
 				//bottom top
 				l_fArr[0] = m_v2BottomTop.x;
 				l_fArr[1] = m_v2BottomTop.y;
-				ImGui::Text("Bottom Top "); ImGui::SameLine(100);
+				ImGui::Text("Bottom Top "); ImGui::SameLine(120);
 				if(ImGui::InputFloat2("##BottomTop", l_fArr, 1))
 				{
 					m_v2BottomTop.x = l_fArr[0];
@@ -255,14 +255,14 @@ namespace ns_fretBuzz
 				bool l_bIsResetProjectionMatrix = false;
 
 				//sets FOV
-				ImGui::Text("FOV "); ImGui::SameLine(100);
+				ImGui::Text("FOV "); ImGui::SameLine(120);
 				if (ImGui::InputFloat("##FOV", &m_fFOV, 1))
 				{
 					l_bIsResetProjectionMatrix = true;
 				}
 
 				//sets aspect ratio
-				ImGui::Text("Aspect Ratio "); ImGui::SameLine(100);
+				ImGui::Text("Aspect Ratio "); ImGui::SameLine(120);
 				if (ImGui::InputFloat("##AspectRatio", &m_fAspectRatio, 1))
 				{
 					l_bIsResetProjectionMatrix = true;

@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 			return true;
 		}
 
-		Layer* LayerManager::getLayerIdByName(std::string a_strLayerName)
+		Layer* LayerManager::getLayerByName(std::string a_strLayerName)
 		{
 			T_LAYER_MAP_TYPE::iterator l_Layer = m_layerMap.find(a_strLayerName);
 			if (l_Layer != m_layerMap.end())
@@ -80,9 +80,21 @@ namespace ns_fretBuzz
 			return nullptr;
 		}
 
-		const Layer* LayerManager::GetLayerIdByName(std::string a_strLayerName)
+		const Layer* LayerManager::GetLayerByName(std::string a_strLayerName)
 		{
-			return s_pInstance->getLayerIdByName(a_strLayerName);
+			return s_pInstance->getLayerByName(a_strLayerName);
+		}
+
+		const Layer* LayerManager::GetLayerByID(int a_iID)
+		{
+			for (auto& l_strLayer : s_pInstance->m_layerMap)
+			{
+				if (l_strLayer.second.getID() == a_iID)
+				{
+					return &l_strLayer.second;
+				}
+			}
+			return nullptr;
 		}
 
 		void LayerManager::printLayers()

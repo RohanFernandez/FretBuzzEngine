@@ -37,10 +37,13 @@ namespace ns_fretBuzz
 
 			bool isLayerInMask(const std::string& a_strLayerName) const;
 			bool isLayerInMask(const Layer& a_Layer) const;
+			bool isLayerInMask(const int& a_iID) const;
 
 			void operator=(const LayerMask& a_LayerMask);
 
 			int getBitfield();
+			int getLayersCount();
+			const std::bitset<Layer::MAX_CAPACITY_LAYERS>& getBitset();
 		};
 	}
 }

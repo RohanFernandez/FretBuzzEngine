@@ -32,7 +32,7 @@ namespace ns_fretBuzz
 
 		void Layer::changeLayer(std::string a_strName)
 		{
-			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strName);
+			const Layer* l_pLayer = LayerManager::GetLayerByName(a_strName);
 			if (l_pLayer != nullptr)
 			{
 				*this = *l_pLayer;

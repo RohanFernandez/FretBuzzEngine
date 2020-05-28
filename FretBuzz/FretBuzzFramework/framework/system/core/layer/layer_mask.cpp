@@ -41,7 +41,7 @@ namespace ns_fretBuzz
 
 		bool LayerMask::addLayer(std::string a_strLayerName) 
 		{
-			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerByName(a_strLayerName);
 			if (l_pLayer != nullptr)
 			{
 				addLayer(*l_pLayer);
@@ -66,7 +66,7 @@ namespace ns_fretBuzz
 
 		bool LayerMask::removeLayer(std::string a_strLayerName) 
 		{
-			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerByName(a_strLayerName);
 			return (l_pLayer != nullptr) ? removeLayer(*l_pLayer) : false;
 		}
 
@@ -87,13 +87,18 @@ namespace ns_fretBuzz
 
 		bool LayerMask::isLayerInMask(const std::string& a_strLayerName) const
 		{
-			const Layer* l_pLayer = LayerManager::GetLayerIdByName(a_strLayerName);
+			const Layer* l_pLayer = LayerManager::GetLayerByName(a_strLayerName);
 			return  l_pLayer == nullptr ? false : isLayerInMask(*l_pLayer);
 		}
 
 		bool LayerMask::isLayerInMask(const Layer& a_Layer) const
 		{
-			return m_Bits.test(a_Layer.getID());
+			return isLayerInMask(a_Layer.getID());
+		}
+
+		bool LayerMask::isLayerInMask(const int& a_iID) const
+		{
+			return m_Bits.test(a_iID);
 		}
 
 		void LayerMask::operator=(const LayerMask& a_LayerMask)
@@ -101,9 +106,19 @@ namespace ns_fretBuzz
 			m_Bits = a_LayerMask.m_Bits;
 		}
 
+		const std::bitset<Layer::MAX_CAPACITY_LAYERS>& LayerMask::getBitset()
+		{
+			return m_Bits;
+		}
+
 		int LayerMask::getBitfield()
 		{
 			return m_Bits.to_ulong();
+		}
+
+		int LayerMask::getLayersCount()
+		{
+			return m_Bits.count();
 		}
 	}
 }
