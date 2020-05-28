@@ -104,10 +104,11 @@ namespace ns_fretBuzz
 
 					Camera& l_CurrentCamera = *l_vectCameras[l_iCameraIndex];
 					Window::get()->setViewport(l_CurrentCamera.getViewport());
-					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+					glEnable(GL_SCISSOR_TEST);
 					glm::vec4& l_v4CamClearColour = l_CurrentCamera.m_v4ClearColour;
 					glClearColor(l_v4CamClearColour.r, l_v4CamClearColour.g, l_v4CamClearColour.b, l_v4CamClearColour.a);
-
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+					
 					m_pBatchRendererManager->beginBatches();
 					a_SceneManager.renderActiveScenes(l_CurrentCamera);
 					m_pBatchRendererManager->endAndflushBatches();
