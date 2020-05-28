@@ -57,7 +57,7 @@ namespace ns_fretBuzz
 
 			ns_graphics::Window* m_pWindow = nullptr;
 
-#if _IS_DEBUG
+#if _DEBUG
 			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;
 #endif
 

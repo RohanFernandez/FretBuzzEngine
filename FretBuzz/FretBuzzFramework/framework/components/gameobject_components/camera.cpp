@@ -9,10 +9,11 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		Camera::Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask)
+		Camera::Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask, glm::vec4 a_vec4ClearColour)
 			: IComponent(ns_system::COMPONENT_TYPE::CAMERA, a_GameObj),
 			m_PROJECTION_TYPE(a_ProjectionType),
-			m_CullingMask{a_LayerMask}
+			m_CullingMask{a_LayerMask},
+			m_v4ClearColour{ a_vec4ClearColour }
 		{
 			if (a_ProjectionType == Viewport::PROJECTION_TYPE::ORTHOGRAPHIC)
 			{
@@ -96,6 +97,8 @@ namespace ns_fretBuzz
 		{
 			IComponent::editorInspectorRender();
 			m_pViewPort->editorInspectorRender();
+
+			ImGui::LabelText("##BackgroundColorLabel", "Background"); ImGui::SameLine(100.0f);ImGui::ColorEdit4("##BackgroundColour", glm::value_ptr(m_v4ClearColour));
 		}
 	}
 }

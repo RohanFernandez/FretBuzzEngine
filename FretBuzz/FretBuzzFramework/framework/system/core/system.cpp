@@ -28,7 +28,7 @@ namespace ns_fretBuzz
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 
-#if _IS_DEBUG
+#if _DEBUG
 			m_pInspector = ns_editor::Inspector::initialize();
 			m_pMasterRenderer->setInspector(m_pInspector);
 #endif
@@ -49,7 +49,7 @@ namespace ns_fretBuzz
 				s_pInstance->m_pEventManager == nullptr ||
 				s_pInstance->m_pTimer == nullptr	||
 				s_pInstance->m_pWindow == nullptr
-#if _IS_DEBUG
+#if _DEBUG
 				|| s_pInstance->m_pInspector == nullptr
 #endif
 				);
@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 			m_pLog->destroy();
 			m_pTimer->destroy();
 
-#if _IS_DEBUG
+#if _DEBUG
 			 m_pInspector->destroy();
 #endif
 
@@ -159,7 +159,7 @@ namespace ns_fretBuzz
 		{
 			if (s_pInstance != nullptr)
 			{
-				s_pInstance->m_pMasterRenderer->closeWindow();
+				s_pInstance->m_pMasterRenderer->close();
 				s_pInstance->m_pWindow->closeWindow();
 			}
 		}

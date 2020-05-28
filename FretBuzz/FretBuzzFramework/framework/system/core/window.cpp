@@ -103,7 +103,9 @@ namespace ns_fretBuzz
 
 		void Window::clear()
 		{
+			glDisable(GL_SCISSOR_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			glEnable(GL_SCISSOR_TEST);
 		}
 
 		void Window::CheckForErrors()
@@ -144,6 +146,7 @@ namespace ns_fretBuzz
 			const glm::vec2 l_v2OriginXY = a_Viewport.getOriginXY();
 			const glm::vec2 l_v2DimensionWH = a_Viewport.getDimensionWH();
 			glViewport(l_v2OriginXY.x, l_v2OriginXY.y, l_v2DimensionWH.x, l_v2DimensionWH.y);
+			glScissor(l_v2OriginXY.x, l_v2OriginXY.y, l_v2DimensionWH.x, l_v2DimensionWH.y);
 		}
 	}
 }

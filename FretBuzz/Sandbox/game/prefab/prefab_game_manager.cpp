@@ -10,7 +10,7 @@ namespace ns_HMGame
 		: ns_fretBuzz::ns_system::GameObject(a_ParentGameObject, a_strName)
 	{
 		auto l_pAudSrc = this->addComponent<ns_fretBuzz::ns_system::AudioSource>("beats", true);
-		l_pAudSrc->setVolume(0.1f);
+		l_pAudSrc->setVolume(0.0f);
 		this->addComponent<WeaponManager>();
 	}
 }

@@ -25,7 +25,7 @@ namespace ns_HMGame
 		PlayerController(ns_fretBuzz::ns_system::GameObject* a_GameObject)
 			: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
 		{
-			ns_fretBuzz::ns_system::Input::setCursorEnability(false, false);
+			ns_fretBuzz::ns_system::Input::setCursorEnability(true, true);
 			m_pPerspectiveCamera = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_system::COMPONENT_TYPE::CAMERA);
 		}
 

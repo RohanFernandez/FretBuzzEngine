@@ -22,7 +22,8 @@ namespace ns_fretBuzz
 			virtual ~Camera();
 
 		public:
-			Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask);
+			Camera(ns_system::GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const ns_system::LayerMask& a_LayerMask, glm::vec4 a_vec4ClearColour = {0.0f, 0.0f,0.0f,1.0f});
+			glm::vec4 m_v4ClearColour;
 			ns_system::LayerMask m_CullingMask;
 
 			Viewport& getViewport();

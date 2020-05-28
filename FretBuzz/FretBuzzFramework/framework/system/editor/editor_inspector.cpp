@@ -81,6 +81,9 @@ namespace ns_fretBuzz
 			}
 
 			ImGui::End();
+
+			ImGui::Begin("HIERARCHY");
+			ImGui::End();
 		}
 	}
 }

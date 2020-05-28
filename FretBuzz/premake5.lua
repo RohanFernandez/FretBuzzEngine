@@ -116,7 +116,6 @@ project "FretBuzzFramework"
 		}
 		
 	filter {"configurations:Debug"}
-		defines "_IS_DEBUG"
 		runtime "Debug"
 		symbols "on"
 		libdirs
@@ -196,7 +195,6 @@ project "Sandbox"
 		}
 		
 	filter "configurations:Debug"
-		defines "_IS_DEBUG"
 		runtime "Debug"
 		symbols "on"
 

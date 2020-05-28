@@ -36,7 +36,7 @@ namespace ns_fretBuzz
 			MasterRenderer(Window& a_Window);
 			~MasterRenderer();
 
-#if _IS_DEBUG
+#if _DEBUG
 			ns_editor::Inspector* m_pInspector = nullptr;
 #endif
 
@@ -48,9 +48,9 @@ namespace ns_fretBuzz
 
 			void render(ns_system::SceneManager& a_SceneManager, float a_fDeltaTime);
 
-			void closeWindow() const;
+			void close() const;
 
-#if _IS_DEBUG
+#if _DEBUG
 			void setInspector(ns_editor::Inspector* a_pInspector);
 #endif
 		};

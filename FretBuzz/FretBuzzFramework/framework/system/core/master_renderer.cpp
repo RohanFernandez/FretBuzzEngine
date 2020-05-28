@@ -44,6 +44,7 @@ namespace ns_fretBuzz
 			glCullFace(GL_BACK);
 			glFrontFace(GL_CCW);
 			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_SCISSOR_TEST);
 
 			glDepthMask(GL_TRUE);
 			glDepthFunc(GL_LESS);
@@ -56,11 +57,27 @@ namespace ns_fretBuzz
 
 			//m_pPostProcessManager->togglePostProcess(false);
 
-#if _IS_DEBUG
+#if _DEBUG
 			ImGui::CreateContext();
+
+			ImGuiIO& io = ImGui::GetIO(); (void)io;
+			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+			//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+			io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+
 			ImGui::StyleColorsDark();
+
+			// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+			ImGuiStyle& style = ImGui::GetStyle();
+			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				style.WindowRounding = 0.0f;
+				style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+			}
+
 			ImGui_ImplGlfw_InitForOpenGL(a_Window.getGLFWWindow(), true);
-			ImGui_ImplOpenGL3_Init();
+			ImGui_ImplOpenGL3_Init("#version 410");
 #endif
 		}
 
@@ -84,19 +101,21 @@ namespace ns_fretBuzz
 				if (l_vectCameras[l_iCameraIndex]->isActiveAndEnabled())
 				{
 					//a_PostProcessManager.begin();
-					m_pBatchRendererManager->beginBatches();
 
 					Camera& l_CurrentCamera = *l_vectCameras[l_iCameraIndex];
 					Window::get()->setViewport(l_CurrentCamera.getViewport());
-					a_SceneManager.renderActiveScenes(l_CurrentCamera);
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+					glm::vec4& l_v4CamClearColour = l_CurrentCamera.m_v4ClearColour;
+					glClearColor(l_v4CamClearColour.r, l_v4CamClearColour.g, l_v4CamClearColour.b, l_v4CamClearColour.a);
 
+					m_pBatchRendererManager->beginBatches();
+					a_SceneManager.renderActiveScenes(l_CurrentCamera);
 					m_pBatchRendererManager->endAndflushBatches();
-					glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 					//a_PostProcessManager.draw(0, l_CurrentCamera);
 				}
 			}
 
-#if _IS_DEBUG
+#if _DEBUG
 
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
@@ -104,20 +123,35 @@ namespace ns_fretBuzz
 
 			m_pInspector->render(a_SceneManager, a_fDeltaTime);
 
+			ImGuiIO& io = ImGui::GetIO();
+			io.DisplaySize = ImVec2((float)Window::getWidth(), (float)Window::getHeight());
+
+			// Rendering
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				GLFWwindow* backup_current_context = glfwGetCurrentContext();
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				glfwMakeContextCurrent(backup_current_context);
+			}
+
+			/*ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
 #endif
 		}
 
-		void MasterRenderer::closeWindow() const
+		void MasterRenderer::close() const
 		{
-#if _IS_DEBUG
+#if _DEBUG
 			ImGui_ImplOpenGL3_Shutdown();
 			ImGui_ImplGlfw_Shutdown();
 #endif
 		}
 
-#if _IS_DEBUG
+#if _DEBUG
 		void MasterRenderer::setInspector(ns_editor::Inspector* a_pInspector)
 		{
 			m_pInspector = a_pInspector;
