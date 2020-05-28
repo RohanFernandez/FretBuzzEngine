@@ -36,36 +36,36 @@ namespace ns_fretBuzz
 				ns_graphics::LineData
 					{ 
 						{ l_fLeftX, l_fBottomY ,0.0f, 1.0f},
-						{0.0f, 0.0f ,1.0f, 1.0f },
+						{0.0f, 0.0f ,0.0f, 1.0f },
 						{ l_fRightX, l_fBottomY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f }
+						{ 0.0f, 0.0f ,0.0f, 1.0f }
 					};
 
 			m_arrRectLineBorders[1] =
 				ns_graphics::LineData
 					{
 						{ l_fRightX, l_fBottomY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{0.0f, 0.0f ,0.0f, 1.0f },
 						{ l_fRightX, l_fTopY, 0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f }
+						{ 0.0f, 0.0f ,0.0f, 1.0f }
 					};
 
 			m_arrRectLineBorders[2] =
 				ns_graphics::LineData
 					{
 						{ l_fRightX, l_fTopY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{ 0.0f, 0.0f ,0.0f, 1.0f },
 						{ l_fLeftX, l_fTopY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f }
+						{ 0.0f, 0.0f ,0.0f, 1.0f }
 					};
 
 			m_arrRectLineBorders[3] =
 				ns_graphics::LineData
 					{
 						{ l_fLeftX, l_fTopY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f },
+						{ 0.0f, 0.0f ,0.0f, 1.0f },
 						{ l_fLeftX, l_fBottomY ,0.0f, 1.0f },
-						{ 0.0f, 0.0f ,1.0f, 1.0f }
+						{ 0.0f, 0.0f ,0.0f, 1.0f }
 					};
 
 #endif
