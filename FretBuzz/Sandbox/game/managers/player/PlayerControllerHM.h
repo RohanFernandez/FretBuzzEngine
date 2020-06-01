@@ -15,7 +15,7 @@ namespace ns_HMGame
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		float m_fVelocity = 700.0f;
+		float m_fVelocity = 400.0f;
 
 		bool m_bIsRunning = false;
 
@@ -41,7 +41,7 @@ namespace ns_HMGame
 	public:
 		PlayerControllerHM(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
-		virtual void update(float a_fDeltaTime) override;
+		virtual void update(const float& a_fDeltaTime) override;
 
 		const WeaponData getWeaponData() const { return m_WeaponData; };
 

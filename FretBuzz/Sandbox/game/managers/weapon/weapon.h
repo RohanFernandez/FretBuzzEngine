@@ -64,7 +64,7 @@ namespace ns_HMGame
 		void startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection);
 		void pickup();
 
-		virtual void update(float a_fDeltaTime) override;
+		virtual void update(const float& a_fDeltaTime) override;
 
 		void fire(glm::vec3 a_v3Position, glm::vec3 a_v3Direction);
 	};

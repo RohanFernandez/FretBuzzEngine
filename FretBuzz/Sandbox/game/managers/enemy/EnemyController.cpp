@@ -19,7 +19,7 @@ namespace ns_HMGame
 		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 	}
 
-	void EnemyController::update(float a_fDeltaTime)
+	void EnemyController::update(const float& a_fDeltaTime)
 	{
 		manageAI(a_fDeltaTime);
 		Behaviour::update(a_fDeltaTime);

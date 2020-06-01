@@ -35,7 +35,7 @@ namespace ns_fretBuzz
 			m_LightType = a_LIGHT_TYPE;
 		}
 
-		void Light::update(float a_fDeltaTime)
+		void Light::update(const float& a_fDeltaTime)
 		{
 			m_LightSource.m_v4LightPosition =  (m_LightType == LIGHT_TYPE::DIRECTIONAL) && (m_LightSource.m_v4LightPosition.w == 0.0f) ?
 					glm::vec4(m_GameObject.m_Transform.getWorldPosition(), 0.0f):

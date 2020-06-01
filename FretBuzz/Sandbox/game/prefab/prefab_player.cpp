@@ -3,7 +3,6 @@
 #include "game/managers/player/PlayerControllerHM.h"
 #include <components/gameobject_components/camera.h>
 #include <system/camera_manager.h>
-#include <system/core/layer/layer_manager.h>
 #include <components/gameobject_components/audio_source.h>
 
 namespace ns_HMGame

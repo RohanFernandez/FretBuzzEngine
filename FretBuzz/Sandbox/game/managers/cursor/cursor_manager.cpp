@@ -11,7 +11,7 @@ namespace ns_HMGame
 		m_pCamComponent = a_CameraComponent;
 	}
 
-	void CursorManager::update(float a_fDeltaTime)
+	void CursorManager::update(const float& a_fDeltaTime)
 	{
 		ns_fretBuzz::ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
 

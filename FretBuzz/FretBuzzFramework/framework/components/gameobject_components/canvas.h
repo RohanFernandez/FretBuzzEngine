@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 			//else will required to be set
 			void setupCanvas(CanvasData& a_CanvasData);
 
-			virtual void lateUpdate(float a_fDeltaTime) override;
+			virtual void lateUpdate(const float& a_fDeltaTime) override;
 
 		public:
 			Canvas(ns_system::GameObject2D* a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled = true);

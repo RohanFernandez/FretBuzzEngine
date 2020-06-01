@@ -38,11 +38,11 @@ namespace ns_fretBuzz
 
 			void setActiveInHierarchyRecursively(bool a_bIsActive);
 
-			void updateComponents(float a_fDeltaTime);
-			void updateChildren(float a_fDeltaTime);
+			void updateComponents(const float& a_fDeltaTime);
+			void updateChildren(const float& a_fDeltaTime);
 
-			void lateUpdateComponents(float a_fDeltaTime);
-			void lateUpdateChildren(float a_fDeltaTime);
+			void lateUpdateComponents(const float& a_fDeltaTime);
+			void lateUpdateChildren(const float& a_fDeltaTime);
 
 			void renderComponents(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera);
 			void renderChildren(const ns_graphics::Camera& a_Camera);
@@ -83,10 +83,10 @@ namespace ns_fretBuzz
 			virtual void render(const ns_graphics::Camera& a_Camera);
 
 			// Updates all the components and renders its child GameObjects.
-			virtual void update(float a_fDeltaTime);
+			virtual void update(const float& a_fDeltaTime);
 
 			// called after update on all the gameobjects are done
-			virtual void lateUpdate(float a_fDeltaTime);
+			virtual void lateUpdate(const float& a_fDeltaTime);
 
 			// Does the component of type a_ComponentType exist in the m_Components list.
 			bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;

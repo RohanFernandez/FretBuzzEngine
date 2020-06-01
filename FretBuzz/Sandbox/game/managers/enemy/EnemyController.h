@@ -34,7 +34,7 @@ namespace ns_HMGame
 	public:
 		EnemyController(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject);
 
-		virtual void update(float a_fDeltaTime) override;
+		virtual void update(const float& a_fDeltaTime) override;
 
 		void manageAI(float a_fDeltaTime);
 

@@ -3,7 +3,6 @@
 #include <system/core/resource_manager.h>
 #include <game/managers/player/PlayerControllerHM.h>
 #include "weapon_manager.h"
-#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {
@@ -103,7 +102,7 @@ namespace ns_HMGame
 		}
 	}
 
-	void Weapon::update(float a_fDeltaTime)
+	void Weapon::update(const float& a_fDeltaTime)
 	{
 		if (WEAPON_STATE::THROWN == m_CurrentWeaponState)
 		{

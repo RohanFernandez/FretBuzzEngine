@@ -39,7 +39,7 @@ namespace ns_fretBuzz
 
 		//If the canvas is not world space, then it sets the canvas gameobject to be projected in front of the given camera,
 		// The canvas's local position then works as if its center is at the center of the camera
-		void Canvas::lateUpdate(float a_fDeltaTime)
+		void Canvas::lateUpdate(const float& a_fDeltaTime)
 		{
 			if (m_CanvasType != CANVAS_SPACE_TYPE::WORLD_SPACE)
 			{

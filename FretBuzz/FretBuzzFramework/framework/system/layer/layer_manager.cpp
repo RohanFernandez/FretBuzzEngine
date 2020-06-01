@@ -49,7 +49,7 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		bool LayerManager::addLayer(std::string a_strLayerName, int a_iLayerIndex)
+		bool LayerManager::addLayer(const std::string& a_strLayerName, int a_iLayerIndex)
 		{
 			T_LAYER_MAP_TYPE::const_iterator l_Layer = m_layerMap.find(a_strLayerName);
 			if (l_Layer != m_layerMap.end())
@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 			return true;
 		}
 
-		Layer* LayerManager::getLayerByName(std::string a_strLayerName)
+		Layer* LayerManager::getLayerByName(const std::string& a_strLayerName)
 		{
 			T_LAYER_MAP_TYPE::iterator l_Layer = m_layerMap.find(a_strLayerName);
 			if (l_Layer != m_layerMap.end())
@@ -80,7 +80,7 @@ namespace ns_fretBuzz
 			return nullptr;
 		}
 
-		const Layer* LayerManager::GetLayerByName(std::string a_strLayerName)
+		const Layer* LayerManager::GetLayerByName(const std::string& a_strLayerName)
 		{
 			return s_pInstance->getLayerByName(a_strLayerName);
 		}

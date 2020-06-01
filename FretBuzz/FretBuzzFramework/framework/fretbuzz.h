@@ -34,7 +34,7 @@ namespace ns_fretBuzz
 #include <utils/Event/event_manager.h>
 /// Utils
 
-#include <system/core/layer/layer_manager.h>
+#include <system/layer/layer_manager.h>
 
 /////Gameobject Components
 //#include <components/gameobject_components/audio_source.h>

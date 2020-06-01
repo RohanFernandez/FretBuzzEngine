@@ -42,7 +42,7 @@ namespace ns_HMGame
 
 		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_fretBuzz::ns_system::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject);
 
-		virtual void update(float a_fDeltaTime) override;
+		virtual void update(const float& a_fDeltaTime) override;
 		virtual void render(const ns_fretBuzz::ns_graphics::Camera& a_Camera) override;
 	};
 }

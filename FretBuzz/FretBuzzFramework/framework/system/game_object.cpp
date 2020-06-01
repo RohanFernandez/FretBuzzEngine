@@ -3,7 +3,7 @@
 #include "game_object.h"
 #include "components/gameobject_components/camera.h"
 #include <imgui/imgui.h>
-#include "core/layer/layer_mask.h"
+#include "layer/layer_mask.h"
 #include <system/editor/editor_inspector.h>
 
 namespace ns_fretBuzz
@@ -99,13 +99,13 @@ namespace ns_fretBuzz
 			a_IComponent->onAddedToGameObj();
 		}
 
-		void GameObject::update(float a_fDeltaTime)
+		void GameObject::update(const float& a_fDeltaTime)
 		{
 			updateComponents(a_fDeltaTime);
 			updateChildren(a_fDeltaTime);
 		}
 
-		void GameObject::updateComponents(float a_fDeltaTime)
+		void GameObject::updateComponents(const float& a_fDeltaTime)
 		{
 			for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
 			{
@@ -116,7 +116,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::lateUpdateChildren(float a_fDeltaTime)
+		void GameObject::lateUpdateChildren(const float& a_fDeltaTime)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 
@@ -130,13 +130,13 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::lateUpdate(float a_fDeltaTime)
+		void GameObject::lateUpdate(const float& a_fDeltaTime)
 		{
 			lateUpdateComponents(a_fDeltaTime);
 			lateUpdateChildren(a_fDeltaTime);
 		}
 
-		void GameObject::updateChildren(float a_fDeltaTime)
+		void GameObject::updateChildren(const float& a_fDeltaTime)
 		{
 			GameObject* l_pCurrentGameObject = nullptr;
 
@@ -150,7 +150,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		void GameObject::lateUpdateComponents(float a_fDeltaTime)
+		void GameObject::lateUpdateComponents(const float& a_fDeltaTime)
 		{
 			for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
 			{

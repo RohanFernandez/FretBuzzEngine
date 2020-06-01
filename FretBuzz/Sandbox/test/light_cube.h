@@ -107,7 +107,7 @@ namespace ns_HMGame
 			glBindVertexArray(0);
 		}
 
-		virtual void update(float a_fDeltaTime) override
+		virtual void update(const float& a_fDeltaTime) override
 		{
 			if (m_pLight->getType() == ns_fretBuzz::ns_graphics::Light::LIGHT_TYPE::POINT)
 			{

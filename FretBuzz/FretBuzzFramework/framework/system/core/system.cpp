@@ -14,8 +14,8 @@ namespace ns_fretBuzz
 			m_pEventManager = EventManager::Initialize();
 			m_pLog = Log::initialize();
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
+			m_pSystemLayerStack = SystemLayerStack::Initialize();
 			m_pFontManager = ns_graphics::FontManager::initialize();
-			m_pTimer = ns_system::TimerFPS::Initialize();
 
 			m_pWindow = ns_graphics::Window::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName);
 			m_pMasterRenderer = ns_graphics::MasterRenderer::initialize(*m_pWindow);
@@ -46,8 +46,8 @@ namespace ns_fretBuzz
 				s_pInstance->m_pLayerManager == nullptr ||
 				s_pInstance->m_pFontManager == nullptr ||
 				s_pInstance->m_pLog == nullptr ||
+				s_pInstance->m_pSystemLayerStack == nullptr ||
 				s_pInstance->m_pEventManager == nullptr ||
-				s_pInstance->m_pTimer == nullptr	||
 				s_pInstance->m_pWindow == nullptr
 #if _DEBUG
 				|| s_pInstance->m_pInspector == nullptr
@@ -65,9 +65,9 @@ namespace ns_fretBuzz
 			m_pMasterRenderer->destroy();
 			m_pPhysicsEngine->destroy();
 			m_pWindow->destroy();
+			m_pSystemLayerStack->destroy();
 			m_pFontManager->destroy();
 			m_pLog->destroy();
-			m_pTimer->destroy();
 
 #if _DEBUG
 			 m_pInspector->destroy();
@@ -92,14 +92,19 @@ namespace ns_fretBuzz
 			s_pInstance->m_fScaledTime = a_fScaledTime;
 		}
 
-		float System::GetScaledTime()
+		const float& System::GetScaledTime()
 		{
 			return s_pInstance->m_fScaledTime;
 		}
 
-		float System::GetDeltaTime()
+		const float& System::GetDeltaTime()
 		{
 			return s_pInstance->m_fDeltaTime;
+		}
+
+		const float& System::GetUnscaledTime()
+		{
+			return s_pInstance->m_fUnscaledTime;
 		}
 
 		void System::run(GameStartup& a_GameStartupData)
@@ -119,28 +124,27 @@ namespace ns_fretBuzz
 			ns_graphics::MasterRenderer& l_MasterRenderer = *(s_pInstance->m_pMasterRenderer);
 			Input& l_Input = *(s_pInstance->m_pInput);
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
-			TimerFPS& l_Timer = *(s_pInstance->m_pTimer);
 			ns_graphics::Window& l_Window = *(s_pInstance->m_pWindow);
-			float l_fTimeStep = 0.0f;
+
+			float l_fLastFrameTime = (float)glfwGetTime();
 
 			while (!l_Window.isWindowClosed())
-			{
-				l_fTimeStep = s_pInstance->m_fDeltaTime * s_pInstance->m_fScaledTime * (s_pInstance->m_bIsSystemPaused ? 0.0f : 1.0f);
+			{	
+				s_pInstance->m_fUnscaledTime = (float)glfwGetTime() - l_fLastFrameTime;
+				l_fLastFrameTime = (float)glfwGetTime();
+				s_pInstance->m_fDeltaTime = s_pInstance->m_fUnscaledTime * s_pInstance->m_fScaledTime * (s_pInstance->m_bIsSystemPaused ? 0.0f : 1.0f);
 
 				if (!s_pInstance->m_bIsSystemPaused)
 				{
-					l_SceneManager.updateActiveScenes(l_fTimeStep);
-					l_SceneManager.lateUpdateActiveScenes(l_fTimeStep);
-					l_PhysicsEngine.step(l_fTimeStep);
+					l_SceneManager.updateActiveScenes(s_pInstance->m_fDeltaTime);
+					l_SceneManager.lateUpdateActiveScenes(s_pInstance->m_fDeltaTime);
+					l_PhysicsEngine.step(s_pInstance->m_fDeltaTime);
 					l_Input.Update();
 				}
 				
 				l_Window.clear();
 				l_MasterRenderer.render(l_SceneManager, s_pInstance->m_fDeltaTime);
 				l_Window.update();
-				
-				l_Timer.update();
-				s_pInstance->m_fDeltaTime = l_Timer.getDeltaTime();
 			}
 
 			destroy();

@@ -12,13 +12,13 @@ namespace ns_fretBuzz
 			
 		}
 
-		Layer::Layer(std::string a_strName)
+		Layer::Layer(const std::string& a_strName)
 			: Layer()
 		{
 			changeLayer(a_strName);
 		}
 
-		Layer::Layer(std::string a_strName, int a_iID)
+		Layer::Layer(const std::string& a_strName, int a_iID)
 			: m_strName{ a_strName },
 			m_iID{ a_iID }
 		{
@@ -30,7 +30,7 @@ namespace ns_fretBuzz
 			m_iID		= a_Layer.m_iID;
 		}
 
-		void Layer::changeLayer(std::string a_strName)
+		void Layer::changeLayer(const std::string& a_strName)
 		{
 			const Layer* l_pLayer = LayerManager::GetLayerByName(a_strName);
 			if (l_pLayer != nullptr)
@@ -39,7 +39,7 @@ namespace ns_fretBuzz
 			}
 		}
 
-		std::string Layer::getName() const
+		const std::string& Layer::getName() const
 		{
 			return m_strName;
 		}

@@ -1,7 +1,7 @@
 #pragma once
 #include "system/component.h"
 #include "components/viewport.h"
-#include "system/core/layer/layer_mask.h"
+#include "system/layer/layer_mask.h"
 
 namespace ns_fretBuzz
 {

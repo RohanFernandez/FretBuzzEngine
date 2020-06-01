@@ -50,7 +50,7 @@ namespace ns_fretBuzz
 
 		// Contacts i.e. TriggerEnter, TriggerExit, CollisionEnter, CollisionExit that occured during step
 		// are collected and invoked after the step because Box2D is locked during and no Box2D component should be calculated during.
-		void PhysicsEngine::step(float a_fDeltaTime)
+		void PhysicsEngine::step(const float& a_fDeltaTime)
 		{
 			m_fTimePassedSinceLastStep += a_fDeltaTime;
 			if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP)

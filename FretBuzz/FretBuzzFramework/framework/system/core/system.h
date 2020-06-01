@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../timer/timerFPS.h"
 #include "audio_engine.h"
 #include "master_renderer.h"
 #include "input.h"
@@ -12,6 +11,7 @@
 #include "layer/layer_manager.h"
 #include "graphics/font_manager.h"
 #include <log/log.h>
+#include "system_layer/system_layer_stack.h"
 #include <fretbuzz.h>
 
 namespace ns_fretBuzz
@@ -53,9 +53,9 @@ namespace ns_fretBuzz
 
 			EventManager* m_pEventManager = nullptr;
 
-			TimerFPS* m_pTimer = nullptr;
-
 			ns_graphics::Window* m_pWindow = nullptr;
+
+			SystemLayerStack* m_pSystemLayerStack = nullptr;
 
 #if _DEBUG
 			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;
@@ -65,11 +65,13 @@ namespace ns_fretBuzz
 
 			float m_fDeltaTime = 0.0f;
 
+			float m_fUnscaledTime = 0.0f;
+
 			//The delta time is scaled to this value between 0 - 1
 			float m_fScaledTime = 1.0f;
 
 		public:
-			static constexpr float PHYSICS_TIME_STEP = 1.0f / 400.0f;
+			static constexpr float PHYSICS_TIME_STEP = 1.0f / 300.0f;
 			~System();
 
 			//Runs the main loop, initializes system publicly if not previusly initialized
@@ -77,8 +79,9 @@ namespace ns_fretBuzz
 			static void close();
 
 			static void SetScaledTime(float a_fScaledTime);
-			static float GetScaledTime();
-			static float GetDeltaTime();
+			static const float& GetScaledTime();
+			static const float& GetUnscaledTime();
+			static const float& GetDeltaTime();
 			static bool IsSystemPaused();
 			static void ToggleSystemPause(bool a_bisPause);
 		};

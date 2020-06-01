@@ -2,7 +2,6 @@
 #include "prefab_weapon.h"
 #include <game/managers/weapon/weapon.h>
 #include <components/gameobject_components/sprite_renderer.h>
-#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {

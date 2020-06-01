@@ -28,7 +28,7 @@ namespace ns_HMGame
 			ns_fretBuzz::ns_system::Input::setCursorEnability(true);
 		}
 
-		void CharacterTest::update(float a_fDeltaTime)
+		void CharacterTest::update(const float& a_fDeltaTime)
 		{
 			if (ns_fretBuzz::ns_system::Input::IsKeyDown(GLFW_KEY_G))
 			{

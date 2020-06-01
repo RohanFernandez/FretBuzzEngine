@@ -62,7 +62,7 @@ namespace ns_fretBuzz
 			m_strCurrentonCompleteTrigger = ((l_strOnCompleteTrigger.compare("") == 0) ? m_strDefaultStateID : l_strOnCompleteTrigger);
 		}
 
-		void SpriteAnimationController::update(float a_fDeltaTime)
+		void SpriteAnimationController::update(const float& a_fDeltaTime)
 		{
 			if (m_pCurrentSprite == nullptr) { return; }
 			m_fTimePassedInCurrentSprite += a_fDeltaTime;

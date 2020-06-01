@@ -65,7 +65,7 @@ namespace ns_fretBuzz
 			b2World* l_pb2World = PhysicsEngine::getB2World();
 		}
 
-		void Collider2D::lateUpdate(float a_fDeltaTime)
+		void Collider2D::lateUpdate(const float& a_fDeltaTime)
 		{
 			if (m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::DYNAMIC)
 			{

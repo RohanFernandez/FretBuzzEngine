@@ -58,7 +58,7 @@ namespace ns_fretBuzz
 
 			static b2World* getB2World();
 
-			void step(float a_fDeltaTime);
+			void step(const float& a_fDeltaTime);
 
 			static void Raycast(Collider2D*& a_pCollider2D, glm::vec2 a_v2Point1, glm::vec2 a_v2Point2);
 			static void AddContactEvent(Collider2DContactEvent a_ContactEvent);

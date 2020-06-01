@@ -28,7 +28,7 @@ namespace ns_HMGame
 
 		ns_fretBuzz::ns_system::GameObject* m_pCam = ns_fretBuzz::ns_system::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f });
 		ns_fretBuzz::ns_graphics::OrthographicViewport l_CamViewport(-1.0f, 1.0f);
-		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = m_pCam->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, ns_fretBuzz::ns_system::LayerMask(ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 210.0/255.0f, 222.0f/255.0f, 228.0f/255.0f,1.0f});
+		ns_fretBuzz::ns_graphics::Camera* l_pCamComponent = m_pCam->addComponent<ns_fretBuzz::ns_graphics::Camera>(ns_fretBuzz::ns_graphics::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, ns_fretBuzz::ns_system::LayerMask(ns_fretBuzz::ns_system::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 70.0/255.0f, 114.0f/255.0f, 136.0f/255.0f,1.0f});
 		
 		/*ns_fretBuzz::ns_system::GameObject2D* m_pGameObjectUI = ns_fretBuzz::ns_system::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f }, ns_fretBuzz::ns_system::Layer());
 		ns_fretBuzz::ns_UI::CanvasData l_uiPlayerCanvasData;

@@ -21,8 +21,8 @@ namespace ns_fretBuzz
 			LayerManager(std::vector<std::string> a_vectLayerNames);
 			~LayerManager();
 
-			bool addLayer(std::string a_strLayerName, int a_iLayerIndex);
-			Layer* getLayerByName(std::string a_strLayerName);
+			bool addLayer(const std::string& a_strLayerName, int a_iLayerIndex);
+			Layer* getLayerByName(const std::string& a_strLayerName);
 
 		public:
 			static LayerManager* initialize(std::vector<std::string> a_vectLayerNames);
@@ -33,7 +33,7 @@ namespace ns_fretBuzz
 			//Layer id of default
 			static const int LAYER_DEFAULT_ID = 0;
 
-			static const Layer* GetLayerByName(std::string a_strLayerName);
+			static const Layer* GetLayerByName(const std::string& a_strLayerName);
 			static const Layer* GetLayerByID(int a_iID);
 
 			void printLayers();

@@ -106,7 +106,7 @@ namespace ns_HMGame
 			glBindVertexArray(0);
 		}
 
-		virtual void update(float a_fDeltaTime) override
+		virtual void update(const float& a_fDeltaTime) override
 		{
 			//rot = rot + M_PI * a_fDeltaTime * 0.5f;
 			//m_Transform.setLocalRotation({ rot, rot , rot });

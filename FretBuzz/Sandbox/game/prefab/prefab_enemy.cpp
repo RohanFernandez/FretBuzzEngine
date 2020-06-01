@@ -1,7 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "prefab_enemy.h"
 #include "game/managers/enemy/EnemyController.h"
-#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {

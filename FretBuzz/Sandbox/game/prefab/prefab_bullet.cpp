@@ -3,7 +3,6 @@
 #include "game/managers/bullet/bullet.h"
 #include <components/gameobject_components/rect_collider.h>
 #include <components/gameobject_components/sprite_renderer.h>
-#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {

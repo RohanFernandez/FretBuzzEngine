@@ -82,7 +82,7 @@ namespace ns_fretBuzz
 			LIGHT_TYPE getType() const;
 			void setType(LIGHT_TYPE a_LIGHT_TYPE);
 
-			virtual void update(float a_fDeltaTime) override;
+			virtual void update(const float& a_fDeltaTime) override;
 		};
 	}
 }

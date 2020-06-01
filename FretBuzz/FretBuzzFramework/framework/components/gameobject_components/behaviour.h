@@ -16,7 +16,7 @@ namespace ns_fretBuzz
 		protected:
 			virtual ~Behaviour(){};
 
-			virtual void update(float a_fDeltaTime) override {};
+			virtual void update(const float& a_fDeltaTime) override {};
 			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override {};
 
 		public:

@@ -31,7 +31,7 @@ namespace ns_HMGame
 
 	protected:
 
-		virtual void update(float a_fDeltaTime) override
+		virtual void update(const float& a_fDeltaTime) override
 		{
 			float l_fVelocity = a_fDeltaTime * 3.0f;
 

@@ -27,6 +27,6 @@ namespace ns_HMGame
 		virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
 		virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent) override;
 
-		void virtual update(float a_fDeltaTime) override;
+		void virtual update(const float& a_fDeltaTime) override;
 	};
 }

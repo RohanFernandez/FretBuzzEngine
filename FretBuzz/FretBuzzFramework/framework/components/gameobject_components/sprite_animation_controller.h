@@ -38,7 +38,7 @@ namespace ns_fretBuzz
 
 			void play(std::string a_strAnimationID);
 
-			virtual void update(float a_fDeltaTime) override;
+			virtual void update(const float& a_fDeltaTime) override;
 		};
 	}
 }

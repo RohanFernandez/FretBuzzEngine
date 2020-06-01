@@ -2,7 +2,6 @@
 #include "prefab_wall.h"
 #include <components/gameobject_components/image.h>
 #include <game/managers/InteractiveObject.h>
-#include <system/core/layer/layer_manager.h>
 
 namespace ns_HMGame
 {

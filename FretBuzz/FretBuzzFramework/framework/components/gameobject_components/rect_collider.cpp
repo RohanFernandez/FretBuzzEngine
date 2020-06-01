@@ -76,7 +76,7 @@ namespace ns_fretBuzz
 			
 		}
 
-		void RectCollider::lateUpdate(float a_fDeltaTime)
+		void RectCollider::lateUpdate(const float& a_fDeltaTime)
 		{
 			Collider2D::lateUpdate(a_fDeltaTime);
 		}
