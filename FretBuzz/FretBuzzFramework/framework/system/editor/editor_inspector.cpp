@@ -37,7 +37,7 @@ namespace ns_fretBuzz
 			s_pInstance = nullptr;
 		}
 
-		void Inspector::render(ns_system::SceneManager& a_SceneManager, int a_iFPS)
+		void Inspector::render(ns_system::SceneManager& a_SceneManager)
 		{
 			if (m_pSelectedGameObject == nullptr)
 			{

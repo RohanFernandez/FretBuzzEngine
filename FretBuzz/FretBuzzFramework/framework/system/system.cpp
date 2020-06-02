@@ -2,6 +2,8 @@
 #include "system.h"
 #include "asset_loader.h"
 #include <imgui/imgui.h>
+#include <system_layer/editor_system_layer.h>
+#include <system_layer/game_system_layer.h>
 
 namespace ns_fretBuzz
 {
@@ -14,7 +16,7 @@ namespace ns_fretBuzz
 			m_pEventManager = EventManager::Initialize();
 			m_pLog = Log::initialize();
 			m_pLayerManager = LayerManager::initialize(a_GameStartupData.m_vectLayers);
-			m_pSystemLayerStack = SystemLayerStack::Initialize();
+			m_pSystemLayerStack = SystemLayerStack::Initialize(2);
 			m_pFontManager = ns_graphics::FontManager::initialize();
 
 			m_pWindow = ns_graphics::Window::initialize(a_GameStartupData.m_uiScreenWidth, a_GameStartupData.m_uiScreenHeight, a_GameStartupData.m_strWindowName);
@@ -28,9 +30,11 @@ namespace ns_fretBuzz
 
 			m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 
+			m_pSystemLayerStack->AddLayer<GameSystemLayer>("Game");
+			m_pSystemLayerStack->AddLayer<EditorSystemLayer>("Editor");
 #if _DEBUG
-			m_pInspector = ns_editor::Inspector::initialize();
-			m_pMasterRenderer->setInspector(m_pInspector);
+			/*m_pInspector = ns_editor::Inspector::initialize();
+			m_pMasterRenderer->setInspector(m_pInspector);*/
 #endif
 		}
 
@@ -49,9 +53,6 @@ namespace ns_fretBuzz
 				s_pInstance->m_pSystemLayerStack == nullptr ||
 				s_pInstance->m_pEventManager == nullptr ||
 				s_pInstance->m_pWindow == nullptr
-#if _DEBUG
-				|| s_pInstance->m_pInspector == nullptr
-#endif
 				);
 		}
 
@@ -68,10 +69,6 @@ namespace ns_fretBuzz
 			m_pSystemLayerStack->destroy();
 			m_pFontManager->destroy();
 			m_pLog->destroy();
-
-#if _DEBUG
-			 m_pInspector->destroy();
-#endif
 
 			s_pInstance = nullptr;
 		}
@@ -125,25 +122,40 @@ namespace ns_fretBuzz
 			Input& l_Input = *(s_pInstance->m_pInput);
 			PhysicsEngine& l_PhysicsEngine = *(s_pInstance->m_pPhysicsEngine);
 			ns_graphics::Window& l_Window = *(s_pInstance->m_pWindow);
+			SystemLayerStack& l_SystemLayerStack = *(s_pInstance->m_pSystemLayerStack);
 
 			float l_fLastFrameTime = (float)glfwGetTime();
 
 			while (!l_Window.isWindowClosed())
 			{	
+
 				s_pInstance->m_fUnscaledTime = (float)glfwGetTime() - l_fLastFrameTime;
 				l_fLastFrameTime = (float)glfwGetTime();
 				s_pInstance->m_fDeltaTime = s_pInstance->m_fUnscaledTime * s_pInstance->m_fScaledTime * (s_pInstance->m_bIsSystemPaused ? 0.0f : 1.0f);
-
-				if (!s_pInstance->m_bIsSystemPaused)
-				{
-					l_SceneManager.updateActiveScenes(s_pInstance->m_fDeltaTime);
-					l_SceneManager.lateUpdateActiveScenes(s_pInstance->m_fDeltaTime);
-					l_PhysicsEngine.step(s_pInstance->m_fDeltaTime);
-					l_Input.Update();
-				}
-				
 				l_Window.clear();
+
+				///update all layers
+				for (auto l_Layer = l_SystemLayerStack.begin(); l_Layer != l_SystemLayerStack.end(); l_Layer++)
+				{
+					(*l_Layer)->update(s_pInstance->m_fDeltaTime, l_SceneManager);
+				}
+
+				///late update all layers
+				for (auto l_Layer = l_SystemLayerStack.begin(); l_Layer != l_SystemLayerStack.end(); l_Layer++)
+				{
+					(*l_Layer)->lateUpdate(s_pInstance->m_fDeltaTime, l_SceneManager);
+				}
+
 				l_MasterRenderer.render(l_SceneManager, s_pInstance->m_fDeltaTime);
+
+				///add render commands 
+				for (auto l_Layer = l_SystemLayerStack.begin(); l_Layer != l_SystemLayerStack.end(); l_Layer++)
+				{
+					(*l_Layer)->render(l_SceneManager);
+				}
+
+				l_PhysicsEngine.step(s_pInstance->m_fDeltaTime);
+				l_Input.Update();
 				l_Window.update();
 			}
 

@@ -56,6 +56,12 @@ namespace ns_fretBuzz
 			//Closes window by telling glfw to set the window open value.
 			void closeWindow();
 
+			//returns a ref to the singleton instance WINDOW
+			static Window& GetWindow()
+			{
+				return *s_pInstance;
+			}
+
 			//Returns true if the window succeeded
 			//in its initalizing the GLFW and GLEW components
 			inline bool isInitialized() const

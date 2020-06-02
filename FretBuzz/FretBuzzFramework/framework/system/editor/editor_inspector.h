@@ -19,7 +19,7 @@ namespace ns_fretBuzz
 		public:
 			static Inspector* initialize();
 			void destroy();
-			void render(ns_system::SceneManager& a_SceneManager, int a_iFPS);
+			void render(ns_system::SceneManager& a_SceneManager);
 		};
 	}
 }

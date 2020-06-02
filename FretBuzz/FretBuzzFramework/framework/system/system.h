@@ -7,7 +7,6 @@
 #include "physics_engine.h"
 #include <scene_manager.h>
 #include <game_startup.h>
-#include <system/editor/editor_inspector.h>
 #include "layer/layer_manager.h"
 #include "graphics/font_manager.h"
 #include <log.h>
@@ -56,10 +55,6 @@ namespace ns_fretBuzz
 			ns_graphics::Window* m_pWindow = nullptr;
 
 			SystemLayerStack* m_pSystemLayerStack = nullptr;
-
-#if _DEBUG
-			ns_fretBuzz::ns_editor::Inspector* m_pInspector = nullptr;
-#endif
 
 			bool m_bIsSystemPaused = false;
 
