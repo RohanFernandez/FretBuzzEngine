@@ -13,7 +13,7 @@ namespace ns_fretBuzz
 
 		BatchRendererManager::BatchRendererManager()
 		{
-			m_vectBatchRenderers.emplace_back(SpriteBatchRenderer::initialize(100));
+			m_vectBatchRenderers.emplace_back(SpriteBatchRenderer::initialize(1000));
 			m_vectBatchRenderers.emplace_back(LineBatchRenderer::initialize(100, 3.0f));
 		}
 

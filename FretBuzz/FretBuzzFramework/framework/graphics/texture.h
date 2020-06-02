@@ -2,7 +2,7 @@
 #include "texture.h"
 #include <GL/glew.h>
 #include "utils/file_utils.h"
-#include "system/core/managed_resource.h"
+#include <managed_resource.h>
 
 namespace ns_fretBuzz
 {

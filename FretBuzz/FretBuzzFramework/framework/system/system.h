@@ -5,12 +5,12 @@
 #include "input.h"
 #include "resource_manager.h"
 #include "physics_engine.h"
-#include "../scene_manager.h"
-#include "../game_startup.h"
+#include <scene_manager.h>
+#include <game_startup.h>
 #include <system/editor/editor_inspector.h>
 #include "layer/layer_manager.h"
 #include "graphics/font_manager.h"
-#include <log/log.h>
+#include <log.h>
 #include "system_layer/system_layer_stack.h"
 #include <fretbuzz.h>
 

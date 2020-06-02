@@ -48,7 +48,7 @@ namespace ns_fretBuzz
 			void clear();
 
 			//Checks if any gl errors exists
-			static void CheckForErrors();
+			static void ErrorCallback(int a_iErrorCode, const char* a_pDescription);
 
 			//Returns if window is closed
 			bool isWindowClosed() const;

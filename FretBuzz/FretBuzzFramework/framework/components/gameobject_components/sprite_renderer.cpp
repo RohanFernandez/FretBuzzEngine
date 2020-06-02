@@ -2,7 +2,7 @@
 #include "sprite_renderer.h"
 #include "../viewport.h"
 #include "system/game_object.h"
-#include "system/core/resource_manager.h"
+#include <resource_manager.h>
 #include "graphics/sprite_batch_renderer.h"
 #include "graphics/shader_manager.h"
 

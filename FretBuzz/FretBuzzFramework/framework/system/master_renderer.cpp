@@ -6,7 +6,7 @@
 #include <imgui/imgui.h>
 #include <examples/imgui_impl_glfw.cpp>
 #include <examples/imgui_impl_opengl3.cpp>
-#include "../scene_manager.h"
+#include <scene_manager.h>
 #include "system.h"
 
 namespace ns_fretBuzz

@@ -5,7 +5,7 @@
 #include "components/gameobject_components/light.h"
 #include "graphics/shader_manager.h"
 #include "graphics/material.h"
-#include <system/core/input.h>
+#include <input.h>
 
 namespace ns_HMGame
 {

@@ -1,6 +1,6 @@
 #pragma once
-#include "system/core/managed_resource.h"
-#include "system/core/audio_engine.h"
+#include <managed_resource.h>
+#include <audio_engine.h>
 
 namespace ns_fretBuzz
 {

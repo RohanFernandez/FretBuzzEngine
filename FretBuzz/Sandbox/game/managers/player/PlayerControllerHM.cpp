@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "PlayerControllerHM.h"
-#include <system/core/input.h>
+#include <input.h>
 #include <system/scene_manager.h>
 #include "game/managers/weapon/weapon_data.h"
 #include "game/managers/weapon/weapon_manager.h"

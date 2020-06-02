@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "scene_manager.h"
 #include "game_startup.h"
-#include "system/core/system.h"
+#include <system.h>
 
 namespace ns_fretBuzz
 {

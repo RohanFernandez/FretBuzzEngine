@@ -1,5 +1,5 @@
 #pragma once
-#include "../system/core/resource_manager.h"
+#include <resource_manager.h>
 #include "../components/sprite.h"
 
 namespace ns_fretBuzz

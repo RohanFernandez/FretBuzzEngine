@@ -6,7 +6,7 @@
 #include "framework/graphics/material.h"
 
 #include "framework/graphics/post_process_manager.h"
-#include <system/core/resource_manager.h>
+#include <resource_manager.h>
 
 namespace ns_HMGame
 {

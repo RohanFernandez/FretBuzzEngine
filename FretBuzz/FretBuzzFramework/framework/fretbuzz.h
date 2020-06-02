@@ -30,8 +30,8 @@ namespace ns_fretBuzz
 /// Math
 
 /// Utils
-#include <log/log.h>
-#include <utils/Event/event_manager.h>
+#include <log.h>
+#include <Event/event_manager.h>
 /// Utils
 
 #include <system/layer/layer_manager.h>

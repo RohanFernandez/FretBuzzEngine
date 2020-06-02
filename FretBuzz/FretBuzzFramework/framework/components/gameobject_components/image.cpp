@@ -2,7 +2,7 @@
 #include "image.h"
 #include "system/game_object_2d.h"
 #include "graphics/sprite_batch_renderer.h"
-#include "system/core/resource_manager.h"
+#include <resource_manager.h>
 #include "graphics/shader_manager.h"
 
 namespace ns_fretBuzz

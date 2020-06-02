@@ -6,7 +6,7 @@ namespace ns_fretBuzz
 {
 	namespace ns_graphics
 	{
-		class  SpriteBatchRenderer : public IBatchRenderer
+		class SpriteBatchRenderer : public IBatchRenderer
 		{
 		protected:
 			static SpriteBatchRenderer* s_pInstance;

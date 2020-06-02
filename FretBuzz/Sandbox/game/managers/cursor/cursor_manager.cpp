@@ -1,6 +1,6 @@
 #include "fretbuzz_pch.h"
 #include "cursor_manager.h"
-#include <system/core/input.h>
+#include <input.h>
 
 namespace ns_HMGame
 {

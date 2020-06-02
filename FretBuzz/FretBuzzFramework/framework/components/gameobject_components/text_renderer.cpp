@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "text_renderer.h"
-#include "system/core/resource_manager.h"
+#include <resource_manager.h>
 
 namespace ns_fretBuzz
 {

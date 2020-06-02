@@ -48,12 +48,12 @@ namespace ns_fretBuzz
 
 		bool Window::initialize()
 		{
+			glfwSetErrorCallback(ErrorCallback);
 			if (!glfwInit())
 			{
 				std::cout << "Window::initialize:: Failed to initialize GLFW. \n";
 				return false;
 			}
-
 			m_pGLFWwindow = glfwCreateWindow(m_iWidth, m_iHeight, m_strName.c_str(), nullptr, nullptr);
 			if (m_pGLFWwindow == nullptr)
 			{
@@ -76,7 +76,6 @@ namespace ns_fretBuzz
 
 			std::cout << "Window::initialize:: OpenGL version::" << glGetString(GL_VERSION) << "\n";
 
-			CheckForErrors();
 
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_STENCIL_TEST);
@@ -96,7 +95,6 @@ namespace ns_fretBuzz
 
 		void Window::update()
 		{
-			CheckForErrors();
 			glfwSwapBuffers(m_pGLFWwindow);
 			glfwPollEvents();
 		}
@@ -109,13 +107,9 @@ namespace ns_fretBuzz
 			glEnable(GL_SCISSOR_TEST);
 		}
 
-		void Window::CheckForErrors()
+		void Window::ErrorCallback(int a_iErrorCode, const char* a_pDescription)
 		{
-			GLenum l_error = glGetError();
-			if (l_error != GLEW_NO_ERROR)
-			{
-				std::cout << "Window::CheckForErrors :: " << l_error << "\n";
-			}
+			ENGINE_ERROR("WINDOW ERROR:		{0} : {1}", a_iErrorCode, a_pDescription);
 		}
 
 		void Window::OnWindowClose(GLFWwindow* a_pGLFWwindow)

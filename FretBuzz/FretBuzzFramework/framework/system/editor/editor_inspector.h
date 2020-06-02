@@ -1,5 +1,5 @@
 #pragma once
-#include "utils/Event/delegate.h"
+#include <Event/delegate.h>
 #include "system/scene_manager.h"
 
 namespace ns_fretBuzz

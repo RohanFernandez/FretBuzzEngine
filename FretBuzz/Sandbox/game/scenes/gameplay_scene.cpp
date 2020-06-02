@@ -1,6 +1,6 @@
 #include "fretbuzz_pch.h"
 #include "gameplay_scene.h"
-#include <system/core/input.h>
+#include <input.h>
 #include <components/gameobject_components/rect_collider.h>
 #include <components/gameobject_components/audio_source.h>
 #include <components/gameobject_components/image.h>
@@ -16,7 +16,7 @@
 #include <game/managers/weapon/weapon_manager.h>
 #include <game/prefab/prefab_enemy.h>
 #include <components/gameobject_components/canvas.h>
-#include <system/core/resource_manager.h>
+#include <resource_manager.h>
 #include <components/gameobject_components/text_renderer.h>
 
 namespace ns_HMGame

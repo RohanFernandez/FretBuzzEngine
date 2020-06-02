@@ -1,5 +1,5 @@
 #include <fretbuzz_pch.h>
-#include <system/core/window.h>
+#include <window.h>
 #include "input.h"
 
 namespace ns_fretBuzz

@@ -1,10 +1,10 @@
 #include <fretbuzz_pch.h>
 #include "CharacterTest.h"
-#include "system/core/resource_manager.h"
+#include <resource_manager.h>
 #include "components/gameobject_components/sprite_renderer.h"
 #include "components/gameobject_components/image.h"
 
-#include "system/core/system.h"
+#include <system.h>
 //#include FT_FREETYPE_H
 
 namespace ns_HMGame

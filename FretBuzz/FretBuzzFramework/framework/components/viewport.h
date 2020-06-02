@@ -1,5 +1,5 @@
 #pragma once
-#include "system/core/window.h"
+#include <window.h>
 #include "transform.h"
 #include <imgui/imgui.h>
 

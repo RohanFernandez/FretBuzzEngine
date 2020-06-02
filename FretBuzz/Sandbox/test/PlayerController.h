@@ -1,7 +1,7 @@
 #pragma once
 
 #include "framework/components/gameobject_components/camera.h"
-#include "framework/system/core/input.h"
+#include <input.h>
 
 #include "framework/components/gameobject_components/behaviour.h"
 

@@ -8,7 +8,7 @@
 #include "graphics/shader.h"
 #include "graphics/texture.h"
 #include "components/viewport.h"
-#include "system/core/input.h"
+#include <input.h>
 
 namespace ns_HMGame
 {

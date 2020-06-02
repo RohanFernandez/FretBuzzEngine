@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "InteractiveObject.h"
-#include <system/core/input.h>
+#include <input.h>
 #include <system/scene_manager.h>
 
 namespace ns_HMGame

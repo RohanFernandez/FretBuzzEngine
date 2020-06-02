@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "editor_inspector.h"
 #include <imgui/imgui.h>
-#include <system/core/system.h>
+#include <system.h>
 
 namespace ns_fretBuzz
 {

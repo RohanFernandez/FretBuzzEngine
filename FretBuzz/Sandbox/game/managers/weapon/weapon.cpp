@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "weapon.h"
-#include <system/core/resource_manager.h>
+#include <resource_manager.h>
 #include <game/managers/player/PlayerControllerHM.h>
 #include "weapon_manager.h"
 

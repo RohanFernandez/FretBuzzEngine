@@ -1,6 +1,6 @@
 #include <fretbuzz_pch.h>
 #include "bullet.h"
-#include <system/core/resource_manager.h>
+#include <resource_manager.h>
 #include "game/managers/weapon/weapon_manager.h"
 
 namespace ns_HMGame

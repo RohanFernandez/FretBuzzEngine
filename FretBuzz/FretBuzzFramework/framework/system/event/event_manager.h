@@ -2,7 +2,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
-#include <utils/Event/delegate.h>
+#include "delegate.h"
 
 namespace ns_fretBuzz
 {
