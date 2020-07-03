@@ -6,16 +6,16 @@
 
 namespace ns_HMGame
 {
-	Weapon::Weapon(ns_fretBuzz::ns_system::GameObject2D* a_pGameObject)
+	Weapon::Weapon(ns_fretBuzz::GameObject2D* a_pGameObject)
 		:
-		ns_fretBuzz::ns_system::Behaviour(a_pGameObject),
+		ns_fretBuzz::Behaviour(a_pGameObject),
 		m_WeaponData{ WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED)},
 		m_CurrentWeaponState{WEAPON_STATE::DROP}
 	{
-		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::SpriteRenderer>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_RENDERER);
-		m_pSpriteRenderer->setSprite(ns_fretBuzz::ns_system::ResourceManager::getResource<ns_fretBuzz::ns_graphics::SpriteGroup>("weapon_pickup|weapon_M16")->getSprite(0));
+		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::SpriteRenderer>(ns_fretBuzz::COMPONENT_TYPE::SPRITE_RENDERER);
+		m_pSpriteRenderer->setSprite(ns_fretBuzz::ResourceManager::getResource<ns_fretBuzz::SpriteGroup>("weapon_pickup|weapon_M16")->getSprite(0));
 
-		m_pCollider2D = m_GameObject.getComponent<ns_fretBuzz::ns_system::Collider2D>(ns_fretBuzz::ns_system::COMPONENT_TYPE::COLLIDER_2D);
+		m_pCollider2D = m_GameObject.getComponent<ns_fretBuzz::Collider2D>(ns_fretBuzz::COMPONENT_TYPE::COLLIDER_2D);
 
 		setWeaponState(m_CurrentWeaponState);
 	}
@@ -31,10 +31,10 @@ namespace ns_HMGame
 		return m_WeaponData;
 	}
 
-	void Weapon::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void Weapon::onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 		//std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
-		ns_HMGame::PlayerControllerHM* l_pPlayerController = a_pIComponent->m_GameObject.getComponent<ns_HMGame::PlayerControllerHM>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+		ns_HMGame::PlayerControllerHM* l_pPlayerController = a_pIComponent->m_GameObject.getComponent<ns_HMGame::PlayerControllerHM>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
 		if (l_pPlayerController != nullptr)
 		{
 			l_pPlayerController->setAsCurrentWeaponOver(this, true);
@@ -62,7 +62,7 @@ namespace ns_HMGame
 				m_pCollider2D->setSensor(true);
 				m_pCollider2D->addCollisionLayer("PLAYER");
 				m_pCollider2D->setFixedRotation(false);
-				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::STATIC);
+				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::PHYSICS_BODY_TYPE::STATIC);
 				break;
 			}
 			case WEAPON_STATE::IN_USE:
@@ -75,7 +75,7 @@ namespace ns_HMGame
 			{
 				m_pCollider2D->setSensor(false);
 				m_pCollider2D->removeCollisionLayer("PLAYER");
-				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::ns_system::PHYSICS_BODY_TYPE::DYNAMIC);
+				m_pCollider2D->setPhysicsBodyType(ns_fretBuzz::PHYSICS_BODY_TYPE::DYNAMIC);
 				m_pCollider2D->setFixedRotation(false);
 				m_pCollider2D->setAngularVelocity((float)M_PI);
 				m_pCollider2D->setDensity(1.0f);
@@ -85,17 +85,17 @@ namespace ns_HMGame
 		}
 	}
 
-	void Weapon::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void Weapon::onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 	}
 
-	void Weapon::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void Weapon::onCollisionExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 	}
 
-	void Weapon::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void Weapon::onTriggerExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
-		ns_HMGame::PlayerControllerHM* l_pPlayerController = a_pIComponent->m_GameObject.getComponent<ns_HMGame::PlayerControllerHM>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+		ns_HMGame::PlayerControllerHM* l_pPlayerController = a_pIComponent->m_GameObject.getComponent<ns_HMGame::PlayerControllerHM>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
 		if (l_pPlayerController != nullptr)
 		{
 			l_pPlayerController->setAsCurrentWeaponOver(this, false);

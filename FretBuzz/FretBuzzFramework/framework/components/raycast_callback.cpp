@@ -3,26 +3,23 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	void RaycastCallback::reset()
 	{
-		void RaycastCallback::reset()
-		{
-			m_pIntersectedFixture = nullptr;
-		}
+		m_pIntersectedFixture = nullptr;
+	}
 
-		float RaycastCallback::ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float a_fFraction)
-		{
-			m_pIntersectedFixture = a_pFixture;
-			return a_fFraction;
-		}
+	float RaycastCallback::ReportFixture(b2Fixture* a_pFixture, const b2Vec2& a_v2Point, const b2Vec2& a_v2Normal, float a_fFraction)
+	{
+		m_pIntersectedFixture = a_pFixture;
+		return a_fFraction;
+	}
 
-		Collider2D* RaycastCallback::getIntersectedCollider2D() const
+	Collider2D* RaycastCallback::getIntersectedCollider2D() const
+	{
+		if (m_pIntersectedFixture != nullptr)
 		{
-			if (m_pIntersectedFixture != nullptr)
-			{
-				return  static_cast<Collider2D*>(m_pIntersectedFixture->GetBody()->GetUserData());
-			}
-			return nullptr;
+			return  static_cast<Collider2D*>(m_pIntersectedFixture->GetBody()->GetUserData());
 		}
+		return nullptr;
 	}
 }

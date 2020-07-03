@@ -8,8 +8,6 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
-	{
 		//singleton instance
 		PhongShader* PhongShader::s_pInstance = nullptr;
 
@@ -76,5 +74,4 @@ namespace ns_fretBuzz
 			delete s_pInstance;
 			s_pInstance = nullptr;
 		}
-	}
 }

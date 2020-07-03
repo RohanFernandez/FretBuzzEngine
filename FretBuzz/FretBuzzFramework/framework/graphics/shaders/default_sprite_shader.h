@@ -2,24 +2,21 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class Material;
+	class Camera;
+	class Shader;
+
+	class  DefaultSpriteShader : Shader
 	{
-		class Material;
-		class Camera;
-		class Shader;
+	private:
+		static DefaultSpriteShader* s_pInstance;
 
-		class  DefaultSpriteShader : Shader
-		{
-		private:
-			static DefaultSpriteShader* s_pInstance;
+		DefaultSpriteShader(std::string a_strShaderName);
+		virtual ~DefaultSpriteShader();
 
-			DefaultSpriteShader(std::string a_strShaderName);
-			virtual ~DefaultSpriteShader();
-
-		public:
-			static DefaultSpriteShader* initialize(std::string a_strShaderPath);
-			virtual void bind(const Material& a_Material, const Camera& a_Camera) const override;
-			virtual void destroy() override;
-		};
-	}
+	public:
+		static DefaultSpriteShader* initialize(std::string a_strShaderPath);
+		virtual void bind(const Material& a_Material, const Camera& a_Camera) const override;
+		virtual void destroy() override;
+	};
 }

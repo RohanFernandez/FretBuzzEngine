@@ -3,110 +3,104 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class Camera;
+
+	enum class  COMPONENT_TYPE
 	{
-		class Camera;
-	}
+		AUDIO_SOURCE,
+		SPRITE_RENDERER,
+		SPRITE_ANIMATION_CONTROLLER,
+		TEXT_RENDERER,
+		CHARACTER_CONTROLLER_2D,
+		CAMERA,
+		MESH_RENDERER,
+		LIGHT,
 
-	namespace ns_system
+		//2D GameObject specific
+		IMAGE,
+		COLLIDER_2D,
+		CANVAS,
+
+		//Custom user created
+		BEHAVIOUR
+	};
+
+	class GameObject;
+	class Collider2D;
+	class  IComponent
 	{
-		enum class  COMPONENT_TYPE
-		{
-			AUDIO_SOURCE,
-			SPRITE_RENDERER,
-			SPRITE_ANIMATION_CONTROLLER,
-			TEXT_RENDERER,
-			CHARACTER_CONTROLLER_2D,
-			CAMERA,
-			MESH_RENDERER,
-			LIGHT,
+	friend class GameObject;
+	friend class GameObject2D;
 
-			//2D GameObject specific
-			IMAGE,
-			COLLIDER_2D,
-			CANVAS,
+	protected:
+		bool m_bIsEnabled = true;
 
-			//Custom user created
-			BEHAVIOUR
-		};
+		std::string m_strComponentName;
 
-		class GameObject;
-		class Collider2D;
-		class  IComponent
-		{
-		friend class GameObject;
-		friend class GameObject2D;
+		virtual ~IComponent() = 0;
+		IComponent(const COMPONENT_TYPE a_ComponentType, GameObject* a_GameObj, bool a_bIsEnabled = true);
 
-		protected:
-			bool m_bIsEnabled = true;
+		// Does the component of type m_ComponentType exists in the GameObject m_Components list.
+		static bool isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject);
 
-			std::string m_strComponentName;
+		// Event called when the GameObject is activated.
+		virtual void onEnable();
 
-			virtual ~IComponent() = 0;
-			IComponent(const COMPONENT_TYPE a_ComponentType, GameObject* a_GameObj, bool a_bIsEnabled = true);
+		// Event called when the GameObject is deactivated.
+		virtual void onDisable();
 
-			// Does the component of type m_ComponentType exists in the GameObject m_Components list.
-			static bool isComponentOfTypeExistInGameObj(COMPONENT_TYPE a_ComponentType, const GameObject* a_pGameObject);
+		// Called when the GameBoject is activated or deactivated
+		// Calls the onEnable / onDisable callback if the component is enabled / disabled respectively.
+		void onGameObjectActivated(bool a_bIsGameObjectActivated);
 
-			// Event called when the GameObject is activated.
-			virtual void onEnable();
+		virtual void onAddedToGameObj();
+		virtual void onRemovedFromGameObj();
 
-			// Event called when the GameObject is deactivated.
-			virtual void onDisable();
+		// Calls all function in the gameobject's siblings.
+		void callFuncInSiblings(void(IComponent::* FUNC)(IComponent*));
 
-			// Called when the GameBoject is activated or deactivated
-			// Calls the onEnable / onDisable callback if the component is enabled / disabled respectively.
-			void onGameObjectActivated(bool a_bIsGameObjectActivated);
+		virtual void editorInspectorRender() {};
 
-			virtual void onAddedToGameObj();
-			virtual void onRemovedFromGameObj();
+	public:
+		IComponent() = delete;
 
-			// Calls all function in the gameobject's siblings.
-			void callFuncInSiblings(void(IComponent::* FUNC)(IComponent*));
+		const COMPONENT_TYPE m_ComponentType;
+		GameObject& m_GameObject;
 
-			virtual void editorInspectorRender() {};
+		// Called once per frame.
+		virtual void update(const float& a_fDeltaTime) {};
 
-		public:
-			IComponent() = delete;
+		//called after update is called on all gameobjects, called once per frame
+		virtual void lateUpdate(const float& a_fDeltaTime) {}
 
-			const COMPONENT_TYPE m_ComponentType;
-			GameObject& m_GameObject;
+		// Called once per frame to render the component if any renderables exist.
+		virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) {};
 
-			// Called once per frame.
-			virtual void update(const float& a_fDeltaTime) {};
+		// Called if the _IS_DEBUG or _IS_DEBUG_RENDERING is defined.
+		// Called once per frame to render the component if any debug renderables exist.
+		virtual void debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) {};
 
-			//called after update is called on all gameobjects, called once per frame
-			virtual void lateUpdate(const float& a_fDeltaTime) {}
+		// Enables/Disables the component.
+		// Calls the onEnable/ onDisable event if the GameObject is active.
+		void setIsEnabled(bool a_bIsEnabled);
 
-			// Called once per frame to render the component if any renderables exist.
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) {};
+		//Is the component enabled, does not depend if the GameObject is activated/deactivated.
+		bool getIsEnabled() const;
 
-			// Called if the _IS_DEBUG or _IS_DEBUG_RENDERING is defined.
-			// Called once per frame to render the component if any debug renderables exist.
-			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) {};
+		//Is the component enabled and the GameObject activated.
+		bool isActiveAndEnabled() const;
 
-			// Enables/Disables the component.
-			// Calls the onEnable/ onDisable event if the GameObject is active.
-			void setIsEnabled(bool a_bIsEnabled);
+		//Returns name of the component script
+		const std::string getName();
 
-			//Is the component enabled, does not depend if the GameObject is activated/deactivated.
-			bool getIsEnabled() const;
+		virtual void onSiblingComponentAdded(IComponent* a_Component) {};
+		virtual void onSiblingComponentRemoved(IComponent* a_Component) {};
+		virtual void onSiblingComponentEnabled(IComponent* a_Component) {};
+		virtual void onSiblingComponentDisabled(IComponent* a_Component) {};
 
-			//Is the component enabled and the GameObject activated.
-			bool isActiveAndEnabled() const;
-
-			//Returns name of the component script
-			const std::string getName();
-
-			virtual void onSiblingComponentAdded(IComponent* a_Component) {};
-			virtual void onSiblingComponentRemoved(IComponent* a_Component) {};
-			virtual void onSiblingComponentEnabled(IComponent* a_Component) {};
-			virtual void onSiblingComponentDisabled(IComponent* a_Component) {};
-
-			virtual void onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
-			virtual void onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
-			virtual void onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
-			virtual void onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D) {};
-		};
-	}
+		virtual void onCollisionEnter2D(Collider2D* a_pICollider2D) {};
+		virtual void onCollisionExit2D(Collider2D* a_pICollider2D) {};
+		virtual void onTriggerEnter2D(Collider2D* a_pICollider2D) {};
+		virtual void onTriggerExit2D(Collider2D* a_pICollider2D) {};
+	};
 }

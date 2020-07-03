@@ -9,7 +9,7 @@
 namespace ns_HMGame
 {
 	class WeaponData;
-	class WeaponManager : public ns_fretBuzz::ns_system::Behaviour
+	class WeaponManager : public ns_fretBuzz::Behaviour
 	{
 	private:
 		static WeaponManager* s_pInstance;
@@ -22,7 +22,7 @@ namespace ns_HMGame
 		virtual ~WeaponManager();
 
 	public:
-		WeaponManager(ns_fretBuzz::ns_system::GameObject* a_GameObject);
+		WeaponManager(ns_fretBuzz::GameObject* a_GameObject);
 
 		static WeaponData GetWeaponData(WEAPON_TYPE a_WeaponType);
 		static Weapon* AddWeapon(glm::vec3 a_v3Position, WEAPON_TYPE a_WeaponType, bool a_bIsActiv);

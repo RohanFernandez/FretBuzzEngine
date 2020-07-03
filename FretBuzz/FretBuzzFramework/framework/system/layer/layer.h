@@ -2,32 +2,29 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	class Layer
 	{
-		class Layer
-		{
-			friend class LayerManager;
+		friend class LayerManager;
 
-		public:
-			//max layers count
-			static constexpr unsigned int MAX_CAPACITY_LAYERS = 16;
+	public:
+		//max layers count
+		static constexpr unsigned int MAX_CAPACITY_LAYERS = 16;
 
-			Layer();
-			Layer(const std::string& a_strName);
+		Layer();
+		Layer(const std::string& a_strName);
 
-		private:
-			Layer(const std::string& a_strName, int a_uiID);
+	private:
+		Layer(const std::string& a_strName, int a_uiID);
 
-			std::string m_strName;
-			int m_iID = 0;
+		std::string m_strName;
+		int m_iID = 0;
 
-		public:
+	public:
 
-			void changeLayer(const std::string& a_strName);
-			void operator=(Layer a_Layer);
+		void changeLayer(const std::string& a_strName);
+		void operator=(Layer a_Layer);
 
-			const std::string& getName() const;
-			int getID() const;
-		};
-	}
+		const std::string& getName() const;
+		int getID() const;
+	};
 }

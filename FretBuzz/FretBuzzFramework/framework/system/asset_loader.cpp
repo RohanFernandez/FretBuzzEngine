@@ -11,8 +11,6 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
-	{
 		void AssetLoader::loadAssets(ResourceManager* a_pResourceManager)
 		{
 			std::vector<std::string> l_vectXMLPathName;
@@ -142,14 +140,14 @@ namespace ns_fretBuzz
 						std::cout << "AssetLoader::loadAudioClips:: Could not parse attribute '" << l_strAttributeName << "'";
 					}
 				}
-				ns_graphics::Shader l_Shader(SHADER_FILE_PATH + l_strShaderName);
+				Shader l_Shader(SHADER_FILE_PATH + l_strShaderName);
 				if (l_Shader.getIsErrorWhileLoading())
 				{
 					std::cout << "AssetLoader::loadShader:: Failed to load Shader with id '"<< l_strShaderName << "\n";
 					return;
 				}
 
-				a_pResourceManager->addResource<ns_graphics::Shader>(l_strShaderName,l_Shader);
+				a_pResourceManager->addResource<Shader>(l_strShaderName,l_Shader);
 			}
 		}*/
 
@@ -181,10 +179,10 @@ namespace ns_fretBuzz
 					}
 				}
 
-				ns_graphics::Texture* l_pTexture = ResourceManager::getResource<ns_graphics::Texture>(l_strTextureID);
+				Texture* l_pTexture = ResourceManager::getResource<Texture>(l_strTextureID);
 				if (l_pTexture == nullptr)
 				{
-					ns_graphics::Texture l_Texture(TEXTURE_FILE_PATH + l_strTextureFileName);
+					Texture l_Texture(TEXTURE_FILE_PATH + l_strTextureFileName);
 
 					if (l_Texture.getIsErrorWhileLoading())
 					{
@@ -192,7 +190,7 @@ namespace ns_fretBuzz
 						return;
 					}
 
-					a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureID, l_Texture);
+					a_pResourceManager->addResource<Texture>(l_strTextureID, l_Texture);
 				}
 			}
 		}
@@ -227,12 +225,12 @@ namespace ns_fretBuzz
 						std::cout << "AssetLoader::loadSprites:: Could not parse attribute '" << l_strCurrentAttributeName << "'";
 					}
 				}
-				ns_graphics::Texture* l_pTexture = ResourceManager::getResource<ns_graphics::Texture>(l_strTextureId);
+				Texture* l_pTexture = ResourceManager::getResource<Texture>(l_strTextureId);
 				if (l_pTexture == nullptr)
 				{
-					ns_graphics::Texture l_Texture(SPRITE_FILE_PATH + l_strTextureFileName);
-					a_pResourceManager->addResource<ns_graphics::Texture>(l_strTextureId, l_Texture);
-					l_pTexture = a_pResourceManager->getResource<ns_graphics::Texture>(l_strTextureId);
+					Texture l_Texture(SPRITE_FILE_PATH + l_strTextureFileName);
+					a_pResourceManager->addResource<Texture>(l_strTextureId, l_Texture);
+					l_pTexture = a_pResourceManager->getResource<Texture>(l_strTextureId);
 				}
 				l_fTextureW = (float)(l_pTexture->getWidth());
 				l_fTextureH = (float)(l_pTexture->getHeight());
@@ -242,7 +240,7 @@ namespace ns_fretBuzz
 					l_currentSprite++)
 				{
 					std::string l_strSpriteID = l_strTextureId + "|" + l_currentSprite->attributes_begin()->value();
-					std::vector<ns_graphics::Sprite> l_vectSpriteData;
+					std::vector<Sprite> l_vectSpriteData;
 
 					for (pugi::xml_node_iterator l_currentSpriteData = l_currentSprite->begin();
 						l_currentSpriteData != l_currentSprite->end();
@@ -321,11 +319,11 @@ namespace ns_fretBuzz
 						float l_fSpriteOffsetX = ((l_fW / 2.0f) - ((l_fOW * l_fPX) - l_fOX));
 						float l_fSpriteOffsetY = -((l_fH / 2.0f) - ((l_fOH * l_fPY) - l_fOY));
 
-						ns_graphics::Sprite l_Sprite(l_strID, { l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture);
+						Sprite l_Sprite(l_strID, { l_fX, l_fY }, { l_fW, l_fH }, { l_fTextureW,l_fTextureH }, { l_fSpriteOffsetX , l_fSpriteOffsetY }, l_pTexture);
 						l_vectSpriteData.emplace_back(l_Sprite);
 					}
-					ns_graphics::SpriteGroup l_SpriteSheet(l_pTexture, l_vectSpriteData);
-					a_pResourceManager->addResource<ns_graphics::SpriteGroup>(l_strSpriteID, l_SpriteSheet);
+					SpriteGroup l_SpriteSheet(l_pTexture, l_vectSpriteData);
+					a_pResourceManager->addResource<SpriteGroup>(l_strSpriteID, l_SpriteSheet);
 				}
 			}
 		}
@@ -438,8 +436,8 @@ namespace ns_fretBuzz
 					{
 						std::string l_strResourceName = std::string(l_CurrentAttribute->value());
 						std::string l_strModelPath  = MODEL_DIRECTORY + std::string(l_CurrentAttribute->value());
-						ns_graphics::Model l_Model(l_strModelPath);
-						a_pResourceManager->addResource<ns_graphics::Model>(std::string(l_CurrentAttribute->value()), l_Model);
+						Model l_Model(l_strModelPath);
+						a_pResourceManager->addResource<Model>(std::string(l_CurrentAttribute->value()), l_Model);
 					}
 				}
 			}
@@ -469,9 +467,8 @@ namespace ns_fretBuzz
 						l_strFileName = std::string(l_CurrentAttribute->value());
 					}
 				}
-				ns_graphics::Font l_Font = ns_graphics::FontManager::createFont(l_strResourceName, FONTS_DIRECTORY + l_strFileName);
-				a_pResourceManager->addResource<ns_graphics::Font>(l_Font.getName(), l_Font);
+				Font l_Font = FontManager::createFont(l_strResourceName, FONTS_DIRECTORY + l_strFileName);
+				a_pResourceManager->addResource<Font>(l_Font.getName(), l_Font);
 			}
 		}
-	}
 }

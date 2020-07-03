@@ -7,8 +7,8 @@ namespace ns_HMGame
 	//singleton instance
 	WeaponManager* WeaponManager::s_pInstance = nullptr;
 
-	WeaponManager::WeaponManager(ns_fretBuzz::ns_system::GameObject* a_GameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
+	WeaponManager::WeaponManager(ns_fretBuzz::GameObject* a_GameObject)
+		: ns_fretBuzz::Behaviour(a_GameObject),
 		m_WeaponPool(),
 		m_BulletPool()
 	{
@@ -65,7 +65,7 @@ namespace ns_HMGame
 		l_pWeaponPrefab->m_Transform.setWorldPosition(a_v3Position);
 		
 		l_pWeaponPrefab->setActive(a_bIsActive);
-		Weapon* l_pWeapon = l_pWeaponPrefab->getComponent<Weapon>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+		Weapon* l_pWeapon = l_pWeaponPrefab->getComponent<Weapon>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
 		l_pWeapon->setWeapon(a_WeaponType);
 		return l_pWeapon;
 	}
@@ -77,7 +77,7 @@ namespace ns_HMGame
 		l_pPrefabBullet->m_Transform.setLocalRotation(a_quatRotation);
 		l_pPrefabBullet->m_Transform.setWorldPosition(glm::vec3{a_v2Position,0.0f});
 		l_pPrefabBullet->setActive(true);
-		Bullet* l_pBullet = l_pPrefabBullet->getComponent<Bullet>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+		Bullet* l_pBullet = l_pPrefabBullet->getComponent<Bullet>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
 		l_pBullet->setBulletType(a_strBulletSpriteName);
 
 		return l_pBullet;

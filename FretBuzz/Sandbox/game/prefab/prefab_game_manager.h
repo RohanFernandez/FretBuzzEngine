@@ -4,9 +4,9 @@
 
 namespace ns_HMGame
 {
-	class PrefabGameManager : public ns_fretBuzz::ns_system::GameObject
+	class PrefabGameManager : public ns_fretBuzz::GameObject
 	{
 	public:
-		PrefabGameManager(ns_fretBuzz::ns_system::GameObject& a_ParentGameObject, std::string a_strName);
+		PrefabGameManager(ns_fretBuzz::GameObject& a_ParentGameObject, std::string a_strName);
 	};
 }

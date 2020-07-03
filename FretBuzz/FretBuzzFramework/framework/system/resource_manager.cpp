@@ -3,59 +3,56 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	///singletor instance
+	ResourceManager* ResourceManager::s_pInstance = nullptr;
+
+	ResourceManager::ResourceManager()
 	{
-		///singletor instance
-		ResourceManager* ResourceManager::s_pInstance = nullptr;
-
-		ResourceManager::ResourceManager()
-		{
 			
-		}
+	}
 
-		ResourceManager::~ResourceManager()
+	ResourceManager::~ResourceManager()
+	{
+		T_MAP_RESOURCE& l_mapResource = s_pInstance->m_mapResource;
+		for (auto l_currentResource = l_mapResource.begin(),
+			l_endResource = l_mapResource.end();
+			l_currentResource != l_endResource;
+			l_currentResource++)
 		{
-			T_MAP_RESOURCE& l_mapResource = s_pInstance->m_mapResource;
-			for (auto l_currentResource = l_mapResource.begin(),
-				l_endResource = l_mapResource.end();
-				l_currentResource != l_endResource;
-				l_currentResource++)
-			{
-				IResource*& l_pCurrentResourceInterface = l_currentResource->second;
+			IResource*& l_pCurrentResourceInterface = l_currentResource->second;
 
-				delete l_pCurrentResourceInterface;
-				l_pCurrentResourceInterface = nullptr;
+			delete l_pCurrentResourceInterface;
+			l_pCurrentResourceInterface = nullptr;
 
-			}
-			l_mapResource.clear();
 		}
+		l_mapResource.clear();
+	}
 
-		ResourceManager* ResourceManager::initialize()
+	ResourceManager* ResourceManager::initialize()
+	{
+		if (s_pInstance != nullptr)
 		{
-			if (s_pInstance != nullptr)
-			{
-				std::cout << "ResourceManager::initialize:: ResourceManager already exists.\n";
-				return nullptr;
-			}
-			s_pInstance = new ResourceManager();
-			return s_pInstance;
+			std::cout << "ResourceManager::initialize:: ResourceManager already exists.\n";
+			return nullptr;
 		}
+		s_pInstance = new ResourceManager();
+		return s_pInstance;
+	}
 
-		void ResourceManager::destroy()
-		{
-			delete s_pInstance;
-			s_pInstance = nullptr;
-		}
+	void ResourceManager::destroy()
+	{
+		delete s_pInstance;
+		s_pInstance = nullptr;
+	}
 
-		const ResourceManager* ResourceManager::get()
-		{
-			return s_pInstance;
-		}
+	const ResourceManager* ResourceManager::get()
+	{
+		return s_pInstance;
+	}
 
 
-		void ResourceManager::destroyResource(IManagedResource* a_pManagedResource)
-		{
-			a_pManagedResource->destroyResource();
-		}
+	void ResourceManager::destroyResource(IManagedResource* a_pManagedResource)
+	{
+		a_pManagedResource->destroyResource();
 	}
 }

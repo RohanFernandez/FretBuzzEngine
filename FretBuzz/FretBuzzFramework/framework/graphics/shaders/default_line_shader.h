@@ -2,24 +2,21 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class Material;
+	class Camera;
+	class Shader;
+
+	class  DefaultLineShader : Shader
 	{
-		class Material;
-		class Camera;
-		class Shader;
+	private:
+		static DefaultLineShader* s_pInstance;
 
-		class  DefaultLineShader : Shader
-		{
-		private:
-			static DefaultLineShader* s_pInstance;
+		DefaultLineShader(std::string a_strShaderName);
+		virtual ~DefaultLineShader();
 
-			DefaultLineShader(std::string a_strShaderName);
-			virtual ~DefaultLineShader();
-
-		public:
-			static DefaultLineShader* initialize(std::string a_strShaderPath);
-			virtual void bind(const Material& a_Material, const Camera& a_Camera) const override;
-			virtual void destroy() override;
-		};
-	}
+	public:
+		static DefaultLineShader* initialize(std::string a_strShaderPath);
+		virtual void bind(const Material& a_Material, const Camera& a_Camera) const override;
+		virtual void destroy() override;
+	};
 }

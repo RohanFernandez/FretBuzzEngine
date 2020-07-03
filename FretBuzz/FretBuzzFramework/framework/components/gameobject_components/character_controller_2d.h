@@ -2,19 +2,16 @@
 #include "system/component.h"
 
 namespace ns_fretBuzz
-{ 
-	namespace ns_system
+{
+	class GameObject;
+	class  CharacterController2D : public IComponent
 	{
-		class GameObject;
-		class  CharacterController2D : public IComponent
-		{
-		private:
+	private:
 
-		protected:
-			virtual ~CharacterController2D();
+	protected:
+		virtual ~CharacterController2D();
 
-		public:
-			CharacterController2D(GameObject* a_GameObject);
-		};
-	}
+	public:
+		CharacterController2D(GameObject* a_GameObject);
+	};
 }

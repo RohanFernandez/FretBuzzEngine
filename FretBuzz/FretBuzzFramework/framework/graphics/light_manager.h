@@ -3,30 +3,27 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class Light;
+	class  LightManager : public ResourceContainer<std::vector<Light*>>
 	{
-		class Light;
-		class  LightManager : public ResourceContainer<std::vector<Light*>>
-		{
-		private:
-			static LightManager* s_pInstance;
+	private:
+		static LightManager* s_pInstance;
 
-			LightManager();
-			virtual ~LightManager();
+		LightManager();
+		virtual ~LightManager();
 
-		public:
-			static LightManager* initialize();
-			void destroy();
-			static const LightManager* get();
+	public:
+		static LightManager* initialize();
+		void destroy();
+		static const LightManager* get();
 
-			void registerLight(Light* a_pLight);
-			static void s_registerLight(Light* a_pLight);
+		void registerLight(Light* a_pLight);
+		static void s_registerLight(Light* a_pLight);
 
-			void unregisterLight(Light* a_pLight);
-			static void s_unregisterLight(Light* a_pLight);
+		void unregisterLight(Light* a_pLight);
+		static void s_unregisterLight(Light* a_pLight);
 
-			void setAllLightUniforms(const Shader& a_shader) const;
-			static void s_setAllLightUniforms(const Shader& a_shader);
-		};
-	}
+		void setAllLightUniforms(const Shader& a_shader) const;
+		static void s_setAllLightUniforms(const Shader& a_shader);
+	};
 }

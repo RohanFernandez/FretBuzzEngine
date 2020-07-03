@@ -3,24 +3,21 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class  Font : public IManagedResource
 	{
-		class  Font : public ns_system::IManagedResource
-		{
-			friend class FontManager;
-		private:
-			FT_Face m_FontFace = nullptr;
-			std::string m_strName;
+		friend class FontManager;
+	private:
+		FT_Face m_FontFace = nullptr;
+		std::string m_strName;
 
-		public:
-			Font(std::string a_strName);
-			virtual ~Font();
+	public:
+		Font(std::string a_strName);
+		virtual ~Font();
 
-			std::string getName();
-			FT_Face getFTFace();
+		std::string getName();
+		FT_Face getFTFace();
 
-		protected:
-			virtual void destroyResource();
-		};
-	}
+	protected:
+		virtual void destroyResource();
+	};
 }

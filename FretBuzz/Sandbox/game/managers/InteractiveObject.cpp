@@ -5,10 +5,10 @@
 
 namespace ns_HMGame
 {
-	InteractiveObject::InteractiveObject(ns_fretBuzz::ns_system::GameObject* a_GameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject)
+	InteractiveObject::InteractiveObject(ns_fretBuzz::GameObject* a_GameObject)
+		: ns_fretBuzz::Behaviour(a_GameObject)
 	{
-		m_pImage = m_GameObject.getComponent<ns_fretBuzz::ns_graphics::Image>(ns_fretBuzz::ns_system::COMPONENT_TYPE::IMAGE);
+		m_pImage = m_GameObject.getComponent<ns_fretBuzz::Image>(ns_fretBuzz::COMPONENT_TYPE::IMAGE);
 		m_vectColor.emplace_back(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 		m_vectColor.emplace_back(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 		m_vectColor.emplace_back(glm::vec4{ 0.0f, 0.0f, 1.0f, 1.0f });
@@ -19,22 +19,22 @@ namespace ns_HMGame
 		m_pImage->setColor(m_vectColor[(++m_iColorIndex) % m_vectColor.size()]);
 	}
 
-	void InteractiveObject::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	void InteractiveObject::onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pICollider2D)
 	{
 		onLabelHit();
 	}
 
-	void InteractiveObject::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	void InteractiveObject::onTriggerExit2D(ns_fretBuzz::Collider2D* a_pICollider2D)
 	{
 		onLabelHit();
 	}
 
-	void InteractiveObject::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	void InteractiveObject::onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pICollider2D)
 	{
 		onLabelHit();
 	}
 
-	void InteractiveObject::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pICollider2D)
+	void InteractiveObject::onCollisionExit2D(ns_fretBuzz::Collider2D* a_pICollider2D)
 	{
 		onLabelHit();
 	}

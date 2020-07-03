@@ -4,21 +4,18 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	class EditorSystemLayer : public SystemLayerBase
 	{
-		class EditorSystemLayer : public SystemLayerBase
-		{
-		private:
-			ns_editor::Inspector* m_pInspector = nullptr;
+	private:
+		Inspector* m_pInspector = nullptr;
 
-		public:
-			EditorSystemLayer();
-			virtual ~EditorSystemLayer();
+	public:
+		EditorSystemLayer();
+		virtual ~EditorSystemLayer();
 
-			void onAttach();
-			void onDetach();
+		void onAttach();
+		void onDetach();
 
-			virtual void render(SceneManager& a_SceneManager) override;
-		};
-	}
+		virtual void render(SceneManager& a_SceneManager) override;
+	};
 }

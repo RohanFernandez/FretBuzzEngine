@@ -4,27 +4,24 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	class GameObject2D;
+	class  RectCollider : public Collider2D
+		#ifdef _IS_DEBUG_RENDERING
+			,public IRenderer
+		#endif
 	{
-		class GameObject2D;
-		class  RectCollider : public Collider2D
-			#ifdef _IS_DEBUG_RENDERING
-				,public ns_graphics::IRenderer
-			#endif
-		{
-		private:
+	private:
 
-			ns_graphics::LineData m_arrRectLineBorders[4];
+		LineData m_arrRectLineBorders[4];
 
-		protected:
-			virtual ~RectCollider();
+	protected:
+		virtual ~RectCollider();
 
-		public:
-			RectCollider(GameObject2D* a_GameObject, ColliderData& a_RectColliderData);
+	public:
+		RectCollider(GameObject2D* a_GameObject, ColliderData& a_RectColliderData);
 			
-			//virtual void update(float a_fDeltaTime) override;
-			virtual void lateUpdate(const float& a_fDeltaTime) override;
-			virtual void debugRender(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
-		};
-	}
+		//virtual void update(float a_fDeltaTime) override;
+		virtual void lateUpdate(const float& a_fDeltaTime) override;
+		virtual void debugRender(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) override;
+	};
 }

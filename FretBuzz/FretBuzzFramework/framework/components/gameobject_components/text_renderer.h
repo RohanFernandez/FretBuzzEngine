@@ -4,26 +4,23 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class  TextRenderer : public IComponent
 	{
-		class  TextRenderer : public ns_system::IComponent
-		{
-		private:
+	private:
 
-			ns_graphics::Font* m_pFont = nullptr;
+		Font* m_pFont = nullptr;
 
-			std::string m_strText;
+		std::string m_strText;
 
-		protected:
-			virtual ~TextRenderer();
+	protected:
+		virtual ~TextRenderer();
 
-		public:
-			TextRenderer(ns_system::GameObject* a_GameObj, std::string a_strText, std::string a_strFontName);
+	public:
+		TextRenderer(GameObject* a_GameObj, std::string a_strText, std::string a_strFontName);
 
-			void setText(std::string a_strText);
-			void setFont(std::string a_strFontName);
+		void setText(std::string a_strText);
+		void setFont(std::string a_strFontName);
 
-			virtual void render(const glm::mat4& a_mat4Transformation, const ns_graphics::Camera& a_Camera) override;
-		};
-	}
+		virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) override;
+	};
 }

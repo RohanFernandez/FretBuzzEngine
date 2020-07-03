@@ -6,17 +6,17 @@
 
 namespace ns_HMGame
 {
-	class EnemyTest : public ns_fretBuzz::ns_system::GameObject2D
+	class EnemyTest : public ns_fretBuzz::GameObject2D
 	{
 	private:
-		ns_fretBuzz::ns_system::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		ns_fretBuzz::SpriteAnimationController* m_pSpriteAnimator = nullptr;
 
-		ns_fretBuzz::ns_system::RectCollider* m_pRectCollider = nullptr;
+		ns_fretBuzz::RectCollider* m_pRectCollider = nullptr;
 
 	public:
 		EnemyTest(GameObject& a_ParentGameObject, std::string a_strName);
 
 		//virtual void update(float a_fDeltaTime) override;
-		//virtual void render(const ns_graphics::Camera& a_Camera) override;
+		//virtual void render(const Camera& a_Camera) override;
 	};
 }

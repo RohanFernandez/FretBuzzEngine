@@ -10,41 +10,35 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system 
+	class SceneManager;
+
+	class CameraManager;
+	class LightManager;
+	class ShaderManager;
+	class  MasterRenderer
 	{
-		class SceneManager;
-	}
+	private:
+		static MasterRenderer* s_pInstance;
 
-	namespace ns_graphics
-	{
-		class CameraManager;
-		class LightManager;
-		class ShaderManager;
-		class  MasterRenderer
-		{
-		private:
-			static MasterRenderer* s_pInstance;
+		CameraManager* m_pCameraManager = nullptr;
+		LightManager* m_pLightManager = nullptr;
+		ShaderManager* m_pShaderManager = nullptr;
 
-			CameraManager* m_pCameraManager = nullptr;
-			LightManager* m_pLightManager = nullptr;
-			ShaderManager* m_pShaderManager = nullptr;
+		PostProcessManager* m_pPostProcessManager = nullptr;
 
-			PostProcessManager* m_pPostProcessManager = nullptr;
+		BatchRendererManager* m_pBatchRendererManager = nullptr;
 
-			BatchRendererManager* m_pBatchRendererManager = nullptr;
+		MasterRenderer(Window& a_Window);
+		~MasterRenderer();
 
-			MasterRenderer(Window& a_Window);
-			~MasterRenderer();
+	public:
 
-		public:
+		static MasterRenderer* initialize(Window& a_Window);
+		void destroy();
+		static const MasterRenderer* get();
 
-			static MasterRenderer* initialize(Window& a_Window);
-			void destroy();
-			static const MasterRenderer* get();
+		void render(SceneManager& a_SceneManager, float a_fDeltaTime);
 
-			void render(ns_system::SceneManager& a_SceneManager, float a_fDeltaTime);
-
-			void close() const;
-		};
-	}
+		void close() const;
+	};
 }

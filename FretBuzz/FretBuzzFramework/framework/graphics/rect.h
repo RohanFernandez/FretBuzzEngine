@@ -2,8 +2,6 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
-	{
 	struct  Rect
 	{
 
@@ -32,5 +30,4 @@ namespace ns_fretBuzz
 			m_VertPosition[3] = { m_v2DimensionsWH.x *  0.5, m_v2DimensionsWH.y * -0.5, 0.0f, 1.0f };
 		}
 	};
-	}
 }

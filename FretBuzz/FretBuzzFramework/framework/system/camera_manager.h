@@ -5,34 +5,31 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	class PostProcessManager;
+	class  CameraManager : ResourceContainer<std::vector<Camera*>>
 	{
-		class PostProcessManager;
-		class  CameraManager : ResourceContainer<std::vector<Camera*>>
-		{
-		private:
-			static CameraManager* s_pInstance;
+	private:
+		static CameraManager* s_pInstance;
 
-			CameraManager();
-			~CameraManager();
+		CameraManager();
+		~CameraManager();
 
-		public:
-			static CameraManager* initialize();
-			void destroy();
-			static const CameraManager* get();
-			static Camera& getMainCamera();
+	public:
+		static CameraManager* initialize();
+		void destroy();
+		static const CameraManager* get();
+		static Camera& getMainCamera();
 
-			std::vector<Camera*>& getCameras();
+		std::vector<Camera*>& getCameras();
 
-			void registerCamera(Camera* a_pCamera);
-			static void s_registerCamera(Camera* a_pCamera);
+		void registerCamera(Camera* a_pCamera);
+		static void s_registerCamera(Camera* a_pCamera);
 
-			void unregisterCamera(Camera* a_pCamera);
-			static void s_unregisterCamera(Camera* a_pCamera);
+		void unregisterCamera(Camera* a_pCamera);
+		static void s_unregisterCamera(Camera* a_pCamera);
 
-			void updateViewMatrix();
-			void renderFrame(ns_system::SceneManager& a_SceneManager, const PostProcessManager& a_PostProcessManager);
-			void windowResize(int a_iWidth, int a_iHeight);
-		};
-	}
+		void updateViewMatrix();
+		void renderFrame(SceneManager& a_SceneManager, const PostProcessManager& a_PostProcessManager);
+		void windowResize(int a_iWidth, int a_iHeight);
+	};
 }

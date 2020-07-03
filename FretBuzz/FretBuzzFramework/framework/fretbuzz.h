@@ -14,12 +14,9 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
-	{
-		///System Consts
-		constexpr char* FRETBUZZ_ON_WINDOW_RESIZE = "FRETBUZZ_ON_WINDOW_RESIZE";
-		///System Consts
-	}
+	///System Consts
+	constexpr char* FRETBUZZ_ON_WINDOW_RESIZE = "FRETBUZZ_ON_WINDOW_RESIZE";
+	///System Consts
 }
 
 /// Math

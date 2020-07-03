@@ -3,11 +3,11 @@
 
 namespace ns_HMGame
 {
-	class PrefabBullet : public ns_fretBuzz::ns_system::GameObject2D
+	class PrefabBullet : public ns_fretBuzz::GameObject2D
 	{
 	public:
-		PrefabBullet(ns_fretBuzz::ns_system::GameObject* a_ParentGameObject);
-		PrefabBullet(ns_fretBuzz::ns_system::GameObject* a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
+		PrefabBullet(ns_fretBuzz::GameObject* a_ParentGameObject);
+		PrefabBullet(ns_fretBuzz::GameObject* a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
 
 	};
 }

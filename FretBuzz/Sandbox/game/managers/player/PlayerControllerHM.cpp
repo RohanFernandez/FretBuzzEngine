@@ -10,19 +10,19 @@ namespace ns_HMGame
 {
 	PlayerControllerHM* PlayerControllerHM:: s_Instance = nullptr;;
 
-	PlayerControllerHM::PlayerControllerHM(ns_fretBuzz::ns_system::GameObject* a_GameObject, ns_fretBuzz::ns_system::GameObject* a_pCamGameObject, ns_fretBuzz::ns_system::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::ns_system::GameObject* a_pLegsGameObject)
-		: ns_fretBuzz::ns_system::Behaviour(a_GameObject),
+	PlayerControllerHM::PlayerControllerHM(ns_fretBuzz::GameObject* a_GameObject, ns_fretBuzz::GameObject* a_pCamGameObject, ns_fretBuzz::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::GameObject* a_pLegsGameObject)
+		: ns_fretBuzz::Behaviour(a_GameObject),
 		m_WeaponData{WeaponManager::GetWeaponData(WEAPON_UNARMED)}
 	{
 		s_Instance = this;
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
 
-		m_pRectCollider = a_GameObject->getComponent<ns_fretBuzz::ns_system::RectCollider>(ns_fretBuzz::ns_system::COMPONENT_TYPE::COLLIDER_2D);
+		m_pRectCollider = a_GameObject->getComponent<ns_fretBuzz::RectCollider>(ns_fretBuzz::COMPONENT_TYPE::COLLIDER_2D);
 		m_pCamGameObj = a_pCamGameObject;
 
-		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController >(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
-		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<ns_fretBuzz::ns_system::SpriteAnimationController>(ns_fretBuzz::ns_system::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<ns_fretBuzz::SpriteAnimationController >(ns_fretBuzz::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<ns_fretBuzz::SpriteAnimationController>(ns_fretBuzz::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 	}
 
 	void PlayerControllerHM::update(const float& a_fDeltaTime)
@@ -36,26 +36,26 @@ namespace ns_HMGame
 		float l_fHorizontalVelocity = 0.0f;
 		float l_fVerticalVelocity = 0.0f;
 
-		if (ns_fretBuzz::ns_system::Input::IsKeyDown(GLFW_KEY_W))
+		if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_W))
 		{
 			l_fVerticalVelocity += m_fVelocity;
 		}
 
-		if (ns_fretBuzz::ns_system::Input::IsKeyDown(GLFW_KEY_S))
+		if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_S))
 		{
 			l_fVerticalVelocity -= m_fVelocity;
 		}
-		if (ns_fretBuzz::ns_system::Input::IsKeyDown(GLFW_KEY_A))
+		if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_A))
 		{
 			l_fHorizontalVelocity -= m_fVelocity;
 		}
-		if (ns_fretBuzz::ns_system::Input::IsKeyDown(GLFW_KEY_D))
+		if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_D))
 		{
 			l_fHorizontalVelocity += m_fVelocity;
 		}
 
-		ns_fretBuzz::ns_system::Input::GetMousePosition(m_dMouseX, m_dMouseY);
-		glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_fretBuzz::ns_graphics::Window::getWidth() * 0.5f), (ns_fretBuzz::ns_graphics::Window::getHeight() * 0.5f) - (float)m_dMouseY);
+		ns_fretBuzz::Input::GetMousePosition(m_dMouseX, m_dMouseY);
+		glm::vec2 l_MousePosition = glm::vec2((float)m_dMouseX - (ns_fretBuzz::Window::getWidth() * 0.5f), (ns_fretBuzz::Window::getHeight() * 0.5f) - (float)m_dMouseY);
 		glm::vec2 l_v2PlayerToMouseDirection = glm::normalize(l_MousePosition);
 		float a_fZ = glm::atan(l_v2PlayerToMouseDirection.x, l_v2PlayerToMouseDirection.y);
 		m_pPlayerUpperGameObj->m_Transform.setLocalRotation({ 0.0f, 0.0f, -a_fZ + M_PI_2 });
@@ -104,33 +104,33 @@ namespace ns_HMGame
 		//std::cout << "x: "<<l_v2PlayerToMouseDirection.x << "\ty: " << l_v2PlayerToMouseDirection.y << "\n";
 
 		//// DEBUG START //// 
-		if (ns_fretBuzz::ns_system::Input::IsKeyPutDown(GLFW_KEY_L))
+		if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_L))
 		{
-			ns_fretBuzz::ns_system::SceneManager::LogSceneHierarchy();
+			ns_fretBuzz::SceneManager::LogSceneHierarchy();
 		}
 		//// DEBUG END ////
-		if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
+		if (ns_fretBuzz::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_1))
 		{
 			m_pUpperSpriteAnimator->play("attack");
 			glm::vec3 l_v3PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			m_WeaponData.fire(glm::vec2{l_v3PlayerPosition.x, l_v3PlayerPosition.y} +l_v2PlayerToMouseDirection * 150.0f, l_v2PlayerToMouseDirection, m_pPlayerUpperGameObj->m_Transform.getLocalRotation());
 
-			/*ns_fretBuzz::ns_system::Collider2D* l_pCollider2D = nullptr;
+			/*ns_fretBuzz::Collider2D* l_pCollider2D = nullptr;
 			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			glm::vec2 l_v2MouseWorldPosition = l_v2PlayerPosition + l_MousePosition;
 
-			ns_fretBuzz::ns_system::PhysicsEngine::Raycast(l_pCollider2D, l_v2PlayerPosition, l_v2MouseWorldPosition);
+			ns_fretBuzz::PhysicsEngine::Raycast(l_pCollider2D, l_v2PlayerPosition, l_v2MouseWorldPosition);
 
 			if (l_pCollider2D != nullptr)
 			{
-				InteractiveObject* l_pInteractiveObject = l_pCollider2D->m_GameObject.getComponent<InteractiveObject>(ns_fretBuzz::ns_system::COMPONENT_TYPE::BEHAVIOUR);
+				InteractiveObject* l_pInteractiveObject = l_pCollider2D->m_GameObject.getComponent<InteractiveObject>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
 				if (l_pInteractiveObject != nullptr)
 				{
 					l_pInteractiveObject->onLabelHit();
 				}
 			}*/
 		}
-		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
+		else if (ns_fretBuzz::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_2))
 		{
 			WEAPON_TYPE l_CurrentWeaponType = m_WeaponData.getWeaponType();
 			if (l_CurrentWeaponType != WEAPON_TYPE::WEAPON_UNARMED)
@@ -150,28 +150,28 @@ namespace ns_HMGame
 			}
 			APP_ERROR("Tracing weapon throw");
 		}
-		else if (ns_fretBuzz::ns_system::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
+		else if (ns_fretBuzz::Input::IsMouseBtnPutDown(GLFW_MOUSE_BUTTON_3))
 		{
 			m_pUpperSpriteAnimator->play("snap");
 		}
 	}
 
-	void PlayerControllerHM::onCollisionEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void PlayerControllerHM::onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 		//std::cout << "PlayerController::OnCollisionEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
-	void PlayerControllerHM::onCollisionExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void PlayerControllerHM::onCollisionExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 		//std::cout << "PlayerController::OnCollisionExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
-	void PlayerControllerHM::onTriggerEnter2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void PlayerControllerHM::onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 		//std::cout << "PlayerController::OnTriggerEnter2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}
 
-	void PlayerControllerHM::onTriggerExit2D(ns_fretBuzz::ns_system::Collider2D* a_pIComponent)
+	void PlayerControllerHM::onTriggerExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
 	{
 		//std::cout << "PlayerController::OnTriggerExit2D:: " << a_pIComponent->m_GameObject.getName() << "\n";
 	}

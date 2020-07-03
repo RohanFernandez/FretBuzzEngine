@@ -5,31 +5,28 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
+	Font::Font(std::string a_strName)
+		: m_strName{ a_strName }
 	{
-		Font::Font(std::string a_strName)
-			: m_strName{ a_strName }
-		{
-		}
+	}
 
-		Font::~Font()
-		{
+	Font::~Font()
+	{
 			
-		}
+	}
 
-		void Font::destroyResource()
-		{
+	void Font::destroyResource()
+	{
 			
-		}
+	}
 
-		std::string Font::getName()
-		{
-			return m_strName;
-		}
+	std::string Font::getName()
+	{
+		return m_strName;
+	}
 
-		FT_Face Font::getFTFace()
-		{
-			return m_FontFace;
-		}
+	FT_Face Font::getFTFace()
+	{
+		return m_FontFace;
 	}
 }

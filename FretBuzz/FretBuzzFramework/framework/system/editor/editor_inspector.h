@@ -4,22 +4,19 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_editor
+	class  Inspector
 	{
-		class  Inspector
-		{
-		private:
-			static Inspector* s_pInstance;
+	private:
+		static Inspector* s_pInstance;
 
-			ns_system::GameObject* m_pSelectedGameObject = nullptr;
+		GameObject* m_pSelectedGameObject = nullptr;
 
-			Inspector();
-			~Inspector();
+		Inspector();
+		~Inspector();
 
-		public:
-			static Inspector* initialize();
-			void destroy();
-			void render(ns_system::SceneManager& a_SceneManager);
-		};
-	}
+	public:
+		static Inspector* initialize();
+		void destroy();
+		void render(SceneManager& a_SceneManager);
+	};
 }

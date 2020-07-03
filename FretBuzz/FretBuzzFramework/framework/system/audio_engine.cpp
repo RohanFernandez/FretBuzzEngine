@@ -3,49 +3,46 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	//singleton Instance
+	AudioEngine* AudioEngine::s_pInstance = nullptr;
+
+	AudioEngine* AudioEngine::initialize()
 	{
-		//singleton Instance
-		AudioEngine* AudioEngine::s_pInstance = nullptr;
-
-		AudioEngine* AudioEngine::initialize()
+		if (s_pInstance != nullptr)
 		{
-			if (s_pInstance != nullptr)
-			{
-				std::cout << "AudioEngine::initialize:: Audio Engine already exists.\n";
-				return nullptr;
-			}
-
-			s_pInstance = new AudioEngine();
-			return s_pInstance;
+			std::cout << "AudioEngine::initialize:: Audio Engine already exists.\n";
+			return nullptr;
 		}
 
-		void AudioEngine::destroy()
-		{
-			delete s_pInstance;
-			s_pInstance = nullptr;
-		}
+		s_pInstance = new AudioEngine();
+		return s_pInstance;
+	}
 
-		AudioEngine::AudioEngine()
-		{
-			m_pISoundEngine = irrklang::createIrrKlangDevice();
-		}
+	void AudioEngine::destroy()
+	{
+		delete s_pInstance;
+		s_pInstance = nullptr;
+	}
 
-		AudioEngine::~AudioEngine()
-		{
-			m_pISoundEngine->drop();
-			m_pISoundEngine = nullptr;
-			s_pInstance = nullptr;
-		}
+	AudioEngine::AudioEngine()
+	{
+		m_pISoundEngine = irrklang::createIrrKlangDevice();
+	}
 
-		const AudioEngine* AudioEngine::get()
-		{
-			return s_pInstance;
-		}
+	AudioEngine::~AudioEngine()
+	{
+		m_pISoundEngine->drop();
+		m_pISoundEngine = nullptr;
+		s_pInstance = nullptr;
+	}
 
-		void AudioEngine::ToggleMute(bool a_bIsPaused)
-		{
-			s_pInstance->m_pISoundEngine->setAllSoundsPaused(a_bIsPaused);
-		}
+	const AudioEngine* AudioEngine::get()
+	{
+		return s_pInstance;
+	}
+
+	void AudioEngine::ToggleMute(bool a_bIsPaused)
+	{
+		s_pInstance->m_pISoundEngine->setAllSoundsPaused(a_bIsPaused);
 	}
 }

@@ -5,11 +5,8 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	void GameStartup::run()
 	{
-		void GameStartup::run()
-		{
-			ns_fretBuzz::ns_system::System::run(*this);
-		}
+		System::run(*this);
 	}
 }

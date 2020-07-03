@@ -8,8 +8,6 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_graphics
-	{
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;
 
@@ -64,7 +62,7 @@ namespace ns_fretBuzz
 			m_pShaderManager->destroy();
 		}
 
-		void MasterRenderer::render(ns_system::SceneManager& a_SceneManager, float a_fDeltaTime)
+		void MasterRenderer::render(SceneManager& a_SceneManager, float a_fDeltaTime)
 		{
 			//Render Pass
 			m_pCameraManager->updateViewMatrix();
@@ -102,5 +100,4 @@ namespace ns_fretBuzz
 		void MasterRenderer::close() const
 		{
 		}
-	}
 }

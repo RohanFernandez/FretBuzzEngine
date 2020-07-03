@@ -4,31 +4,28 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	class SystemLayerBase
 	{
-		class SystemLayerBase
+	private:
+		std::string m_strName;
+
+	public:
+		SystemLayerBase()
+			: m_strName{ "Layer" }
 		{
-		private:
-			std::string m_strName;
-
-		public:
-			SystemLayerBase()
-				: m_strName{ "Layer" }
-			{
-			};
-
-			SystemLayerBase(std::string a_strName = "Layer")
-				: m_strName{ a_strName }
-			{
-			};
-			virtual ~SystemLayerBase(){};
-
-			inline const std::string& getName() { return m_strName;}
-			virtual void update(const float& a_fDeltaTime, SceneManager& a_SceneManager) {};
-			virtual void lateUpdate(const float& a_fDeltaTime, SceneManager& a_SceneManager) {};
-			virtual void render(SceneManager& a_SceneManager) {};
-			virtual void onAttach() {};
-			virtual void onDetached() {};
 		};
-	}
+
+		SystemLayerBase(std::string a_strName = "Layer")
+			: m_strName{ a_strName }
+		{
+		};
+		virtual ~SystemLayerBase(){};
+
+		inline const std::string& getName() { return m_strName;}
+		virtual void update(const float& a_fDeltaTime, SceneManager& a_SceneManager) {};
+		virtual void lateUpdate(const float& a_fDeltaTime, SceneManager& a_SceneManager) {};
+		virtual void render(SceneManager& a_SceneManager) {};
+		virtual void onAttach() {};
+		virtual void onDetached() {};
+	};
 }

@@ -4,41 +4,38 @@
 
 namespace ns_fretBuzz
 {
-	namespace ns_system
+	class  SpriteAnimationController : public IComponent
 	{
-		class  SpriteAnimationController : public IComponent
-		{
-		private:
+	private:
 
-			SpriteAnimator* m_pSpriteAnimator = nullptr;
+		SpriteAnimator* m_pSpriteAnimator = nullptr;
 
-			ns_graphics::Sprite* m_pCurrentSprite = nullptr;
-			ns_graphics::SpriteRenderer* m_pSpriteRenderer = nullptr;
-			std::vector<ns_graphics::Sprite>* m_pCurrentSpriteSheet = nullptr;
+		Sprite* m_pCurrentSprite = nullptr;
+		SpriteRenderer* m_pSpriteRenderer = nullptr;
+		std::vector<Sprite>* m_pCurrentSpriteSheet = nullptr;
 
-			AnimationState* m_pAnimState = nullptr;
+		AnimationState* m_pAnimState = nullptr;
 
-			bool m_bIsCurrentAnimationLooped = false;
-			int m_iSpriteCount = 0;
-			float m_fTimePassedInCurrentSprite = 0.0f;
-			float m_fTimePerSprite = 0.0f;
-			int m_iCurrentSpriteIndex = 0;
+		bool m_bIsCurrentAnimationLooped = false;
+		int m_iSpriteCount = 0;
+		float m_fTimePassedInCurrentSprite = 0.0f;
+		float m_fTimePerSprite = 0.0f;
+		int m_iCurrentSpriteIndex = 0;
 
-			std::string m_strCurrentonCompleteTrigger;
+		std::string m_strCurrentonCompleteTrigger;
 
-			std::string m_strDefaultStateID;
+		std::string m_strDefaultStateID;
 
-			void playStateID(std::string a_strAnimationID);
+		void playStateID(std::string a_strAnimationID);
 
-		protected:
-			~SpriteAnimationController();
+	protected:
+		~SpriteAnimationController();
 
-		public:
-			SpriteAnimationController(GameObject* a_GameObj, std::string a_strAnimatorId);
+	public:
+		SpriteAnimationController(GameObject* a_GameObj, std::string a_strAnimatorId);
 
-			void play(std::string a_strAnimationID);
+		void play(std::string a_strAnimationID);
 
-			virtual void update(const float& a_fDeltaTime) override;
-		};
-	}
+		virtual void update(const float& a_fDeltaTime) override;
+	};
 }
