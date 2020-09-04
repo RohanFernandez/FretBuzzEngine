@@ -114,7 +114,7 @@ namespace ns_fretBuzz
 		}
 	}
 
-	void GameObject::lateUpdateChildren(const float& a_fDeltaTime)
+	void GameObject::updateChildren(const float& a_fDeltaTime)
 	{
 		GameObject* l_pCurrentGameObject = nullptr;
 
@@ -134,7 +134,18 @@ namespace ns_fretBuzz
 		lateUpdateChildren(a_fDeltaTime);
 	}
 
-	void GameObject::updateChildren(const float& a_fDeltaTime)
+	void GameObject::lateUpdateComponents(const float& a_fDeltaTime)
+	{
+		for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
+		{
+			if (m_Components[l_iComponentndex]->getIsEnabled())
+			{
+				m_Components[l_iComponentndex]->lateUpdate(a_fDeltaTime);
+			}
+		}
+	}
+
+	void GameObject::lateUpdateChildren(const float& a_fDeltaTime)
 	{
 		GameObject* l_pCurrentGameObject = nullptr;
 
@@ -148,13 +159,33 @@ namespace ns_fretBuzz
 		}
 	}
 
-	void GameObject::lateUpdateComponents(const float& a_fDeltaTime)
+	void GameObject::physicsUpdate(const float& a_fDeltaTime)
+	{
+		physicsUpdateComponents(a_fDeltaTime);
+		physicsUpdateChildren(a_fDeltaTime);
+	}
+
+	void GameObject::physicsUpdateComponents(const float& a_fDeltaTime)
 	{
 		for (int l_iComponentndex = 0; l_iComponentndex < m_Components.size(); l_iComponentndex++)
 		{
 			if (m_Components[l_iComponentndex]->getIsEnabled())
 			{
-				m_Components[l_iComponentndex]->lateUpdate(a_fDeltaTime);
+				m_Components[l_iComponentndex]->physicsUpdate(a_fDeltaTime);
+			}
+		}
+	}
+
+	void GameObject::physicsUpdateChildren(const float& a_fDeltaTime)
+	{
+		GameObject* l_pCurrentGameObject = nullptr;
+
+		for (int l_iChildIndex = 0; l_iChildIndex < m_Children.size(); l_iChildIndex++)
+		{
+			l_pCurrentGameObject = m_Children[l_iChildIndex];
+			if (l_pCurrentGameObject->getIsActiveInHierarchy())
+			{
+				l_pCurrentGameObject->physicsUpdate(a_fDeltaTime);
 			}
 		}
 	}

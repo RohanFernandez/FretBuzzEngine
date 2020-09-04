@@ -53,6 +53,7 @@ namespace ns_fretBuzz
 		l_fixtureDef.filter.groupIndex = m_ColliderData.m_iGroupIndex ;
 		l_fixtureDef.density = m_ColliderData.m_fDensity;
 		l_fixtureDef.friction = m_ColliderData.m_fFriction;
+		l_fixtureDef.restitution = m_ColliderData.m_fRestitution;
 		m_pFixture = m_pBody->CreateFixture(&l_fixtureDef);
 
 		PhysicsEngine::getB2World()->SetContactListener(this);
@@ -63,7 +64,7 @@ namespace ns_fretBuzz
 		b2World* l_pb2World = PhysicsEngine::getB2World();
 	}
 
-	void Collider2D::lateUpdate(const float& a_fDeltaTime)
+	void Collider2D::physicsUpdate(const float& a_fDeltaTime)
 	{
 		if (m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::DYNAMIC)
 		{
@@ -78,7 +79,7 @@ namespace ns_fretBuzz
 				m_GameObject.m_Transform.setLocalRotation({ l_v3tTransformRotation.x , l_v3tTransformRotation.y , m_pBody->GetAngle() });
 			}
 		}
-		else if(m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::KINEMATIC)
+		else if (m_ColliderData.m_PhysicsBodyType == PHYSICS_BODY_TYPE::KINEMATIC)
 		{
 			glm::vec2 l_v2WorldPosition = m_GameObject.m_Transform.getWorldPosition();
 			m_pBody->SetTransform({ l_v2WorldPosition.x, l_v2WorldPosition.y }, glm::eulerAngles(m_GameObject.m_Transform.getLocalRotation()).z);

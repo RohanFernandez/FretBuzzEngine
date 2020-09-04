@@ -11,6 +11,7 @@ namespace ns_fretBuzz
 
 		virtual void update(const float& a_fDeltaTime, SceneManager& a_SceneManager) override;
 		virtual void lateUpdate(const float& a_fDeltaTime, SceneManager& a_SceneManager) override;
+		virtual void physicsUpdate(const float& a_fDeltaTime, SceneManager& a_SceneManager) override;
 		virtual void render(SceneManager& a_SceneManager) override;
 	};
 }

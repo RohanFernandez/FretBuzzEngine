@@ -23,6 +23,11 @@ namespace ns_fretBuzz
 		a_SceneManager.lateUpdateActiveScenes(a_fDeltaTime);
 	}
 
+	void GameSystemLayer::physicsUpdate(const float& a_fDeltaTime, SceneManager& a_SceneManager)
+	{
+		a_SceneManager.physicsUpdateActiveScenes(a_fDeltaTime);
+	}
+
 	void GameSystemLayer::render(SceneManager& a_SceneManager)
 	{
 		//a_SceneManager.renderActiveScenes(a_fDeltaTime);

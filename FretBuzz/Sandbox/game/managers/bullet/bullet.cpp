@@ -22,7 +22,7 @@ namespace ns_HMGame
 	{
 		m_fLifetime = 0.0f;
 		m_v2Direction = a_v2Direction;
-		m_pCollider2D->setLinearVelocity(m_v2Direction * 2400.0f);
+		m_pCollider2D->setLinearVelocity(m_v2Direction * 1000.0f);
 	}
 
 	void Bullet::onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)

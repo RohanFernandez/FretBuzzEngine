@@ -15,6 +15,7 @@ namespace ns_fretBuzz
 	{
 		s_pInstance = this;
 		m_pB2World = new b2World(a_v2Gravity);
+		m_pB2World->SetAutoClearForces(true);
 	}
 
 	PhysicsEngine::~PhysicsEngine()
@@ -50,15 +51,8 @@ namespace ns_fretBuzz
 	// are collected and invoked after the step because Box2D is locked during and no Box2D component should be calculated during.
 	void PhysicsEngine::step(const float& a_fDeltaTime)
 	{
-		m_fTimePassedSinceLastStep += a_fDeltaTime;
-		if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP)
-		{
-			m_fTimePassedSinceLastStep -= System::PHYSICS_TIME_STEP;
-			if (m_fTimePassedSinceLastStep > System::PHYSICS_TIME_STEP) { m_fTimePassedSinceLastStep = 0.0f; }
-
-			m_pB2World->Step(System::PHYSICS_TIME_STEP, m_iVelocityIteration, m_iStepIteration);
-			invokeContactCallbacks();
-		}
+		m_pB2World->Step(a_fDeltaTime, m_iVelocityIteration, m_iStepIteration);
+		invokeContactCallbacks();
 	}
 
 	void PhysicsEngine::invokeContactCallbacks()

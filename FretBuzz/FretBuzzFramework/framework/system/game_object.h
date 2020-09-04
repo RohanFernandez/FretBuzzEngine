@@ -42,6 +42,9 @@ namespace ns_fretBuzz
 		void lateUpdateComponents(const float& a_fDeltaTime);
 		void lateUpdateChildren(const float& a_fDeltaTime);
 
+		void physicsUpdateComponents(const float& a_fDeltaTime);
+		void physicsUpdateChildren(const float& a_fDeltaTime);
+
 		void renderComponents(const glm::mat4& a_mat4Transformation, const Camera& a_Camera);
 		void renderChildren(const Camera& a_Camera);
 
@@ -85,6 +88,8 @@ namespace ns_fretBuzz
 
 		// called after update on all the gameobjects are done
 		virtual void lateUpdate(const float& a_fDeltaTime);
+
+		virtual void physicsUpdate(const float& a_fDeltaTime);
 
 		// Does the component of type a_ComponentType exist in the m_Components list.
 		bool isComponentTypeExist(COMPONENT_TYPE a_ComponentType) const;

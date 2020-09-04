@@ -69,7 +69,7 @@ namespace ns_fretBuzz
 		virtual void onEnable() override;
 		virtual void onDisable() override;
 		//void Update(float a_fDeltaTime); 
-		void lateUpdate(const float& a_fDeltaTime) override;
+		void physicsUpdate(const float& a_fDeltaTime) override;
 
 		void onSiblingComponentAdded(IComponent* a_pComponent);
 		void onSiblingComponentRemoved(IComponent* a_pComponent);

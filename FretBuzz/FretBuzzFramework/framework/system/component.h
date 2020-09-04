@@ -73,6 +73,8 @@ namespace ns_fretBuzz
 		//called after update is called on all gameobjects, called once per frame
 		virtual void lateUpdate(const float& a_fDeltaTime) {}
 
+		virtual void physicsUpdate(const float& a_fDeltaTime){}
+
 		// Called once per frame to render the component if any renderables exist.
 		virtual void render(const glm::mat4& a_mat4Transformation, const Camera& a_Camera) {};
 

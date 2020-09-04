@@ -64,7 +64,6 @@ namespace ns_fretBuzz
 		float m_fScaledTime = 1.0f;
 
 	public:
-		static constexpr float PHYSICS_TIME_STEP = 1.0f / 300.0f;
 		~System();
 
 		//Runs the main loop, initializes system publicly if not previusly initialized

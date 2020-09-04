@@ -24,7 +24,7 @@ namespace ns_fretBuzz
 		AssetLoader::loadAssets(m_pResourceManager);
 
 		m_pInput = Input::initialize(*m_pWindow);
-		m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 8, 3);
+		m_pPhysicsEngine = PhysicsEngine::initialize({0.0f, 0.0f}, 6, 2);
 
 		m_pSceneManager = SceneManager::initialize(a_GameStartupData.m_vectScenes);
 
@@ -144,6 +144,13 @@ namespace ns_fretBuzz
 				(*l_Layer)->lateUpdate(s_pInstance->m_fDeltaTime, l_SceneManager);
 			}
 
+			l_PhysicsEngine.step(s_pInstance->m_fDeltaTime);
+			///late update all layers
+			for (auto l_Layer = l_SystemLayerStack.begin(); l_Layer != l_SystemLayerStack.end(); l_Layer++)
+			{
+				(*l_Layer)->physicsUpdate(s_pInstance->m_fDeltaTime, l_SceneManager);
+			}
+
 			l_MasterRenderer.render(l_SceneManager, s_pInstance->m_fDeltaTime);
 
 			///add render commands 
@@ -152,7 +159,6 @@ namespace ns_fretBuzz
 				(*l_Layer)->render(l_SceneManager);
 			}
 
-			l_PhysicsEngine.step(s_pInstance->m_fDeltaTime);
 			l_Input.Update();
 			l_Window.update();
 		}

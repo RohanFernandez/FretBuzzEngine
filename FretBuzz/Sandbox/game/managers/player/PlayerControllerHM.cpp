@@ -69,8 +69,8 @@ namespace ns_HMGame
 			if (l_fHorizontalVelocity != 0.0f &&
 				l_fVerticalVelocity != 0.0f)
 			{
-				l_fHorizontalVelocity *= 0.7f;
-				l_fVerticalVelocity *= 0.7f;
+				l_fHorizontalVelocity *= 0.75f;
+				l_fVerticalVelocity *= 0.75f;
 
 				l_fRotationZ = (float)(l_fHorizontalVelocity > 0.0f ? M_PI_4 : (M_PI_2 + M_PI_4));
 				if (l_fVerticalVelocity < 0.0f)
@@ -98,7 +98,7 @@ namespace ns_HMGame
 
 		m_pUpperSpriteAnimator->play(l_strPlayerAnimTrigger);
 		m_pLegsSpriteAnimator->play(l_strPlayerAnimTrigger);
-		m_pRectCollider->setLinearVelocity(glm::vec2{ l_fHorizontalVelocity, l_fVerticalVelocity} );
+		m_pRectCollider->setLinearVelocity(glm::vec2{ l_fHorizontalVelocity, l_fVerticalVelocity });
 		m_pCamGameObj->m_Transform.setWorldPosition(m_GameObject.m_Transform.getWorldPosition());
 
 		//std::cout << "x: "<<l_v2PlayerToMouseDirection.x << "\ty: " << l_v2PlayerToMouseDirection.y << "\n";

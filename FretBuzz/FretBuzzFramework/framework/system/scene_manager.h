@@ -52,6 +52,11 @@ namespace ns_fretBuzz
 		{
 			m_refRootGameObject.lateUpdate(a_fDeltaTime);
 		}
+
+		void physicsUpdate(float a_fDeltaTime)
+		{
+			m_refRootGameObject.physicsUpdate(a_fDeltaTime);
+		}
 			
 		void resetDontDestroyParentTo(IScene* a_IScene)
 		{
@@ -97,6 +102,7 @@ namespace ns_fretBuzz
 		virtual void render(const Camera& a_Camera) = 0;
 		virtual void update(float a_fDeltaTime) = 0;
 		virtual void lateUpdate(float a_fDeltaTime) = 0;
+		virtual void physicsUpdate(float a_fDeltaTime) = 0;
 
 		virtual void resetDontDestroyParent(ISceneData& a_NewSceneParent)
 		{}
@@ -207,6 +213,11 @@ namespace ns_fretBuzz
 			m_pScene->lateUpdate(a_fDeltaTime);
 		}
 
+		void physicsUpdate(float a_fDeltaTime)
+		{
+			m_pScene->physicsUpdate(a_fDeltaTime);
+		}
+
 		///Unloads the scene object, destroys and deletes all data initialize in that scene class.
 		virtual void unloadSceneData() override
 		{
@@ -253,6 +264,7 @@ namespace ns_fretBuzz
 
 		void updateActiveScenes(float a_fDeltaTime);
 		void lateUpdateActiveScenes(float a_fDeltaTime);
+		void physicsUpdateActiveScenes(float a_fDeltaTime);
 		void renderActiveScenes(const Camera& a_Camera);
 		void editorHierarchyRender(GameObject*& a_pSelectedGameObject);
 
