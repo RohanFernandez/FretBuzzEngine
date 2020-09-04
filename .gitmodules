@@ -22,3 +22,6 @@
 [submodule "FretBuzz/FretBuzzFramework/vendor/pugixml/pugixml"]
 	path = FretBuzz/FretBuzzFramework/vendor/pugixml/pugixml
 	url = https://github.com/zeux/pugixml
+[submodule "FretBuzz/FretBuzzFramework/vendor/box2d/box2d"]
+	path = FretBuzz/FretBuzzFramework/vendor/box2d/box2d
+	url = https://github.com/RohanFernandez/box2d.git
