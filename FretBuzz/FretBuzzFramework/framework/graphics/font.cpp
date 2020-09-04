@@ -3,7 +3,7 @@
 #include <ft2build.h>
 #include "font.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Font::Font(std::string a_strName)
 		: m_strName{ a_strName }

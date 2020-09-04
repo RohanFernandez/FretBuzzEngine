@@ -2,7 +2,7 @@
 #include "sprite_batch_renderer.h"
 #include "material.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	SpriteBatchRenderer* SpriteBatchRenderer::s_pInstance = nullptr;
 

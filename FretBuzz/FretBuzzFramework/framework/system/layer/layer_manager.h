@@ -2,7 +2,7 @@
 #include <bitset>
 #include "layer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  LayerManager
 	{

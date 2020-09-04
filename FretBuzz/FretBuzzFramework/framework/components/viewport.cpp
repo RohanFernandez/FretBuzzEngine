@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "viewport.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Viewport::Viewport(PROJECTION_TYPE a_ProjectionType, glm::mat4 a_mat4Projection, glm::vec2 a_v2OriginXY01, glm::vec2 a_v2DimensionWH01)
 		: m_mat4Projection{ a_mat4Projection },

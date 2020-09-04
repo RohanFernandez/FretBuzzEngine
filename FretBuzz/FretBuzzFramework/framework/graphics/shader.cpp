@@ -7,7 +7,7 @@
 
 #include "shader_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Shader::Shader(const std::string l_strShaderName, SHADER_TYPE a_ShaderType)
 		: 

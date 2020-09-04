@@ -5,7 +5,7 @@
 #include "system/camera_manager.h"
 #include <imgui/imgui.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Camera::Camera(GameObject* a_GameObj, Viewport::PROJECTION_TYPE a_ProjectionType, Viewport* a_Viewport, const LayerMask& a_LayerMask, glm::vec4 a_vec4ClearColour)
 		: IComponent(COMPONENT_TYPE::CAMERA, a_GameObj),

@@ -2,7 +2,7 @@
 #include "texture.h"
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Mesh
 	{

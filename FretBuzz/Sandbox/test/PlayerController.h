@@ -9,7 +9,7 @@
 
 namespace ns_HMGame
 {
-	class PlayerController : public ns_fretBuzz::Behaviour
+	class PlayerController : public FRETBUZZ::Behaviour
 	{
 	private:
 		double m_MouseX, m_MouseY;
@@ -18,15 +18,15 @@ namespace ns_HMGame
 
 		glm::vec2 m_v2LastMouseXY;
 		glm::vec3 m_v3PitchYawRoll;
-		ns_fretBuzz::Camera* m_pPerspectiveCamera = nullptr;
+		FRETBUZZ::Camera* m_pPerspectiveCamera = nullptr;
 
 	public:
 
-		PlayerController(ns_fretBuzz::GameObject* a_GameObject)
-			: ns_fretBuzz::Behaviour(a_GameObject)
+		PlayerController(FRETBUZZ::GameObject* a_GameObject)
+			: FRETBUZZ::Behaviour(a_GameObject)
 		{
-			ns_fretBuzz::Input::setCursorEnability(true, true);
-			m_pPerspectiveCamera = m_GameObject.getComponent<ns_fretBuzz::Camera>(ns_fretBuzz::COMPONENT_TYPE::CAMERA);
+			FRETBUZZ::Input::setCursorEnability(true, true);
+			m_pPerspectiveCamera = m_GameObject.getComponent<FRETBUZZ::Camera>(FRETBUZZ::COMPONENT_TYPE::CAMERA);
 		}
 
 	protected:
@@ -35,25 +35,25 @@ namespace ns_HMGame
 		{
 			float l_fVelocity = a_fDeltaTime * 3.0f;
 
-			if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_A))
+			if (FRETBUZZ::Input::IsKeyDown(GLFW_KEY_A))
 			{
 				m_GameObject.m_Transform.setLocalPosition(m_GameObject.m_Transform.getLocalPosition() + (m_GameObject.m_Transform.getRight() * l_fVelocity));
 			}
-			else if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_D))
+			else if (FRETBUZZ::Input::IsKeyDown(GLFW_KEY_D))
 			{
 				m_GameObject.m_Transform.setLocalPosition(m_GameObject.m_Transform.getLocalPosition() + (m_GameObject.m_Transform.getRight() * -l_fVelocity));
 			}
 			
-			if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_W))
+			if (FRETBUZZ::Input::IsKeyDown(GLFW_KEY_W))
 			{
 				m_GameObject.m_Transform.setLocalPosition(m_GameObject.m_Transform.getLocalPosition() + (m_GameObject.m_Transform.getForward() * l_fVelocity));
 			}
-			else if (ns_fretBuzz::Input::IsKeyDown(GLFW_KEY_S))
+			else if (FRETBUZZ::Input::IsKeyDown(GLFW_KEY_S))
 			{
 				m_GameObject.m_Transform.setLocalPosition(m_GameObject.m_Transform.getLocalPosition() + (m_GameObject.m_Transform.getForward() * -l_fVelocity));
 			}
 
-			ns_fretBuzz::Input::GetMousePosition(m_MouseX, m_MouseY);
+			FRETBUZZ::Input::GetMousePosition(m_MouseX, m_MouseY);
 			if (m_bIsFirstRun && m_MouseX == 0.0f && m_MouseY == 0.0f)
 			{
 				return;
@@ -86,7 +86,7 @@ namespace ns_HMGame
 
 			m_GameObject.m_Transform.setLocalRotation(glm::quat({m_v3PitchYawRoll.x, m_v3PitchYawRoll.y, m_v3PitchYawRoll.z}));
 
-			int l_iScrollValue = ns_fretBuzz::Input::GetMouseScroll();
+			int l_iScrollValue = FRETBUZZ::Input::GetMouseScroll();
 			if (l_iScrollValue == 1 || l_iScrollValue == -1)
 			{
 				m_pPerspectiveCamera->zoom(5.0f * l_iScrollValue);
@@ -106,7 +106,7 @@ namespace ns_HMGame
 			Behaviour::update(a_fDeltaTime);
 		}
 
-		virtual void render(const glm::mat4& a_mat4Transformation, const ns_fretBuzz::Camera& a_Camera) override
+		virtual void render(const glm::mat4& a_mat4Transformation, const FRETBUZZ::Camera& a_Camera) override
 		{
 			Behaviour::render(a_mat4Transformation,a_Camera);
 		}

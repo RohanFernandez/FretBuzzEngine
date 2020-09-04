@@ -4,7 +4,7 @@
 #include "../shader.h"
 #include "default_post_process.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	DefaultPostProcess* DefaultPostProcess::s_pInstance = nullptr;

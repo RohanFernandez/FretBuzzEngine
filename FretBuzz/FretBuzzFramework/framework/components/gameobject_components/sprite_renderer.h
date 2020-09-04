@@ -4,7 +4,7 @@
 #include "graphics/material.h"
 #include "graphics/renderer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  SpriteRenderer : public IComponent, public IRenderer

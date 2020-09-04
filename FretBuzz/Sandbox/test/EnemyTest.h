@@ -6,12 +6,12 @@
 
 namespace ns_HMGame
 {
-	class EnemyTest : public ns_fretBuzz::GameObject2D
+	class EnemyTest : public FRETBUZZ::GameObject2D
 	{
 	private:
-		ns_fretBuzz::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		FRETBUZZ::SpriteAnimationController* m_pSpriteAnimator = nullptr;
 
-		ns_fretBuzz::RectCollider* m_pRectCollider = nullptr;
+		FRETBUZZ::RectCollider* m_pRectCollider = nullptr;
 
 	public:
 		EnemyTest(GameObject& a_ParentGameObject, std::string a_strName);

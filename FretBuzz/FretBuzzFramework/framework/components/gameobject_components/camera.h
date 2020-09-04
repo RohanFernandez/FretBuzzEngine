@@ -3,7 +3,7 @@
 #include "components/viewport.h"
 #include "system/layer/layer_mask.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  Camera : public IComponent

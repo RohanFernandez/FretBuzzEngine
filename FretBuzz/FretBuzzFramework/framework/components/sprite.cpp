@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "sprite.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	SpriteGroup::SpriteGroup(Texture* a_pTexture, std::vector<Sprite> a_vectSpriteData)
 		: m_vectSpriteData{a_vectSpriteData},

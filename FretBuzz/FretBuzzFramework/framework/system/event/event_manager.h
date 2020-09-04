@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include "delegate.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class EventManager
 	{

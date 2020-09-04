@@ -2,7 +2,7 @@
 #include <pugixml.hpp>
 #include "resource_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  AssetLoader
 	{

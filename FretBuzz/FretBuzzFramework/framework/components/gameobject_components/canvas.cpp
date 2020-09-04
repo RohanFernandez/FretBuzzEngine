@@ -2,7 +2,7 @@
 #include "canvas.h"
 #include <system/camera_manager.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Canvas::Canvas(GameObject2D* a_GameObject2D, CanvasData& a_CanvasData, bool a_bIsEnabled)
 		: IComponent2D(COMPONENT_TYPE::CANVAS, a_GameObject2D, a_bIsEnabled)

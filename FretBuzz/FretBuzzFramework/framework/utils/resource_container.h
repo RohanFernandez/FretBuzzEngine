@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	template<typename T_CONTAINER_TYPE>
 	class  ResourceContainer{};

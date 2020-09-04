@@ -1,7 +1,7 @@
 #pragma once
 #include "renderer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  IBatchRenderer : public IRenderer
 	{

@@ -3,7 +3,7 @@
 #include "system/game_object.h"
 #include "graphics/light_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Light::Light(GameObject* a_GameObj, LIGHT_TYPE a_LightType)
 		: IComponent(COMPONENT_TYPE::LIGHT , a_GameObj ),

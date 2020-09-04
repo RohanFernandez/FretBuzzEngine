@@ -2,7 +2,7 @@
 #include "data_texture.h"
 #include "material.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  PostProcessManager
 	{

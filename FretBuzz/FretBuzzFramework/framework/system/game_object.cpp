@@ -6,7 +6,7 @@
 #include "layer/layer_mask.h"
 #include <system/editor/editor_inspector.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//static counter that specifies the id.
 	int GameObject::s_iID = 0;

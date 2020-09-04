@@ -2,7 +2,7 @@
 #include "collider_2d.h"
 #include <bitset>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Collider2D::Collider2D(GameObject2D* a_GameObject2D, ColliderData& a_ColliderData)
 		: IComponent2D(COMPONENT_TYPE::COLLIDER_2D, a_GameObject2D),

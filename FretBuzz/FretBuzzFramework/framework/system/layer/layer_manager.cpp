@@ -2,7 +2,7 @@
 #include "layer_manager.h"
 #include <iomanip>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	LayerManager* LayerManager::s_pInstance = nullptr;
 

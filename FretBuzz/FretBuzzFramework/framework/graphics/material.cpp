@@ -4,7 +4,7 @@
 #include "components/gameobject_components/camera.h"
 #include "system/game_object.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Material::Material()
 	{

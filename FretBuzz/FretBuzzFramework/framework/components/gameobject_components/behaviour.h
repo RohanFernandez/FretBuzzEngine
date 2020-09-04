@@ -3,7 +3,7 @@
 #include "system/component_2d.h"
 #include <cstdarg>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  Behaviour : public IComponent

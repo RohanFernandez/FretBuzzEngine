@@ -2,7 +2,7 @@
 #include "system_layer_base.h"
 #include <editor/editor_inspector.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class EditorSystemLayer : public SystemLayerBase
 	{

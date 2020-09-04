@@ -2,7 +2,7 @@
 #include "object_pool.h"
 #include <system/game_object.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	template<typename T, typename = typename std::enable_if<std::is_base_of<GameObject, T>::value>::type>
 	class  GameObjectPool: protected ObjectPool<T>

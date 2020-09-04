@@ -3,7 +3,7 @@
 #include "game_startup.h"
 #include <system.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	void GameStartup::run()
 	{

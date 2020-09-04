@@ -3,7 +3,7 @@
 #include "system/component.h"
 #include "../audio_clip.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  AudioSource : public IComponent

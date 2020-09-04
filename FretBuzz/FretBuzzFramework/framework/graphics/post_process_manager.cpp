@@ -5,7 +5,7 @@
 #include <window.h>
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	PostProcessManager* PostProcessManager:: s_pInstance = nullptr;

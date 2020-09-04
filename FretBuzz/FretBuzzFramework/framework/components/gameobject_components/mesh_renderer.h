@@ -5,7 +5,7 @@
 #include "graphics/renderer.h"
 #include "graphics/mesh.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  MeshRenderer : public IComponent, public IRenderer

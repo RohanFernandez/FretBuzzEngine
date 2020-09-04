@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  IFSM
 	{

@@ -1,7 +1,7 @@
 #pragma once
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Transform
 	{

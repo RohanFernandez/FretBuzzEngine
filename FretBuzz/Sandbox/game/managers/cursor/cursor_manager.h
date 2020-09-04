@@ -4,17 +4,17 @@
 
 namespace ns_HMGame
 {
-	class CursorManager : public ns_fretBuzz::Behaviour
+	class CursorManager : public FRETBUZZ::Behaviour
 	{
 	private:
 		double m_dMouseX = 0.0;
 		double m_dMouseY = 0.0;
 
-		ns_fretBuzz::SpriteAnimationController* m_pSpriteAnimator = nullptr;
-		ns_fretBuzz::Camera* m_pCamComponent = nullptr;
+		FRETBUZZ::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		FRETBUZZ::Camera* m_pCamComponent = nullptr;
 
 	public:
-		CursorManager(ns_fretBuzz::GameObject* a_GameObject, ns_fretBuzz::Camera* a_pCamComponent);
+		CursorManager(FRETBUZZ::GameObject* a_GameObject, FRETBUZZ::Camera* a_pCamComponent);
 		virtual void update(const float& a_fDeltaTime) override;
 	};
 }

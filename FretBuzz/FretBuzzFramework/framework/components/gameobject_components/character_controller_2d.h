@@ -1,7 +1,7 @@
 #pragma once
 #include "system/component.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  CharacterController2D : public IComponent

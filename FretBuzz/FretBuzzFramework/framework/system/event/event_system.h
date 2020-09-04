@@ -1,7 +1,7 @@
 //#pragma once
 //#include <utils/Event/event_manager.h>
 //
-//namespace ns_fretBuzz
+//namespace FRETBUZZ
 //{
 //	class EventSystem
 //	{

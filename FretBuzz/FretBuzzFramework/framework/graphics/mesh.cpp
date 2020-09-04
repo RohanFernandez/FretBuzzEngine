@@ -2,7 +2,7 @@
 #include "mesh.h"
 #include <GL/glew.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Mesh::Mesh(std::vector<Vertex> a_vectVertices, std::vector<unsigned int> a_vectIndices,
 		std::vector<MeshTexture> a_vectTextures)

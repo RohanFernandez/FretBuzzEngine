@@ -5,7 +5,7 @@
 #include "action.h"
 #include <vector>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class IDelegate
 	{

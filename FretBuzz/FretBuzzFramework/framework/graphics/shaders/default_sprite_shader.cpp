@@ -4,7 +4,7 @@
 #include "../shader.h"
 #include "default_sprite_shader.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	DefaultSpriteShader* DefaultSpriteShader::s_pInstance = nullptr;

@@ -2,7 +2,7 @@
 #include "components/gameobject_components/light.h"
 #include "light_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	LightManager* LightManager::s_pInstance = nullptr;

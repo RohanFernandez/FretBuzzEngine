@@ -2,7 +2,7 @@
 #include "shader.h"
 #include "texture.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Camera;
 	class  Material

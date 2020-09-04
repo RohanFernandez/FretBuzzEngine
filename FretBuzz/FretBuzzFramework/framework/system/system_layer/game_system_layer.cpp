@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "game_system_layer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	GameSystemLayer::GameSystemLayer()
 		: SystemLayerBase("GAME")

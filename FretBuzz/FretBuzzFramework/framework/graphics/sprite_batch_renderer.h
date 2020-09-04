@@ -2,7 +2,7 @@
 #include "batch_renderer_manager.h"
 #include "components/sprite.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class SpriteBatchRenderer : public IBatchRenderer
 	{

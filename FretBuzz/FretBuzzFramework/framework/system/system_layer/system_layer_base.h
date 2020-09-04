@@ -2,7 +2,7 @@
 #include <fretbuzz.h>
 #include "scene_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class SystemLayerBase
 	{

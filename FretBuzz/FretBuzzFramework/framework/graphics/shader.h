@@ -3,7 +3,7 @@
 #include <managed_resource.h>
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Camera;
 	class Material;

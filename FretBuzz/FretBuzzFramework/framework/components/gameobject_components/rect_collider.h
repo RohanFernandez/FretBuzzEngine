@@ -2,7 +2,7 @@
 #include <components/collider_2d.h>
 #include <graphics/line_batch_renderer.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject2D;
 	class  RectCollider : public Collider2D

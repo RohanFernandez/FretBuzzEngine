@@ -1,7 +1,7 @@
 #pragma once
 #include <Box2D/Box2D.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Collider2D;
 	class RaycastCallback : public b2RayCastCallback

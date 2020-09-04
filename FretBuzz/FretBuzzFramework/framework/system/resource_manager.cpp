@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "resource_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	///singletor instance
 	ResourceManager* ResourceManager::s_pInstance = nullptr;

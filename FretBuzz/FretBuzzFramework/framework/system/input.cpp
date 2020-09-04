@@ -2,7 +2,7 @@
 #include <window.h>
 #include "input.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Input* Input::s_pInput = nullptr;
 

@@ -2,7 +2,7 @@
 #include "layer_manager.h"
 #include "layer_mask.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	LayerMask::LayerMask(const LayerMask& a_LayerMask)
 	{

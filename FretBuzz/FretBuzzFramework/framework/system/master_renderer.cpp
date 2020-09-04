@@ -6,7 +6,7 @@
 #include <scene_manager.h>
 #include "system.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 		//singleton instance
 		MasterRenderer* MasterRenderer::s_pInstance = nullptr;

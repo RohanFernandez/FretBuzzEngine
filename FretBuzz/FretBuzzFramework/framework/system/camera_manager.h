@@ -3,7 +3,7 @@
 #include "system/scene_manager.h"
 #include "utils/resource_container.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class PostProcessManager;
 	class  CameraManager : ResourceContainer<std::vector<Camera*>>

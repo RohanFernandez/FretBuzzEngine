@@ -2,7 +2,7 @@
 #include "utils/resource_container.h"
 #include "shader.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  ShaderManager : public ResourceContainer<std::map<Shader::SHADER_TYPE, Shader*>>
 	{

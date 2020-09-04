@@ -2,7 +2,7 @@
 #include <resource_manager.h>
 #include "../components/sprite.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  AnimationState
 	{

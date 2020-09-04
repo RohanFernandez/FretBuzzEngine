@@ -12,7 +12,7 @@
 #else
 #endif
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	///System Consts
 	constexpr char* FRETBUZZ_ON_WINDOW_RESIZE = "FRETBUZZ_ON_WINDOW_RESIZE";

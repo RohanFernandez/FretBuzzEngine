@@ -2,7 +2,7 @@
 #include "audio_clip.h"
 #include <resource_manager.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	AudioClip::AudioClip(std::string a_strAudioFilePath)
 		: IManagedResource()

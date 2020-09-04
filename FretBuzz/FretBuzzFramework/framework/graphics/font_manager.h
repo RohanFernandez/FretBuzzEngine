@@ -3,7 +3,7 @@
 #include FT_FREETYPE_H
 #include "font.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  FontManager
 	{

@@ -3,7 +3,7 @@
 #include "system/game_object.h"
 #include "graphics/shader_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	MeshRenderer::MeshRenderer(GameObject* a_GameObject, Mesh& a_Mesh)
 		: IComponent(COMPONENT_TYPE::MESH_RENDERER, a_GameObject),

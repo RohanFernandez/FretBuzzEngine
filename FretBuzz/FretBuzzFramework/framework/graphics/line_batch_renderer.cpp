@@ -2,7 +2,7 @@
 #include "line_batch_renderer.h"
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	LineBatchRenderer* LineBatchRenderer::s_pInstance = nullptr;
 

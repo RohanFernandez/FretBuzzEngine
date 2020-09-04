@@ -1,7 +1,7 @@
 #pragma once
 #include "material.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  IRenderer
 	{

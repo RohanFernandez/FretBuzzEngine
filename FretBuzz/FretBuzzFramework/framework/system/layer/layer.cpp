@@ -2,7 +2,7 @@
 #include "layer.h"
 #include "layer_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Layer::Layer()
 		: Layer(LayerManager::LAYER_NAME_DEFAULT, LayerManager::LAYER_DEFAULT_ID)

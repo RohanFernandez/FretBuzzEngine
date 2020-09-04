@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "font_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton
 	FontManager* FontManager::s_pInstance = nullptr;

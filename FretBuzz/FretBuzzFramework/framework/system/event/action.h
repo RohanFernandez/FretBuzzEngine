@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	template<typename T1> class Action;
 

@@ -4,7 +4,7 @@
 #include "../shader.h"
 #include "default_line_shader.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	DefaultLineShader* DefaultLineShader::s_pInstance = nullptr;

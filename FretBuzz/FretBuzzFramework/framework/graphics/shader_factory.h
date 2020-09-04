@@ -5,7 +5,7 @@
 #include "shaders/default_line_shader.h"
 #include "shaders/default_post_process.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	struct  ShaderFactory
 	{

@@ -2,7 +2,7 @@
 #include <managed_resource.h>
 #include <audio_engine.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  AudioClip : public IManagedResource
 	{

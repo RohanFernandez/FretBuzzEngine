@@ -3,7 +3,7 @@
 #include "system/game_object.h"
 #include "viewport.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Sprite
 	{

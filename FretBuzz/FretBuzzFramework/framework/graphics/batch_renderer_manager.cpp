@@ -4,7 +4,7 @@
 #include "sprite_batch_renderer.h"
 #include "line_batch_renderer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	BatchRendererManager* BatchRendererManager:: s_pInstance = nullptr;

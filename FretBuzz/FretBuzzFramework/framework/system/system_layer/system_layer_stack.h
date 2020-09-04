@@ -2,7 +2,7 @@
 #include "system_layer_base.h"
 #include <utils/resource_container.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class SystemLayerStack : ResourceContainer<SystemLayerBase*>
 	{

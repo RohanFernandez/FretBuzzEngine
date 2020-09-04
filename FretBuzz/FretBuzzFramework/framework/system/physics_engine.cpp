@@ -4,7 +4,7 @@
 #include "physics_engine.h"
 #include "system.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	PhysicsEngine* PhysicsEngine::s_pInstance = nullptr;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "texture.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  DataTexture : public Texture
 	{

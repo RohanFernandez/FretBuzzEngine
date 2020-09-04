@@ -8,7 +8,7 @@
 #include "graphics/post_process_manager.h"
 #include "system/editor/editor_inspector.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class SceneManager;
 

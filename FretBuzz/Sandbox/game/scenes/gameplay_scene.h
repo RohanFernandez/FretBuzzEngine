@@ -3,7 +3,7 @@
 
 namespace ns_HMGame
 {
-	class GameplayScene : public ns_fretBuzz::IScene
+	class GameplayScene : public FRETBUZZ::IScene
 	{
 	public:
 		GameplayScene(std::string a_strSceneName);

@@ -1,7 +1,7 @@
 #pragma once
 #include <irrKlang.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  AudioEngine
 	{

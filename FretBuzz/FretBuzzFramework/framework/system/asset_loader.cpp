@@ -9,7 +9,7 @@
 #include <filesystem>
 #include "framework/graphics/font_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 		void AssetLoader::loadAssets(ResourceManager* a_pResourceManager)
 		{

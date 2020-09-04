@@ -1,7 +1,7 @@
 #pragma once
 #include "managed_resource.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  ResourceManager
 	{

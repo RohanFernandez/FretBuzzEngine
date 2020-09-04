@@ -3,7 +3,7 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	Log* Log::s_pInstance = nullptr;

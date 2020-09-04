@@ -2,7 +2,7 @@
 #include "transform.h"
 #include "graphics/rect.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  RectTransform : public Transform
 	{

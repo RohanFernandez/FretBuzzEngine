@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "transform.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Transform::Transform(glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, Transform* a_pParentTransform)
 		: m_pParentTransform{ a_pParentTransform }

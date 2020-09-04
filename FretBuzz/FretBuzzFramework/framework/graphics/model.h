@@ -7,7 +7,7 @@
 #include "mesh.h"
 #include "system/game_object.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	struct  Node
 	{

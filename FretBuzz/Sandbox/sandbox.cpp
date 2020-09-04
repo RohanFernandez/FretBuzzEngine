@@ -3,7 +3,7 @@
 #include "game/scenes/gameplay_scene.h"
 #include "test/scenes/threed_test_setup.h"
 
-void SetStartupData(ns_fretBuzz::GameStartup& a_GameStartupData)
+void SetStartupData(FRETBUZZ::GameStartup& a_GameStartupData)
 {
 	a_GameStartupData.m_strWindowName = "FretBuzz";
 	a_GameStartupData.m_uiScreenWidth = 1200;
@@ -12,8 +12,8 @@ void SetStartupData(ns_fretBuzz::GameStartup& a_GameStartupData)
 
 	a_GameStartupData.m_vectScenes =
 	{
-		//new ns_fretBuzz::SceneData<ns_HMGame::threed_test_scene>("3d_Test"),
-		new ns_fretBuzz::SceneData<ns_HMGame::GameplayScene>("GamePlay")
+		//new FRETBUZZ::SceneData<ns_HMGame::threed_test_scene>("3d_Test"),
+		new FRETBUZZ::SceneData<ns_HMGame::GameplayScene>("GamePlay")
 		/*new SceneData<MainMenuState>("mainmenustate"),
 		new SceneData<ScoreState>("scorestate")*/
 	};

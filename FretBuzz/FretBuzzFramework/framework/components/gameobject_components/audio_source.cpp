@@ -4,7 +4,7 @@
 #include "system/game_object.h"
 #include <imgui/imgui.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	AudioSource::AudioSource(GameObject* a_GameObj, bool a_bIsPlayOnAwake)
 		: IComponent(COMPONENT_TYPE::AUDIO_SOURCE, a_GameObj)

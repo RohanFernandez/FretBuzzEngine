@@ -9,7 +9,7 @@
 
 namespace ns_HMGame
 {
-	class light_cube : public ns_fretBuzz::GameObject
+	class light_cube : public FRETBUZZ::GameObject
 	{
 	public:
 
@@ -21,11 +21,11 @@ namespace ns_HMGame
 
 		glm::vec4 m_v4LightColor = {1.0f, 1.0f, 1.0f, 1.0f};
 
-		ns_fretBuzz::Light* m_pLight = nullptr;
+		FRETBUZZ::Light* m_pLight = nullptr;
 
 		glm::vec3 m_v3LightPosition;
 
-		ns_fretBuzz::Material m_Material;
+		FRETBUZZ::Material m_Material;
 
 		float m_vertices[108] = {
 	-0.5f, -0.5f, -0.5f,  // Bottom-left
@@ -71,14 +71,14 @@ namespace ns_HMGame
 	-0.5f,  0.5f,  0.5f  // bottom-left    
 		};
 
-		light_cube(ns_fretBuzz::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, ns_fretBuzz::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 2.0f)
+		light_cube(FRETBUZZ::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, FRETBUZZ::Light::LIGHT_TYPE a_LightType, float a_fIntensity = 2.0f)
 			: GameObject(a_ParentGameObject, a_strName, a_v3Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
-			m_Material.setShader(*ns_fretBuzz::ShaderManager::getShaderOfType(ns_fretBuzz::Shader::DEFAULT_3D));
+			m_Material.setShader(*FRETBUZZ::ShaderManager::getShaderOfType(FRETBUZZ::Shader::DEFAULT_3D));
 			//m_pTexture = ResourceManager::getResource<Texture>("container");
 
-			m_pLight = ns_fretBuzz::Light::addToGameObject(*this, a_LightType);
-			ns_fretBuzz::Light::LightSource& l_LightSource = m_pLight->m_LightSource;
+			m_pLight = FRETBUZZ::Light::addToGameObject(*this, a_LightType);
+			FRETBUZZ::Light::LightSource& l_LightSource = m_pLight->m_LightSource;
 
 			l_LightSource.m_v4LightPosition = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 			l_LightSource.m_v3LightDirection = m_Transform.getForward();
@@ -109,7 +109,7 @@ namespace ns_HMGame
 
 		virtual void update(const float& a_fDeltaTime) override
 		{
-			if (m_pLight->getType() == ns_fretBuzz::Light::LIGHT_TYPE::POINT)
+			if (m_pLight->getType() == FRETBUZZ::Light::LIGHT_TYPE::POINT)
 			{
 				rot = rot + (float)M_PI * a_fDeltaTime * 0.5f;
 				m_Transform.setLocalRotation({ rot, rot , rot });
@@ -120,11 +120,11 @@ namespace ns_HMGame
 				m_Transform.setWorldPosition(l_newPosition);
 			}
 
-			if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_0))
+			if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_0))
 			{
 				m_pLight->m_LightSource.m_fIntensity -= 0.1f;
 			}
-			else if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_1))
+			else if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_1))
 			{
 				m_pLight->m_LightSource.m_fIntensity += 0.1f;
 			}
@@ -142,9 +142,9 @@ namespace ns_HMGame
 			return m_Transform.getWorldPosition();
 		}
 
-		virtual void render(const ns_fretBuzz::Camera& a_Camera) override
+		virtual void render(const FRETBUZZ::Camera& a_Camera) override
 		{
-		if (m_pLight->getType() != ns_fretBuzz::Light::LIGHT_TYPE::SPOT)
+		if (m_pLight->getType() != FRETBUZZ::Light::LIGHT_TYPE::SPOT)
 			{
 				m_Material.m_MaterialData.m_v4Albedo = m_v4LightColor;
 				m_Material.bind(a_Camera);

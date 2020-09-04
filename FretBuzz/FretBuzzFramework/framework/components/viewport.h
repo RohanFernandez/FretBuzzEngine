@@ -3,7 +3,7 @@
 #include "transform.h"
 #include <imgui/imgui.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Viewport
 	{

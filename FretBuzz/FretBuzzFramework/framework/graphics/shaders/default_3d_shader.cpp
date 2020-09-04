@@ -4,7 +4,7 @@
 #include "../shader.h"
 #include "default_3d_shader.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	Default3DShader* Default3DShader::s_pInstance = nullptr;

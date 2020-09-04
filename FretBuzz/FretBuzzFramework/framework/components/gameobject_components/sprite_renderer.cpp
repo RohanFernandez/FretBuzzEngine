@@ -6,7 +6,7 @@
 #include "graphics/sprite_batch_renderer.h"
 #include "graphics/shader_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	SpriteRenderer::SpriteRenderer(GameObject* a_GameObj, Sprite* a_Sprite)
 		: IComponent(COMPONENT_TYPE::SPRITE_RENDERER, a_GameObj),

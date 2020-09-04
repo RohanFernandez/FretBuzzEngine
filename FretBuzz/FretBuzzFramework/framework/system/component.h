@@ -1,7 +1,7 @@
 #pragma once
 #include "components/viewport.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Camera;
 

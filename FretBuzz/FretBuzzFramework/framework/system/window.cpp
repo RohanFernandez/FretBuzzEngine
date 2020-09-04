@@ -3,7 +3,7 @@
 #include "components/viewport.h"
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	Window* Window::s_pInstance = nullptr;

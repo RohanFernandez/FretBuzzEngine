@@ -12,14 +12,14 @@
 
 namespace ns_HMGame
 {
-	class CharacterTest : public ns_fretBuzz::GameObject2D
+	class CharacterTest : public FRETBUZZ::GameObject2D
 	{
 	private:
-		ns_fretBuzz::AudioSource* m_pAudSrc = nullptr;
-		ns_fretBuzz::SpriteAnimationController* m_pSpriteAnimator = nullptr;
-		ns_fretBuzz::RectCollider* m_pRectCollider = nullptr;
+		FRETBUZZ::AudioSource* m_pAudSrc = nullptr;
+		FRETBUZZ::SpriteAnimationController* m_pSpriteAnimator = nullptr;
+		FRETBUZZ::RectCollider* m_pRectCollider = nullptr;
 
-		ns_fretBuzz::GameObject* m_pcamGameObj = nullptr;
+		FRETBUZZ::GameObject* m_pcamGameObj = nullptr;
 
 		bool isAudioPlaying = false;
 
@@ -37,12 +37,12 @@ namespace ns_HMGame
 
 	public:
 
-		ns_fretBuzz::GameObject* m_pTestGameObject1 = nullptr;
-		ns_fretBuzz::GameObject* m_pTestGameObject2 = nullptr;
+		FRETBUZZ::GameObject* m_pTestGameObject1 = nullptr;
+		FRETBUZZ::GameObject* m_pTestGameObject2 = nullptr;
 
-		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, ns_fretBuzz::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject);
+		CharacterTest(GameObject& a_ParentGameObject, std::string a_strName, FRETBUZZ::GameObject* a_CamGameObject, GameObject& a_refOriginGameObject);
 
 		virtual void update(const float& a_fDeltaTime) override;
-		virtual void render(const ns_fretBuzz::Camera& a_Camera) override;
+		virtual void render(const FRETBUZZ::Camera& a_Camera) override;
 	};
 }

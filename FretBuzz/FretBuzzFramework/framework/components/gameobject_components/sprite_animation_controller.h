@@ -2,7 +2,7 @@
 #include "../sprite_animator.h"
 #include "sprite_renderer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  SpriteAnimationController : public IComponent
 	{

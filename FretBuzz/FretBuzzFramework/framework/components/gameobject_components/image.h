@@ -3,7 +3,7 @@
 #include "../sprite.h"
 #include "graphics/material.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject2D;
 	class  Image : public IComponent2D

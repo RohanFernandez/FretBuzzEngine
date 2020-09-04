@@ -3,7 +3,7 @@
 #include "game_object.h"
 #include "components/gameobject_components/camera.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//Each scene state should be inherited from IScene
 	class  IScene : public IFSM

@@ -22,47 +22,47 @@
 namespace ns_HMGame
 {
 	GameplayScene::GameplayScene(std::string a_strSceneName):
-		ns_fretBuzz::IScene(a_strSceneName)
+		FRETBUZZ::IScene(a_strSceneName)
 	{
 		PrefabGameManager* l_pGameManager = new PrefabGameManager(m_refRootGameObject, "GameManager");
 
-		ns_fretBuzz::GameObject* m_pCam = ns_fretBuzz::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f });
-		ns_fretBuzz::OrthographicViewport l_CamViewport(-1.0f, 1.0f);
-		ns_fretBuzz::Camera* l_pCamComponent = m_pCam->addComponent<ns_fretBuzz::Camera>(ns_fretBuzz::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, ns_fretBuzz::LayerMask(ns_fretBuzz::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 70.0/255.0f, 114.0f/255.0f, 136.0f/255.0f,1.0f});
+		FRETBUZZ::GameObject* m_pCam = FRETBUZZ::GameObject::instantiate(m_refRootGameObject, "Main_Cam", { 0.0f, 0.0f , 0.0f }, { 0.0f, M_PI , 0.0f }, { 1.0f, 1.0f, 1.0f });
+		FRETBUZZ::OrthographicViewport l_CamViewport(-1.0f, 1.0f);
+		FRETBUZZ::Camera* l_pCamComponent = m_pCam->addComponent<FRETBUZZ::Camera>(FRETBUZZ::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport, FRETBUZZ::LayerMask(FRETBUZZ::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 70.0/255.0f, 114.0f/255.0f, 136.0f/255.0f,1.0f});
 		
-		/*ns_fretBuzz::GameObject2D* m_pGameObjectUI = ns_fretBuzz::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f }, ns_fretBuzz::Layer());
-		ns_fretBuzz::ns_UI::CanvasData l_uiPlayerCanvasData;
-		l_uiPlayerCanvasData.m_CanvasSpaceType = ns_fretBuzz::ns_UI::CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY;
+		/*FRETBUZZ::GameObject2D* m_pGameObjectUI = FRETBUZZ::GameObject2D::instantiate(m_refRootGameObject, "Canvas", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f },{ 200.0f, 100.0f }, FRETBUZZ::Layer());
+		FRETBUZZ::ns_UI::CanvasData l_uiPlayerCanvasData;
+		l_uiPlayerCanvasData.m_CanvasSpaceType = FRETBUZZ::ns_UI::CANVAS_SPACE_TYPE::SCREEN_SPACE_OVERLAY;
 		l_uiPlayerCanvasData.m_pCamera = l_pCamComponent;
-		ns_fretBuzz::ns_UI::Canvas* m_pCanvas = ns_fretBuzz::ns_UI::Canvas::addToGameObject(*m_pGameObjectUI, l_uiPlayerCanvasData);
-		ns_fretBuzz::GameObject2D* m_pImgWeapon = ns_fretBuzz::GameObject2D::instantiate(*m_pGameObjectUI, "img", { -300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f }, ns_fretBuzz::Layer());
-		ns_fretBuzz::Image* m_pImage = ns_fretBuzz::Image::addToGameObject(*m_pImgWeapon, ns_fretBuzz::ResourceManager::getResource<ns_fretBuzz::SpriteGroup>("weapon_pickup|weapon_golf_club")->getSprite(0), { 0.0f, 0.0f, 0.0f, 1.0f });
-		ns_fretBuzz::TextRenderer* m_pTxtRnd = ns_fretBuzz::TextRenderer::addToGameObject(*m_pImgWeapon, "asd", "Cousine-Regular");*/
+		FRETBUZZ::ns_UI::Canvas* m_pCanvas = FRETBUZZ::ns_UI::Canvas::addToGameObject(*m_pGameObjectUI, l_uiPlayerCanvasData);
+		FRETBUZZ::GameObject2D* m_pImgWeapon = FRETBUZZ::GameObject2D::instantiate(*m_pGameObjectUI, "img", { -300.0f, -250.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 200.0f, 100.0f }, FRETBUZZ::Layer());
+		FRETBUZZ::Image* m_pImage = FRETBUZZ::Image::addToGameObject(*m_pImgWeapon, FRETBUZZ::ResourceManager::getResource<FRETBUZZ::SpriteGroup>("weapon_pickup|weapon_golf_club")->getSprite(0), { 0.0f, 0.0f, 0.0f, 1.0f });
+		FRETBUZZ::TextRenderer* m_pTxtRnd = FRETBUZZ::TextRenderer::addToGameObject(*m_pImgWeapon, "asd", "Cousine-Regular");*/
 
 
-		ns_fretBuzz::GameObject* m_pCam2 = ns_fretBuzz::GameObject::instantiate(*m_pCam, "Camera2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
-		ns_fretBuzz::OrthographicViewport l_CamViewport2(-0.5, 0.5, -0.5, 0.5, -1.0f, 1.0f, {0.7f, 0.7f}, {0.3f, 0.3 });
-		ns_fretBuzz::Camera* l_pCamComponent2 = m_pCam2->addComponent<ns_fretBuzz::Camera>(ns_fretBuzz::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport2, ns_fretBuzz::LayerMask(ns_fretBuzz::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 225.0f / 255.0f, 95.0f / 255.0f, 60.0f/255.0f,1.0f });
+		FRETBUZZ::GameObject* m_pCam2 = FRETBUZZ::GameObject::instantiate(*m_pCam, "Camera2", { 0.0f, 0.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f });
+		FRETBUZZ::OrthographicViewport l_CamViewport2(-0.5, 0.5, -0.5, 0.5, -1.0f, 1.0f, {0.7f, 0.7f}, {0.3f, 0.3 });
+		FRETBUZZ::Camera* l_pCamComponent2 = m_pCam2->addComponent<FRETBUZZ::Camera>(FRETBUZZ::Viewport::PROJECTION_TYPE::ORTHOGRAPHIC, &l_CamViewport2, FRETBUZZ::LayerMask(FRETBUZZ::LayerMask::PREDEFINED_MASK::EVERYTHING), glm::vec4{ 225.0f / 255.0f, 95.0f / 255.0f, 60.0f/255.0f,1.0f });
 
 
-		ns_fretBuzz::Input::setCursorEnability(true, false);
-		ns_fretBuzz::GameObject2D* l_pCursor = ns_fretBuzz::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f });
-		l_pCursor->addComponent<ns_fretBuzz::SpriteAnimationController>("Cursor");
+		FRETBUZZ::Input::setCursorEnability(true, false);
+		FRETBUZZ::GameObject2D* l_pCursor = FRETBUZZ::GameObject2D::instantiate(m_refRootGameObject, "Cursor", { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 50.0f, 50.0f });
+		l_pCursor->addComponent<FRETBUZZ::SpriteAnimationController>("Cursor");
 		l_pCursor->addComponent<CursorManager>(l_pCamComponent);
 
-		ns_fretBuzz::GameObject2D* l_pLabelGameObj1 = new PrefabWall(m_refRootGameObject, "WALL1", {   0.0f,   30.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 400.0f, 100.0f });
-		ns_fretBuzz::GameObject2D* l_pLabelGameObj2 = new PrefabWall(m_refRootGameObject, "WALL2", { 150.0f, -130.0f, 0.0f }, { 0.0f, 0.0f , 0.0f}, { 1.0f, 1.0f, 1.0f }, { 100.0f, 300.0f });
-		ns_fretBuzz::GameObject2D* l_pLabelGameObj3 = new PrefabWall(m_refRootGameObject, "WALL3", {-200.0f, -330.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 800.0f, 100.0f });
-		ns_fretBuzz::GameObject2D* l_pLabelGameObj4 = new PrefabWall(m_refRootGameObject, "WALL4", { -550.0f, -130.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 100.0f, 300.0f });
+		FRETBUZZ::GameObject2D* l_pLabelGameObj1 = new PrefabWall(m_refRootGameObject, "WALL1", {   0.0f,   30.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 400.0f, 100.0f });
+		FRETBUZZ::GameObject2D* l_pLabelGameObj2 = new PrefabWall(m_refRootGameObject, "WALL2", { 150.0f, -130.0f, 0.0f }, { 0.0f, 0.0f , 0.0f}, { 1.0f, 1.0f, 1.0f }, { 100.0f, 300.0f });
+		FRETBUZZ::GameObject2D* l_pLabelGameObj3 = new PrefabWall(m_refRootGameObject, "WALL3", {-200.0f, -330.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 800.0f, 100.0f });
+		FRETBUZZ::GameObject2D* l_pLabelGameObj4 = new PrefabWall(m_refRootGameObject, "WALL4", { -550.0f, -130.0f, 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 100.0f, 300.0f });
 
 		/// Player
-		ns_fretBuzz::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, -100.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+		FRETBUZZ::GameObject2D* m_pPlayerGameObject = new PrefabPlayer(m_refRootGameObject, "Player", { 0.0f, -100.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
 
 		/// Enemy
-		ns_fretBuzz::GameObject2D* m_pEnemyGameObject1 = new PrefabEnemy(m_refRootGameObject, "Enemy1", { 0.0f, -200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
-		ns_fretBuzz::GameObject2D* m_pEnemyGameObject2 = new PrefabEnemy(m_refRootGameObject, "Enemy2", { 300.0f, 200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+		FRETBUZZ::GameObject2D* m_pEnemyGameObject1 = new PrefabEnemy(m_refRootGameObject, "Enemy1", { 0.0f, -200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
+		FRETBUZZ::GameObject2D* m_pEnemyGameObject2 = new PrefabEnemy(m_refRootGameObject, "Enemy2", { 300.0f, 200.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 2.0f, 2.0f, 1.0f }, { 40.0f, 40.0f });
 
-		//ns_fretBuzz::GameObject2D* l_pPickupGameObj = new ns_HMGame::PrefabWeapon(&m_refRootGameObject, "WEAPON", { -375.0f, -100.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 70.0f, 70.0f });
+		//FRETBUZZ::GameObject2D* l_pPickupGameObj = new ns_HMGame::PrefabWeapon(&m_refRootGameObject, "WEAPON", { -375.0f, -100.0f , 0.0f }, { 0.0f, 0.0f , 0.0f }, { 1.0f, 1.0f, 1.0f }, { 70.0f, 70.0f });
 
 		WeaponManager::AddWeapon({ -200.0f, 200.0f , 0.0f }, WEAPON_DOUBLE_BARREL, true);
 		WeaponManager::AddWeapon({ -300.0f, 70.0f , 0.0f }, WEAPON_M16, true);

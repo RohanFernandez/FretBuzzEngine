@@ -1,7 +1,7 @@
 #pragma once
 #include "system/component_2d.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	enum class  CANVAS_SPACE_TYPE
 	{

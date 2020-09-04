@@ -5,9 +5,9 @@
 
 namespace ns_HMGame
 {
-	class PrefabEnemy : public ns_fretBuzz::GameObject2D
+	class PrefabEnemy : public FRETBUZZ::GameObject2D
 	{
 	public:
-		PrefabEnemy(ns_fretBuzz::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
+		PrefabEnemy(FRETBUZZ::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
 	};
 }

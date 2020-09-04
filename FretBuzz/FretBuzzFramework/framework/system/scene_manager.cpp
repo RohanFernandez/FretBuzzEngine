@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "scene_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	///singleton instance
 	SceneManager* SceneManager:: s_pInstance = nullptr;

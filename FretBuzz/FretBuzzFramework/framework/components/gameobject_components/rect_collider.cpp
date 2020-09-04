@@ -6,7 +6,7 @@
 #include <resource_manager.h>
 #include "graphics/shader_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 		RectCollider::RectCollider(GameObject2D* a_GameObject, ColliderData& a_RectColliderData)
 			: 

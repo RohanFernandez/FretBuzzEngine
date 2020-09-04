@@ -1,7 +1,7 @@
 #pragma once
 #include <physics_engine.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	struct ColliderData
 	{

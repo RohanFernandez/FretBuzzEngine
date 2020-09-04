@@ -4,7 +4,7 @@
 #include "game_object_2d.h"
 #include <components/collider_2d.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	IComponent::IComponent(COMPONENT_TYPE a_ComponentType, GameObject* a_GameObj, bool a_bIsEnabled)
 		: m_ComponentType{ a_ComponentType },

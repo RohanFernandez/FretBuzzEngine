@@ -1,7 +1,7 @@
 #pragma once
 #include <FreeImage.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	namespace ns_utils
 	{

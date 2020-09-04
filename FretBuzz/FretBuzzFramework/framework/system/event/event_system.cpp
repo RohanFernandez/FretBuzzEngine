@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 //#include "event_system.h"
 //
-//namespace ns_fretBuzz
+//namespace FRETBUZZ
 //{
 //	//singleton instance
 //	EventSystem* EventSystem::s_pInstance = nullptr;

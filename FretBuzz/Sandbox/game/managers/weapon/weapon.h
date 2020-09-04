@@ -33,11 +33,11 @@ namespace ns_HMGame
 		WEAPON_BRICK = 22
 	};
 
-	class Weapon : public ns_fretBuzz::Behaviour
+	class Weapon : public FRETBUZZ::Behaviour
 	{
 	private:
-		ns_fretBuzz::SpriteRenderer* m_pSpriteRenderer = nullptr;
-		ns_fretBuzz::Collider2D* m_pCollider2D = nullptr;
+		FRETBUZZ::SpriteRenderer* m_pSpriteRenderer = nullptr;
+		FRETBUZZ::Collider2D* m_pCollider2D = nullptr;
 
 		WeaponData m_WeaponData;
 
@@ -52,14 +52,14 @@ namespace ns_HMGame
 		void setWeaponState(WEAPON_STATE a_State);
 
 	public:
-		Weapon(ns_fretBuzz::GameObject2D* a_GameObject);
+		Weapon(FRETBUZZ::GameObject2D* a_GameObject);
 		WeaponData getWeaponData();
 
 		void setWeapon(WEAPON_TYPE a_WeaponType);
-		virtual void onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pIComponent) override;
-		virtual void onTriggerExit2D(ns_fretBuzz::Collider2D* a_pIComponent) override;
-		virtual void onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pIComponent) override;
-		virtual void onCollisionExit2D(ns_fretBuzz::Collider2D* a_pIComponent) override;
+		virtual void onTriggerEnter2D(FRETBUZZ::Collider2D* a_pIComponent) override;
+		virtual void onTriggerExit2D(FRETBUZZ::Collider2D* a_pIComponent) override;
+		virtual void onCollisionEnter2D(FRETBUZZ::Collider2D* a_pIComponent) override;
+		virtual void onCollisionExit2D(FRETBUZZ::Collider2D* a_pIComponent) override;
 
 		void startWeaponThrow(glm::vec2 a_v2PlayerToMouseDirection);
 		void pickup();

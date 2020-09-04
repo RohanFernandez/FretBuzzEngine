@@ -3,7 +3,7 @@
 #include <resource_manager.h>
 #include "system/game_object.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	SpriteAnimationController::SpriteAnimationController(GameObject* a_GameObj, std::string a_strAnimatorId)
 		: IComponent(COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER, a_GameObj)

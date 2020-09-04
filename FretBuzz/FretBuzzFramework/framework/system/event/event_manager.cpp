@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "event_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	///singleton instance
 	EventManager* EventManager::s_pInstance = nullptr;

@@ -7,7 +7,7 @@
 
 namespace ns_HMGame
 {
-	class PlayerControllerHM : public ns_fretBuzz::Behaviour
+	class PlayerControllerHM : public FRETBUZZ::Behaviour
 	{
 	private:
 		static PlayerControllerHM* s_Instance;
@@ -19,14 +19,14 @@ namespace ns_HMGame
 
 		bool m_bIsRunning = false;
 
-		ns_fretBuzz::SpriteAnimationController* m_pUpperSpriteAnimator = nullptr;
-		ns_fretBuzz::SpriteAnimationController* m_pLegsSpriteAnimator = nullptr;
+		FRETBUZZ::SpriteAnimationController* m_pUpperSpriteAnimator = nullptr;
+		FRETBUZZ::SpriteAnimationController* m_pLegsSpriteAnimator = nullptr;
 		
-		ns_fretBuzz::RectCollider* m_pRectCollider = nullptr;
+		FRETBUZZ::RectCollider* m_pRectCollider = nullptr;
 
-		ns_fretBuzz::GameObject* m_pCamGameObj = nullptr;
-		ns_fretBuzz::GameObject* m_pPlayerUpperGameObj = nullptr;
-		ns_fretBuzz::GameObject* m_pGameObjCharacterLegs = nullptr;
+		FRETBUZZ::GameObject* m_pCamGameObj = nullptr;
+		FRETBUZZ::GameObject* m_pPlayerUpperGameObj = nullptr;
+		FRETBUZZ::GameObject* m_pGameObjCharacterLegs = nullptr;
 		void manageInput(float a_fDeltaTime);
 
 		std::vector<Weapon*> m_vectWeaponOver;
@@ -39,7 +39,7 @@ namespace ns_HMGame
 		void removeFromWeaponOver(Weapon* a_Weapon);
 
 	public:
-		PlayerControllerHM(ns_fretBuzz::GameObject* a_GameObject, ns_fretBuzz::GameObject* a_pCamGameObject, ns_fretBuzz::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::GameObject* a_pLegsGameObject);
+		PlayerControllerHM(FRETBUZZ::GameObject* a_GameObject, FRETBUZZ::GameObject* a_pCamGameObject, FRETBUZZ::GameObject* a_pPlayerUpperGameObj, FRETBUZZ::GameObject* a_pLegsGameObject);
 
 		virtual void update(const float& a_fDeltaTime) override;
 
@@ -47,10 +47,10 @@ namespace ns_HMGame
 
 		void setAsCurrentWeaponOver(Weapon* a_pWeapon, bool a_bIsOver);
 
-		virtual void onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pICollider2D) override ;
-		virtual void onCollisionExit2D (ns_fretBuzz::Collider2D* a_pICollider2D) override ;
-		virtual void onTriggerEnter2D  (ns_fretBuzz::Collider2D* a_pICollider2D) override ;
-		virtual void onTriggerExit2D   (ns_fretBuzz::Collider2D* a_pICollider2D) override ;
+		virtual void onCollisionEnter2D(FRETBUZZ::Collider2D* a_pICollider2D) override ;
+		virtual void onCollisionExit2D (FRETBUZZ::Collider2D* a_pICollider2D) override ;
+		virtual void onTriggerEnter2D  (FRETBUZZ::Collider2D* a_pICollider2D) override ;
+		virtual void onTriggerExit2D   (FRETBUZZ::Collider2D* a_pICollider2D) override ;
 
 		inline static PlayerControllerHM* GetInstance()
 		{

@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "system_layer_stack.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton
 	SystemLayerStack* SystemLayerStack::s_pInstance = nullptr;

@@ -6,7 +6,7 @@
 #include "../light_manager.h"
 #include "system/game_object.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 		//singleton instance
 		PhongShader* PhongShader::s_pInstance = nullptr;

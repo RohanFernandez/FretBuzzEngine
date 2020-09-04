@@ -2,7 +2,7 @@
 #include "system/component.h"
 #include "graphics/font_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  TextRenderer : public IComponent
 	{

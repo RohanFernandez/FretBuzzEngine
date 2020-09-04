@@ -2,7 +2,7 @@
 #include "texture.h"
 #include "utils/file_utils.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Texture::Texture(std::string a_strTexturePath)
 		: IManagedResource()

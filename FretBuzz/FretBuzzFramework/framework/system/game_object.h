@@ -4,7 +4,7 @@
 #include "components/gameobject_components/camera.h"
 #include <fretbuzz.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  GameObject
 	{

@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Viewport;
 	class Window

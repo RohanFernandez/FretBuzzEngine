@@ -3,7 +3,7 @@
 #include <memory>
 #include <spdlog/spdlog.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Log
 	{
@@ -29,16 +29,16 @@ namespace ns_fretBuzz
 	};
 
 	// Engine loggine macros
-	#define ENGINE_TRACE(...)		::ns_fretBuzz::Log::GetEngineLogger()->trace(__VA_ARGS__)
-	#define ENGINE_INFO(...)		::ns_fretBuzz::Log::GetEngineLogger()->info(__VA_ARGS__)
-	#define ENGINE_WARN(...)		::ns_fretBuzz::Log::GetEngineLogger()->warn(__VA_ARGS__)
-	#define ENGINE_ERROR(...)		::ns_fretBuzz::Log::GetEngineLogger()->error(__VA_ARGS__)
-	#define ENGINE_CRITICAL(...)	::ns_fretBuzz::Log::GetEngineLogger()->critical(__VA_ARGS__)
+	#define ENGINE_TRACE(...)		::FRETBUZZ::Log::GetEngineLogger()->trace(__VA_ARGS__)
+	#define ENGINE_INFO(...)		::FRETBUZZ::Log::GetEngineLogger()->info(__VA_ARGS__)
+	#define ENGINE_WARN(...)		::FRETBUZZ::Log::GetEngineLogger()->warn(__VA_ARGS__)
+	#define ENGINE_ERROR(...)		::FRETBUZZ::Log::GetEngineLogger()->error(__VA_ARGS__)
+	#define ENGINE_CRITICAL(...)	::FRETBUZZ::Log::GetEngineLogger()->critical(__VA_ARGS__)
 												 
 	// Client App logging macros				 
-	#define APP_TRACE(...)			::ns_fretBuzz::Log::GetAppLogger()->trace(__VA_ARGS__)
-	#define APP_INFO(...)			::ns_fretBuzz::Log::GetAppLogger()->info(__VA_ARGS__)
-	#define APP_WARN(...)			::ns_fretBuzz::Log::GetAppLogger()->warn(__VA_ARGS__)
-	#define APP_ERROR(...)			::ns_fretBuzz::Log::GetAppLogger()->error(__VA_ARGS__)
-	#define APP_CRITICAL(...)		::ns_fretBuzz::Log::GetAppLogger()->critical(__VA_ARGS__)
+	#define APP_TRACE(...)			::FRETBUZZ::Log::GetAppLogger()->trace(__VA_ARGS__)
+	#define APP_INFO(...)			::FRETBUZZ::Log::GetAppLogger()->info(__VA_ARGS__)
+	#define APP_WARN(...)			::FRETBUZZ::Log::GetAppLogger()->warn(__VA_ARGS__)
+	#define APP_ERROR(...)			::FRETBUZZ::Log::GetAppLogger()->error(__VA_ARGS__)
+	#define APP_CRITICAL(...)		::FRETBUZZ::Log::GetAppLogger()->critical(__VA_ARGS__)
 }

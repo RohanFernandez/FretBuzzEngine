@@ -2,7 +2,7 @@
 #include <system/component_2d.h>
 #include <components/collider_data.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Collider2D : public IComponent2D, protected b2ContactListener
 	{

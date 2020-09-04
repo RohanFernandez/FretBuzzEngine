@@ -5,22 +5,22 @@
 
 namespace ns_HMGame
 {
-	class InteractiveObject : public ns_fretBuzz::Behaviour
+	class InteractiveObject : public FRETBUZZ::Behaviour
 	{
 	private:
-		ns_fretBuzz::Image* m_pImage = nullptr;
-		ns_fretBuzz::RectCollider* m_pRectCollider = nullptr;
+		FRETBUZZ::Image* m_pImage = nullptr;
+		FRETBUZZ::RectCollider* m_pRectCollider = nullptr;
 
 		std::vector<glm::vec4> m_vectColor;
 		int m_iColorIndex = 0;
 
 	public:
-		InteractiveObject(ns_fretBuzz::GameObject* a_GameObject);
+		InteractiveObject(FRETBUZZ::GameObject* a_GameObject);
 
 		void onLabelHit();
-		virtual void onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pICollider2D) override;
-		virtual void onTriggerExit2D(ns_fretBuzz::Collider2D* a_pICollider2D) override;
-		virtual void onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pICollider2D) override;
-		virtual void onCollisionExit2D(ns_fretBuzz::Collider2D* a_pICollider2D) override;
+		virtual void onTriggerEnter2D(FRETBUZZ::Collider2D* a_pICollider2D) override;
+		virtual void onTriggerExit2D(FRETBUZZ::Collider2D* a_pICollider2D) override;
+		virtual void onCollisionEnter2D(FRETBUZZ::Collider2D* a_pICollider2D) override;
+		virtual void onCollisionExit2D(FRETBUZZ::Collider2D* a_pICollider2D) override;
 	};
 }

@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "raycast_callback.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	void RaycastCallback::reset()
 	{

@@ -6,17 +6,17 @@
 
 namespace ns_HMGame
 {
-	EnemyController::EnemyController(ns_fretBuzz::GameObject* a_GameObject, ns_fretBuzz::GameObject* a_pPlayerUpperGameObj, ns_fretBuzz::GameObject* a_pLegsGameObject)
-		: ns_fretBuzz::Behaviour(a_GameObject),
+	EnemyController::EnemyController(FRETBUZZ::GameObject* a_GameObject, FRETBUZZ::GameObject* a_pPlayerUpperGameObj, FRETBUZZ::GameObject* a_pLegsGameObject)
+		: FRETBUZZ::Behaviour(a_GameObject),
 		m_WeaponData{ WeaponManager::GetWeaponData(WEAPON_M16) }
 	{
 		m_pPlayerUpperGameObj = a_pPlayerUpperGameObj;
 		m_pGameObjCharacterLegs = a_pLegsGameObject;
 
-		m_pRectCollider = a_GameObject->getComponent<ns_fretBuzz::RectCollider>(ns_fretBuzz::COMPONENT_TYPE::COLLIDER_2D);
+		m_pRectCollider = a_GameObject->getComponent<FRETBUZZ::RectCollider>(FRETBUZZ::COMPONENT_TYPE::COLLIDER_2D);
 
-		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<ns_fretBuzz::SpriteAnimationController >(ns_fretBuzz::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
-		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<ns_fretBuzz::SpriteAnimationController>(ns_fretBuzz::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<FRETBUZZ::SpriteAnimationController >(FRETBUZZ::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<FRETBUZZ::SpriteAnimationController>(FRETBUZZ::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 	}
 
 	void EnemyController::update(const float& a_fDeltaTime)
@@ -43,16 +43,16 @@ namespace ns_HMGame
 			return;
 		}
 		glm::vec3 l_v3PlayerPostion = l_PlayerInstance->m_GameObject.m_Transform.getWorldPosition();
-		ns_fretBuzz::Collider2D* l_pRaycastResult = nullptr;
+		FRETBUZZ::Collider2D* l_pRaycastResult = nullptr;
 
-		ns_fretBuzz::PhysicsEngine::Raycast(l_pRaycastResult, { l_v3EnemyPostion.x, l_v3EnemyPostion.y }, { l_v3PlayerPostion.x, l_v3PlayerPostion.y});
+		FRETBUZZ::PhysicsEngine::Raycast(l_pRaycastResult, { l_v3EnemyPostion.x, l_v3EnemyPostion.y }, { l_v3PlayerPostion.x, l_v3PlayerPostion.y});
 
 		if (l_pRaycastResult == nullptr)
 		{
 			return;
 		}
 
-		PlayerControllerHM* m_pPLayerController = l_pRaycastResult->m_GameObject.getComponent<PlayerControllerHM>(ns_fretBuzz::COMPONENT_TYPE::BEHAVIOUR);
+		PlayerControllerHM* m_pPLayerController = l_pRaycastResult->m_GameObject.getComponent<PlayerControllerHM>(FRETBUZZ::COMPONENT_TYPE::BEHAVIOUR);
 		if (m_pPLayerController != nullptr)
 		{
 			glm::vec3 l_v3EnemyToPlayerDirection = glm::normalize(l_v3PlayerPostion - l_v3EnemyPostion);

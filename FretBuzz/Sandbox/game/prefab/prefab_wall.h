@@ -4,9 +4,9 @@
 
 namespace ns_HMGame
 {
-	class PrefabWall : public ns_fretBuzz::GameObject2D
+	class PrefabWall : public FRETBUZZ::GameObject2D
 	{
 	public:
-		PrefabWall(ns_fretBuzz::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
+		PrefabWall(FRETBUZZ::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_v3Position, glm::vec3 a_v3Rotation, glm::vec3 a_v3Scale, glm::vec2 a_v2DimensionWH);
 	};
 }

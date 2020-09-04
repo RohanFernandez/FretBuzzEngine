@@ -3,7 +3,7 @@
 #include <vector>
 #include <bitset>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  LayerMask
 	{

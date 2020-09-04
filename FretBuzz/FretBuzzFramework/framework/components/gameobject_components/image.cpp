@@ -5,7 +5,7 @@
 #include <resource_manager.h>
 #include "graphics/shader_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	const std::vector<glm::vec2> Image::s_vectTexcoords = 
 	{

@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "audio_engine.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton Instance
 	AudioEngine* AudioEngine::s_pInstance = nullptr;

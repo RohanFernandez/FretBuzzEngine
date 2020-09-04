@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "components/gameobject_components/mesh_renderer.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	Model::Model(std::string a_strModelPath)
 		: IManagedResource()

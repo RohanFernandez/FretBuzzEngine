@@ -3,7 +3,7 @@
 #include "system/component.h"
 #include "graphics/shader.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameObject;
 	class  Light : public IComponent

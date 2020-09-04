@@ -3,7 +3,7 @@
 #include <imgui/imgui.h>
 #include <system.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	Inspector* Inspector::s_pInstance = nullptr;

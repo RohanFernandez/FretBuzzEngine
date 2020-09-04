@@ -2,7 +2,7 @@
 #include <components/raycast_callback.h>
 #include <system/component.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	enum class PHYSICS_BODY_TYPE
 	{

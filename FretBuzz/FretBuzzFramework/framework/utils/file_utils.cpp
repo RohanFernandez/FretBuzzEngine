@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "file_utils.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	namespace ns_utils
 	{

@@ -2,7 +2,7 @@
 #include <Event/delegate.h>
 #include "system/scene_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Inspector
 	{

@@ -2,7 +2,7 @@
 #include "text_renderer.h"
 #include <resource_manager.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	TextRenderer::TextRenderer(GameObject* a_GameObj, std::string a_strText, std::string a_strFontName)
 		: IComponent(COMPONENT_TYPE::TEXT_RENDERER, a_GameObj)

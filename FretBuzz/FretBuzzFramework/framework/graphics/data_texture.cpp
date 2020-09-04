@@ -1,7 +1,7 @@
 #include <fretbuzz_pch.h>
 #include "data_texture.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	DataTexture::DataTexture(unsigned int a_uiWidth, unsigned int a_uiHeight, void* a_pData, GLenum a_ColorFormat)
 		: Texture()

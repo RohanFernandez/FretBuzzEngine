@@ -1,7 +1,7 @@
 #pragma once
 #include "utils/resource_container.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class Light;
 	class  LightManager : public ResourceContainer<std::vector<Light*>>

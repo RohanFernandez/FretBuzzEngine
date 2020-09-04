@@ -10,7 +10,7 @@
 
 namespace ns_HMGame
 {
-	class test_cube: public ns_fretBuzz::GameObject
+	class test_cube: public FRETBUZZ::GameObject
 	{
 	public:
 
@@ -20,12 +20,12 @@ namespace ns_HMGame
 		unsigned int m_VBO = 0;
 		unsigned int m_IBO = 0;
 
-		ns_fretBuzz::Shader* m_pShader = nullptr;
-		ns_fretBuzz::Texture* m_pDiffuseTexture = nullptr;
-		ns_fretBuzz::Texture* m_pSpecularTexture = nullptr;
+		FRETBUZZ::Shader* m_pShader = nullptr;
+		FRETBUZZ::Texture* m_pDiffuseTexture = nullptr;
+		FRETBUZZ::Texture* m_pSpecularTexture = nullptr;
 
-		ns_fretBuzz::Material m_Material;
-		ns_fretBuzz::Material m_HighlighterMaterial;
+		FRETBUZZ::Material m_Material;
+		FRETBUZZ::Material m_HighlighterMaterial;
 
 		float m_vertices[288] = {
 	-0.5f, -0.5f, -0.5f, 0.0f,  0.0f, -1.0f, 0.0f, 0.0f, // Bottom-left
@@ -71,20 +71,20 @@ namespace ns_HMGame
 	-0.5f,  0.5f,  0.5f, 0.0f,  1.0f,  0.0f, 0.0f, 0.0f  // bottom-left      
 		};
 
-		ns_fretBuzz::GameObject* m_pNanoSuit = nullptr;
+		FRETBUZZ::GameObject* m_pNanoSuit = nullptr;
 
-		test_cube(ns_fretBuzz::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_Position, ns_fretBuzz::GameObject* a_pNanoSuit)
-			: ns_fretBuzz::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
+		test_cube(FRETBUZZ::GameObject& a_ParentGameObject, std::string a_strName, glm::vec3 a_Position, FRETBUZZ::GameObject* a_pNanoSuit)
+			: FRETBUZZ::GameObject(a_ParentGameObject, a_strName, a_Position, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f })
 		{
 			m_pNanoSuit = a_pNanoSuit;
-			m_Material.setShader(*ns_fretBuzz::ShaderManager::getShaderOfType(ns_fretBuzz::Shader::PHONG));
-			m_pDiffuseTexture = ns_fretBuzz::ResourceManager::getResource<ns_fretBuzz::Texture>("container_diffuse");
-			m_pSpecularTexture = ns_fretBuzz::ResourceManager::getResource<ns_fretBuzz::Texture>("container_specular");
+			m_Material.setShader(*FRETBUZZ::ShaderManager::getShaderOfType(FRETBUZZ::Shader::PHONG));
+			m_pDiffuseTexture = FRETBUZZ::ResourceManager::getResource<FRETBUZZ::Texture>("container_diffuse");
+			m_pSpecularTexture = FRETBUZZ::ResourceManager::getResource<FRETBUZZ::Texture>("container_specular");
 
 			m_Material.m_MaterialData.m_pTexDiffuse = m_pDiffuseTexture;
 			m_Material.m_MaterialData.m_pTexSpecular = m_pSpecularTexture;
 
-			m_HighlighterMaterial.setShader(*ns_fretBuzz::ShaderManager::getShaderOfType(ns_fretBuzz::Shader::DEFAULT_3D));
+			m_HighlighterMaterial.setShader(*FRETBUZZ::ShaderManager::getShaderOfType(FRETBUZZ::Shader::DEFAULT_3D));
 			m_HighlighterMaterial.m_MaterialData.m_v4Albedo = { 0.0f, 1.0f, 0.0f, 1.0f };
 
 			glGenVertexArrays(1, &m_VAO);
@@ -112,39 +112,39 @@ namespace ns_HMGame
 			//m_Transform.setLocalRotation({ rot, rot , rot });
 
 			glm::vec3 l_v3Scale = m_pNanoSuit->m_Transform.getLocalScale();
-			if (ns_fretBuzz::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_1))
+			if (FRETBUZZ::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_1))
 			{
 				m_pNanoSuit->m_Transform.setLocalScale({ l_v3Scale + l_v3Scale * a_fDeltaTime *2.0F });
 			}
-			else if (ns_fretBuzz::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_2))
+			else if (FRETBUZZ::Input::IsMouseBtnDown(GLFW_MOUSE_BUTTON_2))
 			{
 				m_pNanoSuit->m_Transform.setLocalScale({ l_v3Scale - l_v3Scale * a_fDeltaTime *2.0F });
 			}
 
 
-			if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_C))
+			if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_C))
 			{
-				ns_fretBuzz::PostProcessManager::togglePostProcess(!ns_fretBuzz::PostProcessManager::isPostProcessActive());
+				FRETBUZZ::PostProcessManager::togglePostProcess(!FRETBUZZ::PostProcessManager::isPostProcessActive());
 			}
 
 			
-			if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_R))
+			if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_R))
 			{
-				ns_fretBuzz::PostProcessManager::setPostProcessType(ns_fretBuzz::Material::EDGE_DETECT);
+				FRETBUZZ::PostProcessManager::setPostProcessType(FRETBUZZ::Material::EDGE_DETECT);
 			}
-			else if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_T))
+			else if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_T))
 			{
-				ns_fretBuzz::PostProcessManager::setPostProcessType(ns_fretBuzz::Material::BLUR);
+				FRETBUZZ::PostProcessManager::setPostProcessType(FRETBUZZ::Material::BLUR);
 			}
-			else if (ns_fretBuzz::Input::IsKeyPutDown(GLFW_KEY_Y))
+			else if (FRETBUZZ::Input::IsKeyPutDown(GLFW_KEY_Y))
 			{
-				ns_fretBuzz::PostProcessManager::setPostProcessType(ns_fretBuzz::Material::SHARPEN);
+				FRETBUZZ::PostProcessManager::setPostProcessType(FRETBUZZ::Material::SHARPEN);
 			}
 
 			GameObject::update(a_fDeltaTime);
 		}
 
-		virtual void render(const ns_fretBuzz::Camera& a_Camera) override
+		virtual void render(const FRETBUZZ::Camera& a_Camera) override
 		{
 			//glStencilFunc(GL_EQUAL, 1, 0xFF);
 			m_Material.bind(a_Camera);

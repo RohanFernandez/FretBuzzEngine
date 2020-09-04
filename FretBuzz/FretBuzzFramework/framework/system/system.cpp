@@ -5,7 +5,7 @@
 #include <system_layer/editor_system_layer.h>
 #include <system_layer/game_system_layer.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	System* System::s_pInstance = nullptr;
 

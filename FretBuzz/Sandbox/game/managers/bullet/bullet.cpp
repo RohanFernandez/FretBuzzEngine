@@ -6,11 +6,11 @@
 namespace ns_HMGame
 {
 
-	Bullet::Bullet(ns_fretBuzz::GameObject2D* a_GameObject)
-		: ns_fretBuzz::Behaviour(a_GameObject)
+	Bullet::Bullet(FRETBUZZ::GameObject2D* a_GameObject)
+		: FRETBUZZ::Behaviour(a_GameObject)
 	{
-		m_pSpriteRenderer = m_GameObject.getComponent<ns_fretBuzz::SpriteRenderer>(ns_fretBuzz::COMPONENT_TYPE::SPRITE_RENDERER);
-		m_pCollider2D = m_GameObject.getComponent<ns_fretBuzz::Collider2D>(ns_fretBuzz::COMPONENT_TYPE::COLLIDER_2D);
+		m_pSpriteRenderer = m_GameObject.getComponent<FRETBUZZ::SpriteRenderer>(FRETBUZZ::COMPONENT_TYPE::SPRITE_RENDERER);
+		m_pCollider2D = m_GameObject.getComponent<FRETBUZZ::Collider2D>(FRETBUZZ::COMPONENT_TYPE::COLLIDER_2D);
 	}
 
 	void Bullet::setBulletType(std::string a_strBulletSpriteName)
@@ -25,22 +25,22 @@ namespace ns_HMGame
 		m_pCollider2D->setLinearVelocity(m_v2Direction * 1000.0f);
 	}
 
-	void Bullet::onTriggerEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
+	void Bullet::onTriggerEnter2D(FRETBUZZ::Collider2D* a_pIComponent)
 	{
 		WeaponManager::ReturnBulletToPool(dynamic_cast<PrefabBullet*>(&m_GameObject));
 	}
 
-	void Bullet::onTriggerExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
+	void Bullet::onTriggerExit2D(FRETBUZZ::Collider2D* a_pIComponent)
 	{
 		
 	}
 
-	void Bullet::onCollisionEnter2D(ns_fretBuzz::Collider2D* a_pIComponent)
+	void Bullet::onCollisionEnter2D(FRETBUZZ::Collider2D* a_pIComponent)
 	{
 		WeaponManager::ReturnBulletToPool(dynamic_cast<PrefabBullet*>(&m_GameObject));
 	}
 
-	void Bullet::onCollisionExit2D(ns_fretBuzz::Collider2D* a_pIComponent)
+	void Bullet::onCollisionExit2D(FRETBUZZ::Collider2D* a_pIComponent)
 	{
 	
 	}

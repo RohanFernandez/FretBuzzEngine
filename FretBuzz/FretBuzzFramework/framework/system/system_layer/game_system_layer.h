@@ -1,7 +1,7 @@
 #pragma once
 #include "system_layer_base.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class GameSystemLayer : public SystemLayerBase
 	{

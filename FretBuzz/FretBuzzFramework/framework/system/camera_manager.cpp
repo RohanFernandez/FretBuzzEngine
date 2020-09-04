@@ -3,7 +3,7 @@
 #include "camera_manager.h"
 #include "graphics/post_process_manager.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	CameraManager* CameraManager::s_pInstance = nullptr;

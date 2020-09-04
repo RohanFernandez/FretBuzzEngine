@@ -2,7 +2,7 @@
 #include "component.h"
 #include "game_object_2d.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  IComponent2D : public IComponent
 	{

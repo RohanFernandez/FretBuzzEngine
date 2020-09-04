@@ -2,7 +2,7 @@
 #include "shader_manager.h"
 #include "shader_factory.h"
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	//singleton instance
 	ShaderManager* ShaderManager::s_pInstance = nullptr;

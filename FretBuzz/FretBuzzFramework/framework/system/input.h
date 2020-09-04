@@ -1,7 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 
-namespace ns_fretBuzz
+namespace FRETBUZZ
 {
 	class  Input
 	{
