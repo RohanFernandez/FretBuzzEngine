@@ -138,7 +138,7 @@ namespace ns_fretBuzz
 	{
 		const glm::vec2 l_v2OriginXY = a_Viewport.getOriginXY();
 		const glm::vec2 l_v2DimensionWH = a_Viewport.getDimensionWH();
-		glViewport(l_v2OriginXY.x, l_v2OriginXY.y, l_v2DimensionWH.x, l_v2DimensionWH.y);
-		glScissor(l_v2OriginXY.x, l_v2OriginXY.y, l_v2DimensionWH.x, l_v2DimensionWH.y);
+		glViewport((int)l_v2OriginXY.x, (int)l_v2OriginXY.y, (int)l_v2DimensionWH.x, (int)l_v2DimensionWH.y);
+		glScissor((int)l_v2OriginXY.x, (int)l_v2OriginXY.y, (int)l_v2DimensionWH.x, (int)l_v2DimensionWH.y);
 	}
 }

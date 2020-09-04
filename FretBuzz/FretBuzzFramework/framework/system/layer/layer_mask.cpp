@@ -114,7 +114,7 @@ namespace ns_fretBuzz
 		return m_Bits.to_ulong();
 	}
 
-	int LayerMask::getLayersCount()
+	size_t LayerMask::getLayersCount()
 	{
 		return m_Bits.count();
 	}

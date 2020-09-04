@@ -40,7 +40,7 @@ namespace ns_fretBuzz
 		void operator=(const LayerMask& a_LayerMask);
 
 		int getBitfield();
-		int getLayersCount();
+		size_t getLayersCount();
 		const std::bitset<Layer::MAX_CAPACITY_LAYERS>& getBitset();
 	};
 }

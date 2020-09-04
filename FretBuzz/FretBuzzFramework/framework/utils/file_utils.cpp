@@ -74,7 +74,7 @@ namespace ns_fretBuzz
 
 			a_pImageData = new BYTE[l_iBitsPerRow * a_iHeight];
 
-			for (int l_iYIndex = 0; l_iYIndex < a_iHeight; l_iYIndex++)
+			for (unsigned int l_iYIndex = 0; l_iYIndex < a_iHeight; l_iYIndex++)
 			{
 				memcpy(&a_pImageData[l_iYIndex * l_iBitsPerRow], &l_pImageBytes[l_iYIndex * l_iPitch], l_iBitsPerRow);
 			}

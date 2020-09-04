@@ -86,6 +86,12 @@ namespace ns_fretBuzz
 			}
 		}
 
+		friend static Delegate<T_RET_TYPE(T_ARGS...)> operator+(Delegate<T_RET_TYPE(T_ARGS...)> a_Delegate1, Delegate<T_RET_TYPE(T_ARGS...)> a_Delegate2)
+		{
+			a_Delegate1 += a_Delegate2;
+			return a_Delegate1;
+		}
+
 		///+= operator overloading to add actions of a delegate
 		void operator+=(Delegate<T_RET_TYPE(T_ARGS...)>& a_Delegate)
 		{
