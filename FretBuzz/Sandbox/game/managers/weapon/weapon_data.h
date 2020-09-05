@@ -16,7 +16,7 @@ namespace ns_HMGame
 
 		WeaponData(WEAPON_TYPE a_WeaponType);
 		WeaponData(const WeaponData& a_WeaponData);
-		WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName);
+		WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName, std::string a_strWeaponFireAudID);
 		~WeaponData();
 
 		WEAPON_TYPE getWeaponType() const;
@@ -24,6 +24,7 @@ namespace ns_HMGame
 		std::string getWeaponAnimTrigger() const;
 		std::string getWeaponSpriteName() const;
 		std::string getBulletSpriteName() const;
+		std::string getWeaponFireAudID() const;
 
 		void fire(glm::vec2 a_v2Position, glm::vec2 a_v3Direction,glm::quat a_quatRotation);
 
@@ -35,5 +36,6 @@ namespace ns_HMGame
 		std::string m_strAnimOverrideTrigger;
 		std::string m_strWeaponSpriteName;
 		std::string m_strBulletSpriteName;
+		std::string m_strWeaponFireAudID;
 	};
 }

@@ -6,23 +6,24 @@ namespace ns_HMGame
 {
 
 	WeaponData::WeaponData(WEAPON_TYPE a_WeaponType)
-		: WeaponData{WeaponManager::GetWeaponData(a_WeaponType)}
+		: WeaponData{ WeaponManager::GetWeaponData(a_WeaponType) }
 	{
-		
+
 	}
 
 	WeaponData::WeaponData(const WeaponData& a_WeaponData)
-		: WeaponData{ a_WeaponData.m_WeaponAttackType, a_WeaponData.m_WeaponType, a_WeaponData.m_strAnimOverrideTrigger, a_WeaponData.m_strWeaponSpriteName, a_WeaponData.m_strBulletSpriteName }
+		: WeaponData{ a_WeaponData.m_WeaponAttackType, a_WeaponData.m_WeaponType, a_WeaponData.m_strAnimOverrideTrigger, a_WeaponData.m_strWeaponSpriteName, a_WeaponData.m_strBulletSpriteName, a_WeaponData.m_strWeaponFireAudID }
 	{
 
 	}
 
-	WeaponData::WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName)
-		:	m_WeaponAttackType{ a_WeaponAttackType },
-			m_WeaponType{a_WeaponType},
-			m_strAnimOverrideTrigger{ a_strAnimOverrideTrigger },
-			m_strWeaponSpriteName{ a_strSpriteName },
-			m_strBulletSpriteName{ a_strBulletSpriteName }
+	WeaponData::WeaponData(WEAPON_ATTACK_TYPE a_WeaponAttackType, WEAPON_TYPE a_WeaponType, std::string a_strAnimOverrideTrigger, std::string a_strSpriteName, std::string a_strBulletSpriteName, std::string a_strWeaponFireAudID)
+		: m_WeaponAttackType{ a_WeaponAttackType },
+		m_WeaponType{ a_WeaponType },
+		m_strAnimOverrideTrigger{ a_strAnimOverrideTrigger },
+		m_strWeaponSpriteName{ a_strSpriteName },
+		m_strBulletSpriteName{ a_strBulletSpriteName },
+		m_strWeaponFireAudID{ a_strWeaponFireAudID }
 	{
 		
 	}
@@ -39,6 +40,7 @@ namespace ns_HMGame
 		m_strAnimOverrideTrigger = a_Other.m_strAnimOverrideTrigger;
 		m_strWeaponSpriteName = a_Other.m_strWeaponSpriteName;
 		m_strBulletSpriteName = a_Other.m_strBulletSpriteName;
+		m_strWeaponFireAudID = a_Other.m_strWeaponFireAudID;
 	}
 
 	WEAPON_TYPE WeaponData::getWeaponType() const
@@ -64,6 +66,11 @@ namespace ns_HMGame
 	std::string WeaponData::getBulletSpriteName() const
 	{
 		return m_strBulletSpriteName;
+	}
+
+	std::string WeaponData::getWeaponFireAudID() const
+	{
+		return m_strWeaponFireAudID;
 	}
 
 	void WeaponData::fire(glm::vec2 a_v2Position, glm::vec2 a_v2Direction, glm::quat a_quatRotation)

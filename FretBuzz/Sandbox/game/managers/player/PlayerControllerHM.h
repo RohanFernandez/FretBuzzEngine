@@ -4,6 +4,7 @@
 #include <components/gameobject_components/rect_collider.h>
 #include <game/managers/weapon/weapon_data.h>
 #include <game/managers/weapon/weapon.h>
+#include <framework\components\gameobject_components\audio_source.h>
 
 namespace ns_HMGame
 {
@@ -32,6 +33,8 @@ namespace ns_HMGame
 		std::vector<Weapon*> m_vectWeaponOver;
 
 		WeaponData m_WeaponData;
+
+		FRETBUZZ::AudioSource* m_pPlayerAudSrc = nullptr;
 
 		int m_iWeaponOverCount = 0;
 

@@ -23,6 +23,9 @@ namespace ns_HMGame
 
 		m_pLegsSpriteAnimator = a_pLegsGameObject->getComponent<FRETBUZZ::SpriteAnimationController >(FRETBUZZ::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
 		m_pUpperSpriteAnimator = a_pPlayerUpperGameObj->getComponent<FRETBUZZ::SpriteAnimationController>(FRETBUZZ::COMPONENT_TYPE::SPRITE_ANIMATION_CONTROLLER);
+
+		m_pPlayerAudSrc = m_GameObject.getComponent<FRETBUZZ::AudioSource>(FRETBUZZ::COMPONENT_TYPE::AUDIO_SOURCE);
+		m_pPlayerAudSrc->setLooping(false);
 	}
 
 	void PlayerControllerHM::update(const float& a_fDeltaTime)
@@ -115,6 +118,13 @@ namespace ns_HMGame
 			glm::vec3 l_v3PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			m_WeaponData.fire(glm::vec2{l_v3PlayerPosition.x, l_v3PlayerPosition.y} +l_v2PlayerToMouseDirection * 150.0f, l_v2PlayerToMouseDirection, m_pPlayerUpperGameObj->m_Transform.getLocalRotation());
 
+			std::string l_strAudID = m_WeaponData.getWeaponFireAudID();
+			if (!l_strAudID.empty())
+			{
+				m_pPlayerAudSrc->setAudioClip(l_strAudID);
+				m_pPlayerAudSrc->play();
+			}
+
 			/*FRETBUZZ::Collider2D* l_pCollider2D = nullptr;
 			glm::vec2 l_v2PlayerPosition = m_GameObject.m_Transform.getWorldPosition();
 			glm::vec2 l_v2MouseWorldPosition = l_v2PlayerPosition + l_MousePosition;
@@ -140,6 +150,8 @@ namespace ns_HMGame
 
 				m_WeaponData = WeaponManager::GetWeaponData(WEAPON_TYPE::WEAPON_UNARMED);
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
+				m_pPlayerAudSrc->setAudioClip("WeaponThrow");
+				m_pPlayerAudSrc->play();
 			}
 
 			if (m_vectWeaponOver.size() > 0)
@@ -147,6 +159,8 @@ namespace ns_HMGame
 				m_WeaponData = m_vectWeaponOver[0]->getWeaponData();
 				m_pUpperSpriteAnimator->play(m_WeaponData.getWeaponAnimTrigger());
 				m_vectWeaponOver[0]->pickup();
+				m_pPlayerAudSrc->setAudioClip("GunPickup");
+				m_pPlayerAudSrc->play();
 			}
 			APP_ERROR("Tracing weapon throw");
 		}

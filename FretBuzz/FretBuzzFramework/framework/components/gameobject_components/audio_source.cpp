@@ -62,14 +62,7 @@ namespace FRETBUZZ
 
 	void AudioSource::play()
 	{
-		if (m_pISound != nullptr)
-		{
-			m_pISound->setIsPaused(false);
-		}
-		else
-		{
-			restart();
-		}
+		restart();
 	}
 
 	void AudioSource::restart()

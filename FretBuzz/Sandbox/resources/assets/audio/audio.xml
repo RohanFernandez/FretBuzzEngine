@@ -4,7 +4,11 @@
   
 <!-- AUDIO CLIPS START-->
 	<Audio>
-		<audio id="beats" file_name="HipHop.mp3"/>
+		<audio id="beats" 		file_name="HipHop.mp3"/>
+		<audio id="GunPickup" 	file_name="PickupWeapon.wav"/>
+		<audio id="FireM16" 	file_name="FireM16.wav"/>
+		<audio id="FireDoubleBarrell" file_name="FireDoubleBarrell.wav"/>
+		<audio id="WeaponThrow" file_name="WeaponThrow.wav"/>
 	</Audio>
 <!-- AUDIO CLIPS END-->
 </Assets>

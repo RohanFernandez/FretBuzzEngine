@@ -26,8 +26,9 @@ namespace ns_HMGame
 		l_RectColliderData.m_CollisionMask.addLayers(std::vector<std::string>{"BOUNDARY", "PICKUP", "BULLET"});
 		l_RectColliderData.m_CategoryMask.addLayers(std::vector<std::string>{"PLAYER"});
 
-		this->addComponent<FRETBUZZ::RectCollider>(l_RectColliderData);
-		this->addComponent<PlayerControllerHM>(l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
+		addComponent<FRETBUZZ::RectCollider>(l_RectColliderData);
+		addComponent<FRETBUZZ::AudioSource>("GunPickup", false);
+		addComponent<PlayerControllerHM>(l_pCamGameObj, l_pPlayerUpperGameObj, l_pPlayerLowerGameObj);
 
 		s_pInstance = this;
 	}
