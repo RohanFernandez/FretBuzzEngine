@@ -17,3 +17,7 @@ A game engine made to create 2D and 3D games.
 	*Model loader 		:: Assimp
 	*Engine Editor UI 	:: ImGui
 	*Logging		:: spdlog
+
+ 
+## Last state of the engine can be seen in this video
+https://www.youtube.com/watch?v=PRs3ZZSry6M
